@@ -1,6 +1,7 @@
 package com.iol.controller.servletController;
 
 import com.iol.model.entityBeans.User;
+import com.iol.repository.CategorieRepository;
 import com.iol.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,9 @@ public class LoginController {
     private UserRepository userRepository;
 
     @Autowired
+    private CategorieRepository categorieRepository;
+
+    @Autowired
     public LoginController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -32,14 +36,12 @@ public class LoginController {
 
     @RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
     public String index(Model model) {
-        String message = "Hello Spring Boot + JSP";
-        model.addAttribute("message", message);
         return LOGIN_VIEW;
     }
 
     @RequestMapping(value = "/signup",method = RequestMethod.GET)
-    private String getDashboard(){
-        return DASHBOARD_VIEW;
+    private String getLogin(){
+        return LOGIN_VIEW;
     }
 
     @RequestMapping(value = "/signup",method = RequestMethod.POST)
@@ -48,15 +50,15 @@ public class LoginController {
         String password = request.getParameter("password");
         Optional<User> optionalUser = userRepository.checkUser(username,password);
         ModelAndView modelAndView = new ModelAndView();
-//        if (optionalUser.isPresent()){
-//            User user = optionalUser.get();
-//            modelAndView.addObject(CONNECTED_USER, user);
-//            modelAndView.setViewName(DASHBOARD_VIEW);
-//        }else {
-//            modelAndView.addObject(CONNECTED_USER,null);
-//            modelAndView.setViewName(LOGIN_VIEW);
-//        }
-        modelAndView.setViewName(DASHBOARD_VIEW);
+        if (optionalUser.isPresent()){
+            User user = optionalUser.get();
+            modelAndView.addObject(CONNECTED_USER, user);
+            modelAndView.addObject("categories",categorieRepository.findAll());
+            modelAndView.setViewName(DASHBOARD_VIEW);
+        }else {
+            modelAndView.addObject(CONNECTED_USER,null);
+            modelAndView.setViewName(LOGIN_VIEW);
+        }
         return modelAndView;
     }
 

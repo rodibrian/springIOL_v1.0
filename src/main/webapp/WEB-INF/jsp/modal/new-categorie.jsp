@@ -14,7 +14,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                        <button id="saveCategorieBtn" type="button" class="btn btn-primary">Enregistrer</button>
+                        <button id="saveCategorieBtn" type="button" data-bs-dismiss="modal" class="btn btn-primary">Enregistrer</button>
                     </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

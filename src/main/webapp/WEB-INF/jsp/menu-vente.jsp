@@ -1,5 +1,4 @@
-<%@ include file="../../assets/jsp/template/head.jsp" %>
-
+<%@ include file="template/head.jsp" %>
 
 <div class="row d-flex justify-content-center align-items-center" id="simple-dragula" data-plugin="dragula">
     <div class="col-md-11">
@@ -135,11 +134,11 @@
 
 <!--  modal list -->
 
-<%@ include file="../../assets/jsp/modal/vente/list-article.jsp" %>
-<%@ include file="../../assets/jsp/modal/vente/list-client.jsp" %>
-<%@ include file="../../assets/jsp/modal/vente/prix-special.jsp" %>
+<%@ include file="modal/vente/list-article.jsp" %>
+<%@ include file="modal/vente/list-client.jsp" %>
+<%@ include file="modal/vente/prix-special.jsp" %>
 
 <!-- end modal list -->
             
             
-<%@ include file="../../assets/jsp/template/setting.jsp" %>
+<%@ include file="template/setting.jsp" %>

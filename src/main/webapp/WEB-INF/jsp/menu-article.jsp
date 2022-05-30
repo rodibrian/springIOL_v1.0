@@ -1,8 +1,7 @@
-<%@ include file='../../assets/jsp/template/header.jsp' %>
-
+<%@ include file="template/header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Start Content-->
 <div class="container-fluid">
-
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
@@ -39,8 +38,8 @@
 
 
     <div class="all-modal">
-        <%@ include file="../../assets/jsp/modal/new-article.jsp" %>
-        <%@ include file="../../assets/jsp/modal/new-categorie.jsp" %>
+        <%@ include file="modal/new-article.jsp" %>
+        <%@ include file="modal/new-categorie.jsp" %>
     </div>
 
     <!-- suite -->
@@ -49,28 +48,16 @@
     <div class="container -fluid"><br><br>
         <div class="row">
             <div class="col-lg-2">
-                <table class="table table-sm table-hover">
+                <table id="categorieTabList" class="table table-sm table-hover">
                     <thead>
-                    <tr>
-                        <th>Listes des cat�gories</th>
+                    <th>Listes des categories</th>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th>Categorie I</th>
-                    </tr>
-                    <tr>
-                        <th>Categorie II</th>
-                    </tr>
-                    <tr>
-                        <th>Categorie III</th>
-                    </tr>
-                    <tr>
-                        <th>Categorie IV</th>
-                    </tr>
-                    <tr>
-                        <th>Categorie V</th>
-                    </tr>
-
+                        <c:forEach var="categorie" items="${categories}">
+                            <tr id="${categorie.id}" >
+                                <td><c:out value="${categorie.libelle}"/></td>
+                            </tr>
+                        </c:forEach>
                     <tr>
                         <th>
                             <div class="d-flex justify-content-center mb-3">
@@ -117,7 +104,7 @@
                 <tr>
                     <td>000 000 000 00</td>
                     <td>Designation d'article</td>
-                    <td>unit�</td>
+                    <td>unite</td>
                     <td>00</td>
                     <td>00Kg</td>
                     <td>categorie</td>
@@ -125,7 +112,7 @@
                 <tr>
                     <td>000 000 000 00</td>
                     <td>Designation d'article</td>
-                    <td>unit�</td>
+                    <td>unite</td>
                     <td>00</td>
                     <td>00Kg</td>
                     <td>categorie</td>
@@ -155,5 +142,5 @@
 <!-- End Page content -->
 <!-- ============================================================== -->
 
-<%@ include file="../../assets/jsp/template/footer.jsp" %>
-<%@ include file="../../assets/jsp/template/setting.jsp" %>
+<%@ include file="template/footer.jsp" %>
+<%@ include file="template/setting.jsp" %>
