@@ -108,5 +108,7 @@
         <!-- end demo js-->
 <script src="${pageContext.request.contextPath}/assets/js/modalJs/new-categorie.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/modalJs/new-article.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/menu/menu-stock.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/menu/menu-facture.js"></script>
     </body>
 </html>

@@ -76,7 +76,7 @@
                         </a>
 
                         <!-- item-->
-                        <a href="/" class="dropdown-item notify-item">
+                        <a href="deconnexion" class="dropdown-item notify-item">
                             <i class="mdi mdi-logout me-1"></i>
                             <span>Deconnexion</span>
                         </a>
