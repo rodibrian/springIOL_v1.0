@@ -51,6 +51,27 @@
                     <th>Listes des categories</th>
                     </thead>
                     <tbody>
+<<<<<<< HEAD
+<<<<<<< HEAD
+                    <tr>
+                        <th>Categorie I</th>
+                    </tr>
+                    <tr>
+                        <th>Categorie II</th>
+                    </tr>
+                    <tr>
+                        <th>Categorie III</th>
+                    </tr>
+                    <tr>
+                        <th>Categorie IV</th>
+                    </tr>
+                    <tr>
+                        <th>Categorie V</th>
+                    </tr>
+
+=======
+=======
+>>>>>>> 3f873c75fae12c1b4f01b0398e35336b2691f601
                         <c:forEach var="categorie" items="${categories}">
                             <tr id="${categorie.id}">
                                 <td><c:out value="${categorie.libelle}"/></td>
@@ -64,6 +85,10 @@
                         </c:forEach>
                     </tbody>
                     <tfoot>
+<<<<<<< HEAD
+>>>>>>> e3a30479fa417d9ba5c8cb4e5b87f0fc2243baac
+=======
+>>>>>>> 3f873c75fae12c1b4f01b0398e35336b2691f601
                     <tr>
                         <th>
                             <div class="d-flex justify-content-center mb-3">
