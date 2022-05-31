@@ -39,7 +39,7 @@
               <p class="text-muted mb-4 d-none">Veuillez entrer votre nom d'utilisateur et mot de passe pour accÃ©der Ã  I-jeery</p>
             </div>
 
-            <form action="login" method="post">
+            <form action="signup" method="post">
 
               <div class="mb-3">
                 <label for="emailaddress" class="form-label">Nom d'utilisateur</label>

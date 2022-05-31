@@ -39,21 +39,20 @@
 
 
                 <li class="side-nav-title side-nav-item">Menu de Navigation</li>
-
                 <li class="side-nav-item">
-                    <a href="${pageContext.request.contextPath}/assets/jsp/dashboard.jsp" class="side-nav-link">
+                    <a href="/dashboard" class="side-nav-link">
                         <i class="uil-dashboard"></i>
                         <span> Tableau de bord </span>
                     </a>
                 </li>
                 <li class="side-nav-item">
-                    <a href="${pageContext.request.contextPath}/assets/jsp/menu-article.jsp" class="side-nav-link">
+                    <a href="/articles" class="side-nav-link">
                         <i class="uil-box"></i>
                         <span> Article </span>
                     </a>
                 </li>
                 <li class="side-nav-item">
-                    <a href="${pageContext.request.contextPath}/assets/jsp/menu-vente.jsp" class="side-nav-link"
+                    <a href="/ventes" class="side-nav-link"
                        target="_blank">
                         <i class="uil-shopping-cart-alt"></i>
                         <span> Vente </span>
