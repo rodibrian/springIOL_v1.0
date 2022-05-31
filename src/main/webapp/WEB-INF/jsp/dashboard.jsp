@@ -1,7 +1,5 @@
 
 <%@ include file="template/header.jsp" %>
-
-
 <div class="row">
    <div class="col-xl-12 col-lg-12">
 
@@ -16,7 +14,7 @@
                   <h3 class="mt-3 mb-3">0Ar</h3>
                   <p class="mb-0 text-muted">
                      <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 5.72%</span>
-                     <span class="text-nowrap">Par rapport à hier</span>
+                     <span class="text-nowrap">Par rapport ï¿½ hier</span>
                   </p>
                </div> <!-- end card-body-->
             </div> <!-- end card-->
@@ -32,7 +30,7 @@
                   <h3 class="mt-3 mb-3">0Ar</h3>
                   <p class="mb-0 text-muted">
                      <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 1.08%</span>
-                     <span class="text-nowrap">Par rapport à hier</span>
+                     <span class="text-nowrap">Par rapport ï¿½ hier</span>
                   </p>
                </div> <!-- end card-body-->
             </div> <!-- end card-->
@@ -48,7 +46,7 @@
                   <h3 class="mt-3 mb-3">0Ar</h3>
                   <p class="mb-0 text-muted">
                      <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 5.27%</span>
-                     <span class="text-nowrap">Par rapport à hier</span>
+                     <span class="text-nowrap">Par rapport ï¿½ hier</span>
                   </p>
                </div> <!-- end card-body-->
             </div> <!-- end card-->
@@ -64,7 +62,7 @@
                   <h3 class="mt-3 mb-3">0Ar</h3>
                   <p class="mb-0 text-muted">
                      <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 1.08%</span>
-                     <span class="text-nowrap">Par rapport à hier</span>
+                     <span class="text-nowrap">Par rapport ï¿½ hier</span>
                   </p>
                </div> <!-- end card-body-->
             </div> <!-- end card-->
@@ -189,18 +187,18 @@
                         <a href="javascript:void(0);" class="dropdown-item">Action</a>
                      </div>
                   </div>
-                  <h4 class="header-title">Achat à crédit 2022</h4>
+                  <h4 class="header-title">Achat ï¿½ crï¿½dit 2022</h4>
 
                   <div id="average-sales" class="apex-charts mb-4 mt-4" data-colors="#727cf5,#0acf97,#fa5c7c,#ffbc00"></div>
 
 
                   <div class="chart-widget-list">
                      <p>
-                        <i class="mdi mdi-square text-danger"></i> Impayé
+                        <i class="mdi mdi-square text-danger"></i> Impayï¿½
                         <span class="float-end">0Ar</span>
                      </p>
                      <p>
-                        <i class="mdi mdi-square text-success"></i> Payé total
+                        <i class="mdi mdi-square text-success"></i> Payï¿½ total
                         <span class="float-end">0Ar</span>
                      </p>
                   </div>

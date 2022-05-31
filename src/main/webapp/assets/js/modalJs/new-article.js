@@ -13,7 +13,6 @@ $(function () {
             let table = $("#table-unite tbody");
             let length = $("#table-unite tbody tr").length;
             length++;
-
             // cacher le enregistrement
             $("#table-unite tbody tr th a.btn-success").hide();
             $('#table-unite input').attr('disabled', '')
@@ -70,17 +69,17 @@ $(function () {
 
 
     $("#newArticleBtn").click(()=>{
-        let children = $("#categorieTabList tbody tr")
+        let tdElement = $("#categorieTabList tbody tr td:first-child");
         let select = $(".form-select");
-        if (children.length!==0){
-            for (let i = 0 ; i < children.length; i++){
-                console.log(children[i]);
-                // let id = children[i].attr("id");
-                // let libelle = children[i].html();
-                // let option = `<option value="`+id+`">`+libelle+`</option>`
-                // select.append(option);
+        if (tdElement.length!==0){
+            for (let i = 0 ; i < tdElement.length; i++){
+                let text = tdElement[i].innerText;
+                let id = $(tdElement[i]).parent().attr("id");
+                let option = `<option value="`+id+`">`+text+`</option>`
+                select.append(option);
             }
         }else {
+
             $.ajax({
                 type: 'GET',
                 url: categorieUrl,
@@ -91,6 +90,7 @@ $(function () {
                     }
                 }
             });
+
         }
     });
 });

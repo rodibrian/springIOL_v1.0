@@ -16,4 +16,5 @@ public class MagasinRessource {
         this.magasinRepository = magasinRepository;
     }
 
+
 }

@@ -13,11 +13,15 @@
                <input type="text" id="designation" class="form-control">
             </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 3f873c75fae12c1b4f01b0398e35336b2691f601
             <div class="mb-3">
                <label for="categorie" class="form-label">Categorie</label>
                <select class="form-select" id="categorie">
                   <option value="value00">value00</option>
                </select>
+<<<<<<< HEAD
 =======
             <div class="modal-body">
                 <div class="mb-3">
@@ -64,6 +68,8 @@
                     </div>
                 </div>
 >>>>>>> e3a30479fa417d9ba5c8cb4e5b87f0fc2243baac
+=======
+>>>>>>> 3f873c75fae12c1b4f01b0398e35336b2691f601
             </div>
             <div class="mb-3">
                <label for="table-unite" class="form-label text-underline">Unite</label>
