@@ -11,13 +11,14 @@
 <div class="wrapper">
     <!-- ========== Left Sidebar Start ========== -->
     <div class="leftside-menu">
+
         <!-- LOGO -->
         <a href="index.php" class="logo text-center logo-light">
                     <span class="logo-lg">
-                        <img src="${pageContext.request.contextPath}/assets/images/logo.png" alt="" height="16">&nbsp; I-jeery OnLine
+                        <img src="../images/logo.png" alt="" height="16">&nbsp; I-jeery OnLine v1.0
                     </span>
             <span class="logo-sm">
-                        <img src="${pageContext.request.contextPath}/assets/images/logo.png" alt="" height="16">
+                        <img src="../images/logo.png" alt="" height="16">
                     </span>
         </a>
 
@@ -40,44 +41,44 @@
                 <li class="side-nav-title side-nav-item">Menu de Navigation</li>
 
                 <li class="side-nav-item">
-                    <a href="/dashboard" class="side-nav-link">
+                    <a href="${pageContext.request.contextPath}/assets/jsp/dashboard.jsp" class="side-nav-link">
                         <i class="uil-dashboard"></i>
                         <span> Tableau de bord </span>
                     </a>
                 </li>
                 <li class="side-nav-item">
-                    <a href="/articles" class="side-nav-link">
+                    <a href="${pageContext.request.contextPath}/assets/jsp/menu-article.jsp" class="side-nav-link">
                         <i class="uil-box"></i>
                         <span> Article </span>
                     </a>
                 </li>
                 <li class="side-nav-item">
-                    <a href="/ventes" class="side-nav-link"
+                    <a href="${pageContext.request.contextPath}/assets/jsp/menu-vente.jsp" class="side-nav-link"
                        target="_blank">
                         <i class="uil-shopping-cart-alt"></i>
                         <span> Vente </span>
                     </a>
                 </li>
                 <li class="side-nav-item">
-                    <a href="apps-calendar.php" class="side-nav-link">
+                    <a href="${pageContext.request.contextPath}/assets/jsp/menu-detail-vente.jsp" class="side-nav-link">
                         <i class="uil-calender"></i>
                         <span> Detail de vente </span>
                     </a>
                 </li>
                 <li class="side-nav-item">
-                    <a href="apps-calendar.php" class="side-nav-link">
+                    <a href="${pageContext.request.contextPath}/assets/jsp/menu-magasin.jsp" class="side-nav-link">
                         <i class="uil-building"></i>
                         <span> Magasin </span>
                     </a>
                 </li>
                 <li class="side-nav-item">
-                    <a href="apps-calendar.php" class="side-nav-link">
+                    <a href="${pageContext.request.contextPath}/assets/jsp/menu-stock.jsp" class="side-nav-link">
                         <i class="uil-archive"></i>
                         <span> Stock </span>
                     </a>
                 </li>
                 <li class="side-nav-item">
-                    <a href="apps-calendar.php" class="side-nav-link">
+                    <a href="${pageContext.request.contextPath}/assets/jsp/menu-facture.jsp" class="side-nav-link">
                         <i class="uil-invoice"></i>
                         <span> Facture </span>
                     </a>
@@ -251,4 +252,3 @@
                 </div>
             </div>
             <!-- end page title -->
-        </div>

@@ -1,8 +1,9 @@
 <%@ include file="template/head.jsp" %>
 
+
 <div class="row d-flex justify-content-center align-items-center" id="simple-dragula" data-plugin="dragula">
     <div class="col-md-11">
-        <div class="card mb-0 mt-3 text-white bg-dark">
+        <div class="card mb-0 mt-3">
             <div class="card-body">
                 <blockquote class="card-bodyquote mb-0">
                     

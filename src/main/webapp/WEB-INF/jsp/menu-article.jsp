@@ -1,7 +1,8 @@
-<%@ include file="template/header.jsp" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file='template/header.jsp' %>
+
 <!-- Start Content-->
 <div class="container-fluid">
+
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
@@ -48,16 +49,28 @@
     <div class="container -fluid"><br><br>
         <div class="row">
             <div class="col-lg-2">
-                <table id="categorieTabList" class="table table-sm table-hover">
+                <table class="table table-sm table-hover">
                     <thead>
-                    <th>Listes des categories</th>
+                    <tr>
+                        <th>Listes des cat�gories</th>
                     </thead>
                     <tbody>
-                        <c:forEach var="categorie" items="${categories}">
-                            <tr id="${categorie.id}" >
-                                <td><c:out value="${categorie.libelle}"/></td>
-                            </tr>
-                        </c:forEach>
+                    <tr>
+                        <th>Categorie I</th>
+                    </tr>
+                    <tr>
+                        <th>Categorie II</th>
+                    </tr>
+                    <tr>
+                        <th>Categorie III</th>
+                    </tr>
+                    <tr>
+                        <th>Categorie IV</th>
+                    </tr>
+                    <tr>
+                        <th>Categorie V</th>
+                    </tr>
+
                     <tr>
                         <th>
                             <div class="d-flex justify-content-center mb-3">
@@ -73,7 +86,7 @@
             </div>
 
             <div class="col-lg-10">
-            <table id="scroll-vertical-datatable" class="table table-sm dt-responsive nowrap table-hover">
+            <table id="scroll-vertical-datatable" class="table-listes-article table table-sm dt-responsive nowrap table-hover">
                 <thead>
                 <tr>
                     <th>Code</th>
@@ -97,22 +110,6 @@
                     <td>000 000 000 00</td>
                     <td>Designation d'article</td>
                     <td>unit�</td>
-                    <td>00</td>
-                    <td>00Kg</td>
-                    <td>categorie</td>
-                </tr>
-                <tr>
-                    <td>000 000 000 00</td>
-                    <td>Designation d'article</td>
-                    <td>unite</td>
-                    <td>00</td>
-                    <td>00Kg</td>
-                    <td>categorie</td>
-                </tr>
-                <tr>
-                    <td>000 000 000 00</td>
-                    <td>Designation d'article</td>
-                    <td>unite</td>
                     <td>00</td>
                     <td>00Kg</td>
                     <td>categorie</td>
