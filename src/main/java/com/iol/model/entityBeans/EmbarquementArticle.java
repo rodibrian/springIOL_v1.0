@@ -6,17 +6,17 @@ import java.util.Date;
 
 @Entity
 @Table
-public class VoyageArticle implements Serializable {
+public class EmbarquementArticle implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "voyage_id",foreignKey = @ForeignKey(name = "VA_voyage_key_constraint"))
+    @JoinColumn(name = "voyage_id",foreignKey = @ForeignKey(name = "ea_voyage_key_constraint"))
     private Voyage voyage;
 
     @ManyToOne
-    @JoinColumn(name = "article_id",foreignKey = @ForeignKey(name = "VA_article_key_constraint"))
+    @JoinColumn(name = "article_id",foreignKey = @ForeignKey(name = "ea_article_key_constraint"))
     private Article article;
 
     @ManyToOne

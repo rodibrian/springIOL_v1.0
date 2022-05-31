@@ -14,8 +14,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="example-select" class="form-label">Categorie</label>
-                    <select class="form-select" id="categorie">
-                        <option value="value00">value00</option>
+                    <select class="form-select" id="categorieSelect">
                     </select>
                 </div>
                 <div class="mb-3">

@@ -29,9 +29,8 @@
                 </div>
             </div>
             <div class="d-block mt-1">
-                <a type="button" class="btn btn-success mr-1" data-bs-toggle="modal" data-bs-target="#new-article"><i
+                <a id="newArticleBtn" type="button" class="btn btn-success mr-1" data-bs-toggle="modal" data-bs-target="#new-article"><i
                         class="uil-file-plus">&nbsp;</i>Nouveau Article</a>
-
             </div>
         </div>
     </div>
@@ -44,7 +43,6 @@
 
     <!-- suite -->
 
-
     <div class="container -fluid"><br><br>
         <div class="row">
             <div class="col-lg-2">
@@ -54,21 +52,26 @@
                     </thead>
                     <tbody>
                         <c:forEach var="categorie" items="${categories}">
-                            <tr id="${categorie.id}" >
+                            <tr id="${categorie.id}">
                                 <td><c:out value="${categorie.libelle}"/></td>
+                                <td>
+                                    <div style="display: flex;align-content: center;">
+                                        <a id="${categorie.id}" data-bs-toggle="modal" data-bs-target="#standard-modal2" href="#" class="editCategorie"><i class="uil-pen"></i></a>
+                                        <a id="${categorie.id}" href="#" class="deleteCategorie"><i class="uil-trash-alt"></i></a>
+                                    </div>&nbsp;
+                                </td>
                             </tr>
                         </c:forEach>
+                    </tbody>
+                    <tfoot>
                     <tr>
                         <th>
                             <div class="d-flex justify-content-center mb-3">
-                                <a href="" class="btn btn-success" data-bs-toggle="modal"
-                                   data-bs-target="#standard-modal2"><i class="uil-plus"></i></a>&nbsp;
-                                <a href="" class="btn btn-primary"><i class="uil-pen"></i></a>&nbsp;
-                                <a href="" class="btn btn-danger"><i class="uil-trash-alt"></i></a>
+                                <a href="" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#standard-modal2"><i class="uil-plus"></i></a>&nbsp;
                             </div>
                         </th>
                     </tr>
-                    </tbody>
+                    </tfoot>
                 </table>
             </div>
 
