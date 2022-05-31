@@ -12,11 +12,58 @@
                <label for="designation" class="form-label">Designation</label>
                <input type="text" id="designation" class="form-control">
             </div>
+<<<<<<< HEAD
             <div class="mb-3">
                <label for="categorie" class="form-label">Categorie</label>
                <select class="form-select" id="categorie">
                   <option value="value00">value00</option>
                </select>
+=======
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="simpleinput" class="form-label">Designation</label>
+                    <input type="text" id="designation" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="example-select" class="form-label">Categorie</label>
+                    <select class="form-select" id="categorieSelect">
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="example-select" class="form-label text-underline">Unite</label>
+                    <table id="table-unite" class="table w-100 d-block table-unit table-bordered border-primary table-centered table-hover">
+                        <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Niveau</th>
+                            <th>Designation</th>
+                            <th>Quantite</th>
+                            <th>Poids</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th><input type="text" id="code_1" class="form-control input-sm" value="000"></th>
+                            <th><input type="text" id="niveau_1" class="form-control input-sm" value="0"></th>
+                            <th><input type="text" id="designation_1" class="form-control input-sm" value="designation"></th>
+                            <th><input type="text" id="quantite_1" class="form-control input-sm" value="0"></th>
+                            <th><input type="text" id="poids_1" class="form-control input-sm" value="0Kg"></th>
+                            <th class="d-inline-flex">
+                                <a class="btn btn-primary btn-sm" id="edit_1"><i class="uil-pen"></i></a>&nbsp;
+                                <a class="btn btn-danger btn-sm" id="del_1"><i class="uil-trash-alt"></i></a>&nbsp;
+                                <a class="btn btn-success btn-sm" id=add_1"><i class="uil-check-square"></i></a>&nbsp;
+                            </th>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-flex justify-content-end">
+                        <a class="btn btn-success" id="btn-new-unite"><i class="uil-plus"></i></a>
+                    </div>
+                </div>
+>>>>>>> e3a30479fa417d9ba5c8cb4e5b87f0fc2243baac
             </div>
             <div class="mb-3">
                <label for="table-unite" class="form-label text-underline">Unite</label>

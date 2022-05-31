@@ -1,8 +1,11 @@
-console.log("js ici");
 $(function () {
+
     // tout les champ non editable par defaut
 
     $('#table-unite input').attr('disabled', '')
+
+
+    let categorieUrl = 'http://localhost:8080/api/v1/categories';
 
     // ajout du nouveau unite
     $("#btn-new-unite").click(
@@ -59,10 +62,35 @@ $(function () {
 
         console.log($(this).attr('id'))
 
-    }))
+    }));
 
     // click tr
 
-    $("#tmp").css('background-color','red');
+    //$("#tmp").css('background-color','red');
 
+
+    $("#newArticleBtn").click(()=>{
+        let children = $("#categorieTabList tbody tr")
+        let select = $(".form-select");
+        if (children.length!==0){
+            for (let i = 0 ; i < children.length; i++){
+                console.log(children[i]);
+                // let id = children[i].attr("id");
+                // let libelle = children[i].html();
+                // let option = `<option value="`+id+`">`+libelle+`</option>`
+                // select.append(option);
+            }
+        }else {
+            $.ajax({
+                type: 'GET',
+                url: categorieUrl,
+                success: function (categories){
+                    for (let i = 0 ; i < categories.length; i++){
+                        let option = `<option value="`+categories[i].id+`">`+categories[i].libelle+`</option>`
+                        select.append(option);
+                    }
+                }
+            });
+        }
+    });
 });
