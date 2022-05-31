@@ -1,2 +1,5 @@
-package com.iol.controller.restController;public interface IRessourceHelper {
+package com.iol.controller.restController;
+
+public interface IRessourceHelper<T>{
+
 }
