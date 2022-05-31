@@ -6,7 +6,6 @@ $(function () {
             let table = $("#table-unite tbody");
             let length = $("#table-unite tbody tr").length;
             length++;
-
             // cacher le enregistrement
             $("#table-unite tbody tr th a.btn-success").hide();
 
