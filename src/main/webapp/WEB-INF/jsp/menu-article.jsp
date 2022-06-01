@@ -74,7 +74,7 @@
                     </tfoot>
                 </table>
             </div>
-
+g
             <div class="col-lg-10">
             <table id="scroll-vertical-datatable" class="table table-sm dt-responsive nowrap table-hover">
                 <thead>
@@ -88,38 +88,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>000 000 000 00</td>
-                    <td>Designation d'article</td>
-                    <td>unit�</td>
-                    <td>00</td>
-                    <td>00Kg</td>
-                    <td>categorie</td>
-                </tr>
-                <tr>
-                    <td>000 000 000 00</td>
-                    <td>Designation d'article</td>
-                    <td>unit�</td>
-                    <td>00</td>
-                    <td>00Kg</td>
-                    <td>categorie</td>
-                </tr>
-                <tr>
-                    <td>000 000 000 00</td>
-                    <td>Designation d'article</td>
-                    <td>unite</td>
-                    <td>00</td>
-                    <td>00Kg</td>
-                    <td>categorie</td>
-                </tr>
-                <tr>
-                    <td>000 000 000 00</td>
-                    <td>Designation d'article</td>
-                    <td>unite</td>
-                    <td>00</td>
-                    <td>00Kg</td>
-                    <td>categorie</td>
-                </tr>
+                    <c:forEach var="article" items="${articles}">
+                            <tr>
+                                <td><c:out value="${article.code}"/></td>
+                                <td><c:out value="${article.designation}"/></td>
+                                <td>00</td>
+                                <td>00Kg</td>
+                                <td><c:out value="${article.getCategorie().getLibelle()}"/></td>
+                            </tr>
+                    </c:forEach>
                 </tbody>
         </div>
     </div>

@@ -1,7 +1,4 @@
 $(function(){
-
-
-
     let isUpdateOperation = false;
     let editBtnId = 1;
     let selectedVal = "";
