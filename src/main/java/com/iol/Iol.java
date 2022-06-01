@@ -75,8 +75,6 @@ public class Iol implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        saveUser();
-        saveCategorie();
     }
 }
 

@@ -40,9 +40,6 @@ $(function(){
                             </tr>
                 `;
                     $("#categorieTabList tbody").append(categorie);
-                },
-                error: function () {
-                    console.log(' ERROR ')
                 }
             });
         }else{

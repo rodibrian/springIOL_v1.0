@@ -18,7 +18,6 @@
         </div>
     </div>
     <!-- end page title -->
-
     <div class="row mr-2">
         <div class="col-12">
             <div class="page-title-box">
@@ -52,6 +51,7 @@
                     <th>Listes des categories</th>
                     </thead>
                     <tbody>
+                        <tr><td>Toutes</td></tr>
                         <c:forEach var="categorie" items="${categories}">
                             <tr id="${categorie.id}">
                                 <td><c:out value="${categorie.libelle}"/></td>
@@ -85,6 +85,7 @@
                     <th>Quantité</th>
                     <th>Poids(Kg)</th>
                     <th>Categorie</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -97,6 +98,13 @@
                                 <td><c:out value="${unite.quantite}"/></td>
                                 <td><c:out value="${unite.poids}"/></td>
                                 <td><c:out value="${article.getCategorie().getLibelle()}"/></td>
+                                <td>
+                                        <div>
+                                            <a id="${article.id}" data-bs-toggle="modal" data-bs-target="#new-article" class="btn-sm btn-info editArticleBtn"><i class="uil-pen"></i></a>
+                                            <a id="${article.id}" class="btn-sm btn-danger deleteArticleBtn "><i class="uil-trash-alt"></i></a>
+                                            <a id="${article.id}" class="btn-sm btn-warning hideArticleBtn"><i class="uil-eye-slash"></i></a>
+                                        </div>
+                                </td>
                             </tr>
                         </c:forEach>
                     </c:forEach>
