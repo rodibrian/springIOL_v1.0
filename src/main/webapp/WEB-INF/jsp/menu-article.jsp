@@ -1,5 +1,6 @@
-<%@ include file="template/header.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="template/header.jsp" %>
 <!-- Start Content-->
 <div class="container-fluid">
     <!-- start page title -->
@@ -51,27 +52,6 @@
                     <th>Listes des categories</th>
                     </thead>
                     <tbody>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    <tr>
-                        <th>Categorie I</th>
-                    </tr>
-                    <tr>
-                        <th>Categorie II</th>
-                    </tr>
-                    <tr>
-                        <th>Categorie III</th>
-                    </tr>
-                    <tr>
-                        <th>Categorie IV</th>
-                    </tr>
-                    <tr>
-                        <th>Categorie V</th>
-                    </tr>
-
-=======
-=======
->>>>>>> 3f873c75fae12c1b4f01b0398e35336b2691f601
                         <c:forEach var="categorie" items="${categories}">
                             <tr id="${categorie.id}">
                                 <td><c:out value="${categorie.libelle}"/></td>
@@ -85,10 +65,6 @@
                         </c:forEach>
                     </tbody>
                     <tfoot>
-<<<<<<< HEAD
->>>>>>> e3a30479fa417d9ba5c8cb4e5b87f0fc2243baac
-=======
->>>>>>> 3f873c75fae12c1b4f01b0398e35336b2691f601
                     <tr>
                         <th>
                             <div class="d-flex justify-content-center mb-3">
@@ -99,57 +75,35 @@
                     </tfoot>
                 </table>
             </div>
-
             <div class="col-lg-10">
-            <table id="scroll-vertical-datatable" class="table table-sm dt-responsive nowrap table-hover">
+            <table id="articleTable" class="table table-sm dt-responsive nowrap table-hover">
                 <thead>
                 <tr>
                     <th>Code</th>
                     <th>Designation</th>
                     <th>Unite</th>
-                    <th>Quantit�</th>
-                    <th>Poids</th>
+                    <th>Quantité</th>
+                    <th>Poids(Kg)</th>
                     <th>Categorie</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>000 000 000 00</td>
-                    <td>Designation d'article</td>
-                    <td>unit�</td>
-                    <td>00</td>
-                    <td>00Kg</td>
-                    <td>categorie</td>
-                </tr>
-                <tr>
-                    <td>000 000 000 00</td>
-                    <td>Designation d'article</td>
-                    <td>unit�</td>
-                    <td>00</td>
-                    <td>00Kg</td>
-                    <td>categorie</td>
-                </tr>
-                <tr>
-                    <td>000 000 000 00</td>
-                    <td>Designation d'article</td>
-                    <td>unite</td>
-                    <td>00</td>
-                    <td>00Kg</td>
-                    <td>categorie</td>
-                </tr>
-                <tr>
-                    <td>000 000 000 00</td>
-                    <td>Designation d'article</td>
-                    <td>unite</td>
-                    <td>00</td>
-                    <td>00Kg</td>
-                    <td>categorie</td>
-                </tr>
+                    <c:forEach var="article" items="${articles}">
+                        <c:forEach var="unite" items="${article.getUnite()}">
+                            <tr>
+                                <td><c:out value="${unite.code}"/></td>
+                                <td><c:out value="${article.designation}"/></td>
+                                <td><c:out value="${unite.designation}"/></td>
+                                <td><c:out value="${unite.quantite}"/></td>
+                                <td><c:out value="${unite.poids}"/></td>
+                                <td><c:out value="${article.getCategorie().getLibelle()}"/></td>
+                            </tr>
+                        </c:forEach>
+                    </c:forEach>
                 </tbody>
         </div>
     </div>
 </div>
-
 
 </div>
 

@@ -21,9 +21,6 @@ public class Article implements Serializable {
     private Long id;
 
     @Column(columnDefinition = "TEXT")
-    private String code;
-
-    @Column(columnDefinition = "TEXT")
     private String designation;
 
     @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
@@ -36,7 +33,7 @@ public class Article implements Serializable {
 
     private Double prix;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(targetEntity = Categorie.class)
     @JoinColumn(name = "categorieId",foreignKey = @ForeignKey(name = "article_categorie_key_constraint"))
     private Categorie categorie;
 

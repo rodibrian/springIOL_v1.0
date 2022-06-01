@@ -1,10 +1,12 @@
 package com.iol;
 
+import com.iol.model.entityBeans.Categorie;
 import com.iol.model.entityBeans.Fonction;
 import com.iol.model.entityBeans.Fonctionnalite;
 import com.iol.model.entityBeans.User;
 import com.iol.model.entityEnum.Sexe;
 import com.iol.model.entityEnum.SituationMatrimoniale;
+import com.iol.repository.CategorieRepository;
 import com.iol.repository.UserRepository;
 import org.apache.tomcat.util.descriptor.web.JspPropertyGroup;
 import org.apache.tomcat.util.descriptor.web.JspPropertyGroupDescriptorImpl;
@@ -30,17 +32,30 @@ public class Iol implements CommandLineRunner {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private CategorieRepository categorieRepository;
+
     public static void main(String[] args) {
         SpringApplication.run(Iol.class,args);
     }
 
+    private void saveCategorie(){
+        Categorie[] categorie = {
+                new Categorie("PPN"),
+                new Categorie("QUINCALLERIE"),
+                new Categorie("IMMOBILIER")
+        };
+        for (Categorie categorie1 : categorie){
+            categorieRepository.save(categorie1);
+        }
+    }
 
     private void saveUser(){
+
         User user = new User();
 
         Fonctionnalite fonctionnalite = new Fonctionnalite();
         fonctionnalite.setNom("Dashboard");
-
         Fonction fonction = new Fonction();
         fonction.setNom(" Dev Full stack java ");
         fonction.setCode("78494");
@@ -61,6 +76,7 @@ public class Iol implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         saveUser();
+        saveCategorie();
     }
 }
 
