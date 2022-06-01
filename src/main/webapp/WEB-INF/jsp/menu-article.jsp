@@ -1,5 +1,6 @@
-<%@ include file="template/header.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="template/header.jsp" %>
 <!-- Start Content-->
 <div class="container-fluid">
     <!-- start page title -->
@@ -74,34 +75,35 @@
                     </tfoot>
                 </table>
             </div>
-
             <div class="col-lg-10">
-            <table id="scroll-vertical-datatable" class="table table-sm dt-responsive nowrap table-hover">
+            <table id="articleTable" class="table table-sm dt-responsive nowrap table-hover">
                 <thead>
                 <tr>
                     <th>Code</th>
                     <th>Designation</th>
                     <th>Unite</th>
-                    <th>Quantit�</th>
-                    <th>Poids</th>
+                    <th>Quantité</th>
+                    <th>Poids(Kg)</th>
                     <th>Categorie</th>
                 </tr>
                 </thead>
                 <tbody>
                     <c:forEach var="article" items="${articles}">
+                        <c:forEach var="unite" items="${article.getUnite()}">
                             <tr>
-                                <td><c:out value="${article.code}"/></td>
+                                <td><c:out value="${unite.code}"/></td>
                                 <td><c:out value="${article.designation}"/></td>
-                                <td>00</td>
-                                <td>00Kg</td>
+                                <td><c:out value="${unite.designation}"/></td>
+                                <td><c:out value="${unite.quantite}"/></td>
+                                <td><c:out value="${unite.poids}"/></td>
                                 <td><c:out value="${article.getCategorie().getLibelle()}"/></td>
                             </tr>
+                        </c:forEach>
                     </c:forEach>
                 </tbody>
         </div>
     </div>
 </div>
-
 
 </div>
 

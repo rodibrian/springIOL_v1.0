@@ -70,10 +70,11 @@ $(function () {
         }
     });
     // enregistrement de l'article
+
     $("#saveArticleBtn").click(()=>{
-        const UNITE_TAB_SIZE = 4;
         let designation = $("#designation").val();
         let categorieId = $("#categorie option:selected").val();
+        let categorieLibelle = $("#categorie option:selected").text();
         let tr = $('#table-unite tbody tr');
         let uniteTab = [];
         for (let i = 0; i < tr.length; i++){
@@ -83,8 +84,45 @@ $(function () {
             for (let j = 0; j < input.length; j++) {
                 unite.push(input[j].value)
             }
-            uniteTab.push(unite);
+            let uniteObject = {};
+            uniteObject.code = unite[0];
+            uniteObject.niveau= unite[1];
+            uniteObject.designation = unite[2];
+            uniteObject.quantite= unite[3];
+            uniteObject.poids= unite[4];
+            uniteTab.push(uniteObject);
         }
+        let article = {
+            designation : designation,
+            categorie : {
+                id : categorieId,
+                libelle : categorieLibelle
+            },
+            unite : uniteTab
+        }
+        let url = "http://localhost:8080/api/v1/articles";
+        $.ajax({
+            type: 'POST',
+            url: url,
+            contentType: 'application/json',
+            data: JSON.stringify(article) ,
+            success: function (data){
+               let table = $("#articleTable tbody");
+                    let uniteTab = data.unite;
+                    uniteTab.forEach(function (unite){
+                        let tableRow = `
+                         <tr>
+                            <td>`+unite.code+`</td>
+                            <td>`+data.designation+`</td>
+                            <td>`+unite.designation+`</td>
+                            <td>`+unite.quantite+`</td>
+                            <td>`+unite.poids+`</td>
+                            <td>`+data.categorie.libelle+`</td>
+                        </tr>`;
+                        table.append(tableRow);
+                    });
+            }
+        });
     })
 
 });

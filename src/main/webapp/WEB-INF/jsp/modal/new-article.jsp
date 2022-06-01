@@ -26,7 +26,7 @@
               <th>Niveau</th>
               <th>Designation</th>
               <th>Quantite</th>
-              <th>Poids</th>
+              <th>Poids(Kg)</th>
               <th>Action</th>
             </tr>
             <tr>
@@ -34,11 +34,11 @@
             </thead>
             <tbody>
             <tr>
-              <td><input type="text" id="code_1" class="form-control input-sm" value="test"></td>
-              <td><input type="text" id="niveau_1" class="form-control input-sm" value="0"></td>
-              <td><input type="text" id="designation_1" class="form-control input-sm" value="designation"></td>
-              <td><input type="text" id="quantite_1" class="form-control input-sm" value="0"></td>
-              <td><input type="text" id="poids_1" class="form-control input-sm" value="0Kg"></td>
+              <td><input type="text" class="form-control input-sm" value="test"></td>
+              <td><input type="text" class="form-control input-sm" value="0"></td>
+              <td><input type="text" class="form-control input-sm" value="article designation"></td>
+              <td><input type="text" class="form-control input-sm" value="0"></td>
+              <td><input type="text" class="form-control input-sm" value="0"></td>
               <td class="d-inline-flex">
                 <a class="btn btn-primary btn-sm btn-edit-unite" id="edit_1"><i class="uil-pen"></i></a>&nbsp;
                 <a class="btn btn-danger btn-sm btn-del-unite" id="del_1"><i class="uil-trash-alt"></i></a>&nbsp;

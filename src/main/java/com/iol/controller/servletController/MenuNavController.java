@@ -1,5 +1,6 @@
 package com.iol.controller.servletController;
 
+import com.iol.repository.ArticleRepository;
 import com.iol.repository.CategorieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,13 +16,17 @@ public class MenuNavController{
 
     @Autowired
     private CategorieRepository categorieRepository;
+    @Autowired
+    private ArticleRepository articleRepository;
 
     private final String CATEGORIE_LIST = "categories";
+    private final String ARTICLE_LIST = "articles";
 
     @RequestMapping(value = "/articles",method = RequestMethod.GET)
     public ModelAndView getArticles(){
         ModelAndView modelAndView = new ModelAndView("menu-article");
         modelAndView.addObject(CATEGORIE_LIST,categorieRepository.findAll());
+        modelAndView.addObject(ARTICLE_LIST,articleRepository.findAll());
         return modelAndView;
     }
 

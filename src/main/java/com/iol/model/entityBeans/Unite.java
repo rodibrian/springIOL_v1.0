@@ -22,6 +22,9 @@ public class Unite implements Serializable {
 
     private Double quantite;
 
+    @Column(columnDefinition = "TEXT")
+    private String designation;
+
     private Double poids;
 
     private int niveau;

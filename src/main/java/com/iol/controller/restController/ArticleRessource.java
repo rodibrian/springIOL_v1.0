@@ -3,11 +3,10 @@ package com.iol.controller.restController;
 import com.iol.model.entityBeans.Article;
 import com.iol.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +28,12 @@ public class ArticleRessource {
     public ResponseEntity<List<Article>> getArticles(){
         List<Article> all = articleRepository.findAll();
         return ResponseEntity.ok(all);
+    }
+
+    @PostMapping("/articles")
+    public ResponseEntity<Object> create(@RequestBody Article article){
+        Article savedArticle = articleRepository.save(article);
+        return new ResponseEntity<>(savedArticle, HttpStatus.CREATED);
     }
 
 }

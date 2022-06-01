@@ -1,5 +1,6 @@
 package com.iol.model.entityBeans;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,8 +25,8 @@ public class Categorie implements Serializable {
     private String libelle;
 
 //    @OneToMany(mappedBy = "categorie",fetch = FetchType.LAZY)
+//    @JsonManagedReference
 //    private Set<Article> articles;
-
     public Categorie(String libelle) {
         this.libelle = libelle;
     }
