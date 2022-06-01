@@ -35,6 +35,26 @@ public class MenuNavController{
         return "menu-vente";
     }
 
+    @RequestMapping(value = "/detail-ventes",method = RequestMethod.GET)
+    public String getDetailVentes(){
+        return "menu-detail-vente";
+    }
+
+    @RequestMapping(value = "/menu-magasin",method = RequestMethod.GET)
+    public String getMenuMagasin(){
+        return "menu-magasin";
+    }
+
+    @RequestMapping(value = "/menu-stock",method = RequestMethod.GET)
+    public String getMenuStock(){
+        return "menu-stock";
+    }
+
+    @RequestMapping(value = "/menu-facture",method = RequestMethod.GET)
+    public String getMenuFacture(){
+        return "menu-facture";
+    }
+
     @RequestMapping(value = "/dashboard",method = RequestMethod.GET)
     public String getDashboard(){
         return "dashboard";
