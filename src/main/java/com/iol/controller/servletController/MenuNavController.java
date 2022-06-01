@@ -18,15 +18,20 @@ public class MenuNavController{
     private CategorieRepository categorieRepository;
     @Autowired
     private ArticleRepository articleRepository;
-
     private final String CATEGORIE_LIST = "categories";
     private final String ARTICLE_LIST = "articles";
 
-    @RequestMapping(value = "/articles",method = RequestMethod.GET)
-    public ModelAndView getArticles(){
+    public MenuNavController() {
+    }
+
+    @RequestMapping(
+            value = {"/articles"},
+            method = {RequestMethod.GET}
+    )
+    public ModelAndView getArticles() {
         ModelAndView modelAndView = new ModelAndView("menu-article");
-        modelAndView.addObject(CATEGORIE_LIST,categorieRepository.findAll());
-        modelAndView.addObject(ARTICLE_LIST,articleRepository.findAll());
+        modelAndView.addObject("categories", this.categorieRepository.findAll());
+        modelAndView.addObject("articles", this.articleRepository.findAll());
         return modelAndView;
     }
 
