@@ -18,21 +18,46 @@ public class MenuNavController{
     private CategorieRepository categorieRepository;
     @Autowired
     private ArticleRepository articleRepository;
-
     private final String CATEGORIE_LIST = "categories";
     private final String ARTICLE_LIST = "articles";
 
-    @RequestMapping(value = "/articles",method = RequestMethod.GET)
-    public ModelAndView getArticles(){
+    public MenuNavController() {
+    }
+
+    @RequestMapping(
+            value = {"/articles"},
+            method = {RequestMethod.GET}
+    )
+    public ModelAndView getArticles() {
         ModelAndView modelAndView = new ModelAndView("menu-article");
-        modelAndView.addObject(CATEGORIE_LIST,categorieRepository.findAll());
-        modelAndView.addObject(ARTICLE_LIST,articleRepository.findAll());
+        modelAndView.addObject("categories", this.categorieRepository.findAll());
+        modelAndView.addObject("articles", this.articleRepository.findAll());
         return modelAndView;
     }
 
     @RequestMapping(value = "/ventes",method = RequestMethod.GET)
     public String getVentes(){
         return "menu-vente";
+    }
+
+    @RequestMapping(value = "/detail-ventes",method = RequestMethod.GET)
+    public String getDetailVentes(){
+        return "menu-detail-vente";
+    }
+
+    @RequestMapping(value = "/menu-magasin",method = RequestMethod.GET)
+    public String getMenuMagasin(){
+        return "menu-magasin";
+    }
+
+    @RequestMapping(value = "/menu-stock",method = RequestMethod.GET)
+    public String getMenuStock(){
+        return "menu-stock";
+    }
+
+    @RequestMapping(value = "/menu-facture",method = RequestMethod.GET)
+    public String getMenuFacture(){
+        return "menu-facture";
     }
 
     @RequestMapping(value = "/dashboard",method = RequestMethod.GET)

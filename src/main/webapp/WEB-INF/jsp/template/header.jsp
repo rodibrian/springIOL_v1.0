@@ -59,25 +59,25 @@
                     </a>
                 </li>
                 <li class="side-nav-item">
-                    <a href="${pageContext.request.contextPath}/assets/jsp/menu-detail-vente.jsp" class="side-nav-link">
+                    <a href="/detail-ventes" class="side-nav-link">
                         <i class="uil-calender"></i>
                         <span> Detail de vente </span>
                     </a>
                 </li>
                 <li class="side-nav-item">
-                    <a href="${pageContext.request.contextPath}/assets/jsp/menu-magasin.jsp" class="side-nav-link">
+                    <a href="/menu-magasin" class="side-nav-link">
                         <i class="uil-building"></i>
                         <span> Magasin </span>
                     </a>
                 </li>
                 <li class="side-nav-item">
-                    <a href="${pageContext.request.contextPath}/assets/jsp/menu-stock.jsp" class="side-nav-link">
+                    <a href="/menu-stock" class="side-nav-link">
                         <i class="uil-archive"></i>
                         <span> Stock </span>
                     </a>
                 </li>
                 <li class="side-nav-item">
-                    <a href="${pageContext.request.contextPath}/assets/jsp/menu-facture.jsp" class="side-nav-link">
+                    <a href="/menu-facture" class="side-nav-link">
                         <i class="uil-invoice"></i>
                         <span> Facture </span>
                     </a>

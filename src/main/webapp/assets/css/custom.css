@@ -11,3 +11,52 @@
 .table-unit>:not(caption)>*>* {
 	padding: .4em!important;
 }
+
+.page-title {
+    text-transform: uppercase;
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+.content-page {
+    min-height: auto!important;
+}
+
+.table-unit>:not(caption)>*>* {
+    padding: .4em!important;
+}
+
+.btn-40 {
+    height: 38px!important;
+}
+
+.table-stock tr {
+    cursor: pointer;
+}
+
+.table-50 {
+    max-height: 350px!important;
+}
+
+.btn-info-stock {
+    cursor: pointer!important;
+}
+
+/*#tab-article {
+    position: fixed!important;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.1);
+}*/
+
+.table-facture tbody tr {
+    cursor: pointer!important;
+}
+
+/* NOUVEAU ARTICLE */
+
+#table-unite tbody tr {
+}
+.table-listes-article {
+    /*background: #262626;*/
+}
