@@ -79,13 +79,11 @@ $(function () {
         for (let i = 0; i < tr.length; i++){
             let unite = [];
             let td = $(tr[i]).children();
-            for (let j = 0; j < td.length-1; j++) {
-              let value = $(td[i]).children(1).val();
-              console.log(value)
-              unite.push(value);
+            let input = td.find("input");
+            for (let j = 0; j < input.length; j++) {
+                unite.push(input[j].value)
             }
-            // console.log(unite);
-            // uniteTab.push(unite);
+            uniteTab.push(unite);
         }
     })
 
