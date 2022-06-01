@@ -78,6 +78,7 @@ $(function () {
         let tr = $('#table-unite tbody tr');
         let uniteTab = [];
         for (let i = 0; i < tr.length; i++){
+<<<<<<< HEAD
             let code = console.log($(tr[i]).children()[0].firstChild.value)
             let niveau = console.log($(tr[i]).children()[1].firstChild.value)
             let designation = console.log($(tr[i]).children()[2].firstChild.value)
@@ -89,6 +90,15 @@ $(function () {
             console.log(designation)
             console.log(quantite)
             console.log(poids)
+=======
+            let unite = [];
+            let td = $(tr[i]).children();
+            let input = td.find("input");
+            for (let j = 0; j < input.length; j++) {
+                unite.push(input[j].value)
+            }
+            uniteTab.push(unite);
+>>>>>>> 5e9b0cd4f186d1f32f623b63ffe7c6bb8a69f3d4
         }
     })
 
