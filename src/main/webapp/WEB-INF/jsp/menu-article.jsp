@@ -74,7 +74,7 @@
                     </tfoot>
                 </table>
             </div>
-
+g
             <div class="col-lg-10">
             <table id="scroll-vertical-datatable" class="table table-sm dt-responsive nowrap table-hover">
                 <thead>

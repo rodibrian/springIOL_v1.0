@@ -69,6 +69,7 @@ $(function () {
             });
         }
     });
+
     // enregistrement de l'article
     $("#saveArticleBtn").click(()=>{
         const UNITE_TAB_SIZE = 4;
@@ -77,15 +78,17 @@ $(function () {
         let tr = $('#table-unite tbody tr');
         let uniteTab = [];
         for (let i = 0; i < tr.length; i++){
-            let unite = [];
-            let td = $(tr[i]).children();
-            for (let j = 0; j < td.length-1; j++) {
-              let value = $(td[i]).children(1).val();
-              console.log(value)
-              unite.push(value);
-            }
-            // console.log(unite);
-            // uniteTab.push(unite);
+            let code = console.log($(tr[i]).children()[0].firstChild.value)
+            let niveau = console.log($(tr[i]).children()[1].firstChild.value)
+            let designation = console.log($(tr[i]).children()[2].firstChild.value)
+            let quantite = console.log($(tr[i]).children()[3].firstChild.value)
+            let poids = console.log($(tr[i]).children()[4].firstChild.value)
+
+            console.log(code)
+            console.log(niveau)
+            console.log(designation)
+            console.log(quantite)
+            console.log(poids)
         }
     })
 
