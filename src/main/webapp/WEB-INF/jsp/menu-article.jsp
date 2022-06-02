@@ -22,9 +22,6 @@
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
-                    <a href="" class="btn btn-info"><i class="uil-pen"></i></a>
-                    <a href="" class="btn btn-danger"><i class="uil-trash-alt"></i></a>
-                    <a href="" class="btn btn-warning"><i class="uil-eye-slash"></i></a>
                     <a href="" class="btn btn-success"><i class="uil-navigator"></i>&nbsp;</a>
                 </div>
             </div>

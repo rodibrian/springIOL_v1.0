@@ -27,54 +27,9 @@ import java.util.Collection;
 import java.util.Set;
 
 @SpringBootApplication
-public class Iol implements CommandLineRunner {
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private CategorieRepository categorieRepository;
-
+public class Iol {
     public static void main(String[] args) {
         SpringApplication.run(Iol.class,args);
-    }
-
-    private void saveCategorie(){
-        Categorie[] categorie = {
-                new Categorie("PPN"),
-                new Categorie("QUINCALLERIE"),
-                new Categorie("IMMOBILIER")
-        };
-        for (Categorie categorie1 : categorie){
-            categorieRepository.save(categorie1);
-        }
-    }
-
-    private void saveUser(){
-
-        User user = new User();
-
-        Fonctionnalite fonctionnalite = new Fonctionnalite();
-        fonctionnalite.setNom("Dashboard");
-        Fonction fonction = new Fonction();
-        fonction.setNom(" Dev Full stack java ");
-        fonction.setCode("78494");
-        fonction.setFonctionnalites(Set.of(fonctionnalite));
-
-        user.setSituationMatrimoniale(SituationMatrimoniale.CELIBATAIRE);
-        user.setPassword("kael");
-        user.setUsername("kael");
-        user.setFonction(fonction);
-        user.setNom("RATOMBOTIANA Armand Judicael");
-        user.setCin("7464616132131561");
-        user.setEmail("armandjudicaelratombotiana@gmail.com");
-        user.setSexe(Sexe.MASCULIN);
-        user.setNumTel("0340588519");
-        userRepository.save(user);
-    }
-
-    @Override
-    public void run(String... args) throws Exception {
     }
 }
 

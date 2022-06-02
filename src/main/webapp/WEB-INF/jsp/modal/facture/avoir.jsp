@@ -51,7 +51,7 @@
         </div>
       </div>
       <div class="modal-footer d-inline-flex">
-        <button type="button" class="btn btn-primary w-100 m-0"><i class="uil-check-square"></i>Valider</button>
+        <button type="button" class="btn btn-primary w-100 m-0"><i class="uil-check-square"></i>&nbsp;Valider</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

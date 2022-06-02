@@ -83,7 +83,7 @@
                     </a>
                 </li>
                 <li class="side-nav-item">
-                    <a href="apps-calendar.php" class="side-nav-link">
+                    <a href="/menu-prix" class="side-nav-link">
                         <i class="uil-usd-circle"></i>
                         <span> Prix </span>
                     </a>

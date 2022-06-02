@@ -55,9 +55,15 @@ public class MenuNavController{
         return "menu-stock";
     }
 
+
     @RequestMapping(value = "/menu-facture",method = RequestMethod.GET)
     public String getMenuFacture(){
         return "menu-facture";
+    }
+
+    @RequestMapping(value = "/menu-prix",method = RequestMethod.GET)
+    public String getMenuPrix(){
+        return "menu-prix";
     }
 
     @RequestMapping(value = "/dashboard",method = RequestMethod.GET)
