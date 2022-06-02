@@ -30,8 +30,8 @@ public class MenuNavController{
     )
     public ModelAndView getArticles() {
         ModelAndView modelAndView = new ModelAndView("menu-article");
-        modelAndView.addObject("categories", this.categorieRepository.findAll());
-        modelAndView.addObject("articles", this.articleRepository.findAll());
+        modelAndView.addObject(CATEGORIE_LIST, this.categorieRepository.findAll());
+        modelAndView.addObject(ARTICLE_LIST, this.articleRepository.findAll());
         return modelAndView;
     }
 

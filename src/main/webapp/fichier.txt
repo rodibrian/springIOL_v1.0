@@ -1,7 +1,0 @@
-<<<<<<< HEAD
-Hi everyone , my name is kael and i am a software engenneer !
-=======
-Je m'appelle EMBONY ROdi Brian
-J'ai 21Ans
-J'habite à Androranga, Toamasina
->>>>>>> secondaire

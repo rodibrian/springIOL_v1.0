@@ -1,5 +1,6 @@
 package com.iol.model.entityBeans;
 
+import com.iol.model.entityEnum.ArticleStatus;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -42,6 +43,9 @@ public class Article implements Serializable {
 
     @Lob
     private byte[] image;
+
+    @Column(length = 15)
+    private String status;
 
     @Temporal(TemporalType.DATE)
     private Date datePeremption;
