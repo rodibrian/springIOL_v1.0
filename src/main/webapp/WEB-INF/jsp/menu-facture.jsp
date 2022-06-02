@@ -115,7 +115,7 @@
                     </h4><br>
                     <h4>Autres : <%= "0Ar" %>
                     </h4><br><br>
-                    <button class="btn btn-danger btn-lg btn-avoir">Avoir</button>
+                    <button class="btn btn-danger btn-lg btn-avoir"><i class="uil-refresh"></i>&nbsp;Avoir</button>
                   </div>
                 </div>
               </div>
