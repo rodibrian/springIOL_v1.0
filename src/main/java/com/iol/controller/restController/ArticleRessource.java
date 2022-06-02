@@ -22,11 +22,6 @@ public class ArticleRessource {
         this.articleRepository = articleRepository;
     }
 
-    @GetMapping(value = "/hello")
-    public ResponseEntity<String> hello(){
-        return ResponseEntity.ok("bonjour kael");
-    }
-
     @GetMapping(value = "/articles")
     public ResponseEntity<List<Article>> getArticles(){
         List<Article> all = articleRepository.findAll();
@@ -60,5 +55,4 @@ public class ArticleRessource {
         Article savedArticle = articleRepository.save(article);
         return new ResponseEntity<>(savedArticle, HttpStatus.CREATED);
     }
-
 }

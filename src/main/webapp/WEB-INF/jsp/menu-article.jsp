@@ -51,7 +51,9 @@
                     <th>Listes des categories</th>
                     </thead>
                     <tbody>
-                        <tr><td>Toutes</td></tr>
+                        <tr>
+                            <td>Toutes</td>
+                        </tr>
                         <c:forEach var="categorie" items="${categories}">
                             <tr id="${categorie.id}">
                                 <td><c:out value="${categorie.libelle}"/></td>
@@ -109,7 +111,8 @@
                         </c:forEach>
                     </c:forEach>
                 </tbody>
-        </div>
+            </table>
+            </div>
     </div>
 </div>
 
@@ -128,9 +131,6 @@
 </div>
 </div>
 
-<!-- ============================================================== -->
-<!-- End Page content -->
-<!-- ============================================================== -->
 
 <%@ include file="template/footer.jsp" %>
 <%@ include file="template/setting.jsp" %>
