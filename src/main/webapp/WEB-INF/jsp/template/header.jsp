@@ -65,7 +65,7 @@
                     </a>
                 </li>
                 <li class="side-nav-item">
-                    <a href="/menu-magasin" class="side-nav-link">
+                    <a href="/" class="side-nav-link">
                         <i class="uil-building"></i>
                         <span> Magasin </span>
                     </a>

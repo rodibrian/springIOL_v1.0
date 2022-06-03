@@ -70,6 +70,8 @@ $(function(){
         let text = siblings.html();
         selectedVal = $("#nomCategorie").val(text);
     })
+    $('.deleteCategorie').on('click', '')
+
     $(".deleteCategorie").click(function (){
         let btn = $(this);
         let deleteBtnId = btn.attr("id");
