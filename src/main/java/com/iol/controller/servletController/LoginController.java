@@ -21,7 +21,6 @@ import java.util.Optional;
 public class LoginController {
 
     private UserRepository userRepository;
-
     @Autowired
     private CategorieRepository categorieRepository;
 

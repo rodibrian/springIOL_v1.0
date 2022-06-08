@@ -2,6 +2,8 @@ package com.iol.model.entityBeans;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,6 +17,8 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = "vente.all",query = "from vente")
 })
+@DynamicUpdate
+@DynamicInsert
 public class Vente implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

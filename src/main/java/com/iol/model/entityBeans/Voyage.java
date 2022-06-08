@@ -4,6 +4,9 @@ import com.iol.model.entityEnum.StatutVoyage;
 import com.iol.model.entityEnum.TypeVoyage;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -14,11 +17,12 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(name = "voyage.all",query="from voyage")
 })
+@DynamicUpdate
+@DynamicInsert
 public class Voyage implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "materiel_de_transport_id",foreignKey = @ForeignKey(name = "voyage_materiel_transport_key_contraint"))
     private MaterielTransport materielTransport;

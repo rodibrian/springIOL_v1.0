@@ -18,7 +18,6 @@ public class CategorieRessource {
 
     @Autowired
     private CategorieRepository categorieRepository;
-
     @GetMapping(value = "/categories")
     public ResponseEntity<Object> getAllCategories(){
         return new ResponseEntity<>(categorieRepository.findAll(),HttpStatus.OK);
@@ -44,7 +43,6 @@ public class CategorieRessource {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.valueOf(500));
         }
     }
-
     @PostMapping(value = "/categories")
     public ResponseEntity<Object> create(@RequestBody Categorie categorie){
         Categorie save = categorieRepository.save(categorie);

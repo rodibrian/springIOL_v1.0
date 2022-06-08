@@ -42,23 +42,97 @@ public class MenuNavController{
         return "menu-detail-vente";
     }
 
-    @RequestMapping(value = "/menu-magasin",method = RequestMethod.GET)
+    @RequestMapping(value = "/magasin",method = RequestMethod.GET)
     public String getMenuMagasin(){
         return "menu-magasin";
     }
 
-    @RequestMapping(value = "/menu-stock",method = RequestMethod.GET)
+    @RequestMapping(value = "/stock",method = RequestMethod.GET)
     public String getMenuStock(){
         return "menu-stock";
     }
 
+    @RequestMapping(value = "/embarquement",method = RequestMethod.GET)
+    public String getMenuEmbarquement(){
+        return "menu-embarquement";
+    }
 
-    @RequestMapping(value = "/menu-facture",method = RequestMethod.GET)
+    @RequestMapping(value = "/archivage",method = RequestMethod.GET)
+    public String getMenuArchivage(){
+        return "menu-archivage";
+    }
+
+    @RequestMapping(value = "/autorisation",method = RequestMethod.GET)
+    public String getMenuAutorisation(){
+        return "menu-autorisation";
+    }
+
+    @RequestMapping(value = "/caisse",method = RequestMethod.GET)
+    public String getMenuCaisse(){
+        return "menu-caisse";
+    }
+
+    @RequestMapping(value = "/choix-de-bdd",method = RequestMethod.GET)
+    public String getMenuChoixDeBdd(){
+        return "menu-choix-de-bdd";
+    }
+
+    @RequestMapping(value = "/choix-magasin",method = RequestMethod.GET)
+    public String getMenuChoixiDeMagasin(){
+        return "menu-choix-magasin";
+    }
+
+    @RequestMapping(value = "/client",method = RequestMethod.GET)
+    public String getClient(){
+        return "menu-client";
+    }
+
+    @RequestMapping(value = "/fournisseur",method = RequestMethod.GET)
+    public String getMenuFournisseur(){
+        return "menu-fournisseur";
+    }
+
+    @RequestMapping(value = "/info-societe",method = RequestMethod.GET)
+    public String getMenuInfoSociete(){
+        return "menu-info-societe";
+    }
+
+    @RequestMapping(value = "/livraison",method = RequestMethod.GET)
+    public String getMenuLivraison(){
+        return "menu-livraison";
+    }
+
+    @RequestMapping(value = "/paiement",method = RequestMethod.GET)
+    public String getMenuPaiement(){
+        return "menu-paiement";
+    }
+
+    @RequestMapping(value = "/peremption",method = RequestMethod.GET)
+    public String getMenuPeremption(){
+        return "menu-peremption";
+    }
+
+    @RequestMapping(value = "/sauvegarde",method = RequestMethod.GET)
+    public String getMenuSauvegarde(){
+        return "menu-sauvegarde";
+    }
+
+    @RequestMapping(value = "/utilisateur",method = RequestMethod.GET)
+    public String getMenuUtilisateur(){
+        return "menu-utilisateur";
+    }
+
+    @RequestMapping(value = "/voyage",method = RequestMethod.GET)
+    public String getMenuVoyage(){
+        return "menu-voyage";
+    }
+
+    @RequestMapping(value = "/facture",method = RequestMethod.GET)
     public String getMenuFacture(){
         return "menu-facture";
     }
 
-    @RequestMapping(value = "/menu-prix",method = RequestMethod.GET)
+    @RequestMapping(value = "/prix",method = RequestMethod.GET)
     public String getMenuPrix(){
         return "menu-prix";
     }
@@ -66,6 +140,43 @@ public class MenuNavController{
     @RequestMapping(value = "/dashboard",method = RequestMethod.GET)
     public String getDashboard(){
         return "dashboard";
+    }
+
+    // menu des opérations
+
+    @RequestMapping(value = "/operation/liste",method = RequestMethod.GET)
+    public String getOperationListe(){
+        return "operation/liste";
+    }
+
+    @RequestMapping(value = "/operation/vente-detail",method = RequestMethod.GET)
+    public String getOperationVenteDetail(){
+        return "operation/vente-detail";
+    }
+
+    @RequestMapping(value = "/operation/entree",method = RequestMethod.GET)
+    public String getOperationEntree(){
+        return "operation/entree";
+    }
+
+    @RequestMapping(value = "/operation/sortie",method = RequestMethod.GET)
+    public String getOperationSortie(){
+        return "operation/sortie";
+    }
+
+    @RequestMapping(value = "/operation/transfert",method = RequestMethod.GET)
+    public String getOperationTransfert(){
+        return "operation/transfert";
+    }
+
+    @RequestMapping(value = "/operation/changer-de-code",method = RequestMethod.GET)
+    public String getOperationLChangerDeCode(){
+        return "operation/changer-de-code";
+    }
+
+    @RequestMapping(value = "/operation/rectification",method = RequestMethod.GET)
+    public String getOperationRectification(){
+        return "operation/rectification";
     }
 
 }

@@ -3,6 +3,8 @@ package com.iol.model.entityBeans;
 import com.iol.model.entityEnum.ArticleStatus;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -31,8 +33,6 @@ public class Article implements Serializable {
             @JoinColumn(name = "unite_id",foreignKey = @ForeignKey(name = "au_unite"))
     })
     private Set<Unite> unite;
-
-    private Double prix;
 
     @ManyToOne(targetEntity = Categorie.class)
     @JoinColumn(name = "categorieId",foreignKey = @ForeignKey(name = "article_categorie_key_constraint"))

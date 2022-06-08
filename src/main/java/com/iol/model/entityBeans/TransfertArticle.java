@@ -3,6 +3,8 @@ package com.iol.model.entityBeans;
 import com.iol.model.entityEmbededId.TransfertArticleId;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,6 +12,8 @@ import java.util.Date;
 @Entity(name="transfertArticle")
 @Data
 @NoArgsConstructor
+@DynamicUpdate
+@DynamicInsert
 public class TransfertArticle {
 
     @EmbeddedId

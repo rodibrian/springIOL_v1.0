@@ -12,7 +12,7 @@ import java.util.Date;
 @Entity
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
-public class PersonnePhysique extends Personne implements Serializable {
+public abstract class PersonnePhysique extends Personne implements Serializable {
     @Column(columnDefinition = "TEXT")
     private String cin;
 

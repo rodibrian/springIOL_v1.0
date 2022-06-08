@@ -2,6 +2,9 @@ package com.iol.model.entityBeans;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -12,6 +15,8 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(name = "unite.all",query = "from unite")
 })
+@DynamicUpdate
+@DynamicInsert
 public class Unite implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +31,8 @@ public class Unite implements Serializable {
     private String designation;
 
     private Double poids;
+
+    private Double prix;
 
     private int niveau;
 }

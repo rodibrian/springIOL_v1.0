@@ -219,9 +219,6 @@
 
 </div>
 <!-- container -->
-
-</div>
-<!-- content -->
 <%@ include file='template/footer.jsp' %>
 
 </div>

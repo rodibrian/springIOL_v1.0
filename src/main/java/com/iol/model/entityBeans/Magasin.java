@@ -2,6 +2,9 @@ package com.iol.model.entityBeans;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -12,6 +15,8 @@ import java.util.Set;
 @NamedQueries(value = {
         @NamedQuery(name = "magasin.all",query = "from magasin")
 })
+@DynamicUpdate
+@DynamicInsert
 public class Magasin {
     @Column(name = "id_magasin")
     @Id
@@ -22,7 +27,7 @@ public class Magasin {
     private String adresse;
 
     @Column(columnDefinition = "TEXT")
-    private String desgination;
+    private String nomMagasin;
 
     @OneToMany(mappedBy = "magasin")
     private Set<User> users;
@@ -40,8 +45,6 @@ public class Magasin {
     @JoinTable(name = "responsable_magasin",joinColumns = {@JoinColumn(name = "magasin_id",foreignKey = @ForeignKey(name = "resp_mag_magasin_key_constraint"))},
     inverseJoinColumns = {@JoinColumn(name = "responsable_id",foreignKey = @ForeignKey(name = "resp_mag_user_key_constraint"))})
     private User responsable;
-
-    private Double montantCaisse;
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
     private Set<Operation> operations;

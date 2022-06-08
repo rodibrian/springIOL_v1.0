@@ -3,6 +3,8 @@ package com.iol.model.entityBeans;
 import com.iol.model.entityEnum.StatutVoyage;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,6 +12,8 @@ import java.io.Serializable;
 @Entity
 @Data
 @NoArgsConstructor
+@DynamicUpdate
+@DynamicInsert
 public class Livraison implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

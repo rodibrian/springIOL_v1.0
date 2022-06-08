@@ -2,12 +2,16 @@ package com.iol.model.entityBeans;
 
 import com.iol.model.entityEmbededId.ApprovArticleId;
 import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Data
+@DynamicUpdate
+@DynamicInsert
 public class ApprovArticle {
 
     @EmbeddedId
@@ -25,5 +29,7 @@ public class ApprovArticle {
 
     private Date datePeremption;
 
-    private int quantite;
+    private Double quantite;
+
+    private Double prixAchat;
 }

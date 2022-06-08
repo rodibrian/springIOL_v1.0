@@ -3,6 +3,8 @@ package com.iol.model.entityBeans;
 import com.iol.model.entityEnum.ModePayement;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,6 +18,8 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = "approv.all",query = "from approv")
 })
+@DynamicUpdate
+@DynamicInsert
 public class Approvisionnement implements Serializable {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)

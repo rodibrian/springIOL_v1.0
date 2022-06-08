@@ -1,11 +1,15 @@
 package com.iol.model.entityBeans;
 
 import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
 @Entity(name = "operation")
 @Data
+@DynamicUpdate
+@DynamicInsert
 public class Operation{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

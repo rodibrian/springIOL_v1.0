@@ -2,6 +2,8 @@ package com.iol.model.entityBeans;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,6 +15,8 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = "fonction.all",query = "from fonction")
 })
+@DynamicUpdate
+@DynamicInsert
 public class Fonction{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

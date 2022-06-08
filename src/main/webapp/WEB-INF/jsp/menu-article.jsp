@@ -84,7 +84,7 @@
                     <th>Quantité</th>
                     <th>Poids(Kg)</th>
                     <th>Categorie</th>
-                    <th>Action</th>
+                    <th class="text-center">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -97,7 +97,7 @@
                                 <td><c:out value="${unite.quantite}"/></td>
                                 <td><c:out value="${unite.poids}"/></td>
                                 <td><c:out value="${article.getCategorie().getLibelle()}"/></td>
-                                <td>
+                                <td class="d-flex justify-content-center">
                                         <div>
                                             <a id="${article.id}" data-bs-toggle="modal" data-bs-target="#new-article" class="btn-sm btn-info editArticleBtn"><i class="uil-pen"></i></a>
                                             <a id="${article.id}" class="btn-sm btn-danger deleteArticleBtn "><i class="uil-trash-alt"></i></a>
@@ -116,18 +116,6 @@
 </div>
 
 </div> <!-- container -->
-
-</div> <!-- content -->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
-
 
 <%@ include file="template/footer.jsp" %>
 <%@ include file="template/setting.jsp" %>

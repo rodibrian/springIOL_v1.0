@@ -33,7 +33,7 @@
     <div class="container -fluid"><br><br>
         <div class="row">
             <div class="col-lg-4">
-                <table class="table table-sm table-hover">
+                <table id="magasinTable" class="table table-sm table-hover">
                     <thead>
                     <tr>
                         <th>Nom du magasin</th>

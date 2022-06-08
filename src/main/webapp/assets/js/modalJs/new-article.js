@@ -1,5 +1,7 @@
 $(function () {
     let isCreateAction = true;
+    let isCreateArticle = true;
+    let editedArticleId = 1;
     // tout les champ non editable par defaut
     let categorieUrl = 'http://localhost:8080/api/v1/categories';
     function initTableUnite() {
@@ -49,8 +51,10 @@ $(function () {
     function initAddAndSaveArticleBtn() {
         // chargement des categories lors de l'affichage du formulaire de categorie
         $("#newArticleBtn").click(() => {
+
             let tdElement = $("#categorieTabList tbody tr td:first-child");
             let select = $(".form-select");
+            select.empty();
             if (tdElement.length !== 0) {
                 for (let i = 0; i < tdElement.length; i++) {
                     let text = tdElement[i].innerText;
@@ -73,17 +77,19 @@ $(function () {
                 });
             }
         });
-        // enregistrement de l'article
-        $("#saveArticleBtn").click(() => {
+        function createArticleAndUnite(){
+
             let designation = $("#designation").val();
             let categorieId = $("#categorie option:selected").val();
             let categorieLibelle = $("#categorie option:selected").text();
             let articleStatus = "USED";
             let tr = $('#table-unite tbody tr');
             let uniteTab = [];
+
             for (let i = 0; i < tr.length; i++) {
                 let unite = [];
                 let td = $(tr[i]).children();
+                let trId = $(tr[i]).attr("id");
                 let input = td.find("input");
                 for (let j = 0; j < input.length; j++) {
                     unite.push(input[j].value)
@@ -94,16 +100,19 @@ $(function () {
                 uniteObject.designation = unite[2];
                 uniteObject.quantite = unite[3];
                 uniteObject.poids = unite[4];
+
+                if (!isCreateArticle)
+                    uniteObject.id = trId;
+
                 uniteTab.push(uniteObject);
             }
-            let article = {
-                designation: designation,
-                categorie: {
-                    id: categorieId,
-                    libelle: categorieLibelle
-                },
-                unite: uniteTab,
-                status: articleStatus
+            let article = {}
+            article.designation = designation;
+            article.categorie = { id: categorieId,libelle: categorieLibelle};
+            article.unite = uniteTab;
+            article.status = articleStatus;
+            if (!isCreateArticle){
+                article.id = editedArticleId;
             }
             let url = "http://localhost:8080/api/v1/articles";
             $.ajax({
@@ -135,12 +144,28 @@ $(function () {
                     });
                 }
             });
+        }
+        function updateArticle(){
+            let designation = $("#designation").val();
+            let categorieLibelle = $("#categorie option:selected").text();
+
+        }
+        // enregistrement de l'article
+        $("#saveArticleBtn").click(() => {
+            if (isCreateArticle){
+                createArticleAndUnite();
+            }else {
+                updateArticle();
+                isCreateArticle = true;
+            }
         });
     }
+    
     function initAddArticleModal(){
         initTableUnite();
         initAddAndSaveArticleBtn();
     }
+    
     function initTableRowEvent() {
         // Initialisation de l'evenement des tr
         let div = $("#articleTable tbody tr td div");
@@ -153,12 +178,61 @@ $(function () {
             $(this).children().last().children().first().hide();
         });
     }
+
     function initTableAction() {
-
-        $(".editArticleBtn").click(function () {
-
+        function initCategorieSelect() {
+            let tdElement = $("#categorieTabList tbody tr td:first-child");
+            let select = $(".form-select");
+            // Supprimer toutes les elements dans la select
+            $("select#categorie").empty();
+            if (tdElement.length !== 0) {
+                for (let i = 0; i < tdElement.length; i++) {
+                    let text = tdElement[i].innerText;
+                    let id = $(tdElement[i]).parent().attr("id");
+                    if (text !== "Toutes") {
+                        let option = `<option value="` + id + `">` + text + `</option>`
+                        select.append(option);
+                    }
+                }
+            }
+        }
+        $(".editArticleBtn").click(function (){
+            isCreateArticle = false;
+            editedArticleId = $(this).attr("id");
+            console.log(" Edited article = "+editedArticleId);
+            initCategorieSelect();
+            $tr = $(this).closest('tr');
+            designation = $tr.children()[1].innerText;
+            categorie = $tr.children()[5].innerText;
+            // affectation dans la formulaire
+            $('input#designation').val(designation)
+            $('select#categorie option:contains("'+categorie+'")').attr('selected','true')
+            let url = 'http://localhost:8080/api/v1/articles/'+editedArticleId+"/unites";
+            $.ajax({
+                    type: 'GET',
+                    url: url,
+                    success: function (data) {
+                        let table = $("#table-unite tbody");
+                        // SUPRIMER TOUTES LES DONNE
+                        table.empty();
+                        for (let i = 0; i < data.length; i++){
+                                    let tr = `<tr id="`+data[i].id+`">
+                                    <td><input type="text"  class="form-control input-sm" value="`+data[i].code+`"></td>
+                                    <td><input type="text"  class="form-control input-sm" value="`+data[i].niveau+`"></td>
+                                    <td><input type="text"  class="form-control input-sm" value="`+data[i].designation+`"></td>
+                                    <td><input type="text"  class="form-control input-sm" value="`+data[i].quantite+`"></td>
+                                    <td><input type="text"  class="form-control input-sm" value="`+data[i].poids+`"></td>
+                                    <td class="d-inline-flex">
+                                        <a class="btn btn-primary btn-sm btn-edit-unite"><i class="uil-pen"></i></a>&nbsp;
+                                        <a class="btn btn-danger btn-sm btn-del-unite"><i class="uil-trash-alt"></i></a>&nbsp;
+                                        <a class="btn btn-success btn-sm btn-add-unite"><i class="uil-check-square"></i></a>
+                                    </td>
+                                </tr>`;
+                            table.append(tr);
+                        }
+                    }
+                });
         });
-
         $(".deleteArticleBtn").click(function () {
             let btn = $(this);
             let id = btn.attr("id");
@@ -172,7 +246,6 @@ $(function () {
                 }
             });
         });
-
         $(".hideArticleBtn").click(function () {
             let btn = $(this);
             let id = btn.attr("id");
@@ -188,6 +261,7 @@ $(function () {
             });
         });
     }
+
     function initArticleTable() {
         initTableAction();
         initTableRowEvent();

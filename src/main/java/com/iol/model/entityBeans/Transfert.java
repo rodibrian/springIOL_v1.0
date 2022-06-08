@@ -1,6 +1,8 @@
 package com.iol.model.entityBeans;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,6 +15,8 @@ import java.util.Date;
 @NamedQueries({
         @NamedQuery(name = "transfert.all",query = "from transfert")
 })
+@DynamicUpdate
+@DynamicInsert
 public class Transfert implements Serializable {
 
     @Id

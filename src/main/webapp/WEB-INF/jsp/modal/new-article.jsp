@@ -33,18 +33,18 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td><input type="text" class="form-control input-sm" value="test"></td>
-              <td><input type="text" class="form-control input-sm" value="0"></td>
-              <td><input type="text" class="form-control input-sm" value="article designation"></td>
-              <td><input type="text" class="form-control input-sm" value="0"></td>
-              <td><input type="text" class="form-control input-sm" value="0"></td>
-              <td class="d-inline-flex">
-                <a class="btn btn-primary btn-sm btn-edit-unite" id="edit_1"><i class="uil-pen"></i></a>&nbsp;
-                <a class="btn btn-danger btn-sm btn-del-unite" id="del_1"><i class="uil-trash-alt"></i></a>&nbsp;
-                <a class="btn btn-success btn-sm btn-add-unite" id="add_1"><i class="uil-check-square"></i></a>&nbsp;
-              </td>
-            </tr>
+                <tr>
+                  <td><input type="text"  class="form-control input-sm" value=""></td>
+                  <td><input type="text"  class="form-control input-sm" value=""></td>
+                  <td><input type="text"  class="form-control input-sm" value="designation"></td>
+                  <td><input type="text"  class="form-control input-sm" value="0"></td>
+                  <td><input type="text"  class="form-control input-sm" value="0Kg"></td>
+                  <td class="d-inline-flex">
+                    <a class="btn btn-primary btn-sm btn-edit-unite"><i class="uil-pen"></i></a>&nbsp;
+                    <a class="btn btn-danger btn-sm btn-del-unite"><i class="uil-trash-alt"></i></a>&nbsp;
+                    <a class="btn btn-success btn-sm btn-add-unite"><i class="uil-check-square"></i></a>
+                  </td>
+                </tr>
             </tbody>
           </table>
           <div class="d-flex justify-content-end">

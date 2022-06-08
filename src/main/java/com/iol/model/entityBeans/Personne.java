@@ -1,13 +1,15 @@
 package com.iol.model.entityBeans;
 
 import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
 @Entity
 @Data
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Personne {
+public abstract class Personne {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

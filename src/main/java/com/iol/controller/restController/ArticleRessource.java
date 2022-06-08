@@ -28,6 +28,16 @@ public class ArticleRessource {
         return ResponseEntity.ok(all);
     }
 
+    @GetMapping(value = "/articles/{id}/unites")
+    public ResponseEntity<Object> getAllUnites(@PathVariable("id") Long id){
+        Optional<Article> articleOptional = articleRepository.findById(id);
+        if (!articleOptional.isPresent()){
+            return ResponseEntity.notFound().build();
+        }
+        Article article = articleOptional.get();
+        return new ResponseEntity<>(article.getUnite(), HttpStatus.CREATED);
+    }
+
     @DeleteMapping("/articles/{id}")
     public ResponseEntity<Object> delete(@PathVariable("id") Long id){
         try{
@@ -55,4 +65,5 @@ public class ArticleRessource {
         Article savedArticle = articleRepository.save(article);
         return new ResponseEntity<>(savedArticle, HttpStatus.CREATED);
     }
+
 }
