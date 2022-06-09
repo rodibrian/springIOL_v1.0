@@ -13,7 +13,7 @@
   <div class="leftside-menu">
 
     <!-- LOGO -->
-    <a href="index.php" class="logo text-center logo-light">
+    <a href="/dashboard" class="logo text-center logo-light">
                     <span class="logo-lg">
                         <img src="../images/logo.png" alt="" height="16">&nbsp; I-jeery OnLine v1.0
                     </span>
@@ -177,7 +177,7 @@
           </a>
         </li>
         <li class="side-nav-item">
-          <a href="/choix-magasin" class="side-nav-link">
+          <a class="side-nav-link" role="button" data-bs-toggle="modal" data-bs-target="#choix-magasin">
             <i class="uil-building"></i>
             <span> Choix de magasin </span>
           </a>
@@ -189,7 +189,7 @@
           </a>
         </li>
         <li class="side-nav-item">
-          <a href="/sauvegarde" class="side-nav-link">
+          <a class="side-nav-link" role="button" data-bs-toggle="modal" data-bs-target="#sauvegarde">
             <i class="uil-database"></i>
             <span> Sauvegarder </span>
           </a>
@@ -201,13 +201,13 @@
           </a>
         </li>
         <li class="side-nav-item">
-          <a href="/choix-de-bdd" class="side-nav-link">
+          <a class="side-nav-link" role="button" data-bs-toggle="modal" data-bs-target="#choix-de-bdd">
             <i class="uil-cloud-database-tree"></i>
             <span> Choix de Base de données</span>
           </a>
         </li>
         <li class="side-nav-item">
-          <a href="/info-societe" class="side-nav-link">
+          <a class="side-nav-link" role="button" data-bs-toggle="modal" data-bs-target="#info-societe">
             <i class="uil-info-circle"></i>
             <span> Info société </span>
           </a>
@@ -233,6 +233,15 @@
 
 
     <%@ include file="topbar.jsp" %>
+
+
+    <!-- inclusion des modals -->
+      <%@ include file="../modal/menu-choix-magasin.jsp" %>
+      <%@ include file="../modal/menu-choix-de-bdd.jsp" %>
+      <%@ include file="../modal/menu-info-societe.jsp" %>
+      <%@ include file="../modal/menu-sauvegarde.jsp" %>
+
+    <!-- fin d'inclusion des modals -->
 
     <!-- Start Content-->
 

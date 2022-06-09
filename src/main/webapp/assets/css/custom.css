@@ -71,3 +71,32 @@
     font-size: 2.5em!important;
 }
 
+/* MENU CLIENT */
+
+#table-client tbody tr td .action-client {
+    visibility: hidden;
+}
+#table-client tbody tr:hover td .action-client {
+    visibility: visible;
+}
+
+
+/* MENU FOURNISSEUR */
+
+#table-fournisseur tbody tr td .action-fournisseur {
+    visibility: hidden;
+}
+#table-fournisseur tbody tr:hover td .action-fournisseur {
+    visibility: visible;
+}
+
+
+/* MENU VOYAGE */
+
+#table-voyage tbody tr td .action-voyage {
+    visibility: hidden;
+}
+#table-voyage tbody tr:hover td .action-voyage {
+    visibility: visible;
+}
+

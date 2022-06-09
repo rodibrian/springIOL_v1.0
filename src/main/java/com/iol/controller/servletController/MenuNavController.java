@@ -52,9 +52,15 @@ public class MenuNavController{
         return "menu-stock";
     }
 
+
     @RequestMapping(value = "/embarquement",method = RequestMethod.GET)
     public String getMenuEmbarquement(){
         return "menu-embarquement";
+    }
+
+    @RequestMapping(value = "/embarquement-nouveau",method = RequestMethod.GET)
+    public String getNouveauEmbarquement(){
+        return "nouveau-embarquement";
     }
 
     @RequestMapping(value = "/archivage",method = RequestMethod.GET)
@@ -72,16 +78,6 @@ public class MenuNavController{
         return "menu-caisse";
     }
 
-    @RequestMapping(value = "/choix-de-bdd",method = RequestMethod.GET)
-    public String getMenuChoixDeBdd(){
-        return "menu-choix-de-bdd";
-    }
-
-    @RequestMapping(value = "/choix-magasin",method = RequestMethod.GET)
-    public String getMenuChoixiDeMagasin(){
-        return "menu-choix-magasin";
-    }
-
     @RequestMapping(value = "/client",method = RequestMethod.GET)
     public String getClient(){
         return "menu-client";
@@ -90,11 +86,6 @@ public class MenuNavController{
     @RequestMapping(value = "/fournisseur",method = RequestMethod.GET)
     public String getMenuFournisseur(){
         return "menu-fournisseur";
-    }
-
-    @RequestMapping(value = "/info-societe",method = RequestMethod.GET)
-    public String getMenuInfoSociete(){
-        return "menu-info-societe";
     }
 
     @RequestMapping(value = "/livraison",method = RequestMethod.GET)
@@ -112,10 +103,6 @@ public class MenuNavController{
         return "menu-peremption";
     }
 
-    @RequestMapping(value = "/sauvegarde",method = RequestMethod.GET)
-    public String getMenuSauvegarde(){
-        return "menu-sauvegarde";
-    }
 
     @RequestMapping(value = "/utilisateur",method = RequestMethod.GET)
     public String getMenuUtilisateur(){

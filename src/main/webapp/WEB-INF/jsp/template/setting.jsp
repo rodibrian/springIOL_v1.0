@@ -111,5 +111,7 @@
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-stock.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-facture.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-prix.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/menu/menu-peremption.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/menu/menu-client.js"></script>
     </body>
 </html>
