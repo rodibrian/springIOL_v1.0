@@ -132,10 +132,7 @@
                 <a href="operation/liste">Liste</a>
               </li>
               <li>
-                <a href="operation/vente-detail">Vente detail</a>
-              </li>
-              <li>
-                <a href="operation/entree">EntrÃ©e</a>
+                <a href="operation/entree" target="_blank">Entr&eacute;e</a>
               </li>
               <li>
                 <a href="operation/sortie">Sortie</a>
@@ -143,10 +140,10 @@
               <li>
                 <a href="operation/transfert">Transfert</a>
               </li>
-              <li>
+              <li class="d-none">
                 <a href="operation/changer-de-code">Changer de Code</a>
               </li>
-              <li>
+              <li class="d-none">
                 <a href="operation/rectification">Rectification</a>
               </li>
             </ul>
@@ -159,7 +156,7 @@
           </a>
         </li>
         <li class="side-nav-item">
-          <a href="/caisse" class="side-nav-link">
+          <a href="/caisse" class="side-nav-link" target="_blank">
             <i class="uil-money-stack"></i>
             <span> Caisse </span>
           </a>

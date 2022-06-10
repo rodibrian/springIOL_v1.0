@@ -136,11 +136,6 @@ public class MenuNavController{
         return "operation/liste";
     }
 
-    @RequestMapping(value = "/operation/vente-detail",method = RequestMethod.GET)
-    public String getOperationVenteDetail(){
-        return "operation/vente-detail";
-    }
-
     @RequestMapping(value = "/operation/entree",method = RequestMethod.GET)
     public String getOperationEntree(){
         return "operation/entree";

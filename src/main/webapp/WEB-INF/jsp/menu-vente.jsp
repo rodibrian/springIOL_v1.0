@@ -1,10 +1,10 @@
 <%@ include file="template/head.jsp" %>
 
 
-<div class="row d-flex justify-content-center align-items-center" id="simple-dragula" data-plugin="dragula">
+<div class="row d-flex justify-content-center align-items-center bg-dark" id="simple-dragula" data-plugin="dragula">
   <div class="col-md-11">
     <div class="card mb-0 mt-3">
-      <div class="card-body">
+      <div class="card-body bg-dark text-light">
         <blockquote class="card-bodyquote mb-0">
 
           <!-- vente content -->
@@ -63,15 +63,18 @@
                   </select>
                 </div>
               </div>
+
               <div class="mb-1">
-                <label class="form-label">Prix Unitaire</label>
+                <label class="form-label">Prix Unitaire - Remise</label>
                 <div class="input-group">
                   <input type="text" class="form-control" placeholder="0 Ar" aria-label="Recipient's username">
+                  <input type="number" class="form-control" placeholder="%" aria-label="Recipient's username">
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                           data-bs-target="#bs-example-modal-sm"><i class="uil-dollar-alt"></i>&nbsp;Prix special
                   </button>
                 </div>
               </div>
+
 
               <div class="d-grid">
                 <button type="button" class="btn btn-success mb-1 mt-3"><i class="uil-plus"></i>&nbsp;Ajouter</button>

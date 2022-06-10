@@ -113,5 +113,6 @@
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-prix.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-peremption.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-client.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/menu/operation/entree.js"></script>
     </body>
 </html>
