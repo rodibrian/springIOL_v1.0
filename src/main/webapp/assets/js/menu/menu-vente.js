@@ -94,6 +94,9 @@ $(function () {
                  requete d'insertion vente
                  */
 
+                // vider table
+                $('#table-liste-article-vente tbody tr').remove();
+
                 $('#' + $modalId).modal('hide');
         })
     })
