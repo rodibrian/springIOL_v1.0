@@ -1,7 +1,7 @@
 <!-- Large modal -->
-<div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+<div class="modal fade" id="modal-liste-article" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
      aria-hidden="true">
-  <div class="modal-dialog modal-lg h-50">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content bg-light text-dark">
       <div class="modal-header">
         <h4 class="modal-title" id="myLargeModalLabel">Article</h4>
@@ -9,11 +9,11 @@
       </div>
       <div class="modal-body">
         <div class="mb-3">
-          <input type="text" id="example-input-large" name="example-input-large" class="form-control w-100 d-block"
-                 placeholder="article � recherch�">
+          <input type="text" id="inpute-article-search" name="example-input-large" class="form-control w-100 d-block"
+                 placeholder="article &agrave; recherch&eacute;">
         </div>
         <hr>
-        <table id="basic-datatable" class="table table-sm dt-responsive nowrap w-100">
+        <table id="table-liste-article" class="table table-sm dt-responsive nowrap w-100">
           <thead>
           <tr>
             <th>Code</th>

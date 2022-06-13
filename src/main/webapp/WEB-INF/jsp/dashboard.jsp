@@ -134,7 +134,7 @@
          </div> <!-- end card-body-->
       </div> <!-- end card-->
    </div>
-   <div class="col-lg-8">
+   <div class="col-lg-4">
 
       <!-- begin row-->
       <div class="row">
@@ -164,50 +164,59 @@
       </div>
       <!-- end row-->
 
-      <!-- begin row-->
-      <div class="row">
-         <div class="col-lg-6 d-flex justify-content-center align-items-center text-center">
-            <h3 class="text-uppercase">Credit non recouverable<br><span class="display-5">0Ar</span></h3>
-         </div>
-         <div class="col-lg-6">
-            <div class="card">
-               <div class="card-body">
-                  <div class="dropdown float-end">
-                     <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="mdi mdi-dots-vertical"></i>
-                     </a>
-                     <div class="dropdown-menu dropdown-menu-end">
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item">Profit</a>
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                     </div>
-                  </div>
-                  <h4 class="header-title">Achat � cr�dit 2022</h4>
 
-                  <div id="average-sales" class="apex-charts mb-4 mt-4" data-colors="#727cf5,#0acf97,#fa5c7c,#ffbc00"></div>
+   </div>
+   <div class="col-lg-4">
+      <div class="card">
+         <div class="card-body">
+            <a href="" class="btn btn-sm btn-link float-end">Exporter
+               <i class="mdi mdi-download ms-1"></i>
+            </a>
+            <h4 class="header-title mt-2 mb-3">Dette envers Fournisseur</h4>
+
+            <div class="table-responsive">
+               <table class="table table-centered table-striped table-nowrap table-hover mb-0">
+                  <tbody>
+                  <tr>
+                     <td>
+                        <h5 class="font-14 my-1 fw-normal">Admin Admin MG</h5>
+                     </td>
+                     <td>
+                        <h5 class="font-14 my-1 fw-normal">0Ar</h5>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <h5 class="font-14 my-1 fw-normal">Admin Admin MG</h5>
+                     </td>
+                     <td>
+                        <h5 class="font-14 my-1 fw-normal">0Ar</h5>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <h5 class="font-14 my-1 fw-normal">Admin Admin MG</h5>
+                     </td>
+                     <td>
+                        <h5 class="font-14 my-1 fw-normal">0Ar</h5>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <h5 class="font-14 my-1 fw-normal">Admin Admin MG</h5>
+                     </td>
+                     <td>
+                        <h5 class="font-14 my-1 fw-normal">0Ar</h5>
+                     </td>
+                  </tr>
 
 
-                  <div class="chart-widget-list">
-                     <p>
-                        <i class="mdi mdi-square text-danger"></i> Impay�
-                        <span class="float-end">0Ar</span>
-                     </p>
-                     <p>
-                        <i class="mdi mdi-square text-success"></i> Pay� total
-                        <span class="float-end">0Ar</span>
-                     </p>
-                  </div>
-               </div> <!-- end card-body-->
-            </div> <!-- end card-->
-         </div>
-      </div>
-      <!-- end row-->
 
+                  </tbody>
+               </table>
+            </div> <!-- end table-responsive-->
+         </div> <!-- end card-body-->
+      </div> <!-- end card-->
    </div>
 </div>
 

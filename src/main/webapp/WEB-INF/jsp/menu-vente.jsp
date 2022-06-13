@@ -9,22 +9,23 @@
 
           <!-- vente content -->
 
-          <div class="row">
+          <div class="row form-vente">
             <h4>Vente</h4>
             <hr>
             <div class="col-lg-5">
               <div class="mb-1">
-                <label for="example-select" class="form-label">Magasin</label>
-                <select class="form-select" id="example-select">
-                  <option>1</option>
+                <label for="select-magasin" class="form-label">Magasin</label>
+                <select class="form-select" id="select-magasin">
                 </select>
               </div>
               <div class="mb-1">
                 <label class="form-label">Client</label>
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Nom du client" aria-label="Recipient's username">
+                  <input id="name-client" type="text" class="form-control" placeholder="Nom du client"
+                         aria-label="Recipient's username">
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                          data-bs-target="#bs-example-modal-lg2"><i class="uil-search"></i></button>
+                          data-bs-target="#modal-liste-client" id="btn-search-client"><i class="uil-search"></i>
+                  </button>
                 </div>
               </div>
 
@@ -32,12 +33,12 @@
 
               <div class="mt-1 d-inline-flex d-none">
                 <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="customCheck1">
-                  <label class="form-check-label" for="customCheck1">Bon</label>
+                  <input type="checkbox" class="form-check-input" id="check-bon">
+                  <label class="form-check-label" for="check-bon">Bon</label>
                 </div>&nbsp;&nbsp;&nbsp;
                 <div class="form-check ml-1">
-                  <input type="checkbox" class="form-check-input" id="customCheck2">
-                  <label class="form-check-label" for="customCheck2">A livrer</label>
+                  <input type="checkbox" class="form-check-input" id="check-a-livrer">
+                  <label class="form-check-label" for="check-a-livrer">A livrer</label>
                 </div>
               </div>
 
@@ -45,47 +46,52 @@
                 <label class="form-label">Designation</label>
                 <div class="input-group">
                   <input type="text" class="form-control" placeholder="Nom de l'article"
-                         aria-label="Recipient's username">
+                         aria-label="Recipient's username" id="designation-article">
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                          data-bs-target="#bs-example-modal-lg"><i class="uil-search"></i></button>
+                          data-bs-target="#modal-liste-article" id="btn-search-article"><i class="uil-search"></i>
+                  </button>
                 </div>
               </div>
 
               <div class="row g-2">
                 <div class="mb-1 col-md-6">
-                  <label for="inputEmail4" class="form-label">Quantite</label>
-                  <input type="number" class="form-control" id="inputEmail4" placeholder="00">
+                  <label for="input-quantite-article" class="form-label">Quantite</label>
+                  <input type="number" class="form-control" id="input-quantite-article" placeholder="00">
                 </div>
                 <div class="mb-1 col-md-6">
-                  <label for="example-select" class="form-label">Unite</label>
-                  <select class="form-select" id="example-select">
-                    <option>1</option>
+                  <label for="input-unite-article" class="form-label">Unite</label>
+                  <select class="form-select" id="input-unite-article">
+                    <option value="u1">Unite I</option>
+                    <option value="u2">Unite II</option>
                   </select>
                 </div>
               </div>
 
               <div class="mb-1">
-                <label class="form-label">Prix Unitaire - Remise</label>
+                <label class="form-label">Prix Unitaire (Ar)</label>
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="0 Ar" aria-label="Recipient's username">
-                  <input type="number" class="form-control" placeholder="%" aria-label="Recipient's username">
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                          data-bs-target="#bs-example-modal-sm"><i class="uil-dollar-alt"></i>&nbsp;Prix special
+                  <input id="input-prix-unitaire" type="text" class="form-control" value="0"
+                         aria-label="Recipient's username">
+                  <button type="button" id="btn-prix-special" class="btn btn-primary" data-bs-toggle="modal"
+                          data-bs-target="#modal-prix-special"><i class="uil-dollar-alt"></i>&nbsp;Prix special
                   </button>
                 </div>
               </div>
 
 
               <div class="d-grid">
-                <button type="button" class="btn btn-success mb-1 mt-3"><i class="uil-plus"></i>&nbsp;Ajouter</button>
-                <button type="button" class="btn btn-primary mb-1"><i class="uil-save"></i>Enregistrer</button>
+                <button type="button" class="btn btn-ajouter-article-vente btn-success mb-1 mt-3"><i
+                        class="uil-plus"></i>&nbsp;Ajouter
+                </button>
+                <button type="button" class="btn btn-enregistrer-vente btn-primary mb-1"><i class="uil-save"></i>Enregistrer
+                </button>
               </div>
               <!-- end d-grid -->
 
             </div>
             <div class="col-lg-7">
 
-              <table class="table table-sm table-centered mb-0">
+              <table id="table-liste-article-vente" class="table table-special-form table-sm table-centered mb-0">
                 <thead>
                 <tr>
                   <th>Article</th>
@@ -96,29 +102,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>Nom de l'article</td>
-                  <td>Unite de l'article</td>
-                  <td>0</td>
-                  <td>0Ar</td>
-                  <td>0Ar</td>
-                </tr>
-                <tr>
-                  <td>Nom de l'article</td>
-                  <td>Unite de l'article</td>
-                  <td>0</td>
-                  <td>0Ar</td>
-                  <td>0Ar</td>
-                </tr>
-                <tr>
-                  <td>Nom de l'article</td>
-                  <td>Unite de l'article</td>
-                  <td>0</td>
-                  <td>0Ar</td>
-                  <td>0Ar</td>
-                </tr>
+
                 </tbody>
               </table>
+
 
               <div class="foot-vente d-none">
                 <p>Nombre d'article : <span>00</span></p>
@@ -142,9 +129,12 @@
 
 <!-- modal list -->
 
-<%@ include file="modal/vente/list-article.jsp" %>
-<%@ include file="modal/vente/list-client.jsp" %>
-<%@ include file="modal/vente/prix-special.jsp" %>
+<div class="all-modal">
+  <div class="temporally"></div>
+  <%@ include file="modal/vente/list-article.jsp" %>
+  <%@ include file="modal/vente/list-client.jsp" %>
+  <%@ include file="modal/vente/prix-special.jsp" %>
+</div>
 
 <!-- end modal list -->
 

@@ -13,8 +13,9 @@
 
         <!-- App css -->
         <link href="${pageContext.request.contextPath}/assets/css/icons.min.css" rel="stylesheet" type="text/css">
-        <link href="${pageContext.request.contextPath}/assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style">
+        <link href="${pageContext.request.contextPath}/assets/css/app.min.css" rel="stylesheet" type="text/css">
         <link href="${pageContext.request.contextPath}/assets/css/custom.css" rel="stylesheet" type="text/css" id="light-style">
+        <link href="${pageContext.request.contextPath}/assets/css/table-special-form.css" rel="stylesheet" type="text/css" id="light-style">
         <link href="${pageContext.request.contextPath}/assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style">
 
 </head>
