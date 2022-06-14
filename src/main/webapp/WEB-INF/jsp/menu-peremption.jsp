@@ -22,7 +22,8 @@
     <div class="col-12">
       <div class="page-title-box">
         <div class="page-title-right">
-          <a href="" class="btn btn-primary" role="button" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg"><i class="uil-plus"></i>&nbsp;</a>
+          <a href="" class="btn btn-primary" role="button" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg"><i
+                  class="uil-plus"></i>&nbsp;</a>
           <a href="" class="btn btn-success"><i class="uil-navigator"></i>&nbsp;</a>
         </div>
       </div>

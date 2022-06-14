@@ -25,7 +25,7 @@
           <tbody>
 
 
-          <% for (int i=0;i<10;i++) { %>
+          <% for (int i = 0; i < 10; i++) { %>
           <tr id="client-<%= i %>">
             <td>Nom et prenoms</td>
             <td>adresse du client</td>

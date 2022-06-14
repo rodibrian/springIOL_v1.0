@@ -29,7 +29,8 @@
       <div class="d-block mt-1">
         <a type="button" class="btn btn-success mr-1" data-bs-toggle="modal" data-bs-target="#nouveau-utilisateur"><i
                 class="uil-file-plus">&nbsp;</i>Nouveau Utilisateur</a>&nbsp;
-        <a type="button" class="btn btn-success mr-1" href="" data-bs-toggle="modal" data-bs-target="#nouvelle-fonction"><i
+        <a type="button" class="btn btn-success mr-1" href="" data-bs-toggle="modal"
+           data-bs-target="#nouvelle-fonction"><i
                 class="uil-plus">&nbsp;</i>Nouvelle Fonction</a>
       </div>
     </div>
@@ -47,7 +48,8 @@
           <tbody>
           <% for (int i = 0; i < 5; i++) {%>
           <tr id="">
-            <td>fonction <%= i %></td>
+            <td>fonction <%= i %>
+            </td>
             <td>
               <div style="display: flex;align-content: center;">
                 <a id="" data-bs-toggle="modal" data-bs-target="#standard-modal2" href="#" class="editFonction"><i
@@ -101,7 +103,6 @@
   </div>
 
 </div>
-
 
 
 <!-- inclusion of modal -->

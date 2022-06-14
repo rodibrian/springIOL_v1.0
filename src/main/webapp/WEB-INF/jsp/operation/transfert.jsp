@@ -45,7 +45,9 @@
                 </select>
               </div>
               <br>
-              <h4>Ajouter Article<hr></h4>
+              <h4>Ajouter Article
+                <hr>
+              </h4>
 
 
               <div class="mb-1">

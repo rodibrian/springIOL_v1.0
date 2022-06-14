@@ -6,11 +6,11 @@
   <!-- start page title -->
   <div class="row">
     <div class="col-12">
-        <h4 class="page-title"><i class="uil-th uil-size-10"></i>Changer de code</h4>
-      </div>
+      <h4 class="page-title"><i class="uil-th uil-size-10"></i>Changer de code</h4>
     </div>
   </div>
-  <!-- end page title -->
+</div>
+<!-- end page title -->
 
 </div> <!-- container -->
 

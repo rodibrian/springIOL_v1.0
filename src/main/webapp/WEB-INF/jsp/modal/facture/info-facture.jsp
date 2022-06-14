@@ -26,8 +26,10 @@
               </p>
               <p>Reste: <%= "0Ar"%>
               </p>
-              </div>
-            <button class="btn btn-success btn-block w-100 mt-2"><i class="uil-money-bill"></i>&nbsp;Changer Mode de paiement</button>
+            </div>
+            <button class="btn btn-success btn-block w-100 mt-2"><i class="uil-money-bill"></i>&nbsp;Changer Mode de
+              paiement
+            </button>
           </div>
           <div class="col-md-8">
             <div class="page-title-box">

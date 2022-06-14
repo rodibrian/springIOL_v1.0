@@ -71,7 +71,8 @@
             <td>00</td>
             <td>05/06/2022</td>
             <td>aucun description</td>
-            <td>nomdutilisateur</td>          </tr>
+            <td>nomdutilisateur</td>
+          </tr>
           <% } %>
           </tbody>
       </div>

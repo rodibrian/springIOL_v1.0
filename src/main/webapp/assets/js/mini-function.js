@@ -16,12 +16,19 @@ function push_to_table_list($table, $id, $array_td) {
     $tr = $('<tr></tr>').attr('id', $id);
 
     for (let i = 0; i < $array_td.length; i++)
-        $tr.append($('<td></td>').text($array_td[i]))
+        $tr.append($('<td></td>').html($array_td[i]))
 
     $($table + ' tbody').append($tr);
 }
 
-function create_confirm_dialog($title, $dialogContent, $modalId, $labelButton) {
+function update_to_table_list($table, $id, $array_td) {
+    $tr = $($table + ' tbody tr#' + $id);
+
+    for (let i = 0; i < $array_td.length; i++)
+        $tr.children().eq(i).html($array_td[i])
+}
+
+function create_confirm_dialog($title, $dialogContent, $modalId, $labelButton, $classButton) {
 
     $modal = $('' +
         '<div>'+
@@ -37,7 +44,7 @@ function create_confirm_dialog($title, $dialogContent, $modalId, $labelButton) {
         '            </div>\n' +
         '            <div class="modal-footer">\n' +
         '                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>\n' +
-        '                <button id="btn-' + $modalId + '" type="button" class="btn btn-primary">' + $labelButton + '</button>\n' +
+        '                <button id="btn-' + $modalId + '" type="button" class="btn ' + $classButton + '">' + $labelButton + '</button>\n' +
         '            </div>\n' +
         '        </div><!-- /.modal-content -->\n' +
         '    </div><!-- /.modal-dialog -->\n' +
@@ -47,4 +54,8 @@ function create_confirm_dialog($title, $dialogContent, $modalId, $labelButton) {
     $('#' + $modalId).modal('show')
 
     return $('button#btn-' + $modalId);
+}
+
+function autoIncrementFromTableTrContent($idTable) {
+    return $($idTable + ' tbody').children().length + 1;
 }

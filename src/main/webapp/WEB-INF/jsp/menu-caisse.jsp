@@ -38,12 +38,14 @@
         &nbsp;
         &nbsp;
         </select>
-        <a type="button" id="btnEncaissement" class="btn btn-outline-success mr-1" data-bs-toggle="modal" data-bs-target="#operation-caisse">
+        <a type="button" id="btnEncaissement" class="btn btn-outline-success mr-1" data-bs-toggle="modal"
+           data-bs-target="#operation-caisse">
           Encaissement
         </a>
         &nbsp;
         </select>
-        <a type="button" id="btnDecaissement" class="btn btn-outline-danger mr-1" data-bs-toggle="modal" data-bs-target="#operation-caisse">
+        <a type="button" id="btnDecaissement" class="btn btn-outline-danger mr-1" data-bs-toggle="modal"
+           data-bs-target="#operation-caisse">
           Decaissement
         </a>
       </div>

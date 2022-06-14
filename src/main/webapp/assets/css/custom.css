@@ -1,15 +1,15 @@
-.page-title { 
+.page-title {
     text-transform: uppercase;
     font-weight: bolder;
     text-decoration: underline;
 }
 
 .content-page {
-    min-height: auto!important;
+    min-height: auto !important;
 }
 
-.table-unit>:not(caption)>*>* {
-	padding: .4em!important;
+.table-unit > :not(caption) > * > * {
+    padding: .4em !important;
 }
 
 .page-title {
@@ -19,15 +19,15 @@
 }
 
 .content-page {
-    min-height: auto!important;
+    min-height: auto !important;
 }
 
-.table-unit>:not(caption)>*>* {
-    padding: .4em!important;
+.table-unit > :not(caption) > * > * {
+    padding: .4em !important;
 }
 
 .btn-40 {
-    height: 38px!important;
+    height: 38px !important;
 }
 
 .table-stock tr {
@@ -35,68 +35,83 @@
 }
 
 .table-50 {
-    max-height: 350px!important;
+    max-height: 350px !important;
 }
 
 .btn-info-stock {
-    cursor: pointer!important;
+    cursor: pointer !important;
 }
 
-/*#tab-article {
-    position: fixed!important;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,.1);
-}*/
 
 .table-facture tbody tr {
-    cursor: pointer!important;
+    cursor: pointer !important;
 }
 
-/* NOUVEAU ARTICLE */
+/*
+NOUVEAU ARTICLE
+*/
 
 #table-unite tbody tr {
 }
+
 .table-listes-article {
     /*background: #262626;*/
 }
 
-/* MENU PRIX */
+/*
+MENU PRIX
+*/
 
 .uil-size-40 {
-    font-size: 7.5em!important;
+    font-size: 7.5em !important;
 }
 
 .uil-size-10 {
-    font-size: 2.5em!important;
+    font-size: 2.5em !important;
 }
 
-/* MENU CLIENT */
+/*
+MENU CLIENT
+*/
 
 #table-client tbody tr td .action-client {
     visibility: hidden;
 }
+
 #table-client tbody tr:hover td .action-client {
     visibility: visible;
 }
 
 
-/* MENU FOURNISSEUR */
+/*
+MENU FOURNISSEUR
+*/
 
 #table-fournisseur tbody tr td .action-fournisseur {
     visibility: hidden;
 }
+
 #table-fournisseur tbody tr:hover td .action-fournisseur {
     visibility: visible;
 }
 
 
-/* MENU VOYAGE */
+/*
+MENU VOYAGE
+*/
 
 #table-voyage tbody tr td .action-voyage {
     visibility: hidden;
 }
+
 #table-voyage tbody tr:hover td .action-voyage {
     visibility: visible;
 }
 
+/*
+OTHER CSS PROPRIETIES
+ */
+
+td.text-align-right {
+    text-align: right;
+}

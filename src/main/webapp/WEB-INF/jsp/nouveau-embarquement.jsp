@@ -25,7 +25,8 @@
                   <select class="form-select" id="example-select">
                     <option>nomChauffeur</option>
                   </select>
-                  <a href="" role="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new-chauffeur"><i class="uil-plus"></i></a>
+                  <a href="" role="button" class="btn btn-primary" data-bs-toggle="modal"
+                     data-bs-target="#new-chauffeur"><i class="uil-plus"></i></a>
                 </div>
 
               </div>
@@ -97,7 +98,7 @@
                 </thead>
                 <tbody>
 
-                <% for (int i=0;i<5;i++) { %>
+                <% for (int i = 0; i < 5; i++) { %>
                 <tr>
                   <td>Nom de l'article</td>
                   <td>Unite de l'article</td>

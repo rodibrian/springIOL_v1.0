@@ -6,11 +6,11 @@
   <!-- start page title -->
   <div class="row">
     <div class="col-12">
-        <h4 class="page-title"><i class="uil-database uil-size-10"></i>Embarquement</h4>
-      </div>
+      <h4 class="page-title"><i class="uil-database uil-size-10"></i>Embarquement</h4>
     </div>
   </div>
-  <!-- end page title -->
+</div>
+<!-- end page title -->
 
 </div> <!-- container -->
 

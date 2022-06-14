@@ -13,10 +13,13 @@
 <div class="row">
   <div class="col-12">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad delectus deleniti, deserunt dolorem enim est fugiat,
-      necessitatibus nostrum, odit perferendis perspiciatis porro provident quam qui quis quisquam repudiandae sed sit!</p>
+      necessitatibus nostrum, odit perferendis perspiciatis porro provident quam qui quis quisquam repudiandae sed
+      sit!</p>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad delectus deleniti, deserunt dolorem enim est fugiat,
-      necessitatibus nostrum, odit perferendis perspiciatis porro provident quam qui quis quisquam repudiandae sed sit!</p>
-    <button class="btn btn-lg btn-primary mt-2"><i class="uil-refresh"></i>&nbsp; Commencer l'archivage maintenant</button>
+      necessitatibus nostrum, odit perferendis perspiciatis porro provident quam qui quis quisquam repudiandae sed
+      sit!</p>
+    <button class="btn btn-lg btn-primary mt-2"><i class="uil-refresh"></i>&nbsp; Commencer l'archivage maintenant
+    </button>
   </div>
 </div>
 <!-- end page title -->

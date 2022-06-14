@@ -1,4 +1,5 @@
-<div id="delete-credit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="danger-header-modalLabel" aria-hidden="true">
+<div id="delete-credit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="danger-header-modalLabel"
+     aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header modal-colored-header bg-danger">
@@ -14,4 +15,5 @@
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+</div>
+<!-- /.modal -->

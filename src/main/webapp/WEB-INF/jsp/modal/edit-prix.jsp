@@ -56,7 +56,9 @@
         </div>
       </div>
       <div class="modal-footer d-inline-flex">
-        <button type="button" class="btn btn-default w-100 m-0" data-bs-dismiss="modal"><i class="uil-exit"></i>&nbsp;Fin de modification</button>
+        <button type="button" class="btn btn-default w-100 m-0" data-bs-dismiss="modal"><i class="uil-exit"></i>&nbsp;Fin
+          de modification
+        </button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

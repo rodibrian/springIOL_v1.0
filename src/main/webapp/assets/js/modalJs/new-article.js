@@ -4,6 +4,7 @@ $(function () {
     let editedArticleId = 1;
     // tout les champ non editable par defaut
     let categorieUrl = 'http://localhost:8080/api/v1/categories';
+
     function initTableUnite() {
         $('#table-unite input').attr('disabled', '')
         // ajout du nouveau unite
@@ -48,6 +49,7 @@ $(function () {
             $(this).closest('tr').find('.btn-add-unite').show()
         }));
     }
+
     function initAddAndSaveArticleBtn() {
         // chargement des categories lors de l'affichage du formulaire de categorie
         $("#newArticleBtn").click(() => {
@@ -77,7 +79,8 @@ $(function () {
                 });
             }
         });
-        function createArticleAndUnite(){
+
+        function createArticleAndUnite() {
 
             let designation = $("#designation").val();
             let categorieId = $("#categorie option:selected").val();
@@ -108,10 +111,10 @@ $(function () {
             }
             let article = {}
             article.designation = designation;
-            article.categorie = { id: categorieId,libelle: categorieLibelle};
+            article.categorie = {id: categorieId, libelle: categorieLibelle};
             article.unite = uniteTab;
             article.status = articleStatus;
-            if (!isCreateArticle){
+            if (!isCreateArticle) {
                 article.id = editedArticleId;
             }
             let url = "http://localhost:8080/api/v1/articles";
@@ -145,27 +148,29 @@ $(function () {
                 }
             });
         }
-        function updateArticle(){
+
+        function updateArticle() {
             let designation = $("#designation").val();
             let categorieLibelle = $("#categorie option:selected").text();
 
         }
+
         // enregistrement de l'article
         $("#saveArticleBtn").click(() => {
-            if (isCreateArticle){
+            if (isCreateArticle) {
                 createArticleAndUnite();
-            }else {
+            } else {
                 updateArticle();
                 isCreateArticle = true;
             }
         });
     }
-    
-    function initAddArticleModal(){
+
+    function initAddArticleModal() {
         initTableUnite();
         initAddAndSaveArticleBtn();
     }
-    
+
     function initTableRowEvent() {
         // Initialisation de l'evenement des tr
         let div = $("#articleTable tbody tr td div");
@@ -196,42 +201,43 @@ $(function () {
                 }
             }
         }
-        $(".editArticleBtn").click(function (){
+
+        $(".editArticleBtn").click(function () {
             isCreateArticle = false;
             editedArticleId = $(this).attr("id");
-            console.log(" Edited article = "+editedArticleId);
+            console.log(" Edited article = " + editedArticleId);
             initCategorieSelect();
             $tr = $(this).closest('tr');
             designation = $tr.children()[1].innerText;
             categorie = $tr.children()[5].innerText;
             // affectation dans la formulaire
             $('input#designation').val(designation)
-            $('select#categorie option:contains("'+categorie+'")').attr('selected','true')
-            let url = 'http://localhost:8080/api/v1/articles/'+editedArticleId+"/unites";
+            $('select#categorie option:contains("' + categorie + '")').attr('selected', 'true')
+            let url = 'http://localhost:8080/api/v1/articles/' + editedArticleId + "/unites";
             $.ajax({
-                    type: 'GET',
-                    url: url,
-                    success: function (data) {
-                        let table = $("#table-unite tbody");
-                        // SUPRIMER TOUTES LES DONNE
-                        table.empty();
-                        for (let i = 0; i < data.length; i++){
-                                    let tr = `<tr id="`+data[i].id+`">
-                                    <td><input type="text"  class="form-control input-sm" value="`+data[i].code+`"></td>
-                                    <td><input type="text"  class="form-control input-sm" value="`+data[i].niveau+`"></td>
-                                    <td><input type="text"  class="form-control input-sm" value="`+data[i].designation+`"></td>
-                                    <td><input type="text"  class="form-control input-sm" value="`+data[i].quantite+`"></td>
-                                    <td><input type="text"  class="form-control input-sm" value="`+data[i].poids+`"></td>
+                type: 'GET',
+                url: url,
+                success: function (data) {
+                    let table = $("#table-unite tbody");
+                    // SUPRIMER TOUTES LES DONNE
+                    table.empty();
+                    for (let i = 0; i < data.length; i++) {
+                        let tr = `<tr id="` + data[i].id + `">
+                                    <td><input type="text"  class="form-control input-sm" value="` + data[i].code + `"></td>
+                                    <td><input type="text"  class="form-control input-sm" value="` + data[i].niveau + `"></td>
+                                    <td><input type="text"  class="form-control input-sm" value="` + data[i].designation + `"></td>
+                                    <td><input type="text"  class="form-control input-sm" value="` + data[i].quantite + `"></td>
+                                    <td><input type="text"  class="form-control input-sm" value="` + data[i].poids + `"></td>
                                     <td class="d-inline-flex">
                                         <a class="btn btn-primary btn-sm btn-edit-unite"><i class="uil-pen"></i></a>&nbsp;
                                         <a class="btn btn-danger btn-sm btn-del-unite"><i class="uil-trash-alt"></i></a>&nbsp;
                                         <a class="btn btn-success btn-sm btn-add-unite"><i class="uil-check-square"></i></a>
                                     </td>
                                 </tr>`;
-                            table.append(tr);
-                        }
+                        table.append(tr);
                     }
-                });
+                }
+            });
         });
         $(".deleteArticleBtn").click(function () {
             let btn = $(this);

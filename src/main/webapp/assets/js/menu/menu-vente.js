@@ -72,7 +72,7 @@ $(function () {
 
     // suppression article
 
-    $('#table-liste-article-vente tbody tr').on('dblclick', function() {
+    $('#table-liste-article-vente tbody tr').on('dblclick', function () {
         $(this).remove();
     })
 
@@ -84,11 +84,11 @@ $(function () {
         '<li>Somme : <strong>0Ar</strong></li>' +
         '';
 
-    $('.form-vente .btn-enregistrer-vente').on('click', function() {
+    $('.form-vente .btn-enregistrer-vente').on('click', function () {
         $modalId = 'confirmation-de-vente';
 
-        create_confirm_dialog('Confirmation de Vente', $content, $modalId, 'Enregistrer')
-        .on('click', function() { // button de validation
+        create_confirm_dialog('Confirmation de Vente', $content, $modalId, 'Enregistrer', 'btn-primary')
+            .on('click', function () { // button de validation
 
                 /*
                  requete d'insertion vente
@@ -98,7 +98,7 @@ $(function () {
                 $('#table-liste-article-vente tbody tr').remove();
 
                 $('#' + $modalId).modal('hide');
-        })
+            })
     })
 
 })

@@ -233,10 +233,10 @@
 
 
     <!-- inclusion des modals -->
-      <%@ include file="../modal/menu-choix-magasin.jsp" %>
-      <%@ include file="../modal/menu-choix-de-bdd.jsp" %>
-      <%@ include file="../modal/menu-info-societe.jsp" %>
-      <%@ include file="../modal/menu-sauvegarde.jsp" %>
+    <%@ include file="../modal/menu-choix-magasin.jsp" %>
+    <%@ include file="../modal/menu-choix-de-bdd.jsp" %>
+    <%@ include file="../modal/menu-info-societe.jsp" %>
+    <%@ include file="../modal/menu-sauvegarde.jsp" %>
 
     <!-- fin d'inclusion des modals -->
 
