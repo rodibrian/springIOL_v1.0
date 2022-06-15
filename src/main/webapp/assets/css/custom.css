@@ -27,7 +27,7 @@
 }
 
 .btn-40 {
-    height: 38px !important;
+    height: 40px !important;
 }
 
 .table-stock tr {
@@ -54,16 +54,12 @@ NOUVEAU ARTICLE
 #table-unite tbody tr {
 }
 
-.table-listes-article {
-    /*background: #262626;*/
-}
-
 /*
 MENU PRIX
 */
 
 .uil-size-40 {
-    font-size: 7.5em !important;
+    font-size: 7.5em!important;
 }
 
 .uil-size-10 {
@@ -114,4 +110,18 @@ OTHER CSS PROPRIETIES
 
 td.text-align-right {
     text-align: right;
+}
+
+/*
+TOAST
+ */
+
+.toast-css {
+    z-index: 9999!important;
+    position: fixed!important;
+    right: 5vh;
+}
+.toast-css .toast-body {
+    text-shadow: 1px 1px 2px #262626, 0 0 1em #262626, 0 0 0.2em #262626;
+    /*text-shadow: #262626 1px 0 10px;*/
 }

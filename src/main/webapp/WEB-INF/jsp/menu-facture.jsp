@@ -18,7 +18,6 @@
       <div class="page-title-box">
         <div class="page-title-right">
           <a href="" class="btn btn-info"><i class="uil-refresh"></i></a>
-          <a href="" class="btn btn-warning"><i class="uil-money-insert"></i></a>
           <a href="" class="btn btn-warning d-none"><i class="uil-meh-closed-eye"></i></a>
           <a href="" class="btn btn-success"><i class="uil-navigator"></i>&nbsp;</a>
         </div>
@@ -59,6 +58,7 @@
             <th>Prix Unitaire</th>
             <th>Montant</th>
             <th>Date</th>
+            <th>Action</th>
           </tr>
           </thead>
           <tbody>
@@ -72,6 +72,12 @@
             <td>0Ar</td>
             <td>0Ar</td>
             <td>05/06/2022</td>
+            <td class="d-flex justify-content-center">
+              <div>
+                <a class="btn-sm btn-info info-facture"><i class="uil-info-circle"></i></a>
+                <a class="btn-sm btn-success imprimer-facture"><i class="uil-print"></i></a>
+              </div>
+            </td>
           </tr>
           <% } %>
           </tbody>

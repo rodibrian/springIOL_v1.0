@@ -42,6 +42,7 @@ $(function () {
                     $("#categorieTabList tbody").append(categorie);
                 }
             });
+            createToast('bg-success', 'uil-file-check', 'Creation Fait', 'Creation du nouveau cat&eacute;gorie effectu&eacute; avec succ&egrave;s!')
         } else {
             if (selectedVal !== newVal) {
                 let url = "http://localhost:8080/api/v1/categories/" + editBtnId;
@@ -59,6 +60,7 @@ $(function () {
                         siblings.html(newVal)
                     }
                 });
+                createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification du cat&eacute;gorie effectu&eacute; avec succ&egrave;s!')
             }
             isUpdateOperation = false;
         }
@@ -84,5 +86,6 @@ $(function () {
                 btn.parent().parent().parent().detach();
             }
         });
+        createToast('bg-danger', 'uil-trash-alt', 'Suppression Fait', 'Suppression du cat&eacute;gorie effectu&eacute; avec succ&egrave;s!')
     })
 });

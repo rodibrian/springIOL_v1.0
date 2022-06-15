@@ -98,6 +98,8 @@ $(function () {
                 $('#table-liste-article-vente tbody tr').remove();
 
                 $('#' + $modalId).modal('hide');
+
+                createToast('bg-success', 'uil-file-check-alt', 'Vente Fait', 'Vente enregistr&eacute; avec succ&egrave;s!')
             })
     })
 

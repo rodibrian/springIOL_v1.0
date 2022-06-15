@@ -1,4 +1,9 @@
 $(function () {
+
+    /*
+    MENU FACTURE
+     */
+
     // click of tr, open infos list articles in facture
 
     $('.table-facture tbody tr').click(function () {
@@ -10,6 +15,10 @@ $(function () {
 
         $("#facture-info").addClass("show")
 
+    })
+
+    $(document).on('click', '.table-facture a.info-facture', function() {
+        $('#facture-info').addClass('show')
     })
 
     // fermer l'info listes article facture
@@ -36,5 +45,9 @@ $(function () {
         console.log('btn voir facture')
         $('#avoir-facture').modal('show')
     })
+
+    // chargement des données de la table
+
+
 
 })

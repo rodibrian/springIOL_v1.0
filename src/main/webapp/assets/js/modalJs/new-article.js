@@ -159,9 +159,11 @@ $(function () {
         $("#saveArticleBtn").click(() => {
             if (isCreateArticle) {
                 createArticleAndUnite();
+                createToast('bg-success', 'uil-file-check', 'Creation Fait', 'Creation d\'un nouveau article effectu&eacute; avec succ&egrave;s!')
             } else {
                 updateArticle();
                 isCreateArticle = true;
+                createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification de l\'article effectu&eacute; avec succ&egrave;s!')
             }
         });
     }
@@ -251,6 +253,7 @@ $(function () {
                     btn.parent().parent().parent().remove();
                 }
             });
+            createToast('bg-danger', 'uil-trash-alt', 'Suppression Fait', 'Suppression de l\' article effectu&eacute; avec succ&egrave;s!')
         });
         $(".hideArticleBtn").click(function () {
             let btn = $(this);
@@ -265,6 +268,7 @@ $(function () {
                     btn.parent().parent().parent().remove();
                 }
             });
+            createToast('bg-warning', 'uil-eye-slash', 'Article Masqu&eacute;', 'Masquage de l\'article effectu&eacute; avec succ&egrave;s!')
         });
     }
 

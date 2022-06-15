@@ -1,6 +1,6 @@
 <%@ include file='template/header.jsp' %>
 
-<!-- Start Content update-->
+<!-- Start Content-->
 <div class="container-fluid">
 
   <!-- start page title -->
@@ -34,8 +34,7 @@
   <div class="container -fluid">
     <div class="row">
       <div class="col-lg-12">
-        <table id="scroll-vertical-datatable"
-               class="table-prix table table-sm dt-responsive nowrap table-hover table-striped">
+        <table id="scroll-vertical-datatable" class="table-article-prix table table-sm dt-responsive nowrap table-special-form">
           <thead>
           <tr>
             <th>Code</th>
@@ -43,18 +42,11 @@
             <th>Unite</th>
             <th>Prix</th>
             <th>Date mis à jour</th>
+            <th>Action</th>
           </tr>
           </thead>
           <tbody>
-          <% for (int i = 0; i < 10; i++) { %>
-          <tr>
-            <th>000 000 000 00</th>
-            <td>Designation d'article</td>
-            <td>unite</td>
-            <td>0Ar</td>
-            <td>05/06/2022</td>
-          </tr>
-          <% } %>
+
           </tbody>
         </table>
 

@@ -51,7 +51,7 @@ $(function () {
         if ($('#new-magasin').attr('data-type') === NOUVEAU) {
             $id = autoIncrementFromTableTrContent("#table-liste-magasin");
             push_to_table_list("#table-liste-magasin", $id, $oneMagasin);
-
+            createToast('bg-success', 'uil-file-check', 'Creation Fait', 'Creation d\'un nouveau magasin effectu&eacute; avec succ&egrave;s!')
         }
 
         // EDITION MAGASIN OPERATION
@@ -59,6 +59,7 @@ $(function () {
         else if ($('#new-magasin').attr('data-type') === EDITION) {
             console.log('ici edition')
             update_to_table_list('#table-liste-magasin', $('#new-magasin').attr('data-id'), $oneMagasin);
+            createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification du magasin effectu&eacute; avec succ&egrave;s!')
         }
 
         $('#new-magasin input').val(''); // empty input
@@ -92,6 +93,8 @@ $(function () {
 
                 $('#' + $modalID + '').modal('hide');
                 $('#' + $modalID + '').remove();
+
+                createToast('bg-danger', 'uil-trash-alt', 'Suppression Fait', 'Suppression du magasin effectu&eacute; avec succ&egrave;s!')
             })
 
     })

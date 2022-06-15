@@ -1,10 +1,10 @@
 <!-- Standard modal -->
-<div id="info-prix" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+<div id="modal-info-prix" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="standard-modalLabel">Mis à jour Prix</h4>
+        <h4 class="modal-title" id="standard-modalLabel">Mis &agrave; jour Prix</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
       </div>
       <div class="modal-body">
@@ -13,18 +13,18 @@
             <div class="label">
               <p class=" d-flex justify-content-center"><i class="uil-box uil-size-40"></i>
               </p>
-              <p class="text-center"><%= "Designation Article"%>
+              <p class="text-center label-designation-article">
               </p>
-              <p class="text-center">(<%= "unite"%>)
+              <p class="text-center label-unite-article">
               </p>
-              <p class="text-center">Date : <%= "02/06/2022"%>
+              <p class="text-center label-date-prix">
               </p>
               <hr>
 
               <div class="d-inline-flex">
-                <input type="text" class="form-control text-right w-75 mr-1" placeholder="" value="0Ar">
-
-                <button class="btn btn-success w-25"><i class="uil-money-insert"></i></button>
+                <input type="text" class="form-control text-right w-75 mr-1 input-prix-edit" placeholder="" value="0Ar">
+                <button class="btn btn-success w-25 btn-enregistrer-prix-editer"><i class="uil-money-insert"></i>
+                </button>
               </div>
 
 
@@ -36,20 +36,13 @@
                 <a href="" class="btn btn-success"><i class="uil-navigator"></i>&nbsp;</a>
               </div>
             </div>
-            <table id="table-facture-avoir" class="table table-hover table-striped norwap table-sm dt-responsive">
+            <table id="table-historique-prix" class="table table-special-form table-striped norwap dt-responsive">
               <thead>
               <th>Date</th>
               <th>Montant</th>
               <th>Utilisateur</th>
               </thead>
               <tbody>
-              <% for (int c = 0; c < 5; c++) { %>
-              <tr>
-                <td>02/06/2022</td>
-                <td>0Ar</td>
-                <td>nomUtilisateur</td>
-              </tr>
-              <% } %>
               </tbody>
             </table>
           </div>
@@ -62,5 +55,9 @@
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
+
+  <div class="all-modal">
+
+  </div>
 </div>
 <!-- /.modal -->

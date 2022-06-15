@@ -109,6 +109,9 @@
 <script src="${pageContext.request.contextPath}/assets/js/pages/demo.dashboard.js"></script>
 <!-- end demo js-->
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
 <script src="${pageContext.request.contextPath}/assets/js/mini-function.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/modalJs/new-categorie.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/modalJs/new-article.js"></script>
@@ -119,6 +122,8 @@
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-detail-vente.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-client.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-vente.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/modalJs/info-stock.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/modalJs/edit-prix.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-magasin.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/operation/entree.js"></script>
 
