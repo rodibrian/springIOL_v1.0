@@ -1,6 +1,6 @@
 <%@ include file='template/header.jsp' %>
 
-<!-- Start Content-->
+<!-- Start Content update-->
 <div class="container-fluid">
 
   <!-- start page title -->
