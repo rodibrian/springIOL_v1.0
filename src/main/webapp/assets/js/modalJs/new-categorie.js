@@ -1,10 +1,13 @@
 $(function () {
+
+    let namespace = "#standard-modal2 ";
+
     let isUpdateOperation = false;
     let editBtnId = 1;
     let selectedVal = "";
     let siblings;
-    let div = $("#categorieTabList tbody tr td div");
-    let tr = $("#categorieTabList tbody tr");
+    let div = $(namespace + "#categorieTabList tbody tr td div");
+    let tr = $(namespace + "#categorieTabList tbody tr");
     div.hide();
     tr.mouseenter(function () {
         $(this).children().last().children().first().show();
@@ -13,8 +16,8 @@ $(function () {
         $(this).children().last().children().first().hide();
     });
 
-    $("#saveCategorieBtn").click(function () {
-        let newVal = $("#nomCategorie").val();
+    $(namespace + "#saveCategorieBtn").click(function () {
+        let newVal = $(namespace + "#nomCategorie").val();
         if (!isUpdateOperation) {
             let categoriesUrl = 'http://localhost:8080/api/v1/categories';
             let jsonData = {
@@ -27,7 +30,7 @@ $(function () {
                 data: JSON.stringify(jsonData),
                 success: function (data) {
                     //reset the input
-                    $("#nomCategorie").val("");
+                    $(namespace + "#nomCategorie").val("");
                     let categorie = `
                             <tr class="categorieRow" id="` + data.id + `">
                                      <td> ` + data.libelle + `</td>
@@ -39,7 +42,7 @@ $(function () {
                                      </td>
                             </tr>
                 `;
-                    $("#categorieTabList tbody").append(categorie);
+                    $(namespace + "#categorieTabList tbody").append(categorie);
                 }
             });
             createToast('bg-success', 'uil-file-check', 'Creation Fait', 'Creation du nouveau cat&eacute;gorie effectu&eacute; avec succ&egrave;s!')
@@ -56,7 +59,7 @@ $(function () {
                     data: JSON.stringify(jsonData),
                     success: function (data) {
                         //reset the input
-                        $("#nomCategorie").val("");
+                        $(namespace + "#nomCategorie").val("");
                         siblings.html(newVal)
                     }
                 });
@@ -70,7 +73,7 @@ $(function () {
         editBtnId = $(this).attr("id");
         siblings = $(this).parent().parent().siblings();
         let text = siblings.html();
-        selectedVal = $("#nomCategorie").val(text);
+        selectedVal = $(namespace + "#nomCategorie").val(text);
     })
     $('.deleteCategorie').on('click', '')
 

@@ -13,7 +13,7 @@
                  placeholder="article &agrave; recherch&eacute;">
         </div>
         <hr>
-        <table id="table-liste-article" class="table table-sm dt-responsive nowrap w-100">
+        <table id="table-liste-article" class="table table-special-form table-sm dt-responsive nowrap w-100">
           <thead>
           <tr>
             <th>Code</th>
@@ -27,30 +27,7 @@
 
 
           <tbody>
-          <tr>
-            <td>000 000 000 00</td>
-            <td>Designation de l'article</td>
-            <td>unite</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0Ar</td>
-          </tr>
-          <tr>
-            <td>000 000 000 00</td>
-            <td>Designation de l'article</td>
-            <td>unite</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0Ar</td>
-          </tr>
-          <tr>
-            <td>000 000 000 00</td>
-            <td>Designation de l'article</td>
-            <td>unite</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0Ar</td>
-          </tr>
+
           </tbody>
         </table>
       </div>

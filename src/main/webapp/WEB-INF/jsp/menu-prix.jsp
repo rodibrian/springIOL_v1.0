@@ -31,7 +31,7 @@
   <!-- suite -->
 
 
-  <div class="container -fluid">
+  <div class="container -fluid" id="menu-prix">
     <div class="row">
       <div class="col-lg-12">
         <table id="scroll-vertical-datatable" class="table-article-prix table table-sm dt-responsive nowrap table-special-form">

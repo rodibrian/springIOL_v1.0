@@ -1,12 +1,14 @@
 $(function() {
 
+    let namespace = "edit prix ici";
+
     /*
 
     EDTION DE PRIX
 
      */
 
-    $('.uil-size-40').css('fontSize','7.5em');
+    $(namespace + '.uil-size-40').css('fontSize','7.5em');
 
 
 })

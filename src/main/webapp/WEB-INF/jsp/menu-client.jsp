@@ -2,7 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="template/header.jsp" %>
 <!-- Start Content-->
-<div class="container-fluid">
+<div id="menu-client" class="container-fluid">
   <!-- start page title -->
   <div class="row">
     <div class="col-12">

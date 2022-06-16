@@ -1,5 +1,7 @@
 $(function () {
 
+    let namespace = "#menu-stock ";
+
     /*
     MENU STOCK
      */
@@ -44,7 +46,6 @@ $(function () {
     ]
 
     $.each($lesArticles, function (key, article) {
-        console.log('ici')
         $.each(article.uniteArticle, function (keyU, articleU) {
             $trArticle = $('<tr></tr>').attr('id', article.codeArticle + '-' + keyU);
             $trArticle.append('' +

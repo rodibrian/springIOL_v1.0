@@ -1,4 +1,5 @@
 function set_select_option_value($array, $select) {
+    $array = convertiMultiObjectToArray($array)
     $.each($array, function (key, value) {
         $($select)
             .append($("<option></option>")
@@ -11,6 +12,7 @@ function get_select_affect_to_input($input, $id_element, $text_element) {
     $($input).attr('value-id', $id_element)
     $($input).attr('value', $text_element)
 }
+
 
 function push_to_table_list($table, $id, $array_td) {
     $tr = $('<tr></tr>').attr('id', $id);
@@ -69,3 +71,21 @@ function createToast($theme, $icon, $title, $content) {
         $('#' + $idToast).remove();
     }, 6000);
 }
+
+// CONVERSION OBJECT TO ARRAY
+
+function convertirObjectToArray($myObj) {
+    var array = $.map($myObj, function(value, index){
+        return [value];
+    });
+    return array;
+}
+
+function convertiMultiObjectToArray($tabMyObj) {
+    let array = [];
+    $.each($tabMyObj, function(key, value) {
+        array.push(convertirObjectToArray(value));
+    })
+    return array;
+}
+

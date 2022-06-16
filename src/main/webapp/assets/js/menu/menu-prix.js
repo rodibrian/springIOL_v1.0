@@ -1,5 +1,7 @@
 $(function () {
 
+    let namespace = "#menu-prix ";
+
     /*
 
     MENU PRIX
@@ -44,7 +46,7 @@ $(function () {
                 '              </a>\n' +
                 '            </td>\n' +
                 '          ');
-            $('.table-article-prix tbody').append($trArticle);
+            $(namespace + '.table-article-prix tbody').append($trArticle);
         })
     })
 

@@ -1,7 +1,7 @@
 <%@ include file='template/header.jsp' %>
 
 <!-- Start Content-->
-<div class="container-fluid">
+<div class="container-fluid" id="menu-stock">
 
   <!-- start page title -->
   <div class="row">
