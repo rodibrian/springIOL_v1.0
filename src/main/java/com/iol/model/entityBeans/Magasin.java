@@ -29,9 +29,6 @@ public class Magasin {
     @Column(columnDefinition = "TEXT")
     private String nomMagasin;
 
-    @OneToMany(mappedBy = "magasin")
-    private Set<User> users;
-
     @ManyToMany
     @JoinTable(name = "magasin_article",joinColumns = {@JoinColumn(name = "magasin_id",foreignKey = @ForeignKey(name = "mag_article_magasin_key_constraint"))},
             inverseJoinColumns = {@JoinColumn(name = "article_id",foreignKey = @ForeignKey(name = "mag_art_article_key_constraint"))})
@@ -39,7 +36,7 @@ public class Magasin {
 
     @ManyToOne
     @JoinColumn(name = "societeId",foreignKey = @ForeignKey(name = "magasin_societe_key_constraint"))
-    private Societe societe;
+    private Filiale filiale;
 
     @ManyToOne
     @JoinTable(name = "responsable_magasin",joinColumns = {@JoinColumn(name = "magasin_id",foreignKey = @ForeignKey(name = "resp_mag_magasin_key_constraint"))},

@@ -1,5 +1,5 @@
 <!-- Standard modal -->
-<div id="info-societe" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+<div id="info-filiale" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
      aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -9,7 +9,7 @@
       </div>
       <div class="modal-body">
         <div class="mb-0">
-          <label for="nomSociete" class="form-label">Nom du societe</label>
+          <label for="nomSociete" class="form-label">Nom du filiale</label>
           <input type="text" id="nomSociete" class="form-control form-control-sm">
         </div>
         <div class="mb-0">

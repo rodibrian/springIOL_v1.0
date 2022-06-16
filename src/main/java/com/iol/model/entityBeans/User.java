@@ -19,17 +19,16 @@ import java.io.Serializable;
 @DynamicUpdate
 @DynamicInsert
 public class User extends PersonnePhysique implements Serializable{
-
    @Column(columnDefinition = "TEXT",nullable = false)
    private String username;
 
    @Column(columnDefinition = "TEXT",nullable = false)
    private String password;
 
-   @ManyToOne(fetch = FetchType.EAGER)
-   @JoinTable(name = "utilisateur_magasin",joinColumns = {@JoinColumn(name = "user_id",foreignKey = @ForeignKey(name = "user_mag_user_key_constraint"))},
-   inverseJoinColumns = {@JoinColumn(name = "magasin_id",foreignKey = @ForeignKey(name = "user_mag_magasin_key_constraint"))})
-   private Magasin magasin;
+   @ManyToOne
+   @JoinTable(name = "utilisateur_filiale",joinColumns = {@JoinColumn(name = "user_id",foreignKey = @ForeignKey(name = "user_fil_user_key_constraint"))},
+   inverseJoinColumns = {@JoinColumn(name = "filiale_id",foreignKey = @ForeignKey(name = "user_filiale_key_constraint"))})
+   private Filiale filiale;
 
    @ManyToOne(cascade = CascadeType.PERSIST)
    @JoinColumn(name = "fonction_id",foreignKey = @ForeignKey(name = "user_fonction_key_constraint"))

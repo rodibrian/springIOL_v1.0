@@ -272,7 +272,6 @@ $(function () {
         initTableAction();
         initTableRowEvent();
     }
-
     initArticleTable();
     initAddArticleModal();
 });

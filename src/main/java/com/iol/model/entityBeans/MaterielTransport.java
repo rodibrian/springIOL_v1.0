@@ -19,9 +19,9 @@ public class MaterielTransport implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "societe_id",foreignKey = @ForeignKey(name = "mat_trans_societe_key_constraint"))
-    private Societe societe;
+//    @ManyToOne
+//    @JoinColumn(name = "societe_id",foreignKey = @ForeignKey(name = "mat_trans_societe_key_constraint"))
+//    private Filiale filiale;
 
     @OneToMany(mappedBy = "materielTransport")
     private Set<Voyage> voyages;

@@ -1,11 +1,21 @@
 package com.iol.repository;
 
-import com.iol.model.entityBeans.Societe;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-@Transactional
+import java.sql.Connection;
+
 @Repository
-public interface SocieteRepository extends JpaRepository<Societe,Long>{
+public class SocieteRepository{
+
+    private Connection connection;
+
+    @Autowired
+    public SocieteRepository(Connection connection) {
+        this.connection = connection;
+    }
+
+    public void create(){
+
+    }
 }

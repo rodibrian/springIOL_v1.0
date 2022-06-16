@@ -7,9 +7,7 @@ $(function () {
 
         let reference = $(this).children()[0].innerText;
         console.log(reference)
-
         $("#facture-info").addClass("show")
-
     })
 
     // fermer l'info listes article facture

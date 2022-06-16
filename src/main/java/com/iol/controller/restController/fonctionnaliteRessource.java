@@ -12,7 +12,6 @@ import java.net.http.HttpClient;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v1")
 public class fonctionnaliteRessource {
 
     private FonctionnaliteRepository fonctionnaliteRepository;
