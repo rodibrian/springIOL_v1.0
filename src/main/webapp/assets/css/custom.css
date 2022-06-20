@@ -125,3 +125,15 @@ TOAST
     text-shadow: 1px 1px 2px #262626, 0 0 1em #262626, 0 0 0.2em #262626;
     /*text-shadow: #262626 1px 0 10px;*/
 }
+
+/*
+CAISSE
+ */
+
+.type-caisse {
+    cursor: pointer;
+}
+.type-caisse:hover {
+    border-left: 2px solid azure;
+    opacity: .8;
+}

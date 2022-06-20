@@ -56,7 +56,7 @@
               <div class="row g-2">
                 <div class="mb-1 col-md-6">
                   <label for="input-quantite-article" class="form-label">Quantite</label>
-                  <input type="number" class="form-control" id="input-quantite-article" placeholder="00" value="0">
+                  <input type="number" class="form-control" id="input-quantite-article" placeholder="0" value="0">
                 </div>
                 <div class="mb-1 col-md-6">
                   <label for="select-unite-article" class="form-label">Unite</label>
@@ -67,12 +67,12 @@
               </div>
 
               <div class="mb-1">
-                <label class="form-label">Prix d'Achat - Prix de vente</label>
+                <label class="form-label">Prix d'Achat (Ar) - Prix de vente (Ar)</label>
                 <div class="input-group">
                   <input type="number" id="input-prix-achat-article" class="form-control" placeholder="0 Ar"
-                         aria-label="Recipient's username">
+                         aria-label="Recipient's username" value="0">
                   <input type="number" id="input-prix-vente-article" class="form-control" placeholder="0 Ar"
-                         aria-label="Recipient's username">
+                         aria-label="Recipient's username" value="0">
 
                 </div>
               </div>
@@ -125,7 +125,6 @@
     <!-- modal list -->
 
     <%@ include file="../modal/vente/list-article.jsp" %>
-    <%@ include file="../modal/vente/list-client.jsp" %>
     <%@ include file="../modal/vente/prix-special.jsp" %>
 
     <!-- end modal list -->

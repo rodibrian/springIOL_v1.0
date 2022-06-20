@@ -20,6 +20,8 @@ function push_to_table_list($table, $id, $array_td) {
     for (let i = 0; i < $array_td.length; i++) $tr.append($('<td></td>').html($array_td[i]))
 
     $($table + ' tbody').append($tr);
+
+    return $tr;
 }
 
 function update_to_table_list($table, $id, $array_td) {

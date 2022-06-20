@@ -126,6 +126,8 @@
 <script src="${pageContext.request.contextPath}/assets/js/modalJs/info-stock.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/modalJs/list-article.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/operation/entree.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/menu/operation/sortie.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/menu/menu-caisse.js"></script>
 
 <script src="${pageContext.request.contextPath}/assets/js/modalJs/edit-prix.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-magasin.js"></script>
