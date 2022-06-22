@@ -14,7 +14,9 @@ import javax.annotation.Resource;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/v1")
 public class UniteRessource {
+
     @Autowired
    private UniteRepository uniteRepository;
 

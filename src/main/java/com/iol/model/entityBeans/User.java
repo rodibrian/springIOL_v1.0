@@ -38,4 +38,5 @@ public class User extends PersonnePhysique implements Serializable{
       this.username = username;
       this.password = password;
    }
+
 }

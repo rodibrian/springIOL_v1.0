@@ -24,7 +24,4 @@ public class Filiale extends Personne{
 
     @OneToMany(mappedBy = "filiale")
     private Set<User> users;
-
-//    @OneToMany(mappedBy = "societe")
-//    private Set<MaterielTransport> materielTransports;
 }

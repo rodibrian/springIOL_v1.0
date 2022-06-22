@@ -30,25 +30,16 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Set;
 
-@SpringBootApplication
-public class Iol implements CommandLineRunner {
+@SpringBootApplication(scanBasePackages = {
+        "com.iol.config",
+        "com.iol.controller",
+        "com.iol.model.adminBeans",
+        "com.iol.model.entityEnum",
+        "com.iol.repository"
+})
+public class Iol{
     public static void main(String[] args) {
         SpringApplication.run(Iol.class,args);
-    }
-
-    @Bean
-    public Connection getConnection(){
-        try {
-           return DriverManager.getConnection("jdbc:postgresql://localhost:5432/", "postgres", "root");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
-    public void run(String... args) throws Exception{
-
     }
 }
 

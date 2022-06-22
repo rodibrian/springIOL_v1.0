@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/v1")
 public class ArticleRessource {
     private ArticleRepository articleRepository;
     @Autowired

@@ -12,6 +12,7 @@ import javax.persistence.PostLoad;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/v1")
 public class MagasinRessource {
 
     private MagasinRepository magasinRepository;
