@@ -20,14 +20,11 @@
               <p class="text-center label-date-prix">
               </p>
               <hr>
-
               <div class="d-inline-flex">
                 <input type="text" class="form-control text-right w-75 mr-1 input-prix-edit" placeholder="" value="0Ar">
                 <button class="btn btn-success w-25 btn-enregistrer-prix-editer"><i class="uil-money-insert"></i>
                 </button>
               </div>
-
-
             </div>
           </div>
           <div class="col-md-8">

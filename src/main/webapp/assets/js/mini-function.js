@@ -91,3 +91,7 @@ function convertiMultiObjectToArray($tabMyObj) {
     return array;
 }
 
+function hideAndRemove($selector) {
+    $($selector).modal('hide');
+    $($selector).remove();
+}

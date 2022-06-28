@@ -51,5 +51,21 @@ $(function () {
     // chargement des données de la table
 
 
+    // validation avoir
+
+    $(namespace + '#avoir-facture #btn-valider-avoir').on('click', function() {
+        $modalId = 'validation-avoir';
+
+        create_confirm_dialog('Confirmation avoir', 'Voulez vous vraiment valider cette avoir ?',$modalId,'Oui, valider!','btn-danger')
+            .on('click', function () {
+                createToast('bg-danger', 'uil-trash-alt','Avoir valid&eacute;','Avoir effectu&eacute; avec success!')
+
+                hideAndRemove('#' + $modalId)
+
+                $('#avoir-facture').modal('hide')
+            })
+
+    })
+
 
 })

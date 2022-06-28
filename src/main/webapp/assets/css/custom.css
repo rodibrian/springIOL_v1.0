@@ -137,3 +137,14 @@ CAISSE
     border-left: 2px solid azure;
     opacity: .8;
 }
+
+/*
+
+BOX
+
+ */
+
+.modal-content {
+    border: 2px solid gray!important;
+    box-shadow: 1px 5px 25px #262626;
+}

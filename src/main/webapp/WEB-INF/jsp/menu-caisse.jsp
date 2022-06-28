@@ -160,6 +160,17 @@
           </div>
         </div>
       </div>
+      <div class="col-md-2 m-2 type-caisse" id="caisse-autres" value-filter="autres">
+        <div class="row">
+          <div class="col-md-4 bg-success d-flex justify-content-center align-content-center align-items-center text-center">
+            <i class="uil-money-bill uil-size-10"></i>
+          </div>
+          <div class="col-md-8 p-2 card-caisse bg-secondary text-light">
+            <span>Autres</span><br>
+            <span class="label-montant">0Ar</span>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class="col-lg-12">

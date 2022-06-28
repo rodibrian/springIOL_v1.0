@@ -8,11 +8,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
       </div>
       <div class="modal-body">
-        <input type="date" class="form-control d-block w-100">
+        <input id="input-date-peremption" type="date" class="form-control d-block w-100">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-        <button id="saveCategorieBtn" type="button" data-bs-dismiss="modal" class="btn btn-primary">Enregistrer</button>
+        <button id="btn-enregistrer-date-peremption" type="button" data-bs-dismiss="modal" class="btn btn-primary">Enregistrer</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

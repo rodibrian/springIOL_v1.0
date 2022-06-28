@@ -23,7 +23,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-        <button id="saveMagasinBtn" data-bs-dismiss="modal" type="button" class="btn btn-primary">Enregistrer</button>
+        <button id="btn-enregistrer-fournisseur" data-bs-dismiss="modal" type="button" class="btn btn-primary">Enregistrer</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

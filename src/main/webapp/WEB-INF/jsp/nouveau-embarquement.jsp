@@ -14,25 +14,38 @@
             <hr>
             <div class="col-lg-5">
               <div class="mb-1">
-                <label for="example-select" class="form-label">Magasin</label>
-                <select class="form-select" id="example-select">
-                  <option>1</option>
-                </select>
+                <label for="example-select" class="form-label">Reference</label>
+                <input type="text" class="form-control" placeholder="2022/001">
               </div>
               <div class="mb-1">
-                <label for="example-select" class="form-label">Chauffeur</label>
+                <label for="example-select" class="form-label">Moyen de transport</label>
                 <div class="input-group">
                   <select class="form-select" id="example-select">
-                    <option>nomChauffeur</option>
+                    <option>MoyenDeTransport</option>
                   </select>
                   <a href="" role="button" class="btn btn-primary" data-bs-toggle="modal"
-                     data-bs-target="#new-chauffeur"><i class="uil-plus"></i></a>
+                     data-bs-target="#new-bateau"><i class="uil-plus"></i></a>
                 </div>
 
               </div>
               <div class="mb-1">
+                <label for="example-select" class="form-label">Nom du Fournisseur</label>
+                <div class="input-group">
+                  <select class="form-select" id="example-select">
+                    <option>nomFournisseur</option>
+                  </select>
+                  <a href="" role="button" class="btn btn-primary" data-bs-toggle="modal"
+                     data-bs-target="#new-bateau"><i class="uil-plus"></i></a>
+                </div>
+
+              </div>
+              <div class="mb-1">
+                <label class="form-label">Trajet</label>
+                <input type="text" class="form-control" placeholder="depart - destination">
+              </div>
+              <div class="mb-1">
                 <label class="form-label">Facture</label>
-                <input type="text" class="form-control" placeholder="référence facture">
+                <input type="text" class="form-control" placeholder="reference facture">
               </div>
 
               <hr>

@@ -24,8 +24,6 @@
             <th>Prix Unitaire</th>
           </tr>
           </thead>
-
-
           <tbody>
 
           </tbody>

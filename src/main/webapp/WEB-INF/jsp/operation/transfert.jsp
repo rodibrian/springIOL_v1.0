@@ -1,10 +1,10 @@
 <%@ include file="../template/head.jsp" %>
 
 
-<div class="row d-flex justify-content-center align-items-center bg-dark" id="simple-dragula" data-plugin="dragula">
+<div class="row d-flex justify-content-center align-items-center bg-light text-dark" id="simple-dragula" data-plugin="dragula">
   <div class="col-md-11">
     <div class="card mb-0 mt-3">
-      <div class="card-body bg-dark text-light">
+      <div class="card-body bg-light text-dark">
         <blockquote class="card-bodyquote mb-0">
 
           <!-- vente content -->
@@ -15,20 +15,20 @@
             <div class="col-lg-5">
               <div class="mt-3 d-flex justify-content-start">
                 <div class="form-check">
-                  <input type="radio" class="form-check-input" id="checkMagasin">
-                  <label class="form-check-label" for="customCheck1">Magasin</label>
+                  <input type="radio" name="radio-transfert" class="form-check-input" id="checkMagasin">
+                  <label class="form-check-label" for="checkMagasin">Magasin</label>
                 </div>&nbsp;
                 <div class="form-check">
-                  <input type="radio" class="form-check-input" id="checkVoyage">
-                  <label class="form-check-label" for="customCheck2">Voyage</label>
+                  <input type="radio" name="radio-transfert" class="form-check-input" id="checkVoyage">
+                  <label class="form-check-label" for="checkEmbarquement">Embarquement</label>
                 </div>
                 <br>
               </div>
               <div class="mt-1 mb-1 select-magasin">
                 <label for="example-select" class="form-label">De (Source) : </label>
                 <select class="form-select" id="example-select">
-                  <option>magasin I</option>
-                  <option>magasin II</option>
+                  <option>2022/001</option>
+                  <option>2022/002</option>
                 </select>
               </div>
               <h4>&agrave; (destination)</h4>
@@ -40,8 +40,8 @@
               </div>
               <div class="mt-1 mb-1 select-voyage">
                 <select class="form-select" id="example-select">
-                  <option>Voyage I</option>
-                  <option>Voyage II</option>
+                  <option>2022/001</option>
+                  <option>2022/002</option>
                 </select>
               </div>
               <br>
