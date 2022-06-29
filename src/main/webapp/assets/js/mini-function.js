@@ -8,6 +8,13 @@ function set_select_option_value($array, $select) {
     });
 }
 
+function push_select_option_value($array, $select) {
+    $($select)
+        .append($("<option></option>")
+            .attr("value", $array[0])
+            .text($array[1]));
+}
+
 function get_select_affect_to_input($input, $id_element, $text_element) {
     $($input).attr('value-id', $id_element)
     $($input).attr('value', $text_element)
@@ -94,4 +101,8 @@ function convertiMultiObjectToArray($tabMyObj) {
 function hideAndRemove($selector) {
     $($selector).modal('hide');
     $($selector).remove();
+}
+
+function insert_badge($bg, $label) {
+    return `<span class="badge badge-` + $bg + `-lighten">` + $label + `</span>`
 }

@@ -116,6 +116,7 @@
 <script src=”https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js”></script>
 
 <script src="${pageContext.request.contextPath}/assets/js/mini-function.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/html-content.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/dashboard.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-article.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/modalJs/new-categorie.js"></script>
@@ -132,7 +133,12 @@
 <script src="${pageContext.request.contextPath}/assets/js/modalJs/list-article.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/operation/entree.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/operation/sortie.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/menu/operation/liste.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/menu/operation/transfert.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-caisse.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/menu/menu-livraison.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/menu/menu-paiement.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/menu/menu-utilisateur.js"></script>
 
 <script src="${pageContext.request.contextPath}/assets/js/modalJs/edit-prix.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-magasin.js"></script>
