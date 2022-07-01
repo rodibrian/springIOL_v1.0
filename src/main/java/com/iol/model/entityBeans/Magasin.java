@@ -38,11 +38,6 @@ public class Magasin {
     @JoinColumn(name = "societeId",foreignKey = @ForeignKey(name = "magasin_societe_key_constraint"))
     private Filiale filiale;
 
-    @ManyToOne
-    @JoinTable(name = "responsable_magasin",joinColumns = {@JoinColumn(name = "magasin_id",foreignKey = @ForeignKey(name = "resp_mag_magasin_key_constraint"))},
-    inverseJoinColumns = {@JoinColumn(name = "responsable_id",foreignKey = @ForeignKey(name = "resp_mag_user_key_constraint"))})
-    private User responsable;
-
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
     private Set<Operation> operations;
 }

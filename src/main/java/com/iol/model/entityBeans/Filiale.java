@@ -18,9 +18,11 @@ import java.util.Set;
 @DynamicUpdate
 @DynamicInsert
 public class Filiale extends Personne{
-
     @OneToMany(mappedBy = "filiale")
     private Set<Magasin> magasins;
+
+    @ManyToOne
+    private User admin;
 
     @OneToMany(mappedBy = "filiale")
     private Set<User> users;

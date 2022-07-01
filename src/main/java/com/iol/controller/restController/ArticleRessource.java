@@ -16,7 +16,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1")
 public class ArticleRessource {
+
     private ArticleRepository articleRepository;
+
     @Autowired
     public ArticleRessource(ArticleRepository articleRepository) {
         this.articleRepository = articleRepository;

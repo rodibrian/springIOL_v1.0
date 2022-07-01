@@ -27,4 +27,10 @@ public abstract class PersonnePhysique extends Personne implements Serializable 
 
     @Enumerated(EnumType.STRING)
     private SituationMatrimoniale situationMatrimoniale;
+
+    @Column(columnDefinition = "TEXT",nullable = false)
+    private String username;
+
+    @Column(columnDefinition = "TEXT",nullable = false)
+    private String password;
 }

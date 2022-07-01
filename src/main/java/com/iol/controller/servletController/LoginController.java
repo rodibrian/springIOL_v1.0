@@ -21,13 +21,7 @@ import java.util.Optional;
 public class LoginController {
 
     private UserRepository userRepository;
-    @Autowired
     private CategorieRepository categorieRepository;
-
-    @Autowired
-    public LoginController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     private final String CONNECTED_USER = "connectedUser";
     private final String DASHBOARD_VIEW = "dashboard";
@@ -59,5 +53,15 @@ public class LoginController {
             modelAndView.setViewName(LOGIN_VIEW);
         }
         return modelAndView;
+    }
+
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @Autowired
+    public void setCategorieRepository(CategorieRepository categorieRepository) {
+        this.categorieRepository = categorieRepository;
     }
 }

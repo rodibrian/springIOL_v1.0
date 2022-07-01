@@ -49,7 +49,6 @@ $(function () {
             $(this).closest('tr').find('.btn-add-unite').show()
         }));
     }
-
     function initAddAndSaveArticleBtn() {
         // chargement des categories lors de l'affichage du formulaire de categorie
         $("#newArticleBtn").click(() => {
@@ -165,12 +164,10 @@ $(function () {
             }
         });
     }
-
     function initAddArticleModal() {
         initTableUnite();
         initAddAndSaveArticleBtn();
     }
-
     function initTableRowEvent() {
         // Initialisation de l'evenement des tr
         let div = $("#articleTable tbody tr td div");
@@ -183,7 +180,6 @@ $(function () {
             $(this).children().last().children().first().hide();
         });
     }
-
     function initTableAction() {
         function initCategorieSelect() {
             let tdElement = $("#categorieTabList tbody tr td:first-child");
@@ -267,7 +263,6 @@ $(function () {
             });
         });
     }
-
     function initArticleTable() {
         initTableAction();
         initTableRowEvent();
