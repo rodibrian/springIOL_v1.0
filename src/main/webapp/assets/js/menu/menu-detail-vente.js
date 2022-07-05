@@ -1,4 +1,7 @@
 $(function () {
+
+    let namespace = "#menu-detail-vente ";
+
     /*
     MENU DETAIL VENTE
      */
@@ -65,8 +68,8 @@ $(function () {
                     '<td class="text-align-right">' + (valueArticle.quantiteArticle * valueArticle.prixUNitaireArtile) + ' Ar</td>' +
                     '<td>' + valueVente.dateVente + '</td>');
 
-            $('.table-detail-vente tbody').append($tr);
-            $('td.text-align-right').css('textAlign', 'right');
+            $(namespace + '.table-detail-vente tbody').append($tr);
+            $(namespace + 'td.text-align-right').css('textAlign', 'right');
 
         })
     })

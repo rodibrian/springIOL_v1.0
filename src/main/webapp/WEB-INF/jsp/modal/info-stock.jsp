@@ -11,24 +11,17 @@
         <div class="row">
           <div class="col-md-4 aside">
             <div class="label">
-              <p>Magasin : <%= "nomMagasin"%>
-              </p>
-              <p>Code : <%= "code"%>
-              </p>
-              <p>Designation : <%= "designation"%>
-              </p>
-              <p>Unite : <%= "unite"%>
-              </p>
-              <p>Stock Initial : <%= "00"%>
-              </p>
-              <p>Stock Final : <%= "00"%>
-              </p>
-              <p>Quantité d'alerte : <%= "00"%>
-              </p>
+              <p class="label-magasin">Magasin <%= "Magasin ii" %></p>
+              <p class="label-code-article"></p>
+              <p class="label-designation-article"></p>
+              <p class="label-unite-article"></p>
+              <p class="label-stock-initial-article"></p>
+              <p class="label-stock-final-article"></p>
+              <p class="label-quantite-alerte-article">Quantit&eacute; d'alerte : <%= "00"%></p>
             </div>
             <div class="filter-date">
               <label for="date-debut">Date debut</label>
-              <input id="date-debut" type="date" class="form-control">
+              <input id="date-debut" type="date" class="form-control" value="22/11/19">
               <label for="date-fin">Date Fin</label>
               <input id="date-fin" type="date" class="form-control">
             </div>
@@ -66,6 +59,10 @@
             </table>
           </div>
         </div>
+        <!-- inventaire -->
+
+        <!-- modifier alerte -->
+
       </div>
       <div class="modal-footer d-inline-flex">
         <button type="button" class="btn btn-warning w-50 m-0">Mettre à jour stock</button>

@@ -2,7 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="template/header.jsp" %>
 <!-- Start Content-->
-<div class="container-fluid">
+<div class="container-fluid" id="menu-article">
   <!-- start page title -->
   <div class="row">
     <div class="col-12">
@@ -43,7 +43,7 @@
 
   <div class="container -fluid"><br><br>
     <div class="row">
-      <div class="col-lg-2">
+      <div class="col-lg-3">
         <table id="categorieTabList" class="table table-sm table-hover">
           <thead>
           <th>Listes des categories</th>
@@ -51,12 +51,13 @@
           <tbody>
           <tr>
             <td>Toutes</td>
+            <td></td>
           </tr>
           <c:forEach var="categorie" items="${categories}">
             <tr id="${categorie.id}">
               <td><c:out value="${categorie.libelle}"/></td>
               <td>
-                <div style="display: flex;align-content: center;">
+                <div class="d-inline-flex justify-content-center">
                   <a id="${categorie.id}" data-bs-toggle="modal" data-bs-target="#standard-modal2" href="#"
                      class="editCategorie"><i class="uil-pen"></i></a>
                   <a id="${categorie.id}" href="#" class="deleteCategorie"><i class="uil-trash-alt"></i></a>
@@ -77,7 +78,7 @@
           </tfoot>
         </table>
       </div>
-      <div class="col-lg-10">
+      <div class="col-lg-9">
         <table id="articleTable" class="table table-sm dt-responsive nowrap table-hover">
           <thead>
           <tr>

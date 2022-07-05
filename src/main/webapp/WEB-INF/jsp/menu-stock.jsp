@@ -1,7 +1,7 @@
 <%@ include file='template/header.jsp' %>
 
 <!-- Start Content-->
-<div class="container-fluid">
+<div class="container-fluid" id="menu-stock">
 
   <!-- start page title -->
   <div class="row">
@@ -25,7 +25,6 @@
         <div class="page-title-right">
           <a href="" class="btn btn-default s-no-value">Toute niveau 1</a>
           <button class="btn btn-info s-no-value btn-stock-valeur"><i class="uil-dollar-alt"></i>Valeur</button>
-          <a href="" class="btn btn-danger s-no-value"><i class="uil-trash-alt"></i></a>
           <a href="" class="btn btn-success"><i class="uil-navigator"></i>&nbsp;</a>
         </div>
       </div>
@@ -33,10 +32,10 @@
         <a type="button" class="btn s-no-value btn-40 btn-success mr-1 btn-all-stock" data-bs-toggle="modal"
            data-bs-target="#new-article"><i
                 class="uil-table">&nbsp;</i>Toutes</a>
-        <a type="button" class="btn s-no-value btn-40 btn-warning mr-1 btn-alert-stock" data-bs-toggle="modal"
+        <a id="btn-article-alert" type="button" class="btn s-no-value btn-40 btn-warning mr-1 btn-alert-stock" data-bs-toggle="modal"
            data-bs-target="#new-article"><i
                 class="uil-apps">&nbsp;</i>Alertes</a>
-        <h4 class="s-value">Montant total : <%= "0Ar" %>
+        <h4 class="s-value label-valeur-stock">Montant total : <%= "0Ar" %>
         </h4>
         &nbsp;
         &nbsp;
@@ -69,7 +68,7 @@
     <div class="row">
       <div class="col-lg-12">
         <table id="scroll-vertical-datatable"
-               class="table-stock table table-sm dt-responsive nowrap table-hover table-50">
+               class="table-article-stock table table-special-form table-sm dt-responsive nowrap table-hover table-50">
           <thead>
           <tr>
             <th class="s-no-value">Code</th>
@@ -84,22 +83,6 @@
           </tr>
           </thead>
           <tbody>
-          <% for (int count = 0; count < 10; count++) { %>
-          <tr>
-            <td class="s-no-value">000 000 000 00</td>
-            <td>Nom de l'article</td>
-            <td>Unite</td>
-            <td>0Ar</td>
-            <td class="s-no-value">00</td>
-            <td class="s-no-value">00</td>
-            <td id="stock-<%= count %>" class="td-info-stock">
-              <a type="button" class="btn-default mr-1 btn-info-stock" data-bs-toggle="modal"
-                 data-bs-target="#info-stock">00</a>
-            </td>
-            <td class="s-no-value">30/05/2022</td>
-            <td class="s-value">Ar</td>
-          </tr>
-          <% } %>
           </tbody>
         </table>
       </div>

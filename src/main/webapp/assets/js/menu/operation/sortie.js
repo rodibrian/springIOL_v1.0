@@ -1,10 +1,10 @@
 $(function () {
 
-    let namespace = "#menu-entree-article ";
+    let namespace = "#menu-sortie-article ";
 
     /*
 
-    ENTREE ARTICLE
+    SORTIE ARTICLE
 
      */
 
@@ -14,7 +14,7 @@ $(function () {
 
     $lesMagasins = [
         {
-            code: "m-I", nom: "Magasin I", other : ""
+            code: "m-I", nom: "Magasin I"
         },
         {
             code: "m-II", nom: "Magasin II"
@@ -46,43 +46,34 @@ $(function () {
 
         get_select_affect_to_input(namespace + '#input-designation-article',$(this).children().eq(0).text(), $(this).children().eq(1).text());
         set_select_option_value([['0', $(this).children().eq(2).text()]], namespace + "#select-unite-article")
-        $(namespace + ' #input-prix-vente-article').val($(this).children().eq(5).text())
-
-        console.log( $(this).children().eq(1).text())
-
 
         $(namespace + '#modal-liste-article').modal('hide');
 
         // après selection article, select * unite de l'article
-        // ainsi que son prix
     })
 
 
     // Ajout des articles
 
-    $(namespace + '#btn-ajouter-article-entree').on('click', function() {
+    $(namespace + '#btn-ajouter-article-sortie').on('click', function() {
 
         $articleAjout = [
-            $(namespace + '#input-reference-facture').val(),
             $(namespace + '#input-designation-article').val(),
             $(namespace + '#select-unite-article option:selected').text(),
             $(namespace + '#input-quantite-article').val(),
-            $(namespace + '#input-prix-achat-article').val(),
-            parseFloat($(namespace + '#input-prix-achat-article').val()) * parseFloat($(namespace + '#input-quantite-article').val())
+            $(namespace + '#input-motif').val(),
         ]
-        push_to_table_list(namespace + "#table-liste-article-entree", "", $articleAjout);
+        push_to_table_list(namespace + "#table-liste-article-sortie", "", $articleAjout);
 
         // vider les input
         $(namespace + '#input-designation-article').attr('value','');
         $(namespace + '#input-quantite-article').val(0);
-        $(namespace + '#input-prix-achat-article').val(0)
-        $(namespace + '#input-prix-vente-article').val(0);
         $(namespace + '#select-unite-article option').remove();
     })
 
     // suppression articles à la table
 
-    $(document).on('dblclick',"#table-liste-article-entree tbody tr", function() {
+    $(document).on('dblclick',"#table-liste-article-sortie tbody tr", function() {
         $(this).remove();
         $designation = $(this).children().eq(1).text();
         createToast('bg-danger','uil-trash-alt','Enlevement Article',$designation + ' supprim&eacute;')
@@ -90,23 +81,23 @@ $(function () {
 
     // Enregistrement articles
 
-    $(namespace + "#btn-enregistrer-article-entree").on('click', function() {
-        $modalId = 'confirmation-d-entree-article'
-        $nArticle = $(namespace + '#table-liste-article-entree tbody tr').length;
+    $(namespace + "#btn-enregistrer-article-sortie").on('click', function() {
+        $modalId = 'confirmation-d-sortie-article'
+        $nArticle = $(namespace + '#table-liste-article-sortie tbody tr').length;
        $content = '' +
            'Voulez vous vraiment enregistrer les articles entr&eacute;s?' +
            '<li><strong>' + $nArticle + '</strong> Articles</li>';
-        create_confirm_dialog('Confirmation d enregistrement des articles', $content, $modalId, 'Oui, Enregistrer', 'btn-success')
+        create_confirm_dialog('Confirmation de sortie des articles', $content, $modalId, 'Oui, Sortir', 'btn-warning')
             .on('click', function() {
                 $('#' + $modalId).modal('hide');
                 $('#' + $modalId).remove();
 
-                $(namespace + '#table-liste-article-entree tbody tr').remove();
+                $(namespace + '#table-liste-article-sortie tbody tr').remove();
 
-                createToast('bg-success',
+                createToast('bg-warning',
                     'uil-file-check',
-                    'Entr&eacute;e d\'article fait',
-                    $nArticle + ' articles enregistr&eacute;es avec succ&egrave;s!');
+                    'Sortie d\'article fait',
+                    $nArticle + ' articles sorties avec succ&egrave;s!');
             })
 
     })

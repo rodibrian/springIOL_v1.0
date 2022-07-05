@@ -2,7 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="template/header.jsp" %>
 <!-- Start Content-->
-<div class="container-fluid">
+<div id="menu-livraison" class="container-fluid">
   <!-- start page title -->
   <div class="row">
     <div class="col-12">
@@ -47,16 +47,7 @@
           </tr>
           </thead>
           <tbody>
-          <% for (int i = 0; i < 5; i++) { %>
-          <tr>
-            <td>ref-00000</td>
-            <td>designation</td>
-            <td>operation</td>
-            <td>0</td>
-            <td>0</td>
-            <td>05/06/2022</td>
-          </tr>
-          <% } %>
+
           </tbody>
         </table>
 

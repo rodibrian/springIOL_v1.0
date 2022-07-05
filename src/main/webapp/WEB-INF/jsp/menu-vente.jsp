@@ -1,10 +1,10 @@
 <%@ include file="template/head.jsp" %>
 
 
-<div class="row d-flex justify-content-center align-items-center bg-dark" id="simple-dragula" data-plugin="dragula">
+<div class="row d-flex justify-content-center align-items-center bg-ligth" id="menu-vente" data-plugin="dragula">
   <div class="col-md-11">
-    <div class="card mb-0 mt-3">
-      <div class="card-body bg-dark text-light">
+    <div class="card mt-3 mb-3">
+      <div class="card-body bg-light text-dark">
         <blockquote class="card-bodyquote mb-0">
 
           <!-- vente content -->
@@ -61,8 +61,6 @@
                 <div class="mb-1 col-md-6">
                   <label for="input-unite-article" class="form-label">Unite</label>
                   <select class="form-select" id="input-unite-article">
-                    <option value="u1">Unite I</option>
-                    <option value="u2">Unite II</option>
                   </select>
                 </div>
               </div>
@@ -124,19 +122,18 @@
       </div> <!-- end card-body-->
     </div> <!-- end card-->
   </div> <!-- end col-->
+
+
+  <!-- modal list -->
+
+  <div class="all-modal">
+    <div class="temporally"></div>
+    <%@ include file="modal/vente/list-article.jsp" %>
+    <%@ include file="modal/vente/list-client.jsp" %>
+    <%@ include file="modal/vente/prix-special.jsp" %>
+  </div>
+
+  <!-- end modal list -->
 </div>
-
-
-<!-- modal list -->
-
-<div class="all-modal">
-  <div class="temporally"></div>
-  <%@ include file="modal/vente/list-article.jsp" %>
-  <%@ include file="modal/vente/list-client.jsp" %>
-  <%@ include file="modal/vente/prix-special.jsp" %>
-</div>
-
-<!-- end modal list -->
-
 
 <%@ include file="template/setting.jsp" %>

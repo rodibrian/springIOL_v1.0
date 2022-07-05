@@ -13,8 +13,22 @@
           <input name="numCIN" type="text" id="numCIN" class="form-control">
         </div>
         <div class="mb-1">
-          <label for="adresse" class="form-label">Adresse</label>
-          <input name="adresse" type="text" id="adresse" class="form-control">
+          <label for="nomClient" class="form-label">Nom du Client</label>
+          <input name="nnomClient" type="text" id="nomClient" class="form-control">
+        </div>
+
+        <div class="mb-1">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="adresse" class="form-label">Adresse</label>
+              <input name="adresse" type="text" id="adresse" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label for="contact" class="form-label">Contact</label>
+              <input name="contact" type="text" id="contact" class="form-control">
+            </div>
+          </div>
+
         </div>
 
         <div class="mb-1">
@@ -37,7 +51,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-        <button id="saveMagasinBtn" data-bs-dismiss="modal" type="button" class="btn btn-primary">Enregistrer</button>
+        <button id="btn-enregistrer-client" data-bs-dismiss="modal" type="button" class="btn btn-primary">Enregistrer</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

@@ -37,7 +37,7 @@
 
   <div class="container -fluid"><br><br>
     <div class="row">
-      <div class="col-lg-2">
+      <div class="col-lg-3">
         <table id="voyageTabList" class="table table-sm table-hover">
           <thead>
           <th>Listes des voyages</th>
@@ -47,10 +47,10 @@
           <tr id="">
             <td>voyage</td>
             <td>
-              <div style="display: flex;align-content: center;">
-                <a id="" data-bs-toggle="modal" data-bs-target="#standard-modal2" href="#" class="editVOyage"><i
+              <div class="d-inline-flex justify-content-center">
+                <a data-bs-toggle="modal" data-bs-target="#standard-modal2" href="#" class="editVOyage"><i
                         class="uil-pen"></i></a>
-                <a id="" href="#" class="deleteVoyage"><i class="uil-trash-alt"></i></a>
+                <a href="#" class="deleteVoyage"><i class="uil-trash-alt"></i></a>
               </div>&nbsp;
             </td>
           </tr>
@@ -58,7 +58,7 @@
           </tbody>
         </table>
       </div>
-      <div class="col-lg-10">
+      <div class="col-lg-9">
         <table id="articleTable" class="table table-sm dt-responsive nowrap table-hover">
           <thead>
           <tr>

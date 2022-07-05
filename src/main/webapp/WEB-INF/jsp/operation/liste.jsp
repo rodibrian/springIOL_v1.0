@@ -1,7 +1,7 @@
 <%@ include file='../template/header.jsp' %>
 
 <!-- Start Content-->
-<div class="container-fluid">
+<div id="liste-operation" class="container-fluid">
 
   <!-- start page title -->
   <div class="row">
@@ -46,7 +46,7 @@
   <div class="container -fluid"><br><br>
     <div class="row">
       <div class="col-lg-12">
-        <table id="scroll-vertical-datatable" class="table table-sm dt-responsive nowrap table-hover">
+        <table id="scroll-vertical-datatable" class="table-liste-operation table table-sm dt-responsive nowrap table-hover">
           <thead>
           <tr>
             <th>Réference</th>
@@ -61,20 +61,9 @@
           </tr>
           </thead>
           <tbody>
-          <% for (int i = 0; i < 10; i++) { %>
-          <tr>
-            <td>Ref 000 000 000 00</td>
-            <td>Designation d'article</td>
-            <td>nomOperation</td>
-            <td>00</td>
-            <td>00</td>
-            <td>00</td>
-            <td>05/06/2022</td>
-            <td>aucun description</td>
-            <td>nomdutilisateur</td>
-          </tr>
-          <% } %>
+
           </tbody>
+        </table>
       </div>
     </div>
   </div>

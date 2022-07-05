@@ -1,16 +1,16 @@
 <!-- Standard modal -->
-<div id="nouveau-credit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+<div id="nouveau-dette" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
      aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="standard-modalLabel">Nouveau Credit</h4>
+        <h4 class="modal-title" id="standard-modalLabel">Nouveau Dette</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
       </div>
       <div class="modal-body">
         <div class="mb-1">
-          <label for="nomClient" class="form-label">Nom du Client</label>
-          <input name="nomClient" type="text" id="nomClient" class="form-control" value="Nomduclient">
+          <label for="nomFournisseur" class="form-label">Nom du Fournisseur</label>
+          <input name="nomClient" type="text" id="nomFournisseur" class="form-control" value="nomDuFournisseur">
         </div>
         <div class="mb-1">
           <label for="somme" class="form-label">Montant</label>
@@ -24,7 +24,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-        <button id="btn-enregistrer-credit-client" data-bs-dismiss="modal" type="button" class="btn btn-primary">Enregistrer</button>
+        <button id="btn-enregistrer-dette-fournisseur" data-bs-dismiss="modal" type="button" class="btn btn-primary">Enregistrer</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

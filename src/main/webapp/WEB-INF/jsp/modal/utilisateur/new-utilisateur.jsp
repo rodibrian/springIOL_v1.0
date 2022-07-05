@@ -11,12 +11,12 @@
         <div class="mb-1">
           <div class="row">
             <div class="col-6">
-              <label for="nom" class="form-label">Nom</label>
-              <input name="nom" type="text" id="nom" class="form-control">
+              <label for="input-nom" class="form-label">Nom</label>
+              <input name="nom" type="text" id="input-nom" class="form-control">
             </div>
             <div class="col-6">
-              <label for="prenoms" class="form-label">Prenoms</label>
-              <input name="prenoms" type="text" id="prenoms" class="form-control">
+              <label for="input-prenoms" class="form-label">Prenoms</label>
+              <input name="prenoms" type="text" id="input-prenoms" class="form-control">
             </div>
           </div>
 
@@ -24,12 +24,12 @@
         <div class="mb-1">
           <div class="row">
             <div class="col-6">
-              <label for="nom" class="form-label">Adresse</label>
-              <input name="nom" type="text" id="adresse" class="form-control">
+              <label for="input-adresse" class="form-label">Adresse</label>
+              <input name="nom" type="text" id="input-adresse" class="form-control">
             </div>
             <div class="col-6">
-              <label for="prenoms" class="form-label">Contact</label>
-              <input name="prenoms" type="text" id="contact" class="form-control">
+              <label for="input-contact" class="form-label">Contact</label>
+              <input name="prenoms" type="text" id="input-contact" class="form-control">
             </div>
           </div>
 
@@ -37,35 +37,31 @@
         <div class="mb-1">
           <div class="row">
             <div class="col-6">
-              <label for="nom" class="form-label">Fonction</label>
-              <select name="fonction" id="" class="form-select">
-                <option value="fonction I"></option>
-                <option value="fonction II"></option>
+              <label for="select-fonction" class="form-label">Fonction</label>
+              <select name="fonction" id="select-fonction" class="form-select">
               </select>
             </div>
             <div class="col-6">
-              <label for="prenoms" class="form-label">Magasin</label>
-              <select name="magasin" id="" class="form-select">
-                <option value="Magasin I"></option>
-                <option value="Magasin II"></option>
+              <label for="select-magasin" class="form-label">Magasin</label>
+              <select name="magasin" id="select-magasin" class="form-select">
               </select>
             </div>
           </div>
 
         </div>
         <div class="mb-1">
-          <label for="username" class="form-label">Nom d'utilisateur</label>
-          <input name="username" type="text" id="username" class="form-control">
+          <label for="input-username" class="form-label">Nom d'utilisateur</label>
+          <input name="input-username" type="text" id="input-username" class="form-control">
         </div>
         <div class="mb-1">
-          <label for="password" class="form-label">Mot de passe</label>
-          <input name="password" type="password" id="password" class="form-control">
+          <label for="input-password" class="form-label">Mot de passe</label>
+          <input name="input-password" type="password" id="input-password" class="form-control">
         </div>
         <div class="mb-1">
           <div class="mt-3">
             <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="customCheck1" checked="">
-              <label class="form-check-label" for="customCheck1">Statut utilisateur</label>
+              <input type="checkbox" class="form-check-input" id="check-statut" checked="">
+              <label class="form-check-label" for="check-statut">Statut utilisateur</label>
             </div>
           </div>
         </div>
@@ -73,7 +69,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-        <button id="saveMagasinBtn" data-bs-dismiss="modal" type="button" class="btn btn-primary">Enregistrer</button>
+        <button id="btn-enregistrer-utilisateur" data-bs-dismiss="modal" type="button" class="btn btn-primary">Enregistrer</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

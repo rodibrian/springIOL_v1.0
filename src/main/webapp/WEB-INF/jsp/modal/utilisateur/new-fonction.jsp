@@ -9,13 +9,13 @@
       </div>
       <div class="modal-body">
         <div class="mb-3">
-          <label for="nomCategorie" class="form-label">Libelle</label>
-          <input name="nomCategorie" type="text" id="nomCategorie" class="form-control">
+          <label for="libelle-fonction" class="form-label">Libelle</label>
+          <input name="nomCategorie" type="text" id="libelle-fonction" class="form-control">
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-        <button id="saveCategorieBtn" type="button" data-bs-dismiss="modal" class="btn btn-primary">Enregistrer</button>
+        <button id="btn-enregistrer-fonction" type="button" data-bs-dismiss="modal" class="btn btn-primary">Enregistrer</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

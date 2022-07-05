@@ -2,7 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="template/header.jsp" %>
 <!-- Start Content-->
-<div class="container-fluid">
+<div id="menu-client" class="container-fluid">
   <!-- start page title -->
   <div class="row">
     <div class="col-12">
@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="d-block mt-1">
-        <a type="button" class="btn btn-success mr-1" data-bs-toggle="modal" data-bs-target="#nouveau-client"><i
+        <a type="button" class="btn btn-success mr-1 btn-nouveau-client"><i
                 class="uil-plus">&nbsp;</i>Nouveau Client</a>
 
       </div>
@@ -38,7 +38,6 @@
   <div class="all-modal">
     <%@ include file="modal/client/new-client.jsp" %>
     <%@ include file="modal/client/new-credit.jsp" %>
-    <%@ include file="modal/client/delete-credit.jsp" %>
   </div>
 
   <!-- suite -->
@@ -59,21 +58,7 @@
           </tr>
           </thead>
           <tbody>
-          <% for (int i = 0; i < 5; i++) { %>
-          <tr>
-            <td>nomEtPrenomsClient</td>
-            <td>adresseCLient</td>
-            <td>+261 00 00 000 00</td>
-            <td>0Ar</td>
-            <td>0</td>
-            <td>
-              <div class="action-client">
-                <a id="" class="btn-sm btn-info editClient "><i class="uil-pen"></i></a>
-                <a id="" class="btn-sm btn-danger deleteClient "><i class="uil-trash-alt"></i></a>
-              </div>
-            </td>
-          </tr>
-          <% } %>
+
           </tbody>
         </table>
 
@@ -95,16 +80,15 @@
                       <a href="" role="button" class="btn btn-success mb-1"><i class="uil-navigator"></i> </a>
                     </div>
                     <div>
-                      <a type="button" class="btn btn-outline-secondary mr-1" data-bs-target="#nouveau-credit"
+                      <a type="button" class="btn btn-outline-secondary mr-1 btn-nouveau-credit" data-bs-target="#nouveau-credit"
                          data-bs-toggle="modal"><i
                               class="uil-file-plus">&nbsp;</i>Nouveau Credit</a>
-                      <a type="button" class="btn btn-outline-danger mr-1" data-bs-target="#delete-credit"
-                         data-bs-toggle="modal"><i
+                      <a type="button" class="btn btn-outline-danger mr-1 btn-supprimer-credit"><i
                               class="uil-trash-alt">&nbsp;</i>Supprimer Credit</a>
                     </div>
                   </div>
                   <div class="col-md-12">
-                    <table class="table table-bordered table-striped table-sm dt-responsive norwap">
+                    <table class="table table-credit-client table-bordered table-striped table-sm dt-responsive norwap">
                       <thead>
                       <th>Facture</th>
                       <th>Date</th>
@@ -114,16 +98,6 @@
                       <th>Description</th>
                       </thead>
                       <tbody>
-                      <% for (int i = 0; i < 5; i++) { %>
-                      <tr>
-                        <td>ref-000000000</td>
-                        <td>05/06/22</td>
-                        <td>0Ar</td>
-                        <td>0Ar</td>
-                        <td>0Ar</td>
-                        <td>Aucun description</td>
-                      </tr>
-                      <% } %>
                       </tbody>
                     </table>
                   </div>
