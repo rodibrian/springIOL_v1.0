@@ -1,6 +1,6 @@
 package com.iol.controller.restController;
 
-import com.iol.model.entityBeans.Filiale;
+import com.iol.model.tenantEntityBeans.Filiale;
 import com.iol.repository.SubsidiaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +17,7 @@ public class SubsidiaryRessource {
     private SubsidiaryRepository subsidiaryRepository;
 
     @GetMapping(value = "/subsidiaries")
-    public ResponseEntity<Object> getAll(){
+    public ResponseEntity<Object> getAllSubdiaries(){
         return new ResponseEntity<>(subsidiaryRepository.findAll(), HttpStatus.OK);
     }
 
@@ -31,6 +31,7 @@ public class SubsidiaryRessource {
         subsidiaryRepository.save(filiale);
         return new ResponseEntity<>(filiale, HttpStatus.OK);
     }
+
     @DeleteMapping("/subsidiaries/{id}")
     public ResponseEntity<Object> delete(@PathVariable("id") Long id){
         try{
@@ -40,8 +41,9 @@ public class SubsidiaryRessource {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.valueOf(500));
         }
     }
+
     @PostMapping(value = "/subsidiaries")
-    public ResponseEntity<Object> create(@RequestBody Filiale filiale){
+    public ResponseEntity<Object> create(@RequestBody final Filiale filiale){
         Filiale filiale1 = subsidiaryRepository.save(filiale);
         return new ResponseEntity<>(filiale1, HttpStatus.CREATED);
     };

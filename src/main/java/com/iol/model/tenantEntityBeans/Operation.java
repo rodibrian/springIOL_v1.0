@@ -1,4 +1,4 @@
-package com.iol.model.entityBeans;
+package com.iol.model.tenantEntityBeans;
 
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;

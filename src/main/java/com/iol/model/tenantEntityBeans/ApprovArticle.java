@@ -1,4 +1,4 @@
-package com.iol.model.entityBeans;
+package com.iol.model.tenantEntityBeans;
 
 import com.iol.model.entityEmbededId.ApprovArticleId;
 import lombok.Data;

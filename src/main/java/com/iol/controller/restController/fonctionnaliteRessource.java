@@ -1,14 +1,12 @@
 package com.iol.controller.restController;
 
-import com.iol.model.entityBeans.Categorie;
-import com.iol.model.entityBeans.Fonctionnalite;
+import com.iol.model.tenantEntityBeans.Fonctionnalite;
 import com.iol.repository.FonctionnaliteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.http.HttpClient;
 import java.util.Optional;
 
 @RestController

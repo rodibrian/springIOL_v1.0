@@ -1,6 +1,6 @@
 package com.iol.repository;
 
-import com.iol.model.entityBeans.Livraison;
+import com.iol.model.tenantEntityBeans.Livraison;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

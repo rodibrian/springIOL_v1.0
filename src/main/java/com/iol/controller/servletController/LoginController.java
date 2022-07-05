@@ -1,26 +1,24 @@
 package com.iol.controller.servletController;
 
-import com.iol.model.entityBeans.User;
+import com.iol.model.tenantEntityBeans.User;
 import com.iol.repository.CategorieRepository;
 import com.iol.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @Controller
 public class LoginController {
 
     private UserRepository userRepository;
+
     private CategorieRepository categorieRepository;
 
     private final String CONNECTED_USER = "connectedUser";

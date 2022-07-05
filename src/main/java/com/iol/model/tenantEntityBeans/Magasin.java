@@ -1,4 +1,4 @@
-package com.iol.model.entityBeans;
+package com.iol.model.tenantEntityBeans;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,9 +34,12 @@ public class Magasin {
             inverseJoinColumns = {@JoinColumn(name = "article_id",foreignKey = @ForeignKey(name = "mag_art_article_key_constraint"))})
     private Set<Article> articles;
 
-    @ManyToOne
+    @ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "societeId",foreignKey = @ForeignKey(name = "magasin_societe_key_constraint"))
     private Filiale filiale;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "magasin")
+    private Set<User> users;
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
     private Set<Operation> operations;

@@ -1,10 +1,7 @@
-package com.iol.model.entityBeans;
+package com.iol.model.tenantEntityBeans;
 
-import com.iol.model.entityEnum.ArticleStatus;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;

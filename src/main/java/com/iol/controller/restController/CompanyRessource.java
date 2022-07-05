@@ -2,28 +2,24 @@ package com.iol.controller.restController;
 
 import com.google.common.io.Resources;
 import com.iol.model.adminBeans.Societe;
-import com.iol.model.entityBeans.Categorie;
 import com.iol.repository.CompanyRepository;
 import com.iol.repository.ConnectionFactory;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.util.BeanDefinitionUtils;
+import org.springframework.data.web.config.SpringDataWebConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import java.io.*;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -35,20 +31,33 @@ public class CompanyRessource {
     private Connection connection;
 
     @PostMapping("/companies")
-    public ResponseEntity<Object> create(@RequestBody Societe societe ){
-        Societe societe1 = companyRepository.save(societe);
-        String query = " CREATE DATABASE "+societe.getSchemaName();
-        try(Statement statement = connection.createStatement();) {
-            statement.execute(query);
-            Connection factoryConnection = ConnectionFactory.getConnection(societe.getSchemaName());
-            String databaseSchema = readFile("schema.sql");
-            boolean execute = factoryConnection.createStatement().execute(databaseSchema);
-            factoryConnection.close();
-        } catch (SQLException | IOException throwables) {
-            throwables.printStackTrace();
-        }
-        return new ResponseEntity<>(societe1, HttpStatus.CREATED);
+    public ResponseEntity<Object> create(@RequestBody final Societe societe ){
+//        Societe societe1 = companyRepository.save(societe);
+//        String query = " CREATE DATABASE "+societe.getSchemaName();
+//        try(Statement statement = connection.createStatement()){
+//            statement.execute(query);
+//            Connection factoryConnection = ConnectionFactory.getConnection(societe.getSchemaName());
+//            String databaseSchema = readFile("schema.sql");
+//            boolean execute = factoryConnection.createStatement().execute(databaseSchema);
+//            List<String> list = getAllCreatedDatabase(statement);
+//            factoryConnection.close();
+//            if (list.contains(societe1.getSchemaName())) return new ResponseEntity<>(societe1, HttpStatus.CREATED);
+//            else return new ResponseEntity<>(" Error occured while creating the "+ societe1.getSchemaName() +" database ", HttpStatus.INTERNAL_SERVER_ERROR);
+//        } catch (SQLException | IOException throwables) {
+//            throwables.printStackTrace();
+//        }
+        return null;
     }
+
+    private List<String> getAllCreatedDatabase(Statement statement) throws SQLException {
+        ArrayList<String> list = new ArrayList<>();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM pg_database");
+        while (resultSet.next()){
+           list.add(resultSet.getString(2));
+        }
+        return list;
+    }
+
 
     private String readFile(final String relFilePath) throws IOException {
         final URL url = Resources.getResource(relFilePath);

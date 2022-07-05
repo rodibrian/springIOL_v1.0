@@ -1,6 +1,6 @@
 package com.iol.controller.servletController;
 
-import com.iol.model.entityBeans.User;
+import com.iol.model.tenantEntityBeans.User;
 import com.iol.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

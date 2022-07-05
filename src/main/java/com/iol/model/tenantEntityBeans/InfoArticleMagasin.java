@@ -1,10 +1,9 @@
-package com.iol.model.entityBeans;
+package com.iol.model.tenantEntityBeans;
 
 import com.iol.model.entityEmbededId.PrixArticleMagasinId;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Data

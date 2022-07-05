@@ -1,4 +1,4 @@
-package com.iol.model.entityBeans;
+package com.iol.model.tenantEntityBeans;
 
 import com.iol.model.entityEnum.StatutVoyage;
 import lombok.Data;

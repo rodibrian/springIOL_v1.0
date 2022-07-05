@@ -1,14 +1,11 @@
 package com.iol.controller.restController;
-import com.iol.model.entityBeans.Categorie;
-import com.iol.model.entityBeans.Magasin;
+import com.iol.model.tenantEntityBeans.Magasin;
 import com.iol.repository.MagasinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.PostLoad;
 import java.util.Optional;
 
 @RestController

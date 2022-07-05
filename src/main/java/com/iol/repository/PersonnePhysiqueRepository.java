@@ -1,6 +1,6 @@
 package com.iol.repository;
 
-import com.iol.model.entityBeans.PersonnePhysique;
+import com.iol.model.tenantEntityBeans.PersonnePhysique;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

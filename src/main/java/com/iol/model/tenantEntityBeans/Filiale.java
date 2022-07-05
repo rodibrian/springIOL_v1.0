@@ -1,4 +1,4 @@
-package com.iol.model.entityBeans;
+package com.iol.model.tenantEntityBeans;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,9 +17,6 @@ import java.util.Set;
 @DynamicUpdate
 @DynamicInsert
 public class Filiale extends Personne{
-    @OneToMany(mappedBy = "filiale")
+    @OneToMany(mappedBy = "filiale",cascade = CascadeType.ALL)
     private Set<Magasin> magasins;
-
-    @ManyToOne
-    private User admin;
 }

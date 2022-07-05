@@ -1,4 +1,4 @@
-package com.iol.model.entityBeans;
+package com.iol.model.tenantEntityBeans;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +26,7 @@ public class User extends PersonnePhysique implements Serializable{
    @Column(columnDefinition = "TEXT",nullable = false)
    private String password;
 
-   @ManyToOne(fetch = FetchType.EAGER)
+   @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
    @JoinTable(name = "utilisateur_magasin",joinColumns = {@JoinColumn(name = "user_id",foreignKey = @ForeignKey(name = "user_mag_user_key_constraint"))},
    inverseJoinColumns = {@JoinColumn(name = "magasin_id",foreignKey = @ForeignKey(name = "user_mag_magasin_key_constraint"))})
    private Magasin magasin;
