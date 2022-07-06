@@ -1,9 +1,6 @@
 $(function () {
-
     /*
-
     HTML CONTENT
-
      */
 
     // menu utilisateur

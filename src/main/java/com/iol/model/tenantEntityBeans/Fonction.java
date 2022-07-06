@@ -15,18 +15,13 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = "fonction.all",query = "from fonction")
 })
-@DynamicUpdate
-@DynamicInsert
 public class Fonction{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(columnDefinition = "TEXT")
-    private String nom;
-
-    @Column(columnDefinition = "TEXT")
-    private String code;
+    private String nomFonction;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "fonction_fonctionnalite",joinColumns = {@JoinColumn(name = "fonction_id",foreignKey = @ForeignKey(name = "ff_fonction_key_constraint"))},inverseJoinColumns = {

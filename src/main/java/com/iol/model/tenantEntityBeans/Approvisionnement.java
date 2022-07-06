@@ -18,8 +18,6 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = "approv.all",query = "from approv")
 })
-@DynamicUpdate
-@DynamicInsert
 public class Approvisionnement implements Serializable {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)

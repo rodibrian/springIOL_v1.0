@@ -8,8 +8,6 @@ import javax.persistence.*;
 
 @Entity(name = "operation")
 @Data
-@DynamicUpdate
-@DynamicInsert
 public class Operation{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

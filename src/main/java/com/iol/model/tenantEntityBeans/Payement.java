@@ -9,8 +9,6 @@ import java.util.Date;
 
 @Entity
 @Data
-@DynamicUpdate
-@DynamicInsert
 public class Payement{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

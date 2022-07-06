@@ -12,8 +12,6 @@ import java.io.Serializable;
 @Entity
 @Data
 @NoArgsConstructor
-@DynamicUpdate
-@DynamicInsert
 public class Livraison implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

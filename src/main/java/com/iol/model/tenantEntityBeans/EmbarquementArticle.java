@@ -9,8 +9,6 @@ import java.util.Date;
 
 @Entity
 @Table
-@DynamicUpdate
-@DynamicInsert
 public class EmbarquementArticle implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

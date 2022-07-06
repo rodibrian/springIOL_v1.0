@@ -9,8 +9,6 @@ import javax.persistence.Entity;
 
 @Entity
 @Data
-@DynamicUpdate
-@DynamicInsert
 public class ClientFournisseur extends Personne{
     @Column(columnDefinition = "TEXT")
     private String nif;

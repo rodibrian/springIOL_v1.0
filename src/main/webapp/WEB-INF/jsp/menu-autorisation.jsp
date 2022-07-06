@@ -104,6 +104,14 @@
               <span class="d-none d-md-block">Imprimante</span>
             </a>
           </li>
+
+          <li class="nav-item d-none">
+            <a href="#auto-imprimante" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+              <i class="mdi mdi-settings-outline d-md-none d-block"></i>
+              <span class="d-none d-md-block">Magasin</span>
+            </a>
+          </li>
+
         </ul>
 
         <div class="tab-content">

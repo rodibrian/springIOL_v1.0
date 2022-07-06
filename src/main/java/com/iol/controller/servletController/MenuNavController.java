@@ -1,22 +1,39 @@
 package com.iol.controller.servletController;
 
-import com.iol.repository.ArticleRepository;
-import com.iol.repository.CategorieRepository;
+import com.iol.model.tenantEntityBeans.Magasin;
+import com.iol.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class MenuNavController{
 
     @Autowired
     private CategorieRepository categorieRepository;
+
     @Autowired
     private ArticleRepository articleRepository;
+
+    @Autowired
+    private MagasinRepository magasinRepository;
+
+    @Autowired
+    private FonctionRepository fonctionRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
     private final String CATEGORIE_LIST = "categories";
     private final String ARTICLE_LIST = "articles";
+    private final String MAGASIN_LIST = "magasins";
+    private final String FONCTION_LIST = "fonctions";
+    private final String USER_LIST = "users";
 
     public MenuNavController() {
     }
@@ -43,8 +60,11 @@ public class MenuNavController{
     }
 
     @RequestMapping(value = "/magasin",method = RequestMethod.GET)
-    public String getMenuMagasin(){
-        return "menu-magasin";
+    public ModelAndView getMenuMagasin(){
+        List<Magasin> magasins = magasinRepository.findAll();
+        ModelAndView modelAndView = new ModelAndView("menu-magasin");
+        modelAndView.addObject(MAGASIN_LIST,magasins);
+        return modelAndView;
     }
 
     @RequestMapping(value = "/stock",method = RequestMethod.GET)
@@ -105,8 +125,11 @@ public class MenuNavController{
 
 
     @RequestMapping(value = "/utilisateur",method = RequestMethod.GET)
-    public String getMenuUtilisateur(){
-        return "menu-utilisateur";
+    public ModelAndView getMenuUtilisateur(){
+        ModelAndView modelAndView = new ModelAndView("menu-utilisateur");
+        modelAndView.addObject(FONCTION_LIST,fonctionRepository.findAll());
+        modelAndView.addObject(USER_LIST,userRepository.findAll());
+        return modelAndView ;
     }
 
     @RequestMapping(value = "/voyage",method = RequestMethod.GET)

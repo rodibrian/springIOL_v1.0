@@ -45,10 +45,15 @@
           </tr>
           </thead>
           <tbody>
+            <c:forEach var="magasin" items="${magasins}">
+              <tr id="${magasin.id}">
+                <td><c:out value="${magasin.nomMagasin}"/></td>
+                <td><c:out value="${magasin.adresse}"/></td>
+              </tr>
+            </c:forEach>
           </tbody>
         </table>
       </div>
-
       <div class="col-lg-8">
         <h4 class="text-decoration-underline text-uppercase">Listes des utilisateurs du magasin</h4>
         <table id="table-liste-utilisateur-magasin" class="table table-special-form table-sm dt-responsive nowrap">
@@ -59,7 +64,6 @@
           </tr>
           </thead>
           <tbody>
-
           </tbody>
       </div>
     </div>

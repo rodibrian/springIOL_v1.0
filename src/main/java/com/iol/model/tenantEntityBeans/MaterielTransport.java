@@ -12,8 +12,6 @@ import java.util.Set;
 @Entity
 @Data
 @NoArgsConstructor
-@DynamicUpdate
-@DynamicInsert
 public class MaterielTransport implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

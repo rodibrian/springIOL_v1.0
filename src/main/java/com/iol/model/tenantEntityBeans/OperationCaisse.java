@@ -12,8 +12,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity(name = "operation_caisse")
-@DynamicUpdate
-@DynamicInsert
 public class OperationCaisse implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

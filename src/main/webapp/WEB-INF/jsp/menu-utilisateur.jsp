@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="template/header.jsp" %>
 <!-- Start Content-->
@@ -34,9 +33,7 @@
       </div>
     </div>
   </div>
-
   <!-- suite -->
-
   <div class="container -fluid"><br><br>
     <div class="row">
       <div class="col-lg-2">
@@ -45,6 +42,11 @@
           <th>Listes des fonctions</th>
           </thead>
           <tbody>
+          <c:forEach var="fonction" items="${fonctions}">
+            <tr id="${fonction.id}">
+              <td><c:out value="${fonction.nomFonction}"/></td>
+            </tr>
+          </c:forEach>
           </tbody>
         </table>
       </div>
@@ -52,25 +54,41 @@
         <table id="table-liste-utilisateur" class="table table-sm dt-responsive nowrap table-hover">
           <thead>
           <tr>
-            <th></th>
-            <th>Nom</th>
-            <th>Prenoms</th>
+            <th>nom</th>
             <th>Nom d'utilisateur</th>
             <th>Contact</th>
             <th>Fonction</th>
-            <th>Magasin</th>
             <th>Status</th>
             <th class="text-center">Action</th>
           </tr>
           </thead>
           <tbody>
-
+          <c:forEach var="user" items="${users}">
+            <tr id="${user.id}">
+              <td><c:out value="${user.nom}"/></td>
+              <td><c:out value="${user.username}"/></td>
+              <td><c:out value="${user.numTel}"/></td>
+              <td><c:out value="${user.fonction.nomFonction}"/></td>
+              <td>
+                <c:if test="${user.enabled}">
+                  <span class="badge badge-success-lighten">activé</span>`
+                </c:if>
+                <c:if test="${!user.enabled}">
+                  <span class="badge badge-danger-lighten">desactivé</span>`
+                </c:if>
+              </td>
+              <td>
+                <div class="d-flex justify-content-center">
+                  <a class="btn-sm btn-primary edit-utilisateur"><i class="uil-pen"></i></a>&nbsp;
+                  <a class="btn-sm btn-danger delete-utilisateur"><i class="uil-trash-alt"></i></a>
+                </div>
+              </td>
+            </tr>
+          </c:forEach>
           </tbody>
         </table>
       </div>
-
       <!-- inclusion of modal -->
-
       <div class="all-modal">
         <%@ include file="modal/utilisateur/new-fonction.jsp" %>
         <%@ include file="modal/utilisateur/new-utilisateur.jsp" %>

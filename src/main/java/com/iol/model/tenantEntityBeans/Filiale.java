@@ -1,5 +1,8 @@
 package com.iol.model.tenantEntityBeans;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
@@ -14,9 +17,8 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = "filiale.all",query = "from filiale")
 })
-@DynamicUpdate
-@DynamicInsert
 public class Filiale extends Personne{
+    @JsonIgnore
     @OneToMany(mappedBy = "filiale",cascade = CascadeType.ALL)
     private Set<Magasin> magasins;
 }

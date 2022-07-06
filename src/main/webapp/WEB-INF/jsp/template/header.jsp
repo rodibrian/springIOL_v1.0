@@ -1,10 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
-
 <%@ include file="head.jsp" %>
-
 <body class="loading"
       data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":true, "showRightSidebarOnStart": true}'>
 <!-- Begin page -->
@@ -235,7 +234,6 @@
     <!-- inclusion des modals -->
     <%@ include file="../modal/menu-choix-magasin.jsp" %>
     <%@ include file="../modal/menu-choix-de-bdd.jsp" %>
-    <%@ include file="../modal/menu-info-filiale.jsp" %>
     <%@ include file="../modal/menu-sauvegarde.jsp" %>
 
     <!-- fin d'inclusion des modals -->

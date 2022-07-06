@@ -15,8 +15,6 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(name = "unite.all",query = "from unite")
 })
-@DynamicUpdate
-@DynamicInsert
 public class Unite implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

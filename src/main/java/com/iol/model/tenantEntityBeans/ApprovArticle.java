@@ -10,8 +10,6 @@ import java.util.Date;
 
 @Entity
 @Data
-@DynamicUpdate
-@DynamicInsert
 public class ApprovArticle {
 
     @EmbeddedId

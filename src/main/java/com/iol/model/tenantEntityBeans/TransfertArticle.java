@@ -12,8 +12,6 @@ import java.util.Date;
 @Entity(name="transfertArticle")
 @Data
 @NoArgsConstructor
-@DynamicUpdate
-@DynamicInsert
 public class TransfertArticle {
 
     @EmbeddedId

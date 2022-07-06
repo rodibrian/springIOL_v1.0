@@ -1,19 +1,12 @@
 $(function () {
-    /*--------------------------------------------------------------------------
-
-                           MENU UTILISATEUR
-
-    ------------------------------------------------------------------------- */
-
+    $fonctionUrl = "http://localhost:8080/api/v1/fonctions";
+        /*--------------------------------------------------------------------------
+                               MENU UTILISATEUR
+        ------------------------------------------------------------------------- */
     let namespace = "#menu-utilisateur "
-
-
     /*----------------------------------------------------------------------------
-
                         NOUVELLE FONCTION
-
     ------------------------------------------------------------------------ */
-
     let NEW = 'nouveau', EDIT = 'editer';
 
     $(namespace + '.btn-nouvelle-fonction').on('click', function () {
@@ -29,34 +22,40 @@ $(function () {
     $(namespace + '#btn-enregistrer-fonction').on('click', function () {
         let libelle = $(namespace + '#nouvelle-fonction input#libelle-fonction').val();
         let dataValue = $(namespace + '#nouvelle-fonction').attr('data-value');
-
-        switch (dataValue) {
-            case
-            NEW :
-                $td = [libelle, $actionNouvelleFonctionMenuUtilisateur]
-                push_to_table_list(namespace + '#table-liste-fonction', autoIncrementFromTableTrContent(namespace + '#table-liste-fonction'), $td);
-                createToast('bg-success', 'uil-check-sign', 'Enregistement Fait', 'Nouvelle fonction enregistre avec success!')
-                break;
-            case
-            EDIT :
-                $trEdit.children().eq(0).text(libelle)
-                createToast('bg-success', 'uil-check-sign', 'Modification fait', 'Modification du fonction fait!')
-                break;
+        $isNew = dataValue === NEW;
+        $fonctionResourcesUrl = $isNew ? $fonctionUrl :$fonctionUrl+"/"+$idfonction;
+        $methodType = $isNew ? "POST" : "PUT";
+        $nouveauFonction = {
+            nomFonction : libelle
         }
-
-        $(namespace + '#nouvelle-fonction input#libelle-fonction').val('')
-        load_select_fonction()
-
+        $.ajax({
+            type: $methodType,
+            url: $fonctionResourcesUrl,
+            contentType: 'application/json',
+            data: JSON.stringify($nouveauFonction),
+            success: function (data){
+                if ($isNew){
+                    $td = [libelle, $actionNouvelleFonctionMenuUtilisateur]
+                    push_to_table_list(namespace + '#table-liste-fonction',data.id,$td);
+                    createToast('bg-success', 'uil-check-sign', 'Enregistement Fait', 'Nouvelle fonction enregistre avec success!')
+                }else{
+                    $trEdit.children().eq(0).text(libelle)
+                    createToast('bg-success', 'uil-check-sign', 'Modification fait', 'Modification du fonction fait!')
+                }
+                $(namespace + '#nouvelle-fonction input#libelle-fonction').val('')
+                load_select_fonction()
+            }
+        });
     })
 
     // editer fonction, click
 
     $(document).on('click', namespace + '.edit-fonction', function () {
-        $trEdit = $(this).closest('tr')
+        $trEdit = $(this).closest('tr');
+        $idfonction = $trContent.attr('id');
         $(namespace + '#nouvelle-fonction').modal('show');
         $(namespace + '#nouvelle-fonction').attr('data-value', EDIT);
         $(namespace + '#nouvelle-fonction .modal-title').text('Editer Fonction');
-
         $(namespace + '#nouvelle-fonction input#libelle-fonction').val($trEdit.children().eq(0).text());
     })
 
@@ -64,16 +63,12 @@ $(function () {
 
     $(document).on('click', namespace + '.delete-fonction', function () {
         $trDelete = $(this).closest('tr')
-
         $modalId = 'suppression-fonction'
         create_confirm_dialog('Suppression Fonction', 'Voulez vous vraiment supprimer cette fonction ?<li>' + $trDelete.children().eq(0).text() + '</li>', $modalId, 'Oui, supprimer!', 'btn-danger')
             .on('click', function () {
                 $trDelete.remove();
-
                 hideAndRemove(namespace + '#' + $modalId)
-
                 load_select_fonction()
-
                 createToast('bg-danger', 'uil-trash-alt', 'Suppression fait!', 'Fonction supprime avec success!')
             })
     })
@@ -123,7 +118,6 @@ $(function () {
         let statut = $(namespace + "#nouveau-utilisateur #check-statut").is(':checked')
 
         $trUser = ['', nom, prenoms, username, contact, fonction, magasin, statut === true ? insert_badge('success', 'active') : insert_badge('danger', 'desactive'), $actionListeUtilisateurMenuUtilisatuer];
-
         push_to_table_list(namespace + "#table-liste-utilisateur", autoIncrementFromTableTrContent(namespace + "#table-liste-utilisateur"), $trUser)
         createToast('bg-success', 'uil-check-sign', 'Utilisateur enregistre', 'Nouveau utilisateur enregistre avec success!')
 

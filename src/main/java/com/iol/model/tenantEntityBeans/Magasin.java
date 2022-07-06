@@ -1,9 +1,14 @@
 package com.iol.model.tenantEntityBeans;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -15,9 +20,8 @@ import java.util.Set;
 @NamedQueries(value = {
         @NamedQuery(name = "magasin.all",query = "from magasin")
 })
-@DynamicUpdate
-@DynamicInsert
 public class Magasin {
+
     @Column(name = "id_magasin")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,11 +38,12 @@ public class Magasin {
             inverseJoinColumns = {@JoinColumn(name = "article_id",foreignKey = @ForeignKey(name = "mag_art_article_key_constraint"))})
     private Set<Article> articles;
 
-    @ManyToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name = "societeId",foreignKey = @ForeignKey(name = "magasin_societe_key_constraint"))
+    @ManyToOne(cascade= CascadeType.MERGE)
+    @JoinColumn(name = "filialeId",foreignKey = @ForeignKey(name = "magasin_filiale_key_constraint"))
     private Filiale filiale;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "magasin")
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "magasin")
     private Set<User> users;
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)

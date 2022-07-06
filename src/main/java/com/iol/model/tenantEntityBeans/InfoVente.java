@@ -13,8 +13,6 @@ import java.util.Date;
 @Table
 @Data
 @NoArgsConstructor
-@DynamicUpdate
-@DynamicInsert
 public class InfoVente {
 
     @EmbeddedId

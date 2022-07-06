@@ -15,8 +15,6 @@ import java.util.Date;
 @NamedQueries({
         @NamedQuery(name = "transfert.all",query = "from transfert")
 })
-@DynamicUpdate
-@DynamicInsert
 public class Transfert implements Serializable {
 
     @Id

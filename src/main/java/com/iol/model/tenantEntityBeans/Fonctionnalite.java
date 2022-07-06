@@ -15,8 +15,6 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = "fonctionnalite.all",query = "from fonctionnalite")
 })
-@DynamicUpdate
-@DynamicInsert
 public class Fonctionnalite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

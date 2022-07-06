@@ -31,14 +31,10 @@ $(function () {
                 success: function (data) {
                     //reset the input
                     $(namespace + "#nomCategorie").val("");
-
                     /* ACTION */
                     $tdActionContent = $(' ' + '<div class="d-inline-flex justify-content-center">' + '<a href="#" class="deleteCategorie"><i class="uil-trash-alt"></i></a>' + '<a href="#" class="editCategorie"><i class="uil-pen"></i></a>' + '</div>');
-
                     $oneCategorie = [data.libelle + 'update', $tdActionContent];
-
                     push_to_table_list(namespace + "#categorieTabList",data.id,$oneCategorie)
-
                 }
             });
             createToast('bg-success', 'uil-file-check', 'Creation Fait', 'Creation du nouveau cat&eacute;gorie effectu&eacute; avec succ&egrave;s!')

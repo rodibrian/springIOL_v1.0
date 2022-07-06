@@ -17,20 +17,18 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = "vente.all",query = "from vente")
 })
-@DynamicUpdate
-@DynamicInsert
 public class Vente implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "vente_article",
             joinColumns = {@JoinColumn(name = "vente_id",foreignKey = @ForeignKey(name = "va_vente_key_constraint"))},
     inverseJoinColumns = {@JoinColumn(name = "article_id",foreignKey = @ForeignKey(name = "va_article_key_constraint"))})
     private Set<Article> articles;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "payement_vente",
             joinColumns = {@JoinColumn(name = "vente_id",foreignKey = @ForeignKey(name = "pa_vente_key_constraint"))},
             inverseJoinColumns = {@JoinColumn(name = "payement_id",foreignKey = @ForeignKey(name = "pa_payement_key_constraint"))})
@@ -40,11 +38,11 @@ public class Vente implements Serializable{
     @JoinColumn(name = "vente_client_id",foreignKey = @ForeignKey(name = "vente_client_key_constraint"))
     private ClientFournisseur client;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "magasin_id",foreignKey = @ForeignKey(name = "vente_magasin_key_constraint"))
     private Magasin magasin;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "responsable_id",foreignKey = @ForeignKey(name = "vente_responsable_key_constraint"))
     private User user;
 
