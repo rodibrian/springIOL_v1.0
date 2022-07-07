@@ -129,6 +129,7 @@ public class MenuNavController{
         ModelAndView modelAndView = new ModelAndView("menu-utilisateur");
         modelAndView.addObject(FONCTION_LIST,fonctionRepository.findAll());
         modelAndView.addObject(USER_LIST,userRepository.findAll());
+        modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
         return modelAndView ;
     }
 

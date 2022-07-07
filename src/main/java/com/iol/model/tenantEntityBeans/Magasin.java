@@ -21,7 +21,6 @@ import java.util.Set;
         @NamedQuery(name = "magasin.all",query = "from magasin")
 })
 public class Magasin {
-
     @Column(name = "id_magasin")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

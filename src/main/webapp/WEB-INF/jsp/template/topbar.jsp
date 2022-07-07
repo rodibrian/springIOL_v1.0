@@ -55,7 +55,7 @@
            aria-haspopup="false" aria-expanded="false">
                         <span>
                             <span class="account-user-name">${connectedUser.nom}</span>
-                            <span class="account-position">${connectedUser.getFonction().nom}</span>
+                            <span class="account-position">${connectedUser.fonction.nomFonction}</span>
                         </span>
         </a>
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">

@@ -95,6 +95,8 @@
 <div class="rightbar-overlay"></div>
 <!-- /End-bar -->
 
+
+
 <!-- bundle -->
 <script src="${pageContext.request.contextPath}/assets/js/vendor.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/app.min.js"></script>
@@ -118,6 +120,7 @@
 <script src="${pageContext.request.contextPath}/assets/js/mini-function.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/html-content.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/dashboard.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/menu/menu-autorisation.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-article.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/modalJs/new-categorie.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/modalJs/new-article.js"></script>
@@ -142,6 +145,25 @@
 
 <script src="${pageContext.request.contextPath}/assets/js/modalJs/edit-prix.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-magasin.js"></script>
+
+<!-- admin client -->
+<script src="${pageContext.request.contextPath}/assets/js/menu/admin-client/dashboard.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/menu/administrateur/dashboard.js"></script>
+
+
+<!-- third party js -->
+<script src="${pageContext.request.contextPath}/assets/js/vendor/Chart.bundle.min.js"></script>
+<!-- third party js ends -->
+<!-- demo app -->
+<script src="${pageContext.request.contextPath}/assets/js/pages/demo.dashboard-projects.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+
+<%@ include file="footer.jsp" %>
 
 
 </body>

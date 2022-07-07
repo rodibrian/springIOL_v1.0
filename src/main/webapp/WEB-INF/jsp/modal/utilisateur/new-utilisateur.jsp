@@ -10,13 +10,9 @@
       <div class="modal-body">
         <div class="mb-1">
           <div class="row">
-            <div class="col-6">
-              <label for="input-nom" class="form-label">Nom</label>
+            <div class="col-12">
+              <label for="input-nom" class="form-label">Nom & Prenoms</label>
               <input name="nom" type="text" id="input-nom" class="form-control">
-            </div>
-            <div class="col-6">
-              <label for="input-prenoms" class="form-label">Prenoms</label>
-              <input name="prenoms" type="text" id="input-prenoms" class="form-control">
             </div>
           </div>
 
@@ -43,7 +39,12 @@
             </div>
             <div class="col-6">
               <label for="select-magasin" class="form-label">Magasin</label>
-              <select name="magasin" id="select-magasin" class="form-select">
+              <select name="magasin" id="select-magasin" class="selectpicker" multiple data-live-search="true">
+                <c:forEach var="magasin" items="${magasins}">
+                  <option value="${magasin.id}">
+                    <c:out value="${magasin.nomMagasin}"/>
+                  </option>
+                </c:forEach>
               </select>
             </div>
           </div>

@@ -29,9 +29,7 @@
   </div>
 
   <!-- suite -->
-
   <div class="all-modal"></div>
-
 
   <div class="container -fluid"><br><br>
     <div class="row">

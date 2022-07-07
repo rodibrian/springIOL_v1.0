@@ -63,6 +63,17 @@
                 </div>
               </div>
 
+              <div class="mb-3">
+                <label for="password" class="form-label">clé</label>
+                <div class="input-group input-group-merge">
+                  <input type="password" name="filialeKey" id="filiale" class="form-control"
+                         placeholder="Entrer votre clé">
+                  <div class="input-group-text" data-password="false">
+                    <span class="password-eye"></span>
+                  </div>
+                </div>
+              </div>
+
               <div class="mb-3 mb-3">
                 <div class="form-check">
                   <input type="checkbox" class="form-check-input" id="checkbox-signin" checked>

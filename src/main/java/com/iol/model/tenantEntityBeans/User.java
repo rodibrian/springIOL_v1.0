@@ -28,13 +28,11 @@ public class User extends PersonnePhysique implements Serializable{
    @Column(columnDefinition = "TEXT",nullable = false)
    private String password;
 
-   @JsonIgnore
    @ManyToMany(cascade = CascadeType.MERGE)
    @JoinTable(name = "user_magasin",joinColumns = {@JoinColumn(name = "user_id",foreignKey = @ForeignKey(name = "user_mag_user_key_constraint"))},
    inverseJoinColumns = {@JoinColumn(name = "magasin_id",foreignKey = @ForeignKey(name = "user_mag_magasin_key_constraint"))})
    private Set<Magasin> magasin;
 
-   @JsonIgnore
    @ManyToOne(cascade = CascadeType.MERGE)
    @JoinColumn(name = "fonction_id",foreignKey = @ForeignKey(name = "user_fonction_key_constraint"))
    private Fonction fonction;
@@ -45,5 +43,4 @@ public class User extends PersonnePhysique implements Serializable{
       this.username = username;
       this.password = password;
    }
-
 }

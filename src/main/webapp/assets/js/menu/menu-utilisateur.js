@@ -1,5 +1,7 @@
 $(function () {
     $fonctionUrl = "http://localhost:8080/api/v1/fonctions";
+    $userUrl = "http://localhost:8080/api/v1/users";
+    $NEW_USER = true;
         /*--------------------------------------------------------------------------
                                MENU UTILISATEUR
         ------------------------------------------------------------------------- */
@@ -8,7 +10,6 @@ $(function () {
                         NOUVELLE FONCTION
     ------------------------------------------------------------------------ */
     let NEW = 'nouveau', EDIT = 'editer';
-
     $(namespace + '.btn-nouvelle-fonction').on('click', function () {
         $(namespace + '#nouvelle-fonction').modal('show');
         $(namespace + '#nouvelle-fonction').attr('data-value', NEW);
@@ -16,9 +17,7 @@ $(function () {
 
         $(namespace + '#nouvelle-fonction input#libelle-fonction').val('')
     })
-
     // enregistrement du nouvelle fonction
-
     $(namespace + '#btn-enregistrer-fonction').on('click', function () {
         let libelle = $(namespace + '#nouvelle-fonction input#libelle-fonction').val();
         let dataValue = $(namespace + '#nouvelle-fonction').attr('data-value');
@@ -47,9 +46,7 @@ $(function () {
             }
         });
     })
-
     // editer fonction, click
-
     $(document).on('click', namespace + '.edit-fonction', function () {
         $trEdit = $(this).closest('tr');
         $idfonction = $trContent.attr('id');
@@ -58,9 +55,7 @@ $(function () {
         $(namespace + '#nouvelle-fonction .modal-title').text('Editer Fonction');
         $(namespace + '#nouvelle-fonction input#libelle-fonction').val($trEdit.children().eq(0).text());
     })
-
     // supprimer foonction, click
-
     $(document).on('click', namespace + '.delete-fonction', function () {
         $trDelete = $(this).closest('tr')
         $modalId = 'suppression-fonction'
@@ -80,21 +75,6 @@ $(function () {
 
      ----------------------------------------------------------------------*/
 
-    $lesMagasins = [
-        {
-            id: '1',
-            libelle : 'M1'
-        },
-        {
-            id: '2',
-            libelle : 'M2'
-        }
-    ]
-
-    // chargement des données
-
-    set_select_option_value($lesMagasins, namespace + "#nouveau-utilisateur #select-magasin")
-
     function load_select_fonction() {
         $(namespace + '#nouveau-utilisateur #select-fonction option').remove();
         $(namespace + '#table-liste-fonction tbody tr').each(function(index, tr) {
@@ -102,51 +82,110 @@ $(function () {
         })
     }
 
+    // nouveau utilisateur
+
+    $(namespace + "#btn-nouveau-utilisateur").on('click', function () {
+        // $url = "http://localhost:8080/api/v1/magasins";
+        // $.ajax({
+        //     type: "GET",
+        //     url: $url,
+        //     contentType: 'application/json',
+        //     success : function (data) {
+        //         set_select_option_value_ajax(data, namespace + "#nouveau-utilisateur #select-magasin")
+        //     }
+        // });
+    })
     load_select_fonction();
-
     // enregistrement d'un nouveau utilisateur
-
+    let magasinIdTab = [];
     $(namespace + "#nouveau-utilisateur #btn-enregistrer-utilisateur").on('click', function() {
-        let nom = $(namespace + "#nouveau-utilisateur #input-nom").val();
-        let prenoms = $(namespace + "#nouveau-utilisateur #input-prenoms").val();
-        let adresse = $(namespace + "#nouveau-utilisateur #input-adresse").val();
-        let contact = $(namespace + "#nouveau-utilisateur #input-contact").val();
-        let username = $(namespace + "#nouveau-utilisateur #input-username").val();
-        let password = $(namespace + "#nouveau-utilisateur #input-password").val();
-        let magasin = $(namespace + "#nouveau-utilisateur #select-magasin option:selected").text();
-        let fonction = $(namespace + "#nouveau-utilisateur #select-fonction option:selected").text();
-        let statut = $(namespace + "#nouveau-utilisateur #check-statut").is(':checked')
+        $nom = $(namespace + "#nouveau-utilisateur #input-nom").val();
+        $adresse = $(namespace + "#nouveau-utilisateur #input-adresse").val();
+        $contact = $(namespace + "#nouveau-utilisateur #input-contact").val();
+        $username = $(namespace + "#nouveau-utilisateur #input-username").val();
+        $password = $(namespace + "#nouveau-utilisateur #input-password").val();
+        $(namespace + "#nouveau-utilisateur #select-magasin option:selected").each(function (key,value){
+            magasinIdTab.push({ id : $(value).val()});
+        });
+        console.log(magasinIdTab);
+        $fonctionId = $(namespace + "#nouveau-utilisateur #select-fonction option:selected").val();
+        $fonctionNom = $(namespace + "#nouveau-utilisateur #select-fonction option:selected").text();
+        $statut = $(namespace + "#nouveau-utilisateur #check-statut").is(':checked')
+        $newUser = {
+            nom : $nom,
+            adresse : $adresse,
+            numTel : $contact,
+            username : $username,
+            password : $password,
+            enabled : $statut,
+            fonction : {
+                id : $fonctionId
+            },
+            magasin : magasinIdTab
+        }
+        $.ajax({
+            type: "POST",
+            url: $userUrl,
+            contentType: 'application/json',
+            data: JSON.stringify($newUser),
+            success: function (data){
+                if ($NEW_USER){
+                    $trUser = [$nom,$username,$contact,$fonctionNom,$statut === true ? insert_badge('success', 'active') : insert_badge('danger', 'desactive'), $actionListeUtilisateurMenuUtilisatuer];
+                    push_to_table_list(namespace + "#table-liste-utilisateur",data.id, $trUser)
+                    createToast('bg-success', 'uil-check-sign', 'Utilisateur enregistre', 'Nouveau utilisateur enregistre avec success!')
+                    // empty all
+                    $(namespace + "#nouveau-utilisateur input").val("");
+                    $('#nouveau-utilisateur select#select-fonction option:first').prop('selected', true);
+                    $('#nouveau-utilisateur select#select-magasin option:first').prop('selected', true);
+                    $('#nouveau-utilisateur #check-statut').prop('checked', true)
+                }else {
 
-        $trUser = ['', nom, prenoms, username, contact, fonction, magasin, statut === true ? insert_badge('success', 'active') : insert_badge('danger', 'desactive'), $actionListeUtilisateurMenuUtilisatuer];
-        push_to_table_list(namespace + "#table-liste-utilisateur", autoIncrementFromTableTrContent(namespace + "#table-liste-utilisateur"), $trUser)
-        createToast('bg-success', 'uil-check-sign', 'Utilisateur enregistre', 'Nouveau utilisateur enregistre avec success!')
-
-        // empty all
-
-        $(namespace + "#nouveau-utilisateur input").val("");
-        $('#nouveau-utilisateur select#select-fonction option:first').prop('selected', true);
-        $('#nouveau-utilisateur select#select-magasin option:first').prop('selected', true);
-        $('#nouveau-utilisateur #check-statut').prop('checked', true)
-
+                }
+            }
+        });
     })
 
     // suppression utilisateur
 
-    $(document).on('click', namespace + "#table-liste-utilisateur .delete-utilisateur", function() {
+    $(document).on('click', namespace + "#table-liste-utilisateur .delete-utilisateur", function(){
         $trUtilisateur = $(this).closest('tr');
-        let nomEtPrenoms = $trUtilisateur.children().eq(1).text() + ' ' + $trUtilisateur.children().eq(2).text();
+        $userId = $trUtilisateur.attr("id");
+        let nomEtPrenoms = $trUtilisateur.children().eq(1).text();
         $modalId = 'supprimer-utilisateur';
-
         create_confirm_dialog('Suppression Utilisateur', 'Voulez vraiment supprimer cet utilisateur ? <li>' + nomEtPrenoms + '</li>', $modalId, 'Oui, supprimer', 'btn-danger')
             .on('click', function() {
-
-                $trUtilisateur.remove();
-
-                hideAndRemove(namespace + '#' + $modalId);
-                createToast('bg-danger', 'uil-trash-alt', 'Suppression Fait!', 'Utilisateur supprime avec success!');
-
+                // SUPPRIMER
+                $.ajax({
+                    type: "DELETE",
+                    url: $userUrl+"/"+$userId,
+                    contentType: 'application/json',
+                    success: function (data){
+                        $trUtilisateur.remove();
+                        hideAndRemove(namespace + '#' + $modalId);
+                        createToast('bg-danger', 'uil-trash-alt', 'Suppression Fait!', 'Utilisateur supprime avec success!');
+                    }
+                });
             })
-
     })
 
+    // on click function for filter
+
+    $(document).on('click', namespace + '#table-liste-fonction tbody tr' ,function() {
+        filterFunctionEvent($(this).children().eq(0).text());
+    })
+
+    function filterFunctionEvent($dataFilter) {
+        $(namespace + '#table-liste-utilisateur tbody tr').hide();
+        if ($dataFilter === null) $(namespace + '#table-liste-utilisateur tbody tr').show();
+
+        else
+            $(namespace + '#table-liste-utilisateur tbody tr').each(function(key, value) {
+                if ($(value).children('.function-user').text() === $dataFilter) $(value).show();
+            })
+    }
+
+    // filter all
+    $(namespace + '.function-filter-all').on('click', function() {
+        filterFunctionEvent(null)
+    })
 })

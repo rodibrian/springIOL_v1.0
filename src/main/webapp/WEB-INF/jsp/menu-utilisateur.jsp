@@ -26,7 +26,7 @@
         </div>
       </div>
       <div class="d-block mt-1">
-        <a type="button" class="btn btn-success mr-1" data-bs-toggle="modal" data-bs-target="#nouveau-utilisateur"><i
+        <a type="button" id="btn-nouveau-utilisateur" class="btn btn-success mr-1" data-bs-toggle="modal" data-bs-target="#nouveau-utilisateur"><i
                 class="uil-file-plus">&nbsp;</i>Nouveau Utilisateur</a>&nbsp;
         <a type="button" class="btn btn-success mr-1 btn-nouvelle-fonction"><i
                 class="uil-plus">&nbsp;</i>Nouvelle Fonction</a>
@@ -54,7 +54,7 @@
         <table id="table-liste-utilisateur" class="table table-sm dt-responsive nowrap table-hover">
           <thead>
           <tr>
-            <th>nom</th>
+            <th>Nom & Prenoms</th>
             <th>Nom d'utilisateur</th>
             <th>Contact</th>
             <th>Fonction</th>
@@ -68,13 +68,13 @@
               <td><c:out value="${user.nom}"/></td>
               <td><c:out value="${user.username}"/></td>
               <td><c:out value="${user.numTel}"/></td>
-              <td><c:out value="${user.fonction.nomFonction}"/></td>
+              <td class="function-user"><c:out value="${user.fonction.nomFonction}"/></td>
               <td>
                 <c:if test="${user.enabled}">
-                  <span class="badge badge-success-lighten">activé</span>`
+                  <span class="badge badge-success-lighten">activé</span>
                 </c:if>
                 <c:if test="${!user.enabled}">
-                  <span class="badge badge-danger-lighten">desactivé</span>`
+                  <span class="badge badge-danger-lighten">desactivé</span>
                 </c:if>
               </td>
               <td>
@@ -93,7 +93,6 @@
         <%@ include file="modal/utilisateur/new-fonction.jsp" %>
         <%@ include file="modal/utilisateur/new-utilisateur.jsp" %>
       </div>
-
     </div>
   </div>
 

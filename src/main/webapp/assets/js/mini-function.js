@@ -8,6 +8,16 @@ function set_select_option_value($array, $select) {
     });
 }
 
+function set_select_option_value_ajax($array, $select) {
+    $.each($array, function (key, value) {
+        $($select)
+            .append($("<option></option>")
+                .attr("value", value.id)
+                .text(value.nomMagasin));
+        console.log($($select).html())
+    });
+}
+
 function push_select_option_value($array, $select) {
     $($select)
         .append($("<option></option>")
@@ -21,7 +31,7 @@ function get_select_affect_to_input($input, $id_element, $text_element) {
 }
 
 
-function push_to_table_list($table, $id, $array_td) {
+function push_to_table_list($table, $id, $array_td){
     $tr = $('<tr></tr>').attr('id', $id);
     for (let i = 0; i < $array_td.length; i++) $tr.append($('<td></td>').html($array_td[i]))
     $($table + ' tbody').append($tr);
