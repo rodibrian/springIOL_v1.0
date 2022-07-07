@@ -5,24 +5,28 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.OnDelete;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity(name = "magasin")
 @Table(name = "magasin")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @NamedQueries(value = {
         @NamedQuery(name = "magasin.all",query = "from magasin")
 })
-public class Magasin {
-    @Column(name = "id_magasin")
+public class Magasin{
     @Id
+    @Column(name = "id_magasin")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -33,8 +37,9 @@ public class Magasin {
     private String nomMagasin;
 
     @ManyToMany
-    @JoinTable(name = "magasin_article",joinColumns = {@JoinColumn(name = "magasin_id",foreignKey = @ForeignKey(name = "mag_article_magasin_key_constraint"))},
-            inverseJoinColumns = {@JoinColumn(name = "article_id",foreignKey = @ForeignKey(name = "mag_art_article_key_constraint"))})
+    @JoinTable(name = "magasin_article",
+            joinColumns = {@JoinColumn(name = "magasin_id",foreignKey = @ForeignKey(name ="FK_MA_MAGASIN_ID",foreignKeyDefinition = "foreign key (magasin_id) references magasin(id_magasin) on delete cascade"))},
+            inverseJoinColumns = {@JoinColumn(name = "article_id",foreignKey = @ForeignKey(name = "FK_MA_ARTICLE_ID",foreignKeyDefinition = "foreign key (article_id) references article(article_id) on delete cascade"))})
     private Set<Article> articles;
 
     @ManyToOne(cascade= CascadeType.MERGE)
@@ -42,9 +47,9 @@ public class Magasin {
     private Filiale filiale;
 
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "magasin")
+    @ManyToMany(mappedBy = "magasin")
     private Set<User> users;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
+    @OneToMany
     private Set<Operation> operations;
 }

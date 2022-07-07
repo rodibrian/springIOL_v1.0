@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -12,7 +14,8 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity(name = "filiale")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @NamedQueries({
         @NamedQuery(name = "filiale.all",query = "from filiale")

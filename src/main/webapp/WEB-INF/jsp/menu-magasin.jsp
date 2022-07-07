@@ -1,8 +1,6 @@
 <%@ include file='template/header.jsp' %>
-
 <!-- Start Content-->
 <div class="container-fluid" id="menu-magasin">
-
   <!-- start page title -->
   <div class="row">
     <div class="col-12">
@@ -27,10 +25,8 @@
   <div class="all-modal">
     <%@ include file="modal/new-magasin.jsp" %>
   </div>
-
   <!-- suite -->
   <div class="all-modal"></div>
-
   <div class="container -fluid"><br><br>
     <div class="row">
       <div class="col-lg-4">
@@ -39,7 +35,7 @@
           <tr>
             <th>Nom du magasin</th>
             <th>Adresse</th>
-            <th></th>
+            <th>Action</th>
           </tr>
           </thead>
           <tbody>
@@ -47,6 +43,16 @@
               <tr id="${magasin.id}">
                 <td><c:out value="${magasin.nomMagasin}"/></td>
                 <td><c:out value="${magasin.adresse}"/></td>
+                <td>
+                  <div class="d-inline-flex justify-content-center">
+                    <a href="#" class="delete-magasin">
+                      <i class="uil-trash-alt"></i>
+                      </a><a href="#" class="edit-magasin">
+                      <i class="uil-pen">
+                      </i>
+                    </a>
+                  </div>
+                </td>
               </tr>
             </c:forEach>
           </tbody>
@@ -66,7 +72,6 @@
       </div>
     </div>
   </div>
-
 
 </div>
 

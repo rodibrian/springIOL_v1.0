@@ -49,7 +49,7 @@ $(function () {
     // editer fonction, click
     $(document).on('click', namespace + '.edit-fonction', function () {
         $trEdit = $(this).closest('tr');
-        $idfonction = $trContent.attr('id');
+        $idfonction = $trEdit.attr('id');
         $(namespace + '#nouvelle-fonction').modal('show');
         $(namespace + '#nouvelle-fonction').attr('data-value', EDIT);
         $(namespace + '#nouvelle-fonction .modal-title').text('Editer Fonction');
@@ -59,31 +59,32 @@ $(function () {
     $(document).on('click', namespace + '.delete-fonction', function () {
         $trDelete = $(this).closest('tr')
         $modalId = 'suppression-fonction'
+        $idfonction = $trDelete.attr('id');
         create_confirm_dialog('Suppression Fonction', 'Voulez vous vraiment supprimer cette fonction ?<li>' + $trDelete.children().eq(0).text() + '</li>', $modalId, 'Oui, supprimer!', 'btn-danger')
             .on('click', function () {
-                $trDelete.remove();
-                hideAndRemove(namespace + '#' + $modalId)
-                load_select_fonction()
-                createToast('bg-danger', 'uil-trash-alt', 'Suppression fait!', 'Fonction supprime avec success!')
+                $.ajax({
+                    type: "DELETE",
+                    url: $fonctionUrl+"/"+$idfonction,
+                    contentType: 'application/json',
+                    success: function (data){
+                        $trDelete.remove();
+                        hideAndRemove(namespace + '#' + $modalId)
+                        load_select_fonction()
+                        createToast('bg-danger', 'uil-trash-alt', 'Suppression fait!', 'Fonction supprime avec success!')
+                    }
+                });
             })
     })
-
-
     /*----------------------------------------------------------------------
-
                          NOUVEAU UTILISATEUR
-
      ----------------------------------------------------------------------*/
-
     function load_select_fonction() {
         $(namespace + '#nouveau-utilisateur #select-fonction option').remove();
         $(namespace + '#table-liste-fonction tbody tr').each(function(index, tr) {
             push_select_option_value([$(tr).attr('id'), $(tr).children().eq(0).text()], namespace + '#nouveau-utilisateur #select-fonction')
         })
     }
-
     // nouveau utilisateur
-
     $(namespace + "#btn-nouveau-utilisateur").on('click', function () {
         // $url = "http://localhost:8080/api/v1/magasins";
         // $.ajax({
@@ -144,9 +145,7 @@ $(function () {
             }
         });
     })
-
     // suppression utilisateur
-
     $(document).on('click', namespace + "#table-liste-utilisateur .delete-utilisateur", function(){
         $trUtilisateur = $(this).closest('tr');
         $userId = $trUtilisateur.attr("id");
@@ -154,9 +153,10 @@ $(function () {
         $modalId = 'supprimer-utilisateur';
         create_confirm_dialog('Suppression Utilisateur', 'Voulez vraiment supprimer cet utilisateur ? <li>' + nomEtPrenoms + '</li>', $modalId, 'Oui, supprimer', 'btn-danger')
             .on('click', function() {
+                $methodType = "DELETE"
                 // SUPPRIMER
                 $.ajax({
-                    type: "DELETE",
+                    type: $methodType,
                     url: $userUrl+"/"+$userId,
                     contentType: 'application/json',
                     success: function (data){
@@ -167,9 +167,13 @@ $(function () {
                 });
             })
     })
-
+    // MODIFIER UTILISATEUR
+    $(document).on('click', namespace + "#table-liste-utilisateur .edit-utilisateur",function(){
+        $NEW_USER  = false;
+        $trEdit = $(this).closest('tr');
+        $(namespace + '#nouveau-utilisateur').modal('show');
+    });
     // on click function for filter
-
     $(document).on('click', namespace + '#table-liste-fonction tbody tr' ,function() {
         filterFunctionEvent($(this).children().eq(0).text());
     })
@@ -183,7 +187,6 @@ $(function () {
                 if ($(value).children('.function-user').text() === $dataFilter) $(value).show();
             })
     }
-
     // filter all
     $(namespace + '.function-filter-all').on('click', function() {
         filterFunctionEvent(null)

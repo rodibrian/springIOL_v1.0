@@ -32,7 +32,7 @@ $(function () {
         $methodType = $nouveauMagasin ? "POST" : "PUT";
         $.ajax({
             type: $methodType,
-            url: $magasinUrl,
+            url: $magasinResourcesUrl,
             contentType: 'application/json',
             data: JSON.stringify($newMagasin),
             success: function (data) {
@@ -46,6 +46,7 @@ $(function () {
                 }
                 // EDITION MAGASIN OPERATION
                 else{
+                    console.log(" UPDATE ");
                     update_to_table_list(namespace + '#table-liste-magasin', $(namespace + '#new-magasin').attr('data-id'), $oneMagasin);
                     createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification du magasin effectu&eacute; avec succ&egrave;s!')
                 }
@@ -53,32 +54,39 @@ $(function () {
                 $(namespace + '#new-magasin').modal('hide'); // close modal
             }
         });
-    })
+    });
 
     // EDITION MAGASIN ON-CLICK
     $(document).on('click', namespace + 'a.edit-magasin', function () {
         $(namespace + '#new-magasin').modal('show');
         $trContent = $(this).closest('tr');
         $idMagasin = $trContent.attr('id');
-        console.log($idMagasin);
         $(namespace + '#new-magasin .modal-title').html('Edition d\'un magasin');
         $(namespace + '#new-magasin input#nom-magasin').val($trContent.children().eq(0).text());
         $(namespace + '#new-magasin input#adresse-magasin').val($trContent.children().eq(1).text());
-
         $(namespace + '#new-magasin').attr('data-type', EDITION);
         $(namespace + '#new-magasin').attr('data-id', $trContent.attr('id')); // id of current tr element
     })
     // SUPPRESSION MAGASIN ON-CLICK
     $(document).on('click', namespace + 'a.delete-magasin', function () {
         $currentTR = $(this).closest('tr');
-        $modalID = 'suppression-modal'
+        $modalID = 'suppression-modal';
+        let idMagasin = $currentTR.attr('id');
         $contentDialog = '' + 'Voulez vous vraiment supprimez ce magasin ??' + '<li>' + $currentTR.children().eq(0).text() + ' (' + $currentTR.children().eq(1).text() + ')</li>';
-        create_confirm_dialog('Suppression magasin', $contentDialog, $modalID, 'Oui, Supprimer', 'btn-outline-danger')
+        create_confirm_dialog('Suppression magasin', $contentDialog, $modalID, 'Oui , Supprimer', 'btn-outline-danger')
             .on('click', function () {
-                $currentTR.remove()
-                $(namespace + '#' + $modalID + '').modal('hide');
-                $(namespace + '#' + $modalID + '').remove();
-                createToast('bg-danger', 'uil-trash-alt', 'Suppression Fait', 'Suppression du magasin effectu&eacute; avec succ&egrave;s!')
+                $.ajax({
+                    type: "DELETE",
+                    url: $magasinUrl+"/"+idMagasin,
+                    contentType: 'application/json',
+                    success: function (data) {
+                        $currentTR.remove()
+                        $('#table-liste-utilisateur-magasin tbody tr').remove();
+                        $(namespace + '#' + $modalID + '').modal('hide');
+                        $(namespace + '#' + $modalID + '').remove();
+                        createToast('bg-danger', 'uil-trash-alt', 'Suppression Fait', 'Suppression du magasin effectu&eacute; avec succ&egrave;s!')
+                    }
+                    });
             })
 
     })
@@ -94,7 +102,7 @@ $(function () {
             success : function (data) {
                 for (let i = 0; i < data.length; i++) {
                     $userInfo = data[i].split(",");
-                    push_to_table_list($userInfo);
+                    push_to_table_list_magasin($userInfo);
                 }
             }
         });

@@ -12,6 +12,7 @@ import java.util.Date;
 @Entity
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "personne_physique")
 public abstract class PersonnePhysique extends Personne implements Serializable {
     @Column(columnDefinition = "TEXT")
     private String cin;

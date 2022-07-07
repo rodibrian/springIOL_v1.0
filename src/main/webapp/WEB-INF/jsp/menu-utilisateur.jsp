@@ -45,6 +45,13 @@
           <c:forEach var="fonction" items="${fonctions}">
             <tr id="${fonction.id}">
               <td><c:out value="${fonction.nomFonction}"/></td>
+              <td>
+                <div class="d-flex align-content-center">
+                  <a class="edit-fonction"><i
+                          class="uil-pen"></i></a>
+                  <a class="delete-fonction"><i class="uil-trash-alt"></i></a>
+                </div>
+              </td>
             </tr>
           </c:forEach>
           </tbody>

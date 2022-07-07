@@ -18,6 +18,10 @@ function set_select_option_value_ajax($array, $select) {
     });
 }
 
+function deleteMagasin(){
+
+}
+
 function push_select_option_value($array, $select) {
     $($select)
         .append($("<option></option>")
@@ -38,7 +42,7 @@ function push_to_table_list($table, $id, $array_td){
     return $tr;
 }
 
-function push_to_table_list($array_td) {
+function push_to_table_list_magasin($array_td) {
     $tr = $('<tr></tr>').attr('id', $array_td[0]);
     for (let i = 1; i < $array_td.length; i++) $tr.append($('<td></td>').html($array_td[i]))
     $('#table-liste-utilisateur-magasin tbody').append($tr);

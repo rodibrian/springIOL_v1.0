@@ -1,13 +1,9 @@
 $(function () {
-
-    let namespace = "#new-article ";
-
-    let isCreateAction = true;
+    let namespace = "#new-article";
     let isCreateArticle = true;
     let editedArticleId = 1;
     // tout les champ non editable par defaut
     let categorieUrl = 'http://localhost:8080/api/v1/categories';
-
     function initTableUnite() {
         $(namespace + '#table-unite input').attr('disabled', '')
         // ajout du nouveau unite
@@ -54,13 +50,12 @@ $(function () {
     }
     function initAddAndSaveArticleBtn() {
         // chargement des categories lors de l'affichage du formulaire de categorie
-        $(namespace + "#newArticleBtn").click(() => {
-
-            let tdElement = $(namespace + "#categorieTabList tbody tr td:first-child");
-            let select = $(namespace + ".form-select");
+        $("#newArticleBtn").click(() => {
+            let tdElement = $("#categorieTabList tbody tr td:first-child");
+            let select = $(".form-select");
             select.empty();
             if (tdElement.length !== 0) {
-                for (let i = 0; i < tdElement.length; i++) {
+                for (let i = 0; i < tdElement.length; i++){
                     let text = tdElement[i].innerText;
                     let id = $(tdElement[i]).parent().attr("id");
                     if (text !== "Toutes") {
@@ -83,14 +78,12 @@ $(function () {
         });
 
         function createArticleAndUnite() {
-
-            let designation = $(namespace + "#designation").val();
-            let categorieId = $(namespace + "#categorie option:selected").val();
-            let categorieLibelle = $(namespace + "#categorie option:selected").text();
+            let designation = $("#designation").val();
+            let categorieId = $("#categorie option:selected").val();
+            let categorieLibelle = $("#categorie option:selected").text();
             let articleStatus = "USED";
             let tr = $(namespace + '#table-unite tbody tr');
             let uniteTab = [];
-
             for (let i = 0; i < tr.length; i++) {
                 let unite = [];
                 let td = $(tr[i]).children();
@@ -108,7 +101,6 @@ $(function () {
 
                 if (!isCreateArticle)
                     uniteObject.id = trId;
-
                 uniteTab.push(uniteObject);
             }
             let article = {}
@@ -158,7 +150,7 @@ $(function () {
         }
 
         // enregistrement de l'article
-        $(namespace + "#saveArticleBtn").click(() => {
+        $("#saveArticleBtn").click(() => {
             if (isCreateArticle) {
                 createArticleAndUnite();
                 createToast('bg-success', 'uil-file-check', 'Creation Fait', 'Creation d\'un nouveau article effectu&eacute; avec succ&egrave;s!')
@@ -175,8 +167,8 @@ $(function () {
     }
     function initTableRowEvent() {
         // Initialisation de l'evenement des tr
-        let div = $(namespace + "#articleTable tbody tr td div");
-        let tr = $(namespace + "#articleTable tbody tr");
+        let div = $("#articleTable tbody tr td div");
+        let tr = $("#articleTable tbody tr");
         div.hide();
         tr.mouseenter(function () {
             $(this).children().last().children().first().show();
@@ -185,10 +177,11 @@ $(function () {
             $(this).children().last().children().first().hide();
         });
     }
+
     function initTableAction() {
         function initCategorieSelect() {
-            let tdElement = $(namespace + "#categorieTabList tbody tr td:first-child");
-            let select = $(namespace + ".form-select");
+            let tdElement = $("#categorieTabList tbody tr td:first-child");
+            let select = $(".form-select");
             // Supprimer toutes les elements dans la select
             $(namespace + "select#categorie").empty();
             if (tdElement.length !== 0) {
@@ -203,7 +196,7 @@ $(function () {
             }
         }
 
-        $(namespace + ".editArticleBtn").click(function () {
+        $(".editArticleBtn").click(function () {
             isCreateArticle = false;
             editedArticleId = $(this).attr("id");
             console.log(" Edited article = " + editedArticleId);
@@ -219,7 +212,7 @@ $(function () {
                 type: 'GET',
                 url: url,
                 success: function (data) {
-                    let table = $(namespace + "#table-unite tbody");
+                    let table = $("#table-unite tbody");
                     // SUPRIMER TOUTES LES DONNE
                     table.empty();
                     for (let i = 0; i < data.length; i++) {
@@ -240,7 +233,7 @@ $(function () {
                 }
             });
         });
-        $(namespace + ".deleteArticleBtn").click(function () {
+        $(".deleteArticleBtn").click(function () {
             let btn = $(this);
             let id = btn.attr("id");
             let url = 'http://localhost:8080/api/v1/articles/' + id + "/DELETED";
@@ -248,16 +241,14 @@ $(function () {
                 type: 'PUT',
                 url: url,
                 success: function (data) {
-                    console.log(data)
                     btn.parent().parent().parent().remove();
                 }
             });
             createToast('bg-danger', 'uil-trash-alt', 'Suppression Fait', 'Suppression de l\' article effectu&eacute; avec succ&egrave;s!')
         });
-        $(namespace + ".hideArticleBtn").click(function () {
+        $(".hideArticleBtn").click(function () {
             let btn = $(this);
             let id = btn.attr("id");
-            console.log(id);
             let url = 'http://localhost:8080/api/v1/articles/' + id + '/HIDEN';
             $.ajax({
                 type: 'PUT',

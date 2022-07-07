@@ -76,7 +76,7 @@ public class MagasinRessource {
     public ResponseEntity<Object> delete(@PathVariable("id") Long id){
         try{
             magasinRepository.deleteById(id);
-            return new ResponseEntity<>(" The store with the id ="+id+" is deleted",HttpStatus.OK);
+            return new ResponseEntity<>(" Le magasin avec l'id = "+id+" est supprimer avec succes ",HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(),HttpStatus.valueOf(500));
         }
