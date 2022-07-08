@@ -34,9 +34,7 @@ $(function () {
     })
 
     // enregistrement nouveau fournisseur
-
     $(namespace + '#nouveau-fournisseur #btn-enregistrer-fournisseur').on('click', function () {
-
         let nomFournisseur = $(namespace + '#nouveau-fournisseur input#nom').val();
         let adresse = $(namespace + '#nouveau-fournisseur input#adresse').val();
         let contact = $(namespace + '#nouveau-fournisseur input#contact').val();
@@ -51,12 +49,9 @@ $(function () {
                     '              </div>')];
 
                 push_to_table_list(namespace + '#table-fournisseur', autoIncrementFromTableTrContent(namespace + '#table-fournisseur'), $fournisseur);
-
                 createToast('bg-success', 'uil-icon-check', 'Fournisseur enregistre', 'Fournisseur enregistre avec succes!');
-
                 break;
             case 'editer-fournisseur' :
-
                 $trFournisseur.children().eq(0).text(nomFournisseur);
                 $trFournisseur.children().eq(1).text(adresse);
                 $trFournisseur.children().eq(2).text(contact);
@@ -65,8 +60,6 @@ $(function () {
 
                 break;
         }
-
-
         $(namespace + '#nouveau-fournisseur input').val('');
     })
 

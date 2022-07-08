@@ -20,7 +20,6 @@ $(function () {
     // editer client
     $(document).on('click', namespace + '.editClient', function () {
         $NOUVEAU_CLIENT = false;
-        console.log($NOUVEAU_CLIENT);
         $(namespace + '#nouveau-client').attr('data-value', 'editer-client');
         $(namespace + '#nouveau-client').modal('show')
         $(namespace + '#nouveau-client .modal-title').text('Editer Client');
@@ -34,7 +33,6 @@ $(function () {
     function enregistrerClientOuFournisseur(client){
         let cfResourceUrl = $NOUVEAU_CLIENT ? cfUrl :cfUrl+"/"+$idCf;
         let methodType = $NOUVEAU_CLIENT ? "POST" : "PUT";
-        console.log(methodType +"  "+ cfResourceUrl);
         $.ajax({
             type: methodType,
             url: cfResourceUrl,
@@ -68,7 +66,6 @@ $(function () {
         let nif = $(namespace + '#nouveau-client input#nif').val();
         let stat = $(namespace + '#nouveau-client input#stat').val();
         let cif = $(namespace + '#nouveau-client input#cif').val();
-        let type = $(namespace + '#nouveau-client').attr('data-value');
         let client = {};
         client.nom = nomClient;
         client.cin = cin;
@@ -86,22 +83,29 @@ $(function () {
         $trClient = $(this);
         $(namespace + "#info-credit").addClass("show")
     })
+
     // suppression client
     $(document).on('click', namespace + '#table-client .deleteClient', function () {
         $trClient = $(this).closest('tr');
         $idModalDelete = "suppression-client";
+        let idCf = $trClient.attr("id");
         create_confirm_dialog('Suppression Client', 'Voulez vous vraiment supprimer ce client (id : ' + $trClient.attr("id") + ') ?', $idModalDelete, 'Oui,supprimer', 'btn-danger')
             .on('click', function () {
-                $trClient.remove();
-                createToast('bg-danger', 'uil-trash-alt', 'Suppression fait', 'Le client est supprime avec success!');
-                hideAndRemove('#' + $idModalDelete);
-                $(namespace + "#info-credit").removeClass("show")
+                $.ajax({
+                    type: "DELETE",
+                    url: cfUrl+"/"+idCf,
+                    contentType: 'application/json',
+                    success: function (data){
+                        $trClient.remove();
+                        createToast('bg-danger', 'uil-trash-alt', 'Suppression fait', 'Le client est supprime avec success!');
+                        hideAndRemove('#' + $idModalDelete);
+                        $(namespace + "#info-credit").removeClass("show")
+                    }
+                });
             })
     })
     /*
-
     NOUVEAU CREDIT
-
      */
 
     $(namespace + '.btn-nouveau-credit').on('click', function() {
@@ -122,11 +126,9 @@ $(function () {
         $(namespace + '#nouveau-credit input').val('');
         $(namespace + '#nouveau-credit textarea').val('');
     })
-
     /*
     SUpprimer credit
      */
-
     $(namespace + '.btn-supprimer-credit').on('click', function () {
         $modalId = "suppression-credit-client"
 

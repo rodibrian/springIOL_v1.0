@@ -1,13 +1,11 @@
 package com.iol.controller.restController;
 
-import com.iol.model.entityEnum.TypeCf;
 import com.iol.model.tenantEntityBeans.ClientFournisseur;
 import com.iol.repository.ClientFournisseurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.ResourceAccessException;
 
 import java.util.Optional;
 
@@ -20,11 +18,7 @@ public class ClientFournisseurRessource{
 
     @GetMapping(value = "/externalEntities/{typeCf}")
     public ResponseEntity<Object> getAllByType(@PathVariable(name = "typeCf") Integer type){
-        return new ResponseEntity<>(
-                type.intValue() == 1 ?
-                        cfRepository.getAllExternalEntities(TypeCf.CLIENT) :
-                        cfRepository.getAllExternalEntities(TypeCf.FOURNISSEUR)
-                ,HttpStatus.OK);
+        return new ResponseEntity<>(cfRepository.getAllExternalEntities(type),HttpStatus.OK);
     }
 
     @GetMapping(value = "/externalEntities")

@@ -1,6 +1,5 @@
 package com.iol.controller.servletController;
 
-import com.iol.model.entityEnum.TypeCf;
 import com.iol.model.tenantEntityBeans.Magasin;
 import com.iol.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +31,8 @@ public class MenuNavController{
     private final String FONCTION_LIST = "fonctions";
     private final String USER_LIST = "users";
     private final String CLIENT_FOURNISSEUR_LIST = "cfList";
+    private final int CLIENT = 0;
+    private final int FOURNISSEUR = 1;
 
     public MenuNavController() {
     }
@@ -101,13 +102,15 @@ public class MenuNavController{
     @RequestMapping(value = "/client",method = RequestMethod.GET)
     public ModelAndView getClient(){
         ModelAndView modelAndView = new ModelAndView("menu-client");
-        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(TypeCf.CLIENT));
+        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(CLIENT));
         return modelAndView;
     }
 
     @RequestMapping(value = "/fournisseur",method = RequestMethod.GET)
-    public String getMenuFournisseur(){
-        return "menu-fournisseur";
+    public ModelAndView getMenuFournisseur(){
+        ModelAndView modelAndView = new ModelAndView("menu-fournisseur");
+        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR));
+        return modelAndView;
     }
 
     @RequestMapping(value = "/livraison",method = RequestMethod.GET)
