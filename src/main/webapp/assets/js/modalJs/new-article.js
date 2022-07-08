@@ -4,20 +4,21 @@ $(function () {
     let editedArticleId = 1;
     // tout les champ non editable par defaut
     let categorieUrl = 'http://localhost:8080/api/v1/categories';
+    $articleUrl = 'http://localhost:8080/api/v1/articles';
+    $deleted = true;
     function initTableUnite() {
-        $(namespace + '#table-unite input').attr('disabled', '')
+        $('#table-unite input').attr('disabled', '')
         // ajout du nouveau unite
-        $(namespace + "#btn-new-unite").click(
+        $("#btn-new-unite").click(
             function () {
-                let table = $(namespace + "#table-unite tbody");
-                let length = $(namespace + "#table-unite tbody tr").length;
+                let table = $("#table-unite tbody");
+                let length = $("#table-unite tbody tr").length;
                 // cacher le enregistrement
-                $(namespace + "#table-unite tbody tr th a.btn-success").hide();
-                $(namespace + '#table-unite input').attr('disabled', '')
-
+                $("#table-unite tbody tr th a.btn-success").hide();
+                $('#table-unite input').attr('disabled', '');
                 // cacher edition et suppression du dernier
-                $(namespace + "#table-unite tbody tr th #edit_" + length).hide();
-                $(namespace + "#table-unite tbody tr th #del_" + length).hide();
+                $("#table-unite tbody tr th #edit_" + length).hide();
+                $("#table-unite tbody tr th #del_" + length).hide();
                 let tr = `<tr>
                             <td><input type="text"  class="form-control input-sm" value="000"></td>
                             <td><input type="text"  class="form-control input-sm" value="0"></td>
@@ -34,16 +35,16 @@ $(function () {
             }
         )
         // edition ou enregistrement enregistrement
-        $(namespace + '#table-unite').on('click', '.btn-add-unite', (function () {
+        $('#table-unite').on('click', '.btn-add-unite', (function () {
             $(this).closest('tr').find('input').attr('disabled', '');
             $(this).hide();
         }))
         //suppression unite
-        $(namespace + '#table-unite').on('click', '.btn-del-unite', (function () {
+        $('#table-unite').on('click', '.btn-del-unite', (function () {
             $(this).closest('tr').remove();
         }))
         // edition d'une unite
-        $(namespace + '#table-unite').on('click', '.btn-edit-unite', (function () {
+        $('#table-unite').on('click', '.btn-edit-unite', (function () {
             $(this).closest('tr').find('input').removeAttr('disabled')
             $(this).closest('tr').find('.btn-add-unite').show()
         }));
@@ -82,7 +83,7 @@ $(function () {
             let categorieId = $("#categorie option:selected").val();
             let categorieLibelle = $("#categorie option:selected").text();
             let articleStatus = "USED";
-            let tr = $(namespace + '#table-unite tbody tr');
+            let tr = $('#table-unite tbody tr');
             let uniteTab = [];
             for (let i = 0; i < tr.length; i++) {
                 let unite = [];
@@ -118,7 +119,8 @@ $(function () {
                 contentType: 'application/json',
                 data: JSON.stringify(article),
                 success: function (data) {
-                    let table = $(namespace + "#articleTable tbody");
+                    console.log(data)
+                    let table = $("#articleTable tbody");
                     let uniteTab = data.unite;
                     uniteTab.forEach(function (unite) {
                         let tableRow = `
@@ -144,8 +146,8 @@ $(function () {
         }
 
         function updateArticle() {
-            let designation = $(namespace + "#designation").val();
-            let categorieLibelle = $(namespace + "#categorie option:selected").text();
+            let designation = $("#designation").val();
+            let categorieLibelle = $("#categorie option:selected").text();
 
         }
 
@@ -177,7 +179,6 @@ $(function () {
             $(this).children().last().children().first().hide();
         });
     }
-
     function initTableAction() {
         function initCategorieSelect() {
             let tdElement = $("#categorieTabList tbody tr td:first-child");
@@ -233,32 +234,41 @@ $(function () {
                 }
             });
         });
-        $(".deleteArticleBtn").click(function () {
-            let btn = $(this);
-            let id = btn.attr("id");
-            let url = 'http://localhost:8080/api/v1/articles/' + id + "/DELETED";
-            $.ajax({
-                type: 'PUT',
-                url: url,
-                success: function (data) {
-                    btn.parent().parent().parent().remove();
-                }
-            });
-            createToast('bg-danger', 'uil-trash-alt', 'Suppression Fait', 'Suppression de l\' article effectu&eacute; avec succ&egrave;s!')
-        });
+
+        function updateArticle($trCurrent,$deleted,$codeArticle) {
+            $id = $($trCurrent).attr("id");
+            $modalId = $deleted ? "suppression-article" : "masquer-article";
+            $modalText = $deleted ? 'Suppression Article' : 'Masquer Article';
+            $modalTitle = $deleted ? 'Voulez vraiment supprimer cet article (id:' + $codeArticle + ') ?'
+                : 'Voulez vraiment masquer cet article (id:' + $codeArticle + ') ?';
+            $labelButton = $deleted ? "supprimer" : "masquer";
+            $classButton = $deleted ? "btn-danger" : "bg-warning";
+            create_confirm_dialog($modalText,$modalTitle,$modalId, "Oui ,"+$labelButton,$classButton)
+                .on('click', function(){
+                    $status = $deleted ? "DELETED" : "HIDEN";
+                    $url = $articleUrl+"/"+ $id +"/"+$status;
+                    $.ajax({
+                        type: 'PUT',
+                        url: $url,
+                        success: function (data){
+                            $trCurrent.remove();
+                            hideAndRemove('#' + $modalId + '');
+                            createToast('bg-danger', 'uil-trash-alt', 'Suppression Fait', 'Suppression de l\' article effectu&eacute; avec succ&egrave;s!')
+                        }
+                    });
+                })
+        }
+
+        $(document).on('click','#articleTable .deleteArticleBtn', function(){
+            $codeArticle = $(this).closest('tr').children().eq(0).text();
+            $trCurrent = $(this).closest('tr');
+            updateArticle($trCurrent,$deleted,$codeArticle);
+        })
+
         $(".hideArticleBtn").click(function () {
-            let btn = $(this);
-            let id = btn.attr("id");
-            let url = 'http://localhost:8080/api/v1/articles/' + id + '/HIDEN';
-            $.ajax({
-                type: 'PUT',
-                url: url,
-                success: function (data) {
-                    console.log(data)
-                    btn.parent().parent().parent().remove();
-                }
-            });
-            createToast('bg-warning', 'uil-eye-slash', 'Article Masqu&eacute;', 'Masquage de l\'article effectu&eacute; avec succ&egrave;s!')
+            $codeArticle = $(this).closest('tr').children().eq(0).text();
+            $trCurrent = $(this).closest('tr');
+            updateArticle($trCurrent,!$deleted,$codeArticle);
         });
     }
     function initArticleTable() {

@@ -93,7 +93,7 @@
           <tbody>
           <c:forEach var="article" items="${articles}">
             <c:forEach var="unite" items="${article.getUnite()}">
-              <tr>
+              <tr id ="${article.id}">
                 <td><c:out value="${unite.code}"/></td>
                 <td><c:out value="${article.designation}"/></td>
                 <td><c:out value="${unite.designation}"/></td>

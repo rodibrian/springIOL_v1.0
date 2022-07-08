@@ -1,14 +1,11 @@
 <%@ include file="template/head.jsp" %>
 
-
 <div class="row d-flex justify-content-center align-items-center bg-ligth" id="menu-vente" data-plugin="dragula">
   <div class="col-md-11">
     <div class="card mt-3 mb-3">
       <div class="card-body bg-light text-dark">
         <blockquote class="card-bodyquote mb-0">
-
           <!-- vente content -->
-
           <div class="row form-vente">
             <h4>Vente</h4>
             <hr>
@@ -16,6 +13,9 @@
               <div class="mb-1">
                 <label for="select-magasin" class="form-label">Magasin</label>
                 <select class="form-select" id="select-magasin">
+                  <c:forEach var="magasin" items="${magasins}">
+                    <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
+                  </c:forEach>
                 </select>
               </div>
               <div class="mb-1">

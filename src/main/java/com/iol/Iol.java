@@ -9,12 +9,19 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Stream;
 
 @SpringBootApplication
 public class Iol{
     public static void main(String[] args) {
-         SpringApplication.run(Iol.class,args);
+//        Trosa t = new Trosa();
+//        t.setMontant(2L);
+//        List<Trosa> t1 = List.of(t, t, t, t);
+//        Stream<Long> count = t1.stream().map(Trosa::getMontant);
+//        System.out.println(count);
+        SpringApplication.run(Iol.class,args);
     }
 }
 

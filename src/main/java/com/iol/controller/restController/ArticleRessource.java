@@ -13,14 +13,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1")
 public class ArticleRessource {
-
     private ArticleRepository articleRepository;
-
     @Autowired
     public ArticleRessource(ArticleRepository articleRepository) {
         this.articleRepository = articleRepository;
     }
-
     @GetMapping(value = "/articles")
     public ResponseEntity<List<Article>> getArticles(){
         List<Article> all = articleRepository.findAll();
@@ -63,5 +60,4 @@ public class ArticleRessource {
         Article savedArticle = articleRepository.save(article);
         return new ResponseEntity<>(savedArticle, HttpStatus.CREATED);
     }
-
 }

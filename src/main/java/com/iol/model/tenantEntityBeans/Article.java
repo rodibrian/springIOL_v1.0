@@ -15,6 +15,7 @@ import java.util.Set;
         @NamedQuery(name = "article.all",query = "from article")
 })
 public class Article implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "article_id")
@@ -23,7 +24,7 @@ public class Article implements Serializable {
     @Column(columnDefinition = "TEXT")
     private String designation;
 
-    @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "article_unite",joinColumns = {
             @JoinColumn(name = "article_id",foreignKey = @ForeignKey(name = "au_article"))
     },inverseJoinColumns = {
@@ -31,11 +32,11 @@ public class Article implements Serializable {
     })
     private Set<Unite> unite;
 
-    @ManyToOne(targetEntity = Categorie.class)
+    @ManyToOne(targetEntity = Categorie.class,cascade = CascadeType.MERGE)
     @JoinColumn(name = "categorieId",foreignKey = @ForeignKey(name = "article_categorie_key_constraint"))
     private Categorie categorie;
 
-    @ManyToMany(mappedBy = "articles")
+    @ManyToMany(mappedBy = "articles",cascade = CascadeType.MERGE)
     private Set<Magasin> magasins;
 
     @Lob

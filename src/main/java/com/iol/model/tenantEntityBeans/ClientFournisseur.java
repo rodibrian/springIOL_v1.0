@@ -1,21 +1,25 @@
 package com.iol.model.tenantEntityBeans;
 
+import com.iol.model.entityEnum.TypeCf;
 import lombok.Data;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.CollectionId;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
 public class ClientFournisseur extends Personne{
-    @Column(columnDefinition = "TEXT")
-    private String nif;
-    @Column(columnDefinition = "TEXT")
-    private String stat;
-    @Column(columnDefinition = "TEXT")
-    private String cif;
-    @Column(columnDefinition = "TEXT")
-    private String rcs;
+    @Enumerated(EnumType.ORDINAL)
+    private TypeCf typeCf;
+    @OneToMany
+    private Set<Trosa> Trosas;
+
+    @Transient
+    private Double totalMontantTrosa;
+
+    @PostLoad
+    public void TotalMontantTrosa(){
+       setTotalMontantTrosa(getTrosas().stream().mapToDouble(Trosa::getMontant).sum());
+    }
 }

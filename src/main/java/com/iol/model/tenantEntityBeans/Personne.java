@@ -24,6 +24,8 @@ public abstract class Personne{
     @Column(columnDefinition = "TEXT")
     private String email;
 
+
+
     @Lob
     private byte[] photo;
 }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
   <meta charset="utf-8">
   <title>Title Page</title>
@@ -23,5 +24,4 @@
         id="light-style">
   <link href="${pageContext.request.contextPath}/assets/css/app-dark.min.css" rel="stylesheet" type="text/css"
         id="dark-style">
-
 </head>

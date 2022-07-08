@@ -1,9 +1,9 @@
 package com.iol.controller.servletController;
 
+import com.iol.model.entityEnum.TypeCf;
 import com.iol.model.tenantEntityBeans.Magasin;
 import com.iol.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,27 +13,25 @@ import java.util.List;
 
 @Controller
 public class MenuNavController{
-
     @Autowired
     private CategorieRepository categorieRepository;
-
     @Autowired
     private ArticleRepository articleRepository;
-
     @Autowired
     private MagasinRepository magasinRepository;
-
     @Autowired
     private FonctionRepository fonctionRepository;
-
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private ClientFournisseurRepository clientFournisseurRepository;
 
     private final String CATEGORIE_LIST = "categories";
     private final String ARTICLE_LIST = "articles";
     private final String MAGASIN_LIST = "magasins";
     private final String FONCTION_LIST = "fonctions";
     private final String USER_LIST = "users";
+    private final String CLIENT_FOURNISSEUR_LIST = "cfList";
 
     public MenuNavController() {
     }
@@ -50,8 +48,10 @@ public class MenuNavController{
     }
 
     @RequestMapping(value = "/ventes",method = RequestMethod.GET)
-    public String getVentes(){
-        return "menu-vente";
+    public ModelAndView getVentes(){
+        ModelAndView modelAndView = new ModelAndView("menu-vente");
+        modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
+        return modelAndView;
     }
 
     @RequestMapping(value = "/detail-ventes",method = RequestMethod.GET)
@@ -99,8 +99,10 @@ public class MenuNavController{
     }
 
     @RequestMapping(value = "/client",method = RequestMethod.GET)
-    public String getClient(){
-        return "menu-client";
+    public ModelAndView getClient(){
+        ModelAndView modelAndView = new ModelAndView("menu-client");
+        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(TypeCf.CLIENT));
+        return modelAndView;
     }
 
     @RequestMapping(value = "/fournisseur",method = RequestMethod.GET)

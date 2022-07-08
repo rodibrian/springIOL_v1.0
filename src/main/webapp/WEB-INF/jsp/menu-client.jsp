@@ -34,7 +34,6 @@
     </div>
   </div>
 
-
   <div class="all-modal">
     <%@ include file="modal/client/new-client.jsp" %>
     <%@ include file="modal/client/new-credit.jsp" %>
@@ -53,17 +52,27 @@
             <th>Adresse</th>
             <th>Contact</th>
             <th>Crédit</th>
-            <th>Jour echance</th>
             <th>Action</th>
           </tr>
           </thead>
           <tbody>
-
+          <c:forEach var="cf" items="${cfList}">
+            <tr id="${cf.id}">
+              <td><c:out value="${cf.nom}"/></td>
+              <td><c:out value="${cf.adresse}"/></td>
+              <td><c:out value="${cf.numTel}"/></td>
+              <td><c:out value="${cf.totalMontantTrosa}"/></td>
+              <td>
+                <div class="action-client">
+                                  <a  class="btn-sm btn-info editClient "><i class="uil-pen"></i></a>
+                                  <a  class="btn-sm btn-danger deleteClient "><i class="uil-trash-alt"></i></a>
+                </div>
+              </td>
+            </tr>
+          </c:forEach>
           </tbody>
         </table>
-
         <!-- Collapse facture information -->
-
         <div class="accordion" id="accordionExample">
           <div class="card mb-0">
             <div id="info-credit" class="collapse"

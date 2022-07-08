@@ -10,11 +10,10 @@ $(function () {
     let namespace = "#menu-vente ";
 
     // Chargement de magasin
-
-    $(function () {
-        $magasin_listes = [['id-I', 'Magasin I'], ['id-II', 'Magasin II'], ['id-III', 'Magasin III']];
-        set_select_option_value($magasin_listes, namespace + '#select-magasin')
-    })
+    // $(function () {
+    //     $magasin_listes = [['id-I', 'Magasin I'], ['id-II', 'Magasin II'], ['id-III', 'Magasin III']];
+    //     set_select_option_value($magasin_listes, namespace + '#select-magasin')
+    // })
 
     /*------------------------------------------------------------------------------
                                             OPERATION
