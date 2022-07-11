@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 @SpringBootApplication
-public class Iol{
+public class Iol {
     public static void main(String[] args) {
 //        Trosa t = new Trosa();
 //        t.setMontant(2L);

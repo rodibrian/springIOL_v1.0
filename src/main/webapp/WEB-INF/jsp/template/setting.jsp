@@ -146,6 +146,7 @@
 <script src="${pageContext.request.contextPath}/assets/js/menu/embarquement/new-embarquement.js"></script>
 
 <script src="${pageContext.request.contextPath}/assets/js/modalJs/edit-prix.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/modalJs/list-fournisseur.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-magasin.js"></script>
 
 <!-- admin client -->

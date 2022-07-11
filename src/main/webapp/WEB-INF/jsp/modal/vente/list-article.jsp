@@ -20,12 +20,30 @@
             <th>Designation</th>
             <th>Unite</th>
             <th>Quantite</th>
-            <th>Stock</th>
             <th>Prix Unitaire</th>
           </tr>
           </thead>
           <tbody>
-
+          <c:forEach var="article" items="${articles}">
+            <c:forEach var="unite" items="${article.getUnite()}">
+              <tr id ="${article.id}">
+                <td><c:out value="${unite.code}"/></td>
+                <td><c:out value="${article.designation}"/></td>
+                <td><c:out value="${unite.designation}"/></td>
+                <td><c:out value="${unite.quantite}"/></td>
+                <td><c:out value="${unite.poids}"/></td>
+                <td><c:out value="${article.getCategorie().getLibelle()}"/></td>
+                <td class="d-flex justify-content-center">
+                  <div>
+                    <a id="${article.id}" data-bs-toggle="modal" data-bs-target="#new-article"
+                       class="btn-sm btn-info editArticleBtn"><i class="uil-pen"></i></a>
+                    <a id="${article.id}" class="btn-sm btn-danger deleteArticleBtn "><i class="uil-trash-alt"></i></a>
+                    <a id="${article.id}" class="btn-sm btn-warning hideArticleBtn"><i class="uil-eye-slash"></i></a>
+                  </div>
+                </td>
+              </tr>
+            </c:forEach>
+          </c:forEach>
           </tbody>
         </table>
       </div>

@@ -6,14 +6,18 @@ import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
+@Entity(name = "trosa")
+@Table(name = "trosa")
 @Data
 public class Trosa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Double montant;
+
     private LocalDate date;
+
     private TypeTrosa typeTrosa;
 
     @OneToOne
@@ -21,6 +25,8 @@ public class Trosa {
     private Filiale filiale;
 
     @OneToOne
-    @JoinColumn(name = "operation_id")
+    @JoinTable(name = "trosa_operation",
+            joinColumns = {@JoinColumn(name = "trosa_id",foreignKey = @ForeignKey(name ="FK_TROSA_ID",foreignKeyDefinition = "foreign key (trosa_id) references trosa(id) on delete cascade"))},
+            inverseJoinColumns = {@JoinColumn(name = "operation_id",foreignKey = @ForeignKey(name = "FK_OPERATION_ID",foreignKeyDefinition = "foreign key (operation_id) references operation(id) on delete cascade"))})
     private Operation operation;
 }
