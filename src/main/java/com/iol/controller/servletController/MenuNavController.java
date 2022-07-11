@@ -75,12 +75,12 @@ public class MenuNavController{
 
     @RequestMapping(value = "/embarquement",method = RequestMethod.GET)
     public String getMenuEmbarquement(){
-        return "menu-embarquement";
+        return "embarquement/menu-embarquement";
     }
 
     @RequestMapping(value = "/embarquement-nouveau",method = RequestMethod.GET)
     public String getNouveauEmbarquement(){
-        return "nouveau-embarquement";
+        return "embarquement/nouveau-embarquement";
     }
 
     @RequestMapping(value = "/archivage",method = RequestMethod.GET)

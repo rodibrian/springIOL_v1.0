@@ -31,7 +31,6 @@ $(function () {
      -------------------------------------------------------------------------------*/
 
     $(document).on('dblclick', namespace + '#table-liste-article tbody tr', function () {
-        console.log(this)
         get_select_affect_to_input(namespace + '#designation-article', $(this).children().eq(0).text(), $(this).children().eq(1).text());
         $(namespace + '#modal-liste-article').modal('hide');
         set_select_option_value([['0', $(this).children().eq(2).text()]], namespace + "#input-unite-article");
@@ -76,6 +75,7 @@ $(function () {
         // vider form vente
         $('.form-vente input').each(function () {
             if ($(this).attr('id') != 'name-client') $(this).attr('value', '');
+            if ($(this).attr('type') === 'number') $(this).val(0);
         });
         // vide option
         $(namespace + "#input-unite-article option").remove();

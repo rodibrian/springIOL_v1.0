@@ -68,15 +68,13 @@
               <div class="mb-1">
                 <label class="form-label">Prix Unitaire (Ar)</label>
                 <div class="input-group">
-                  <input id="input-prix-unitaire" type="text" class="form-control" value="0"
+                  <input id="input-prix-unitaire" type="number" class="form-control" value="0"
                          aria-label="Recipient's username">
                   <button type="button" id="btn-prix-special" class="btn btn-primary" data-bs-toggle="modal"
                           data-bs-target="#modal-prix-special"><i class="uil-dollar-alt"></i>&nbsp;Prix special
                   </button>
                 </div>
               </div>
-
-
               <div class="d-grid">
                 <button type="button" class="btn btn-ajouter-article-vente btn-success mb-1 mt-3"><i
                         class="uil-plus"></i>&nbsp;Ajouter
