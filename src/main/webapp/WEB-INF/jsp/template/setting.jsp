@@ -8,7 +8,7 @@
     <a href="../jsp/javascript:void(0);" class="end-bar-toggle float-end">
       <i class="dripicons-cross noti-icon"></i>
     </a>
-    <h5 class="m-0">Param�tres</h5>
+    <h5 class="m-0">Paramètres</h5>
   </div>
 
   <div class="rightbar-content h-100" data-simplebar="">
@@ -142,8 +142,11 @@
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-livraison.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-paiement.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-utilisateur.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/menu/embarquement/menu-embarquement.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/menu/embarquement/new-embarquement.js"></script>
 
 <script src="${pageContext.request.contextPath}/assets/js/modalJs/edit-prix.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/modalJs/list-fournisseur.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-magasin.js"></script>
 
 <!-- admin client -->

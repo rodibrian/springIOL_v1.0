@@ -46,38 +46,12 @@
               <div class="mb-1 div-select-magasin">
                 <label class="form-label">Fournisseur</label>
                     <div class="input-group">
-                      <input id="name-client" type="text" class="form-control" placeholder="Nom du fournisseur"
+                      <input id="input-nom-fournisseur" type="text" class="form-control" placeholder="Nom du fournisseur"
                              aria-label="Recipient's username">
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-liste-client" id="btn-search-client"><i class="uil-search"></i></button><br>
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-liste-client" id="btn-nouveau-fournisseur"><i class="uil-plus-circle"></i></button>
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-liste-fournisseur" id="btn-search-fournisseur"><i class="uil-search"></i></button><br>
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nouveau-fournisseur" id="btn-nouveau-fournisseur"><i class="uil-plus-circle"></i></button>
                     </div>
               </div>
-
-              <div class="mb-1 div-select-magasin">
-                <label class="form-label">Montant</label>
-                <div class="input-group">
-                  <input type="number" id="input-montant-approv-article" class="form-control" placeholder="0 Ar" value="0">
-                </div>
-              </div>
-
-              <div class="mb-1 div-select-magasin">
-                <label class="form-label">Paiement</label>
-                <div class="d-flex justify-content-start">
-                    <div class="form-check ml-3">
-                      <input type="radio" id="payement-credit" name="payement-radio" class="form-check-input" checked="true">
-                      <label class="form-check-label" for="payement-credit"> A credit</label>
-                    </div>&nbsp;&nbsp;&nbsp;
-                    <div class="form-check ml-3">
-                      <input type="radio" id="payement-comptant" name="payement-radio" class="form-check-input">
-                      <label class="form-check-label" for="payement-comptant">Au comptant</label>
-                    </div>
-                    <div class="form-check ml-3">
-                      <input type="radio" id="payement-autre" name="payement-radio" class="form-check-input">
-                      <label class="form-check-label" for="payement-autre">Autre</label>
-                    </div>
-                </div>
-              </div>
-
               <div class="mb-1">
                 <label for="input-reference-facture" class="form-label">Facture</label>
                 <input type="text" class="form-control" id="input-reference-facture">
@@ -154,6 +128,16 @@
                 <p>Nombre d'article : <span>00</span></p>
               </div>
 
+
+              <div class="all-modal">
+                <!-- modal list -->
+                <%@ include file="../modal/vente/list-article.jsp" %>
+                <%@ include file="../modal/fournisseur/list-fournisseur.jsp" %>
+                <%@ include file="../modal/fournisseur/new-fournisseur.jsp" %>
+                <%@ include file="../modal/vente/prix-special.jsp" %>
+                <!-- end modal list -->
+              </div>
+
             </div>
           </div>
 
@@ -163,12 +147,6 @@
     </div> <!-- end card-->
   </div> <!-- end col-->
 
-  <div class="all-modal">
-    <!-- modal list -->
-    <%@ include file="../modal/vente/list-article.jsp" %>
-    <%@ include file="../modal/vente/prix-special.jsp" %>
-    <!-- end modal list -->
-  </div>
 </div>
 
 

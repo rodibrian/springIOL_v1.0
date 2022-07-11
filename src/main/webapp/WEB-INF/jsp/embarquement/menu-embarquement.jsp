@@ -1,8 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ include file="template/header.jsp" %>
+<%@ include file="../template/header.jsp" %>
 <!-- Start Content-->
-<div class="container-fluid">
+<div class="container-fluid" id="menu-embarquement">
   <!-- start page title -->
   <div class="row">
     <div class="col-12">
@@ -102,5 +102,5 @@
 
 </div> <!-- container -->
 
-<%@ include file="template/footer.jsp" %>
-<%@ include file="template/setting.jsp" %>
+<%@ include file="../template/footer.jsp" %>
+<%@ include file="../template/setting.jsp" %>

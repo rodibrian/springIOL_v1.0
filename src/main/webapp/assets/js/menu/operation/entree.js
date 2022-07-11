@@ -2,6 +2,7 @@ $(function () {
 
     let namespace = "#menu-entree-article ";
 
+
     /*
 
     ENTREE ARTICLE
@@ -10,35 +11,32 @@ $(function () {
 
     // Chargement des données de la page;
 
-    // données prédefini
 
-    $lesMagasins = [
-        {
-            code: "m-I", nom: "Magasin I", other : ""
-        },
-        {
-            code: "m-II", nom: "Magasin II"
-        },
-        {
-            code: "m-III", nom: "Magasin III"
-        },
-        {
-            code: "m-IV", nom: "Magasin IV"
-        }
-    ];
+    // Selection des fournisseurs
 
-    $lesVoyages = [
-        {
-            reference: "v-123", libelle: "Voyage Ier"
-        },
-        {
-            reference: "v-456", libelle: "Voyage IIem"
-        }
-    ]
+    $(document).on('dblclick',namespace + '#table-liste-fournisseur tbody tr', function() {
+        get_select_affect_to_input(namespace + '#input-nom-fournisseur',$(this).attr('ic'), $(this).children().eq(0).text());
+        $(namespace + '#modal-liste-fournisseur').modal('hide');
+    })
 
-//    set_select_option_value($lesMagasins, namespace + "#select-magasin")
+    // Nouveau Fournisseur
 
-//    set_select_option_value($lesVoyages, namespace + "#select-voyage")
+    $(namespace + '#btn-enregistrer-fournisseur').on('click', function() {
+        let nomFournisseur = $(namespace + '#nouveau-fournisseur input#nom').val();
+        let adresse = $(namespace + '#nouveau-fournisseur input#adresse').val();
+        let contact = $(namespace + '#nouveau-fournisseur input#contact').val();
+        let fr = {};
+        fr.nom = nomFournisseur;
+        fr.adresse = adresse;
+        fr.numTel = contact;
+        fr.type = 1;
+        //enregistrerClientOuFournisseur(fr)
+
+        get_select_affect_to_input(namespace + '#input-nom-fournisseur','', nomFournisseur);
+
+        // vider les champs fournisseurs
+
+    })
 
     // Selecter article
 
@@ -47,9 +45,6 @@ $(function () {
         get_select_affect_to_input(namespace + '#input-designation-article',$(this).children().eq(0).text(), $(this).children().eq(1).text());
         set_select_option_value([['0', $(this).children().eq(2).text()]], namespace + "#select-unite-article")
         $(namespace + ' #input-prix-vente-article').val($(this).children().eq(5).text())
-
-        console.log( $(this).children().eq(1).text())
-
 
         $(namespace + '#modal-liste-article').modal('hide');
 
