@@ -166,8 +166,12 @@ public class MenuNavController{
     }
 
     @RequestMapping(value = "/operation/entree",method = RequestMethod.GET)
-    public String getOperationEntree(){
-        return "operation/entree";
+    public ModelAndView getOperationEntree(){
+        List<Magasin> magasins = magasinRepository.findAll();
+        ModelAndView modelAndView = new ModelAndView("operation/entree");
+        modelAndView.addObject(ARTICLE_LIST, this.articleRepository.findAll());
+        modelAndView.addObject(MAGASIN_LIST,magasins);
+        return modelAndView;
     }
 
     @RequestMapping(value = "/operation/sortie",method = RequestMethod.GET)

@@ -36,9 +36,9 @@ $(function () {
         }
     ]
 
-    set_select_option_value($lesMagasins, namespace + "#select-magasin")
+//    set_select_option_value($lesMagasins, namespace + "#select-magasin")
 
-    set_select_option_value($lesVoyages, namespace + "#select-voyage")
+//    set_select_option_value($lesVoyages, namespace + "#select-voyage")
 
     // Selecter article
 
@@ -111,15 +111,9 @@ $(function () {
 
     })
 
-
     // switch magasin <-> voyage
-
     $('.div-select-voyage').hide();
-
     $(namespace + '#check-magasin, #check-voyage').on('change', function () {
-
-        console.log(namespace);
-
         $(namespace + '.div-select-magasin').toggle();
         $(namespace + '.div-select-voyage').toggle();
     })

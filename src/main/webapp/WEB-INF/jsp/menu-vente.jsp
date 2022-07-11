@@ -18,6 +18,7 @@
                   </c:forEach>
                 </select>
               </div>
+
               <div class="mb-1">
                 <label class="form-label">Client</label>
                 <div class="input-group">
@@ -28,9 +29,7 @@
                   </button>
                 </div>
               </div>
-
               <hr>
-
               <div class="mt-1 d-inline-flex d-none">
                 <div class="form-check">
                   <input type="checkbox" class="form-check-input" id="check-bon">
@@ -81,8 +80,7 @@
                 <button type="button" class="btn btn-ajouter-article-vente btn-success mb-1 mt-3"><i
                         class="uil-plus"></i>&nbsp;Ajouter
                 </button>
-                <button type="button" class="btn btn-enregistrer-vente btn-primary mb-1"><i class="uil-save"></i>Enregistrer
-                </button>
+                <button type="button" class="btn btn-enregistrer-vente btn-primary mb-1"><i class="uil-save"></i>Enregistrer</button>
               </div>
               <!-- end d-grid -->
 
@@ -100,14 +98,12 @@
                 </tr>
                 </thead>
                 <tbody>
-
                 </tbody>
               </table>
 
 
               <div class="foot-vente d-none">
                 <p>Nombre d'article : <span>00</span></p>
-
                 <p class="">
                 <p>0Ar</p>
                 <p>0Fmg</p>
@@ -116,7 +112,6 @@
 
             </div>
           </div>
-
           <!-- end vente content -->
         </blockquote>
       </div> <!-- end card-body-->

@@ -15,6 +15,7 @@
             <hr>
 
             <div class="col-lg-5">
+
               <div class="mt-3 d-flex justify-content-start">
                 <div class="form-check">
                   <input type="radio" id="check-magasin" name="myradio" class="form-check-input" checked="true">
@@ -25,20 +26,63 @@
                   <label class="form-check-label" for="check-voyage">Voyage</label>
                 </div>
               </div>
+
               <div class="mt-1 mb-1 div-select-magasin">
                 <label for="select-magasin" class="form-label">Magasin</label>
                 <select class="form-select" id="select-magasin">
+                  <c:forEach var="magasin" items="${magasins}">
+                    <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
+                  </c:forEach>
                 </select>
               </div>
+              <br>
+
               <div class="mt-1 mb-1 div-select-voyage">
                 <label for="select-voyage" class="form-label">Voyage</label>
                 <select class="form-select" id="select-voyage">
                 </select>
               </div>
+
+              <div class="mb-1 div-select-magasin">
+                <label class="form-label">Fournisseur</label>
+                    <div class="input-group">
+                      <input id="name-client" type="text" class="form-control" placeholder="Nom du fournisseur"
+                             aria-label="Recipient's username">
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-liste-client" id="btn-search-client"><i class="uil-search"></i></button><br>
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-liste-client" id="btn-nouveau-fournisseur"><i class="uil-plus-circle"></i></button>
+                    </div>
+              </div>
+
+              <div class="mb-1 div-select-magasin">
+                <label class="form-label">Montant</label>
+                <div class="input-group">
+                  <input type="number" id="input-montant-approv-article" class="form-control" placeholder="0 Ar" value="0">
+                </div>
+              </div>
+
+              <div class="mb-1 div-select-magasin">
+                <label class="form-label">Paiement</label>
+                <div class="d-flex justify-content-start">
+                    <div class="form-check ml-3">
+                      <input type="radio" id="payement-credit" name="payement-radio" class="form-check-input" checked="true">
+                      <label class="form-check-label" for="payement-credit"> A credit</label>
+                    </div>&nbsp;&nbsp;&nbsp;
+                    <div class="form-check ml-3">
+                      <input type="radio" id="payement-comptant" name="payement-radio" class="form-check-input">
+                      <label class="form-check-label" for="payement-comptant">Au comptant</label>
+                    </div>
+                    <div class="form-check ml-3">
+                      <input type="radio" id="payement-autre" name="payement-radio" class="form-check-input">
+                      <label class="form-check-label" for="payement-autre">Autre</label>
+                    </div>
+                </div>
+              </div>
+
               <div class="mb-1">
                 <label for="input-reference-facture" class="form-label">Facture</label>
                 <input type="text" class="form-control" id="input-reference-facture">
               </div>
+
               <br>
               <h4>Ajouter Article</h4>
               <hr>
@@ -61,7 +105,6 @@
                 <div class="mb-1 col-md-6">
                   <label for="select-unite-article" class="form-label">Unite</label>
                   <select class="form-select" id="select-unite-article">
-
                   </select>
                 </div>
               </div>
@@ -121,12 +164,9 @@
   </div> <!-- end col-->
 
   <div class="all-modal">
-
     <!-- modal list -->
-
     <%@ include file="../modal/vente/list-article.jsp" %>
     <%@ include file="../modal/vente/prix-special.jsp" %>
-
     <!-- end modal list -->
   </div>
 </div>
