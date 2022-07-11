@@ -75,7 +75,6 @@
                 </div>
               </div>
 
-
               <div class="d-grid">
                 <button type="button" class="btn btn-ajouter-article-vente btn-success mb-1 mt-3"><i
                         class="uil-plus"></i>&nbsp;Ajouter
