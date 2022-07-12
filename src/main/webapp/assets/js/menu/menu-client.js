@@ -1,6 +1,7 @@
 $(function () {
     let namespace = "#menu-client ";
     let cfUrl = "http://localhost:8080/api/v1/externalEntities";
+
     $NOUVEAU_CLIENT  = true;
     let CLIENT = 0 ;
     // fermer l'info listes article facture

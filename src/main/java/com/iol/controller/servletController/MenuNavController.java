@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-public class MenuNavController{
+public class MenuNavController {
     @Autowired
     private CategorieRepository categorieRepository;
     @Autowired
@@ -48,150 +48,170 @@ public class MenuNavController{
         return modelAndView;
     }
 
-    @RequestMapping(value = "/ventes",method = RequestMethod.GET)
-    public ModelAndView getVentes(){
+    @RequestMapping(value = "/ventes", method = RequestMethod.GET)
+    public ModelAndView getVentes() {
         ModelAndView modelAndView = new ModelAndView("menu-vente");
-        modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
+        modelAndView.addObject(MAGASIN_LIST, magasinRepository.findAll());
+        modelAndView.addObject("cfList_vente", clientFournisseurRepository.getAllExternalEntities(CLIENT));
         return modelAndView;
     }
 
-    @RequestMapping(value = "/detail-ventes",method = RequestMethod.GET)
-    public String getDetailVentes(){
+    @RequestMapping(value = "/detail-ventes", method = RequestMethod.GET)
+    public String getDetailVentes() {
         return "menu-detail-vente";
     }
 
-    @RequestMapping(value = "/magasin",method = RequestMethod.GET)
-    public ModelAndView getMenuMagasin(){
+    @RequestMapping(value = "/magasin", method = RequestMethod.GET)
+    public ModelAndView getMenuMagasin() {
         List<Magasin> magasins = magasinRepository.findAll();
         ModelAndView modelAndView = new ModelAndView("menu-magasin");
-        modelAndView.addObject(MAGASIN_LIST,magasins);
+        modelAndView.addObject(MAGASIN_LIST, magasins);
         return modelAndView;
     }
 
-    @RequestMapping(value = "/stock",method = RequestMethod.GET)
-    public String getMenuStock(){
+    @RequestMapping(value = "/stock", method = RequestMethod.GET)
+    public String getMenuStock() {
         return "menu-stock";
     }
 
 
-    @RequestMapping(value = "/embarquement",method = RequestMethod.GET)
-    public String getMenuEmbarquement(){
+    @RequestMapping(value = "/embarquement", method = RequestMethod.GET)
+    public String getMenuEmbarquement() {
         return "embarquement/menu-embarquement";
     }
 
-    @RequestMapping(value = "/embarquement-nouveau",method = RequestMethod.GET)
-    public String getNouveauEmbarquement(){
+    @RequestMapping(value = "/embarquement-nouveau", method = RequestMethod.GET)
+    public String getNouveauEmbarquement() {
         return "embarquement/nouveau-embarquement";
     }
 
-    @RequestMapping(value = "/archivage",method = RequestMethod.GET)
-    public String getMenuArchivage(){
+    @RequestMapping(value = "/archivage", method = RequestMethod.GET)
+    public String getMenuArchivage() {
         return "menu-archivage";
     }
 
-    @RequestMapping(value = "/autorisation",method = RequestMethod.GET)
-    public String getMenuAutorisation(){
+    @RequestMapping(value = "/autorisation", method = RequestMethod.GET)
+    public String getMenuAutorisation() {
         return "menu-autorisation";
     }
 
-    @RequestMapping(value = "/caisse",method = RequestMethod.GET)
-    public String getMenuCaisse(){
+    @RequestMapping(value = "/caisse", method = RequestMethod.GET)
+    public String getMenuCaisse() {
         return "menu-caisse";
     }
 
-    @RequestMapping(value = "/client",method = RequestMethod.GET)
-    public ModelAndView getClient(){
+    @RequestMapping(value = "/client", method = RequestMethod.GET)
+    public ModelAndView getClient() {
         ModelAndView modelAndView = new ModelAndView("menu-client");
-        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(CLIENT));
+        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST, clientFournisseurRepository.getAllExternalEntities(CLIENT));
         return modelAndView;
     }
 
-    @RequestMapping(value = "/fournisseur",method = RequestMethod.GET)
-    public ModelAndView getMenuFournisseur(){
+    @RequestMapping(value = "/fournisseur", method = RequestMethod.GET)
+    public ModelAndView getMenuFournisseur() {
         ModelAndView modelAndView = new ModelAndView("menu-fournisseur");
-        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR));
+        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST, clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR));
         return modelAndView;
     }
 
-    @RequestMapping(value = "/livraison",method = RequestMethod.GET)
-    public String getMenuLivraison(){
+    @RequestMapping(value = "/livraison", method = RequestMethod.GET)
+    public String getMenuLivraison() {
         return "menu-livraison";
     }
 
-    @RequestMapping(value = "/paiement",method = RequestMethod.GET)
-    public String getMenuPaiement(){
+    @RequestMapping(value = "/paiement", method = RequestMethod.GET)
+    public String getMenuPaiement() {
         return "menu-paiement";
     }
 
-    @RequestMapping(value = "/peremption",method = RequestMethod.GET)
-    public String getMenuPeremption(){
+    @RequestMapping(value = "/peremption", method = RequestMethod.GET)
+    public String getMenuPeremption() {
         return "menu-peremption";
     }
 
 
-    @RequestMapping(value = "/utilisateur",method = RequestMethod.GET)
-    public ModelAndView getMenuUtilisateur(){
+    @RequestMapping(value = "/utilisateur", method = RequestMethod.GET)
+    public ModelAndView getMenuUtilisateur() {
         ModelAndView modelAndView = new ModelAndView("menu-utilisateur");
-        modelAndView.addObject(FONCTION_LIST,fonctionRepository.findAll());
-        modelAndView.addObject(USER_LIST,userRepository.findAll());
-        modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
-        return modelAndView ;
+        modelAndView.addObject(FONCTION_LIST, fonctionRepository.findAll());
+        modelAndView.addObject(USER_LIST, userRepository.findAll());
+        modelAndView.addObject(MAGASIN_LIST, magasinRepository.findAll());
+        return modelAndView;
     }
 
-    @RequestMapping(value = "/voyage",method = RequestMethod.GET)
-    public String getMenuVoyage(){
+    @RequestMapping(value = "/voyage", method = RequestMethod.GET)
+    public String getMenuVoyage() {
         return "menu-voyage";
     }
 
-    @RequestMapping(value = "/facture",method = RequestMethod.GET)
-    public String getMenuFacture(){
+    @RequestMapping(value = "/facture", method = RequestMethod.GET)
+    public String getMenuFacture() {
         return "menu-facture";
     }
 
-    @RequestMapping(value = "/prix",method = RequestMethod.GET)
-    public String getMenuPrix(){
+    @RequestMapping(value = "/prix", method = RequestMethod.GET)
+    public String getMenuPrix() {
         return "menu-prix";
     }
 
-    @RequestMapping(value = "/dashboard",method = RequestMethod.GET)
-    public String getDashboard(){
+    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+    public String getDashboard() {
         return "dashboard";
     }
 
     // menu des opérations
 
-    @RequestMapping(value = "/operation/liste",method = RequestMethod.GET)
-    public String getOperationListe(){
+    @RequestMapping(value = "/operation/liste", method = RequestMethod.GET)
+    public String getOperationListe() {
         return "operation/liste";
     }
 
-    @RequestMapping(value = "/operation/entree",method = RequestMethod.GET)
-    public ModelAndView getOperationEntree(){
+    @RequestMapping(value = "/operation/entree", method = RequestMethod.GET)
+    public ModelAndView getOperationEntree() {
         List<Magasin> magasins = magasinRepository.findAll();
         ModelAndView modelAndView = new ModelAndView("operation/entree");
         modelAndView.addObject(ARTICLE_LIST, this.articleRepository.findAll());
-        modelAndView.addObject(MAGASIN_LIST,magasins);
+        modelAndView.addObject(MAGASIN_LIST, magasins);
         return modelAndView;
     }
 
-    @RequestMapping(value = "/operation/sortie",method = RequestMethod.GET)
-    public String getOperationSortie(){
+    @RequestMapping(value = "/operation/sortie", method = RequestMethod.GET)
+    public String getOperationSortie() {
         return "operation/sortie";
     }
 
-    @RequestMapping(value = "/operation/transfert",method = RequestMethod.GET)
-    public String getOperationTransfert(){
+    @RequestMapping(value = "/operation/transfert", method = RequestMethod.GET)
+    public String getOperationTransfert() {
         return "operation/transfert";
     }
 
-    @RequestMapping(value = "/operation/changer-de-code",method = RequestMethod.GET)
-    public String getOperationLChangerDeCode(){
+    @RequestMapping(value = "/operation/changer-de-code", method = RequestMethod.GET)
+    public String getOperationLChangerDeCode() {
         return "operation/changer-de-code";
     }
 
-    @RequestMapping(value = "/operation/rectification",method = RequestMethod.GET)
-    public String getOperationRectification(){
+    @RequestMapping(value = "/operation/rectification", method = RequestMethod.GET)
+    public String getOperationRectification() {
         return "operation/rectification";
     }
 
+
+    /*
+
+    Administration
+
+     */
+
+    @RequestMapping(value = "/admin-client/dashboard",method = RequestMethod.GET)
+    public String getAdministrationClientHome(){
+        return "admin-client/dashboard";
+    }
+
+    @RequestMapping(value = "/admin/dashboard",method = RequestMethod.GET)
+    public String getAdministrationHome(){
+        return "administrateur/dashboard";
+    }
+
+
 }
+

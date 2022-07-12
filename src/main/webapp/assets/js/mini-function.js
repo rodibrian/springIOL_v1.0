@@ -1,3 +1,4 @@
+
 function set_select_option_value($array, $select) {
     $array = convertiMultiObjectToArray($array)
     $.each($array, function (key, value) {
@@ -119,4 +120,33 @@ function hideAndRemove($selector) {
 
 function insert_badge($bg, $label) {
     return `<span class="badge badge-` + $bg + `-lighten">` + $label + `</span>`
+}
+
+
+function enregistrerClientOuFournisseur(client){
+    let cfResourceUrl = NOUVEAU_FOURNISSEUR ? cfUrl :cfUrl+"/"+idCf;
+    let methodType = NOUVEAU_FOURNISSEUR ? "POST" : "PUT";
+    $.ajax({
+        type: methodType,
+        url: cfResourceUrl,
+        contentType: 'application/json',
+        data: JSON.stringify(client),
+        success: function (data){
+            if (NOUVEAU_FOURNISSEUR){
+                $fournisseur = [data.nom,data.adresse,data.numTel,0, $('<div class="action-fournisseur">\n' +
+                    '                <a id="" class="btn-sm btn-info editFournisseur "><i class="uil-pen"></i></a>\n' +
+                    '                <a id="" class="btn-sm btn-danger deleteFournisseur "><i class="uil-trash-alt"></i></a>\n' +
+                    '              </div>')];
+                push_to_table_list(namespace + '#table-fournisseur',data.id, $fournisseur);
+                createToast('bg-success', 'uil-icon-check', 'Fournisseur enregistre', 'Fournisseur enregistre avec succes!');
+            }else {
+                $trFournisseur.children().eq(0).text(nomFournisseur);
+                $trFournisseur.children().eq(1).text(adresse);
+                $trFournisseur.children().eq(2).text(contact);
+                createToast('bg-success', 'uil-icon-check', 'Modification Fournisseur enregistre', 'Modification Fournisseur enregistre avec succes!');
+            }
+            $(namespace + '#nouveau-fournisseur input').val('');
+            NOUVEAU_FOURNISSEUR = true;
+        }
+    });
 }

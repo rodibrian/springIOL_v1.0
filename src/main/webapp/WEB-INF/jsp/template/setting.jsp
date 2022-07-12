@@ -96,7 +96,6 @@
 <!-- /End-bar -->
 
 
-
 <!-- bundle -->
 <script src="${pageContext.request.contextPath}/assets/js/vendor.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/app.min.js"></script>
@@ -161,7 +160,7 @@
 <script src="${pageContext.request.contextPath}/assets/js/pages/demo.dashboard-projects.js"></script>
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"/>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
