@@ -28,6 +28,9 @@
               <div class="mt-1 mb-1 div-select-magasin">
                 <label for="select-magasin" class="form-label">Magasin</label>
                 <select class="form-select" id="select-magasin">
+                  <c:forEach var="magasin" items="${magasins}">
+                    <option value="${magasin.id}">${magasin.nomMagasin}></option>
+                  </c:forEach>
                 </select>
               </div>
               <div class="mt-1 mb-1 div-select-voyage">

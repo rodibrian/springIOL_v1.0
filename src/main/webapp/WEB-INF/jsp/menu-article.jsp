@@ -57,7 +57,7 @@
               <td><c:out value="${categorie.libelle}"/></td>
               <td>
                 <div class="d-inline-flex justify-content-center">
-                  <a id="${categorie.id}" data-bs-toggle="modal" data-bs-target="#standard-modal2" href="#"
+                  <a id="${categorie.id}" href="#"
                      class="editCategorie"><i class="uil-pen"></i></a>
                   <a id="${categorie.id}" href="#" class="deleteCategorie"><i class="uil-trash-alt"></i></a>
                 </div>&nbsp;

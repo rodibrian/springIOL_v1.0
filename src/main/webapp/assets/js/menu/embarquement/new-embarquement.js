@@ -104,4 +104,100 @@ $(function(){
     })
 
 
+    /*--------------------------------------------
+
+                        TRANSPORT
+
+     --------------------------------------------*/
+
+    // Nouveau materiel de transport
+
+    $(namespace + "#btn-nouveau-moyen-de-transport").on('click', function() {
+        $(namespace + "#nouveau-materiel-de-transport").modal('show')
+    })
+
+    // Click button enregistrer materiel de transport
+
+    $(namespace + "#btn-enregistrer-materiel-de-transport").on('click', function() {
+        $reference = $(namespace + '#reference').val();
+        $typeMateriel = $(namespace + '#type-materiel').val();
+
+        $materielTransport = {};
+        $materielTransport.reference = $reference;
+        $materielTransport.typeMateriel = $typeMateriel;
+
+        enregistrerMaterielTransport($materielTransport);
+    })
+
+    // Enregistrement materiel de transport
+
+    function  enregistrerMaterielTransport($object) {
+        let materieltransportURL = 'http://localhost:8080/api/v1/materieltransport';
+        let jsonData = $object
+        $.ajax({
+            type: 'POST',
+            url: materieltransportURL,
+            contentType: 'application/json',
+            data: JSON.stringify(jsonData),
+            success: function (data) {
+                //reset the input
+                $(namespace + '#nouveau-materiel-de-transport input').val('');
+                set_select_option_value([[data.id, data.typeMateriel]], namespace + '#input-moyen-de-transport');
+                $(namespace + '#input-moyen-de-transport').val(data.id).change();
+            }
+        });
+    }
+
+
+    /*------------------------------------------
+
+                    FOURNISSEUR
+
+    --------------------------------------------*/
+
+    // Nouveau Fournisseur
+
+    $(namespace + "#btn-nouveau-fournisseur").on('click', function() {
+        $(namespace + "#nouveau-fournisseur").modal('show')
+    })
+
+    // Click button enregistrer fournisseur
+
+    $(namespace + "#btn-enregistrer-fournisseur").on('click', function() {
+        $nom = $(namespace + '#nom').val();
+        $adresse = $(namespace + '#adresse').val();
+        $contact = $(namespace + '#contact').val();
+
+        $fournisseur = {};
+        $fournisseur.nom = $nom;
+        $fournisseur.adresse = $adresse;
+        $fournisseur.numTel = $contact;
+        $fournisseur.type = 1;
+
+        enregistrerClientOuFournisseur($fournisseur);
+    })
+
+    // Enregistrement materiel de transport
+
+    function  enregistrerClientOuFournisseur($object) {
+        let clientOuFournisseurURL = 'http://localhost:8080/api/v1/externalEntities';
+        let jsonData = $object
+        $.ajax({
+            type: 'POST',
+            url: clientOuFournisseurURL,
+            contentType: 'application/json',
+            data: JSON.stringify(jsonData),
+            success: function (data) {
+                //reset the input
+                $(namespace + '#nouveau-fournisseur input').val('');
+                set_select_option_value([[data.id, data.nom]], namespace + '#select-fournisseur');
+                $(namespace + '#select-fournisseur').val(data.id).change();
+            }
+        });
+    }
+
+
+
+
+
 })

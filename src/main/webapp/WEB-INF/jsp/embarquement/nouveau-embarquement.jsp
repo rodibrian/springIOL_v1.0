@@ -10,48 +10,50 @@
           <!-- vente content -->
 
           <div class="row">
-            <h4>Nouveau Embarquement</h4>
+            <h4 class="label-title">Nouveau Embarquement</h4>
             <hr>
             <div class="col-lg-5 form-embarquement">
               <div class="mb-1">
-                <label for="example-select" class="form-label">Reference</label>
-                <input type="text" class="form-control" placeholder="2022/001">
+                <label for="input-reference" class="form-label">Reference</label>
+                <input type="text" id="input-reference" class="form-control" placeholder="2022/001">
               </div>
               <div class="mb-1">
-                <label for="example-select" class="form-label">Moyen de transport</label>
+                <label for="input-moyen-de-transport" class="form-label">Moyen de transport</label>
                 <div class="input-group">
-                  <select class="form-select" id="example-select">
-                    <option>MoyenDeTransport</option>
+                  <select class="form-select" id="input-moyen-de-transport">
+                    <c:forEach var="mat_transport" items="${materiel_transportList}" >
+                      <option value="${mat_transport.id}">${mat_transport.typeMateriel}</option>
+                    </c:forEach>
                   </select>
-                  <a href="" role="button" class="btn btn-primary" data-bs-toggle="modal"
-                     data-bs-target="#new-bateau"><i class="uil-plus"></i></a>
+                  <a type="button" role="button" class="btn btn-primary" id="btn-nouveau-moyen-de-transport"><i class="uil-plus"></i></a>
                 </div>
 
               </div>
               <div class="mb-1">
-                <label for="example-select" class="form-label">Nom du Fournisseur</label>
+                <label for="select-fournisseur" class="form-label">Nom du Fournisseur</label>
                 <div class="input-group">
-                  <select class="form-select" id="example-select">
-                    <option>nomFournisseur</option>
+                  <select class="form-select" id="select-fournisseur">
+                    <c:forEach var="frs" items="${cfList_embarquement}" >
+                      <option value="${frs.id}">${frs.nom}</option>
+                    </c:forEach>
                   </select>
-                  <a href="" role="button" class="btn btn-primary" data-bs-toggle="modal"
-                     data-bs-target="#new-bateau"><i class="uil-plus"></i></a>
+                  <a role="button" class="btn btn-primary" id="btn-nouveau-fournisseur"><i class="uil-plus"></i></a>
                 </div>
 
               </div>
               <div class="mb-1">
-                <label class="form-label">Trajet</label>
-                <input type="text" class="form-control" placeholder="depart - destination">
+                <label for="input-trajet" class="form-label">Trajet</label>
+                <input type="text" id="input-trajet" class="form-control" placeholder="depart - destination">
               </div>
               <div class="mb-1">
-                <label class="form-label">Facture</label>
-                <input type="text" class="form-control" placeholder="reference facture">
+                <label for="input-facture" class="form-label">Facture</label>
+                <input type="text" id="input-facture" class="form-control" placeholder="reference facture">
               </div>
 
               <hr>
 
               <div class="mb-1">
-                <label class="form-label">Designation</label>
+                <label class="designation-article">Designation</label>
                 <div class="input-group">
                   <input type="text" id="designation-article" class="form-control" placeholder="Nom de l'article"
                          aria-label="Recipient's username">
@@ -124,6 +126,9 @@
 
               <!-- modal list -->
 
+
+              <%@ include file="../modal/embarquement/new-materiel-de-transport.jsp" %>
+              <%@ include file="../modal/fournisseur/new-fournisseur.jsp" %>
               <%@ include file="../modal/vente/list-article.jsp" %>
               <%@ include file="../modal/vente/prix-special.jsp" %>
               <%@ include file="../modal/new-chauffeur.jsp" %>

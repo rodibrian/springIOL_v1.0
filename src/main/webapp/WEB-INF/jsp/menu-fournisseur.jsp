@@ -65,8 +65,8 @@
               <td><c:out value="${cf.totalMontantTrosa}"/></td>
               <td>
                 <div class="action-client">
-                  <a  class="btn-sm btn-info editClient "><i class="uil-pen"></i></a>
-                  <a  class="btn-sm btn-danger deleteClient "><i class="uil-trash-alt"></i></a>
+                  <a  class="btn-sm btn-info editFournisseur"><i class="uil-pen"></i></a>
+                  <a  class="btn-sm btn-danger deleteFournisseur"><i class="uil-trash-alt"></i></a>
                 </div>
               </td>
             </tr>

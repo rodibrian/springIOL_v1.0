@@ -108,6 +108,20 @@ MENU VOYAGE
 OTHER CSS PROPRIETIES
  */
 
+.force-to-bottom {
+    position:absolute;
+    bottom: 3%;
+    width: 100%;
+}
+
+.force-right {
+    right: 0;
+}
+
+.force-left {
+    left: 3%;
+}
+
 td.text-align-right {
     text-align: right;
 }

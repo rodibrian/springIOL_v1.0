@@ -1,5 +1,6 @@
 $(function () {
     let namespace = "#standard-modal2 ";
+
     let isUpdateOperation = false;
     let editBtnId = 1;
     let selectedVal = "";
@@ -58,15 +59,21 @@ $(function () {
             isUpdateOperation = false;
         }
     });
-    $(".editCategorie").click(function () {
+
+    // editer categorie
+
+    $(document).on('click', ".editCategorie",function () {
+        $(namespace).modal('show')
         isUpdateOperation = true;
         editBtnId = $(this).attr("id");
         siblings = $(this).parent().parent().siblings();
         let text = siblings.html();
         selectedVal = $("#nomCategorie").val(text);
-    })
+    });
 
-    $(".deleteCategorie").click(function () {
+    // supprimer categorie
+
+    $(document).on('click', ".deleteCategorie",function () {
         let btn = $(this);
         let deleteBtnId = btn.attr("id");
         let url = "http://localhost:8080/api/v1/categories/" + deleteBtnId;
@@ -77,5 +84,5 @@ $(function () {
             }
         });
         createToast('bg-danger', 'uil-trash-alt', 'Suppression Fait', 'Suppression du cat&eacute;gorie effectu&eacute; avec succ&egrave;s!')
-    })
+    });
 });

@@ -15,7 +15,6 @@ function set_select_option_value_ajax($array, $select) {
             .append($("<option></option>")
                 .attr("value", value.id)
                 .text(value.nomMagasin));
-        console.log($($select).html())
     });
 }
 
@@ -123,7 +122,7 @@ function insert_badge($bg, $label) {
 }
 
 
-function enregistrerClientOuFournisseur(client){
+function enregistrerClientOuFournisseur_(client){
     let cfResourceUrl = NOUVEAU_FOURNISSEUR ? cfUrl :cfUrl+"/"+idCf;
     let methodType = NOUVEAU_FOURNISSEUR ? "POST" : "PUT";
     $.ajax({
@@ -149,4 +148,12 @@ function enregistrerClientOuFournisseur(client){
             NOUVEAU_FOURNISSEUR = true;
         }
     });
+}
+
+function publicite() {
+    console.log('-- Publicite --')
+}
+
+function personnaliserMenu($title) {
+    $('title').text('IOL - ' + $title)
 }

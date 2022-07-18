@@ -12,21 +12,6 @@ $(function () {
 
     // données prédefini
 
-    $lesMagasins = [
-        {
-            code: "m-I", nom: "Magasin I"
-        },
-        {
-            code: "m-II", nom: "Magasin II"
-        },
-        {
-            code: "m-III", nom: "Magasin III"
-        },
-        {
-            code: "m-IV", nom: "Magasin IV"
-        }
-    ];
-
     $lesVoyages = [
         {
             reference: "v-123", libelle: "Voyage Ier"
@@ -35,8 +20,6 @@ $(function () {
             reference: "v-456", libelle: "Voyage IIem"
         }
     ]
-
-    set_select_option_value($lesMagasins, namespace + "#select-magasin")
 
     set_select_option_value($lesVoyages, namespace + "#select-voyage")
 

@@ -25,12 +25,17 @@ public class MenuNavController {
     @Autowired
     private ClientFournisseurRepository clientFournisseurRepository;
 
+    @Autowired
+    private MaterielTransportRepository materielTransportRepository;
+
     private final String CATEGORIE_LIST = "categories";
     private final String ARTICLE_LIST = "articles";
     private final String MAGASIN_LIST = "magasins";
     private final String FONCTION_LIST = "fonctions";
     private final String USER_LIST = "users";
     private final String CLIENT_FOURNISSEUR_LIST = "cfList";
+
+    private final String MATERIEL_TRANSPORT_LIST = "materiel_transportList";
     private final int CLIENT = 0;
     private final int FOURNISSEUR = 1;
 
@@ -81,8 +86,11 @@ public class MenuNavController {
     }
 
     @RequestMapping(value = "/embarquement-nouveau", method = RequestMethod.GET)
-    public String getNouveauEmbarquement() {
-        return "embarquement/nouveau-embarquement";
+    public ModelAndView getNouveauEmbarquement() {
+        ModelAndView modelAndView = new ModelAndView("embarquement/nouveau-embarquement");
+        modelAndView.addObject("cfList_embarquement", clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR));
+        modelAndView.addObject(MATERIEL_TRANSPORT_LIST, this.materielTransportRepository.findAll());
+        return modelAndView;
     }
 
     @RequestMapping(value = "/archivage", method = RequestMethod.GET)
@@ -155,8 +163,11 @@ public class MenuNavController {
     }
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public String getDashboard() {
-        return "dashboard";
+    public ModelAndView getDashboard() {
+        ModelAndView modelAndView = new ModelAndView("dashboard");
+        modelAndView.addObject("client_list", clientFournisseurRepository.getAllExternalEntities(CLIENT));
+        modelAndView.addObject("fournisseur_list", clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR));
+        return modelAndView;
     }
 
     // menu des opérations
@@ -176,8 +187,11 @@ public class MenuNavController {
     }
 
     @RequestMapping(value = "/operation/sortie", method = RequestMethod.GET)
-    public String getOperationSortie() {
-        return "operation/sortie";
+    public ModelAndView getOperationSortie() {
+        List<Magasin> magasins = magasinRepository.findAll();
+        ModelAndView modelAndView = new ModelAndView("operation/sortie");
+        modelAndView.addObject(MAGASIN_LIST, magasins);
+        return modelAndView;
     }
 
     @RequestMapping(value = "/operation/transfert", method = RequestMethod.GET)

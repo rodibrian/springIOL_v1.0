@@ -14,7 +14,10 @@
         </div>
         <div class="mb-1">
           <label for="materielDeTransport" class="form-label">Materiel de transport</label>
-          <input name="materielDeTransport" type="text" id="materielDeTransport" class="form-control">
+          <select name="materielDeTransport" class="form-control" id="materielDeTransport">
+            <option value="1">Auto</option>
+            <option value="2">Moto</option>
+          </select>
         </div>
         <div class="mb-1">
           <label for="dateVoyage" class="form-label">Date de voyage</label>
@@ -27,7 +30,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-        <button id="btnSaveVoyage" data-bs-dismiss="modal" type="button" class="btn btn-primary">Enregistrer</button>
+        <button id="btn-enregistrer-voyage" data-bs-dismiss="modal" type="button" class="btn btn-primary">Enregistrer</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

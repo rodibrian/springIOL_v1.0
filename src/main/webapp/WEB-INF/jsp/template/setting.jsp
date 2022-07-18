@@ -1,11 +1,12 @@
 </div>
+
 <!-- END wrapper -->
 
 <!-- Right Sidebar -->
 <div class="end-bar">
 
   <div class="rightbar-title">
-    <a href="../jsp/javascript:void(0);" class="end-bar-toggle float-end">
+    <a href="" class="end-bar-toggle float-end">
       <i class="dripicons-cross noti-icon"></i>
     </a>
     <h5 class="m-0">Paramètres</h5>
@@ -97,17 +98,26 @@
 
 
 <!-- bundle -->
+
 <script src="${pageContext.request.contextPath}/assets/js/vendor.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/app.min.js"></script>
 
 <!-- third party js -->
+
 <script src="${pageContext.request.contextPath}/assets/js/vendor/apexcharts.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
+
 <!-- third party js ends -->
 
+<script src="${pageContext.request.contextPath}/assets/js/vendor/apexcharts.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
+
 <!-- demo app -->
+
 <script src="${pageContext.request.contextPath}/assets/js/pages/demo.dashboard.js"></script>
+
 <!-- end demo js-->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -141,6 +151,7 @@
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-livraison.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-paiement.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-utilisateur.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/menu/menu-voyage.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/embarquement/menu-embarquement.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/embarquement/new-embarquement.js"></script>
 
@@ -149,14 +160,19 @@
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-magasin.js"></script>
 
 <!-- admin client -->
+
 <script src="${pageContext.request.contextPath}/assets/js/menu/admin-client/dashboard.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/administrateur/dashboard.js"></script>
 
 
 <!-- third party js -->
+
 <script src="${pageContext.request.contextPath}/assets/js/vendor/Chart.bundle.min.js"></script>
+
 <!-- third party js ends -->
+
 <!-- demo app -->
+
 <script src="${pageContext.request.contextPath}/assets/js/pages/demo.dashboard-projects.js"></script>
 
 

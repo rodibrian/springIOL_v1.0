@@ -94,7 +94,12 @@
           <div class="table-responsive">
             <table class="table table-special-form table-liste-dette-client table-centered table-striped table-nowrap table-hover mb-0">
               <tbody>
-
+              <c:forEach var="clt" items="${client_list}">
+                <tr id="${clt.id}">
+                  <td>${clt.nom}</td>
+                  <td class="text-end">${clt.totalMontantTrosa} Ar</td>
+                </tr>
+              </c:forEach>
               </tbody>
             </table>
           </div> <!-- end table-responsive-->
@@ -102,6 +107,7 @@
       </div> <!-- end card-->
     </div>
     <div class="col-lg-4">
+
 
       <!-- begin row-->
       <div class="row">
@@ -145,6 +151,12 @@
           <div class="table-responsive">
             <table class="table table-special-form table-liste-dette-fournisseur table-centered table-striped table-nowrap table-hover mb-0">
               <tbody>
+              <c:forEach var="frs" items="${fournisseur_list}">
+                <tr id="${frs.id}">
+                  <td>${frs.nom}</td>
+                  <td class="text-end">${frs.totalMontantTrosa} Ar</td>
+                </tr>
+              </c:forEach>
               </tbody>
             </table>
           </div> <!-- end table-responsive-->

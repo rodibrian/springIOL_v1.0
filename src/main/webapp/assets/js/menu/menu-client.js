@@ -48,9 +48,9 @@ $(function () {
                     push_to_table_list(namespace + '#table-client',data.id, $client);
                     createToast('bg-success', 'uil-icon-check', 'Client enregistre', 'Client enregistre avec succes!');
                 }else {
-                    $trClient.children().eq(0).text(nomClient);
-                    $trClient.children().eq(1).text(adresse);
-                    $trClient.children().eq(2).text(contact);
+                    $trClient.children().eq(0).text(client.nomClient);
+                    $trClient.children().eq(1).text(client.adresse);
+                    $trClient.children().eq(2).text(client.contact);
                     createToast('bg-success', 'uil-icon-check', 'Modification Client enregistre', 'Modification Client enregistre avec succes!');
                 }
                 $(namespace + '#nouveau-client input').val('');

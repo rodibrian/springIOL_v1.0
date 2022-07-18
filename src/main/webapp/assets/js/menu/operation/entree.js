@@ -30,7 +30,6 @@ $(function () {
         fr.adresse = adresse;
         fr.numTel = contact;
         fr.type = 1;
-        //enregistrerClientOuFournisseur(fr)
 
         get_select_affect_to_input(namespace + '#input-nom-fournisseur','', nomFournisseur);
 

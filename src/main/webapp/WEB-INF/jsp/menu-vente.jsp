@@ -100,11 +100,10 @@
               </table>
 
 
-              <div class="foot-vente d-none">
-                <p>Nombre d'article : <span>00</span></p>
-                <p class="">
-                <p>0Ar</p>
-                <p>0Fmg</p>
+              <div class="foot-vente d-flex justify-content-end text-decoration-underline">
+                <p class="m-1">Nombre d'article : <span>00</span></p>
+                <p class="m-1">
+                  <p class="m-1">Somme : 0Ar (0Fmg)</p>
                 </p>
               </div>
 

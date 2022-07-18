@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 
 @SpringBootApplication
 public class Iol {
-    public static void main(String[] args) {
+    public static void main(String[] args){
 //        Trosa t = new Trosa();
 //        t.setMontant(2L);
 //        List<Trosa> t1 = List.of(t, t, t, t);

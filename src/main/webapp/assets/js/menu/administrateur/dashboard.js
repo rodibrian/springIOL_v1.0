@@ -1,5 +1,7 @@
 $(function () {
 
+    publicite()
+
     /*
 
     Tableau de bord societe

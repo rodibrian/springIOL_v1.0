@@ -13,20 +13,20 @@
     <!-- LOGO -->
     <a href="/dashboard" class="logo text-center logo-light">
                     <span class="logo-lg">
-                        <img src="../images/logo.png" alt="" height="16">&nbsp; I-jeery OnLine v1.0
+                        <img src="../../../assets/images/logo.png" alt="" height="16">&nbsp; I-jeery OnLine v1.0
                     </span>
       <span class="logo-sm">
-                        <img src="../images/logo.png" alt="" height="16">
+                        <img src="../../../assets/images/logo.png" alt="" height="16">
                     </span>
     </a>
 
     <!-- LOGO -->
-    <a href="index.php" class="logo text-center logo-dark">
+    <a href="../dashboard.jsp" class="logo text-center logo-dark">
                     <span class="logo-lg">
-                        <img src="../images/logo-dark.png" alt="" height="16">
+                        <img src="../../../assets/images/logo-dark.png" alt="" height="16">
                     </span>
       <span class="logo-sm">
-                        <img src="../images/logo_sm_dark.png" alt="" height="16">
+                        <img src="../../../assets/images/logo_sm_dark.png" alt="" height="16">
                     </span>
     </a>
 
@@ -231,6 +231,7 @@
 
 
     <!-- inclusion des modals -->
+
     <%@ include file="../modal/menu-choix-magasin.jsp" %>
     <%@ include file="../modal/menu-choix-de-bdd.jsp" %>
     <%@ include file="../modal/menu-sauvegarde.jsp" %>
