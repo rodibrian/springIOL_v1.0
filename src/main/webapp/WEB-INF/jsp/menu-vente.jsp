@@ -1,5 +1,7 @@
 <%@ include file="template/head.jsp" %>
 
+<i class="no-title" title="Vente"></i>
+
 <div class="row d-flex justify-content-center align-items-center bg-ligth" id="menu-vente" data-plugin="dragula">
   <div class="col-md-11">
     <div class="card mt-3 mb-3">

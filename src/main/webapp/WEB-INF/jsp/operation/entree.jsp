@@ -1,5 +1,6 @@
 <%@ include file="../template/head.jsp" %>
 
+<i class="no-title" title="Entree"></i>
 
 <div class="row d-flex justify-content-center align-items-center bg-secondary namespace" id="menu-entree-article"
      data-plugin="dragula">

@@ -1,5 +1,6 @@
 <%@ include file="../template/head.jsp" %>
 
+<i class="no-title" title="Nouveau Embarquement"></i>
 
 <div class="row d-flex justify-content-center align-items-center" id="nouveau-embarquement" data-plugin="dragula">
   <div class="col-md-11">
