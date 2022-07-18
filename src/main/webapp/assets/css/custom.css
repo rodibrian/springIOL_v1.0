@@ -47,16 +47,16 @@
     cursor: pointer !important;
 }
 
-/*
-NOUVEAU ARTICLE
-*/
+/*------------------------------------------------------
+                            NOUVEAU ARTICLE
+-------------------------------------------------------*/
 
 #table-unite tbody tr {
 }
 
-/*
-MENU PRIX
-*/
+/*------------------------------------------------------
+                            MENU PRIX
+-------------------------------------------------------*/
 
 .uil-size-40 {
     font-size: 7.5em!important;
@@ -66,9 +66,9 @@ MENU PRIX
     font-size: 2.5em !important;
 }
 
-/*
-MENU CLIENT
-*/
+/*------------------------------------------------------
+                            MENU CLIENT
+-------------------------------------------------------*/
 
 #table-client tbody tr td .action-client {
     visibility: hidden;
@@ -79,9 +79,9 @@ MENU CLIENT
 }
 
 
-/*
-MENU FOURNISSEUR
-*/
+/*------------------------------------------------------
+                            MENU FOURNISSEUR
+-------------------------------------------------------*/
 
 #table-fournisseur tbody tr td .action-fournisseur {
     visibility: hidden;
@@ -92,9 +92,9 @@ MENU FOURNISSEUR
 }
 
 
-/*
-MENU VOYAGE
-*/
+/*------------------------------------------------------
+                            MENU VOYAGE
+-------------------------------------------------------*/
 
 #table-voyage tbody tr td .action-voyage {
     visibility: hidden;
@@ -104,9 +104,9 @@ MENU VOYAGE
     visibility: visible;
 }
 
-/*
-OTHER CSS PROPRIETIES
- */
+/*------------------------------------------------------
+                            OTHER CSS PROPRIETIES
+ -------------------------------------------------------*/
 
 .force-to-bottom {
     position:absolute;
@@ -126,9 +126,9 @@ td.text-align-right {
     text-align: right;
 }
 
-/*
-TOAST
- */
+/*------------------------------------------------------
+                            TOAST
+ -------------------------------------------------------*/
 
 .toast-css {
     z-index: 9999!important;
@@ -137,12 +137,11 @@ TOAST
 }
 .toast-css .toast-body {
     text-shadow: 1px 1px 2px #262626, 0 0 1em #262626, 0 0 0.2em #262626;
-    /*text-shadow: #262626 1px 0 10px;*/
 }
 
-/*
-CAISSE
- */
+/*------------------------------------------------------
+                            CAISSE
+ -------------------------------------------------------*/
 
 .type-caisse {
     cursor: pointer;
@@ -152,11 +151,9 @@ CAISSE
     opacity: .8;
 }
 
-/*
-
-BOX
-
- */
+/*--------------------------------------
+                BOX
+ ---------------------------------------*/
 
 .modal-content {
     border: 2px solid gray!important;
