@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -29,8 +30,8 @@ public class Supply implements Serializable{
    @JoinColumn(name = "fournisseur_id",foreignKey =@ForeignKey(name = "approv_fournisseur_key_constraint"))
    private ClientFournisseur fournisseur;
 
-   @OneToMany(cascade = CascadeType.ALL,mappedBy = "supply")
-   private List<InfoArticleMagasin> infoArticleMagasin;
+   @OneToOne(cascade = CascadeType.ALL,mappedBy = "supply")
+   private InfoArticleMagasin infoArticleMagasin;
 
    @ManyToOne(cascade = CascadeType.MERGE)
    @JoinColumn(name = "user_id",foreignKey =@ForeignKey(name = "approv_user_key_constraint"))
@@ -38,7 +39,7 @@ public class Supply implements Serializable{
 
    private Double montantApprov;
 
-   private Float quantiteApprov;
+   private LocalDate date;
 
    @Column(columnDefinition = "TEXT")
    private String refFacture;

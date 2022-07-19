@@ -89,7 +89,7 @@ $(function () {
             quantiteStock : quantite,
             date : dateApprov,
             datePeremption : datePeremption,
-            approvisionnement : approv
+            supply : approv
         }
         infoArticletab.push(infoArticleMagasin);
         prixTab.push(prixObj)
@@ -131,13 +131,15 @@ $(function () {
                         contentType: "application/json",
                         data: JSON.stringify(infoArticletab),
                         success : function (data){
-                            // $('#' + $modalId).modal('hide');
-                            // $('#' + $modalId).remove();
-                            // $(namespace + '#table-liste-article-entree tbody tr').remove();
-                            // createToast('bg-success',
-                            //     'uil-file-check',
-                            //     'Entr&eacute;e d\'article fait',
-                            //     $nArticle + ' articles enregistr&eacute;es avec succ&egrave;s!');
+                            infoArticletab=[];
+                            prixTab = [];
+                            $('#' + $modalId).modal('hide');
+                            $('#' + $modalId).remove();
+                            $(namespace + '#table-liste-article-entree tbody tr').remove();
+                            createToast('bg-success',
+                                'uil-file-check',
+                                'Entr&eacute;e d\'article fait',
+                                $nArticle + ' articles enregistr&eacute;es avec succ&egrave;s!');
                             console.log(data);
                         }
                 });
