@@ -8,18 +8,30 @@ function set_select_option_value($array, $select) {
     });
 }
 
+
+function set_select_option_value_or_update_option($array,$select,$isCreate) {
+    $array = convertiMultiObjectToArray($array)
+    $.each($array, function (key, value) {
+        if ($isCreate){
+            $($select)
+                .append($("<option></option>")
+                    .attr("value", value[0])
+                    .text(value[1]));
+        }else{
+            let option = $("#menu-entree-article #select-unite-article").children()[0];
+            $(option).attr("value", value[0]).text(value[1]);
+        }
+    });
+
+}
+
 function set_select_option_value_ajax($array, $select) {
     $.each($array, function (key, value) {
         $($select)
             .append($("<option></option>")
                 .attr("value", value.id)
                 .text(value.nomMagasin));
-        console.log($($select).html())
     });
-}
-
-function deleteMagasin(){
-
 }
 
 function push_select_option_value($array, $select) {

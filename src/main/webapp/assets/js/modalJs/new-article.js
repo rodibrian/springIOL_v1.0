@@ -64,7 +64,7 @@ $(function () {
                         select.append(option);
                     }
                 }
-            } else {
+            } else{
                 $.ajax({
                     type: 'GET',
                     url: categorieUrl,
@@ -77,70 +77,83 @@ $(function () {
                 });
             }
         });
-
-        function createArticleAndUnite() {
-            let designation = $("#designation").val();
-            let categorieId = $("#categorie option:selected").val();
-            let categorieLibelle = $("#categorie option:selected").text();
-            let articleStatus = "USED";
+        function getAllUniteOnTable(data) {
             let tr = $('#table-unite tbody tr');
-            let uniteTab = [];
+            let articleId = data.id;
+            let articleUniteTab = [];
             for (let i = 0; i < tr.length; i++) {
-                let unite = [];
+                let uniteRow = [];
                 let td = $(tr[i]).children();
                 let trId = $(tr[i]).attr("id");
                 let input = td.find("input");
                 for (let j = 0; j < input.length; j++) {
-                    unite.push(input[j].value)
+                    uniteRow.push(input[j].value)
                 }
-                let uniteObject = {};
-                uniteObject.code = unite[0];
-                uniteObject.niveau = unite[1];
-                uniteObject.designation = unite[2];
-                uniteObject.quantite = unite[3];
-                uniteObject.poids = unite[4];
-
-                if (!isCreateArticle)
-                    uniteObject.id = trId;
-                uniteTab.push(uniteObject);
-            }
+                // UNITE
+                let unite = {};
+                unite.code = uniteRow[0];
+                unite.designation = uniteRow[2];
+                // ARTICLE UNITE
+                let articleUnite = {};
+                articleUnite.article = {
+                    id: articleId
+                };
+                articleUnite.unite = unite;
+                articleUnite.niveau = uniteRow[1];
+                articleUnite.quantiteNiveau = uniteRow[3];
+                articleUnite.poids = uniteRow[4];
+                articleUniteTab.push(articleUnite);
+            };
+            return articleUniteTab;
+        }
+        function createArticleAndUnite(){
+            let designation = $("#designation").val();
+            let categorieId = $("#categorie option:selected").val();
+            let categorieLibelle = $("#categorie option:selected").text();
+            let articleStatus = "USED";
             let article = {}
             article.designation = designation;
             article.categorie = {id: categorieId, libelle: categorieLibelle};
-            article.unite = uniteTab;
             article.status = articleStatus;
-            if (!isCreateArticle) {
-                article.id = editedArticleId;
+            if (!isCreateArticle) article.id = editedArticleId;
+            function saveAllUnite(data) {
+                let articleUniteTab = getAllUniteOnTable(data);
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8080/api/v1/unites",
+                    contentType: 'application/json',
+                    data: JSON.stringify(articleUniteTab),
+                    success: function (data){
+                        let table = $("#articleTable tbody");
+                        articleUniteTab.forEach(function (au) {
+                            let tableRow = `
+                             <tr id=` + au.article.id +`>
+                                <td>` + article.designation+ `</td>
+                                <td>` + au.unite.code  +`</td>
+                                <td>` + article.categorie.libelle  + `</td>
+                                <td>` + au.poids+ `</td>
+                                <td>` + au.unite.designation + `</td>
+                                <td>` + au.quantiteNiveau+ `</td>
+                                <td>
+                                            <div>
+                                                <a id="` + au.article.id + `" class="btn-sm btn-info editArticleBtn"><i class="uil-pen"></i></a>
+                                                <a id="` + au.article.id + `"  class="btn-sm btn-danger deleteArticleBtn "><i class="uil-trash-alt"></i></a>
+                                                <a id="` + au.article.id+ `"  class="btn-sm btn-warning hideArticleBtn"><i class="uil-eye-slash"></i></a>
+                                            </div>
+                                </td>
+                            </tr>`;
+                            table.append(tableRow);
+                        });
+                    }
+                })
             }
-            let url = "http://localhost:8080/api/v1/articles";
             $.ajax({
                 type: 'POST',
-                url: url,
+                url: $articleUrl,
                 contentType: 'application/json',
                 data: JSON.stringify(article),
                 success: function (data) {
-                    console.log(data)
-                    let table = $("#articleTable tbody");
-                    let uniteTab = data.unite;
-                    uniteTab.forEach(function (unite) {
-                        let tableRow = `
-                         <tr>
-                            <td>` + unite.code + `</td>
-                            <td>` + data.designation + `</td>
-                            <td>` + unite.designation + `</td>
-                            <td>` + unite.quantite + `</td>
-                            <td>` + unite.poids + `</td>
-                            <td>` + data.categorie.libelle + `</td>
-                            <td>
-                                        <div>   
-                                            <a id="` + data.id + `" class="btn-sm btn-info editArticleBtn"><i class="uil-pen"></i></a>
-                                            <a id="` + data.id + `"  class="btn-sm btn-danger deleteArticleBtn "><i class="uil-trash-alt"></i></a>
-                                            <a id="` + data.id + `"  class="btn-sm btn-warning hideArticleBtn"><i class="uil-eye-slash"></i></a>
-                                        </div>
-                            </td>
-                        </tr>`;
-                        table.append(tableRow);
-                    });
+                    saveAllUnite(data);
                 }
             });
         }
@@ -148,7 +161,6 @@ $(function () {
         function updateArticle() {
             let designation = $("#designation").val();
             let categorieLibelle = $("#categorie option:selected").text();
-
         }
 
         // enregistrement de l'article

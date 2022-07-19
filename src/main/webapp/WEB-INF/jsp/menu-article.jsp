@@ -81,35 +81,33 @@
         <table id="articleTable" class="table table-sm dt-responsive nowrap table-hover">
           <thead>
           <tr>
-            <th>Code</th>
-            <th>Designation</th>
-            <th>Unite</th>
-            <th>Quantité</th>
-            <th>Poids(Kg)</th>
-            <th>Categorie</th>
-            <th class="text-center">Action</th>
+              <th>Designation</th>
+              <th>categorie</th>
+              <th>Code</th>
+              <th>Poids(Kg)</th>
+              <th>unite</th>
+              <th>quantite</th>
+              <th class="text-center">Action</th>
           </tr>
           </thead>
           <tbody>
           <c:forEach var="article" items="${articles}">
-            <c:forEach var="unite" items="${article.getUnite()}">
-              <tr id ="${article.id}">
-                <td><c:out value="${unite.code}"/></td>
-                <td><c:out value="${article.designation}"/></td>
-                <td><c:out value="${unite.designation}"/></td>
-                <td><c:out value="${unite.quantite}"/></td>
-                <td><c:out value="${unite.poids}"/></td>
-                <td><c:out value="${article.getCategorie().getLibelle()}"/></td>
+              <tr id ="${article[0]}">
+                <td><c:out value="${article[1]}"/></td>
+                <td><c:out value="${article[2]}"/></td>
+                <td><c:out value="${article[3]}"/></td>
+                <td><c:out value="${article[4]}"/></td>
+                <td><c:out value="${article[5]}"/></td>
+                <td><c:out value="${article[6]}"/></td>
                 <td class="d-flex justify-content-center">
                   <div>
-                    <a id="${article.id}" data-bs-toggle="modal" data-bs-target="#new-article"
+                    <a id="${article[0]}" data-bs-toggle="modal" data-bs-target="#new-article"
                        class="btn-sm btn-info editArticleBtn"><i class="uil-pen"></i></a>
-                    <a id="${article.id}" class="btn-sm btn-danger deleteArticleBtn "><i class="uil-trash-alt"></i></a>
-                    <a id="${article.id}" class="btn-sm btn-warning hideArticleBtn"><i class="uil-eye-slash"></i></a>
+                    <a id="${article[0]}" class="btn-sm btn-danger deleteArticleBtn "><i class="uil-trash-alt"></i></a>
+                    <a id="${article[0]}" class="btn-sm btn-warning hideArticleBtn"><i class="uil-eye-slash"></i></a>
                   </div>
                 </td>
               </tr>
-            </c:forEach>
           </c:forEach>
           </tbody>
         </table>

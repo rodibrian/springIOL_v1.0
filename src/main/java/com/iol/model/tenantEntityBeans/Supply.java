@@ -3,13 +3,11 @@ package com.iol.model.tenantEntityBeans;
 import com.iol.model.entityEnum.ModePayement;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Entity(name = "approv")
 @Table(name = "approv")
@@ -18,41 +16,29 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = "approv.all",query = "from approv")
 })
-public class Approvisionnement implements Serializable {
+public class Supply implements Serializable{
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
-   @ManyToOne
+   @ManyToOne(cascade = CascadeType.MERGE)
    @JoinColumn(name = "magasin_id",foreignKey =@ForeignKey(name = "approv_magasin_constraint"))
    private Magasin magasin;
 
-   @ManyToOne
+   @ManyToOne(cascade = CascadeType.MERGE)
    @JoinColumn(name = "fournisseur_id",foreignKey =@ForeignKey(name = "approv_fournisseur_key_constraint"))
    private ClientFournisseur fournisseur;
 
-   @OneToMany
-   @JoinTable(name = "approvisionnement_article",joinColumns = {@JoinColumn(name = "approv_id",foreignKey = @ForeignKey(name = "approv_article_approv_id_constraint"))},
-   inverseJoinColumns = {@JoinColumn(name = "article_id",foreignKey = @ForeignKey(name ="approv_art_article_id_constraint"))})
-   private Set<Article> articles;
+   @OneToMany(cascade = CascadeType.ALL,mappedBy = "supply")
+   private List<InfoArticleMagasin> infoArticleMagasin;
 
-
-   @ManyToOne
+   @ManyToOne(cascade = CascadeType.MERGE)
    @JoinColumn(name = "user_id",foreignKey =@ForeignKey(name = "approv_user_key_constraint"))
    private User user;
 
-   @Temporal(TemporalType.DATE)
-   private Date dateEcheance;
+   private Double montantApprov;
 
-   @Enumerated(EnumType.STRING)
-   @Column(length = 50)
-   private ModePayement modePayement;
-
-   private Double montantTransport;
-
-   private Boolean payeCaisse;
-
-   private Double montantApprovisionnement;
+   private Float quantiteApprov;
 
    @Column(columnDefinition = "TEXT")
    private String refFacture;

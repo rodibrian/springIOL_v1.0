@@ -31,9 +31,9 @@ $(function() {
 
     // load list fournisseur
 
-    $.each($fournisseur,(function(key, frs) {
-        push_to_table_list(namespace + '#table-liste-fournisseur', frs.id, [frs.nom, frs.adresse, frs.contact]);
-    }))
+    // $.each($fournisseur,(function(key, frs) {
+    //     push_to_table_list(namespace + '#table-liste-fournisseur', frs.id, [frs.nom, frs.adresse, frs.contact]);
+    // }))
 
 
 })

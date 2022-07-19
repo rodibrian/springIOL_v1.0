@@ -1,8 +1,6 @@
 package com.iol.model.tenantEntityBeans;
 
 import lombok.Data;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
@@ -29,5 +27,5 @@ public class Operation{
     @OneToOne
     @JoinTable(name = "operation_approv",joinColumns = {@JoinColumn(name = "operation_id",foreignKey = @ForeignKey(name = "op_app_operation_key_constraint"))},
     inverseJoinColumns = {@JoinColumn(name = "approv_id",foreignKey = @ForeignKey(name = "op_app_approv_key_constraint"))})
-    private Approvisionnement approvisionnement;
+    private Supply supply;
 }

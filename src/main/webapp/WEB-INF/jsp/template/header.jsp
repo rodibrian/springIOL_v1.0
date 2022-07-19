@@ -125,7 +125,7 @@
             <span class="menu-arrow"></span>
           </a>
           <div class="collapse" id="sidebarEcommerce">
-            <ul class="side-nav-second-level">
+            <ul class="side-nav-second-level nav-operation">
               <li>
                 <a href="operation/liste">Liste</a>
               </li>

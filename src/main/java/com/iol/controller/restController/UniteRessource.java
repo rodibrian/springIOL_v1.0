@@ -1,13 +1,17 @@
 package com.iol.controller.restController;
 
 
+import com.iol.model.tenantEntityBeans.ArticleUnite;
 import com.iol.model.tenantEntityBeans.Unite;
+import com.iol.repository.ArticleUniteRepository;
 import com.iol.repository.UniteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -15,7 +19,10 @@ import java.util.Optional;
 public class UniteRessource {
 
     @Autowired
-   private UniteRepository uniteRepository;
+    private UniteRepository uniteRepository;
+
+    @Autowired
+    private ArticleUniteRepository articleUniteRepository;
 
     @GetMapping(value = "/unites")
     public ResponseEntity<Object> getAllUnites(){
@@ -42,11 +49,10 @@ public class UniteRessource {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.valueOf(500));
         }
     }
-
     @PostMapping(value = "/unites")
-    public ResponseEntity<Object> create(@RequestBody Unite unite){
-       Unite save = uniteRepository.save(unite);
-        return new ResponseEntity<>(save, HttpStatus.CREATED);
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Object> create(@RequestBody List<ArticleUnite> articleUnites){
+        Iterable<ArticleUnite> iterable = articleUniteRepository.saveAll(articleUnites);
+        return new ResponseEntity<>(iterable, HttpStatus.CREATED);
     };
-
 }

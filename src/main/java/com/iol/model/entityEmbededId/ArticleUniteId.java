@@ -5,9 +5,9 @@ import lombok.Data;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
-@Embeddable
 @Data
-public class PrixArticleMagasinId implements Serializable {
-    private Long magasinId;
+@Embeddable
+public class ArticleUniteId implements Serializable {
     private Long articleId;
+    private Long uniteId;
 }

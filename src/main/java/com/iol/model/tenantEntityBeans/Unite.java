@@ -15,7 +15,7 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(name = "unite.all",query = "from unite")
 })
-public class Unite implements Serializable {
+public class Unite implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,14 +23,6 @@ public class Unite implements Serializable {
     @Column(columnDefinition = "TEXT")
     private String code;
 
-    private Double quantite;
-
     @Column(columnDefinition = "TEXT")
     private String designation;
-
-    private Double poids;
-
-    private Double prix;
-
-    private int niveau;
 }

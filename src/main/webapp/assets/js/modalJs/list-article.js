@@ -26,11 +26,11 @@ $(function() {
         }
     ]
 
-    $.each($lesArticles, function (keyA, valueA) {
-        $.each(valueA.unite, function (keyU, valueU) {
-            $tdArray = [valueA.code + '-' + keyU, valueA.designation, valueA.unite[keyU], "0", "0", valueA.prix[keyU]]
-            push_to_table_list( namespace + "#table-liste-article",valueA.code + "-" + keyU, $tdArray);
-        })
-    })
+    // $.each($lesArticles, function (keyA, valueA) {
+    //     $.each(valueA.unite, function (keyU, valueU) {
+    //         $tdArray = [valueA.code + '-' + keyU, valueA.designation, valueA.unite[keyU], "0", "0", valueA.prix[keyU]]
+    //         push_to_table_list( namespace + "#table-liste-article",valueA.code + "-" + keyU, $tdArray);
+    //     })
+    // })
 
 })

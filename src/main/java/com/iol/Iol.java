@@ -8,7 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import pl.allegro.finance.tradukisto.MoneyConverters;
+import pl.allegro.finance.tradukisto.ValueConverters;
+import pl.allegro.finance.tradukisto.internal.IntegerToStringConverter;
+import pl.allegro.finance.tradukisto.internal.NumberProcessor;
+import pl.allegro.finance.tradukisto.internal.ToStringConverter;
+import pl.allegro.finance.tradukisto.internal.converters.BigDecimalToBankingMoneyConverter;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -16,11 +23,6 @@ import java.util.stream.Stream;
 @SpringBootApplication
 public class Iol {
     public static void main(String[] args) {
-//        Trosa t = new Trosa();
-//        t.setMontant(2L);
-//        List<Trosa> t1 = List.of(t, t, t, t);
-//        Stream<Long> count = t1.stream().map(Trosa::getMontant);
-//        System.out.println(count);
         SpringApplication.run(Iol.class,args);
     }
 }

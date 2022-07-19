@@ -30,8 +30,7 @@ public class ArticleRessource {
         if (!articleOptional.isPresent()){
             return ResponseEntity.notFound().build();
         }
-        Article article = articleOptional.get();
-        return new ResponseEntity<>(article.getUnite(), HttpStatus.CREATED);
+        return new ResponseEntity<>("", HttpStatus.CREATED);
     }
 
     @DeleteMapping("/articles/{id}")

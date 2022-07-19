@@ -1,21 +1,22 @@
 package com.iol.controller.servletController;
 
+import com.iol.service.ArticleService;
 import com.iol.model.tenantEntityBeans.Magasin;
 import com.iol.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Controller
+@SessionAttributes(names = "connectedUser")
 public class MenuNavController{
     @Autowired
     private CategorieRepository categorieRepository;
-    @Autowired
-    private ArticleRepository articleRepository;
     @Autowired
     private MagasinRepository magasinRepository;
     @Autowired
@@ -25,6 +26,12 @@ public class MenuNavController{
     @Autowired
     private ClientFournisseurRepository clientFournisseurRepository;
 
+    @Autowired
+    private SupplyRepository supplyRepository;
+
+    @Autowired
+    private ArticleService articleService;
+
     private final String CATEGORIE_LIST = "categories";
     private final String ARTICLE_LIST = "articles";
     private final String MAGASIN_LIST = "magasins";
@@ -33,6 +40,7 @@ public class MenuNavController{
     private final String CLIENT_FOURNISSEUR_LIST = "cfList";
     private final int CLIENT = 0;
     private final int FOURNISSEUR = 1;
+    private final String SUPPLY_LIST = "supplies";
 
     public MenuNavController() {
     }
@@ -44,7 +52,7 @@ public class MenuNavController{
     public ModelAndView getArticles() {
         ModelAndView modelAndView = new ModelAndView("menu-article");
         modelAndView.addObject(CATEGORIE_LIST, this.categorieRepository.findAll());
-        modelAndView.addObject(ARTICLE_LIST, this.articleRepository.findAll());
+        modelAndView.addObject(ARTICLE_LIST,articleService.findAll());
         return modelAndView;
     }
 
@@ -129,6 +137,7 @@ public class MenuNavController{
     }
 
 
+
     @RequestMapping(value = "/utilisateur",method = RequestMethod.GET)
     public ModelAndView getMenuUtilisateur(){
         ModelAndView modelAndView = new ModelAndView("menu-utilisateur");
@@ -161,16 +170,18 @@ public class MenuNavController{
     // menu des opérations
 
     @RequestMapping(value = "/operation/liste",method = RequestMethod.GET)
-    public String getOperationListe(){
-        return "operation/liste";
+    public ModelAndView getOperationListe(){
+        ModelAndView modelAndView = new ModelAndView("operation/liste");
+        modelAndView.addObject(SUPPLY_LIST,supplyRepository.findAll());
+        return modelAndView;
     }
 
     @RequestMapping(value = "/operation/entree",method = RequestMethod.GET)
     public ModelAndView getOperationEntree(){
-        List<Magasin> magasins = magasinRepository.findAll();
         ModelAndView modelAndView = new ModelAndView("operation/entree");
-        modelAndView.addObject(ARTICLE_LIST, this.articleRepository.findAll());
-        modelAndView.addObject(MAGASIN_LIST,magasins);
+        modelAndView.addObject(ARTICLE_LIST,articleService.findAll());
+        modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
+        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR));
         return modelAndView;
     }
 
