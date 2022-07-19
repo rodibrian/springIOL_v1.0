@@ -83,8 +83,8 @@
   <!-- begin row-->
 
   <div class="row">
-    <div class="col-lg-4">
-      <div class="card">
+    <div class="col-lg-4 box-dashboard">
+      <div class="card w-100">
         <div class="card-body">
           <a href="" class="btn btn-sm btn-link float-end">Exporter
             <i class="mdi mdi-download ms-1"></i>
@@ -106,11 +106,11 @@
         </div> <!-- end card-body-->
       </div> <!-- end card-->
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-4 box-dashboard">
 
 
       <!-- begin row-->
-      <div class="row">
+      <div class="row w-100">
         <div class="col-lg-12">
           <div class="card card-h-100">
             <div class="card-body">
@@ -140,8 +140,8 @@
 
 
     </div>
-    <div class="col-lg-4">
-      <div class="card">
+    <div class="col-lg-4 box-dashboard">
+      <div class="card w-100">
         <div class="card-body">
           <a href="" class="btn btn-sm btn-link float-end">Exporter
             <i class="mdi mdi-download ms-1"></i>

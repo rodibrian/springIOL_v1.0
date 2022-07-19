@@ -8,13 +8,15 @@
       </div>
       <div class="modal-body">
         <select name="choixMagasin" id="choixMagasin" class="form-select w-100 d-block">
-          <option value="1">Magasin I</option>
-          <option value="2">Magasin II</option>
+          <c:forEach var="magasin" items="${magasins}">
+            <option value="${magasin.id}">${magasin.nomMagasin}</option>
+          </c:forEach>
         </select>
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn-secondary">Enregistrer</button>
+        <button type="button" class="btn btn-secondary btn-choix-magasin" data-bs-dismiss="modal">Enregistrer</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

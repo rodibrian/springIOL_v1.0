@@ -152,6 +152,7 @@
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-paiement.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-utilisateur.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-voyage.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/menu/menu-choix-magasin.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/embarquement/menu-embarquement.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/embarquement/new-embarquement.js"></script>
 
