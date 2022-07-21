@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="iol:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>iol</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="iol-1.0.war">
+      <element id="artifact" artifact-name="iol:war exploded" />
+    </root>
+  </artifact>
+</component>
