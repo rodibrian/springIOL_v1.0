@@ -38,15 +38,14 @@
         <h4 class="s-value label-valeur-stock">Montant total : <%= "0Ar" %>
         </h4>
         &nbsp;
-        &nbsp;
         <div class="d-inline-flex s-value">
           <div class="mb-3 mr-1">
             <select class="form-select" id="example-select">
-              <option>Magasin I</option>
-              <option>Magasin II</option>
+              <c:forEach var="magasin" items="${magasins}">
+                <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
+              </c:forEach>
             </select>
           </div>
-
         </div>
         <button class="btn s-value btn-40 btn-success mr-1 btn-alert-stock btn-stock-valider"><i
                 class="uil-check-square">&nbsp;</i>Valider
@@ -71,25 +70,32 @@
                class="table-article-stock table table-special-form table-sm dt-responsive nowrap table-hover table-50">
           <thead>
           <tr>
-            <th class="s-no-value">Code</th>
+            <th>Code</th>
             <th>Designation</th>
             <th>Unite</th>
+            <th>Expd</th>
             <th>Prix</th>
-            <th class="s-no-value">Magasin I</th>
-            <th class="s-no-value">Magasin II</th>
-            <th>Stock G</th>
-            <th class="s-no-value">Expd</th>
-            <th class="s-value">Montant</th>
+            <th>Stock </th>
           </tr>
           </thead>
           <tbody>
+          <c:forEach var="stock" items="${stocks}">
+            <tr id="${stock.id}" >
+              <td>${stock.unite.code}</td>
+              <td>${stock.article.designation}</td>
+              <td>${stock.unite.designation}</td>
+              <td>${stock.datePeremption}</td>
+              <td>${stock.supply.montantApprov}</td>
+              <td class="td-info-stock">
+                   <a type="button" class="btn-default mr-1 btn-info-stock" data-bs-toggle="modal" data-bs-target="#info-stock">${stock.quantiteStock}</a>
+              </td>
+            </tr>
+          </c:forEach>
           </tbody>
         </table>
       </div>
     </div>
   </div>
-
-
 </div>
 
 </div> <!-- container -->

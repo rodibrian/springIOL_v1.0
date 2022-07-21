@@ -33,6 +33,14 @@ public class ArticleRessource {
         return new ResponseEntity<>("", HttpStatus.CREATED);
     }
 
+    @GetMapping(value = "/articles/{articleId}/unites/{uniteId}/filiales/{filialeId}/prices")
+    public ResponseEntity<Object> getPrix(@PathVariable("articleId") Long articleId
+                                         ,@PathVariable("uniteId")Long uniteId
+                                         ,@PathVariable("filialeId")Long filialeId){
+        return new ResponseEntity<>(articleRepository.getPrix(articleId,uniteId,filialeId), HttpStatus.OK);
+    }
+
+
     @DeleteMapping("/articles/{id}")
     public ResponseEntity<Object> delete(@PathVariable("id") Long id){
         try{

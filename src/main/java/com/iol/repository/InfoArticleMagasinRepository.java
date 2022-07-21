@@ -7,5 +7,5 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Repository
-public interface InfoArticleMagasinRepository extends JpaRepository<InfoArticleMagasin,Long> {
+public interface InfoArticleMagasinRepository extends JpaRepository<InfoArticleMagasin,Long>{
 }

@@ -9,6 +9,8 @@
           <div class="row form-vente">
             <h4>Vente</h4>
             <hr>
+            <input type="hidden" id="user-id" value-id="${connectedUser.id}">
+            <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
             <div class="col-lg-5">
               <div class="mb-1">
                 <label for="select-magasin" class="form-label">Magasin</label>
@@ -118,15 +120,12 @@
 
 
   <!-- modal list -->
-
   <div class="all-modal">
     <div class="temporally"></div>
     <%@ include file="modal/vente/list-article.jsp" %>
     <%@ include file="modal/vente/list-client.jsp" %>
     <%@ include file="modal/vente/prix-special.jsp" %>
   </div>
-
   <!-- end modal list -->
 </div>
-
 <%@ include file="template/setting.jsp" %>

@@ -17,8 +17,4 @@ public class Categorie implements Serializable {
 
     @Column(columnDefinition = "TEXT")
     private String libelle;
-
-    public Categorie(String libelle) {
-        this.libelle = libelle;
-    }
 }

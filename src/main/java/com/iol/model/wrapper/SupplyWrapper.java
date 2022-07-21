@@ -1,7 +1,7 @@
-package com.iol.model;
+package com.iol.model.wrapper;
 
 import com.iol.model.tenantEntityBeans.InfoArticleMagasin;
-import com.iol.model.tenantEntityBeans.PrixVenteUniteArticleFiliale;
+import com.iol.model.tenantEntityBeans.PrixArticleFiliale;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -11,5 +11,5 @@ import java.util.List;
 @AllArgsConstructor
 public class SupplyWrapper {
    private List<InfoArticleMagasin> infoArticleMagasins;
-   private List<PrixVenteUniteArticleFiliale> prixVenteUniteArticleFiliales;
+   private List<PrixArticleFiliale> prixArticleFiliales;
 }

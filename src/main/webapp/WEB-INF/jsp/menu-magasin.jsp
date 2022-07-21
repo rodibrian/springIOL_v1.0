@@ -26,6 +26,7 @@
     <%@ include file="modal/new-magasin.jsp" %>
   </div>
   <!-- suite -->
+  <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
   <div class="all-modal"></div>
   <div class="container -fluid"><br><br>
     <div class="row">

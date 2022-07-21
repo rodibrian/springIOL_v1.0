@@ -133,10 +133,10 @@
                 <a href="operation/entree" target="_blank">Entr&eacute;e</a>
               </li>
               <li>
-                <a href="operation/sortie">Sortie</a>
+                <a href="operation/sortie" target="_blank">Sortie</a>
               </li>
               <li>
-                <a href="operation/transfert">Transfert</a>
+                <a href="operation/transfert" target="_blank">Transfert</a>
               </li>
               <li class="d-none">
                 <a href="operation/changer-de-code">Changer de Code</a>

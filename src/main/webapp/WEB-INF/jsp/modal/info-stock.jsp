@@ -44,17 +44,6 @@
               <th>Operateur</th>
               </thead>
               <tbody>
-              <% for (int c = 0; c < 5; c++) { %>
-              <tr>
-                <td>0</td>
-                <td>30/05/22</td>
-                <td>Operation</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>utilisateur</td>
-              </tr>
-              <% } %>
               </tbody>
             </table>
           </div>

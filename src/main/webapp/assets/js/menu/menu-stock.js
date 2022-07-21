@@ -16,58 +16,29 @@ $(function () {
 
     // Chargement des données de stock
 
-    // Exemple d'article à y mettre dans la table
-
-    $lesArticles = [
-        {
-            codeArticle: '12345',
-            nomArticle: 'Biscuit',
-            uniteArticle: ['piece', 'carton', 'sac'],
-            prix: ['1000', '50000', '0'], // prix par unité
-            stock: ['100', '200'], // stock en magasin
-            peremption: new Date().toLocaleString()
-        },
-        {
-            codeArticle: '78901',
-            nomArticle: 'Bonbon',
-            uniteArticle: ['piece', 'carton', 'sac', 'sac10'],
-            prix: ['50', '10000', '0', '0'], // prix par unité
-            stock: ['50', '500'], // stock en magasin
-            peremption: new Date().toLocaleString()
-        },
-        {
-            codeArticle: '56789',
-            nomArticle: 'Jus',
-            uniteArticle: ['Litre', 'Bouteille de 5L', 'Bidon de 20L'],
-            prix: ['10000', '40000', '100000'], // prix par unité
-            stock: ['6', '10'], // stock en magasin
-            peremption: new Date().toLocaleString()
-        }
-    ]
-
-    $.each($lesArticles, function (key, article) {
-        $.each(article.uniteArticle, function (keyU, articleU) {
-            $trArticle = $('<tr></tr>').attr('id', article.codeArticle + '-' + keyU);
-            $trArticle.append('' +
-                '            <td class="s-no-value code-article">' + $trArticle.attr('id') + '</td>\n' +
-                '            <td class="designation-article">' + article.nomArticle + '</td>\n' +
-                '            <td class="unite-article">' + articleU + '</td>\n' +
-                '            <td class="article-prix">' + article.prix[keyU] + '</td>\n' +
-                '            <td class="s-no-value article-stock-1">' + article.stock[0] + '</td>\n' +
-                '            <td class="s-no-value article-stock-2">' + article.stock[1] + '</td>\n' +
-                '            <td class="td-info-stock">\n' +
-                '              <a type="button" class="btn-default mr-1 btn-info-stock" data-bs-toggle="modal"\n' +
-                '                 data-bs-target="#info-stock">' + (parseFloat(article.stock[0]) + parseFloat(article.stock[1])) + '</a>\n' +
-                '            </td>\n' +
-                '            <td class="s-no-value article-date-peremption">' + article.peremption + '</td>\n' +
-                '            <td class="s-value article-valeur">' + ( (parseFloat(article.stock[0]) + parseFloat(article.stock[1]))  * parseFloat(article.prix[keyU])) + ' Ar</td>\n' +
-                '          ' +
-                '').html();
-            $('.table-article-stock tbody').append($trArticle);
-        })
-
-
-    })
+    // $.each($lesArticles, function (key, article) {
+    //     $.each(article.uniteArticle, function (keyU, articleU) {
+    //         $trArticle = $('<tr></tr>').attr('id', article.codeArticle + '-' + keyU);
+    //         $trArticle.append('' +
+    //             '            <td class="s-no-value code-article">' + $trArticle.attr('id') + '</td>\n' +
+    //             '            <td class="designation-article">' + article.nomArticle + '</td>\n' +
+    //             '            <td class="unite-article">' + articleU + '</td>\n' +
+    //             '            <td class="article-prix">' + article.prix[keyU] + '</td>\n' +
+    //             '            <td class="s-no-value article-stock-1">' + article.stock[0] + '</td>\n' +
+    //             '            <td class="s-no-value article-stock-2">' + article.stock[1] + '</td>\n' +
+    //             '            <td class="td-info-stock">\n' +
+    //             '              <a type="button" class="btn-default mr-1 btn-info-stock" data-bs-toggle="modal"\n' +
+    //             '                 data-bs-target="#info-stock">' + (parseFloat(article.stock[0]) + parseFloat(article.stock[1])) + '</a>\n' +
+    //             '            </td>\n' +
+    //             '            <td class="s-no-value article-date-peremption">' + article.peremption + '</td>\n' +
+    //             '            <td class="s-value article-valeur">' + ( (parseFloat(article.stock[0]) + parseFloat(article.stock[1]))  * parseFloat(article.prix[keyU])) + ' Ar</td>\n' +
+    //             '          ' +
+    //             '').html();
+    //         $('.table-article-stock tbody').append($trArticle);
+    //     })
+    //
+    //
+    // })
 
     // Details d'event stock
 

@@ -1,7 +1,10 @@
 package com.iol.controller.restController;
 
+import com.iol.model.tenantEntityBeans.PrixArticleFiliale;
 import com.iol.model.tenantEntityBeans.Supply;
 import com.iol.model.tenantEntityBeans.InfoArticleMagasin;
+import com.iol.model.wrapper.SupplyWrapper;
+import com.iol.repository.PuafRepository;
 import com.iol.repository.SupplyRepository;
 import com.iol.repository.InfoArticleMagasinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,9 @@ public class SupplyRessource {
 
     @Autowired
     private InfoArticleMagasinRepository iamRepository;
+
+    @Autowired
+    private PuafRepository puafRepository;
 
     @GetMapping(value = "/supplies")
     public ResponseEntity<Object> getAllUnites(){
@@ -49,8 +55,11 @@ public class SupplyRessource {
     }
 
     @PostMapping(value = "/supplies")
-    public ResponseEntity<Object> create(@RequestBody List<InfoArticleMagasin> infoArticleMagasins){
-        List<InfoArticleMagasin> infoArticleMagasins1 = iamRepository.saveAll(infoArticleMagasins);
-        return new ResponseEntity<>(infoArticleMagasins1, HttpStatus.CREATED);
+    public ResponseEntity<Object> create(@RequestBody SupplyWrapper supplyWrapper){
+        List<InfoArticleMagasin> infoArticleMagasins = iamRepository.saveAll(supplyWrapper.getInfoArticleMagasins());
+        List<PrixArticleFiliale> prixArticleFiliales = puafRepository.saveAll(supplyWrapper.getPrixArticleFiliales());
+        supplyWrapper.setPrixArticleFiliales(prixArticleFiliales);
+        supplyWrapper.setInfoArticleMagasins(infoArticleMagasins);
+        return new ResponseEntity<>(supplyWrapper, HttpStatus.CREATED);
     };
 }

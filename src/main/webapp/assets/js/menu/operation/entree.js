@@ -1,7 +1,8 @@
 $(function () {
     let namespace = "#menu-entree-article ";
     let infoArticletab = [];
-    let prixTab = [];
+    // LISTE DES PRIX DE VENTE
+    let pvuafTab = [];
     /*
     ENTREE ARTICLE
      */
@@ -41,7 +42,7 @@ $(function () {
         let article_id = $(this).attr("id");
         let unite_id = $(this).children().eq(2).attr("id");
         get_select_affect_to_input(namespace + '#input-designation-article',article_id, $(this).children().eq(1).text());
-        let IS_CREATE = $(namespace +"#select-unite-article").children().length == 0;
+        let IS_CREATE = $(namespminiace +"#select-unite-article").children().length == 0;
         set_select_option_value_or_update_option([[unite_id,$(this).children().eq(2).text()]], namespace + "#select-unite-article",IS_CREATE);
         $(namespace + ' #input-prix-vente-article').val($(this).children().eq(5).text());
         $(namespace + '#modal-liste-article').modal('hide');
@@ -60,26 +61,41 @@ $(function () {
         let quantite = $(namespace + '#input-quantite-article').val();
         let dateApprov = new Date();
         let userId = $(namespace + '#user-id').attr("value-id");
+        let filialeId = $(namespace + '#filiale-id').attr("value-id");
         let datePeremption = $(namespace+"#input-date-peremption").val();
-        let prixObj = {};
-        prixObj.prixVente =  prixVente;
-        prixObj.prixAchat = prixAchat;
+        // PRIX ARTICLE UNITE FILIALE
+        let  fuap = {};
+        fuap.filiale = {
+            id : filialeId
+        }
+        fuap.unite = {
+            id : uniteId
+        };
+        fuap.article = {
+            id : articleId
+        }
+        fuap.user = {
+            id : userId
+        }
+        fuap.dateEnregistrement= dateApprov;
+        fuap.prixVente = prixVente;
         // APPROVISIONNEMENT
-        let approv = {};
+        let supply = {};
         // Magasin
-        approv.magasin = {
+        supply.magasin = {
             id : magasinId
         }
         // Fournisseur
-        approv.fournisseur = {
+        supply.fournisseur = {
             id : fId
-        }
-        approv.quantiteApprov = quantite;
-        approv.refFacture = refFact;
-        approv.user = {id:userId};
+        };
+        supply.montantApprov = prixAchat;
+        supply.quantiteApprov = quantite;
+        supply.refFacture = refFact;
+        supply.user= {id:userId};
         // INFO ARTICLE MAGASIN
         let infoArticleMagasin ={
-            magasin :approv.magasin,
+            magasin :supply.magasin,
             article : {
                 id : articleId
             },
@@ -89,10 +105,11 @@ $(function () {
             quantiteStock : quantite,
             date : dateApprov,
             datePeremption : datePeremption,
-            supply : approv
-        }
+            supply : supply
+        };
         infoArticletab.push(infoArticleMagasin);
-        prixTab.push(prixObj)
+        pvuafTab.push(fuap);
+
         $articleAjout = [
             $(namespace + '#input-reference-facture').val(),
             $(namespace + '#input-designation-article').val(),
@@ -119,20 +136,22 @@ $(function () {
     $(namespace + "#btn-enregistrer-article-entree").on('click', function() {
         $modalId = 'confirmation-d-entree-article'
         $nArticle = $(namespace + '#table-liste-article-entree tbody tr').length;
-        $prixAchatTotal = prixTab.reduce((a,b) =>a+b,0);
         $content = '' +
            'Voulez vous vraiment enregistrer les articles entr&eacute;s?' +
            '<li><strong>' + $nArticle + '</strong> Articles</li>';
         create_confirm_dialog('Confirmation d enregistrement des articles', $content, $modalId, 'Oui, Enregistrer', 'btn-success')
             .on('click', function() {
+                let supplyWrapper = {};
+                supplyWrapper.infoArticleMagasins = infoArticletab;
+                supplyWrapper.prixArticleFiliales = pvuafTab;
                 $.ajax({
                         type: "POST",
                         url: "http://localhost:8080/api/v1/supplies",
                         contentType: "application/json",
-                        data: JSON.stringify(infoArticletab),
+                        data: JSON.stringify(supplyWrapper),
                         success : function (data){
                             infoArticletab=[];
-                            prixTab = [];
+                            pvuafTab = [];
                             $('#' + $modalId).modal('hide');
                             $('#' + $modalId).remove();
                             $(namespace + '#table-liste-article-entree tbody tr').remove();
@@ -140,7 +159,6 @@ $(function () {
                                 'uil-file-check',
                                 'Entr&eacute;e d\'article fait',
                                 $nArticle + ' articles enregistr&eacute;es avec succ&egrave;s!');
-                            console.log(data);
                         }
                 });
             })

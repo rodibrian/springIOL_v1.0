@@ -31,9 +31,21 @@ $(function () {
      -------------------------------------------------------------------------------*/
 
     $(document).on('dblclick', namespace + '#table-liste-article tbody tr', function () {
+        let article_id = $(this).attr("id");
+        let unite_id = $(this).children().eq(2).attr("id");
+        let userId = $(namespace + '#user-id').attr("value-id");
+        let filialeId = $(namespace + '#filiale-id').attr("value-id");
         get_select_affect_to_input(namespace + '#designation-article', $(this).children().eq(0).text(), $(this).children().eq(1).text());
         $(namespace + '#modal-liste-article').modal('hide');
-        set_select_option_value([['0', $(this).children().eq(2).text()]], namespace + "#input-unite-article");
+        set_select_option_value([unite_id, $(this).children().eq(2).text()], namespace + "#input-unite-article");
+        $.ajax({
+            type : "get",
+            url : "http://localhost:8080/api/v1/articles/"+article_id+"/unites/"+unite_id+"/filiales/"+filialeId+"/prices",
+            contentType: "application/json",
+            success : function (data) {
+                $(namespace + "#input-prix-unitaire").val(data);
+            }
+        });
         get_select_affect_to_input(namespace + "#input-prix-unitaire", "", $(this).children().eq(5).text())
         // après selection article, select * unite de l'article
         // ainsi que son prix

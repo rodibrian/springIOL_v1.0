@@ -21,18 +21,14 @@
             <th>Contact</th>
           </tr>
           </thead>
-
           <tbody>
-
-
-          <% for (int i = 0; i < 10; i++) { %>
-          <tr id="client-<%= i %>">
-            <td>Nom et prenoms</td>
-            <td>adresse du client</td>
-            <td>+261 00 00 000 00</td>
-          </tr>
-          <% } %>
-
+          <c:forEach var="cf" items="${cfList}">
+            <tr id="${cf.id}">
+              <td><c:out value="${cf.nom}"/></td>
+              <td><c:out value="${cf.adresse}"/></td>
+              <td><c:out value="${cf.numTel}"/></td>
+            </tr>
+          </c:forEach>
           </tbody>
         </table>
       </div>

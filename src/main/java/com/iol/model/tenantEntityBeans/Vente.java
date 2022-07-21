@@ -22,11 +22,21 @@ public class Vente implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "vente_article",
-            joinColumns = {@JoinColumn(name = "vente_id",foreignKey = @ForeignKey(name = "va_vente_key_constraint"))},
-    inverseJoinColumns = {@JoinColumn(name = "article_id",foreignKey = @ForeignKey(name = "va_article_key_constraint"))})
-    private Set<Article> articles;
+//    @ManyToMany(cascade = CascadeType.PERSIST)
+//    @JoinTable(name = "vente_article",
+//            joinColumns = {@JoinColumn(name = "vente_id",foreignKey = @ForeignKey(name = "va_vente_key_constraint"))},
+//    inverseJoinColumns = {@JoinColumn(name = "article_id",foreignKey = @ForeignKey(name = "va_article_key_constraint"))})
+//    private Set<Article> articles;
+
+    @ManyToOne
+    private Article article;
+
+    @ManyToOne
+    private Unite unite;
+
+    @ManyToOne
+    @JoinColumn(name = "vente_client_id",foreignKey = @ForeignKey(name = "vente_client_key_constraint"))
+    private ClientFournisseur client;
 
     @OneToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "payement_vente",
@@ -34,9 +44,6 @@ public class Vente implements Serializable{
             inverseJoinColumns = {@JoinColumn(name = "payement_id",foreignKey = @ForeignKey(name = "pa_payement_key_constraint"))})
     private Set<Payement> payements;
 
-    @ManyToOne
-    @JoinColumn(name = "vente_client_id",foreignKey = @ForeignKey(name = "vente_client_key_constraint"))
-    private ClientFournisseur client;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "magasin_id",foreignKey = @ForeignKey(name = "vente_magasin_key_constraint"))

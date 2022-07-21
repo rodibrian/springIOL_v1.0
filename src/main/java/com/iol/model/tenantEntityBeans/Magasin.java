@@ -36,7 +36,6 @@ public class Magasin{
     @Column(columnDefinition = "TEXT")
     private String nomMagasin;
 
-
     @ManyToMany
     @JoinTable(name = "magasin_article",
             joinColumns = {@JoinColumn(name = "magasin_id",foreignKey = @ForeignKey(name ="FK_MA_MAGASIN_ID",foreignKeyDefinition = "foreign key (magasin_id) references magasin(id_magasin) on delete cascade"))},

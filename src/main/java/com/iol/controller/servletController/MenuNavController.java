@@ -4,6 +4,7 @@ import com.iol.service.ArticleService;
 import com.iol.model.tenantEntityBeans.Magasin;
 import com.iol.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@SessionAttributes(names = "connectedUser")
+@SessionAttributes(names = {"connectedUser","articles"})
 public class MenuNavController{
     @Autowired
     private CategorieRepository categorieRepository;
@@ -60,6 +61,8 @@ public class MenuNavController{
     public ModelAndView getVentes(){
         ModelAndView modelAndView = new ModelAndView("menu-vente");
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
+        modelAndView.addObject(ARTICLE_LIST,articleService.findAll());
+        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(CLIENT));
         return modelAndView;
     }
 
@@ -77,8 +80,11 @@ public class MenuNavController{
     }
 
     @RequestMapping(value = "/stock",method = RequestMethod.GET)
-    public String getMenuStock(){
-        return "menu-stock";
+    public ModelAndView getMenuStock(){
+        ModelAndView modelAndView = new ModelAndView("menu-stock");
+        modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
+        modelAndView.addObject("stocks",articleService.getAllStock());
+        return modelAndView;
     }
 
 
@@ -186,13 +192,18 @@ public class MenuNavController{
     }
 
     @RequestMapping(value = "/operation/sortie",method = RequestMethod.GET)
-    public String getOperationSortie(){
-        return "operation/sortie";
+    public ModelAndView getOperationSortie(){
+            ModelAndView modelAndView = new ModelAndView("operation/sortie");
+            modelAndView.addObject(ARTICLE_LIST,articleService.findAll());
+            modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
+            return modelAndView;
     }
 
     @RequestMapping(value = "/operation/transfert",method = RequestMethod.GET)
-    public String getOperationTransfert(){
-        return "operation/transfert";
+    public ModelAndView getOperationTransfert(){
+        ModelAndView modelAndView = new ModelAndView("operation/transfert");
+        modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
+        return modelAndView;
     }
 
     @RequestMapping(value = "/operation/changer-de-code",method = RequestMethod.GET)

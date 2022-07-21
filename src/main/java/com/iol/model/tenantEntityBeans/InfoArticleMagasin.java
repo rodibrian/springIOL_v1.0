@@ -20,7 +20,7 @@ public class InfoArticleMagasin{
     private Article article;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "unite_id",foreignKey = @ForeignKey(name = "FK_UNITE_ID",foreignKeyDefinition = "FOREIGN KEY (unite_id) REFERENCES unite(id) ON DELETE CASCADE ON UPDATE NO ACTION") )
+    @JoinColumn(name = "unite_id",foreignKey = @ForeignKey(name = "FK_UNITE_ID",foreignKeyDefinition = "FOREIGN KEY (unite_id) REFERENCES unite(id) ON DELETE CASCADE ON UPDATE NO ACTION"))
     private Unite unite;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -34,6 +34,4 @@ public class InfoArticleMagasin{
 
     @Temporal(TemporalType.DATE)
     private Date datePeremption;
-
-    private Double prixAchat;
 }

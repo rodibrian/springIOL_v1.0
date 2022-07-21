@@ -17,7 +17,7 @@ $(function () {
     $(namespace + '#btn-enregistrer-magasin').on('click', function () {
         $nomMagasin = $(namespace + '#nom-magasin').val();
         $adresseMagasin = $(namespace + '#adresse-magasin').val();
-        $filialeId = 12;
+        $filialeId = $(namespace + '#filiale-id').attr("value-id");
         $newMagasin = {
             adresse : $adresseMagasin,
             nomMagasin : $nomMagasin,

@@ -1,13 +1,26 @@
-function set_select_option_value($array, $select) {
-    $array = convertiMultiObjectToArray($array)
-    $.each($array, function (key, value) {
-        $($select)
-            .append($("<option></option>")
-                .attr("value", value[0])
-                .text(value[1]));
-    });
+
+function appendOptionToSelect($value,$select) {
+    $($select)
+        .append($("<option></option>")
+            .attr("value",$value[0])
+            .text($value[1]));
 }
 
+function set_select_option_value($array,$select) {
+    let children = $($select).children();
+    if (children.length===0){
+        appendOptionToSelect($array,$select);
+    }else{
+        let tab = [];
+        for(let i = 0 ; i<children.length;i++){
+             let oldValue = $(children[i]).text();
+             tab.push(oldValue);
+        }
+        let ok = tab.every(value => value!==$array[1]);
+        if (ok) appendOptionToSelect($array,$select);
+        tab = [];
+    }
+}
 
 function set_select_option_value_or_update_option($array,$select,$isCreate) {
     $array = convertiMultiObjectToArray($array)

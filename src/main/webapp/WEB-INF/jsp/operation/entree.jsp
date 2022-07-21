@@ -21,6 +21,7 @@
                 </div>
               </div>
               <input type="hidden" id="user-id" value-id="${connectedUser.id}">
+              <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
               <div class="mt-1 mb-1 div-select-magasin">
                 <label for="select-magasin" class="form-label">Magasin</label>
                 <select class="form-select" id="select-magasin">

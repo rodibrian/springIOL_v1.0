@@ -26,23 +26,17 @@
               <div class="mt-1 mb-1 select-src">
                 <label class="form-label">De (Source) : </label>
                 <select class="form-select MM MV">
-                  <option>Magasin I</option>
-                  <option>Magasin II</option>
-                </select>
-                <select class="form-select VM VV">
-                  <option>2022/001</option>
-                  <option>2022/002</option>
+                  <c:forEach var="magasin" items="${magasins}">
+                    <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
+                  </c:forEach>
                 </select>
               </div>
               <div class="mt-1 mb-1 select-dst">
                 <label class="form-label">&agrave; (Destination) : </label>
                 <select class="form-select MM VM">
-                  <option>Magasin I</option>
-                  <option>Magasin II</option>
-                </select>
-                <select class="form-select MV VV">
-                  <option>2022/001</option>
-                  <option>2022/002</option>
+                  <c:forEach var="magasin" items="${magasins}">
+                    <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
+                  </c:forEach>
                 </select>
               </div>
               <br>

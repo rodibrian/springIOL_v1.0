@@ -1,17 +1,10 @@
 $(function () {
-
     let namespace = "#menu-sortie-article ";
-
     /*
-
     SORTIE ARTICLE
-
      */
-
     // Chargement des données de la page;
-
     // données prédefini
-
     $lesMagasins = [
         {
             code: "m-I", nom: "Magasin I"
@@ -26,7 +19,6 @@ $(function () {
             code: "m-IV", nom: "Magasin IV"
         }
     ];
-
     $lesVoyages = [
         {
             reference: "v-123", libelle: "Voyage Ier"
@@ -35,28 +27,17 @@ $(function () {
             reference: "v-456", libelle: "Voyage IIem"
         }
     ]
-
-    set_select_option_value($lesMagasins, namespace + "#select-magasin")
-
-    set_select_option_value($lesVoyages, namespace + "#select-voyage")
-
     // Selecter article
-
     $(namespace + '#table-liste-article tbody tr').on('dblclick', function () {
-
+        let article_id = $(this).attr("id");
+        let unite_id = $(this).children().eq(2).attr("id");
         get_select_affect_to_input(namespace + '#input-designation-article',$(this).children().eq(0).text(), $(this).children().eq(1).text());
-        set_select_option_value([['0', $(this).children().eq(2).text()]], namespace + "#select-unite-article")
-
+        set_select_option_value([unite_id, $(this).children().eq(2).text()], namespace + " #select-unite-article")
         $(namespace + '#modal-liste-article').modal('hide');
-
         // après selection article, select * unite de l'article
     })
-
-
     // Ajout des articles
-
     $(namespace + '#btn-ajouter-article-sortie').on('click', function() {
-
         $articleAjout = [
             $(namespace + '#input-designation-article').val(),
             $(namespace + '#select-unite-article option:selected').text(),
@@ -64,7 +45,6 @@ $(function () {
             $(namespace + '#input-motif').val(),
         ]
         push_to_table_list(namespace + "#table-liste-article-sortie", "", $articleAjout);
-
         // vider les input
         $(namespace + '#input-designation-article').attr('value','');
         $(namespace + '#input-quantite-article').val(0);
