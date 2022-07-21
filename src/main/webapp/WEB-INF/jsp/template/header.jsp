@@ -1,39 +1,41 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <%@ include file="head.jsp" %>
-<body class="loading"
-      data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":true, "showRightSidebarOnStart": true}'>
+
+<body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":true, "showRightSidebarOnStart": true}'>
+
 <!-- Begin page -->
+
 <div class="wrapper">
   <!-- ========== Left Sidebar Start ========== -->
   <div class="leftside-menu">
-
     <!-- LOGO -->
     <a href="/dashboard" class="logo text-center logo-light">
-                    <span class="logo-lg">
-                        <img src="../images/logo.png" alt="" height="16">&nbsp; I-jeery OnLine v1.0
-                    </span>
-      <span class="logo-sm">
-                        <img src="../images/logo.png" alt="" height="16">
-                    </span>
+        <span class="logo-lg">
+            <img src="../../../assets/images/logo.png" alt="" height="16">&nbsp; I-jeery OnLine v1.0
+        </span>
+        <span class="logo-sm">
+            <img src="../../../assets/images/logo.png" alt="" height="16">
+        </span>
     </a>
 
     <!-- LOGO -->
-    <a href="index.php" class="logo text-center logo-dark">
-                    <span class="logo-lg">
-                        <img src="../images/logo-dark.png" alt="" height="16">
-                    </span>
-      <span class="logo-sm">
-                        <img src="../images/logo_sm_dark.png" alt="" height="16">
-                    </span>
+    <a href="../dashboard.jsp" class="logo text-center logo-dark">
+        <span class="logo-lg">
+            <img src="../../../assets/images/logo-dark.png" alt="" height="16">
+        </span>
+        <span class="logo-sm">
+            <img src="../../../assets/images/logo_sm_dark.png" alt="" height="16">
+        </span>
     </a>
 
     <div class="h-100" id="leftside-menu-container" data-simplebar="">
 
       <!--- Sidemenu -->
-      <ul class="side-nav">
+      <ul class="side-nav" id="navigation-ul">
 
 
         <li class="side-nav-title side-nav-item">Menu de Navigation</li>
@@ -127,7 +129,7 @@
           <div class="collapse" id="sidebarEcommerce">
             <ul class="side-nav-second-level nav-operation">
               <li>
-                <a href="operation/liste">Liste</a>
+                <a href="operation/liste" target="_blank">Liste</a>
               </li>
               <li>
                 <a href="operation/entree" target="_blank">Entr&eacute;e</a>
@@ -139,10 +141,10 @@
                 <a href="operation/transfert" target="_blank">Transfert</a>
               </li>
               <li class="d-none">
-                <a href="operation/changer-de-code">Changer de Code</a>
+                <a href="operation/changer-de-code" target="_blank">Changer de Code</a>
               </li>
               <li class="d-none">
-                <a href="operation/rectification">Rectification</a>
+                <a href="operation/rectification" target="_blank">Rectification</a>
               </li>
             </ul>
           </div>
@@ -231,6 +233,7 @@
 
 
     <!-- inclusion des modals -->
+
     <%@ include file="../modal/menu-choix-magasin.jsp" %>
     <%@ include file="../modal/menu-choix-de-bdd.jsp" %>
     <%@ include file="../modal/menu-sauvegarde.jsp" %>

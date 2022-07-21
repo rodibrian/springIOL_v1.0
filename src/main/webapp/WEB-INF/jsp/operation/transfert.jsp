@@ -1,5 +1,6 @@
 <%@ include file="../template/head.jsp" %>
 
+<i class="no-title" title="Transfert"></i>
 
 <div class="row d-flex justify-content-center align-items-center bg-light text-dark" id="transfert-article"
      data-plugin="dragula">

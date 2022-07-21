@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="template/header.jsp" %>
 <!-- Start Content-->
@@ -64,8 +63,8 @@
               <td><c:out value="${cf.totalMontantTrosa}"/></td>
               <td>
                 <div class="action-client">
-                                  <a  class="btn-sm btn-info editClient "><i class="uil-pen"></i></a>
-                                  <a  class="btn-sm btn-danger deleteClient "><i class="uil-trash-alt"></i></a>
+                  <a class="btn-sm btn-info editClient "><i class="uil-pen"></i></a>
+                  <a class="btn-sm btn-danger deleteClient "><i class="uil-trash-alt"></i></a>
                 </div>
               </td>
             </tr>
@@ -89,7 +88,8 @@
                       <a href="" role="button" class="btn btn-success mb-1"><i class="uil-navigator"></i> </a>
                     </div>
                     <div>
-                      <a type="button" class="btn btn-outline-secondary mr-1 btn-nouveau-credit" data-bs-target="#nouveau-credit"
+                      <a type="button" class="btn btn-outline-secondary mr-1 btn-nouveau-credit"
+                         data-bs-target="#nouveau-credit"
                          data-bs-toggle="modal"><i
                               class="uil-file-plus">&nbsp;</i>Nouveau Credit</a>
                       <a type="button" class="btn btn-outline-danger mr-1 btn-supprimer-credit"><i

@@ -1,5 +1,7 @@
 <%@ include file='../template/header.jsp' %>
 
+<i class="no-title" title="Liste"></i>
+
 <!-- Start Content-->
 <div id="liste-operation" class="container-fluid">
 
