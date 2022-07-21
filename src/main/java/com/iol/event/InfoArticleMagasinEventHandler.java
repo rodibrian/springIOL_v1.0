@@ -1,6 +1,5 @@
 package com.iol.event;
 
-import com.iol.model.tenantEntityBeans.InfoArticleMagasin;
 import com.iol.repository.InfoArticleMagasinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.core.annotation.HandleBeforeCreate;

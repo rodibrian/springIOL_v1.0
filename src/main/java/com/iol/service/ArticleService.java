@@ -1,6 +1,5 @@
 package com.iol.service;
 
-import com.iol.model.tenantEntityBeans.InfoArticleMagasin;
 import com.iol.repository.ArticleRepository;
 import com.iol.repository.InfoArticleMagasinRepository;
 import org.springframework.beans.factory.annotation.Autowired;

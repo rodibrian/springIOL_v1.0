@@ -8,7 +8,7 @@
     <artifactId>iol</artifactId>
     <version>1.0</version>
     <name>iol</name>
-    <packaging>jar</packaging>
+    <packaging>jar</packaging>vente
 
     <properties>
         <maven.compiler.target>11</maven.compiler.target>

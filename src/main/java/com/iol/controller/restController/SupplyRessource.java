@@ -2,7 +2,6 @@ package com.iol.controller.restController;
 
 import com.iol.model.tenantEntityBeans.PrixArticleFiliale;
 import com.iol.model.tenantEntityBeans.Supply;
-import com.iol.model.tenantEntityBeans.InfoArticleMagasin;
 import com.iol.model.wrapper.SupplyWrapper;
 import com.iol.repository.PuafRepository;
 import com.iol.repository.SupplyRepository;
