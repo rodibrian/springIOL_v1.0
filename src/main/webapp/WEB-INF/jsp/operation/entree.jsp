@@ -105,10 +105,8 @@
                 </button>
               </div>
               <!-- end d-grid -->
-
             </div>
             <div class="col-lg-7">
-
               <table id="table-liste-article-entree" class="table table-special-form table-sm table-centered mb-0">
                 <thead>
                 <tr>
@@ -124,7 +122,6 @@
 
                 </tbody>
               </table>
-
               <div class="foot-vente d-none">
                 <p>Nombre d'article : <span>00</span></p>
               </div>
