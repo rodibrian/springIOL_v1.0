@@ -1,38 +1,42 @@
 package com.iol.model.tenantEntityBeans;
 
-import com.iol.model.entityEmbededId.PrixArticleFilialeId;
+import com.iol.model.entityEmbededId.PrixVenteUniteArticleFilialeId;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
-@Entity(name = "prix_article_filiale")
+@Entity
 @Data
-public class PrixArticleFiliale {
+public class PrixVenteUniteArticleFiliale{
     @EmbeddedId
-    private PrixArticleFilialeId prixArticleFilialeId;
+    private PrixVenteUniteArticleFilialeId prixVenteUniteArticleFilialeId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @MapsId("filialeId")
-    @JoinColumn(name = "filiale_id")
+    @JoinColumn(name = "filiale_id",foreignKey = @ForeignKey(name = "FK_FILIALE_ID",foreignKeyDefinition = "FOREIGN KEY (filiale_id) REFERENCES filiale(id) ON DELETE CASCADE ON UPDATE NO ACTION"))
     private Filiale filiale;
 
-    @ManyToOne
-    @MapsId("articleId")
-    @JoinColumn(name = "article_id")
-    private Article article;
-
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @MapsId("uniteId")
-    @JoinColumn(name = "unite_id")
+    @JoinColumn(name = "unite_id",
+            foreignKey = @ForeignKey(name = "FK_UNITE_ID",
+                    foreignKeyDefinition = "FOREIGN KEY (unite_id) REFERENCES unite(id) ON DELETE CASCADE ON UPDATE NO ACTION"))
     private Unite unite;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @MapsId("articleId")
+    @JoinColumn(name = "article_id",
+            foreignKey = @ForeignKey(name = "FK_ARTICLE_ID",
+                    foreignKeyDefinition = "FOREIGN KEY (article_id) REFERENCES article(article_id) ON DELETE CASCADE ON UPDATE NO ACTION"))
+    private Article article;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "user_id",
+            foreignKey = @ForeignKey(name = "FK_USER_ID",
+                    foreignKeyDefinition = "FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE NO ACTION ON UPDATE NO ACTION"))
     private User user;
 
-    private Double montant;
-
-    @Temporal(TemporalType.DATE)
-    private Date dateEnregistrement;
+    private Double prixVente;
+    private LocalDate dateEnregistrement;
 }
