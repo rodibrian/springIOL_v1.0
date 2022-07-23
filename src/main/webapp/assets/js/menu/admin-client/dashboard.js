@@ -7,11 +7,8 @@ $(function () {
      */
 
     let namespace = "#dashboard-admin-client "
-
     let NEW = "nouveau", EDIT = "editer";
-
     // event create new filial
-
     $(namespace + "#btn-nouveau-filial").on('click', function () {
         $(namespace + "#nouveau-filial .modal-title").text("Nouveau filial")
         $(namespace + "#nouveau-filial").modal('show')
@@ -40,18 +37,10 @@ $(function () {
 
     // enregsitrement filial
 
-    $(namespace + "#nouveau-filial #btn-enregistrer-filial").on('click', function () {
-        $nom = $(namespace + '#nouveau-filial input#input-nom').val()
-        $adresse = $(namespace + '#nouveau-filial input#input-adresse').val()
-        $contact = $(namespace + '#nouveau-filial input#input-contact').val()
-        $username = $(namespace + '#nouveau-filial input#input-username').val()
-        $password = $(namespace + '#nouveau-filial input#input-password').val()
-
-        $typeOperation = $(namespace + "#nouveau-filial").attr('data-id');
-
+    function onCreateSubsdiariesSuccess(data) {
         switch ($typeOperation) {
             case NEW:
-                $(namespace + '.liste-filial').append(createItemFilial(new Date().toLocaleTimeString(), $nom, $adresse, $contact))
+                $(namespace + '.liste-filial').append(createItemFilial(data.id, $nom, $adresse, $contact))
                 createToast('bg-success', 'uil-file-check', 'Nouveau Filial cree', 'Creation d\'un nouveau filial fait!');
                 break;
             case EDIT :
@@ -60,18 +49,35 @@ $(function () {
                 $(namespace + '#' + $cardCurrent + ' .label-contact').text($contact)
                 break;
         }
-
         // empty input text
-
         $(namespace + '#nouveau-filial input#input-nom').val(' ')
         $(namespace + '#nouveau-filial input#input-adresse').val(' ')
         $(namespace + '#nouveau-filial input#input-contact').val(' ')
         $(namespace + '#nouveau-filial input#input-username').val(' ')
         $(namespace + '#nouveau-filial input#input-password').val('')
+    }
+    $(namespace + "#nouveau-filial #btn-enregistrer-filial").on('click', function () {
+        $nom = $(namespace + '#nouveau-filial input#input-nom').val()
+        $adresse = $(namespace + '#nouveau-filial input#input-adresse').val()
+        $contact = $(namespace + '#nouveau-filial input#input-contact').val()
+        $username = $(namespace + '#nouveau-filial input#input-username').val()
+        $password = $(namespace + '#nouveau-filial input#input-password').val()
+        $typeOperation = $(namespace + "#nouveau-filial").attr('data-id');
+        $filiale = {};
+        $filiale.nom = $nom;
+        $filiale.adresse = $adresse;
+        $filiale.contact = $contact;
+        $.ajax({
+            type : "POST",
+            url : "http://localhost:8080/api/v1/subsidiaries",
+            contentType: "application/json",
+            data: JSON.stringify($filiale),
+            success : function (data) {
+                onCreateSubsdiariesSuccess(data);
+            }
+        })
     })
-
     // suppression filial
-
     $(document).on('click', '.btn-desactiver-filial', function () {
         $cardCurrent = $(this).closest('.item-filial').attr('id');
         $idModal = 'desactiver-filial';
@@ -93,7 +99,7 @@ $(function () {
      */
 
     function createItemFilial($id, $nom, $adresse, $contact) {
-        return `<div id='item-filial-` + $id + `' class="col-3 item-filial">
+        return `<div  id='`+ $id +`' class="col-3 item-filial">
     <div class="card d-block">
       <div class="card-body">
         <div class="dropdown card-widgets">
@@ -116,7 +122,6 @@ $(function () {
           <a href="" class="text-title label-nom">` + $nom + `</a>
         </h4>
         <div class="badge bg-danger mb-3 label-statut">Suspendu (activation requis)</div>
-
         <p class="text-muted font-13 mb-3"><span class="label-adresse">` + $adresse + `</span> - <span class="label-contact">` + $contact + `</span>
         </p>
 

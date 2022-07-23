@@ -42,6 +42,8 @@ public class Supply implements Serializable{
    @JoinColumn(name = "user_id")
    private User user;
 
+   private Double quantite;
+
    private Double montantApprov;
 
    private LocalDate datePeremption;

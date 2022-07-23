@@ -1,26 +1,18 @@
 $(function () {
 
     let namespace = "#dashboard ";
-
     /*
-
     DASHBOARD
-
      */
-
     // event click client tr CLIENT
-
     $(document).on('dblclick', namespace + '.table-liste-dette-client tbody tr', function () {
         let userId = $(this).attr('id');
         $user = null;
-
         // check client in array obbject
         $.each($lesDettesClients, function (key, value) {
             if (value.idClient === userId) $user = value;
         })
-
         // affect all values to label infoCLient
-
         $('#modal-dette-client .label-nom-client').text($user.nomClient)
         $('#modal-dette-client .label-contact-client').text($user.contact)
         $('#modal-dette-client .label-adresse-client').text($user.adresse)
@@ -118,16 +110,11 @@ $(function () {
         $modalId = 'confirmation-blocage';
         create_confirm_dialog($(this).text(), 'Voulez vous vraiment ' + $(this).text() + '?',$modalId,'Oui, ' + $(this).text(), $(this).attr('class'))
             .on('click', function() {
-
                 $('#modal-dette-client #btn-bloquer-client').toggleClass('d-none')
                 $('#modal-dette-client #btn-debloquer-client').toggleClass('d-none')
-
                 hideAndRemove('#' + $modalId);
-
                 createToast()
             })
-
-
     })
 
     // block fournisseur event

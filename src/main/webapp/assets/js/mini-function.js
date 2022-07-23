@@ -63,10 +63,26 @@ function get_select_affect_to_input($input, $id_element, $text_element) {
     $($input).attr('value', $text_element)
 }
 
-
 function push_to_table_list($table, $id, $array_td){
     $tr = $('<tr></tr>').attr('id', $id);
     for (let i = 0; i < $array_td.length; i++) $tr.append($('<td></td>').html($array_td[i]))
+    $($table + ' tbody').append($tr);
+    return $tr;
+}
+
+function push_to_inventory_table_list($table, $id, $array_td){
+    $tr = $('<tr></tr>').attr('id', $id);
+    for (let i = 0; i < $array_td.length; i++){
+        if (i!==3) $tr.append($('<td></td>').html($array_td[i]))
+        else {
+            $a = $('<a></a>')
+                .attr("type","button")
+                .attr("class","btn-default mr-1 btn-info-stock")
+                .attr("data-bs-toggle","modal")
+                .attr("data-bs-target","#info-stock").html($array_td[i])
+            $tr.append($('<td></td>').append($a))
+        }
+    }
     $($table + ' tbody').append($tr);
     return $tr;
 }
@@ -182,7 +198,6 @@ function enregistrerClientOuFournisseur_(client){
 function publicite() {
     console.log('-- Publicite --')
 }
-
 function personnaliserMenu($title) {
     $('title').text('IOL - ' + $title)
 }

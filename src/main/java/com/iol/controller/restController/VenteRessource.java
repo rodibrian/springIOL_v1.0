@@ -7,12 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
 public class VenteRessource {
-
     @Autowired
     private VenteRepository venteRepository;
 
@@ -22,9 +22,9 @@ public class VenteRessource {
     }
 
     @PostMapping("/ventes")
-    public ResponseEntity<Object> create(@RequestBody Vente vente){
-        Vente save = venteRepository.save(vente);
-        return new ResponseEntity<>(save,HttpStatus.OK);
+    public ResponseEntity<Object> create(@RequestBody List<Vente> ventes){
+        List<Vente> ventes1 = venteRepository.saveAll(ventes);
+        return new ResponseEntity<>(ventes1,HttpStatus.OK);
     }
 
     @PutMapping("/ventes/{id}")
@@ -47,5 +47,4 @@ public class VenteRessource {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.valueOf(500));
         }
     }
-
 }

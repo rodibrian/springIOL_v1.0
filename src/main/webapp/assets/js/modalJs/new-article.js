@@ -129,8 +129,8 @@ $(function () {
                             let tableRow = `
                              <tr id=` + au.article.id +`>
                                 <td>` + article.designation+ `</td>
+                                <td>` + article.categorie.libelle  +`</td>
                                 <td>` + au.unite.code  +`</td>
-                                <td>` + article.categorie.libelle  + `</td>
                                 <td>` + au.poids+ `</td>
                                 <td>` + au.unite.designation + `</td>
                                 <td>` + au.quantiteNiveau+ `</td>

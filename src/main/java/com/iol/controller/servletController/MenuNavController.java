@@ -4,7 +4,6 @@ import com.iol.service.ArticleService;
 import com.iol.model.tenantEntityBeans.Magasin;
 import com.iol.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,6 +41,7 @@ public class MenuNavController{
     private final String FONCTION_LIST = "fonctions";
     private final String USER_LIST = "users";
     private final String CLIENT_FOURNISSEUR_LIST = "cfList";
+    private final String STOCKS = "stocks";
 
     private final String MATERIEL_TRANSPORT_LIST = "materiel_transportList";
     private final int CLIENT = 0;
@@ -88,7 +88,7 @@ public class MenuNavController{
     public ModelAndView getMenuStock(){
         ModelAndView modelAndView = new ModelAndView("menu-stock");
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
-        modelAndView.addObject("stocks",articleService.getAllStock());
+        modelAndView.addObject(STOCKS,articleService.getAllInventories());
         return modelAndView;
     }
 
@@ -226,13 +226,11 @@ public class MenuNavController{
         return "operation/rectification";
     }
 
-
     /*
 
     Administration
 
      */
-
     @RequestMapping(value = "/admin-client/dashboard",method = RequestMethod.GET)
     public String getAdministrationClientHome(){
         return "admin-client/dashboard";
@@ -242,7 +240,5 @@ public class MenuNavController{
     public String getAdministrationHome(){
         return "administrateur/dashboard";
     }
-
-
 }
 

@@ -62,9 +62,12 @@ public class ArticleRessource {
         articleRepository.save(article);
         return new ResponseEntity<>(" item status set to "+status, HttpStatus.OK);
     }
+
     @PostMapping("/articles")
     public ResponseEntity<Object> create(@RequestBody Article article){
         Article savedArticle = articleRepository.save(article);
         return new ResponseEntity<>(savedArticle, HttpStatus.CREATED);
     }
+
+
 }

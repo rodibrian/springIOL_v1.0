@@ -5,7 +5,6 @@ import com.iol.model.tenantEntityBeans.Supply;
 import com.iol.model.wrapper.SupplyWrapper;
 import com.iol.repository.PuafRepository;
 import com.iol.repository.SupplyRepository;
-import com.iol.repository.InfoArticleMagasinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +20,6 @@ public class SupplyRessource {
     @Autowired
     private SupplyRepository supplyRepository;
 
-    @Autowired
-    private InfoArticleMagasinRepository iamRepository;
 
     @Autowired
     private PuafRepository puafRepository;
@@ -55,10 +52,10 @@ public class SupplyRessource {
 
     @PostMapping(value = "/supplies")
     public ResponseEntity<Object> create(@RequestBody SupplyWrapper supplyWrapper){
-        List<InfoArticleMagasin> infoArticleMagasins = iamRepository.saveAll(supplyWrapper.getInfoArticleMagasins());
+        List<Supply> supplies = supplyRepository.saveAll(supplyWrapper.getSupplies());
         List<PrixArticleFiliale> prixArticleFiliales = puafRepository.saveAll(supplyWrapper.getPrixArticleFiliales());
         supplyWrapper.setPrixArticleFiliales(prixArticleFiliales);
-        supplyWrapper.setInfoArticleMagasins(infoArticleMagasins);
+        supplyWrapper.setSupplies(supplies);
         return new ResponseEntity<>(supplyWrapper, HttpStatus.CREATED);
     };
 }

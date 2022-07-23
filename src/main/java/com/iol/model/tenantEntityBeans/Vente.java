@@ -48,6 +48,8 @@ public class Vente implements Serializable{
 
     private Double remise;
 
+    private Double quantite;
+
     @Column
     private Double montantVente;
 

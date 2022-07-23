@@ -5,28 +5,71 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bd9c0e93-77b1-4a8f-96ad-44ae32dfbfef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/326e7986-f385-468a-873c-4a9c5e055f4c.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/326e7986-f385-468a-873c-4a9c5e055f4c/storage_v2/_src_/database/ioldb.BLv7BQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/326e7986-f385-468a-873c-4a9c5e055f4c/storage_v2/_src_/database/ioldb.BLv7BQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/326e7986-f385-468a-873c-4a9c5e055f4c/storage_v2/_src_/database/ioldb.BLv7BQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/326e7986-f385-468a-873c-4a9c5e055f4c/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/InventoryRessource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/entityEmbededId/StockId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Stock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/wrapper/StockWrapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iol/repository/StockRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1551a1c4-fa56-4678-ac94-4badeace846c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1551a1c4-fa56-4678-ac94-4badeace846c.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1551a1c4-fa56-4678-ac94-4badeace846c/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1551a1c4-fa56-4678-ac94-4badeace846c/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/ArticleRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/ArticleRessource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/MagasinRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/MagasinRessource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/SupplyRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/SupplyRessource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/event/InfoArticleMagasinEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/event/InfoArticleMagasinEventHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/ApprovArticle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/InfoArticleMagasin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/VenteRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/VenteRessource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/servletController/MenuNavController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/servletController/MenuNavController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/event/InfoArticleMagasinEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/PrixArticleFiliale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/PrixArticleFiliale.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Supply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Supply.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Vente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Vente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/wrapper/SupplyWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/wrapper/SupplyWrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/repository/InfoArticleMagasinRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/repository/InfoArticleMagasinRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/repository/ArticleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/repository/ArticleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/repository/InfoArticleMagasinRepository.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/service/ArticleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/service/ArticleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/STOCK_TRIGGER_SCRIPT.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/STOCK_TRIGGER_SCRIPT.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-stock.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-stock.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-vente.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-vente.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/admin-client/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/admin-client/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-stock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-stock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-vente.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-vente.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/operation/entree.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/operation/entree.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/mini-function.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/mini-function.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/modalJs/new-article.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/modalJs/new-article.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/iol/repository/ArticleRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/iol/repository/ArticleRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/iol/repository/PuafRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/iol/repository/PuafRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/Iol.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/Iol.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/ArticleRessource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/ArticleRessource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/MagasinRessource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/MagasinRessource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/SupplyRessource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/SupplyRessource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/VenteRessource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/VenteRessource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/servletController/MenuNavController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/servletController/MenuNavController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/event/InfoArticleMagasinEventHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/InfoArticleMagasin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Personne.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Personne.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/PrixArticleFiliale.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/PrixArticleFiliale.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Supply.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Supply.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Vente.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Vente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/wrapper/SupplyWrapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/wrapper/SupplyWrapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/ArticleRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/repository/ArticleRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/InfoArticleMagasinRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/service/ArticleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/service/ArticleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/iol/repository/ArticleRepositoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/iol/repository/ArticleRepositoryTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/iol/repository/PuafRepositoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/iol/repository/PuafRepositoryTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -79,13 +122,47 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.iol.model.entityEmbededId" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.iol.repository" />
+    </key>
   </component>
   <component name="RunManager" selected="Spring Boot.Iol">
+    <configuration name="ArticleRepositoryTest.getStockWithPriceAndExpirationDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="iol" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.iol.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.iol.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.iol.repository.ArticleRepositoryTest" />
+      <option name="METHOD_NAME" value="getStockWithPriceAndExpirationDate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Iol (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="iol" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.iol.Iol" />
@@ -101,6 +178,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ArticleRepositoryTest.getStockWithPriceAndExpirationDate" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -114,8 +196,23 @@
       <workItem from="1658408770902" duration="3893000" />
       <workItem from="1658418033253" duration="869000" />
       <workItem from="1658421230797" duration="120000" />
-      <workItem from="1658430621330" duration="2126000" />
+      <workItem from="1658430621330" duration="2155000" />
+      <workItem from="1658434081272" duration="13072000" />
+      <workItem from="1658472479995" duration="4131000" />
+      <workItem from="1658480245225" duration="721000" />
+      <workItem from="1658481113231" duration="1736000" />
+      <workItem from="1658497361757" duration="19142000" />
+      <workItem from="1658596578031" duration="1812000" />
+      <workItem from="1658612448041" duration="2676000" />
     </task>
+    <task id="LOCAL-00001" summary="mapping de la trigger avec la table approvisionnement">
+      <created>1658448504125</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1658448504125</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,5 +229,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="mapping de la trigger avec la table approvisionnement" />
+    <option name="LAST_COMMIT_MESSAGE" value="mapping de la trigger avec la table approvisionnement" />
   </component>
 </project>
