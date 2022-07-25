@@ -40,7 +40,7 @@ public class User extends PersonnePhysique implements Serializable{
    @JoinColumn(name = "filialeId",foreignKey = @ForeignKey(name = "user_filiale_key_constraint"))
    private Filiale filiale;
 
-   @ManyToOne(cascade = CascadeType.ALL)
+   @ManyToOne(cascade = CascadeType.MERGE)
    @JoinColumn(name = "fonction_id",foreignKey = @ForeignKey(name = "user_fonction_key_constraint"))
    private Fonction fonction;
 

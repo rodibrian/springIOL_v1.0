@@ -7,6 +7,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -17,38 +18,16 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = "vente.all",query = "from vente")
 })
-public class Vente implements Serializable{
+public class Vente extends Operation implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "article_id",
-            foreignKey = @ForeignKey(name = "FK_ARTICLE_ID"
-                    ,foreignKeyDefinition = "FOREIGN KEY (article_id) REFERENCES article(article_id) ON DELETE CASCADE ON UPDATE NO ACTION"))
-    private Article article;
-
-    @ManyToOne
-    @JoinColumn(name = "unite_id",
-    foreignKey = @ForeignKey(name = "FK_UNITE_ID"
-            ,foreignKeyDefinition = "FOREIGN KEY (unite_id) REFERENCES unite(id) ON DELETE CASCADE ON UPDATE NO ACTION"))
-    private Unite unite;
-
-    @ManyToOne
     @JoinColumn(name = "client_id",foreignKey = @ForeignKey(name = "FK_CLIENT_ID"))
     private ClientFournisseur client;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "magasin_id",foreignKey = @ForeignKey(name = "vente_magasin_key_constraint"))
-    private Magasin magasin;
-
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "responsable_id",foreignKey = @ForeignKey(name = "vente_responsable_key_constraint"))
-    private User user;
-
     private Double remise;
-
-    private Double quantite;
 
     @Column(columnDefinition = "TEXT")
     private String reference;
@@ -56,8 +35,7 @@ public class Vente implements Serializable{
     @Column
     private Double montantVente;
 
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    private LocalDate date;
 
     @Column(columnDefinition = "TEXT")
     private String observation;

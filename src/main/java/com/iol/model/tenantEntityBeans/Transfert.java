@@ -15,7 +15,7 @@ import java.util.Date;
 @NamedQueries({
         @NamedQuery(name = "transfert.all",query = "from transfert")
 })
-public class Transfert implements Serializable {
+public class Transfert extends OperationData implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,15 +29,8 @@ public class Transfert implements Serializable {
     @JoinColumn(name = "magasin_receveur",foreignKey = @ForeignKey(name = "transfert_magasin_receveur_key_constraint"))
     private Magasin magasinReceveur;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id",foreignKey = @ForeignKey(name = "transfert_utilisateur_key_constraint"))
-    private User user;
-
     @Column(columnDefinition = "TEXT")
     private String codeTransfert;
-
-    @Temporal(TemporalType.DATE)
-    private Date dateTransfert;
 
     @Column(columnDefinition = "TEXT")
     private String designation;

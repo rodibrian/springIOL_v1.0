@@ -52,8 +52,4 @@ public class ArticleService {
         });
         return list;
     }
-
-    private Object updateStock(){
-
-    }
 }

@@ -74,7 +74,7 @@ public class SupplyRessource {
             int stockCount = articleRepository.getStockCount(primaryUniteId,magasinId, articleId);
             System.out.println("articleId = "+articleId+",uniteId = "+primaryUniteId+" , magasinId = "+magasinId+", quantite = "+stockQuantite);
             if (stockCount==0){
-                 articleRepository.saveInventory(uniteId,magasinId,articleId,supplyQuantite);
+               articleRepository.saveInventory(uniteId, magasinId, articleId, supplyQuantite);
             }else articleRepository.updateStock(stockQuantite,primaryUniteId,magasinId,articleId);
         });
         return new ResponseEntity<>(supplies, HttpStatus.CREATED);
