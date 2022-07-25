@@ -15,6 +15,7 @@ import java.util.List;
 @Controller
 @SessionAttributes(names = {"connectedUser","articles"})
 public class MenuNavController{
+
     @Autowired
     private CategorieRepository categorieRepository;
     @Autowired
@@ -25,18 +26,16 @@ public class MenuNavController{
     private UserRepository userRepository;
     @Autowired
     private ClientFournisseurRepository clientFournisseurRepository;
-
     @Autowired
     private SupplyRepository supplyRepository;
-
     @Autowired
     private ArticleService articleService;
-
     @Autowired
     private MaterielTransportRepository materielTransportRepository;
-
     @Autowired
     private SubsidiaryRepository subsidiaryRepository;
+    @Autowired
+    private VenteRepository venteRepository;
 
     private final String CATEGORIE_LIST = "categories";
     private final String ARTICLE_LIST = "articles";
@@ -45,6 +44,7 @@ public class MenuNavController{
     private final String USER_LIST = "users";
     private final String CLIENT_FOURNISSEUR_LIST = "cfList";
     private final String STOCKS = "stocks";
+    private final String SALES_LIST = "sales";
 
     private final String MATERIEL_TRANSPORT_LIST = "materiel_transportList";
     private final int CLIENT = 0;
@@ -75,9 +75,13 @@ public class MenuNavController{
         return modelAndView;
     }
 
+
+
     @RequestMapping(value = "/detail-ventes", method = RequestMethod.GET)
-    public String getDetailVentes() {
-        return "menu-detail-vente";
+    public ModelAndView getDetailVentes() {
+        ModelAndView modelAndView = new ModelAndView("menu-detail-vente");
+        modelAndView.addObject(SALES_LIST, venteRepository.findAll());
+        return modelAndView;
     }
 
     @RequestMapping(value = "/magasin", method = RequestMethod.GET)

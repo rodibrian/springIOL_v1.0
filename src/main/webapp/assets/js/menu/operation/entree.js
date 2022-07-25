@@ -87,8 +87,8 @@ $(function () {
         supply.article = {
             id : articleId
         };
+        supply.quantite = quantite;
         supply.montantApprov = prixAchat;
-        supply.quantiteApprov = quantite;
         supply.refFacture = refFact;
         supply.datePeremption =datePeremption;
         supply.quantite = quantite;
@@ -116,7 +116,6 @@ $(function () {
         let id = $(this).attr("id");
         delete(pvuafTab[id]);
         delete(supplyTab[id]);
-        console.log(supplyTab);
         $designation = $(this).children().eq(1).text();
         createToast('bg-danger','uil-trash-alt','Enlevement Article',$designation + ' supprim&eacute;')
     });
@@ -149,6 +148,13 @@ $(function () {
                         contentType: "application/json",
                         data: JSON.stringify(supplyWrapper),
                         success : function (data){
+                            $.each(data,function (key, supply) {
+                               let uniteId = supply.unite.id;
+                               let articleId = supply.article.id;
+                               let quantite = supply.quantite;
+                               let magasinId = supply.magasin.id;
+
+                            })
                             onSuppliesCreated();
                         }
                 });

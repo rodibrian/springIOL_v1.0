@@ -50,6 +50,9 @@ public class Vente implements Serializable{
 
     private Double quantite;
 
+    @Column(columnDefinition = "TEXT")
+    private String reference;
+
     @Column
     private Double montantVente;
 

@@ -1,6 +1,5 @@
 package com.iol.repository;
 import com.iol.model.tenantEntityBeans.Article;
-import com.iol.model.tenantEntityBeans.Unite;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -13,6 +12,8 @@ import java.util.List;
 @Repository
 @Transactional
 public interface ArticleRepository extends JpaRepository<Article,Long>{
+    @Query(value = "SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id =:articleId AND au.unite_id=:uniteId" ,nativeQuery = true)
+    Double getQuantiteNiveau(@Param("uniteId") Long uniteId , @Param("articleId") Long articleId);
 
     @Query(value = "select id,code,designation,niveau,poids from unite u inner join article_unite au ON u.id = au.unite_id WHERE au.article_id =:param",nativeQuery = true)
     List<String> getAllUnite(@Param("param") Long id);
@@ -20,18 +21,20 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
     @Query(value = "select a.article_id,a.designation,c.libelle,u.id,u.code,u.designation as ud,au.quantite_niveau from unite u,article_unite au ,article a ,categorie c WHERE u.id = au.unite_id AND au.article_id = a.article_id and a.categorie_id = c.id",nativeQuery = true)
     List<String> getAll();
 
-    @Query(value = "select a.article_id,u.id,s.magasin_id,a.designation as ad,c.libelle, u.designation,s.count as nb from " +
-            " unite u , Stock s , (select magasin_id,unite_id,article_id from approv group by magasin_id,unite_id,article_id) as app , article a , categorie  c " +
-            "WHERE app.article_id = a.article_id and app.unite_id = u.id " +
-            "and app.magasin_id = s.magasin_id and a.categorie_id = c.id " +
-            "and s.article_id = app.article_id and s.unite_id =  app.unite_id ",nativeQuery = true)
+    @Query(value = "select a.article_id,u.id,s.magasin_id,a.designation as ad,c.libelle, u.designation," +
+            "(s.count*(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as nb " +
+            "FROM unite u , Stock s , article_unite as au , article a , categorie  c " +
+            "WHERE au.article_id = a.article_id and au.unite_id = u.id " +
+            "and a.categorie_id = c.id " +
+            "and s.article_id = au.article_id and s.unite_id =  au.unite_id",nativeQuery = true)
     List<String> getStockWithPriceAndExpirationDate();
 
-    @Query(value = "select a.article_id,u.id,s.magasin_id,a.designation as ad,c.libelle, u.designation,s.count as nb from " +
-            " unite u , Stock s,(select magasin_id,unite_id,article_id from approv group by magasin_id,unite_id,article_id) as app , article a , categorie  c " +
-            "WHERE app.article_id = a.article_id and app.unite_id = u.id " +
-            "and app.magasin_id = s.magasin_id and a.categorie_id = c.id " +
-            "and s.article_id = app.article_id and s.unite_id =  app.unite_id and s.magasin_id=:magasinId ",nativeQuery = true)
+    @Query(value = "select a.article_id,u.id,s.magasin_id,a.designation as ad,c.libelle, u.designation," +
+            "(s.count*(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as nb " +
+            "FROM unite u , Stock s , article_unite as au , article a , categorie  c " +
+            "WHERE au.article_id = a.article_id and au.unite_id = u.id " +
+            "and a.categorie_id = c.id " +
+            "and s.article_id = au.article_id and s.unite_id =  au.unite_id and s.magasin_id=:magasinId ",nativeQuery = true)
     List<String> getStockWithPriceAndExpirationDate(@Param("magasinId") Long magasinId);
 
 
@@ -43,4 +46,19 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
             " count = :newVal + stock.count" +
             " where unite_id =:uniteId and magasin_id=:magasinId and article_id=:articleId",nativeQuery = true)
     void updateStock(@Param("newVal") Double value,@Param("uniteId") Long uniteId,@Param("magasinId") Long magasinId,@Param("articleId") Long articleId);
+
+    @Query(value = "SELECT au.unite_id FROM article_unite au where article_id =:articleId and au.niveau = 1",nativeQuery = true)
+    Long getPrimaryUniteId(@Param("articleId")Long articleId);
+
+    @Query(value = "SELECT count(*) from stock s WHERE s.article_id =:articleId AND s.unite_id=:uniteId and s.magasin_id=:magasinId" ,nativeQuery = true)
+    int getStockCount(@Param("uniteId") Long uniteId,@Param("magasinId") Long magasinId,@Param("articleId") Long articleId);
+
+    @Modifying
+    @Query(value = "INSERT into stock (article_id,unite_id,magasin_id,count) values (:articleId,:uniteId,:magasinId,:count);",nativeQuery = true)
+    int saveInventory(@Param("uniteId") Long uniteId
+                      ,@Param("magasinId") Long magasinId,
+                       @Param("articleId") Long articleId,
+                       @Param("count") Double count);
 }
+
+

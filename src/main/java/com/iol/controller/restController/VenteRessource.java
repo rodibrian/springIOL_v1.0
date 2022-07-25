@@ -1,12 +1,11 @@
 package com.iol.controller.restController;
 
-import com.iol.model.tenantEntityBeans.Article;
+import com.iol.model.tenantEntityBeans.ArticleUnite;
+import com.iol.model.tenantEntityBeans.Unite;
 import com.iol.model.tenantEntityBeans.Vente;
 import com.iol.repository.ArticleRepository;
 import com.iol.repository.VenteRepository;
-import com.iol.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,11 +32,16 @@ public class VenteRessource {
         List<Vente> ventes1 = venteRepository.saveAll(ventes);
         ventes1.forEach(vente -> {
             Long articleId = vente.getArticle().getId();
-            Long uniteId = vente.getUnite().getId();
+            Unite unite = vente.getUnite();
+            Long uniteId = unite.getId();
+            Double quantiteNiveau = articleRepository.getQuantiteNiveau(uniteId, articleId);
+            Long primaryUniteId = articleRepository.getPrimaryUniteId(articleId);
             Long magasinId = vente.getMagasin().getId();
             Double venteQuantite = vente.getQuantite();
-            System.out.println("articleId = "+articleId+",uniteId = "+uniteId+" , magasinId = "+magasinId+", quantite = "+venteQuantite);
-            articleRepository.updateStock(-venteQuantite,uniteId,magasinId,articleId);
+            // CONVERTIR LA QUANTITE A LA NIVEAU
+            Double stockQuantite = venteQuantite*quantiteNiveau;
+            System.out.println("articleId = "+articleId+",uniteId = "+primaryUniteId+" , magasinId = "+magasinId+", quantite = "+stockQuantite);
+            articleRepository.updateStock(-stockQuantite,primaryUniteId,magasinId,articleId);
         });
         return new ResponseEntity<>(ventes1,HttpStatus.OK);
     }
