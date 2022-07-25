@@ -42,12 +42,12 @@ public class Magasin{
             inverseJoinColumns = {@JoinColumn(name = "article_id",foreignKey = @ForeignKey(name = "FK_MA_ARTICLE_ID",foreignKeyDefinition = "foreign key (article_id) references article(article_id) on delete cascade"))})
     private Set<Article> articles;
 
+    @JsonIgnore
     @ManyToOne(cascade= CascadeType.MERGE)
     @JoinColumn(name = "filialeId",foreignKey = @ForeignKey(name = "magasin_filiale_key_constraint"))
     private Filiale filiale;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "magasin")
+    @ManyToMany(mappedBy = "magasin",cascade = CascadeType.PERSIST)
     private Set<User> users;
 
     @OneToMany

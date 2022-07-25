@@ -1,12 +1,15 @@
 package com.iol.controller.restController;
 
+import com.iol.model.tenantEntityBeans.Article;
 import com.iol.model.tenantEntityBeans.Vente;
+import com.iol.repository.ArticleRepository;
 import com.iol.repository.VenteRepository;
+import com.iol.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +19,10 @@ public class VenteRessource {
     @Autowired
     private VenteRepository venteRepository;
 
+
+    @Autowired
+    private ArticleRepository articleRepository;
+
     @GetMapping("/ventes")
     public ResponseEntity<Object> getAll(){
         return new ResponseEntity<>(venteRepository.findAll(), HttpStatus.OK);
@@ -24,6 +31,14 @@ public class VenteRessource {
     @PostMapping("/ventes")
     public ResponseEntity<Object> create(@RequestBody List<Vente> ventes){
         List<Vente> ventes1 = venteRepository.saveAll(ventes);
+        ventes1.forEach(vente -> {
+            Long articleId = vente.getArticle().getId();
+            Long uniteId = vente.getUnite().getId();
+            Long magasinId = vente.getMagasin().getId();
+            Double venteQuantite = vente.getQuantite();
+            System.out.println("articleId = "+articleId+",uniteId = "+uniteId+" , magasinId = "+magasinId+", quantite = "+venteQuantite);
+            articleRepository.updateStock(-venteQuantite,uniteId,magasinId,articleId);
+        });
         return new ResponseEntity<>(ventes1,HttpStatus.OK);
     }
 

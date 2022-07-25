@@ -1,5 +1,6 @@
 package com.iol.model.tenantEntityBeans;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
@@ -20,8 +21,9 @@ public class Fonctionnalite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @ManyToMany(mappedBy = "fonctionnalites")
-//    private Set<Fonction> fonction;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "fonctionnalites")
+    private Set<Fonction> fonction;
 
     @Column(columnDefinition = "TEXT")
     private String nom;

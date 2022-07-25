@@ -20,7 +20,8 @@ class ArticleRepositoryTest {
 
     @Test
     void getStockWithPriceAndExpirationDate() {
-        List<String> stockWithPriceAndExpirationDate = articleRepository.getStockWithPriceAndExpirationDate();
-        System.out.println(stockWithPriceAndExpirationDate);
+        articleRepository.updateStock(20D,3L,1L,2L);
     }
+
+
 }

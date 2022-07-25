@@ -35,6 +35,9 @@ public class MenuNavController{
     @Autowired
     private MaterielTransportRepository materielTransportRepository;
 
+    @Autowired
+    private SubsidiaryRepository subsidiaryRepository;
+
     private final String CATEGORIE_LIST = "categories";
     private final String ARTICLE_LIST = "articles";
     private final String MAGASIN_LIST = "magasins";
@@ -47,6 +50,7 @@ public class MenuNavController{
     private final int CLIENT = 0;
     private final int FOURNISSEUR = 1;
     private final String SUPPLY_LIST = "supplies";
+    private final String SUBSDIARIES = "subsdiaries";
 
     public MenuNavController() {
     }
@@ -225,15 +229,14 @@ public class MenuNavController{
     public String getOperationRectification() {
         return "operation/rectification";
     }
-
     /*
-
     Administration
-
      */
     @RequestMapping(value = "/admin-client/dashboard",method = RequestMethod.GET)
-    public String getAdministrationClientHome(){
-        return "admin-client/dashboard";
+    public ModelAndView getAdministrationClientHome(){
+        ModelAndView modelAndView = new ModelAndView("admin-client/dashboard");
+        modelAndView.addObject(SUBSDIARIES,subsidiaryRepository.findAll());
+        return modelAndView;
     }
 
     @RequestMapping(value = "/admin/dashboard",method = RequestMethod.GET)

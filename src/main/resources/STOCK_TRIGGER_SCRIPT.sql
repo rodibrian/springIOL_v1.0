@@ -25,7 +25,7 @@ BEGIN
     -- Si l'evenement vient de la table vente ou de la table sortie alors on fait UPDATE
     if tg_table_name = 'vente' then
 
-        update stock set count = (count-new.quantite) where article_id = new.article_id AND unite_id = new.unite_id  AND magasin_id = new.magasin_id;
+        update stock set count = (count - new.quantite) where article_id = new.article_id AND unite_id = new.unite_id  AND magasin_id = new.magasin_id;
 
     else if tg_table_name = 'approv' or tg_table_name = 'avoir' then
 
@@ -37,7 +37,7 @@ BEGIN
 
         else
 
-            update stock set count = (select NEW.quantite + count ) where article_id = NEW.article_id AND unite_id = NEW.unite_id AND magasin_id = NEW.magasin_id;
+            update stock set count = (NEW.quantite + count ) where article_id = NEW.article_id AND unite_id = NEW.unite_id AND magasin_id = NEW.magasin_id;
 
         end if;
 

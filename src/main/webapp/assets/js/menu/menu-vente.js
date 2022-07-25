@@ -46,7 +46,7 @@ $(function () {
         let article_id = $(this).attr("id");
         let unite_id = $(this).children().eq(2).attr("id");
         let filialeId = $(namespace + '#filiale-id').attr("value-id");
-        get_select_affect_to_input(namespace + '#designation-article', $(this).children().eq(0).text(), $(this).children().eq(1).text());
+        get_select_affect_to_input(namespace + '#designation-article',article_id,$(this).children().eq(1).text());
         $(namespace + '#modal-liste-article').modal('hide');
         set_select_option_value([unite_id, $(this).children().eq(2).text()], namespace + "#input-unite-article");
         updatePrixUnitaire(article_id, unite_id, filialeId);
@@ -67,11 +67,9 @@ $(function () {
         get_select_affect_to_input(namespace + '#input-prix-unitaire', null, $special_price_final);
         $(namespace + '#modal-prix-special').modal('hide')
     })
-
     /*------------------------------------------------------------------------------
                                             AJOUT DUN ARTICLE
      -------------------------------------------------------------------------------*/
-
     $('.btn-ajouter-article-vente').on('click', function () {
         $articleId = $(namespace + '#designation-article').attr('value-id');
         $designation = $(namespace + '#designation-article').val();
@@ -84,7 +82,6 @@ $(function () {
         $userId = $(namespace + '#user-id').attr("value-id");
         $montant = $quantite * $prix_unitaire;
         $article_vente = [$designation, $unite, $quantite, $prix_unitaire, $montant];
-
         $vente = {};
         $vente.article = {
             id : $articleId
@@ -97,9 +94,6 @@ $(function () {
         $vente.date = new Date();
         $vente.quantite= $quantite;
         venteTab.push($vente);
-
-        console.log($quantite);
-
         push_to_table_list(namespace + '#table-liste-article-vente', $articleId, $article_vente);
         // vider form vente
         $('.form-vente input').each(function () {
@@ -128,7 +122,6 @@ $(function () {
         $modalId = 'confirmation-de-vente';
         create_confirm_dialog('Confirmation de Vente', $content, $modalId, 'Enregistrer', 'btn-primary')
             .on('click', function () { // button de validation
-                console.log(venteTab);
                 $.ajax({
                     type: "POST",
                     url: "http://localhost:8080/api/v1/ventes",
@@ -136,9 +129,9 @@ $(function () {
                     data: JSON.stringify(venteTab),
                     success : function (data){
                         venteTab = [];
-                        console.log(data);
                     }
                 });
+                venteTab = [];
                 // vider table
                 $(namespace + '#table-liste-article-vente tbody tr').remove();
                 $(namespace + '#' + $modalId).modal('hide');

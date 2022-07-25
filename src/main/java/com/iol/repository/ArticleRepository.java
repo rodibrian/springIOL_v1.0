@@ -2,6 +2,7 @@ package com.iol.repository;
 import com.iol.model.tenantEntityBeans.Article;
 import com.iol.model.tenantEntityBeans.Unite;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -33,6 +34,13 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
             "and s.article_id = app.article_id and s.unite_id =  app.unite_id and s.magasin_id=:magasinId ",nativeQuery = true)
     List<String> getStockWithPriceAndExpirationDate(@Param("magasinId") Long magasinId);
 
+
     @Query(value = "SELECT prix_vente from prix_article_filiale where article_id =:artId and unite_id =:uId and filiale_id =:fId order by date_enregistrement limit 1",nativeQuery = true)
     String getPrix(@Param("artId") Long artId,@Param("uId") Long uId,@Param("fId") Long fId);
+
+    @Modifying(clearAutomatically = true)
+    @Query(value = "update stock set " +
+            " count = :newVal + stock.count" +
+            " where unite_id =:uniteId and magasin_id=:magasinId and article_id=:articleId",nativeQuery = true)
+    void updateStock(@Param("newVal") Double value,@Param("uniteId") Long uniteId,@Param("magasinId") Long magasinId,@Param("articleId") Long articleId);
 }

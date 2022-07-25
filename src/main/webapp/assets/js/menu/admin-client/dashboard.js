@@ -1,11 +1,8 @@
 $(function () {
 
     /*
-
     Tableau de bord filial
-
      */
-
     let namespace = "#dashboard-admin-client "
     let NEW = "nouveau", EDIT = "editer";
     // event create new filial
@@ -16,13 +13,10 @@ $(function () {
     })
 
     // event activatiot filial
-
     $(document).on('click', namespace + ' .btn-activer-filial', function () {
         $(namespace + "#activation-filial").modal('show')
     })
-
     // edit filial
-
     $(document).on('click', namespace + ' .btn-editer-filial', function () {
         $(namespace + "#nouveau-filial .modal-title").text('Editer filial')
         $(namespace + "#nouveau-filial").modal('show')
@@ -56,6 +50,25 @@ $(function () {
         $(namespace + '#nouveau-filial input#input-username').val(' ')
         $(namespace + '#nouveau-filial input#input-password').val('')
     }
+
+    function persistDefaultStore(data){
+        $default_magasin = {
+            adresse: data.adresse,
+            nomMagasin: "default_magasin",
+            filiale: {
+                id: data.id
+            }
+        };
+        $.ajax({
+            type : "POST",
+            url : "http://localhost:8080/api/v1/magasins",
+            contentType: "application/json",
+            data: JSON.stringify($default_magasin),
+            success : function (data) {
+                console.log(data);
+            }
+        })
+    }
     $(namespace + "#nouveau-filial #btn-enregistrer-filial").on('click', function () {
         $nom = $(namespace + '#nouveau-filial input#input-nom').val()
         $adresse = $(namespace + '#nouveau-filial input#input-adresse').val()
@@ -63,10 +76,21 @@ $(function () {
         $username = $(namespace + '#nouveau-filial input#input-username').val()
         $password = $(namespace + '#nouveau-filial input#input-password').val()
         $typeOperation = $(namespace + "#nouveau-filial").attr('data-id');
+        $admin_filiale_user = {
+            username : $username,
+            password : $password,
+            fonction : {
+                nomFonction : "admin",
+                fonctionnalites :[{
+                    nom : "all"
+                }]
+            }
+        };
         $filiale = {};
         $filiale.nom = $nom;
         $filiale.adresse = $adresse;
         $filiale.contact = $contact;
+        $filiale.users = [$admin_filiale_user];
         $.ajax({
             type : "POST",
             url : "http://localhost:8080/api/v1/subsidiaries",
@@ -74,6 +98,7 @@ $(function () {
             data: JSON.stringify($filiale),
             success : function (data) {
                 onCreateSubsdiariesSuccess(data);
+                persistDefaultStore(data);
             }
         })
     })
