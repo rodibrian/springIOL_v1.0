@@ -6,7 +6,7 @@ $(function () {
         let article_id = $(this).attr("id");
         let unite_id = $(this).children().eq(2).attr("id");
         get_select_affect_to_input(namespace + '#input-designation-article',article_id, $(this).children().eq(1).text());
-        set_select_option_value_or_update_option([unite_id, $(this).children().eq(2).text()], namespace + " #select-unite-article")
+        set_select_option_value([unite_id, $(this).children().eq(2).text()], namespace + " #select-unite-article")
         $(namespace + '#modal-liste-article').modal('hide');
         // après selection article, select * unite de l'article
     })
@@ -57,6 +57,7 @@ $(function () {
             data: JSON.stringify(sortieTab),
             contentType: "application/json",
             success: function (data) {
+                sortieTab = [];
                 $('#' + $modalId).modal('hide');
                 $('#' + $modalId).remove();
                 $(namespace + '#table-liste-article-sortie tbody tr').remove();

@@ -40,12 +40,11 @@
                 </select>
               </div>
               <br>
-
               <div class="mb-1">
                 <label class="form-label">référence</label>
                 <input type="text" name="reference" id="input-reference" class="form-control">
               </div>
-
+              <br>
               <h4>Ajouter Article
                 <hr>
               </h4>

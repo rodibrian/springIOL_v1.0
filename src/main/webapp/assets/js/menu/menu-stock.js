@@ -59,9 +59,9 @@ $(function () {
                 $(namespace + " #inventory-table tbody tr").empty();
                 // ajouter les donnés dans la table
                 $.each(data, function (key, value) {
-                    $tr = [value.article, value.unite, value.categorie, value.stock];
+                    $tr = [value.article, value.unite, value.categorie,value.quantite];
                     $stockId = value.magasinId + "-" + value.articleId + "-" + value.uniteId;
-                    push_to_inventory_table_list(namespace + " #inventory-table", $stockId, $tr);
+                    push_to_inventory_table_list(namespace + " #inventory-table",$stockId,$tr);
                 });
             }
         });

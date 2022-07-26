@@ -29,7 +29,7 @@ $(function() {
         let article_id = $(this).attr("id");
         let unite_id = $(this).children().eq(2).attr("id");
         get_select_affect_to_input(namespace + '.designation-article',article_id, $(this).children().eq(1).text());
-        set_select_option_value_or_update_option([unite_id, $(this).children().eq(2).text()], namespace + "#select-unite")
+        set_select_option_value([unite_id, $(this).children().eq(2).text()], namespace + "#select-unite")
         $(namespace + '#modal-liste-article').modal('hide');
         // après selection article, select * unite de l'article
     })
@@ -40,12 +40,11 @@ $(function() {
         let magasinDestId= $(namespace + '#select-magasin-dest').val();
         let userId = $(namespace + '#user-id').attr("value-id");
         let designation = $(namespace + '#input-designation-article').val();
-        let reference = $(namespace + '#input-reference').text();
-        let unite = $(namespace + '#select-unite-article option:selected').text();
-        let uniteId = $(namespace + '#select-unite-article option:selected').val();
+        let reference = $(namespace + '#input-reference').val();
+        let unite = $(namespace + '#select-unite option:selected').text();
+        let uniteId = $(namespace + '#select-unite option:selected').val();
         let description = $(namespace + '#area-description').val();
         let quantite = $(namespace + '#input-quantite').val();
-
         let transfert = {};
         transfert.article = {
             id : articleId
@@ -76,6 +75,26 @@ $(function() {
     })
     // Enregistrement articles
 
+    function persitTransfertData() {
+        let url = "http://localhost:8080/api/v1/transferts";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: JSON.stringify(transferTab),
+            contentType: "application/json",
+            success: function (data) {
+                transferTab = [];
+                $('#' + $modalId).modal('hide');
+                $('#' + $modalId).remove();
+                $(namespace + '.table-liste-article-transfert tbody tr').remove();
+                createToast('bg-primary',
+                    'uil-file-check',
+                    'Transfert d\'article fait',
+                    $nArticle + ' articles transfer&eacute; avec succ&egrave;s!');
+            }
+        })
+    }
+
     $(namespace + ".btn-enregistrer-article").on('click', function() {
         $modalId = 'confirmation-de-transfert-article'
         $nArticle = $(namespace + '.table-liste-article-transfert tbody tr').length;
@@ -84,14 +103,7 @@ $(function() {
             '<li><strong>' + $nArticle + '</strong> Articles</li>';
         create_confirm_dialog('Confirmation de transfert des articles', $content, $modalId, 'Oui, Transfert', 'btn-primary')
             .on('click', function() {
-                $('#' + $modalId).modal('hide');
-                $('#' + $modalId).remove();
-                $(namespace + '.table-liste-article-transfert tbody tr').remove();
-                createToast('bg-primary',
-                    'uil-file-check',
-                    'Transfert d\'article fait',
-                    $nArticle + ' articles transfer&eacute; avec succ&egrave;s!');
+                persitTransfertData();
             })
-
     })
 })
