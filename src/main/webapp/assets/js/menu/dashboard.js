@@ -1,115 +1,18 @@
 $(function () {
 
     let namespace = "#dashboard ";
-
     /*
-
     DASHBOARD
-
      */
-
-    $lesDettesClients = [
-        {
-            idClient: "Cl-001",
-            nomClient: "Rakoto",
-            adresse: "Toamasina",
-            contact: "+261 34 12 000 00",
-            detteImpaye: 5000
-        },
-        {
-            idClient: "Cl-002",
-            nomClient: "Lita",
-            adresse: "Fianarantsoa",
-            contact: "+261 34 45 000 00",
-            detteImpaye: 78000
-        },
-        {
-            idClient: "Cl-003",
-            nomClient: "Rabe",
-            adresse: "Antananarivo",
-            contact: "+261 34 44 000 00",
-            detteImpaye: 7500
-        },
-        {
-            idClient: "Cl-004",
-            nomClient: "Boto",
-            adresse: "Mahajanga",
-            contact: "+261 34 75 000 00",
-            detteImpaye: 50000
-        },
-        {
-            idClient: "Cl-005", nomClient: "Soa", adresse: "Toamasina", contact: "+261 34 25 000 00", detteImpaye: 15000
-        },
-        {
-            idClient: "Cl-006", nomClient: "Koto", adresse: "Toamasina", contact: "+261 34 14 000 00", detteImpaye: 2500
-        }
-    ];
-
-    $lesDettesFournisseur = [
-        {
-            idFournisseur: "Frs-001",
-            nomFournisseur: "Entreprise Rakoto",
-            adresse: "Toamasina",
-            contact: "+261 44 00 000 00",
-            detteImpaye: 1500
-        },
-        {
-            idFournisseur: "Frs-002",
-            nomFournisseur: "Entreprise Lita",
-            adresse: "Antananarivo",
-            contact: "+261 44 00 000 00",
-            detteImpaye: 75000
-        },
-        {
-            idFournisseur: "Frs-003",
-            nomFournisseur: "Entreprise Rabe",
-            adresse: "Toamasina",
-            contact: "+261 54 00 000 00",
-            detteImpaye: 1000
-        },
-        {
-            idFournisseur: "Frs-004",
-            nomFournisseur: "Entreprise Boto",
-            adresse: "Mahanjanga",
-            contact: "+261 77 00 000 00",
-            detteImpaye: 2500
-        },
-        {
-            idFournisseur: "Frs-005",
-            nomFournisseur: "Entreprise Soa",
-            adresse: "Fianarantsoa",
-            contact: "+261 82 00 000 00",
-            detteImpaye: 100000
-        },
-        {
-            idFournisseur: "Frs-006",
-            nomFournisseur: "Entreprise Koto",
-            adresse: "Toliara",
-            contact: "+261 34 00 000 00",
-            detteImpaye: 12000
-        }
-    ];
-
-    $.each($lesDettesClients, function (key, value) {
-        push_to_table_list(namespace + ".table-liste-dette-client", value.idClient, [value.nomClient, value.detteImpaye + " Ar"]);
-    })
-    $.each($lesDettesFournisseur, function (key, value) {
-        push_to_table_list(namespace + ".table-liste-dette-fournisseur", value.idFournisseur, [value.nomFournisseur, value.detteImpaye + " Ar"])
-    })
-
     // event click client tr CLIENT
-
     $(document).on('dblclick', namespace + '.table-liste-dette-client tbody tr', function () {
         let userId = $(this).attr('id');
         $user = null;
-
         // check client in array obbject
         $.each($lesDettesClients, function (key, value) {
             if (value.idClient === userId) $user = value;
         })
-
         // affect all values to label infoCLient
-
         $('#modal-dette-client .label-nom-client').text($user.nomClient)
         $('#modal-dette-client .label-contact-client').text($user.contact)
         $('#modal-dette-client .label-adresse-client').text($user.adresse)
@@ -207,16 +110,11 @@ $(function () {
         $modalId = 'confirmation-blocage';
         create_confirm_dialog($(this).text(), 'Voulez vous vraiment ' + $(this).text() + '?',$modalId,'Oui, ' + $(this).text(), $(this).attr('class'))
             .on('click', function() {
-
                 $('#modal-dette-client #btn-bloquer-client').toggleClass('d-none')
                 $('#modal-dette-client #btn-debloquer-client').toggleClass('d-none')
-
                 hideAndRemove('#' + $modalId);
-
                 createToast()
             })
-
-
     })
 
     // block fournisseur event

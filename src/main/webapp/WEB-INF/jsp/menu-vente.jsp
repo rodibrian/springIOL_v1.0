@@ -1,5 +1,7 @@
 <%@ include file="template/head.jsp" %>
 
+<i class="no-title" title="Vente"></i>
+
 <div class="row d-flex justify-content-center align-items-center bg-ligth" id="menu-vente" data-plugin="dragula">
   <div class="col-md-11">
     <div class="card mt-3 mb-3">
@@ -42,7 +44,6 @@
                   <label class="form-check-label" for="check-a-livrer">A livrer</label>
                 </div>
               </div>
-
               <div class="mb-1">
                 <label class="form-label">Designation</label>
                 <div class="input-group">
@@ -100,16 +101,12 @@
                 <tbody>
                 </tbody>
               </table>
-
-
-              <div class="foot-vente d-none">
-                <p>Nombre d'article : <span>00</span></p>
-                <p class="">
-                <p>0Ar</p>
-                <p>0Fmg</p>
+              <div class="foot-vente d-flex justify-content-end text-decoration-underline">
+                <p class="m-1">Nombre d'article : <span>00</span></p>
+                <p class="m-1">
+                  <p class="m-1">Somme : 0Ar (0Fmg)</p>
                 </p>
               </div>
-
             </div>
           </div>
           <!-- end vente content -->

@@ -1,8 +1,6 @@
 <%@ include file='template/header.jsp' %>
-
 <!-- Start Content-->
 <div class="container-fluid" id="menu-stock">
-
   <!-- start page title -->
   <div class="row">
     <div class="col-12">
@@ -18,7 +16,6 @@
     </div>
   </div>
   <!-- end page title -->
-
   <div class="row mr-2">
     <div class="col-12">
       <div class="page-title-box">
@@ -29,7 +26,7 @@
         </div>
       </div>
       <div class="d-inline-flex mt-1">
-        <a type="button" class="btn s-no-value btn-40 btn-success mr-1 btn-all-stock" data-bs-toggle="modal"
+        <a type="button" id="toutes-button" class="btn s-no-value btn-40 btn-success mr-1 btn-all-stock" data-bs-toggle="modal"
            data-bs-target="#new-article"><i
                 class="uil-table">&nbsp;</i>Toutes</a>
         <a id="btn-article-alert" type="button" class="btn s-no-value btn-40 btn-warning mr-1 btn-alert-stock" data-bs-toggle="modal"
@@ -40,55 +37,48 @@
         &nbsp;
         <div class="d-inline-flex s-value">
           <div class="mb-3 mr-1">
-            <select class="form-select" id="example-select">
-              <c:forEach var="magasin" items="${magasins}">
-                <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
-              </c:forEach>
+            <select class="form-select" id="magasin-select">
+                <option value="${magasin.id}">Toutes</option>
+                <c:forEach var="magasin" items="${magasins}">
+                  <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
+                </c:forEach>
             </select>
           </div>
         </div>
         <button class="btn s-value btn-40 btn-success mr-1 btn-alert-stock btn-stock-valider"><i
                 class="uil-check-square">&nbsp;</i>Valider
         </button>
-
       </div>
     </div>
   </div>
-
-
   <div class="all-modal">
     <%@ include file="modal/info-stock.jsp" %>
   </div>
-
   <!-- suite -->
-
-
   <div class="container -fluid"><br><br>
     <div class="row">
       <div class="col-lg-12">
-        <table id="scroll-vertical-datatable"
+        <table id="inventory-table"
                class="table-article-stock table table-special-form table-sm dt-responsive nowrap table-hover table-50">
           <thead>
           <tr>
-            <th>Code</th>
             <th>Designation</th>
             <th>Unite</th>
-            <th>Expd</th>
-            <th>Prix</th>
+            <th>Categorie</th>
+<%--            <th>Prix</th>--%>
             <th>Stock </th>
           </tr>
           </thead>
           <tbody>
           <c:forEach var="stock" items="${stocks}">
-            <tr id="${stock.id}" >
-              <td>${stock.unite.code}</td>
-              <td>${stock.article.designation}</td>
-              <td>${stock.unite.designation}</td>
-              <td>${stock.datePeremption}</td>
-              <td>${stock.supply.montantApprov}</td>
-              <td class="td-info-stock">
-                   <a type="button" class="btn-default mr-1 btn-info-stock" data-bs-toggle="modal" data-bs-target="#info-stock">${stock.quantiteStock}</a>
-              </td>
+            <tr>
+                <td>${stock.article}</td>
+                <td>${stock.unite}</td>
+                <td>${stock.categorie}</td>
+<%--                <td>${stock.prixAchat}</td>--%>
+                <td class="td-info-stock">
+                       <a type="button" class="btn-default mr-1 btn-info-stock" data-bs-toggle="modal" data-bs-target="#info-stock">${stock.stock}</a>
+                </td>
             </tr>
           </c:forEach>
           </tbody>
@@ -97,7 +87,6 @@
     </div>
   </div>
 </div>
-
 </div> <!-- container -->
 
 </div> <!-- content -->
@@ -110,10 +99,8 @@
 
 </div>
 </div>
-
 <!-- ============================================================== -->
 <!-- End Page content -->
 <!-- ============================================================== -->
-
 <%@ include file="template/footer.jsp" %>
 <%@ include file="template/setting.jsp" %>

@@ -6,6 +6,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity(name = "fonction")
@@ -27,5 +28,5 @@ public class Fonction{
     @JoinTable(name = "fonction_fonctionnalite",joinColumns = {@JoinColumn(name = "fonction_id",foreignKey = @ForeignKey(name = "ff_fonction_key_constraint"))},inverseJoinColumns = {
             @JoinColumn(name = "fonctionnalite_id",foreignKey = @ForeignKey(name = "ff_fonctionnalite_key_constraint"))
     })
-    private Set<Fonctionnalite> fonctionnalites;
+    private List<Fonctionnalite> fonctionnalites;
 }

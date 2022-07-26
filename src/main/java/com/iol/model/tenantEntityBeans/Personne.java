@@ -1,9 +1,7 @@
 package com.iol.model.tenantEntityBeans;
-
 import lombok.Data;
 
 import javax.persistence.*;
-
 @Entity
 @Data
 @Inheritance(strategy = InheritanceType.JOINED)

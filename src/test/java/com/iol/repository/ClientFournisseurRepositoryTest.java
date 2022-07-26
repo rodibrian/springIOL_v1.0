@@ -19,6 +19,6 @@ class ClientFournisseurRepositoryTest {
 
     @Test
     void getAllFournisseur(){
-        Assertions.assertThat(cfRepo.getAllExternalEntities(1).size()).isEqualTo(2);
+        Assertions.assertThat(cfRepo.getAllExternalEntities(0).size()).isEqualTo(1);
     }
 }

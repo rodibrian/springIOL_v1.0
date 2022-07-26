@@ -24,13 +24,17 @@ public class ArticleRessource {
         return ResponseEntity.ok(all);
     }
 
+    @GetMapping(value = "/articles/{id}")
+    public ResponseEntity<Article> getArticleById(@PathVariable(name = "id")Long id){
+        Optional<Article> byId = articleRepository.findById(id);
+        return ResponseEntity.ok(byId.get());
+    }
+
+
     @GetMapping(value = "/articles/{id}/unites")
     public ResponseEntity<Object> getAllUnites(@PathVariable("id") Long id){
-        Optional<Article> articleOptional = articleRepository.findById(id);
-        if (!articleOptional.isPresent()){
-            return ResponseEntity.notFound().build();
-        }
-        return new ResponseEntity<>("", HttpStatus.CREATED);
+        List<String> articleUnite = articleRepository.getAllUnite(id);
+        return new ResponseEntity<>(articleUnite, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/articles/{articleId}/unites/{uniteId}/filiales/{filialeId}/prices")
@@ -39,7 +43,6 @@ public class ArticleRessource {
                                          ,@PathVariable("filialeId")Long filialeId){
         return new ResponseEntity<>(articleRepository.getPrix(articleId,uniteId,filialeId), HttpStatus.OK);
     }
-
 
     @DeleteMapping("/articles/{id}")
     public ResponseEntity<Object> delete(@PathVariable("id") Long id){
@@ -62,9 +65,12 @@ public class ArticleRessource {
         articleRepository.save(article);
         return new ResponseEntity<>(" item status set to "+status, HttpStatus.OK);
     }
+
     @PostMapping("/articles")
     public ResponseEntity<Object> create(@RequestBody Article article){
         Article savedArticle = articleRepository.save(article);
         return new ResponseEntity<>(savedArticle, HttpStatus.CREATED);
     }
+
+
 }

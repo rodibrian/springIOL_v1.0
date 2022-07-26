@@ -1,6 +1,7 @@
 $(function () {
     let namespace = "#menu-entree-article ";
-    let infoArticletab = [];
+    let supplyTab = [];
+    let trIndex = 0;
     // LISTE DES PRIX DE VENTE
     let pvuafTab = [];
     /*
@@ -8,15 +9,6 @@ $(function () {
      */
     // Chargement des données de la page;
     $("#btn-search-article").click(function () {
-        let url = "http://localhost:8080/api/v1/articles";
-        // $.ajax({
-        //     type: "GET",
-        //     url: url,
-        //     contentType: 'application/json',
-        //     success: function (data){
-        //         console.log(data);
-        //     }
-        // });
     })
     // Selection des fournisseurs
     $(document).on('dblclick',namespace + '#table-liste-fournisseur tbody tr', function(){
@@ -42,7 +34,7 @@ $(function () {
         let article_id = $(this).attr("id");
         let unite_id = $(this).children().eq(2).attr("id");
         get_select_affect_to_input(namespace + '#input-designation-article',article_id, $(this).children().eq(1).text());
-        let IS_CREATE = $(namespminiace +"#select-unite-article").children().length == 0;
+        let IS_CREATE = $(namespace+"#select-unite-article").children().length == 0;
         set_select_option_value_or_update_option([[unite_id,$(this).children().eq(2).text()]], namespace + "#select-unite-article",IS_CREATE);
         $(namespace + ' #input-prix-vente-article').val($(this).children().eq(5).text());
         $(namespace + '#modal-liste-article').modal('hide');
@@ -79,37 +71,29 @@ $(function () {
         }
         fuap.dateEnregistrement= dateApprov;
         fuap.prixVente = prixVente;
+        pvuafTab.push(fuap);
         // APPROVISIONNEMENT
         let supply = {};
-        // Magasin
         supply.magasin = {
             id : magasinId
         }
-        // Fournisseur
         supply.fournisseur = {
             id : fId
+        };
+        supply.user= {id:userId};
+        supply.unite ={
+            id : uniteId
+        }
+        supply.article = {
+            id : articleId
         };
         supply.montantApprov = prixAchat;
         supply.quantiteApprov = quantite;
         supply.refFacture = refFact;
-        supply.user= {id:userId};
-        // INFO ARTICLE MAGASIN
-        let infoArticleMagasin ={
-            magasin :supply.magasin,
-            article : {
-                id : articleId
-            },
-            unite :{
-                id : uniteId
-            },
-            quantiteStock : quantite,
-            date : dateApprov,
-            datePeremption : datePeremption,
-            supply : supply
-        };
-        infoArticletab.push(infoArticleMagasin);
-        pvuafTab.push(fuap);
-
+        supply.datePeremption =datePeremption;
+        supply.quantite = quantite;
+        supply.dateApprov = dateApprov;
+        supplyTab.push(supply);
         $articleAjout = [
             $(namespace + '#input-reference-facture').val(),
             $(namespace + '#input-designation-article').val(),
@@ -118,7 +102,7 @@ $(function () {
             $(namespace + '#input-prix-achat-article').val(),
             parseFloat($(namespace + '#input-prix-achat-article').val()) * parseFloat(quantite)
         ]
-        push_to_table_list(namespace + "#table-liste-article-entree", "", $articleAjout);
+        push_to_table_list(namespace + "#table-liste-article-entree",trIndex++, $articleAjout);
         // vider les input
         $(namespace + '#input-designation-article').attr('value','');
         $(namespace + '#input-quantite-article').val(0);
@@ -127,12 +111,27 @@ $(function () {
         $(namespace + '#select-unite-article option').remove();
     })
     // suppression articles à la table
-    $(document).on('dblclick',"#table-liste-article-entree tbody tr", function() {
+    $(document).on('dblclick',"#table-liste-article-entree tbody tr", function(){
         $(this).remove();
+        let id = $(this).attr("id");
+        delete(pvuafTab[id]);
+        delete(supplyTab[id]);
+        console.log(supplyTab);
         $designation = $(this).children().eq(1).text();
         createToast('bg-danger','uil-trash-alt','Enlevement Article',$designation + ' supprim&eacute;')
     });
-    // Enregistrement articles
+    function onSuppliesCreated() {
+        supplyTab = [];
+        pvuafTab = [];
+        $('#' + $modalId).modal('hide');
+        $('#' + $modalId).remove();
+        $(namespace + '#table-liste-article-entree tbody tr').remove();
+        createToast('bg-success',
+            'uil-file-check',
+            'Entr&eacute;e d\'article fait',
+            $nArticle + ' articles enregistr&eacute;es avec succ&egrave;s!');
+    }
+// Enregistrement articles
     $(namespace + "#btn-enregistrer-article-entree").on('click', function() {
         $modalId = 'confirmation-d-entree-article'
         $nArticle = $(namespace + '#table-liste-article-entree tbody tr').length;
@@ -142,7 +141,7 @@ $(function () {
         create_confirm_dialog('Confirmation d enregistrement des articles', $content, $modalId, 'Oui, Enregistrer', 'btn-success')
             .on('click', function() {
                 let supplyWrapper = {};
-                supplyWrapper.infoArticleMagasins = infoArticletab;
+                supplyWrapper.supplies = supplyTab;
                 supplyWrapper.prixArticleFiliales = pvuafTab;
                 $.ajax({
                         type: "POST",
@@ -150,15 +149,7 @@ $(function () {
                         contentType: "application/json",
                         data: JSON.stringify(supplyWrapper),
                         success : function (data){
-                            infoArticletab=[];
-                            pvuafTab = [];
-                            $('#' + $modalId).modal('hide');
-                            $('#' + $modalId).remove();
-                            $(namespace + '#table-liste-article-entree tbody tr').remove();
-                            createToast('bg-success',
-                                'uil-file-check',
-                                'Entr&eacute;e d\'article fait',
-                                $nArticle + ' articles enregistr&eacute;es avec succ&egrave;s!');
+                            onSuppliesCreated();
                         }
                 });
             })
@@ -169,5 +160,4 @@ $(function () {
         $(namespace + '.div-select-magasin').toggle();
         $(namespace + '.div-select-voyage').toggle();
     })
-
 })

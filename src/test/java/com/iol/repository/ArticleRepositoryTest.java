@@ -17,4 +17,11 @@ class ArticleRepositoryTest {
 //        String[] allArticle = articleRepository.getAllArticle();
 //        Assertions.assertThat(allArticle).isNotNull();
     }
+
+    @Test
+    void getStockWithPriceAndExpirationDate() {
+        articleRepository.updateStock(20D,3L,1L,2L);
+    }
+
+
 }

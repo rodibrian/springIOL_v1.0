@@ -2,7 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="template/header.jsp" %>
 <!-- Start Content-->
-<div class="container-fluid">
+<div class="container-fluid" id="menu-voyage">
   <!-- start page title -->
   <div class="row">
     <div class="col-12">
@@ -26,7 +26,7 @@
         </div>
       </div>
       <div class="d-block mt-1">
-        <a type="button" class="btn btn-success mr-1" data-bs-toggle="modal" data-bs-target="#nouveau-voyage"><i
+        <a type="button" class="btn btn-success mr-1" id="btn-nouveau-voyage"><i
                 class="uil-plus">&nbsp;</i>Enregistrer un voyage</a>
 
       </div>
@@ -44,7 +44,7 @@
     <div class="row">
 
       <div class="col-lg-12">
-        <table id="table-voyage" class="table table-sm dt-responsive nowrap table-hover">
+        <table id="table-liste-voyage" class="table table-sm dt-responsive nowrap table-hover">
           <thead>
           <tr>
             <th>Reference</th>
@@ -55,7 +55,6 @@
           </tr>
           </thead>
           <tbody>
-          <% for (int i = 0; i < 5; i++) { %>
           <tr>
             <td>ref-00000</td>
             <td>materieldetransport</td>
@@ -68,7 +67,6 @@
               </div>
             </td>
           </tr>
-          <% } %>
           </tbody>
         </table>
 

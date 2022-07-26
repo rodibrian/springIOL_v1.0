@@ -57,7 +57,7 @@
               <td><c:out value="${categorie.libelle}"/></td>
               <td>
                 <div class="d-inline-flex justify-content-center">
-                  <a id="${categorie.id}" data-bs-toggle="modal" data-bs-target="#standard-modal2" href="#"
+                  <a id="${categorie.id}" href="#"
                      class="editCategorie"><i class="uil-pen"></i></a>
                   <a id="${categorie.id}" href="#" class="deleteCategorie"><i class="uil-trash-alt"></i></a>
                 </div>&nbsp;
@@ -92,7 +92,7 @@
           </thead>
           <tbody>
           <c:forEach var="article" items="${articles}">
-              <tr id ="${article[0]}">
+              <tr id="${article[0]}">
                 <td><c:out value="${article[1]}"/></td>
                 <td><c:out value="${article[2]}"/></td>
                 <td><c:out value="${article[3]}"/></td>

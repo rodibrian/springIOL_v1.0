@@ -1,33 +1,300 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="bd9c0e93-77b1-4a8f-96ad-44ae32dfbfef" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/799cbfe1-4804-4ef8-acb3-29a82208cab3.corrupted.20220719-045518.reason.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/InventoryRessource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/MaterielTransportRessource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/entityEmbededId/StockId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Stock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/wrapper/StockWrapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iol/repository/StockRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/STOCK_TRIGGER_SCRIPT.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin-client/dashboard.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/administrateur/dashboard.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/admin-client/activation-filial.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/admin-client/new-filial.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/administrateur/new-societe.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/embarquement/new-materiel-de-transport.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/bon-entree.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/bon-transfert.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/facture-A5.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/ticket-avoir.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/ticket-caisse.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/page-test.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/template/admin-client/header.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/template/administrateur/header.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/impression.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/impression.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/admin-client/dashboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/administrateur/dashboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-choix-magasin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-voyage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/STOCK_TRIGGER_SCRIPT.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/InventoryRessource.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/MaterielTransportRessource.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/iol/model/entityEmbededId/StockId.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Stock.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/iol/model/wrapper/StockWrapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/iol/repository/StockRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1551a1c4-fa56-4678-ac94-4badeace846c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1551a1c4-fa56-4678-ac94-4badeace846c.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/799cbfe1-4804-4ef8-acb3-29a82208cab3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/799cbfe1-4804-4ef8-acb3-29a82208cab3.corrupted.20220719-045518.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/799cbfe1-4804-4ef8-acb3-29a82208cab3/storage_v2/_src_/database/ioldb.BLv7BQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/799cbfe1-4804-4ef8-acb3-29a82208cab3/storage_v2/_src_/database/ioldb.BLv7BQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/799cbfe1-4804-4ef8-acb3-29a82208cab3/storage_v2/_src_/database/ioldb.BLv7BQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/799cbfe1-4804-4ef8-acb3-29a82208cab3/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/799cbfe1-4804-4ef8-acb3-29a82208cab3/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.zip" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/ArticleRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/ArticleRessource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/MagasinRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/MagasinRessource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/SupplyRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/SupplyRessource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/VenteRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/VenteRessource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/servletController/MenuNavController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/servletController/MenuNavController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/event/InfoArticleMagasinEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/ApprovArticle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Filiale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Filiale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Fonction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Fonction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Fonctionnalite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Fonctionnalite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/InfoArticleMagasin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Magasin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Magasin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Personne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Personne.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/PrixArticleFiliale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/PrixArticleFiliale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Supply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Supply.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Vente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Vente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/wrapper/SupplyWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/wrapper/SupplyWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/repository/ArticleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/repository/ArticleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/repository/InfoArticleMagasinRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/service/ArticleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/service/ArticleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/dashboard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/embarquement/nouveau-embarquement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/embarquement/nouveau-embarquement.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-article.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-article.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-client.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-client.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-fournisseur.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-fournisseur.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-stock.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-stock.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-vente.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-vente.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-voyage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-voyage.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/menu-choix-magasin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/menu-choix-magasin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/new-article.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/new-article.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/new-voyage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/new-voyage.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/operation/liste.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/operation/liste.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/operation/transfert.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/operation/transfert.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/template/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/template/footer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/template/head.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/template/head.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/template/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/template/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/template/setting.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/template/setting.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/template/topbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/template/topbar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/table-special-form.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/table-special-form.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/barcode.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/brands/bitbucket.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/brands/dribbble.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/brands/dropbox.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/brands/g-suite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/brands/github.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/brands/slack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/email-campaign.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/features-1.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/features-2.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/file-searching.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/flags/germany.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/flags/italy.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/flags/russia.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/flags/spain.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/flags/us.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/help-icon.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/layouts/layout-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/layouts/layout-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/layouts/layout-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/layouts/layout-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/layouts/layout-5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/layouts/layout-6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/mail_sent.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/maintenance.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/payments/cod.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/payments/discover.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/payments/master.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/payments/payoneer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/payments/paypal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/payments/stripe.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/payments/visa.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/products/product-1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/products/product-2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/products/product-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/products/product-4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/products/product-5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/products/product-6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/projects/project-1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/projects/project-2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/projects/project-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/projects/project-4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/report.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/small/small-1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/small/small-2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/small/small-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/small/small-4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/startman.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/startup.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/users/avatar-10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/users/avatar-2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/users/avatar-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/users/avatar-4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/users/avatar-5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/users/avatar-6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/users/avatar-7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/users/avatar-8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/users/avatar-9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/embarquement/new-embarquement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/embarquement/new-embarquement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-article.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-article.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-client.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-fournisseur.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-fournisseur.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-magasin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-magasin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-stock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-stock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-vente.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-vente.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/operation/entree.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/operation/entree.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/mini-function.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/mini-function.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/modalJs/new-article.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/modalJs/new-article.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/modalJs/new-categorie.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/modalJs/new-categorie.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/iol/repository/ArticleRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/iol/repository/ArticleRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/iol/repository/ClientFournisseurRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/iol/repository/ClientFournisseurRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/iol/repository/PuafRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/iol/repository/PuafRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/ArticleRessource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/ArticleRessource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/MagasinRessource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/MagasinRessource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/SupplyRessource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/SupplyRessource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/VenteRessource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/VenteRessource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/servletController/MenuNavController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/servletController/MenuNavController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/event/InfoArticleMagasinEventHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Filiale.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Filiale.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Fonction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Fonction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Fonctionnalite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Fonctionnalite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/InfoArticleMagasin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Magasin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Magasin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Personne.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Personne.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/PrixArticleFiliale.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/PrixArticleFiliale.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Supply.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Supply.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Vente.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Vente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/wrapper/SupplyWrapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/wrapper/SupplyWrapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/ArticleRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/repository/ArticleRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/InfoArticleMagasinRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/service/ArticleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/service/ArticleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/iol/repository/ArticleRepositoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/iol/repository/ArticleRepositoryTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/iol/repository/ClientFournisseurRepositoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/iol/repository/ClientFournisseurRepositoryTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/iol/repository/PuafRepositoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/iol/repository/PuafRepositoryTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2CFnrJfAZqCE1fJQQqkLnJG8GHa" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false"
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/PROJET/Intellij/springIOL_v1.0/src/main/webapp/WEB-INF/jsp/modal/impression",
+    "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "385464f942b4e33331157569038c93a2"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PROJET\Intellij\springIOL_v1.0\src\main\webapp\WEB-INF\jsp\modal\impression" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.Iol">
+    <configuration name="generated-requests | #5" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="5" requestIdentifier="#5" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #6" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="6" requestIdentifier="#6" runType="Run single request">
+      <method v="2" />
+    </configuration>
     <configuration name="Iol" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="springIOL_v1.0" />
+      <option name="ACTIVE_PROFILES" />
+      <module name="iol" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.iol.Iol" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="HTTP Request.generated-requests | #5" />
+        <item itemvalue="HTTP Request.generated-requests | #6" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bd9c0e93-77b1-4a8f-96ad-44ae32dfbfef" name="Changes" comment="" />
+      <created>1658762651236</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1658762651236</updated>
+      <workItem from="1658762720146" duration="1214000" />
+      <workItem from="1658776840611" duration="5468000" />
+      <workItem from="1658832033103" duration="12456000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

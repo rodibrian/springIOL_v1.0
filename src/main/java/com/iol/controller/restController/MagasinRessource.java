@@ -1,18 +1,14 @@
 package com.iol.controller.restController;
 import com.iol.model.tenantEntityBeans.Magasin;
-import com.iol.model.tenantEntityBeans.User;
 import com.iol.repository.MagasinRepository;
 import com.iol.repository.UserRepository;
+import com.iol.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -22,6 +18,9 @@ public class MagasinRessource {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ArticleService articleService;
 
     @Autowired
     public void setMagasinRepository(MagasinRepository magasinRepository) {
@@ -54,6 +53,12 @@ public class MagasinRessource {
     public ResponseEntity<Object> getMagasinBy(@PathVariable("id") Long id){
         return new ResponseEntity<>(magasinRepository.getById(id).getFiliale(), HttpStatus.OK);
     }
+
+    @GetMapping("/magasins/{id}/stocks")
+    public ResponseEntity<Object> getStocksBy(@PathVariable("id") Long id){
+        return new ResponseEntity<>(articleService.getStockByMagasin(id), HttpStatus.OK);
+    }
+
 
     @PostMapping("/magasins")
     public ResponseEntity<Object> create(@RequestBody Magasin magasin){

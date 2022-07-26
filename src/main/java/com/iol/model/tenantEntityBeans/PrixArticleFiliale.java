@@ -33,7 +33,7 @@ public class PrixArticleFiliale {
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id",
             foreignKey = @ForeignKey(name = "FK_USER_ID",
-                    foreignKeyDefinition = "FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE NO ACTION ON UPDATE NO ACTION"))
+                    foreignKeyDefinition = "FOREIGN KEY (user_id) REFERENCES _user(id) ON DELETE NO ACTION ON UPDATE NO ACTION"))
     private User user;
 
     private Double prixVente;

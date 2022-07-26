@@ -6,25 +6,27 @@ $(function () {
     let categorieUrl = 'http://localhost:8080/api/v1/categories';
     $articleUrl = 'http://localhost:8080/api/v1/articles';
     $deleted = true;
+
     function initTableUnite() {
         $('#table-unite input').attr('disabled', '')
+
         // ajout du nouveau unite
         $("#btn-new-unite").click(
             function () {
                 let table = $("#table-unite tbody");
                 let length = $("#table-unite tbody tr").length;
                 // cacher le enregistrement
-                $("#table-unite tbody tr th a.btn-success").hide();
+                $("#table-unite tbody tr td a.btn-success").hide();
                 $('#table-unite input').attr('disabled', '');
                 // cacher edition et suppression du dernier
                 $("#table-unite tbody tr th #edit_" + length).hide();
                 $("#table-unite tbody tr th #del_" + length).hide();
                 let tr = `<tr>
-                            <td><input type="text"  class="form-control input-sm" value="000"></td>
-                            <td><input type="text"  class="form-control input-sm" value="0"></td>
+                            <td class="d-none"><input type="text"  class="form-control input-sm" value="000"></td>
+                            <td></td>
                             <td><input type="text"  class="form-control input-sm" value="designation"></td>
-                            <td><input type="text"  class="form-control input-sm" value="0"></td>
-                            <td><input type="text"  class="form-control input-sm" value="0Kg"></td>
+                            <td><input type="text"  class="form-control input-sm" value="1"></td>
+                            <td><input type="text"  class="form-control input-sm" value="1"></td>
                             <td class="d-inline-flex">
                                 <a class="btn btn-primary btn-sm btn-edit-unite"><i class="uil-pen"></i></a>&nbsp;
                                 <a class="btn btn-danger btn-sm btn-del-unite"><i class="uil-trash-alt"></i></a>&nbsp;
@@ -32,21 +34,41 @@ $(function () {
                             </td>
                         </tr>`;
                 table.append(tr);
+
+                updateNiveauUnite()
             }
         )
+
+        // niveau article dynamique
+
+        function updateNiveauUnite() {
+            $('#table-unite tbody tr').each(function(key, value) {
+                $(value).children().eq(1).text(++key);
+            })
+        }
+
         // edition ou enregistrement enregistrement
         $('#table-unite').on('click', '.btn-add-unite', (function () {
             $(this).closest('tr').find('input').attr('disabled', '');
             $(this).hide();
         }))
+
         //suppression unite
+
         $('#table-unite').on('click', '.btn-del-unite', (function () {
             $(this).closest('tr').remove();
+            updateNiveauUnite()
         }))
+
         // edition d'une unite
+
         $('#table-unite').on('click', '.btn-edit-unite', (function () {
             $(this).closest('tr').find('input').removeAttr('disabled')
             $(this).closest('tr').find('.btn-add-unite').show()
+
+            // disabled quantite
+            $('.not-editable').attr('disabled','')
+
         }));
     }
     function initAddAndSaveArticleBtn() {
@@ -129,8 +151,8 @@ $(function () {
                             let tableRow = `
                              <tr id=` + au.article.id +`>
                                 <td>` + article.designation+ `</td>
+                                <td>` + article.categorie.libelle  +`</td>
                                 <td>` + au.unite.code  +`</td>
-                                <td>` + article.categorie.libelle  + `</td>
                                 <td>` + au.poids+ `</td>
                                 <td>` + au.unite.designation + `</td>
                                 <td>` + au.quantiteNiveau+ `</td>
@@ -212,7 +234,6 @@ $(function () {
         $(".editArticleBtn").click(function () {
             isCreateArticle = false;
             editedArticleId = $(this).attr("id");
-            console.log(" Edited article = " + editedArticleId);
             initCategorieSelect();
             $tr = $(this).closest('tr');
             designation = $tr.children()[1].innerText;
@@ -229,12 +250,20 @@ $(function () {
                     // SUPRIMER TOUTES LES DONNE
                     table.empty();
                     for (let i = 0; i < data.length; i++) {
-                        let tr = `<tr id="` + data[i].id + `">
-                                    <td><input type="text"  class="form-control input-sm" value="` + data[i].code + `"></td>
-                                    <td><input type="text"  class="form-control input-sm" value="` + data[i].niveau + `"></td>
-                                    <td><input type="text"  class="form-control input-sm" value="` + data[i].designation + `"></td>
-                                    <td><input type="text"  class="form-control input-sm" value="` + data[i].quantite + `"></td>
-                                    <td><input type="text"  class="form-control input-sm" value="` + data[i].poids + `"></td>
+                        arrayOfUnite = data[i].split(',')
+                        let unite = {
+                            code: arrayOfUnite[0],
+                            niveau: arrayOfUnite[1],
+                            designation: arrayOfUnite[2],
+                            quantite: arrayOfUnite[3],
+                            poids: arrayOfUnite[4]}
+
+                        let tr = `<tr id="` + unite.niveau + `">
+                                    <td class="d-none"><input type="text"  class="form-control input-sm" value="` + unite.code + `"></td>
+                                    <td><input type="text"  class="form-control input-sm not-editable" value="` + unite.niveau + `"></td>
+                                    <td><input type="text"  class="form-control input-sm" value="` + unite.designation + `"></td>
+                                    <td><input type="text"  class="form-control input-sm" value="` + unite.quantite + `"></td>
+                                    <td><input type="text"  class="form-control input-sm" value="` + unite.poids + `"></td>
                                     <td class="d-inline-flex">
                                         <a class="btn btn-primary btn-sm btn-edit-unite"><i class="uil-pen"></i></a>&nbsp;
                                         <a class="btn btn-danger btn-sm btn-del-unite"><i class="uil-trash-alt"></i></a>&nbsp;

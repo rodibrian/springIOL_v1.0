@@ -23,23 +23,32 @@ public class Supply implements Serializable{
    private Long id;
 
    @ManyToOne(cascade = CascadeType.MERGE)
-   @JoinColumn(name = "magasin_id",foreignKey =@ForeignKey(name = "approv_magasin_constraint"))
+   @JoinColumn(name = "fournisseur_id")
+   private ClientFournisseur fournisseur;
+
+   @ManyToOne(cascade = CascadeType.MERGE)
+   @JoinColumn(name = "magasin_id",foreignKey = @ForeignKey(name = "FK_MAGASIN_ID",foreignKeyDefinition = "FOREIGN KEY (magasin_id) REFERENCES magasin(id_magasin) ON DELETE CASCADE ON UPDATE NO ACTION"))
    private Magasin magasin;
 
    @ManyToOne(cascade = CascadeType.MERGE)
-   @JoinColumn(name = "fournisseur_id",foreignKey =@ForeignKey(name = "approv_fournisseur_key_constraint"))
-   private ClientFournisseur fournisseur;
-
-   @OneToOne(cascade = CascadeType.ALL,mappedBy = "supply")
-   private InfoArticleMagasin infoArticleMagasin;
+   @JoinColumn(name = "article_id",foreignKey = @ForeignKey(name = "FK_ARTICLE_ID",foreignKeyDefinition = "FOREIGN KEY (article_id) REFERENCES article(article_id) ON DELETE CASCADE ON UPDATE NO ACTION"))
+   private Article article;
 
    @ManyToOne(cascade = CascadeType.MERGE)
-   @JoinColumn(name = "user_id",foreignKey =@ForeignKey(name = "approv_user_key_constraint"))
+   @JoinColumn(name = "unite_id",foreignKey = @ForeignKey(name = "FK_UNITE_ID",foreignKeyDefinition = "FOREIGN KEY (unite_id) REFERENCES unite(id) ON DELETE CASCADE ON UPDATE NO ACTION"))
+   private Unite unite;
+
+   @ManyToOne(cascade = CascadeType.MERGE)
+   @JoinColumn(name = "user_id")
    private User user;
+
+   private Double quantite;
 
    private Double montantApprov;
 
-   private LocalDate date;
+   private LocalDate datePeremption;
+
+   private LocalDate dateApprov;
 
    @Column(columnDefinition = "TEXT")
    private String refFacture;

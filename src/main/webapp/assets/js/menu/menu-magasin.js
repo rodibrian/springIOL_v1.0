@@ -1,19 +1,27 @@
 $(function () {
     let namespace = "#menu-magasin ";
     clientUrl = "http://localhost:8080/api/v1/magasins";
+
     /*
     MENU MAGASIN
      */
+
+
     // constante
+
     const NOUVEAU = 'nouveau', EDITION = 'edition';
     // click de bouton nouveau
     $(namespace + '#btn-nouveau-magasin').on('click', function () {
         $(namespace + '#new-magasin').attr('data-type', NOUVEAU);
         $(namespace + '#new-magasin .modal-title').html('Nouveau magasin');
     })
+
+
     /*-------------------------------------------------------
     Enregistrement nouveau magasin ou edition d'un magasin
     --------------------------------------------------------- */
+
+
     $(namespace + '#btn-enregistrer-magasin').on('click', function () {
         $nomMagasin = $(namespace + '#nom-magasin').val();
         $adresseMagasin = $(namespace + '#adresse-magasin').val();

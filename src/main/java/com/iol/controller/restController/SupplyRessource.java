@@ -2,11 +2,10 @@ package com.iol.controller.restController;
 
 import com.iol.model.tenantEntityBeans.PrixArticleFiliale;
 import com.iol.model.tenantEntityBeans.Supply;
-import com.iol.model.tenantEntityBeans.InfoArticleMagasin;
 import com.iol.model.wrapper.SupplyWrapper;
+import com.iol.repository.ArticleRepository;
 import com.iol.repository.PuafRepository;
 import com.iol.repository.SupplyRepository;
-import com.iol.repository.InfoArticleMagasinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +22,8 @@ public class SupplyRessource {
     private SupplyRepository supplyRepository;
 
     @Autowired
-    private InfoArticleMagasinRepository iamRepository;
+    private ArticleRepository articleRepository;
+
 
     @Autowired
     private PuafRepository puafRepository;
@@ -54,12 +54,23 @@ public class SupplyRessource {
         }
     }
 
+
+
     @PostMapping(value = "/supplies")
     public ResponseEntity<Object> create(@RequestBody SupplyWrapper supplyWrapper){
-        List<InfoArticleMagasin> infoArticleMagasins = iamRepository.saveAll(supplyWrapper.getInfoArticleMagasins());
+        List<Supply> supplies1 = supplyWrapper.getSupplies();
+        List<Supply> supplies = supplyRepository.saveAll(supplies1);
         List<PrixArticleFiliale> prixArticleFiliales = puafRepository.saveAll(supplyWrapper.getPrixArticleFiliales());
         supplyWrapper.setPrixArticleFiliales(prixArticleFiliales);
-        supplyWrapper.setInfoArticleMagasins(infoArticleMagasins);
+        supplyWrapper.setSupplies(supplies);
+//        supplies1.forEach(vente -> {
+//            Long articleId = vente.getArticle().getId();
+//            Long uniteId = vente.getUnite().getId();
+//            Long magasinId = vente.getMagasin().getId();
+//            Double venteQuantite = vente.getQuantite();
+//            System.out.println("articleId = "+articleId+",uniteId = "+uniteId+" , magasinId = "+magasinId+", quantite = "+venteQuantite);
+//            articleRepository.updateStock(venteQuantite,uniteId,magasinId,articleId);
+//        });
         return new ResponseEntity<>(supplyWrapper, HttpStatus.CREATED);
     };
 }
