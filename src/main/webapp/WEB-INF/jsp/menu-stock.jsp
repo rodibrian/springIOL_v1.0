@@ -77,7 +77,7 @@
                 <td>${stock.categorie}</td>
 <%--                <td>${stock.prixAchat}</td>--%>
                 <td class="td-info-stock">
-                       <a type="button" class="btn-default mr-1 btn-info-stock" data-bs-toggle="modal" data-bs-target="#info-stock">${stock.stock}</a>
+                       <a type="button" class="btn-default mr-1 btn-info-stock" data-bs-toggle="modal" data-bs-target="#info-stock">${stock.quantite}</a>
                 </td>
             </tr>
           </c:forEach>

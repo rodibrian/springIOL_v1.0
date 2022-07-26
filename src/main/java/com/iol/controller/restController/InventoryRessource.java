@@ -1,5 +1,6 @@
 package com.iol.controller.restController;
 
+import com.iol.model.wrapper.InventoryWrapper;
 import com.iol.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,8 @@ public class InventoryRessource {
     }
 
     @PostMapping("/inventories")
-    public ResponseEntity<Object> updateInventories(){
+    public ResponseEntity<Object> createInventories(@RequestBody InventoryWrapper inventoryWrapper){
+        articleService.
         return new ResponseEntity<>(articleService.getAllInventories(),HttpStatus.OK);
     }
 

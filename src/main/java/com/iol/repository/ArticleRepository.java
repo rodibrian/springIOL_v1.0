@@ -50,6 +50,9 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
     @Query(value = "SELECT au.unite_id FROM article_unite au where article_id =:articleId and au.niveau = 1",nativeQuery = true)
     Long getPrimaryUniteId(@Param("articleId")Long articleId);
 
+    @Query(value = "SELECT u.id ,au.niveau,au.quantite_niveau FROM unite u inner join article_unite au ON u.id = au.unite_id where article_id =:articleId",nativeQuery = true)
+    List<String> getAllUniteAndNiveau(@Param("articleId")Long articleId);
+
     @Query(value = "SELECT count(*) from stock s WHERE s.article_id =:articleId AND s.unite_id=:uniteId and s.magasin_id=:magasinId" ,nativeQuery = true)
     int getStockCount(@Param("uniteId") Long uniteId,@Param("magasinId") Long magasinId,@Param("articleId") Long articleId);
 
