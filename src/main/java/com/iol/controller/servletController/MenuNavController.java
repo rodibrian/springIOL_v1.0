@@ -158,7 +158,6 @@ public class MenuNavController{
         return "menu-peremption";
     }
 
-
     @RequestMapping(value = "/utilisateur",method = RequestMethod.GET)
     public ModelAndView getMenuUtilisateur(){
         ModelAndView modelAndView = new ModelAndView("menu-utilisateur");
@@ -192,7 +191,6 @@ public class MenuNavController{
     }
 
     // menu des opérations
-
     @RequestMapping(value = "/operation/liste",method = RequestMethod.GET)
     public ModelAndView getOperationListe(){
         ModelAndView modelAndView = new ModelAndView("operation/liste");
@@ -221,6 +219,7 @@ public class MenuNavController{
     public ModelAndView getOperationTransfert(){
         ModelAndView modelAndView = new ModelAndView("operation/transfert");
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
+        modelAndView.addObject(ARTICLE_LIST,articleService.findAll());
         return modelAndView;
     }
 

@@ -50,10 +50,10 @@ public class Vente implements Serializable{
 
     private Double quantite;
 
+    private LocalDate date;
+
     @Column
     private Double montantVente;
-
-    private LocalDate date;
 
     @Column(columnDefinition = "TEXT")
     private String observation;

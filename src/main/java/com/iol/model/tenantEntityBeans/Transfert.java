@@ -17,27 +17,20 @@ import java.util.Date;
         @NamedQuery(name = "transfert.all",query = "from transfert")
 })
 public class Transfert implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "magasin_origine_id",foreignKey = @ForeignKey(name = "transfert_magasin_origine_key_constraint"))
-    private Magasin magasinOrigine;
+    @JoinColumn(name = "magasin_source_id",foreignKey = @ForeignKey(name = "transfert_magasin_origine_key_constraint"))
+    private Magasin magasinSource;
 
     @ManyToOne
     @JoinColumn(name = "magasin_dest_id",foreignKey = @ForeignKey(name = "transfert_magasin_receveur_key_constraint"))
-    private Magasin magasinReceveur;
+    private Magasin magasinDest;
 
     @Column(columnDefinition = "TEXT")
-    private String codeTransfert;
-
-    @Column(columnDefinition = "TEXT")
-    private String designation;
-
-    @Column(columnDefinition = "TEXT")
-    private String numBonTransfert;
+    private String chauffeur;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "article_id",foreignKey = @ForeignKey(name = "FK_ARTICLE_ID",foreignKeyDefinition = "FOREIGN KEY (article_id) REFERENCES article(article_id) ON DELETE CASCADE ON UPDATE NO ACTION"))

@@ -71,6 +71,7 @@ $(function () {
                                             AJOUT DUN ARTICLE
      -------------------------------------------------------------------------------*/
     $('.btn-ajouter-article-vente').on('click', function () {
+
         $articleId = $(namespace + '#designation-article').attr('value-id');
         $designation = $(namespace + '#designation-article').val();
         $unite = $(namespace + '#input-unite-article option:selected').text();

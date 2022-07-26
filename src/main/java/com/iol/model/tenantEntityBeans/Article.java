@@ -14,7 +14,7 @@ import java.util.Set;
 @NamedQueries(value = {
         @NamedQuery(name = "article.all",query = "from article")
 })
-public class Article implements Serializable {
+public class Article implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "article_id")
