@@ -56,27 +56,9 @@ public class SupplyRessource {
 
     @PostMapping(value = "/supplies")
     public ResponseEntity<Object> create(@RequestBody SupplyWrapper supplyWrapper){
-        List<Supply> supplies1 = supplyWrapper.getSupplies();
-        List<Supply> supplies = supplyRepository.saveAll(supplies1);
+        List<Supply> supplies = supplyRepository.saveAll(supplyWrapper.getSupplies());
         List<PrixArticleFiliale> prixArticleFiliales = puafRepository.saveAll(supplyWrapper.getPrixArticleFiliales());
         supplyWrapper.setPrixArticleFiliales(prixArticleFiliales);
-        supplyWrapper.setSupplies(supplies);
-        supplies1.forEach(supply -> {
-            Long articleId = supply.getArticle().getId();
-            Unite unite = supply.getUnite();
-            Long uniteId = unite.getId();
-            Double quantiteNiveau = articleRepository.getQuantiteNiveau(uniteId,articleId);
-            Long primaryUniteId = articleRepository.getPrimaryUniteId(articleId);
-            Long magasinId = supply.getMagasin().getId();
-            Double supplyQuantite = supply.getQuantite();
-            // CONVERTIR LA QUANTITE A LA NIVEAU
-            Double stockQuantite = supplyQuantite*quantiteNiveau;
-            int stockCount = articleRepository.getStockCount(primaryUniteId,magasinId, articleId);
-            System.out.println("articleId = "+articleId+",uniteId = "+primaryUniteId+" , magasinId = "+magasinId+", quantite = "+stockQuantite);
-            if (stockCount==0){
-               articleRepository.saveInventory(uniteId, magasinId, articleId, supplyQuantite);
-            }else articleRepository.updateStock(stockQuantite,primaryUniteId,magasinId,articleId);
-        });
         return new ResponseEntity<>(supplies, HttpStatus.CREATED);
     };
 }

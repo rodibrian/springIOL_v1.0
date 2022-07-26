@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bd9c0e93-77b1-4a8f-96ad-44ae32dfbfef" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1551a1c4-fa56-4678-ac94-4badeace846c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1551a1c4-fa56-4678-ac94-4badeace846c.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1551a1c4-fa56-4678-ac94-4badeace846c/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1551a1c4-fa56-4678-ac94-4badeace846c/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1551a1c4-fa56-4678-ac94-4badeace846c/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1551a1c4-fa56-4678-ac94-4badeace846c/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/repository/ArticleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/repository/ArticleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/SCRIPT/STOCK_TRIGGER_SCRIPT.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/SCRIPT/STOCK_TRIGGER_SCRIPT.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,6 +238,7 @@
       <workItem from="1658729528785" duration="7626000" />
       <workItem from="1658744252256" duration="22530000" />
       <workItem from="1658771975378" duration="1183000" />
+      <workItem from="1658812790630" duration="3573000" />
     </task>
     <task id="LOCAL-00001" summary="mapping de la trigger avec la table approvisionnement">
       <created>1658448504125</created>

@@ -30,19 +30,6 @@ public class VenteRessource {
     @PostMapping("/ventes")
     public ResponseEntity<Object> create(@RequestBody List<Vente> ventes){
         List<Vente> ventes1 = venteRepository.saveAll(ventes);
-        ventes1.forEach(vente -> {
-            Long articleId = vente.getArticle().getId();
-            Unite unite = vente.getUnite();
-            Long uniteId = unite.getId();
-            Double quantiteNiveau = articleRepository.getQuantiteNiveau(uniteId, articleId);
-            Long primaryUniteId = articleRepository.getPrimaryUniteId(articleId);
-            Long magasinId = vente.getMagasin().getId();
-            Double venteQuantite = vente.getQuantite();
-            // CONVERTIR LA QUANTITE A LA NIVEAU
-            Double stockQuantite = venteQuantite*quantiteNiveau;
-            System.out.println("articleId = "+articleId+",uniteId = "+primaryUniteId+" , magasinId = "+magasinId+", quantite = "+stockQuantite);
-            articleRepository.updateStock(-stockQuantite,primaryUniteId,magasinId,articleId);
-        });
         return new ResponseEntity<>(ventes1,HttpStatus.OK);
     }
 

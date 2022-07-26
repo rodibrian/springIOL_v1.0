@@ -12,6 +12,7 @@ import java.util.List;
 @Repository
 @Transactional
 public interface ArticleRepository extends JpaRepository<Article,Long>{
+
     @Query(value = "SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id =:articleId AND au.unite_id=:uniteId" ,nativeQuery = true)
     Double getQuantiteNiveau(@Param("uniteId") Long uniteId , @Param("articleId") Long articleId);
 
@@ -62,6 +63,7 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
                       ,@Param("magasinId") Long magasinId,
                        @Param("articleId") Long articleId,
                        @Param("count") Double count);
+
 }
 
 

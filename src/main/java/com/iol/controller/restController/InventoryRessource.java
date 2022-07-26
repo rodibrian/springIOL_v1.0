@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1")
 public class InventoryRessource {
+
     @Autowired
     private ArticleService articleService;
 
@@ -25,7 +26,6 @@ public class InventoryRessource {
 
     @PostMapping("/inventories")
     public ResponseEntity<Object> createInventories(@RequestBody InventoryWrapper inventoryWrapper){
-        articleService.
         return new ResponseEntity<>(articleService.getAllInventories(),HttpStatus.OK);
     }
 
