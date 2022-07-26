@@ -12,12 +12,15 @@ import java.util.stream.Collectors;
 
 @Service
 public class ArticleService {
+
     @Autowired private ArticleRepository articleRepository;
+
     public List<String[]> findAll(){
         List<String> allArticle = articleRepository.getAll();
         List<String[]> collect = allArticle.stream().map(s -> s.split(",")).collect(Collectors.toList());
         return collect;
     }
+
     public List<InventoryViewWrapper> getAllInventories(){
         List<String> stockWithPriceAndExpirationDate = articleRepository.getStockWithPriceAndExpirationDate();
         List<String[]> collect = stockWithPriceAndExpirationDate.stream().map(s -> s.split(",")).collect(Collectors.toList());
@@ -30,7 +33,7 @@ public class ArticleService {
             inventoryViewWrapper.setArticle(strings[3]);
             inventoryViewWrapper.setCategorie(strings[4]);
             inventoryViewWrapper.setUnite(strings[5]);
-            inventoryViewWrapper.setQuantite(strings[6]);
+            inventoryViewWrapper.setQuantite(Double.valueOf(strings[6]));
             list.add(inventoryViewWrapper);
         });
         return list;
@@ -48,7 +51,7 @@ public class ArticleService {
             inventoryViewWrapper.setArticle(strings[3]);
             inventoryViewWrapper.setCategorie(strings[4]);
             inventoryViewWrapper.setUnite(strings[5]);
-            inventoryViewWrapper.setQuantite(strings[6]);
+            inventoryViewWrapper.setQuantite(Double.valueOf(strings[6]));
             list.add(inventoryViewWrapper);
         });
         return list;

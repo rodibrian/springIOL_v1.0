@@ -15,12 +15,11 @@ BEGIN
 
     -- Si l'evenement vient de la table vente ou de la table sortie alors on fait UPDATE
 
-    if tg_table_name = 'vente' then
-
+    if tg_table_name = 'vente' or tg_table_name = 'sortie' then
         update stock set count = (count - (NEW.quantite*stock_quantite))where article_id = new.article_id AND unite_id = primary_unite_id AND magasin_id = new.magasin_id;
+    end if;
 
-    else if tg_table_name = 'approv' then
-
+    if tg_table_name = 'approv'then
         select count(stock.article_id) into count_item from stock where stock.article_id = NEW.article_id AND stock.unite_id = primary_unite_id AND stock.magasin_id = NEW.magasin_id;
 
         if count_item <=0 then
@@ -28,10 +27,15 @@ BEGIN
         else
             update stock set count = ( (NEW.quantite*stock_quantite) + count )where article_id = NEW.article_id AND unite_id = primary_unite_id AND magasin_id = NEW.magasin_id;
         end if;
-
     end if;
 
+    if tg_table_name = 'transfert' then
+        -- Mis a jour du stock de la magasin origine
+        update stock set count = (count - (NEW.quantite*stock_quantite))where article_id = new.article_id AND unite_id = primary_unite_id AND magasin_id = new.magasin_origine_id;
+        -- Mis a jour du stock de la magasin destinataire
+        update stock set count = (count + (NEW.quantite*stock_quantite))where article_id = new.article_id AND unite_id = primary_unite_id AND magasin_id = new.magasin_dest_id;
     end if;
+
 
     RETURN NEW; --ignored since this is after trigger
 END;

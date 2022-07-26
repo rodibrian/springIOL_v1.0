@@ -17,7 +17,7 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "approv.all",query = "from approv")
 })
-public class Supply extends Operation implements Serializable{
+public class Supply implements Serializable{
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
@@ -26,9 +26,29 @@ public class Supply extends Operation implements Serializable{
    @JoinColumn(name = "fournisseur_id")
    private ClientFournisseur fournisseur;
 
-   private Double montant;
+   @ManyToOne(cascade = CascadeType.MERGE)
+   @JoinColumn(name = "magasin_id",foreignKey = @ForeignKey(name = "FK_MAGASIN_ID",foreignKeyDefinition = "FOREIGN KEY (magasin_id) REFERENCES magasin(id_magasin) ON DELETE CASCADE ON UPDATE NO ACTION"))
+   private Magasin magasin;
+
+   @ManyToOne(cascade = CascadeType.MERGE)
+   @JoinColumn(name = "article_id",foreignKey = @ForeignKey(name = "FK_ARTICLE_ID",foreignKeyDefinition = "FOREIGN KEY (article_id) REFERENCES article(article_id) ON DELETE CASCADE ON UPDATE NO ACTION"))
+   private Article article;
+
+   @ManyToOne(cascade = CascadeType.MERGE)
+   @JoinColumn(name = "unite_id",foreignKey = @ForeignKey(name = "FK_UNITE_ID",foreignKeyDefinition = "FOREIGN KEY (unite_id) REFERENCES unite(id) ON DELETE CASCADE ON UPDATE NO ACTION"))
+   private Unite unite;
+
+   @ManyToOne(cascade = CascadeType.MERGE)
+   @JoinColumn(name = "user_id")
+   private User user;
+
+   private Double quantite;
+
+   private Double montantApprov;
 
    private LocalDate datePeremption;
+
+   private LocalDate dateApprov;
 
    @Column(columnDefinition = "TEXT")
    private String refFacture;

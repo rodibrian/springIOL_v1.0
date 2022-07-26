@@ -1,0 +1,1 @@
+create trigger approv_trigger before insert or update on approv for each row execute procedure update_stock();

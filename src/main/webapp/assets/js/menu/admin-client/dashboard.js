@@ -22,15 +22,12 @@ $(function () {
         $(namespace + "#nouveau-filial").modal('show')
         $(namespace + "#nouveau-filial").attr('data-id', EDIT)
         $cardCurrent = $(this).closest('.item-filial').attr('id');
-
         // affecter les valeur
         $(namespace + '#nouveau-filial input#input-nom').val($(namespace + '#' + $cardCurrent + ' .label-nom').text())
         $(namespace + '#nouveau-filial input#input-adresse').val($(namespace + '#' + $cardCurrent + ' .label-adresse').text())
         $(namespace + '#nouveau-filial input#input-contact').val($(namespace + '#' + $cardCurrent + ' .label-contact').text())
     })
-
     // enregsitrement filial
-
     function onCreateSubsdiariesSuccess(data) {
         switch ($typeOperation) {
             case NEW:
@@ -50,7 +47,6 @@ $(function () {
         $(namespace + '#nouveau-filial input#input-username').val(' ')
         $(namespace + '#nouveau-filial input#input-password').val('')
     }
-
     function persistDefaultStore(data){
         $default_magasin = {
             adresse: data.adresse,
@@ -69,36 +65,63 @@ $(function () {
             }
         })
     }
-    $(namespace + "#nouveau-filial #btn-enregistrer-filial").on('click', function () {
+    $(namespace + "#nouveau-filial #btn-enregistrer-filial").on('click', function (){
         $nom = $(namespace + '#nouveau-filial input#input-nom').val()
         $adresse = $(namespace + '#nouveau-filial input#input-adresse').val()
         $contact = $(namespace + '#nouveau-filial input#input-contact').val()
         $username = $(namespace + '#nouveau-filial input#input-username').val()
         $password = $(namespace + '#nouveau-filial input#input-password').val()
         $typeOperation = $(namespace + "#nouveau-filial").attr('data-id');
-        $admin_filiale_user = {
-            username : $username,
-            password : $password,
-            fonction : {
-                nomFonction : "admin",
+        $fonction = {
+            nomFonction : "admin",
                 fonctionnalites :[{
-                    nom : "all"
-                }]
-            }
+                nom : "all"
+            }]
         };
-        $filiale = {};
-        $filiale.nom = $nom;
-        $filiale.adresse = $adresse;
-        $filiale.contact = $contact;
-        $filiale.users = [$admin_filiale_user];
+
+        function persistDefaultUser(fonction, filiale) {
+            $admin_filiale_user = {
+                username: $username,
+                password: $password,
+                fontction: {
+                    id: fonction.id
+                },
+                filiale: {
+                    id: filiale.id
+                }
+            };
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/api/v1/users",
+                contentType: "application/json",
+                data: JSON.stringify($admin_filiale_user),
+                success: function (user) {
+                    console.log(user);
+                }
+            })
+        }
+
         $.ajax({
             type : "POST",
-            url : "http://localhost:8080/api/v1/subsidiaries",
+            url : "http://localhost:8080/api/v1/fonctions",
             contentType: "application/json",
-            data: JSON.stringify($filiale),
-            success : function (data) {
-                onCreateSubsdiariesSuccess(data);
-                persistDefaultStore(data);
+            data: JSON.stringify($fonction),
+            success : function (fonction) {
+                $filiale = {};
+                $filiale.nom = $nom;
+                $filiale.adresse = $adresse;
+                $filiale.contact = $contact;
+                $.ajax({
+                    type : "POST",
+                    url : "http://localhost:8080/api/v1/subsidiaries",
+                    contentType: "application/json",
+                    data: JSON.stringify($filiale),
+                    success : function (filiale){
+                        persistDefaultUser(fonction,filiale);
+                        onCreateSubsdiariesSuccess(filiale);
+                        persistDefaultStore(filiale);
+                    }
+                })
             }
         })
     })

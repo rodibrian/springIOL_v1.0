@@ -132,13 +132,10 @@ $(function () {
      */
     $(namespace + '.btn-supprimer-credit').on('click', function () {
         $modalId = "suppression-credit-client"
-
         create_confirm_dialog('Suppression credit', 'Voulez vraiment supprimer les credits impayes ?', $modalId, 'Oui, supprimer tout', 'btn-danger')
             .on('click', function() {
                 $(namespace + '.table-credit-client tbody tr').remove();
-
                 hideAndRemove('#' + $modalId);
-
                 createToast('bg-danger', 'uil-check-sign', 'Dette supprime', 'Tout les credits client sont supprimer avec success!');
             })
     })

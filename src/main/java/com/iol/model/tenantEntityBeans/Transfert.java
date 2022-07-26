@@ -6,6 +6,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -15,18 +16,18 @@ import java.util.Date;
 @NamedQueries({
         @NamedQuery(name = "transfert.all",query = "from transfert")
 })
-public class Transfert extends OperationData implements Serializable {
+public class Transfert implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "magasin_origine",foreignKey = @ForeignKey(name = "transfert_magasin_origine_key_constraint"))
+    @JoinColumn(name = "magasin_origine_id",foreignKey = @ForeignKey(name = "transfert_magasin_origine_key_constraint"))
     private Magasin magasinOrigine;
 
     @ManyToOne
-    @JoinColumn(name = "magasin_receveur",foreignKey = @ForeignKey(name = "transfert_magasin_receveur_key_constraint"))
+    @JoinColumn(name = "magasin_dest_id",foreignKey = @ForeignKey(name = "transfert_magasin_receveur_key_constraint"))
     private Magasin magasinReceveur;
 
     @Column(columnDefinition = "TEXT")
@@ -37,4 +38,23 @@ public class Transfert extends OperationData implements Serializable {
 
     @Column(columnDefinition = "TEXT")
     private String numBonTransfert;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "article_id",foreignKey = @ForeignKey(name = "FK_ARTICLE_ID",foreignKeyDefinition = "FOREIGN KEY (article_id) REFERENCES article(article_id) ON DELETE CASCADE ON UPDATE NO ACTION"))
+    private Article article;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "unite_id",foreignKey = @ForeignKey(name = "FK_UNITE_ID",foreignKeyDefinition = "FOREIGN KEY (unite_id) REFERENCES unite(id) ON DELETE CASCADE ON UPDATE NO ACTION"))
+    private Unite unite;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    private LocalDate date;
+
+    private Double quantite;
+
+    @Column(columnDefinition = "TEXT")
+    private String description;
 }

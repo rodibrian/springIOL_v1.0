@@ -1,0 +1,1 @@
+create trigger sortie_trigger before insert or update on sortie for each row execute procedure update_stock();
