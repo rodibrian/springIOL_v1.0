@@ -23,7 +23,7 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
     List<String> getAll();
 
     @Query(value = "select a.article_id,u.id,s.magasin_id,a.designation as ad,c.libelle,u.designation,"+
-            "(s.count/(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as nb " +
+            "(s.count*(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as nb " +
             "FROM unite u ,Stock s,article_unite au , article a ,categorie c "+
             "WHERE au.article_id = a.article_id and au.unite_id = u.id " +
             "and a.categorie_id = c.id "+
@@ -31,7 +31,7 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
     List<String> getStockWithPriceAndExpirationDate();
 
     @Query(value = "select a.article_id,u.id,s.magasin_id,a.designation as ad,c.libelle, u.designation," +
-            "(s.count/(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as nb " +
+            "(s.count*(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as nb " +
             "FROM unite u , Stock s , article_unite as au , article a , categorie  c " +
             "WHERE au.article_id = a.article_id and au.unite_id = u.id " +
             "and a.categorie_id = c.id " +

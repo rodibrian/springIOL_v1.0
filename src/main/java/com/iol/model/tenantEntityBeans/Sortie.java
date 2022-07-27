@@ -27,7 +27,14 @@ public class Sortie{
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @Column(columnDefinition = "TEXT")
+    private String reference;
+
     private Double quantite;
+
     private LocalDate date;
+
+    @Column(columnDefinition = "TEXT")
     private String description;
 }

@@ -44,6 +44,12 @@ public class Supply implements Serializable{
 
    private Double quantite;
 
+   @Column(columnDefinition = "TEXT")
+   private String reference;
+
+   @Column(columnDefinition = "TEXT")
+   private String description;
+
    private Double montantApprov;
 
    private LocalDate datePeremption;

@@ -1,10 +1,7 @@
 <%@ include file='../template/header.jsp' %>
-
 <i class="no-title" title="Liste"></i>
-
 <!-- Start Content-->
 <div id="liste-operation" class="container-fluid">
-
   <!-- start page title -->
   <div class="row">
     <div class="col-12">
@@ -14,7 +11,6 @@
     </div>
   </div>
   <!-- end page title -->
-
   <div class="row mr-2">
     <div class="col-12">
       <div class="page-title-box">
@@ -26,25 +22,24 @@
         <input type="date" class="form-control">&nbsp;
         <input type="date" class="form-control">&nbsp;
         <select name="magasin" id="magasin" class="form-select">
-          <option value="1">Magasin I</option>
-          <option value="2">Magasin II</option>
+          <c:forEach var="magasin" items="${magasins}">
+            <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
+          </c:forEach>
         </select>
-        <a type="button" class="btn btn-success mr-1">
+        <select name="operation" id="operation" class="form-select">
+          <option>Entrée</option>
+          <option>Sortie</option>
+          <option>Transfert</option>
+          <option>Inventaire</option>
+        </select>
+        <a type="button" class="btn btn-
+        success mr-1">
           <i class="uil-search-alt"></i>
         </a>
       </div>
     </div>
   </div>
-
-
-  <div class="all-modal">
-    <%@ include file="../modal/new-article.jsp" %>
-    <%@ include file="../modal/new-categorie.jsp" %>
-  </div>
-
   <!-- suite -->
-
-
   <div class="container -fluid"><br><br>
     <div class="row">
       <div class="col-lg-12">
@@ -52,10 +47,10 @@
           <thead>
           <tr>
             <th>Réference</th>
-            <th>Designaition</th>
+            <th>Designation</th>
+            <th>Unite</th>
             <th>Operation</th>
-            <th>Entree</th>
-            <th>Sortie</th>
+            <th>quantite</th>
             <th>Stock</th>
             <th>Date</th>
             <th>Description</th>
@@ -64,17 +59,52 @@
           </thead>
           <tbody>
 
+          <c:forEach var="transfert" items="${transferts}">
+            <tr id="${transfert.id}">
+              <td><c:out value="${transfert.reference}"/></td>
+              <td><c:out value="${transfert.article.designation}"/></td>
+              <td><c:out value="${transfert.unite.designation}"/></td>
+              <td>TRANSFERT</td>
+              <td><c:out value="${transfert.quantite}"/></td>
+              <td> - </td>
+              <td><c:out value="${transfert.date}"/></td>
+              <td><c:out value="${transfert.description}"/></td>
+              <td><c:out value="${transfert.user.nom}"/></td>
+            </tr>
+          </c:forEach>
+
+          <c:forEach var="sortie" items="${sorties}">
+            <tr id="${sortie.id}">
+              <td><c:out value="${sortie.reference}"/></td>
+              <td><c:out value="${sortie.article.designation}"/></td>
+              <td><c:out value="${sortie.unite.designation}"/></td>
+              <td>SORTIE</td>
+              <td><c:out value="${sortie.quantite}"/></td>
+              <td> - </td>
+              <td><c:out value="${sortie.date}"/></td>
+              <td><c:out value="${sortie.description}"/></td>
+              <td><c:out value="${sortie.user.nom}"/></td>
+            </tr>
+          </c:forEach>
+
+          <c:forEach var="supply" items="${supplies}">
+            <tr id="${supply.id}">
+              <td><c:out value="${supply.reference}"/></td>
+              <td><c:out value="${supply.article.designation}"/></td>
+              <td><c:out value="${supply.unite.designation}"/></td>
+              <td>ENTREE</td>
+              <td><c:out value="${supply.quantite}"/></td>
+              <td> - </td>
+              <td><c:out value="${supply.dateApprov}"/></td>
+              <td><c:out value="${supply.description}"/></td>
+              <td><c:out value="${supply.user.nom}"/></td>
+            </tr>
+          </c:forEach>
+
           </tbody>
         </table>
       </div>
     </div>
   </div>
-
-
 </div>
-
 </div> <!-- container -->
-
-
-<%@ include file="../template/footer.jsp" %>
-<%@ include file="../template/setting.jsp" %>

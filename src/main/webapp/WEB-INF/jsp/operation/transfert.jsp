@@ -1,5 +1,6 @@
 <%@ include file="../template/head.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <i class="no-title" title="Transfert"></i>
 <div class="row d-flex justify-content-center align-items-center bg-light text-dark" id="transfert-article"
      data-plugin="dragula">

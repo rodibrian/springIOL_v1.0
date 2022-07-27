@@ -49,5 +49,8 @@ public class Transfert implements Serializable {
     private Double quantite;
 
     @Column(columnDefinition = "TEXT")
+    private String reference;
+
+    @Column(columnDefinition = "TEXT")
     private String description;
 }
