@@ -36,6 +36,7 @@ body{
 }
 
 .invoice-bordered {
+    color: #fff;
     border: 1px solid darkgray;
     padding: 10px;
 }
@@ -80,6 +81,9 @@ body{
     width: 100%
 }
 
+.invoice-price-right {
+    color: #fff;
+}
 .invoice-price .invoice-price-left,
 .invoice-price .invoice-price-right {
     display: table-cell;
@@ -154,7 +158,19 @@ TICKET DE CAISSE
 
  */
 
+.invoice-sm {
+    padding: 20px 0;
+}
+
 .invoice-sm  * {
     font-size: 9px!important;
     padding: 1.5px!important;
+}
+
+.invoice-sm>div:not(.invoice-footer) {
+    margin-bottom: 8px;
+}
+
+.invoice-sm .invoice-header {
+    margin: 0;
 }

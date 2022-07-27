@@ -6,6 +6,8 @@ $(function () {
     MENU DETAIL VENTE
      */
 
+    exportToExcel('detail-ventes-' , namespace + '.table-detail-vente')
+
     // Chargement des données du table;
 
     // listes d'article dans une vente

@@ -7,6 +7,9 @@ $(function() {
 
     let namespace="#menu-livraison ";
 
+
+    exportToExcel('livraisons', namespace + '#table-livraison')
+
     let IN = "ENTREE", OUT = "SORTIE";
 
     // données prédéfini

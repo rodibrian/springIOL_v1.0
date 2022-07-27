@@ -7,6 +7,9 @@ $(function() {
 
     let namespace = "#liste-operation ";
 
+
+    exportToExcel('operations', namespace + '.table-liste-operation')
+
     let IN = "ENTREE", OUT = "SORTIE";
 
     // données prédéfinis

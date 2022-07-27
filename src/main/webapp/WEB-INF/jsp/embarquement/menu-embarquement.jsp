@@ -22,7 +22,7 @@
     <div class="col-12">
       <div class="page-title-box">
         <div class="page-title-right">
-          <a href="" class="btn btn-success"><i class="uil-navigator"></i>&nbsp;</a>&nbsp;
+          <a class="btn btn-success btn-export-to-excel"><i class="uil-navigator"></i>&nbsp;</a>&nbsp;
           <a href="" class="btn btn-primary"><i class="uil-print"></i></a>
         </div>
       </div>
@@ -59,7 +59,7 @@
         </table>
       </div>
       <div class="col-lg-9">
-        <table id="articleTable" class="table table-sm dt-responsive nowrap table-hover">
+        <table id="liste-embarquement" class="table table-sm dt-responsive nowrap table-hover">
           <thead>
           <tr>
             <th>Magasin</th>

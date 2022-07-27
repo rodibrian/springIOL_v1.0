@@ -206,3 +206,22 @@ function addSplitToObject(obj, stringToSplit, splitter) {
 function personnaliserMenu($title) {
     $('title').text('IOL - ' + $title)
 }
+
+
+function exportToExcel($prefix, $table) {
+    $filename = $prefix + '-' + new Date().getTime().toString() + '.xls';
+    $('.btn-export-to-excel').on('click', function() {
+        $($table).table2excel({
+            filename: $filename
+    });
+    })
+}
+
+function exportToExcelCustomBtn($btn,$prefix, $table) {
+    $filename = $prefix + '-' + new Date().getTime().toString() + '.xls';
+    $($btn).on('click', function() {
+        $($table).table2excel({
+            filename: $filename
+        });
+    })
+}

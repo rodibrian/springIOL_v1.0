@@ -3,12 +3,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
-<div id="facture-A5" class="container d-flex justify-content-center">
+<div id="facture-A5" class="d-flex justify-content-center">
 
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <meta charset="utf-8"/>
 
-  <div class="col-md-3">
+  <div class="col-md-2">
     <div class="invoice invoice-sm">
       <!-- begin invoice-company -->
       <div class="text-end text-uppercase"><span class="invoice-bordered p-1 bg-dragula">AVOIR</span></div>
@@ -29,7 +29,9 @@
             <address class="m-t-5 m-b-5">
               <strong class="text-inverse">Avoir n° : </strong><br>
               <span>Le <%= new Date().toLocaleString()  %></span><br>
-              <span>Magasin X</span><br>
+              <span>Magasin X</span><br><br>
+
+              <span>Op : Nom de l'opérateur</span>
             </address>
           </div>
         </div>
@@ -61,7 +63,7 @@
         <!-- begin invoice-price -->
         <div class="invoice-price">
           <div class="invoice-price-right">
-            <small>Montant total</small> <span class="f-w-600">0Ar</span>
+            <span class="f-w-600">Montant total : 0Ar</span>
           </div>
         </div>
         <!-- end invoice-price -->
@@ -69,19 +71,19 @@
       <!-- end invoice-content -->
       <!-- begin invoice-note -->
       <div class="invoice-note">
-        <span>Edition du <% new Date().toInstant(); %></span></div>
-      <br>
-      Operateur : <span>Nom de l'opérateur</span><br>
+        <span>Edition du <%= new Date().toLocaleString() %></span></div>
       <!-- end invoice-note -->
       <!-- begin invoice-footer -->
       <div class="invoice-footer">
-       <div class="row">
-         <div class="col-12 d-flex justify-content-center text-underline">
-           <span>Meric de votre visite, a bientôt!</span>
-         </div>
+        <div class="row">
+          <div class="col-12 d-flex justify-content-center text-underline">
+            <span>Meric de votre visite, a bientôt!</span>
+          </div>
+        </div>
+        <!-- end invoice-footer -->
       </div>
-      <!-- end invoice-footer -->
     </div>
+
   </div>
 
 </div>

@@ -17,7 +17,7 @@
     <div class="col-12">
       <div class="page-title-box">
         <div class="page-title-right">
-          <a href="" class="btn btn-success"><i class="uil-navigator"></i>&nbsp;</a>
+          <a class="btn btn-success btn-export-to-excel"><i class="uil-navigator"></i>&nbsp;</a>
         </div>
       </div>
       <div class="d-inline-flex mt-1">

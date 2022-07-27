@@ -1,6 +1,8 @@
 $(function() {
     let namespace = "#menu-article ";
 
+    exportToExcel('articles-' , namespace + '#articleTable')
+
     // suppression article
     // $(document).on('click',namespace + '#articleTable .deleteArticleBtn', function() {
     //     $codeArticle = $(this).closest('tr').children().eq(0).text();

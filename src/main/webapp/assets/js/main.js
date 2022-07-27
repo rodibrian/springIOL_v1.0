@@ -1,8 +1,10 @@
-$(function() {
+$(function () {
     /*
 
     MAIN JS
      */
+
+    // conversion to excel
 
     $('.table-special-form').parent().addClass('table-special-form-parent');
 

@@ -6,6 +6,9 @@ $(function () {
     /*
     MENU STOCK
      */
+
+    exportToExcel('stocks-' , namespace + '#inventory-table')
+
     // CONST
     const QUANTITE_ALERT = 0;
     // css

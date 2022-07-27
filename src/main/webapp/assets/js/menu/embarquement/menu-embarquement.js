@@ -1,11 +1,15 @@
-$(function(){
+$(function () {
+
+
+    let namespace = "#menu-embarquement ";
+
     /*
 
     MENU EMBARQUEMENT
 
      */
 
-    let namespace = "#menu-embarquement ";
+    exportToExcel('embarquements', namespace + '#liste-embarquement')
 
 
 })

@@ -2,6 +2,9 @@ $(function () {
 
     let namespace = "#menu-caisse ";
 
+
+    exportToExcel('caisse', namespace + '.table-liste-operation-caisse')
+
     // les données prédéfini à inserer
 
     // mode de paiement

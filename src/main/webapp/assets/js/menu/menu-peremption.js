@@ -2,6 +2,9 @@ $(function () {
 
     let namespace = "#menu-peremption ";
 
+
+    exportToExcel('peremptions', namespace + '.table-peremption')
+
     $(document).on('dblclick',namespace + '.table-peremption tbody tr',function () {
 
         // get code of current article

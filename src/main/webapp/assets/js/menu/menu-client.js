@@ -2,6 +2,9 @@ $(function () {
     let namespace = "#menu-client ";
     let cfUrl = "http://localhost:8080/api/v1/externalEntities";
 
+
+    exportToExcel('client', namespace + '#table-client')
+
     $NOUVEAU_CLIENT  = true;
     let CLIENT = 0 ;
     // fermer l'info listes article facture

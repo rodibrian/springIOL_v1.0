@@ -8,6 +8,11 @@ $(function () {
 
      */
 
+    // export
+
+
+    exportToExcel('prix' , namespace + '.table-article-prix')
+
     // Chargement des données de la table
 
     $lesArticles = [

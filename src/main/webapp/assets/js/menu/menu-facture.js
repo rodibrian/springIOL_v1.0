@@ -6,6 +6,8 @@ $(function () {
     MENU FACTURE
      */
 
+    exportToExcel('factures-' , namespace + '.table-facture')
+
     // click of tr, open infos list articles in facture
 
     $(namespace + '.table-facture tbody tr').click(function () {

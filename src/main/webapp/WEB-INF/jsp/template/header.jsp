@@ -129,7 +129,7 @@
           <div class="collapse" id="sidebarEcommerce">
             <ul class="side-nav-second-level nav-operation">
               <li>
-                <a href="operation/liste" target="_blank">Liste</a>
+                <a href="operation/liste">Liste</a>
               </li>
               <li>
                 <a href="operation/entree" target="_blank">Entr&eacute;e</a>

@@ -3,15 +3,15 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
-<div id="facture-A5" class="d-flex justify-content-center">
+<div id="facture-A5" class="container d-flex justify-content-center">
 
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <meta charset="utf-8"/>
 
-  <div class="col-md-2">
-    <div class="invoice invoice-sm">
+  <div class="col-md-6">
+    <div class="invoice">
       <!-- begin invoice-company -->
-      <div class="text-end text-uppercase"><span class="invoice-bordered p-1 bg-dragula">TICKET DE VENTE</span></div>
+      <div class="invoice-bordered text-center text-uppercase">"Slogan de la société"</div>
       <!-- end invoice-company -->
       <!-- begin invoice-header -->
       <div class="invoice-header">
@@ -22,15 +22,17 @@
               <strong>Adresse</strong><br>
               <strong>Ville</strong><br>
               Tel : <strong>+261 00 00 000 00</strong><br>
-              Client : <span>Nom du client</span><br>
+              Nif : <strong>000 000 000</strong><br>
+              Stat: <strong>0 000 0000 00 0</strong><br>
             </address>
           </div>
           <div class="col-6 d-flex justify-content-center">
             <address class="m-t-5 m-b-5">
-              <strong class="text-inverse">Facture n° : </strong><br>
-              <span>Le <%= new Date().toLocaleString()  %></span><br>
+              <strong class="text-inverse">Avoir n° : </strong><br>
+              <span>Avoir du facture n° XXXXX du <%= new Date().toLocaleString()  %></span><br>
               <span>Magasin X</span><br>
               <br>
+              Client : <span>Nom du client</span><br>
               Op : <span>Nom de l'opérateur</span><br>
             </address>
           </div>
@@ -41,7 +43,7 @@
       <div class="invoice-content">
         <!-- begin table-responsive -->
         <div class="table-responsive">
-          <table class="table table-invoice mb-0">
+          <table class="table table-invoice">
             <thead>
             <tr class="bg-dark">
               <th>Quantite</th>
@@ -96,15 +98,20 @@
       <!-- end invoice-note -->
       <!-- begin invoice-footer -->
       <div class="invoice-footer">
-        <div class="row">
-          <div class="col-12 d-flex justify-content-center text-underline">
-            <span>Meric de votre visite, a bientôt!</span>
-          </div>
-        </div>
-        <!-- end invoice-footer -->
+       <div class="row">
+         <div class="col-4 d-flex justify-content-center text-underline">
+           <span>Le Client</span>
+         </div>
+         <div class="col-4 d-flex justify-content-center text-underline">
+           <span>Le Caissier</span>
+         </div>
+         <div class="col-4 d-flex justify-content-center text-underline">
+           <span>Le Magasinier</span>
+         </div>
+       </div>
       </div>
+      <!-- end invoice-footer -->
     </div>
-
   </div>
 
 </div>

@@ -9,6 +9,9 @@ $(function () {
     /*----------------------------------------------------------------------------
                         NOUVELLE FONCTION
     ------------------------------------------------------------------------ */
+
+    exportToExcel('utilisateurs', namespace + '#table-liste-utilisateur')
+
     let NEW = 'nouveau', EDIT = 'editer';
     $(namespace + '.btn-nouvelle-fonction').on('click', function () {
         $(namespace + '#nouvelle-fonction').modal('show');

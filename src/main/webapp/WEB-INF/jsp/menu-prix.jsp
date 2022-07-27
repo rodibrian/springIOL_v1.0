@@ -1,7 +1,7 @@
 <%@ include file='template/header.jsp' %>
 
 <!-- Start Content-->
-<div class="container-fluid">
+<div class="container-fluid" id="menu-prix">
 
   <!-- start page title -->
   <div class="row">
@@ -18,7 +18,7 @@
       <div class="page-title-box">
         <div class="page-title-right">
           <a href="" class="btn btn-primary d-none"><i class="uil-refresh"></i></a>
-          <a href="" class="btn btn-success"><i class="uil-navigator"></i>&nbsp;</a>
+          <a class="btn btn-success btn-export-to-excel"><i class="uil-navigator"></i>&nbsp;</a>
         </div>
       </div>
     </div>
@@ -31,7 +31,7 @@
   <!-- suite -->
 
 
-  <div class="container -fluid" id="menu-prix">
+  <div class="container -fluid">
     <div class="row">
       <div class="col-lg-12">
         <table id="scroll-vertical-datatable" class="table-article-prix table table-sm dt-responsive nowrap table-special-form">

@@ -5,6 +5,9 @@ $(function () {
     let idCf = 1;
     let NOUVEAU_FOURNISSEUR = true;
 
+
+    exportToExcel('fournisseurs', namespace + '#table-fournisseur')
+
     // fermer l'info listes article facture
 
     $(namespace + '.btn-close-info-credit').click(function () {

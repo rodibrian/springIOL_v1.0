@@ -9,6 +9,9 @@ $(function () {
      */
 
 
+    exportToExcel('voyages', namespace + '#table-liste-voyage')
+
+
     const NOUVEAU = 'nouveau', EDITION = 'edition';
 
     // click de bouton nouveau
