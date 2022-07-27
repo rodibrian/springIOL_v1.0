@@ -4,6 +4,7 @@ import com.iol.service.ArticleService;
 import com.iol.model.tenantEntityBeans.Magasin;
 import com.iol.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,6 +34,8 @@ public class MenuNavController{
     private final String TRANSFERT_LIST = "transferts";
     private final String ENTREE_LIST = "entres";
     private final String SORTIE_LIST = "sorties";
+    private final String PRICES_LIST = "prices";
+    private final String OPERATION_LIST = "operations";
 
     public MenuNavController() {
     }
@@ -83,9 +86,14 @@ public class MenuNavController{
         return "menu-facture";
     }
 
+    @Autowired
+    private PricesRepository pricesRepository;
+
     @RequestMapping(value = "/prix", method = RequestMethod.GET)
-    public String getMenuPrix() {
-        return "menu-prix";
+    public ModelAndView getMenuPrix() {
+        ModelAndView modelAndView = new ModelAndView("menu-prix");
+        modelAndView.addObject(PRICES_LIST,pricesRepository.findAll());
+        return modelAndView;
     }
 
     @RequestMapping(value = "/operation/changer-de-code", method = RequestMethod.GET)
@@ -177,10 +185,8 @@ public class MenuNavController{
     @RequestMapping(value = "/operation/liste",method = RequestMethod.GET)
     public ModelAndView getOperationListe(){
         ModelAndView modelAndView = new ModelAndView("operation/liste");
+        modelAndView.addObject(OPERATION_LIST,infoArticleMagasinRepository.findAll());
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
-        modelAndView.addObject(TRANSFERT_LIST,transfertRepository.findAll());
-        modelAndView.addObject(SORTIE_LIST,sortieRepository.findAll());
-        modelAndView.addObject(SUPPLY_LIST,supplyRepository.findAll());
         return modelAndView;
     }
 
@@ -229,30 +235,16 @@ public class MenuNavController{
         return modelAndView;
     }
 
-
-    @Autowired private SupplyRepository supplyRepository;
-    @Autowired private SortieRepository sortieRepository;
+    @Autowired private InfoArticleMagasinRepository infoArticleMagasinRepository;
     @Autowired private CategorieRepository categorieRepository;
     @Autowired private MagasinRepository magasinRepository;
-
-    @Autowired
-    private FonctionRepository fonctionRepository;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private ClientFournisseurRepository clientFournisseurRepository;
-
-    @Autowired
-    private ArticleService articleService;
-    @Autowired
-    private MaterielTransportRepository materielTransportRepository;
-    @Autowired
-    private SubsidiaryRepository subsidiaryRepository;
-    @Autowired
-    private VenteRepository venteRepository;
-    @Autowired
-    private TransfertRepository transfertRepository;
+    @Autowired private FonctionRepository fonctionRepository;
+    @Autowired private UserRepository userRepository;
+    @Autowired private ClientFournisseurRepository clientFournisseurRepository;
+    @Autowired private ArticleService articleService;
+    @Autowired private MaterielTransportRepository materielTransportRepository;
+    @Autowired private SubsidiaryRepository subsidiaryRepository;
+    @Autowired private VenteRepository venteRepository;
+    @Autowired private TransfertRepository transfertRepository;
 }
 

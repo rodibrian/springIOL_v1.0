@@ -46,5 +46,5 @@ create trigger vente_trigger before insert or update on vente for each row execu
 create trigger transfert_trigger before insert or update on transfert for each row execute procedure update_stock();
 create trigger sortie_trigger before insert or update on sortie for each row execute procedure update_stock();
 create trigger approv_trigger before insert or update on approv for each row execute procedure update_stock();
-
+create trigger info_article_trigger before insert or update on info_article_magasin FOR EACH ROW execute procedure before_insert_on_info_article_unite_magasin();
 

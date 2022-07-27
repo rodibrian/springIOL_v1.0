@@ -27,7 +27,7 @@ public class Article implements Serializable{
     @JoinColumn(name = "categorieId",foreignKey = @ForeignKey(name = "article_categorie_key_constraint"))
     private Categorie categorie;
 
-    @ManyToMany(mappedBy = "articles",cascade = CascadeType.MERGE)
+    @ManyToMany(mappedBy = "articles",cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     private Set<Magasin> magasins;
 
     @Lob

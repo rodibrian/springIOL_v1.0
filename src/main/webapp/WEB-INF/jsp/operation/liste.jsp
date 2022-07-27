@@ -1,4 +1,5 @@
 <%@ include file='../template/header.jsp' %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <i class="no-title" title="Liste"></i>
 <!-- Start Content-->
 <div id="liste-operation" class="container-fluid">
@@ -19,21 +20,26 @@
         </div>
       </div>
       <div class="d-inline-flex mt-1">
-        <input type="date" class="form-control">&nbsp;
-        <input type="date" class="form-control">&nbsp;
+        <label>
+          <input type="date" class="form-control">
+        </label>&nbsp;
+        <label>
+          <input type="date" class="form-control">
+        </label>&nbsp;
+        <label for="magasin">Magasin</label>
         <select name="magasin" id="magasin" class="form-select">
           <c:forEach var="magasin" items="${magasins}">
             <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
           </c:forEach>
         </select>
+        <label for="operation"> Type operation </label>
         <select name="operation" id="operation" class="form-select">
           <option>Entrée</option>
           <option>Sortie</option>
           <option>Transfert</option>
           <option>Inventaire</option>
         </select>
-        <a type="button" class="btn btn-
-        success mr-1">
+        <a type="button" class="btn btn-success mr-1">
           <i class="uil-search-alt"></i>
         </a>
       </div>
@@ -58,49 +64,19 @@
           </tr>
           </thead>
           <tbody>
-
-          <c:forEach var="transfert" items="${transferts}">
-            <tr id="${transfert.id}">
-              <td><c:out value="${transfert.reference}"/></td>
-              <td><c:out value="${transfert.article.designation}"/></td>
-              <td><c:out value="${transfert.unite.designation}"/></td>
-              <td>TRANSFERT</td>
-              <td><c:out value="${transfert.quantite}"/></td>
-              <td> - </td>
-              <td><c:out value="${transfert.date}"/></td>
-              <td><c:out value="${transfert.description}"/></td>
-              <td><c:out value="${transfert.user.nom}"/></td>
+          <c:forEach var="operation" items="${operations}">
+            <tr id="${operation.id}">
+              <td><c:out value="${operation.reference}"/></td>
+              <td><c:out value="${operation.article.designation}"/></td>
+              <td><c:out value="${operation.unite.designation}"/></td>
+              <td><c:out value="${operation.typeOperation}"/></td>
+              <td><c:out value="${operation.quantiteAjout}"/></td>
+              <td><c:out value="${operation.quantiteStockApresOperation}"/></td>
+              <td><c:out value="${operation.date}"/></td>
+              <td><c:out value="${operation.description}"/></td>
+              <td><c:out value="${operation.user.nom}"/></td>
             </tr>
           </c:forEach>
-
-          <c:forEach var="sortie" items="${sorties}">
-            <tr id="${sortie.id}">
-              <td><c:out value="${sortie.reference}"/></td>
-              <td><c:out value="${sortie.article.designation}"/></td>
-              <td><c:out value="${sortie.unite.designation}"/></td>
-              <td>SORTIE</td>
-              <td><c:out value="${sortie.quantite}"/></td>
-              <td> - </td>
-              <td><c:out value="${sortie.date}"/></td>
-              <td><c:out value="${sortie.description}"/></td>
-              <td><c:out value="${sortie.user.nom}"/></td>
-            </tr>
-          </c:forEach>
-
-          <c:forEach var="supply" items="${supplies}">
-            <tr id="${supply.id}">
-              <td><c:out value="${supply.reference}"/></td>
-              <td><c:out value="${supply.article.designation}"/></td>
-              <td><c:out value="${supply.unite.designation}"/></td>
-              <td>ENTREE</td>
-              <td><c:out value="${supply.quantite}"/></td>
-              <td> - </td>
-              <td><c:out value="${supply.dateApprov}"/></td>
-              <td><c:out value="${supply.description}"/></td>
-              <td><c:out value="${supply.user.nom}"/></td>
-            </tr>
-          </c:forEach>
-
           </tbody>
         </table>
       </div>

@@ -52,14 +52,14 @@
             <td>Toutes</td>
             <td></td>
           </tr>
-          <c:forEach var="transfert" items="${categories}">
-            <tr id="${transfert.id}">
-              <td><c:out value="${transfert.libelle}"/></td>
+          <c:forEach var="operation" items="${categories}">
+            <tr id="${operation.id}">
+              <td><c:out value="${operation.libelle}"/></td>
               <td>
                 <div class="d-inline-flex justify-content-center">
-                  <a id="${transfert.id}" href="#"
+                  <a id="${operation.id}" href="#"
                      class="editCategorie"><i class="uil-pen"></i></a>
-                  <a id="${transfert.id}" href="#" class="deleteCategorie"><i class="uil-trash-alt"></i></a>
+                  <a id="${operation.id}" href="#" class="deleteCategorie"><i class="uil-trash-alt"></i></a>
                 </div>&nbsp;
               </td>
             </tr>

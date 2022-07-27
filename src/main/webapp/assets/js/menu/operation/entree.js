@@ -72,27 +72,26 @@ $(function () {
         fuap.dateEnregistrement= dateApprov;
         fuap.prixVente = prixVente;
         pvuafTab.push(fuap);
-        // APPROVISIONNEMENT
-        let supply = {};
-        supply.magasin = {
+        let infoArticleMagasin = {};
+        infoArticleMagasin.typeOperation = "ENTRE";
+        infoArticleMagasin.magasin = {
             id : magasinId
         }
+        infoArticleMagasin.user = fuap.user;
+        infoArticleMagasin.unite = fuap.unite;
+        infoArticleMagasin.article = fuap.article;
+        infoArticleMagasin.quantiteAjout = quantite;
+        infoArticleMagasin.date = dateApprov;
+        infoArticleMagasin.reference = refFact;
+        console.log(infoArticleMagasin);
+        // APPROVISIONNEMENT
+        let supply = {};
+        supply.infoArticleMagasin = infoArticleMagasin;
         supply.fournisseur = {
             id : fId
         };
-        supply.user= {id:userId};
-        supply.unite ={
-            id : uniteId
-        }
-        supply.article = {
-            id : articleId
-        };
-        supply.quantite = quantite;
         supply.montantApprov = prixAchat;
-        supply.refFacture = refFact;
         supply.datePeremption =datePeremption;
-        supply.quantite = quantite;
-        supply.dateApprov = dateApprov;
         supplyTab.push(supply);
         $articleAjout = [
             $(namespace + '#input-reference-facture').val(),
@@ -110,6 +109,7 @@ $(function () {
         $(namespace + '#input-prix-vente-article').val(0);
         $(namespace + '#select-unite-article option').remove();
     })
+
     // suppression articles à la table
     $(document).on('dblclick',"#table-liste-article-entree tbody tr", function(){
         $(this).remove();
@@ -122,6 +122,7 @@ $(function () {
     function onSuppliesCreated() {
         supplyTab = [];
         pvuafTab = [];
+        trIndex = 0;
         $('#' + $modalId).modal('hide');
         $('#' + $modalId).remove();
         $(namespace + '#table-liste-article-entree tbody tr').remove();
@@ -148,13 +149,6 @@ $(function () {
                         contentType: "application/json",
                         data: JSON.stringify(supplyWrapper),
                         success : function (data){
-                            $.each(data,function (key, supply) {
-                               let uniteId = supply.unite.id;
-                               let articleId = supply.article.id;
-                               let quantite = supply.quantite;
-                               let magasinId = supply.magasin.id;
-
-                            })
                             onSuppliesCreated();
                         }
                 });

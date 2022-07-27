@@ -16,7 +16,7 @@ BEGIN
         update stock set count = (count - (NEW.quantite*stock_quantite))where article_id = new.article_id AND unite_id = primary_unite_id AND magasin_id = new.magasin_id;
     end if;
 
-    if tg_table_name = 'approv'then
+    if tg_table_name = 'approv' then
         select count(stock.article_id) into count_item from stock where stock.article_id = NEW.article_id AND stock.unite_id = primary_unite_id AND stock.magasin_id = NEW.magasin_id;
         if count_item <=0 then
             insert into stock(article_id,unite_id,magasin_id,count) values (NEW.article_id,primary_unite_id,NEW.magasin_id,(NEW.quantite*stock_quantite));
