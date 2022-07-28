@@ -72,6 +72,7 @@ $(function () {
         fuap.dateEnregistrement= dateApprov;
         fuap.prixVente = prixVente;
         pvuafTab.push(fuap);
+
         let infoArticleMagasin = {};
         infoArticleMagasin.typeOperation = "ENTRE";
         infoArticleMagasin.magasin = {
@@ -83,7 +84,6 @@ $(function () {
         infoArticleMagasin.quantiteAjout = quantite;
         infoArticleMagasin.date = dateApprov;
         infoArticleMagasin.reference = refFact;
-        console.log(infoArticleMagasin);
         // APPROVISIONNEMENT
         let supply = {};
         supply.infoArticleMagasin = infoArticleMagasin;

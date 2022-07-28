@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity(name = "transfert")
@@ -21,20 +22,18 @@ public class Transfert implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "magasin_source_id",foreignKey = @ForeignKey(name = "transfert_magasin_origine_key_constraint"))
     private Magasin magasinSource;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "magasin_dest_id",foreignKey = @ForeignKey(name = "transfert_magasin_receveur_key_constraint"))
     private Magasin magasinDest;
 
     @Column(columnDefinition = "TEXT")
     private String chauffeur;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    private InfoArticleMagasin infoArticleMagasin;
-
-    @Column(columnDefinition = "TEXT")
-    private String description;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "Transfert_info")
+    private List<InfoArticleMagasin> infoArticleMagasinList;
 }

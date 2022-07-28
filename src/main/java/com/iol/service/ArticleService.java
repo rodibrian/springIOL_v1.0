@@ -34,6 +34,7 @@ public class ArticleService {
             inventoryViewWrapper.setCategorie(strings[4]);
             inventoryViewWrapper.setUnite(strings[5]);
             inventoryViewWrapper.setQuantite(Double.valueOf(strings[6]));
+            inventoryViewWrapper.setNomMagasin(strings[7]);
             list.add(inventoryViewWrapper);
         });
         return list;
@@ -52,6 +53,7 @@ public class ArticleService {
             inventoryViewWrapper.setCategorie(strings[4]);
             inventoryViewWrapper.setUnite(strings[5]);
             inventoryViewWrapper.setQuantite(Double.valueOf(strings[6]));
+            inventoryViewWrapper.setNomMagasin(strings[7]);
             list.add(inventoryViewWrapper);
         });
         return list;

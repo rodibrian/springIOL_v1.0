@@ -1,6 +1,8 @@
 $(function () {
+
     let namespace = "#menu-sortie-article ";
     let sortieTab = [];
+
     // Selecter article
     $(namespace + '#table-liste-article tbody tr').on('dblclick', function () {
         let article_id = $(this).attr("id");
@@ -13,6 +15,7 @@ $(function () {
 
     // Ajout des articles
     $(namespace + '#btn-ajouter-article-sortie').on('click', function(){
+        $ref = 0;
         let articleId = $(namespace + '#input-designation-article').attr('value-id');
         let magasinId= $(namespace + '#select-magasin').val();
         let userId = $(namespace + '#user-id').attr("value-id");
@@ -22,16 +25,22 @@ $(function () {
         let motif = $(namespace + '#input-motif').val();
         let quantite = $(namespace + '#input-quantite-article').val();
         let sortie = {};
-        sortie.article = {
+
+        let infoArticleMagasin = {};
+        infoArticleMagasin.typeOperation = "SORTIE";
+        infoArticleMagasin.quantiteAjout = quantite;
+        infoArticleMagasin.date = new Date();
+        infoArticleMagasin.reference = "ST - "+$ref;
+        infoArticleMagasin.article = {
             id : articleId
         }
-        sortie.unite = {id:uniteId};
-        sortie.magasin = {id:magasinId};
-        sortie.user = {id:userId};
-        sortie.date = new Date();
-        sortie.quantite= quantite;
-        sortie.description = motif;
+        infoArticleMagasin.unite = {id:uniteId};
+        infoArticleMagasin.magasin = {id:magasinId};
+        infoArticleMagasin.user = {id:userId};
+        infoArticleMagasin.description = motif;
+        sortie.infoArticleMagasin = infoArticleMagasin;
         sortieTab.push(sortie);
+
         $articleAjout = [
             designation,
             unite,
@@ -57,6 +66,7 @@ $(function () {
             data: JSON.stringify(sortieTab),
             contentType: "application/json",
             success: function (data) {
+                $ref = data.id;
                 sortieTab = [];
                 $('#' + $modalId).modal('hide');
                 $('#' + $modalId).remove();

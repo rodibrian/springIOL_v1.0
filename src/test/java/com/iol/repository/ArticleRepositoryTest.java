@@ -1,5 +1,6 @@
 package com.iol.repository;
 
+import com.iol.service.ArticleService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,12 +36,20 @@ class ArticleRepositoryTest{
     void getAll() {
     }
 
+    @Autowired
+    private ArticleService articleService;
+
     @Test
     void testGetStockWithPriceAndExpirationDate() {
+        assertThat(articleService.getAllInventories()).isNotEmpty();
+        articleService.getAllInventories().forEach(System.out::println);
     }
 
     @Test
     void testGetStockWithPriceAndExpirationDate1() {
+        List<String> stockWithPriceAndExpirationDate = articleRepository.getStockWithPriceAndExpirationDate(1L);
+        assertThat(stockWithPriceAndExpirationDate).isNotEmpty();
+        stockWithPriceAndExpirationDate.forEach(System.out::println);
     }
 
     @Test

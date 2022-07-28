@@ -14,7 +14,4 @@ public class Sortie{
 
     @OneToOne(cascade = CascadeType.PERSIST)
     private InfoArticleMagasin infoArticleMagasin;
-
-    @Column(columnDefinition = "TEXT")
-    private String description;
 }

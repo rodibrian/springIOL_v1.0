@@ -34,7 +34,4 @@ public class Vente implements Serializable{
 
     @Column
     private Double montantVente;
-
-    @Column(columnDefinition = "TEXT")
-    private String observation;
 }

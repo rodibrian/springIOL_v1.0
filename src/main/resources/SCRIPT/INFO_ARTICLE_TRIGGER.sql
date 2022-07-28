@@ -49,9 +49,9 @@ BEGIN
 
         if new.type_operation = 'VENTE' or new.type_operation = 'SORTIE' or new.type_operation = 'AVOIR' then
 
-            nouveau_quantite_en_stock := quantite_en_stock_actuelement - (new.quantite*quantite_niveau_unite) ;
+            nouveau_quantite_en_stock := quantite_en_stock_actuelement - (new.quantite_ajout*quantite_niveau_unite) ;
 
-            new.quantite_stock_apres_operation := ( quantite_en_stock_actuelement - new.quantite_ajout )/quantite_niveau_unite;
+            new.quantite_stock_apres_operation :=  (quantite_en_stock_actuelement - new.quantite_ajout) /quantite_niveau_unite;
 
             -- Mis-a-jour du stock
             update stock set count = nouveau_quantite_en_stock where article_id = NEW.article_id AND unite_id = primary_unite_id AND magasin_id = NEW.magasin_id;
@@ -64,6 +64,5 @@ BEGIN
 
 END;
 $$;
-
 alter function before_insert_on_info_article_unite_magasin() owner to postgres;
 

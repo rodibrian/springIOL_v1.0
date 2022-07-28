@@ -23,19 +23,19 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
     List<String> getAll();
 
     @Query(value = "select a.article_id,u.id,s.magasin_id,a.designation as ad,c.libelle,u.designation,"+
-            "(s.count*(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as nb " +
-            "FROM unite u ,Stock s,article_unite au , article a ,categorie c "+
+            "(s.count/(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as nb , m.nom_magasin " +
+            "FROM unite u ,Stock s,article_unite au , article a ,categorie c , magasin m "+
             "WHERE au.article_id = a.article_id and au.unite_id = u.id " +
             "and a.categorie_id = c.id "+
-            "and s.article_id = au.article_id",nativeQuery = true)
+            "and s.article_id = au.article_id and m.id_magasin = s.magasin_id ",nativeQuery = true)
     List<String> getStockWithPriceAndExpirationDate();
 
     @Query(value = "select a.article_id,u.id,s.magasin_id,a.designation as ad,c.libelle, u.designation," +
-            "(s.count*(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as nb " +
-            "FROM unite u , Stock s , article_unite as au , article a , categorie  c " +
+            "(s.count/(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as nb , m.nom_magasin " +
+            "FROM unite u , Stock s , article_unite as au , article a , categorie  c , magasin m " +
             "WHERE au.article_id = a.article_id and au.unite_id = u.id " +
             "and a.categorie_id = c.id " +
-            "and s.article_id = au.article_id and s.magasin_id=:magasinId ",nativeQuery = true)
+            "and s.article_id = au.article_id and s.magasin_id=:magasinId and m.id_magasin = s.magasin_id ",nativeQuery = true)
     List<String> getStockWithPriceAndExpirationDate(@Param("magasinId") Long magasinId);
 
     @Query(value = "SELECT prix_vente from prix_article_filiale where article_id =:artId and unite_id =:uId and filiale_id =:fId order by date_enregistrement limit 1",nativeQuery = true)

@@ -49,17 +49,19 @@ $(function () {
         $('#info-stock #date-fin').val(formatDate(new Date()));
     })
 
-    function getStoreInventories(url) {
+    function getStoreInventories(url){
         $.ajax({
             type: "GET",
             url: url,
             contentType: "application/json",
             success: function (data) {
+                console.log(data);
                 // Supprimer les données dans la table
                 $(namespace + " #inventory-table tbody tr").empty();
                 // ajouter les donnés dans la table
-                $.each(data, function (key, value) {
-                    $tr = [value.article, value.unite, value.categorie,value.quantite];
+                $.each(data, function (key, value){
+                    console.log(value);
+                    $tr = [value.article, value.unite,value.categorie,value.nomMagasin,value.quantite];
                     $stockId = value.magasinId + "-" + value.articleId + "-" + value.uniteId;
                     push_to_inventory_table_list(namespace + " #inventory-table",$stockId,$tr);
                 });

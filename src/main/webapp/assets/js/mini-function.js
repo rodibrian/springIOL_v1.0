@@ -73,13 +73,13 @@ function push_to_table_list($table, $id, $array_td){
 function push_to_inventory_table_list($table, $id, $array_td){
     $tr = $('<tr></tr>').attr('id', $id);
     for (let i = 0; i < $array_td.length; i++){
-        if (i!==3) $tr.append($('<td></td>').html($array_td[i]))
+        if (i!==4) $tr.append($('<td></td>').html($array_td[i]))
         else {
             $a = $('<a></a>')
                 .attr("type","button")
                 .attr("class","btn-default mr-1 btn-info-stock")
                 .attr("data-bs-toggle","modal")
-                .attr("data-bs-target","#info-stock").html($array_td[i])
+                .attr("data-bs-target","#info-stock").html($array_td[i]+" "+$array_td[i-3])
             $tr.append($('<td></td>').append($a))
         }
     }

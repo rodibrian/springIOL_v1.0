@@ -11,4 +11,5 @@ public class InventoryViewWrapper extends InventoryWrapper {
     private String article;
     private String categorie;
     private String unite;
+    private String nomMagasin;
 }
