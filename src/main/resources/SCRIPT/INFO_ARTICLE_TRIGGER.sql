@@ -10,7 +10,6 @@ DECLARE
     primary_unite_id BIGINT =0;
     item_count INT =0;
 BEGIN
-
     -- recuperer l'unite primaire de l'article
     SELECT au.unite_id into primary_unite_id FROM article_unite au where article_id = new.article_id and au.niveau = 1;
 
@@ -20,11 +19,14 @@ BEGIN
     -- RECUPERER LE NOMBRE EN STOCK
     SELECT count(article_id) into item_count FROM  stock  WHERE article_id = new.article_id AND unite_id = primary_unite_id AND magasin_id = new.magasin_id;
 
-    if item_count<=0 then
+    -- RECUPERER LE STOCK ACTUEL
+    SELECT count into quantite_en_stock_actuelement FROM  stock  WHERE article_id = new.article_id AND unite_id = primary_unite_id AND magasin_id = new.magasin_id;
+
+    if item_count<=0 or quantite_en_stock_actuelement is null or quantite_en_stock_actuelement = 0.0 then
 
         nouveau_quantite_en_stock := new.quantite_ajout*quantite_niveau_unite;
 
-        new.quantite_stock_apres_operation := new.quantite_ajout/quantite_niveau_unite;
+        new.quantite_stock_apres_operation := new.quantite_ajout;
 
         -- INSERTION DANS LA TABLE STOCK
 
@@ -34,16 +36,19 @@ BEGIN
 
     if item_count > 0 then
 
-        -- RECUPERER LE STOCK ACTUEL
-        SELECT count into quantite_en_stock_actuelement FROM  stock  WHERE article_id = new.article_id AND unite_id = primary_unite_id AND magasin_id = new.magasin_id;
-
-        if new.type_operation = 'ENTRE' then
+        if new.type_operation = 'ENTRE' or new.type_operation like '%TRANSFERT%' then
 
             nouveau_quantite_en_stock := quantite_en_stock_actuelement + (new.quantite_ajout*quantite_niveau_unite) ;
 
             new.quantite_stock_apres_operation := (quantite_en_stock_actuelement + new.quantite_ajout)/quantite_niveau_unite;
 
-            update stock set count = nouveau_quantite_en_stock where article_id = NEW.article_id AND unite_id = primary_unite_id AND magasin_id = NEW.magasin_id;
+            if new.type_operation like '%TRANSFERT%' AND  new.type_operation like '%VERS%' then
+
+                nouveau_quantite_en_stock := quantite_en_stock_actuelement - (new.quantite_ajout*quantite_niveau_unite);
+
+                new.quantite_stock_apres_operation :=  (quantite_en_stock_actuelement/quantite_niveau_unite) - quantite_niveau_unite;
+
+            end if;
 
         end if;
 
@@ -51,18 +56,17 @@ BEGIN
 
             nouveau_quantite_en_stock := quantite_en_stock_actuelement - (new.quantite_ajout*quantite_niveau_unite) ;
 
-            new.quantite_stock_apres_operation :=  (quantite_en_stock_actuelement - new.quantite_ajout) /quantite_niveau_unite;
-
-            -- Mis-a-jour du stock
-            update stock set count = nouveau_quantite_en_stock where article_id = NEW.article_id AND unite_id = primary_unite_id AND magasin_id = NEW.magasin_id;
+            new.quantite_stock_apres_operation :=  (quantite_en_stock_actuelement/quantite_niveau_unite) - new.quantite_ajout;
 
         end if;
 
+        -- Mis-a-jour du stock
+        update stock set count = nouveau_quantite_en_stock where article_id = NEW.article_id AND unite_id = primary_unite_id AND magasin_id = NEW.magasin_id;
+        quantite_en_stock_actuelement :=0;
+
     end if;
-
     RETURN NEW; --ignored since this is after trigger
-
 END;
 $$;
 alter function before_insert_on_info_article_unite_magasin() owner to postgres;
-
+create trigger info_article_trigger before insert on info_article_magasin FOR EACH ROW execute procedure before_insert_on_info_article_unite_magasin();

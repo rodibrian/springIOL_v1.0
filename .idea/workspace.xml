@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd9c0e93-77b1-4a8f-96ad-44ae32dfbfef" name="Changes" comment="" />
+    <list default="true" id="bd9c0e93-77b1-4a8f-96ad-44ae32dfbfef" name="Changes" comment="reste menu-operation filtre">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/iol/repository/InfoArticleMagasinRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/repository/InfoArticleMagasinRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/repository/InfoArticleMagasinRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/SCRIPT/APPROV_TRIGGER.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/SCRIPT/INFO_ARTICLE_TRIGGER.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/SCRIPT/INFO_ARTICLE_TRIGGER.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/SCRIPT/SORTIE_TRIGGER.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/SCRIPT/STOCK_TRIGGER_SCRIPT.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/SCRIPT/TRANSFERT_TRIGGER.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/SCRIPT/TRIGGER_INIT.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/SCRIPT/VENTE_TRIGGER.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/InfoArticleMagasinRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/repository/InfoArticleMagasinRepository.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,8 +26,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="JUnit5 Test Class" />
         <option value="Interface" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -105,23 +117,7 @@
       <recent name="com.iol.repository" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ArticleRepositoryTest.testGetStockWithPriceAndExpirationDate1">
-    <configuration name="ArticleRepositoryTest.getQuantiteNiveau" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="iol" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.iol.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.iol.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.iol.repository.ArticleRepositoryTest" />
-      <option name="METHOD_NAME" value="getQuantiteNiveau" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.InfoArticleMagasinRepositoryTest.findAllBetweenData">
     <configuration name="ArticleRepositoryTest.testGetStockWithPriceAndExpirationDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="iol" />
       <extension name="coverage">
@@ -170,6 +166,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="InfoArticleMagasinRepositoryTest.findAllBetweenData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="iol" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.iol.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.iol.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.iol.repository.InfoArticleMagasinRepositoryTest" />
+      <option name="METHOD_NAME" value="findAllBetweenData" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PricesRepositoryTest.findAllByLastDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="iol" />
       <extension name="coverage">
@@ -203,11 +215,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.InfoArticleMagasinRepositoryTest.findAllBetweenData" />
         <item itemvalue="JUnit.ArticleRepositoryTest.testGetStockWithPriceAndExpirationDate1" />
         <item itemvalue="JUnit.ArticleRepositoryTest.testGetStockWithPriceAndExpirationDate" />
         <item itemvalue="JUnit.PricesRepositoryTest.findAllByLastDate" />
         <item itemvalue="JUnit.ArticleRepositoryTest.testSaveInventory" />
-        <item itemvalue="JUnit.ArticleRepositoryTest.getQuantiteNiveau" />
       </list>
     </recent_temporary>
   </component>
@@ -244,7 +256,8 @@
       <workItem from="1658945206023" duration="14262000" />
       <workItem from="1658963916800" duration="4652000" />
       <workItem from="1658982565041" duration="6186000" />
-      <workItem from="1658996524157" duration="5388000" />
+      <workItem from="1658996524157" duration="5507000" />
+      <workItem from="1659004767475" duration="2646000" />
     </task>
     <task id="LOCAL-00001" summary="mapping de la trigger avec la table approvisionnement">
       <created>1658448504125</created>
@@ -253,7 +266,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658448504125</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="reste menu-operation filtre">
+      <created>1659002035360</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1659002035360</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,7 +294,8 @@
   <component name="VcsManagerConfiguration">
     <option name="RELOAD_CONTEXT" value="false" />
     <MESSAGE value="mapping de la trigger avec la table approvisionnement" />
-    <option name="LAST_COMMIT_MESSAGE" value="mapping de la trigger avec la table approvisionnement" />
+    <MESSAGE value="reste menu-operation filtre" />
+    <option name="LAST_COMMIT_MESSAGE" value="reste menu-operation filtre" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
