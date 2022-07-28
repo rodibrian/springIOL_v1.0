@@ -8,7 +8,7 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <meta charset="utf-8"/>
 
-  <div class="col-md-6">
+  <div class="col-md-5 bg-blanc">
     <div class="invoice">
       <!-- begin invoice-company -->
       <div class="invoice-bordered text-center text-uppercase">"Slogan de la société"</div>
@@ -54,7 +54,7 @@
             </tr>
             </thead>
             <tbody>
-            <% for (int i = 0; i < 5; i++) { %>
+            <% for (int i = 0; i < 15; i++) { %>
             <tr>
               <td>00</td>
               <td>piece</td>

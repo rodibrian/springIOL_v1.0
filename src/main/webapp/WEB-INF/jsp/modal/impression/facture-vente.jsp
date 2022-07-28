@@ -8,7 +8,7 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <meta charset="utf-8"/>
 
-  <div class="col-md-6">
+  <div class="col-md-5 bg-blanc">
     <div class="invoice">
       <!-- begin invoice-company -->
       <div class="invoice-bordered text-center text-uppercase">"Slogan de la société"</div>
@@ -95,6 +95,7 @@
       <!-- begin invoice-note -->
       <div class="invoice-note">
         <span>Arrété à la somme de zero ariary.</span></div>
+      <br>
       <!-- end invoice-note -->
       <!-- begin invoice-footer -->
       <div class="invoice-footer">

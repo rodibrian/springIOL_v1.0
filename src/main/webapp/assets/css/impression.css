@@ -23,10 +23,38 @@ Size Name	Size in mm
 
  */
 
+/* sheet size */
+
+.a4-paysage {
+    min-height: 793px!important;
+}
+.ticket-of {
+    min-height: 320px!important;
+}
+
+#facture-A5 {
+    min-height: 793px!important;
+}
+
+.bg-blanc {
+    background: #fff!important;
+}
+
 
 body{
     margin-top:20px;
     background:#eee;
+}
+
+.table-invoice {
+    color: #000!important;
+}
+
+.table-invoice tbody tr {
+    line-height: 20px;
+}
+.table-invoice tbody tr td {
+    padding: 3px!important;
 }
 
 .invoice {
@@ -36,7 +64,7 @@ body{
 }
 
 .invoice-bordered {
-    color: #fff;
+    color: #000;
     border: 1px solid darkgray;
     padding: 10px;
 }
@@ -48,7 +76,7 @@ body{
 .invoice-header {
     margin: 0 -20px;
     background: #f0f3f4;
-    padding: 20px
+    padding: 5px
 }
 
 .invoice-date,
@@ -87,7 +115,7 @@ body{
 .invoice-price .invoice-price-left,
 .invoice-price .invoice-price-right {
     display: table-cell;
-    padding: 20px;
+    padding: 5px;
     font-size: 20px;
     font-weight: 600;
     width: 75%;
@@ -143,7 +171,7 @@ body{
 }
 
 .invoice>div:not(.invoice-footer) {
-    margin-bottom: 20px
+    margin-bottom: 5px
 }
 
 .btn.btn-white, .btn.btn-white.disabled, .btn.btn-white.disabled:focus, .btn.btn-white.disabled:hover, .btn.btn-white[disabled], .btn.btn-white[disabled]:focus, .btn.btn-white[disabled]:hover {

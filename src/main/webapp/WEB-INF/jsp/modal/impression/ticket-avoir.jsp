@@ -3,12 +3,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
-<div id="facture-A5" class="d-flex justify-content-center">
+<div id="" class="d-flex justify-content-center ticket-of">
 
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <meta charset="utf-8"/>
 
-  <div class="col-md-2">
+  <div class="col-md-2 bg-blanc">
     <div class="invoice invoice-sm">
       <!-- begin invoice-company -->
       <div class="text-end text-uppercase"><span class="invoice-bordered p-1 bg-dragula">AVOIR</span></div>
