@@ -39,7 +39,9 @@ $(function() {
         }
     ]
 
-    // affect to table data
+    /*
+     affect to table data
+     */
 
     $.each($lesLivraisons, function(key,value) {
         $livraison = [value.reference, value.designation, value.operation, value.operation === IN ? value.quantite : '-',value.operation === OUT ? value.quantite : '-', value.dateLivraison]

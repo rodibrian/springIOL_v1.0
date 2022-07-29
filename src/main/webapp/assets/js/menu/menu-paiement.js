@@ -1,9 +1,10 @@
 $(function() {
-    /*
 
-    MENU PAIEMENT
+    /*-----------------------
 
-     */
+           MENU PAIEMENT
+
+     ------------------------*/
 
     let namespace="#menu-paiement ";
 
@@ -51,11 +52,15 @@ $(function() {
         }
     ]
 
-    // affect to table data
+    /*
+     affect to table data
+     */
 
     $.each($lesPaiements, function(key,value) {
+
         $paiement = [value.reference, value.client[0].nomClient, value.operation, value.montant,value.modeDePaiement, value.datePaiement, value.description]
         push_to_table_list(namespace + "#table-paiement", "", $paiement)
+
     })
 
 })

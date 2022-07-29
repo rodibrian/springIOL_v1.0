@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
-<div id="" class="container d-flex justify-content-center a4-paysage">
+<div id="impression-bon-entree-ou-sortie" class="container d-flex justify-content-center a4-paysage">
 
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <meta charset="utf-8"/>
@@ -15,18 +15,18 @@
         <div class="row">
           <div class="col-4 d-flex justify-content-center">
             <address class="m-t-5 m-b-5">
-              <strong class="text-inverse">Nom de la societe</strong><br>
+              <strong class="text-inverse label-nom-societe">(Nom de la societe)</strong><br>
 
             </address>
           </div>
           <div class="col-8 d-flex justify-content-center">
             <address class="m-t-5 m-b-5">
-              <strong class="text-inverse">Bon d'entrée/sortie</strong><br>
-              <span>BE n°: XXXXX</span><br>
-              <span>Le <%= new Date().toLocaleString()  %></span><br>
-              <span>Magasin X</span><br>
-              <span>Reference : XXXXXX</span><br>
-              <span>Opérateur : username</span>
+              <strong class="text-inverse label-bon-entree-ou-sortie">Bon d'entrée/sortie</strong><br>
+              <span>BE n°: <span class="label-numero-bon">(XXXXX)</span></span><br>
+              <span class="label-date-bon">Le <%= new Date().toLocaleString()  %></span><br>
+              Magasin : <span class="label-magasin"></span><br>
+              <span>Reference : <span class="label-referene">(XXXXX)</span></span><br>
+              <span>Opérateur : <span class="label-utilisateur">(username)</span></span>
             </address>
           </div>
         </div>
@@ -36,28 +36,19 @@
       <div class="invoice-content">
         <!-- begin table-responsive -->
         <div class="table-responsive">
-          <table class="table table-invoice">
+          <table id="liste-article-bon" class="table table-invoice">
             <thead>
             <tr class="bg-dark">
-              <th>Code</th>
+              <th class="no-sortie">Facture</th>
               <th>Designation</th>
-
               <th>Unite</th>
               <th>Quantite</th>
-              <th>Observation</th>
+              <th class="no-sortie">Prix Unitaire</th>
+              <th class="no-sortie">Montant</th>
+              <th class="no-entree">Description</th>
             </tr>
             </thead>
             <tbody>
-            <% for (int i = 0; i < 5; i++) { %>
-            <tr>
-              <td>X</td>
-              <td>designation de l'article</td>
-              <td>piece</td>
-              <td>0</td>
-              <td>Aucun description</td>
-
-            </tr>
-            <% } %>
             </tbody>
           </table>
         </div>

@@ -1,8 +1,9 @@
 $(function () {
-    /*
+    /*---------------
 
-    MAIN JS
-     */
+        MAIN JS
+
+    -------------- */
 
     // conversion to excel
 

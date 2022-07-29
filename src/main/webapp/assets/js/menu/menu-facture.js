@@ -2,13 +2,17 @@ $(function () {
 
     let namespace = "#menu-facture ";
 
-    /*
-    MENU FACTURE
-     */
+    /*---------------------------------
+
+                MENU FACTURE
+
+     ----------------------------------*/
 
     exportToExcel(namespace + '.btn-export-to-excel','factures-' , namespace + '.table-facture')
 
-    // click of tr, open infos list articles in facture
+    /*
+     click of tr, open infos list articles in facture
+     */
 
     $(namespace + '.table-facture tbody tr').click(function () {
 
@@ -25,13 +29,17 @@ $(function () {
         $('#facture-info').addClass('show')
     })
 
-    // fermer l'info listes article facture
+    /*
+     fermer l'info listes article facture
+     */
 
     $(namespace + '.btn-close-info-facture').click(function () {
         $(namespace + '#facture-info').removeClass("show")
     })
 
-    // double click of tr, open facture info
+    /*
+     double click of tr, open facture info
+     */
 
     $(namespace + '.table-facture tbody tr').dblclick(function () {
 
@@ -43,19 +51,25 @@ $(function () {
         $(namespace + '#info-facture').modal('show')
     })
 
-    // avoir
+    /*
+     avoir
+     */
 
     $(namespace + '.btn-avoir').click(function () {
-        console.log('btn voir facture')
         $(namespace + '#avoir-facture').modal('show')
     })
 
-    // chargement des données de la table
+    /*
+     chargement des données de la table
+     */
 
 
-    // validation avoir
+    /*
+     validation avoir
+     */
 
     $(namespace + '#avoir-facture #btn-valider-avoir').on('click', function() {
+
         $modalId = 'validation-avoir';
 
         create_confirm_dialog('Confirmation avoir', 'Voulez vous vraiment valider cette avoir ?',$modalId,'Oui, valider!','btn-danger')

@@ -1,5 +1,11 @@
 $(function () {
 
+    /*--------------------------
+
+        MENU FOURNISSEUR
+
+     ----------------------------*/
+
     let namespace = "#menu-fournisseur ";
     let cfUrl = "http://localhost:8080/api/v1/externalEntities";
     let idCf = 1;
@@ -8,24 +14,32 @@ $(function () {
 
     exportToExcel(namespace + '.btn-export-to-excel','fournisseurs', namespace + '#table-fournisseur')
 
-    // fermer l'info listes article facture
+    /*
+     fermer l'info listes article facture
+     */
 
     $(namespace + '.btn-close-info-credit').click(function () {
         $(namespace + '#info-credit').removeClass("show")
     })
 
-    // nouveau fournisseur
+    /*
+     nouveau fournisseur
+     */
 
     $(namespace + '.btn-nouveau-fournisseur').on('click', function () {
+
         $(namespace + '#nouveau-fournisseur').attr('data-value', 'nouveau-fournisseur');
         $(namespace + '#nouveau-fournisseur').modal('show')
 
         $(namespace + '#nouveau-fournisseur .modal-title').text('Nouveau Fournisseur');
     })
 
-    // editer fournisseur
+    /*
+     editer fournisseur
+     */
 
     $(document).on('click', namespace + '.editFournisseur', function () {
+
         $(namespace + '#nouveau-fournisseur').attr('data-value', 'editer-fournisseur');
         $(namespace + '#nouveau-fournisseur').modal('show')
 
@@ -40,6 +54,7 @@ $(function () {
     })
 
     function enregistrerClientOuFournisseur(fournisseur){
+
         let cfResourceUrl = NOUVEAU_FOURNISSEUR ? cfUrl :cfUrl+"/"+idCf;
         let methodType = NOUVEAU_FOURNISSEUR ? "POST" : "PUT";
         $.ajax({
@@ -68,8 +83,12 @@ $(function () {
         });
     }
 
-    // enregistrement nouveau fournisseur
+    /*
+     enregistrement nouveau fournisseur
+     */
+
     $(namespace + '#nouveau-fournisseur #btn-enregistrer-fournisseur').on('click', function () {
+
         let nomFournisseur = $(namespace + '#nouveau-fournisseur input#nom').val();
         let adresse = $(namespace + '#nouveau-fournisseur input#adresse').val();
         let contact = $(namespace + '#nouveau-fournisseur input#contact').val();
@@ -80,16 +99,24 @@ $(function () {
         fr.type = 1;
         enregistrerClientOuFournisseur(fr)
     })
-    // click fournisseur tr
+
+    /*
+     click fournisseur tr
+     */
+
     $(document).on('click', namespace + '#table-fournisseur tbody tr', function () {
+
         // get reference of selected facture
         $trFournisseur = $(this);
         $(namespace + "#info-credit").addClass("show")
     })
 
-    // suppression fournisseur
+    /*
+     suppression fournisseur
+     */
 
     $(document).on('click', namespace + '#table-fournisseur .deleteFournisseur', function () {
+
         $trFournisseur = $(this).closest('tr');
         $idModalDelete = "suppression-fournisseur";
         create_confirm_dialog('Suppression Fournisseur', 'Voulez vous vraiment supprimer ce fournisseur (id : ' + $trFournisseur.attr("id") + ') ?', $idModalDelete, 'Oui,supprimer', 'btn-danger')
@@ -112,7 +139,9 @@ $(function () {
      */
 
     $(namespace + '.btn-nouveau-dette').on('click', function() {
+
         $(namespace + '#nouveau-dette input#nomFournisseur').val($trFournisseur.children().eq(0).text())
+
     })
 
     $(namespace + '#nouveau-dette #btn-enregistrer-dette-fournisseur').on('click', function () {
@@ -135,6 +164,7 @@ $(function () {
      */
 
     $(namespace + '.btn-supprimer-dette').on('click', function () {
+
         $modalId = "suppression-dette-fournisseur"
 
         create_confirm_dialog('Suppression dette', 'Voulez vraiment supprimer les dettes impayes ?', $modalId, 'Oui, supprimer tout', 'btn-danger')

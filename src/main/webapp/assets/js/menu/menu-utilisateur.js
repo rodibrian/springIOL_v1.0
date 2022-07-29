@@ -1,11 +1,15 @@
 $(function () {
+
     $fonctionUrl = "http://localhost:8080/api/v1/fonctions";
     $userUrl = "http://localhost:8080/api/v1/users";
     $NEW_USER = true;
+
         /*--------------------------------------------------------------------------
                                MENU UTILISATEUR
         ------------------------------------------------------------------------- */
+
     let namespace = "#menu-utilisateur "
+
     /*----------------------------------------------------------------------------
                         NOUVELLE FONCTION
     ------------------------------------------------------------------------ */
@@ -13,6 +17,7 @@ $(function () {
     exportToExcel(namespace + '.btn-export-to-excel','utilisateurs', namespace + '#table-liste-utilisateur')
 
     let NEW = 'nouveau', EDIT = 'editer';
+
     $(namespace + '.btn-nouvelle-fonction').on('click', function () {
         $(namespace + '#nouvelle-fonction').modal('show');
         $(namespace + '#nouvelle-fonction').attr('data-value', NEW);
@@ -20,8 +25,13 @@ $(function () {
 
         $(namespace + '#nouvelle-fonction input#libelle-fonction').val('')
     })
-    // enregistrement du nouvelle fonction
+
+    /*
+     enregistrement du nouvelle fonction
+     */
+
     $(namespace + '#btn-enregistrer-fonction').on('click', function () {
+
         let libelle = $(namespace + '#nouvelle-fonction input#libelle-fonction').val();
         let dataValue = $(namespace + '#nouvelle-fonction').attr('data-value');
         $isNew = dataValue === NEW;
@@ -49,8 +59,13 @@ $(function () {
             }
         });
     })
-    // editer fonction, click
+
+    /*
+     editer fonction, click
+     */
+
     $(document).on('click', namespace + '.edit-fonction', function () {
+
         $trEdit = $(this).closest('tr');
         $idfonction = $trEdit.attr('id');
         $(namespace + '#nouvelle-fonction').modal('show');
@@ -58,8 +73,13 @@ $(function () {
         $(namespace + '#nouvelle-fonction .modal-title').text('Editer Fonction');
         $(namespace + '#nouvelle-fonction input#libelle-fonction').val($trEdit.children().eq(0).text());
     })
-    // supprimer foonction, click
+
+    /*
+     supprimer foonction, click
+     */
+
     $(document).on('click', namespace + '.delete-fonction', function () {
+
         $trDelete = $(this).closest('tr')
         $modalId = 'suppression-fonction'
         $idfonction = $trDelete.attr('id');
@@ -78,19 +98,29 @@ $(function () {
                 });
             })
     })
+
     /*----------------------------------------------------------------------
                          NOUVEAU UTILISATEUR
      ----------------------------------------------------------------------*/
+
     function load_select_fonction() {
+
         $(namespace + '#nouveau-utilisateur #select-fonction option').remove();
         $(namespace + '#table-liste-fonction tbody tr').each(function(index, tr) {
             push_select_option_value([$(tr).attr('id'), $(tr).children().eq(0).text()], namespace + '#nouveau-utilisateur #select-fonction')
         })
+
     }
+
     load_select_fonction();
-    // enregistrement d'un nouveau utilisateur
+
+    /*
+     enregistrement d'un nouveau utilisateur
+     */
+
     let magasinIdTab = [];
     $(namespace + "#nouveau-utilisateur #btn-enregistrer-utilisateur").on('click', function() {
+
         $nom = $(namespace + "#nouveau-utilisateur #input-nom").val();
         $adresse = $(namespace + "#nouveau-utilisateur #input-adresse").val();
         $contact = $(namespace + "#nouveau-utilisateur #input-contact").val();
@@ -129,7 +159,9 @@ $(function () {
 
                 }
                 createToast('bg-success', 'uil-check-sign', 'Utilisateur enregistre', 'Nouveau utilisateur enregistre avec success!')
+
                 // empty all
+
                 $(namespace + "#nouveau-utilisateur input").val("");
                 $('#nouveau-utilisateur select#select-fonction option:first').prop('selected', true);
                 $('#nouveau-utilisateur select#select-magasin option:first').prop('selected', true);
@@ -138,8 +170,13 @@ $(function () {
             }
         });
     })
-    // suppression utilisateur
+
+    /*
+     suppression utilisateur
+     */
+
     $(document).on('click', namespace + "#table-liste-utilisateur .delete-utilisateur", function(){
+
         $trUtilisateur = $(this).closest('tr');
         $userId = $trUtilisateur.attr("id");
         let nomEtPrenoms = $trUtilisateur.children().eq(1).text();
@@ -147,7 +184,9 @@ $(function () {
         create_confirm_dialog('Suppression Utilisateur', 'Voulez vraiment supprimer cet utilisateur ? <li>' + nomEtPrenoms + '</li>', $modalId, 'Oui, supprimer', 'btn-danger')
             .on('click', function() {
                 $methodType = "DELETE"
+
                 // SUPPRIMER
+
                 $.ajax({
                     type: $methodType,
                     url: $userUrl+"/"+$userId,
@@ -160,17 +199,27 @@ $(function () {
                 });
             })
     })
-    // MODIFIER UTILISATEUR
+
+    /*
+     MODIFIER UTILISATEUR
+     */
+
     $(document).on('click', namespace + "#table-liste-utilisateur .edit-utilisateur",function(){
+
         $NEW_USER  = false;
         $trEdit = $(this).closest('tr');
         $userId = $(this).closest('tr').attr("id");
         $(namespace + '#nouveau-utilisateur').modal('show');
     });
-    // on click function for filter
+
+    /*
+     on click function for filter
+     */
+
     $(document).on('click', namespace + '#table-liste-fonction tbody tr' ,function() {
         filterFunctionEvent($(this).children().eq(0).text());
     })
+
     function filterFunctionEvent($dataFilter) {
         $(namespace + '#table-liste-utilisateur tbody tr').hide();
         if ($dataFilter === null) $(namespace + '#table-liste-utilisateur tbody tr').show();
@@ -180,8 +229,14 @@ $(function () {
                 if ($(value).children('.function-user').text() === $dataFilter) $(value).show();
             })
     }
-    // filter all
+
+    /*
+     filter all
+     */
+
     $(namespace + '.function-filter-all').on('click', function() {
+
         filterFunctionEvent(null)
+
     })
 })

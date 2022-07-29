@@ -1,9 +1,15 @@
 $(function () {
+
+    /*--------------------
+
+            HTML CONTENT
+
+     ---------------------*/
+
     /*
-    HTML CONTENT
+     menu utilisateur
      */
 
-    // menu utilisateur
     $actionNouvelleFonctionMenuUtilisateur = `
         <div class="d-flex align-content-center">
             <a class="edit-fonction"><i

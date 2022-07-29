@@ -1,28 +1,46 @@
 $(function () {
+
+    /*-------------------------
+
+            MENU CLIENT
+
+     --------------------------*/
+
     let namespace = "#menu-client ";
     let cfUrl = "http://localhost:8080/api/v1/externalEntities";
-
 
     exportToExcel(namespace + '.btn-export-to-excel','client', namespace + '#table-client')
 
     $NOUVEAU_CLIENT  = true;
+
     let CLIENT = 0 ;
-    // fermer l'info listes article facture
+
+    /*
+     fermer l'info listes article facture
+     */
 
     $(namespace + '.btn-close-info-credit').click(function () {
         $(namespace + '#info-credit').removeClass("show")
     })
 
-    // nouveau client
+    /*
+     nouveau client
+     */
+
     $(namespace + '.btn-nouveau-client').on('click', function () {
+
         $NOUVEAU_CLIENT = true;
         $(namespace + '#nouveau-client').attr('data-value', 'nouveau-client');
         $(namespace + '#nouveau-client').modal('show')
         $(namespace + '#nouveau-client .modal-title').text('Nouveau Client');
     })
 
-    // editer client
+    /*
+     editer client
+     */
+
     $(document).on('click', namespace + '.editClient', function () {
+
         $NOUVEAU_CLIENT = false;
         $(namespace + '#nouveau-client').attr('data-value', 'editer-client');
         $(namespace + '#nouveau-client').modal('show')
@@ -35,6 +53,7 @@ $(function () {
     })
 
     function enregistrerClientOuFournisseur(client){
+
         let cfResourceUrl = $NOUVEAU_CLIENT ? cfUrl :cfUrl+"/"+$idCf;
         let methodType = $NOUVEAU_CLIENT ? "POST" : "PUT";
         $.ajax({
@@ -61,8 +80,13 @@ $(function () {
             }
         });
     }
-    // enregistrement nouveau client
+
+    /*
+     enregistrement nouveau client
+     */
+
     $(namespace + '#nouveau-client #btn-enregistrer-client').on('click', function () {
+
         let nomClient = $(namespace + '#nouveau-client input#nomClient').val();
         let cin = $(namespace + '#nouveau-client input#numCIN').val();
         let adresse = $(namespace + '#nouveau-client input#adresse').val();
@@ -81,15 +105,26 @@ $(function () {
         client.typeCf = CLIENT;
         enregistrerClientOuFournisseur(client);
     })
-    // click client tr
+
+    /*
+     click client tr
+     */
+
     $(document).on('click', namespace + '#table-client tbody tr', function () {
+
         // get reference of selected facture
+
         $trClient = $(this);
         $(namespace + "#info-credit").addClass("show")
+
     })
 
-    // suppression client
+    /*
+     suppression client
+     */
+
     $(document).on('click', namespace + '#table-client .deleteClient', function () {
+
         $trClient = $(this).closest('tr');
         $idModalDelete = "suppression-client";
         let idCf = $trClient.attr("id");
@@ -108,12 +143,15 @@ $(function () {
                 });
             })
     })
+
     /*
     NOUVEAU CREDIT
      */
 
     $(namespace + '.btn-nouveau-credit').on('click', function() {
+
         $(namespace + '#nouveau-credit input#nomClient').val($trClient.children().eq(0).text())
+
     })
 
     $(namespace + '#nouveau-credit #btn-enregistrer-credit-client').on('click', function () {
@@ -130,10 +168,13 @@ $(function () {
         $(namespace + '#nouveau-credit input').val('');
         $(namespace + '#nouveau-credit textarea').val('');
     })
+
     /*
     SUpprimer credit
      */
+
     $(namespace + '.btn-supprimer-credit').on('click', function () {
+
         $modalId = "suppression-credit-client"
         create_confirm_dialog('Suppression credit', 'Voulez vraiment supprimer les credits impayes ?', $modalId, 'Oui, supprimer tout', 'btn-danger')
             .on('click', function() {

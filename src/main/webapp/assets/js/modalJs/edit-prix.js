@@ -2,11 +2,11 @@ $(function() {
 
     let namespace = "edit prix ici";
 
-    /*
+    /*--------------------------
 
-    EDTION DE PRIX
+            EDTION DE PRIX
 
-     */
+     --------------------------*/
 
     exportToExcelCustomBtn('.btn-export-to-excel-modal','historique-prix-', '#table-historique-prix')
 

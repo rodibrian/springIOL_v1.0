@@ -4,7 +4,7 @@ $(function() {
 
     $lesArticles = [
         {
-            code : "123",
+            code : "124",
             designation : "Fromage",
             unite : ['piece', 'boite de 8', 'boite de 20', 'carton'],
             stock : 0,

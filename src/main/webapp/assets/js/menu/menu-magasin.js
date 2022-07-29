@@ -1,28 +1,40 @@
 $(function () {
+
     let namespace = "#menu-magasin ";
     clientUrl = "http://localhost:8080/api/v1/magasins";
 
-    /*
-    MENU MAGASIN
-     */
+    /*-------------------------
+
+            MENU MAGASIN
+
+     --------------------------*/
 
 
     // constante
 
     const NOUVEAU = 'nouveau', EDITION = 'edition';
-    // click de bouton nouveau
+
+    /*
+     click de bouton nouveau
+     */
+
     $(namespace + '#btn-nouveau-magasin').on('click', function () {
+
         $(namespace + '#new-magasin').attr('data-type', NOUVEAU);
         $(namespace + '#new-magasin .modal-title').html('Nouveau magasin');
+
     })
 
 
     /*-------------------------------------------------------
+
     Enregistrement nouveau magasin ou edition d'un magasin
+
     --------------------------------------------------------- */
 
 
     $(namespace + '#btn-enregistrer-magasin').on('click', function () {
+
         $nomMagasin = $(namespace + '#nom-magasin').val();
         $adresseMagasin = $(namespace + '#adresse-magasin').val();
         $filialeId = $(namespace + '#filiale-id').attr("value-id");
@@ -50,19 +62,27 @@ $(function () {
                     push_to_table_list("#table-liste-magasin",data.id,$oneMagasin);
                     createToast('bg-success', 'uil-file-check', 'Creation Fait', 'Creation d\'un nouveau magasin effectu&eacute; avec succ&egrave;s!')
                 }
+
                 // EDITION MAGASIN OPERATION
+
                 else{
                     console.log(" UPDATE ");
                     update_to_table_list(namespace + '#table-liste-magasin', $(namespace + '#new-magasin').attr('data-id'), $oneMagasin);
                     createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification du magasin effectu&eacute; avec succ&egrave;s!')
                 }
+
                 $(namespace + '#new-magasin input').val(''); // empty input
                 $(namespace + '#new-magasin').modal('hide'); // close modal
             }
         });
     });
-    // EDITION MAGASIN ON-CLICK
+
+    /*
+     EDITION MAGASIN ON-CLICK
+     */
+
     $(document).on('click', namespace + 'a.edit-magasin', function () {
+
         $(namespace + '#new-magasin').modal('show');
         $trContent = $(this).closest('tr');
         $idCf = $trContent.attr('id');
@@ -72,8 +92,13 @@ $(function () {
         $(namespace + '#new-magasin').attr('data-type', EDITION);
         $(namespace + '#new-magasin').attr('data-id', $trContent.attr('id')); // id of current tr element
     })
-    // SUPPRESSION MAGASIN ON-CLICK
+
+    /*
+     SUPPRESSION MAGASIN ON-CLICK
+     */
+
     $(document).on('click', namespace + 'a.delete-magasin',function (){
+
         $currentTR = $(this).closest('tr');
         $modalID = 'suppression-modal';
         let idMagasin = $currentTR.attr('id');
@@ -95,10 +120,13 @@ $(function () {
             })
 
     })
+
     /*
     CLICK MAGASIN EVENT, SHOW ALL USERS OF THIS MAGASIN
      */
+
     function getAllUserByMagasinId($idMagasin){
+
         $magasinResourcesUrl = clientUrl+"/"+$idMagasin+"/users";
         $.ajax({
             type: "GET",
@@ -112,12 +140,19 @@ $(function () {
             }
         });
     }
+
     $(document).on('click', namespace + '#table-liste-magasin tbody tr', function () {
+
         // Charger les listes d'utilisateur de ce magasin
         $idMagasin = $(this).attr('id');
+
         // Supprimer toutes les elements dans la table
+
         $(namespace + '#table-liste-utilisateur-magasin tbody tr').remove();
+
         // affichage des utilisateur
+
         getAllUserByMagasinId($idMagasin);
+
     })
 })

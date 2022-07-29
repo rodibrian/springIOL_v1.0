@@ -1,5 +1,11 @@
 $(function () {
 
+    /*-------------------------
+
+            MENU PEREMPTION
+
+     ---------------------------*/
+
     let namespace = "#menu-peremption ";
 
 
@@ -22,9 +28,12 @@ $(function () {
         })
     })
 
-    // ajouter un article à peremption
+    /*
+     ajouter un article à peremption
+     */
 
     $(document).on('dblclick', namespace + "#modal-liste-article tbody tr", function() {
+
         $article = $(this);
 
         push_to_table_list(namespace + ".table-peremption", $article.children().eq(0).text(),
@@ -33,13 +42,16 @@ $(function () {
         $(namespace + "#modal-liste-article").modal('hide')
     })
 
-    // ajouter bouton date de peremption
-
+    /*
+     ajouter bouton date de peremption
+     */
 
     function setLabelPeremption($datePeremption) {
+
         if ($datePeremption > new Date())
             return $('<span class="badge badge-primary-lighten">Forte</span>').html()
         return $('<span class="badge badge-danger-lighten">p&eacute;rim&eacute;</span>').html()
+
     }
 
 

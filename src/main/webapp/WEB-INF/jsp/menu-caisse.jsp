@@ -10,7 +10,8 @@
         <div class="page-title-right">
           <div class="input-group">
             <input type="text" class="form-control dropdown-toggle" placeholder="Search..." id="input-search-operation">
-            <button id="btn-search-operation" class="input-group-text btn-primary" type="submit"><i class="uil-search"></i></button>
+            <button id="btn-search-operation" class="input-group-text btn-primary" type="submit"><i
+                    class="uil-search"></i></button>
           </div>
         </div>
         <h4 class="page-title">Caisse</h4>
@@ -197,6 +198,10 @@
 
   </div>
 
+  <div class="all-modal">
+    <%@ include file="modal/impression/ticket-encaissement-or-decaissement.jsp" %>
+    <%@ include file="modal/impression/facture-encaissement-or-decaissement.jsp" %>
+  </div>
 
 </div>
 

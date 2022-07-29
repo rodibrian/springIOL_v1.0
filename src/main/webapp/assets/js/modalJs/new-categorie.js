@@ -1,4 +1,11 @@
 $(function () {
+
+    /*------------------------------
+
+        JS NOUVEAU CATEGORIE
+
+     -------------------------------*/
+
     let namespace = "#standard-modal2 ";
 
     let isUpdateOperation = false;
@@ -7,15 +14,23 @@ $(function () {
     let siblings;
     let div = $("#categorieTabList tbody tr td div");
     let tr = $("#categorieTabList tbody tr");
+
     div.hide();
+
     tr.mouseenter(function () {
+
         $(this).children().last().children().first().show();
+
     });
+
     tr.mouseleave(function () {
+
         $(this).children().last().children().first().hide();
+
     });
 
     $("#saveCategorieBtn").click(function () {
+
         let newVal = $("#nomCategorie").val();
         if (!isUpdateOperation) {
             let categoriesUrl = 'http://localhost:8080/api/v1/categories';
@@ -28,12 +43,17 @@ $(function () {
                 contentType: 'application/json',
                 data: JSON.stringify(jsonData),
                 success: function (data) {
+
                     //reset the input
+
                     $("#nomCategorie").val("");
+
                     /* ACTION */
+
                     $tdActionContent = $(' ' + '<div class="d-inline-flex justify-content-center">' + '<a href="#" class="deleteCategorie"><i class="uil-trash-alt"></i></a>' + '<a href="#" class="editCategorie"><i class="uil-pen"></i></a>' + '</div>');
                     $oneCategorie = [data.libelle,$tdActionContent];
                     push_to_table_list("#categorieTabList",data.id,$oneCategorie)
+
                 }
             });
             createToast('bg-success', 'uil-file-check', 'Creation Fait', 'Creation du nouveau cat&eacute;gorie effectu&eacute; avec succ&egrave;s!')
@@ -49,7 +69,9 @@ $(function () {
                     contentType: 'application/json',
                     data: JSON.stringify(jsonData),
                     success: function (data) {
+
                         //reset the input
+
                         $("#nomCategorie").val("");
                         siblings.html(newVal)
                     }
@@ -60,9 +82,12 @@ $(function () {
         }
     });
 
-    // editer categorie
+    /*
+     editer categorie
+     */
 
     $(document).on('click', ".editCategorie",function () {
+
         $(namespace).modal('show')
         isUpdateOperation = true;
         editBtnId = $(this).attr("id");
@@ -71,15 +96,20 @@ $(function () {
         selectedVal = $("#nomCategorie").val(text);
     });
 
-    // supprimer categorie
+    /*
+     supprimer categorie
+     */
 
     $(document).on('click', ".deleteCategorie",function () {
+
         let btn = $(this);
         let deleteBtnId = btn.attr("id");
         let url = "http://localhost:8080/api/v1/categories/" + deleteBtnId;
         $.ajax({
             type: 'DELETE', url: url, complete: function () {
+
                 // Supprimer l'element
+
                 btn.parent().parent().parent().detach();
             }
         });

@@ -8,12 +8,15 @@ $(function () {
 
      */
 
-    // export
-
+    /*
+     export
+     */
 
     exportToExcel(namespace + '.btn-export-to-excel','prix' , namespace + '.table-article-prix')
 
-    // Chargement des données de la table
+    /*
+     Chargement des données de la table
+     */
 
     $lesArticles = [
         {
@@ -61,7 +64,9 @@ $(function () {
 
      */
 
-    // edition de prix, en click
+    /*
+     edition de prix, en click
+     */
 
     $(document).on('click', '.info-prix', function() {
 
@@ -69,7 +74,6 @@ $(function () {
 
         $('#modal-info-prix').modal('show');
         $('#modal-info-prix').attr('data-id', $trArticle.attr('id'))
-
 
         // affecter à mis a jour prix
 
@@ -79,7 +83,9 @@ $(function () {
         $('#modal-info-prix .label-date-prix').text('Date : ' + $trArticle.children('.date-maj').text())
     })
 
-    // enregistrement d'un prix courant
+    /*
+     enregistrement d'un prix courant
+     */
 
     $('#modal-info-prix .btn-enregistrer-prix-editer').on('click', function() {
 
@@ -101,9 +107,9 @@ $(function () {
         createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification du prix effectu&eacute; avec succ&egrave;s!')
     })
 
-
-
-    // double click of tr, open facture info
+    /*
+     double click of tr, open facture info
+     */
 
     $('.table-article-prix tbody tr').dblclick(function () {
 

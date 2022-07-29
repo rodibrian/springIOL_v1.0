@@ -9,10 +9,11 @@ $(function () {
      */
 
     let namespace = "#dashboard-administrateur "
-
     let NEW = "nouveau", EDIT = "editer";
 
-    // event create new societe
+    /*
+    event create new societe
+     */
 
     $(namespace + "#btn-nouveau-societe").on('click', function () {
         $(namespace + "#nouveau-societe .modal-title").text("Nouveau Societe")
@@ -21,7 +22,9 @@ $(function () {
     })
 
 
-    // edit societe
+    /*
+     edit societe
+     */
 
     $(document).on('click', namespace + ' .btn-editer-societe', function () {
         $(namespace + "#nouveau-societe .modal-title").text('Editer Societe')
@@ -30,6 +33,7 @@ $(function () {
         $cardCurrent = $(this).closest('.item-societe').attr('id');
 
         // affecter les valeur
+
         $(namespace + '#nouveau-societe input#input-nom').val($(namespace + '#' + $cardCurrent + ' .label-nom').text())
         $(namespace + '#nouveau-societe input#input-adresse').val($(namespace + '#' + $cardCurrent + ' .label-adresse').text())
         $(namespace + '#nouveau-societe input#input-contact').val($(namespace + '#' + $cardCurrent + ' .label-contact').text())
@@ -37,7 +41,9 @@ $(function () {
         $(namespace + '#nouveau-societe input#input-slogan-ii').val($(namespace + '#' + $cardCurrent + ' .label-slogan-ii').text())
     })
 
-    // enregsitrement societe
+    /*
+     enregsitrement societe
+     */
 
     $(namespace + "#nouveau-societe #btn-enregistrer-societe").on('click', function () {
         $nom = $(namespace + '#nouveau-societe input#input-nom').val()
@@ -48,8 +54,6 @@ $(function () {
         $sloganI = $(namespace + '#nouveau-societe input#input-slogan-i').val()
         $sloganII = $(namespace + '#nouveau-societe input#input-slogan-ii').val()
         $logo = $(namespace + '#input-logo').val();
-        console.log($logo)
-
 
         $typeOperation = $(namespace + "#nouveau-societe").attr('data-id');
 
@@ -78,7 +82,9 @@ $(function () {
         $(namespace + '#nouveau-societe input#input-slogan-ii').val('')
     })
 
-    // suppression societe
+    /*
+     suppression societe
+     */
 
     $(document).on('click', '.btn-desactiver-societe', function () {
         $cardCurrent = $(this).closest('.item-societe').attr('id');

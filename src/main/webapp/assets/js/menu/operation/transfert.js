@@ -1,40 +1,58 @@
 $(function() {
-    /*
 
-    TRASNFERT ARTICLE
+    /*-------------------------
 
-     */
+           TRASNFERT ARTICLE
+
+     -------------------------*/
 
     let transferTab = [];
 
     let namespace = "#transfert-article ";
 
-    // event type transfert change
+    /*
+     event type transfert change
+     */
 
     $(namespace + '#source-destination').on('change', function() {
+
         let activeClass = $(this).children('option:selected').attr('value')
         $(namespace + '.select-src select').hide()
         $(namespace + '.select-dst select').hide()
 
         $(namespace + '.select-src select.'+activeClass).show();
         $(namespace + '.select-dst select.'+activeClass).show();
+
     })
 
-    // déclencher event on start
+    /*
+     déclencher event on start
+     */
+
     $(namespace + '#source-destination').trigger('change');
 
-    // Selecter article
+    /*
+     Selecter article
+     */
 
     $(namespace + '#table-liste-article tbody tr').on('dblclick', function () {
+
         let article_id = $(this).attr("id");
         let unite_id = $(this).children().eq(2).attr("id");
         get_select_affect_to_input(namespace + '.designation-article',article_id, $(this).children().eq(1).text());
         set_select_option_value([unite_id, $(this).children().eq(2).text()], namespace + "#select-unite")
         $(namespace + '#modal-liste-article').modal('hide');
+
         // après selection article, select * unite de l'article
+
     })
-    // Ajout des articles
+
+    /*
+     Ajout des articles
+     */
+
     $(namespace + '.btn-ajouter-article').on('click', function() {
+
         let articleId = $(namespace + '#input-designation-article').attr('value-id');
         let magasinSourceId= $(namespace + '#select-magasin-source').val();
         let magasinSourceNom= $(namespace + '#select-magasin-source option:selected').text();
@@ -49,7 +67,9 @@ $(function() {
         let quantite = $(namespace + '#input-quantite').val();
         let chauffeur = $(namespace + '#input-chauffeur ').val();
         let transfert = {};
+
         // SOURCE
+
         let iam_source = {};
         iam_source.typeOperation = "TRANSFERT VERS "+magasinDestNom;
         iam_source.magasin = {id:magasinSourceId};
@@ -62,7 +82,9 @@ $(function() {
         iam_source.date = new Date();
         iam_source.description = description;
         iam_source.reference = reference;
+
         // DESTINATAIRE
+
         let iam_dest = {};
         iam_dest.typeOperation = "TRANSFERT VENANT DE "+magasinSourceNom;
         iam_dest.magasin = {id:magasinDestId};
@@ -82,21 +104,34 @@ $(function() {
 
         $articleAjout = [designation,unite,quantite,description];
         push_to_table_list(namespace + ".table-liste-article-transfert", "", $articleAjout);
+
         // vider les input
+
         $(namespace + '.designation-article').attr('value','');
         $(namespace + '#input-quantite').val(0);
         $(namespace + '#area-description').attr('value','');
         $(namespace + '#select-unite option').remove();
+
     })
-    // suppression articles à la table
+
+    /*
+     suppression articles à la table
+     */
+
     $(document).on('dblclick',".table-liste-article-transfert tbody tr", function() {
+
         $(this).remove();
         $designation = $(this).children().eq(1).text();
         createToast('bg-danger','uil-trash-alt','Enlevement Article',$designation + ' supprim&eacute;')
+
     })
-    // Enregistrement articles
+
+    /*
+     Enregistrement articles
+     */
 
     function persitTransfertData() {
+
         let url = "http://localhost:8080/api/v1/transferts";
         $.ajax({
             type: "POST",
@@ -114,9 +149,11 @@ $(function() {
                     $nArticle + ' articles transfer&eacute; avec succ&egrave;s!');
             }
         })
+
     }
 
     $(namespace + ".btn-enregistrer-article").on('click', function() {
+
         $modalId = 'confirmation-de-transfert-article'
         $nArticle = $(namespace + '.table-liste-article-transfert tbody tr').length;
         $content = '' +
@@ -125,6 +162,7 @@ $(function() {
         create_confirm_dialog('Confirmation de transfert des articles', $content, $modalId, 'Oui, Transfert', 'btn-primary')
             .on('click', function() {
                 persitTransfertData();
+
             })
     })
 })

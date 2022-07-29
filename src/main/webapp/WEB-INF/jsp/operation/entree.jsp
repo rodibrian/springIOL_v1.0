@@ -26,7 +26,7 @@
                 <label for="select-magasin" class="form-label">Magasin</label>
                 <select class="form-select" id="select-magasin">
                   <c:forEach var="magasin" items="${magasins}">
-                    <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
+                    <option value="${magasin.id}"><c:out value="${magasin.nomMagasin}"/></option>
                   </c:forEach>
                 </select>
               </div>
@@ -38,12 +38,17 @@
               </div>
               <div class="mb-1 div-select-magasin">
                 <label class="form-label">Fournisseur</label>
-                    <div class="input-group">
-                      <input id="input-nom-fournisseur" type="text" class="form-control" placeholder="Nom du fournisseur"
-                             aria-label="Recipient's username">
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-liste-fournisseur" id="btn-search-fournisseur"><i class="uil-search"></i></button><br>
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nouveau-fournisseur" id="btn-nouveau-fournisseur"><i class="uil-plus-circle"></i></button>
-                    </div>
+                <div class="input-group">
+                  <input id="input-nom-fournisseur" type="text" class="form-control" placeholder="Nom du fournisseur"
+                         aria-label="Recipient's username">
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                          data-bs-target="#modal-liste-fournisseur" id="btn-search-fournisseur"><i
+                          class="uil-search"></i></button>
+                  <br>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                          data-bs-target="#nouveau-fournisseur" id="btn-nouveau-fournisseur"><i
+                          class="uil-plus-circle"></i></button>
+                </div>
               </div>
               <div class="mb-1">
                 <label for="input-reference-facture" class="form-label">Facture</label>
@@ -92,7 +97,8 @@
               <div class="mb-1">
                 <label for="input-date-peremption">Date de peremption</label>
                 <input type="date" class="form-control" id="input-date-peremption">
-              </div>              <div class="d-grid">
+              </div>
+              <div class="d-grid">
                 <button type="button" id="btn-ajouter-article-entree" class="btn btn-success mb-1 mt-3"><i
                         class="uil-plus"></i>&nbsp;Ajouter
                 </button>
@@ -120,20 +126,22 @@
               <div class="foot-vente" style="position: absolute;bottom: 5%;right: 5%;">
                 <p>Nombre d'article : <span>00</span></p>
               </div>
-              <div class="all-modal">
-                <!-- modal list -->
-                <%@ include file="../modal/vente/list-article.jsp" %>
-                <%@ include file="../modal/fournisseur/list-fournisseur.jsp" %>
-                <%@ include file="../modal/fournisseur/new-fournisseur.jsp" %>
-                <%@ include file="../modal/vente/prix-special.jsp" %>
-                <!-- end modal list -->
-              </div>
+
             </div>
           </div>
           <!-- end vente content -->
         </blockquote>
       </div> <!-- end card-body-->
     </div> <!-- end card-->
+    <div class="all-modal">
+      <!-- modal list -->
+      <%@ include file="../modal/vente/list-article.jsp" %>
+      <%@ include file="../modal/fournisseur/list-fournisseur.jsp" %>
+      <%@ include file="../modal/fournisseur/new-fournisseur.jsp" %>
+      <%@ include file="../modal/vente/prix-special.jsp" %>
+      <%@ include file="../modal/impression/bon-entree-ou-sortie.jsp" %>
+      <!-- end modal list -->
+    </div>
   </div> <!-- end col-->
 </div>
 

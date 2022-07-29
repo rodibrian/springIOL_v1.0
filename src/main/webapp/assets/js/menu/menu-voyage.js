@@ -2,11 +2,11 @@ $(function () {
     let namespace = "#menu-voyage ";
     voyageURL = "http://localhost:8080/api/v1/voyages";
 
-    /*
+    /*-----------------------
 
-    MENU VOYAGE
+            MENU VOYAGE
 
-     */
+    ------------------------- */
 
 
     exportToExcel(namespace + '.btn-export-to-excel','voyages', namespace + '#table-liste-voyage')
@@ -14,12 +14,16 @@ $(function () {
 
     const NOUVEAU = 'nouveau', EDITION = 'edition';
 
-    // click de bouton nouveau
+    /*
+     click de bouton nouveau
+     */
 
     $(namespace + '#btn-nouveau-voyage').on('click', function () {
+
         $(namespace + '#nouveau-voyage').modal('show')
         $(namespace + '#nouveau-voyage').attr('data-type', NOUVEAU);
         $(namespace + '#nouveau-voyage .modal-title').html('Nouveau voyage');
+
     })
 
 
@@ -31,6 +35,7 @@ $(function () {
 
 
     $(namespace + '#btn-enregistrer-voyage').on('click', function () {
+
         $reference = $(namespace + '#nouveau-voyage #reference').val()
         $materielTransport = $(namespace + '#nouveau-voyage #materielDeTransport option:selected').val()
         $dateVoyage = $(namespace + '#nouveau-voyage #dateVoyage').val()
@@ -38,12 +43,6 @@ $(function () {
 
         $voyage = {};
 
-        $voyage.
-
-        console.log($reference)
-        console.log($materielTransport)
-        console.log($dateVoyage)
-        console.log($description)
         //
         // $newVoyage = {
         //     adresse : $adresseVoyage,
@@ -80,8 +79,13 @@ $(function () {
         //     }
         // });
     });
-    // EDITION MAGASIN ON-CLICK
+
+    /*
+     EDITION MAGASIN ON-CLICK
+     */
+
     $(document).on('click', namespace + 'a.edit-voyage', function () {
+
         $(namespace + '#nouveau-voyage').modal('show');
         $trContent = $(this).closest('tr');
         $idCf = $trContent.attr('id');
@@ -90,9 +94,13 @@ $(function () {
         $(namespace + '#nouveau-voyage input#adresse-voyage').val($trContent.children().eq(1).text());
         $(namespace + '#nouveau-voyage').attr('data-type', EDITION);
         $(namespace + '#nouveau-voyage').attr('data-id', $trContent.attr('id')); // id of current tr element
+
     })
+
     // SUPPRESSION MAGASIN ON-CLICK
+
     $(document).on('click', namespace + 'a.delete-voyage',function (){
+
         $currentTR = $(this).closest('tr');
         $modalID = 'suppression-modal';
         let idVoyage = $currentTR.attr('id');
@@ -114,10 +122,13 @@ $(function () {
             })
 
     })
+
     /*
     CLICK MAGASIN EVENT, SHOW ALL USERS OF THIS MAGASIN
      */
+
     function getAllUserByVoyageId($idVoyage){
+
         $voyageResourcesUrl = voyageURL+"/"+$idVoyage+"/users";
         $.ajax({
             type: "GET",
@@ -131,12 +142,20 @@ $(function () {
             }
         });
     }
+
     $(document).on('click', namespace + '#table-liste-voyage tbody tr', function () {
+
         // Charger les listes d'utilisateur de ce voyage
+
         $idVoyage = $(this).attr('id');
+
         // Supprimer toutes les elements dans la table
+
         $(namespace + '#table-liste-utilisateur-voyage tbody tr').remove();
+
         // affichage des utilisateur
+
         getAllUserByVoyageId($idVoyage);
+
     })
 })

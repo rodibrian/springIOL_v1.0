@@ -108,6 +108,7 @@
     <!-- modal list -->
 
     <%@ include file="../modal/vente/list-article.jsp" %>
+    <%@ include file="../modal/impression/bon-entree-ou-sortie.jsp" %>
 
     <!-- end modal list -->
   </div>

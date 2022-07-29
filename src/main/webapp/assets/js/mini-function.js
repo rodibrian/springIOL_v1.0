@@ -1,36 +1,35 @@
-
-function appendOptionToSelect($value,$select) {
+function appendOptionToSelect($value, $select) {
     $($select)
         .append($("<option></option>")
-            .attr("value",$value[0])
+            .attr("value", $value[0])
             .text($value[1]));
 }
 
-function set_select_option_value($array,$select) {
+function set_select_option_value($array, $select) {
     let children = $($select).children();
-    if (children.length===0){
-        appendOptionToSelect($array,$select);
-    }else{
+    if (children.length === 0) {
+        appendOptionToSelect($array, $select);
+    } else {
         let tab = [];
-        for(let i = 0 ; i<children.length;i++){
-             let oldValue = $(children[i]).text();
-             tab.push(oldValue);
+        for (let i = 0; i < children.length; i++) {
+            let oldValue = $(children[i]).text();
+            tab.push(oldValue);
         }
-        let ok = tab.every(value => value!==$array[1]);
-        if (ok) appendOptionToSelect($array,$select);
+        let ok = tab.every(value => value !== $array[1]);
+        if (ok) appendOptionToSelect($array, $select);
         tab = [];
     }
 }
 
-function set_select_option_value_or_update_option($array,$select,$isCreate) {
+function set_select_option_value_or_update_option($array, $select, $isCreate) {
     $array = convertiMultiObjectToArray($array)
     $.each($array, function (key, value) {
-        if ($isCreate){
+        if ($isCreate) {
             $($select)
                 .append($("<option></option>")
                     .attr("value", value[0])
                     .text(value[1]));
-        }else{
+        } else {
             let option = $("#menu-entree-article #select-unite-article").children()[0];
             $(option).attr("value", value[0]).text(value[1]);
         }
@@ -47,7 +46,7 @@ function set_select_option_value_ajax($array, $select) {
     });
 }
 
-function deleteMagasin(){
+function deleteMagasin() {
 
 }
 
@@ -63,23 +62,23 @@ function get_select_affect_to_input($input, $id_element, $text_element) {
     $($input).attr('value', $text_element)
 }
 
-function push_to_table_list($table, $id, $array_td){
+function push_to_table_list($table, $id, $array_td) {
     $tr = $('<tr></tr>').attr('id', $id);
     for (let i = 0; i < $array_td.length; i++) $tr.append($('<td></td>').html($array_td[i]))
     $($table + ' tbody').append($tr);
     return $tr;
 }
 
-function push_to_inventory_table_list($table, $id, $array_td){
+function push_to_inventory_table_list($table, $id, $array_td) {
     $tr = $('<tr></tr>').attr('id', $id);
-    for (let i = 0; i < $array_td.length; i++){
-        if (i!==4) $tr.append($('<td></td>').html($array_td[i]))
+    for (let i = 0; i < $array_td.length; i++) {
+        if (i !== 4) $tr.append($('<td></td>').html($array_td[i]))
         else {
             $a = $('<a></a>')
-                .attr("type","button")
-                .attr("class","btn-default mr-1 btn-info-stock")
-                .attr("data-bs-toggle","modal")
-                .attr("data-bs-target","#info-stock").html($array_td[i]+" "+$array_td[i-3])
+                .attr("type", "button")
+                .attr("class", "btn-default mr-1 btn-info-stock")
+                .attr("data-bs-toggle", "modal")
+                .attr("data-bs-target", "#info-stock").html($array_td[i] + " " + $array_td[i - 3])
             $tr.append($('<td></td>').append($a))
         }
     }
@@ -143,7 +142,7 @@ function createToast($theme, $icon, $title, $content) {
 // CONVERSION OBJECT TO ARRAY
 
 function convertirObjectToArray($myObj) {
-    var array = $.map($myObj, function(value, index){
+    var array = $.map($myObj, function (value, index) {
         return [value];
     });
     return array;
@@ -151,7 +150,7 @@ function convertirObjectToArray($myObj) {
 
 function convertiMultiObjectToArray($tabMyObj) {
     let array = [];
-    $.each($tabMyObj, function(key, value) {
+    $.each($tabMyObj, function (key, value) {
         array.push(convertirObjectToArray(value));
     })
     return array;
@@ -167,23 +166,23 @@ function insert_badge($bg, $label) {
 }
 
 
-function enregistrerClientOuFournisseur_(client){
-    let cfResourceUrl = NOUVEAU_FOURNISSEUR ? cfUrl :cfUrl+"/"+idCf;
+function enregistrerClientOuFournisseur_(client) {
+    let cfResourceUrl = NOUVEAU_FOURNISSEUR ? cfUrl : cfUrl + "/" + idCf;
     let methodType = NOUVEAU_FOURNISSEUR ? "POST" : "PUT";
     $.ajax({
         type: methodType,
         url: cfResourceUrl,
         contentType: 'application/json',
         data: JSON.stringify(client),
-        success: function (data){
-            if (NOUVEAU_FOURNISSEUR){
-                $fournisseur = [data.nom,data.adresse,data.numTel,0, $('<div class="action-fournisseur">\n' +
+        success: function (data) {
+            if (NOUVEAU_FOURNISSEUR) {
+                $fournisseur = [data.nom, data.adresse, data.numTel, 0, $('<div class="action-fournisseur">\n' +
                     '                <a id="" class="btn-sm btn-info editFournisseur "><i class="uil-pen"></i></a>\n' +
                     '                <a id="" class="btn-sm btn-danger deleteFournisseur "><i class="uil-trash-alt"></i></a>\n' +
                     '              </div>')];
-                push_to_table_list(namespace + '#table-fournisseur',data.id, $fournisseur);
+                push_to_table_list(namespace + '#table-fournisseur', data.id, $fournisseur);
                 createToast('bg-success', 'uil-icon-check', 'Fournisseur enregistre', 'Fournisseur enregistre avec succes!');
-            }else {
+            } else {
                 $trFournisseur.children().eq(0).text(nomFournisseur);
                 $trFournisseur.children().eq(1).text(adresse);
                 $trFournisseur.children().eq(2).text(contact);
@@ -210,17 +209,17 @@ function personnaliserMenu($title) {
 
 function exportToExcel($btn, $prefix, $table) {
     $filename = $prefix + '-' + new Date().getTime().toString() + '.xls';
-    $($btn).on('click', function() {
+    $($btn).on('click', function () {
         console.log($prefix)
         $($table).table2excel({
             filename: $filename
-    });
+        });
     })
 }
 
-function exportToExcelCustomBtn($btn,$prefix, $table) {
+function exportToExcelCustomBtn($btn, $prefix, $table) {
     $filename = $prefix + '-' + new Date().getTime().toString() + '.xls';
-    $($btn).on('click', function() {
+    $($btn).on('click', function () {
         $($table).table2excel({
             filename: $filename
         });

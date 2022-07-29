@@ -2,13 +2,13 @@ $(function () {
 
     let namespace = "#menu-detail-vente ";
 
-    /*
-    MENU DETAIL VENTE
-     */
+    /*--------------------------
+
+        MENU DETAIL VENTE
+
+     ----------------------*/
 
     exportToExcel(namespace + '.btn-export-to-excel','detail-ventes-' , namespace + '.table-detail-vente')
-
-    // Chargement des données du table;
 
     // listes d'article dans une vente
 
@@ -54,10 +54,14 @@ $(function () {
         }
     ];
 
-    // insert into table > tbody > tr
+    /*
+     insert into table > tbody > tr
+     */
 
     $.each($listesVente, function (keyVente, valueVente) {
+
         $.each($listesArticlesVendus, function (keyArticle, valueArticle) {
+
             $tr = $('<tr></tr>')
                 .attr('class', valueVente.referenceVente)
                 .append('' +

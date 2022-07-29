@@ -1,4 +1,4 @@
-$(function(){
+$(function () {
     /*
 
     NEW EMBARQUEMENT
@@ -27,12 +27,13 @@ $(function(){
     -------------------------------------------------------------------------------*/
 
     $('.btn-ajouter-article').on('click', function () {
+
         $id = $(namespace + '#designation-article').attr('value-id');
         $designation = $(namespace + '#designation-article').val();
         $unite = $(namespace + '#select-unite-article option:selected').text();
         $quantite = $(namespace + '#input-quantite-article').val();
         $prix_achat_article = $(namespace + '#input-prix-achat-article').val();
-        $prix_vente_article= $(namespace + '#input-prix-vente-article').val();
+        $prix_vente_article = $(namespace + '#input-prix-vente-article').val();
         const POIDS_ARTICLE = 1;
         $poids = POIDS_ARTICLE * parseInt($quantite);
 
@@ -41,11 +42,14 @@ $(function(){
         push_to_table_list(namespace + '#table-liste-article-embarquement', $id, $article_embarquement);
 
         // vider form vente
+
         $('.form-vente input').each(function () {
             if ($(this).attr('id') != 'name-client') $(this).attr('value', '');
             if ($(this).attr('type') === 'number') $(this).val(0);
         });
+
         // vide option
+
         $(namespace + "#input-unite-article option").remove();
 
     })
@@ -56,10 +60,12 @@ $(function(){
 
     */
 
-    $(namespace + '#input-quantite-article').on('change', function() {
+    $(namespace + '#input-quantite-article').on('change', function () {
+
         let default_poids = 1.01;
         $poids = default_poids * parseInt($(this).val());
         $(namespace + '.label-poids-article').text($poids)
+
     })
 
     /*------------------------------------------------------------------------------
@@ -67,7 +73,9 @@ $(function(){
      -------------------------------------------------------------------------------*/
 
     $(namespace + '#table-liste-article-embarquement tbody tr').on('dblclick', function () {
+
         $(this).remove();
+
     })
 
     // enregistrement du vente
@@ -110,15 +118,22 @@ $(function(){
 
      --------------------------------------------*/
 
-    // Nouveau materiel de transport
+    /*
+     Nouveau materiel de transport
+     */
 
-    $(namespace + "#btn-nouveau-moyen-de-transport").on('click', function() {
+    $(namespace + "#btn-nouveau-moyen-de-transport").on('click', function () {
+
         $(namespace + "#nouveau-materiel-de-transport").modal('show')
+
     })
 
-    // Click button enregistrer materiel de transport
+    /*
+     Click button enregistrer materiel de transport
+     */
 
-    $(namespace + "#btn-enregistrer-materiel-de-transport").on('click', function() {
+    $(namespace + "#btn-enregistrer-materiel-de-transport").on('click', function () {
+
         $reference = $(namespace + '#reference').val();
         $typeMateriel = $(namespace + '#type-materiel').val();
 
@@ -127,11 +142,13 @@ $(function(){
         $materielTransport.typeMateriel = $typeMateriel;
 
         enregistrerMaterielTransport($materielTransport);
+
     })
 
     // Enregistrement materiel de transport
 
-    function  enregistrerMaterielTransport($object) {
+    function enregistrerMaterielTransport($object) {
+
         let materieltransportURL = 'http://localhost:8080/api/v1/materieltransport';
         let jsonData = $object
         $.ajax({
@@ -157,13 +174,16 @@ $(function(){
 
     // Nouveau Fournisseur
 
-    $(namespace + "#btn-nouveau-fournisseur").on('click', function() {
+    $(namespace + "#btn-nouveau-fournisseur").on('click', function () {
+
         $(namespace + "#nouveau-fournisseur").modal('show')
+
     })
 
     // Click button enregistrer fournisseur
 
-    $(namespace + "#btn-enregistrer-fournisseur").on('click', function() {
+    $(namespace + "#btn-enregistrer-fournisseur").on('click', function () {
+
         $nom = $(namespace + '#nom').val();
         $adresse = $(namespace + '#adresse').val();
         $contact = $(namespace + '#contact').val();
@@ -177,9 +197,12 @@ $(function(){
         enregistrerClientOuFournisseur($fournisseur);
     })
 
-    // Enregistrement materiel de transport
+    /*
+     Enregistrement materiel de transport
+     */
 
-    function  enregistrerClientOuFournisseur($object) {
+    function enregistrerClientOuFournisseur($object) {
+
         let clientOuFournisseurURL = 'http://localhost:8080/api/v1/externalEntities';
         let jsonData = $object
         $.ajax({
@@ -195,9 +218,6 @@ $(function(){
             }
         });
     }
-
-
-
 
 
 })
