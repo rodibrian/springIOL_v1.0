@@ -45,12 +45,18 @@ public class MenuNavController{
     private final String USER_LIST = "users";
     private final String CLIENT_FOURNISSEUR_LIST = "cfList";
     private final String STOCKS = "stocks";
+    private final String SALES_LIST = "sales";
 
     private final String MATERIEL_TRANSPORT_LIST = "materiel_transportList";
     private final int CLIENT = 0;
     private final int FOURNISSEUR = 1;
     private final String SUPPLY_LIST = "supplies";
     private final String SUBSDIARIES = "subsdiaries";
+    private final String TRANSFERT_LIST = "transferts";
+    private final String ENTREE_LIST = "entres";
+    private final String SORTIE_LIST = "sorties";
+    private final String PRICES_LIST = "prices";
+    private final String OPERATION_LIST = "operations";
 
     public MenuNavController() {
     }
@@ -72,27 +78,6 @@ public class MenuNavController{
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
         modelAndView.addObject(ARTICLE_LIST,articleService.findAll());
         modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(CLIENT));
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/detail-ventes", method = RequestMethod.GET)
-    public String getDetailVentes() {
-        return "menu-detail-vente";
-    }
-
-    @RequestMapping(value = "/magasin", method = RequestMethod.GET)
-    public ModelAndView getMenuMagasin() {
-        List<Magasin> magasins = magasinRepository.findAll();
-        ModelAndView modelAndView = new ModelAndView("menu-magasin");
-        modelAndView.addObject(MAGASIN_LIST, magasins);
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/stock",method = RequestMethod.GET)
-    public ModelAndView getMenuStock(){
-        ModelAndView modelAndView = new ModelAndView("menu-stock");
-        modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
-        modelAndView.addObject(STOCKS,articleService.getAllInventories());
         return modelAndView;
     }
 
@@ -174,25 +159,13 @@ public class MenuNavController{
         return "menu-facture";
     }
 
+    @Autowired
+    private PricesRepository pricesRepository;
+
     @RequestMapping(value = "/prix", method = RequestMethod.GET)
-    public String getMenuPrix() {
-        return "menu-prix";
-    }
-
-    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public ModelAndView getDashboard() {
-        ModelAndView modelAndView = new ModelAndView("dashboard");
-        modelAndView.addObject("client_list", clientFournisseurRepository.getAllExternalEntities(CLIENT));
-        modelAndView.addObject("fournisseur_list", clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR));
-        return modelAndView;
-    }
-
-    // menu des opérations
-
-    @RequestMapping(value = "/operation/liste",method = RequestMethod.GET)
-    public ModelAndView getOperationListe(){
-        ModelAndView modelAndView = new ModelAndView("operation/liste");
-        modelAndView.addObject(SUPPLY_LIST,supplyRepository.findAll());
+    public ModelAndView getMenuPrix() {
+        ModelAndView modelAndView = new ModelAndView("menu-prix");
+        modelAndView.addObject(PRICES_LIST,pricesRepository.findAll());
         return modelAndView;
     }
 
@@ -217,6 +190,7 @@ public class MenuNavController{
     public ModelAndView getOperationTransfert(){
         ModelAndView modelAndView = new ModelAndView("operation/transfert");
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
+        modelAndView.addObject(ARTICLE_LIST,articleService.findAll());
         return modelAndView;
     }
 
@@ -253,9 +227,51 @@ public class MenuNavController{
         return modelAndView;
     }
 
-    @RequestMapping(value = "/admin/dashboard",method = RequestMethod.GET)
-    public String getAdministrationHome(){
-        return "administrateur/dashboard";
+
+    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+    public ModelAndView getDashboard() {
+        ModelAndView modelAndView = new ModelAndView("dashboard");
+        modelAndView.addObject("client_list", clientFournisseurRepository.getAllExternalEntities(CLIENT));
+        modelAndView.addObject("fournisseur_list", clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR));
+        return modelAndView;
     }
+
+    // menu des opérations
+    @RequestMapping(value = "/operation/liste",method = RequestMethod.GET)
+    public ModelAndView getOperationListe(){
+        ModelAndView modelAndView = new ModelAndView("operation/liste");
+        modelAndView.addObject(OPERATION_LIST,infoArticleMagasinRepository.findAll());
+        modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
+        return modelAndView;
+    }
+
+
+
+    @RequestMapping(value = "/detail-ventes", method = RequestMethod.GET)
+    public ModelAndView getDetailVentes() {
+        ModelAndView modelAndView = new ModelAndView("menu-detail-vente");
+        modelAndView.addObject(SALES_LIST, venteRepository.findAll());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/magasin", method = RequestMethod.GET)
+    public ModelAndView getMenuMagasin() {
+        List<Magasin> magasins = magasinRepository.findAll();
+        ModelAndView modelAndView = new ModelAndView("menu-magasin");
+        modelAndView.addObject(MAGASIN_LIST, magasins);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/stock",method = RequestMethod.GET)
+    public ModelAndView getMenuStock(){
+        ModelAndView modelAndView = new ModelAndView("menu-stock");
+        modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
+        modelAndView.addObject(STOCKS,articleService.getAllInventories());
+        return modelAndView;
+    }
+
+    @Autowired private InfoArticleMagasinRepository infoArticleMagasinRepository;
+    @Autowired private VenteRepository venteRepository;
+    @Autowired private TransfertRepository transfertRepository;
 }
 

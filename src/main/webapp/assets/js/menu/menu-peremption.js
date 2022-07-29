@@ -3,7 +3,7 @@ $(function () {
     let namespace = "#menu-peremption ";
 
 
-    exportToExcel('peremptions', namespace + '.table-peremption')
+    exportToExcel(namespace + '.btn-export-to-excel','peremptions', namespace + '.table-peremption')
 
     $(document).on('dblclick',namespace + '.table-peremption tbody tr',function () {
 

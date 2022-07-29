@@ -6,7 +6,7 @@ $(function () {
     let NOUVEAU_FOURNISSEUR = true;
 
 
-    exportToExcel('fournisseurs', namespace + '#table-fournisseur')
+    exportToExcel(namespace + '.btn-export-to-excel','fournisseurs', namespace + '#table-fournisseur')
 
     // fermer l'info listes article facture
 

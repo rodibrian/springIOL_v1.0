@@ -65,7 +65,7 @@
             <th>Designation</th>
             <th>Unite</th>
             <th>Categorie</th>
-<%--            <th>Prix</th>--%>
+            <th>Magasin</th>
             <th>Stock </th>
           </tr>
           </thead>
@@ -75,9 +75,9 @@
                 <td>${stock.article}</td>
                 <td>${stock.unite}</td>
                 <td>${stock.categorie}</td>
-<%--                <td>${stock.prixAchat}</td>--%>
+                <th>${stock.nomMagasin}</th>
                 <td class="td-info-stock">
-                       <a type="button" class="btn-default mr-1 btn-info-stock" data-bs-toggle="modal" data-bs-target="#info-stock">${stock.stock}</a>
+                       <a type="button" class="btn-default mr-1 btn-info-stock" data-bs-toggle="modal" data-bs-target="#info-stock">${stock.quantite} ${stock.unite}</a>
                 </td>
             </tr>
           </c:forEach>

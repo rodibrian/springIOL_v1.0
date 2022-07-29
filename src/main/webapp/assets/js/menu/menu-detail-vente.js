@@ -6,7 +6,7 @@ $(function () {
     MENU DETAIL VENTE
      */
 
-    exportToExcel('detail-ventes-' , namespace + '.table-detail-vente')
+    exportToExcel(namespace + '.btn-export-to-excel','detail-ventes-' , namespace + '.table-detail-vente')
 
     // Chargement des données du table;
 

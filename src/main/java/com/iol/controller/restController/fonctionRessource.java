@@ -26,8 +26,8 @@ public class fonctionRessource {
     }
 
     @PostMapping("/fonctions")
-    public ResponseEntity<Object> create(@RequestBody Fonction fonctionnalite){
-        Fonction savedFonctionnality = fonctionRepository.save(fonctionnalite);
+    public ResponseEntity<Object> create(@RequestBody Fonction fonction){
+        Fonction savedFonctionnality = fonctionRepository.save(fonction);
         return new ResponseEntity<>(savedFonctionnality,HttpStatus.OK);
     }
 

@@ -1,6 +1,7 @@
 package com.iol.controller.restController;
 
 
+import com.iol.model.tenantEntityBeans.Unite;
 import com.iol.model.tenantEntityBeans.User;
 import com.iol.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1")
 public class UserRessource {
-    
    private UserRepository userRepository;
 
    @Autowired
@@ -27,6 +27,16 @@ public class UserRessource {
        List<User> all = userRepository.findAll();
        return ResponseEntity.of(Optional.of(all));
    }
+
+    @PutMapping("/users/{id}")
+    public ResponseEntity<Object> update(@RequestBody User user, @PathVariable(value = "id") Long id){
+        Optional<User> uniteOptional = userRepository.findById(id);
+        if (!uniteOptional.isPresent()){
+            return ResponseEntity.notFound().build();
+        }
+        user.setId(id);
+        return new ResponseEntity<>(userRepository.save(user),HttpStatus.OK);
+    }
 
    @PostMapping(value = "/users")
    public ResponseEntity<Object> create(@RequestBody User user){

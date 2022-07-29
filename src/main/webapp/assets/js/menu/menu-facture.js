@@ -6,7 +6,7 @@ $(function () {
     MENU FACTURE
      */
 
-    exportToExcel('factures-' , namespace + '.table-facture')
+    exportToExcel(namespace + '.btn-export-to-excel','factures-' , namespace + '.table-facture')
 
     // click of tr, open infos list articles in facture
 

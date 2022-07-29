@@ -38,8 +38,8 @@
               <td class="d-none"><input type="text" class="form-control input-sm" value=""></td>
               <td><input type="text" class="form-control input-sm not-editable" value="1"></td>
               <td><input type="text" class="form-control input-sm" value="designation"></td>
-              <td><input type="text" class="form-control input-sm not-editable" value="1"></td>
-              <td><input type="text" class="form-control input-sm" value="1"></td>
+              <td><input type="text" class="form-control input-sm not-editable" value="0"></td>
+              <td><input type="text" class="form-control input-sm" value="0"></td>
               <td class="d-inline-flex">
                 <a class="btn btn-primary btn-sm btn-edit-unite"><i class="uil-pen"></i></a>&nbsp;
                 <a class="btn btn-success btn-sm btn-add-unite"><i class="uil-check-square"></i></a>

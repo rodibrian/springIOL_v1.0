@@ -1,5 +1,5 @@
 <%@ include file='template/header.jsp' %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Start Content-->
 <div class="container-fluid" id="menu-prix">
 
@@ -30,6 +30,7 @@
 
   <!-- suite -->
 
+  <input type="hidden" id="user-id" value-id="${connectedUser.id}">
 
   <div class="container -fluid">
     <div class="row">
@@ -37,7 +38,6 @@
         <table id="scroll-vertical-datatable" class="table-article-prix table table-sm dt-responsive nowrap table-special-form">
           <thead>
           <tr>
-            <th>Code</th>
             <th>Designation</th>
             <th>Unite</th>
             <th>Prix</th>
@@ -46,11 +46,17 @@
           </tr>
           </thead>
           <tbody>
-
+          <c:forEach var="price" items="${prices}">
+            <tr id="${price.id}">
+              <td><c:out value="${price.article.designation}"/></td>
+              <td><c:out value="${price.unite.designation}"/></td>
+              <td><c:out value="${price.prixVente}"/></td>
+              <td><c:out value="${price.dateEnregistrement}"/></td>
+              <td class="d-flex justify-content-center"><a role="button" class="btn btn-sm btn-info info-prix"><i class="uil-pen"></i></a></td>
+            </tr>
+          </c:forEach>
           </tbody>
         </table>
-
-
       </div>
     </div>
 

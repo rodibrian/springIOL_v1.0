@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-public class PrixArticleFiliale {
+public class PrixArticleFiliale{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

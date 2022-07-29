@@ -1,6 +1,5 @@
 <%@ include file="../template/head.jsp" %>
 
-
 <div class="row d-flex justify-content-center align-items-center bg-secondary namespace" id="menu-sortie-article"
      data-plugin="dragula">
   <div class="col-md-11">
@@ -9,11 +8,11 @@
         <blockquote class="card-bodyquote mb-0">
 
           <!-- vente content -->
-
+          <input type="hidden" id="user-id" value-id="${connectedUser.id}">
+          <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
           <div class="row">
             <h4>Sortie article</h4>
             <hr>
-
             <div class="col-lg-5">
               <div class="mt-3 d-flex justify-content-start">
                 <div class="form-check">
@@ -64,13 +63,10 @@
                   </select>
                 </div>
               </div>
-
               <div class="mb-1">
                 <label class="form-label" for="input-motif">Motif de sortie</label>
                 <textarea name="motif" class="form-control" id="input-motif" cols="30" rows="3"></textarea>
               </div>
-
-
               <div class="d-grid">
                 <button type="button" id="btn-ajouter-article-sortie" class="btn btn-success mb-1 mt-3"><i
                         class="uil-plus"></i>&nbsp;Ajouter
@@ -94,17 +90,13 @@
                 </tr>
                 </thead>
                 <tbody>
-
                 </tbody>
               </table>
-
               <div class="foot-vente d-none">
                 <p>Nombre d'article : <span>00</span></p>
               </div>
-
             </div>
           </div>
-
           <!-- end vente content -->
         </blockquote>
       </div> <!-- end card-body-->

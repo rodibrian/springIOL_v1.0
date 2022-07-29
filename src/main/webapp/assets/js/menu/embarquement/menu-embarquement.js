@@ -9,7 +9,7 @@ $(function () {
 
      */
 
-    exportToExcel('embarquements', namespace + '#liste-embarquement')
+    exportToExcel(namespace + '.btn-export-to-excel','embarquements', namespace + '#liste-embarquement')
 
 
 })

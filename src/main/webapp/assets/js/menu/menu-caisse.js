@@ -3,7 +3,7 @@ $(function () {
     let namespace = "#menu-caisse ";
 
 
-    exportToExcel('caisse', namespace + '.table-liste-operation-caisse')
+    exportToExcel(namespace + '.btn-export-to-excel','caisse', namespace + '.table-liste-operation-caisse')
 
     // les données prédéfini à inserer
 

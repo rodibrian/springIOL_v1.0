@@ -11,7 +11,7 @@ $(function () {
     // export
 
 
-    exportToExcel('prix' , namespace + '.table-article-prix')
+    exportToExcel(namespace + '.btn-export-to-excel','prix' , namespace + '.table-article-prix')
 
     // Chargement des données de la table
 
@@ -82,6 +82,9 @@ $(function () {
     // enregistrement d'un prix courant
 
     $('#modal-info-prix .btn-enregistrer-prix-editer').on('click', function() {
+
+        let userId = $(namespace + '#user-id').attr("value-id");
+
         $nouveauPrix = $('.input-prix-edit').val();
         console.log($('.table-article-prix tbody').children('#' + $('#modal-info-prix').attr('id')).children('.prix'));
         $('.table-article-prix tbody').children('#' + $('#modal-info-prix').attr('data-id')).children('.prix').text($nouveauPrix)

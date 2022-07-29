@@ -122,6 +122,8 @@
     <%@ include file="modal/vente/list-article.jsp" %>
     <%@ include file="modal/vente/list-client.jsp" %>
     <%@ include file="modal/vente/prix-special.jsp" %>
+    <%@ include file="modal/impression/ticket-caisse.jsp" %>
+    <%@ include file="modal/impression/facture-vente.jsp" %>
   </div>
   <!-- end modal list -->
 </div>

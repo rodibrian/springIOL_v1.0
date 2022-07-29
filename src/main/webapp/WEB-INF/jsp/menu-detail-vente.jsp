@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file='template/header.jsp' %>
 
 <!-- Start Content-->
@@ -53,13 +54,24 @@
             <th>Article</th>
             <th>Unite</th>
             <th>Quantite</th>
-            <th>Prix Unitaire</th>
-            <th>Montant</th>
+            <th>Prix Unitaire (Ar) </th>
+            <th>Montant (Ar) </th>
             <th>Date</th>
           </tr>
           </thead>
           <tbody>
-
+              <c:forEach var="sale" items="${sales}">
+                    <tr id ="${sale.id}">
+                          <td><c:out value="${sale.reference}"/></td>
+                          <td><c:out value="${sale.client.nom}"/></td>
+                          <td><c:out value="${sale.article.designation}"/></td>
+                          <td><c:out value="${sale.unite.designation}"/></td>
+                          <td ><c:out value="${sale.quantite}"/></td>
+                          <td ><c:out value="${sale.montantVente/sale.quantite}"/></td>
+                          <td ><c:out value="${sale.montantVente}"/></td>
+                          <td><c:out value="${sale.date}"/>  </td>
+                    </tr>
+              </c:forEach>
           </tbody>
       </div>
     </div>

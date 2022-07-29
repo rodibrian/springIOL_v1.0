@@ -14,7 +14,7 @@ import java.util.Set;
 @NamedQueries(value = {
         @NamedQuery(name = "article.all",query = "from article")
 })
-public class Article implements Serializable {
+public class Article implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "article_id")
@@ -27,7 +27,7 @@ public class Article implements Serializable {
     @JoinColumn(name = "categorieId",foreignKey = @ForeignKey(name = "article_categorie_key_constraint"))
     private Categorie categorie;
 
-    @ManyToMany(mappedBy = "articles",cascade = CascadeType.MERGE)
+    @ManyToMany(mappedBy = "articles",cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     private Set<Magasin> magasins;
 
     @Lob

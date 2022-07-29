@@ -8,7 +8,7 @@ $(function() {
     let namespace="#menu-paiement ";
 
 
-    exportToExcel('paiements', namespace + '#table-paiement')
+    exportToExcel(namespace + '.btn-export-to-excel','paiements', namespace + '#table-paiement')
 
     let IN = "ENTREE", OUT = "SORTIE";
 

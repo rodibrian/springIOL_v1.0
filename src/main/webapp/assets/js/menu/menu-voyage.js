@@ -9,7 +9,7 @@ $(function () {
      */
 
 
-    exportToExcel('voyages', namespace + '#table-liste-voyage')
+    exportToExcel(namespace + '.btn-export-to-excel','voyages', namespace + '#table-liste-voyage')
 
 
     const NOUVEAU = 'nouveau', EDITION = 'edition';

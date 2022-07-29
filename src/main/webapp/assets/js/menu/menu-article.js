@@ -1,7 +1,7 @@
 $(function() {
     let namespace = "#menu-article ";
 
-    exportToExcel('articles-' , namespace + '#articleTable')
+    exportToExcel(namespace + '.btn-export-to-excel','articles-' , namespace + '#articleTable')
 
     // suppression article
     // $(document).on('click',namespace + '#articleTable .deleteArticleBtn', function() {

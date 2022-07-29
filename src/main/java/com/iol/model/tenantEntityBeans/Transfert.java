@@ -6,7 +6,9 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity(name = "transfert")
@@ -16,32 +18,22 @@ import java.util.Date;
         @NamedQuery(name = "transfert.all",query = "from transfert")
 })
 public class Transfert implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "magasin_origine",foreignKey = @ForeignKey(name = "transfert_magasin_origine_key_constraint"))
-    private Magasin magasinOrigine;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "magasin_source_id",foreignKey = @ForeignKey(name = "transfert_magasin_origine_key_constraint"))
+    private Magasin magasinSource;
 
-    @ManyToOne
-    @JoinColumn(name = "magasin_receveur",foreignKey = @ForeignKey(name = "transfert_magasin_receveur_key_constraint"))
-    private Magasin magasinReceveur;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id",foreignKey = @ForeignKey(name = "transfert_utilisateur_key_constraint"))
-    private User user;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "magasin_dest_id",foreignKey = @ForeignKey(name = "transfert_magasin_receveur_key_constraint"))
+    private Magasin magasinDest;
 
     @Column(columnDefinition = "TEXT")
-    private String codeTransfert;
+    private String chauffeur;
 
-    @Temporal(TemporalType.DATE)
-    private Date dateTransfert;
-
-    @Column(columnDefinition = "TEXT")
-    private String designation;
-
-    @Column(columnDefinition = "TEXT")
-    private String numBonTransfert;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "Transfert_info")
+    private List<InfoArticleMagasin> infoArticleMagasinList;
 }

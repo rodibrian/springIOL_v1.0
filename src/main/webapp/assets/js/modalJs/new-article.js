@@ -9,24 +9,23 @@ $(function () {
 
     function initTableUnite() {
         $('#table-unite input').attr('disabled', '')
-
         // ajout du nouveau unite
         $("#btn-new-unite").click(
             function () {
                 let table = $("#table-unite tbody");
                 let length = $("#table-unite tbody tr").length;
                 // cacher le enregistrement
-                $("#table-unite tbody tr td a.btn-success").hide();
+                $("#table-unite tbody tr th a.btn-success").hide();
                 $('#table-unite input').attr('disabled', '');
                 // cacher edition et suppression du dernier
                 $("#table-unite tbody tr th #edit_" + length).hide();
                 $("#table-unite tbody tr th #del_" + length).hide();
                 let tr = `<tr>
                             <td class="d-none"><input type="text"  class="form-control input-sm" value="000"></td>
-                            <td></td>
+                            <td><input type="text"  class="form-control input-sm not-editable" value="0"></td>
                             <td><input type="text"  class="form-control input-sm" value="designation"></td>
-                            <td><input type="text"  class="form-control input-sm" value="1"></td>
-                            <td><input type="text"  class="form-control input-sm" value="1"></td>
+                            <td><input type="text"  class="form-control input-sm" value="0"></td>
+                            <td><input type="text"  class="form-control input-sm" value="0Kg"></td>
                             <td class="d-inline-flex">
                                 <a class="btn btn-primary btn-sm btn-edit-unite"><i class="uil-pen"></i></a>&nbsp;
                                 <a class="btn btn-danger btn-sm btn-del-unite"><i class="uil-trash-alt"></i></a>&nbsp;
@@ -34,43 +33,27 @@ $(function () {
                             </td>
                         </tr>`;
                 table.append(tr);
-
-                updateNiveauUnite()
+                updateNiveauUnite();
             }
         )
-
-        // niveau article dynamique
-
-        function updateNiveauUnite() {
-            $('#table-unite tbody tr').each(function(key, value) {
-                $(value).children().eq(1).text(++key);
-            })
-        }
-
         // edition ou enregistrement enregistrement
         $('#table-unite').on('click', '.btn-add-unite', (function () {
             $(this).closest('tr').find('input').attr('disabled', '');
             $(this).hide();
         }))
-
         //suppression unite
-
         $('#table-unite').on('click', '.btn-del-unite', (function () {
             $(this).closest('tr').remove();
             updateNiveauUnite()
         }))
-
         // edition d'une unite
-
         $('#table-unite').on('click', '.btn-edit-unite', (function () {
             $(this).closest('tr').find('input').removeAttr('disabled')
             $(this).closest('tr').find('.btn-add-unite').show()
-
-            // disabled quantite
-            $('.not-editable').attr('disabled','')
-
+            $('.not-editable').attr('disabled','');
         }));
     }
+
     function initAddAndSaveArticleBtn() {
         // chargement des categories lors de l'affichage du formulaire de categorie
         $("#newArticleBtn").click(() => {
@@ -78,7 +61,7 @@ $(function () {
             let select = $(".form-select");
             select.empty();
             if (tdElement.length !== 0) {
-                for (let i = 0; i < tdElement.length; i++){
+                for (let i = 0; i < tdElement.length; i++) {
                     let text = tdElement[i].innerText;
                     let id = $(tdElement[i]).parent().attr("id");
                     if (text !== "Toutes") {
@@ -86,7 +69,7 @@ $(function () {
                         select.append(option);
                     }
                 }
-            } else{
+            } else {
                 $.ajax({
                     type: 'GET',
                     url: categorieUrl,
@@ -99,6 +82,7 @@ $(function () {
                 });
             }
         });
+
         function getAllUniteOnTable(data) {
             let tr = $('#table-unite tbody tr');
             let articleId = data.id;
@@ -125,10 +109,12 @@ $(function () {
                 articleUnite.quantiteNiveau = uniteRow[3];
                 articleUnite.poids = uniteRow[4];
                 articleUniteTab.push(articleUnite);
-            };
+            }
+            ;
             return articleUniteTab;
         }
-        function createArticleAndUnite(){
+
+        function createArticleAndUnite() {
             let designation = $("#designation").val();
             let categorieId = $("#categorie option:selected").val();
             let categorieLibelle = $("#categorie option:selected").text();
@@ -138,6 +124,7 @@ $(function () {
             article.categorie = {id: categorieId, libelle: categorieLibelle};
             article.status = articleStatus;
             if (!isCreateArticle) article.id = editedArticleId;
+
             function saveAllUnite(data) {
                 let articleUniteTab = getAllUniteOnTable(data);
                 $.ajax({
@@ -145,22 +132,22 @@ $(function () {
                     url: "http://localhost:8080/api/v1/unites",
                     contentType: 'application/json',
                     data: JSON.stringify(articleUniteTab),
-                    success: function (data){
+                    success: function (data) {
                         let table = $("#articleTable tbody");
                         articleUniteTab.forEach(function (au) {
                             let tableRow = `
-                             <tr id=` + au.article.id +`>
-                                <td>` + article.designation+ `</td>
-                                <td>` + article.categorie.libelle  +`</td>
-                                <td>` + au.unite.code  +`</td>
-                                <td>` + au.poids+ `</td>
+                             <tr id=` + au.article.id + `>
+                                <td>` + article.designation + `</td>
+                                <td>` + article.categorie.libelle + `</td>
+                                <td>` + au.unite.code + `</td>
+                                <td>` + au.poids + `</td>
                                 <td>` + au.unite.designation + `</td>
-                                <td>` + au.quantiteNiveau+ `</td>
+                                <td>` + au.quantiteNiveau + `</td>
                                 <td>
                                             <div>
                                                 <a id="` + au.article.id + `" class="btn-sm btn-info editArticleBtn"><i class="uil-pen"></i></a>
                                                 <a id="` + au.article.id + `"  class="btn-sm btn-danger deleteArticleBtn "><i class="uil-trash-alt"></i></a>
-                                                <a id="` + au.article.id+ `"  class="btn-sm btn-warning hideArticleBtn"><i class="uil-eye-slash"></i></a>
+                                                <a id="` + au.article.id + `"  class="btn-sm btn-warning hideArticleBtn"><i class="uil-eye-slash"></i></a>
                                             </div>
                                 </td>
                             </tr>`;
@@ -169,6 +156,7 @@ $(function () {
                     }
                 })
             }
+
             $.ajax({
                 type: 'POST',
                 url: $articleUrl,
@@ -197,10 +185,12 @@ $(function () {
             }
         });
     }
+
     function initAddArticleModal() {
         initTableUnite();
         initAddAndSaveArticleBtn();
     }
+
     function initTableRowEvent() {
         // Initialisation de l'evenement des tr
         let div = $("#articleTable tbody tr td div");
@@ -213,6 +203,17 @@ $(function () {
             $(this).children().last().children().first().hide();
         });
     }
+
+    // niveau article dynamique
+
+    function updateNiveauUnite() {
+        $('#table-unite tbody tr').each(function (key, value) {
+            $(value).children().eq(1).children().val(++key);
+            $('.not-editable').attr('disabled','');
+        })
+    }
+
+
     function initTableAction() {
         function initCategorieSelect() {
             let tdElement = $("#categorieTabList tbody tr td:first-child");
@@ -234,6 +235,7 @@ $(function () {
         $(".editArticleBtn").click(function () {
             isCreateArticle = false;
             editedArticleId = $(this).attr("id");
+            console.log(" Edited article = " + editedArticleId);
             initCategorieSelect();
             $tr = $(this).closest('tr');
             designation = $tr.children()[1].innerText;
@@ -250,20 +252,12 @@ $(function () {
                     // SUPRIMER TOUTES LES DONNE
                     table.empty();
                     for (let i = 0; i < data.length; i++) {
-                        arrayOfUnite = data[i].split(',')
-                        let unite = {
-                            code: arrayOfUnite[0],
-                            niveau: arrayOfUnite[1],
-                            designation: arrayOfUnite[2],
-                            quantite: arrayOfUnite[3],
-                            poids: arrayOfUnite[4]}
-
-                        let tr = `<tr id="` + unite.niveau + `">
-                                    <td class="d-none"><input type="text"  class="form-control input-sm" value="` + unite.code + `"></td>
-                                    <td><input type="text"  class="form-control input-sm not-editable" value="` + unite.niveau + `"></td>
-                                    <td><input type="text"  class="form-control input-sm" value="` + unite.designation + `"></td>
-                                    <td><input type="text"  class="form-control input-sm" value="` + unite.quantite + `"></td>
-                                    <td><input type="text"  class="form-control input-sm" value="` + unite.poids + `"></td>
+                        let tr = `<tr id="` + data[i].id + `">
+                                    <td class="d-none"><input type="text"  class="form-control input-sm" value="` + data[i].code + `"></td>
+                                    <td><input type="text"  class="form-control input-sm not-editable" value="` + data[i].niveau + `"></td>
+                                    <td><input type="text"  class="form-control input-sm" value="` + data[i].designation + `"></td>
+                                    <td><input type="text"  class="form-control input-sm" value="` + data[i].quantite + `"></td>
+                                    <td><input type="text"  class="form-control input-sm" value="` + data[i].poids + `"></td>
                                     <td class="d-inline-flex">
                                         <a class="btn btn-primary btn-sm btn-edit-unite"><i class="uil-pen"></i></a>&nbsp;
                                         <a class="btn btn-danger btn-sm btn-del-unite"><i class="uil-trash-alt"></i></a>&nbsp;
@@ -276,7 +270,7 @@ $(function () {
             });
         });
 
-        function updateArticle($trCurrent,$deleted,$codeArticle) {
+        function updateArticle($trCurrent, $deleted, $codeArticle) {
             $id = $($trCurrent).attr("id");
             $modalId = $deleted ? "suppression-article" : "masquer-article";
             $modalText = $deleted ? 'Suppression Article' : 'Masquer Article';
@@ -284,14 +278,14 @@ $(function () {
                 : 'Voulez vraiment masquer cet article (id:' + $codeArticle + ') ?';
             $labelButton = $deleted ? "supprimer" : "masquer";
             $classButton = $deleted ? "btn-danger" : "bg-warning";
-            create_confirm_dialog($modalText,$modalTitle,$modalId, "Oui ,"+$labelButton,$classButton)
-                .on('click', function(){
+            create_confirm_dialog($modalText, $modalTitle, $modalId, "Oui ," + $labelButton, $classButton)
+                .on('click', function () {
                     $status = $deleted ? "DELETED" : "HIDEN";
-                    $url = $articleUrl+"/"+ $id +"/"+$status;
+                    $url = $articleUrl + "/" + $id + "/" + $status;
                     $.ajax({
                         type: 'PUT',
                         url: $url,
-                        success: function (data){
+                        success: function (data) {
                             $trCurrent.remove();
                             hideAndRemove('#' + $modalId + '');
                             createToast('bg-danger', 'uil-trash-alt', 'Suppression Fait', 'Suppression de l\' article effectu&eacute; avec succ&egrave;s!')
@@ -300,22 +294,24 @@ $(function () {
                 })
         }
 
-        $(document).on('click','#articleTable .deleteArticleBtn', function(){
+        $(document).on('click', '#articleTable .deleteArticleBtn', function () {
             $codeArticle = $(this).closest('tr').children().eq(0).text();
             $trCurrent = $(this).closest('tr');
-            updateArticle($trCurrent,$deleted,$codeArticle);
+            updateArticle($trCurrent, $deleted, $codeArticle);
         })
 
         $(".hideArticleBtn").click(function () {
             $codeArticle = $(this).closest('tr').children().eq(0).text();
             $trCurrent = $(this).closest('tr');
-            updateArticle($trCurrent,!$deleted,$codeArticle);
+            updateArticle($trCurrent, !$deleted, $codeArticle);
         });
     }
+
     function initArticleTable() {
         initTableAction();
         initTableRowEvent();
     }
+
     initArticleTable();
     initAddArticleModal();
 });

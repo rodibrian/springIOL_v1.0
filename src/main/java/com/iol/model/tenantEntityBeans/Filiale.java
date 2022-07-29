@@ -23,7 +23,7 @@ import java.util.Set;
 })
 public class Filiale extends Personne{
 
-    @OneToMany(mappedBy = "filiale",cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "filiale",cascade = CascadeType.MERGE)
     private List<User> users;
 
     @OneToMany(mappedBy = "filiale",cascade = CascadeType.MERGE)

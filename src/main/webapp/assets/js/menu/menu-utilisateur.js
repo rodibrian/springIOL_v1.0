@@ -10,7 +10,7 @@ $(function () {
                         NOUVELLE FONCTION
     ------------------------------------------------------------------------ */
 
-    exportToExcel('utilisateurs', namespace + '#table-liste-utilisateur')
+    exportToExcel(namespace + '.btn-export-to-excel','utilisateurs', namespace + '#table-liste-utilisateur')
 
     let NEW = 'nouveau', EDIT = 'editer';
     $(namespace + '.btn-nouvelle-fonction').on('click', function () {
@@ -87,18 +87,6 @@ $(function () {
             push_select_option_value([$(tr).attr('id'), $(tr).children().eq(0).text()], namespace + '#nouveau-utilisateur #select-fonction')
         })
     }
-    // nouveau utilisateur
-    $(namespace + "#btn-nouveau-utilisateur").on('click', function () {
-        // $url = "http://localhost:8080/api/v1/magasins";
-        // $.ajax({
-        //     type: "GET",
-        //     url: $url,
-        //     contentType: 'application/json',
-        //     success : function (data) {
-        //         set_select_option_value_ajax(data, namespace + "#nouveau-utilisateur #select-magasin")
-        //     }
-        // });
-    })
     load_select_fonction();
     // enregistrement d'un nouveau utilisateur
     let magasinIdTab = [];
@@ -111,7 +99,6 @@ $(function () {
         $(namespace + "#nouveau-utilisateur #select-magasin option:selected").each(function (key,value){
             magasinIdTab.push({ id : $(value).val()});
         });
-        console.log(magasinIdTab);
         $fonctionId = $(namespace + "#nouveau-utilisateur #select-fonction option:selected").val();
         $fonctionNom = $(namespace + "#nouveau-utilisateur #select-fonction option:selected").text();
         $statut = $(namespace + "#nouveau-utilisateur #check-statut").is(':checked')
@@ -127,24 +114,27 @@ $(function () {
             },
             magasin : magasinIdTab
         }
+        let methodType = $NEW_USER ? "POST" : "PUT";
+        let userRessourceUrl = $NEW_USER ? $userUrl : $userUrl+'/'+$userId;
         $.ajax({
-            type: "POST",
-            url: $userUrl,
+            type: methodType,
+            url: userRessourceUrl,
             contentType: 'application/json',
             data: JSON.stringify($newUser),
-            success: function (data){
+            success:function (data){
                 if ($NEW_USER){
                     $trUser = [$nom,$username,$contact,$fonctionNom,$statut === true ? insert_badge('success', 'active') : insert_badge('danger', 'desactive'), $actionListeUtilisateurMenuUtilisatuer];
                     push_to_table_list(namespace + "#table-liste-utilisateur",data.id, $trUser)
-                    createToast('bg-success', 'uil-check-sign', 'Utilisateur enregistre', 'Nouveau utilisateur enregistre avec success!')
-                    // empty all
-                    $(namespace + "#nouveau-utilisateur input").val("");
-                    $('#nouveau-utilisateur select#select-fonction option:first').prop('selected', true);
-                    $('#nouveau-utilisateur select#select-magasin option:first').prop('selected', true);
-                    $('#nouveau-utilisateur #check-statut').prop('checked', true)
-                }else {
+                }else{
 
                 }
+                createToast('bg-success', 'uil-check-sign', 'Utilisateur enregistre', 'Nouveau utilisateur enregistre avec success!')
+                // empty all
+                $(namespace + "#nouveau-utilisateur input").val("");
+                $('#nouveau-utilisateur select#select-fonction option:first').prop('selected', true);
+                $('#nouveau-utilisateur select#select-magasin option:first').prop('selected', true);
+                $('#nouveau-utilisateur #check-statut').prop('checked', true)
+                $NEW_USER = true;
             }
         });
     })
@@ -174,13 +164,13 @@ $(function () {
     $(document).on('click', namespace + "#table-liste-utilisateur .edit-utilisateur",function(){
         $NEW_USER  = false;
         $trEdit = $(this).closest('tr');
+        $userId = $(this).closest('tr').attr("id");
         $(namespace + '#nouveau-utilisateur').modal('show');
     });
     // on click function for filter
     $(document).on('click', namespace + '#table-liste-fonction tbody tr' ,function() {
         filterFunctionEvent($(this).children().eq(0).text());
     })
-
     function filterFunctionEvent($dataFilter) {
         $(namespace + '#table-liste-utilisateur tbody tr').hide();
         if ($dataFilter === null) $(namespace + '#table-liste-utilisateur tbody tr').show();

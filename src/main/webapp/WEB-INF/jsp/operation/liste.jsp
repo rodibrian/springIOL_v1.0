@@ -1,5 +1,5 @@
 <%@ include file='../template/header.jsp' %>
-
+<%@ page contentType="text/html; charset=UTF-8" %>
 <i class="no-title" title="Liste"></i>
 
 <!-- Start Content-->
@@ -26,8 +26,9 @@
         <input type="date" class="form-control">&nbsp;
         <input type="date" class="form-control">&nbsp;
         <select name="magasin" id="magasin" class="form-select">
-          <option value="1">Magasin I</option>
-          <option value="2">Magasin II</option>
+          <c:forEach var="magasin" items="${magasins}">
+            <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
+          </c:forEach>
         </select>
         <a type="button" class="btn btn-success mr-1">
           <i class="uil-search-alt"></i>
@@ -52,18 +53,30 @@
           <thead>
           <tr>
             <th>Réference</th>
-            <th>Designaition</th>
+            <th>Designation</th>
+            <th>Unite</th>
             <th>Operation</th>
-            <th>Entree</th>
-            <th>Sortie</th>
-            <th>Stock</th>
+            <th>quantite</th>
+            <th>Stock aprés operation</th>
             <th>Date</th>
             <th>Description</th>
             <th>Operateur</th>
           </tr>
           </thead>
           <tbody>
-
+          <c:forEach var="operation" items="${operations}">
+            <tr id="${operation.id}">
+              <td>${operation.reference}</td>
+              <td>${operation.article.designation}</td>
+              <td>${operation.unite.designation}</td>
+              <td>${operation.typeOperation}</td>
+              <td>${operation.quantiteAjout} ${operation.unite.designation}</td>
+              <td>${operation.quantiteStockApresOperation} ${operation.unite.designation}</td>
+              <td>${operation.date}</td>
+              <td>${operation.description}</td>
+              <td>${operation.user.nom}</td>
+            </tr>
+          </c:forEach>
           </tbody>
         </table>
       </div>

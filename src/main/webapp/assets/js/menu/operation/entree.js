@@ -72,27 +72,26 @@ $(function () {
         fuap.dateEnregistrement= dateApprov;
         fuap.prixVente = prixVente;
         pvuafTab.push(fuap);
-        // APPROVISIONNEMENT
-        let supply = {};
-        supply.magasin = {
+
+        let infoArticleMagasin = {};
+        infoArticleMagasin.typeOperation = "ENTRE";
+        infoArticleMagasin.magasin = {
             id : magasinId
         }
+        infoArticleMagasin.user = fuap.user;
+        infoArticleMagasin.unite = fuap.unite;
+        infoArticleMagasin.article = fuap.article;
+        infoArticleMagasin.quantiteAjout = quantite;
+        infoArticleMagasin.date = dateApprov;
+        infoArticleMagasin.reference = refFact;
+        // APPROVISIONNEMENT
+        let supply = {};
+        supply.infoArticleMagasin = infoArticleMagasin;
         supply.fournisseur = {
             id : fId
         };
-        supply.user= {id:userId};
-        supply.unite ={
-            id : uniteId
-        }
-        supply.article = {
-            id : articleId
-        };
         supply.montantApprov = prixAchat;
-        supply.quantiteApprov = quantite;
-        supply.refFacture = refFact;
         supply.datePeremption =datePeremption;
-        supply.quantite = quantite;
-        supply.dateApprov = dateApprov;
         supplyTab.push(supply);
         $articleAjout = [
             $(namespace + '#input-reference-facture').val(),
@@ -110,19 +109,20 @@ $(function () {
         $(namespace + '#input-prix-vente-article').val(0);
         $(namespace + '#select-unite-article option').remove();
     })
+
     // suppression articles à la table
     $(document).on('dblclick',"#table-liste-article-entree tbody tr", function(){
         $(this).remove();
         let id = $(this).attr("id");
         delete(pvuafTab[id]);
         delete(supplyTab[id]);
-        console.log(supplyTab);
         $designation = $(this).children().eq(1).text();
         createToast('bg-danger','uil-trash-alt','Enlevement Article',$designation + ' supprim&eacute;')
     });
     function onSuppliesCreated() {
         supplyTab = [];
         pvuafTab = [];
+        trIndex = 0;
         $('#' + $modalId).modal('hide');
         $('#' + $modalId).remove();
         $(namespace + '#table-liste-article-entree tbody tr').remove();
