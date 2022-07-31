@@ -118,7 +118,7 @@ $(function () {
             // button de validation
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/api/v1/ventes",
+                url: "http://localhost:8080/api/v1/sales",
                 contentType: "application/json",
                 data: JSON.stringify(venteTab),
                 success: function (data) {

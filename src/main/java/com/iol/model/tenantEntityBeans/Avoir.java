@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -27,5 +28,6 @@ public class Avoir{
 
     private int nombreArticle;
 
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 }

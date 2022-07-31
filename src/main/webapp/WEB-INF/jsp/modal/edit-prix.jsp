@@ -7,6 +7,7 @@
         <h4 class="modal-title" id="standard-modalLabel">Mis &agrave; jour Prix</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
       </div>
+
       <div class="modal-body">
         <div class="row">
           <div class="col-md-4 aside">
@@ -20,6 +21,7 @@
               <p class="text-center label-date-prix">
               </p>
               <hr>
+              <input type="hidden" id="user-id" value-id="${connectedUser.id}" >
               <div class="d-inline-flex">
                 <input type="text" class="form-control text-right w-75 mr-1 input-prix-edit" placeholder="" value="0Ar">
                 <button class="btn btn-success w-25 btn-enregistrer-prix-editer"><i class="uil-money-insert"></i>

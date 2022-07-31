@@ -23,9 +23,11 @@ import java.util.Set;
 })
 public class Filiale extends Personne{
 
+    @JsonIgnore
     @OneToMany(mappedBy = "filiale",cascade = CascadeType.MERGE)
     private List<User> users;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "filiale",cascade = CascadeType.MERGE)
     private List<Magasin> magasins;
 

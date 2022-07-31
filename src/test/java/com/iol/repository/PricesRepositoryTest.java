@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -19,8 +20,20 @@ class PricesRepositoryTest {
     @Test
     void findAllByLastDate() {
         List<PrixArticleFiliale> allByLastDate = pricesRepository.findAllByLastDate();
-        Assertions.assertThat(allByLastDate).isNotNull();
-       allByLastDate.forEach(System.out::println);
+        assertThat(allByLastDate.size()).isEqualTo(2);
     }
 
+    @Test
+    void findAll() {
+        List<PrixArticleFiliale> all = pricesRepository.findAll(2L, 1L, 7L);
+        assertThat(all.size()).isEqualTo(10);
+    }
+
+    @Test
+    void testFindAllByLastDate() {
+    }
+
+    @Test
+    void testFindAll() {
+    }
 }

@@ -5,6 +5,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -40,5 +41,6 @@ public class EmbarquementArticle implements Serializable {
 
     private Double quantite;
 
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 }

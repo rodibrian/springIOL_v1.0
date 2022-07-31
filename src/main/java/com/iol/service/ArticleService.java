@@ -11,10 +11,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ArticleService {
+public class ArticleService{
 
     @Autowired private ArticleRepository articleRepository;
-
     public List<String[]> findAll(){
         List<String> allArticle = articleRepository.getAll();
         List<String[]> collect = allArticle.stream().map(s -> s.split(",")).collect(Collectors.toList());
@@ -39,7 +38,6 @@ public class ArticleService {
         });
         return list;
     }
-
     public List<InventoryViewWrapper> getStockByMagasin(Long magasinId){
         List<String> stockWithPriceAndExpirationDate = articleRepository.getStockWithPriceAndExpirationDate(magasinId);
         List<String[]> collect = stockWithPriceAndExpirationDate.stream().map(s -> s.split(",")).collect(Collectors.toList());
@@ -58,11 +56,9 @@ public class ArticleService {
         });
         return list;
     }
-
     public List<String[]> processUniteAndNiveau(Long articleId){
         return articleRepository.getAllUniteAndNiveau(articleId).stream().map(s -> s.split(",")).collect(Collectors.toList());
     }
-
     public void persistInventorieData(InventoryWrapper wrapper){
         Long uniteId = wrapper.getUniteId();
         Long articleId = wrapper.getArticleId();
@@ -85,5 +81,4 @@ public class ArticleService {
             }
         }
     }
-
 }

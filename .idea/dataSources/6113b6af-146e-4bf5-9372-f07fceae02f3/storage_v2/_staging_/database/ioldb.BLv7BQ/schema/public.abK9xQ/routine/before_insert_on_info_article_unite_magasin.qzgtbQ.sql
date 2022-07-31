@@ -40,7 +40,7 @@ BEGIN
 
             nouveau_quantite_en_stock := quantite_en_stock_actuelement + (new.quantite_ajout*quantite_niveau_unite) ;
 
-            new.quantite_stock_apres_operation := (quantite_en_stock_actuelement + new.quantite_ajout)/quantite_niveau_unite;
+            new.quantite_stock_apres_operation := (quantite_en_stock_actuelement/quantite_niveau_unite) + new.quantite_ajout;
             
             if new.type_operation like '%TRANSFERT%' AND  new.type_operation like '%VERS%' then
                    

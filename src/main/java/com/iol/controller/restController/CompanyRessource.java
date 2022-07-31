@@ -27,8 +27,8 @@ public class CompanyRessource {
 
     private CompanyRepository companyRepository;
 
-    @Autowired
-    private Connection connection;
+//    @Autowired
+//    private Connection connection;
 
     @PostMapping("/companies")
     public ResponseEntity<Object> create(@RequestBody final Societe societe ){
@@ -70,12 +70,12 @@ public class CompanyRessource {
             if (!optionalSociete.isPresent()) return ResponseEntity.notFound().build();
             Societe societe = optionalSociete.get();
             companyRepository.delete(societe);
-            try {
-                String query = " DROP DATABASE "+societe.getSchemaName()+";";
-                this.connection.createStatement().execute(query);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+//            try {
+//                String query = " DROP DATABASE "+societe.getSchemaName()+";";
+////                this.connection.createStatement().execute(query);
+//            } catch (SQLException throwables) {
+//                throwables.printStackTrace();
+//            }
         return new ResponseEntity<>(" The item with the id ="+id+" is deleted",HttpStatus.OK);
     }
 

@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
@@ -37,5 +38,7 @@ public class PrixArticleFiliale{
     private User user;
 
     private Double prixVente;
-    private LocalDate dateEnregistrement;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateEnregistrement;
 }

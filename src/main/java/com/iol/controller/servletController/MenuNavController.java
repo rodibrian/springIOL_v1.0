@@ -4,7 +4,6 @@ import com.iol.service.ArticleService;
 import com.iol.model.tenantEntityBeans.Magasin;
 import com.iol.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,7 +43,6 @@ public class MenuNavController{
     public String getMenuEmbarquement() {
         return "embarquement/menu-embarquement";
     }
-
 
     @RequestMapping(value = "/archivage", method = RequestMethod.GET)
     public String getMenuArchivage() {
@@ -86,13 +84,11 @@ public class MenuNavController{
         return "menu-facture";
     }
 
-    @Autowired
-    private PricesRepository pricesRepository;
 
     @RequestMapping(value = "/prix", method = RequestMethod.GET)
     public ModelAndView getMenuPrix() {
         ModelAndView modelAndView = new ModelAndView("menu-prix");
-        modelAndView.addObject(PRICES_LIST,pricesRepository.findAll());
+        modelAndView.addObject(PRICES_LIST,pricesRepository.findAllByLastDate());
         return modelAndView;
     }
 
@@ -185,14 +181,12 @@ public class MenuNavController{
     @RequestMapping(value = "/operation/liste",method = RequestMethod.GET)
     public ModelAndView getOperationListe(){
         ModelAndView modelAndView = new ModelAndView("operation/liste");
-        modelAndView.addObject(OPERATION_LIST,infoArticleMagasinRepository.findAll());
+        modelAndView.addObject(OPERATION_LIST, activityRepository.findAll());
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
         return modelAndView;
     }
 
-    @RequestMapping(
-            value = {"/articles"},
-            method = {RequestMethod.GET}
+    @RequestMapping(value = {"/articles"},method = {RequestMethod.GET}
     )
     public ModelAndView getArticles() {
         ModelAndView modelAndView = new ModelAndView("menu-article");
@@ -210,12 +204,11 @@ public class MenuNavController{
         return modelAndView;
     }
 
-
-
     @RequestMapping(value = "/detail-ventes", method = RequestMethod.GET)
     public ModelAndView getDetailVentes() {
         ModelAndView modelAndView = new ModelAndView("menu-detail-vente");
-        modelAndView.addObject(SALES_LIST, venteRepository.findAll());
+        modelAndView.addObject(SALES_LIST, salesRepository.findAll());
+        modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
         return modelAndView;
     }
 
@@ -235,7 +228,7 @@ public class MenuNavController{
         return modelAndView;
     }
 
-    @Autowired private InfoArticleMagasinRepository infoArticleMagasinRepository;
+    @Autowired private ActivityRepository activityRepository;
     @Autowired private CategorieRepository categorieRepository;
     @Autowired private MagasinRepository magasinRepository;
     @Autowired private FonctionRepository fonctionRepository;
@@ -244,7 +237,9 @@ public class MenuNavController{
     @Autowired private ArticleService articleService;
     @Autowired private MaterielTransportRepository materielTransportRepository;
     @Autowired private SubsidiaryRepository subsidiaryRepository;
-    @Autowired private VenteRepository venteRepository;
+    @Autowired private SalesRepository salesRepository;
     @Autowired private TransfertRepository transfertRepository;
+    @Autowired private PricesRepository pricesRepository;
+
 }
 

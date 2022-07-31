@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.util.Date;
 
 @SpringBootTest
 class PuafRepositoryTest {
@@ -49,7 +51,7 @@ class PuafRepositoryTest {
         user.setPassword("kael");
 
 //        puaf.setPrixVenteUniteArticleFilialeId(puafid);
-        puaf.setDateEnregistrement(LocalDate.now());
+        puaf.setDateEnregistrement(Date.from(Instant.now()));
         puaf.setPrixVente(1000D);
         puaf.setUser(user);
         puaf.setFiliale(filiale);

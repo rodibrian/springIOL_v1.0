@@ -3,8 +3,6 @@ package com.iol.model.tenantEntityBeans;
 import com.iol.model.entityEmbededId.InfoVenteId;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Date;
