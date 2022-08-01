@@ -40,11 +40,11 @@ $(function () {
                 $("#table-unite tbody tr th #edit_" + length).hide();
                 $("#table-unite tbody tr th #del_" + length).hide();
                 let tr = `<tr>
-                            <td class="d-none"><input type="text"  class="form-control input-sm" value="000"></td>
-                            <td><input type="text"  class="form-control input-sm not-editable" value="0"></td>
-                            <td><input type="text"  class="form-control input-sm" value="designation"></td>
-                            <td><input type="text"  class="form-control input-sm" value="0"></td>
-                            <td><input type="text"  class="form-control input-sm" value="0Kg"></td>
+                            <td class="d-none"><input type="text" required  class="form-control input-sm" value="000"></td>
+                            <td><input type="text" required  class="form-control input-sm not-editable" value="0"></td>
+                            <td><input type="text" required  class="form-control input-sm" value="designation"></td>
+                            <td><input type="text" required  class="form-control input-sm" value="0"></td>
+                            <td><input type="text" required  class="form-control input-sm" value="0Kg"></td>
                             <td class="d-inline-flex">
                                 <a class="btn btn-primary btn-sm btn-edit-unite"><i class="uil-pen"></i></a>&nbsp;
                                 <a class="btn btn-danger btn-sm btn-del-unite"><i class="uil-trash-alt"></i></a>&nbsp;
@@ -312,11 +312,11 @@ $(function () {
                     table.empty();
                     for (let i = 0; i < data.length; i++) {
                         let tr = `<tr id="` + data[i].id + `">
-                                    <td class="d-none"><input type="text"  class="form-control input-sm" value="` + data[i].code + `"></td>
-                                    <td><input type="text"  class="form-control input-sm not-editable" value="` + data[i].niveau + `"></td>
-                                    <td><input type="text"  class="form-control input-sm" value="` + data[i].designation + `"></td>
-                                    <td><input type="text"  class="form-control input-sm" value="` + data[i].quantite + `"></td>
-                                    <td><input type="text"  class="form-control input-sm" value="` + data[i].poids + `"></td>
+                                    <td class="d-none"><input type="text" required  class="form-control input-sm" value="` + data[i].code + `"></td>
+                                    <td><input type="text" required  class="form-control input-sm not-editable" value="` + data[i].niveau + `"></td>
+                                    <td><input type="text" required  class="form-control input-sm" value="` + data[i].designation + `"></td>
+                                    <td><input type="text" required  class="form-control input-sm" value="` + data[i].quantite + `"></td>
+                                    <td><input type="text" required  class="form-control input-sm" value="` + data[i].poids + `"></td>
                                     <td class="d-inline-flex">
                                         <a class="btn btn-primary btn-sm btn-edit-unite"><i class="uil-pen"></i></a>&nbsp;
                                         <a class="btn btn-danger btn-sm btn-del-unite"><i class="uil-trash-alt"></i></a>&nbsp;

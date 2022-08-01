@@ -5,7 +5,7 @@
 <div class="row d-flex justify-content-center align-items-center" id="nouveau-embarquement" data-plugin="dragula">
   <div class="col-md-11">
     <div class="card mb-0 mt-3">
-      <div class="card-body">
+      <div class="card-body was-validated">
         <blockquote class="card-bodyquote mb-0">
 
           <!-- vente content -->
@@ -16,12 +16,12 @@
             <div class="col-lg-5 form-embarquement">
               <div class="mb-1">
                 <label for="input-reference" class="form-label">Reference</label>
-                <input type="text" id="input-reference" class="form-control" placeholder="2022/001">
+                <input type="text" required id="input-reference" class="form-control" placeholder="2022/001">
               </div>
               <div class="mb-1">
                 <label for="input-moyen-de-transport" class="form-label">Moyen de transport</label>
                 <div class="input-group">
-                  <select class="form-select" id="input-moyen-de-transport">
+                  <select required class="form-select" id="input-moyen-de-transport">
                     <c:forEach var="mat_transport" items="${materiel_transportList}" >
                       <option value="${mat_transport.id}">${mat_transport.typeMateriel}</option>
                     </c:forEach>
@@ -33,7 +33,7 @@
               <div class="mb-1">
                 <label for="select-fournisseur" class="form-label">Nom du Fournisseur</label>
                 <div class="input-group">
-                  <select class="form-select" id="select-fournisseur">
+                  <select required class="form-select" id="select-fournisseur">
                     <c:forEach var="frs" items="${cfList_embarquement}" >
                       <option value="${frs.id}">${frs.nom}</option>
                     </c:forEach>
@@ -44,11 +44,11 @@
               </div>
               <div class="mb-1">
                 <label for="input-trajet" class="form-label">Trajet</label>
-                <input type="text" id="input-trajet" class="form-control" placeholder="depart - destination">
+                <input type="text" required id="input-trajet" class="form-control" placeholder="depart - destination">
               </div>
               <div class="mb-1">
                 <label for="input-facture" class="form-label">Facture</label>
-                <input type="text" id="input-facture" class="form-control" placeholder="reference facture">
+                <input type="text" required id="input-facture" class="form-control" placeholder="reference facture">
               </div>
 
               <hr>
@@ -56,7 +56,7 @@
               <div class="mb-1">
                 <label class="designation-article">Designation</label>
                 <div class="input-group">
-                  <input type="text" id="designation-article" class="form-control" placeholder="Nom de l'article"
+                  <input type="text" required id="designation-article" class="form-control" placeholder="Nom de l'article"
                          aria-label="Recipient's username">
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                           data-bs-target="#modal-liste-article"><i class="uil-search"></i></button>
@@ -66,18 +66,18 @@
               <div class="row g-2">
                 <div class="mb-1 col-md-6">
                   <label for="input-quantite-article" class="form-label">Quantite (Poids : <span class="label-poids-article">0</span>T)</label>
-                  <input type="number" class="form-control" id="input-quantite-article" placeholder="00">
+                  <input type="number" required class="form-control" id="input-quantite-article" placeholder="00">
                 </div>
                 <div class="mb-1 col-md-6">
                   <label for="select-unite-article" class="form-label">Unite</label>
-                  <select class="form-select" id="select-unite-article">
+                  <select required class="form-select" id="select-unite-article">
                   </select>
                 </div>
               </div>
               <div class="mb-1">
                 <label class="form-label">Prix d'achat</label>
                 <div class="input-group">
-                  <input type="text" class="form-control" id="input-prix-achat-article" placeholder="0 Ar" aria-label="Recipient's username">
+                  <input type="text" required class="form-control" id="input-prix-achat-article" placeholder="0 Ar" aria-label="Recipient's username">
                   <button type="button" class="btn btn-primary btn-prix-special-article" data-bs-toggle="modal"
                           data-bs-target="#bs-example-modal-sm"><i class="uil-dollar-alt"></i>&nbsp;Prix special
                   </button>
@@ -86,7 +86,7 @@
               <div class="mb-1">
                 <label class="form-label">Prix de vente</label>
                 <div class="input-group">
-                  <input type="text" id="input-prix-vente-article" class="form-control" placeholder="0 Ar" aria-label="Recipient's username">
+                  <input type="text" required id="input-prix-vente-article" class="form-control" placeholder="0 Ar" aria-label="Recipient's username">
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                           data-bs-target="#bs-example-modal-sm"><i class="uil-dollar-alt"></i>&nbsp;Prix special
                   </button>
@@ -98,7 +98,6 @@
                 <button type="button" class="btn btn-primary mb-1 btn-enregistrer-embarquement"><i class="uil-save"></i>Enregistrer</button>
               </div>
               <!-- end d-grid -->
-
             </div>
             <div class="col-lg-7">
 

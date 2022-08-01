@@ -47,7 +47,7 @@
 
               <div class="mb-3">
                 <label for="emailaddress" class="form-label">Nom d'utilisateur</label>
-                <input name="username" class="form-control" type="text" id="emailaddress" required=""
+                <input name="username" class="form-control" type="text" required id="emailaddress" required=""
                        placeholder="Entrer votre nom d'utilisateur">
               </div>
 

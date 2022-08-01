@@ -25,7 +25,7 @@
       <div class="d-inline-flex mt-1">
         <input type="date" class="form-control">&nbsp;
         <input type="date" class="form-control">&nbsp;
-        <select name="magasin" id="magasin" class="form-select">
+        <select required name="magasin" id="magasin" class="form-select">
           <c:forEach var="magasin" items="${magasins}">
             <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
           </c:forEach>

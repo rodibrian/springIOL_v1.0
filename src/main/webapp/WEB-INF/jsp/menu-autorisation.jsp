@@ -118,7 +118,7 @@
           <div class="tab-pane show active" id="auto-acceuil">
             <div class="content m-1 col-6">
               <label for="page">Definir votre page d'acceuil</label>
-              <select name="page" id="page" class="form-select">
+              <select required name="page" id="page" class="form-select">
                 <option value="">page I</option>
                 <option value="">page II</option>
                 <option value="">page III</option>

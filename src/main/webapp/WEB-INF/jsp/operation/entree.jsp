@@ -2,7 +2,7 @@
 <div class="row d-flex justify-content-center align-items-center bg-secondary namespace" id="menu-entree-article"
      data-plugin="dragula">
   <div class="col-md-11">
-    <div class="card mt-3 mb-3">
+    <div class="card mt-3 mb-3 was-validated">
       <div class="card-body bg-light text-dark">
         <blockquote class="card-bodyquote mb-0">
           <!-- vente content -->
@@ -12,11 +12,11 @@
             <div class="col-lg-5">
               <div class="mt-3 d-flex justify-content-start">
                 <div class="form-check">
-                  <input type="radio" id="check-magasin" name="myradio" class="form-check-input" checked="true">
+                  <input type="radio" required id="check-magasin" name="myradio" class="form-check-input" checked="true">
                   <label class="form-check-label" for="check-magasin">Magasin</label>
                 </div>&nbsp;&nbsp;&nbsp;
                 <div class="form-check ml-3">
-                  <input type="radio" id="check-voyage" name="myradio" class="form-check-input">
+                  <input type="radio" required id="check-voyage" name="myradio" class="form-check-input">
                   <label class="form-check-label" for="check-voyage">Voyage</label>
                 </div>
               </div>
@@ -24,7 +24,7 @@
               <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
               <div class="mt-1 mb-1 div-select-magasin">
                 <label for="select-magasin" class="form-label">Magasin</label>
-                <select class="form-select" id="select-magasin">
+                <select required class="form-select" id="select-magasin">
                   <c:forEach var="magasin" items="${magasins}">
                     <option value="${magasin.id}"><c:out value="${magasin.nomMagasin}"/></option>
                   </c:forEach>
@@ -33,13 +33,13 @@
               <br>
               <div class="mt-1 mb-1 div-select-voyage">
                 <label for="select-voyage" class="form-label">Voyage</label>
-                <select class="form-select" id="select-voyage">
+                <select required class="form-select" id="select-voyage">
                 </select>
               </div>
               <div class="mb-1 div-select-magasin">
                 <label class="form-label">Fournisseur</label>
                 <div class="input-group">
-                  <input id="input-nom-fournisseur" type="text" class="form-control" placeholder="Nom du fournisseur"
+                  <input id="input-nom-fournisseur" type="text" required class="form-control" placeholder="Nom du fournisseur"
                          aria-label="Recipient's username">
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                           data-bs-target="#modal-liste-fournisseur" id="btn-search-fournisseur"><i
@@ -52,7 +52,7 @@
               </div>
               <div class="mb-1">
                 <label for="input-reference-facture" class="form-label">Facture</label>
-                <input type="text" class="form-control" id="input-reference-facture">
+                <input type="text" required class="form-control" id="input-reference-facture">
               </div>
 
               <br>
@@ -61,7 +61,7 @@
               <div class="mb-1">
                 <label class="form-label">Designation</label>
                 <div class="input-group">
-                  <input id="input-designation-article" type="text" class="form-control" placeholder="Nom de l'article"
+                  <input id="input-designation-article" type="text" required class="form-control" placeholder="Nom de l'article"
                          aria-label="Recipient's username">
                   <button type="button" id="btn-search-article" class="btn btn-primary" data-bs-toggle="modal"
                           data-bs-target="#modal-liste-article"><i class="uil-search"></i></button>
@@ -71,11 +71,11 @@
               <div class="row g-2">
                 <div class="mb-1 col-md-6">
                   <label for="input-quantite-article" class="form-label">Quantite</label>
-                  <input type="number" class="form-control" id="input-quantite-article" placeholder="0" value="0">
+                  <input type="number" required class="form-control" id="input-quantite-article" placeholder="0" value="0">
                 </div>
                 <div class="mb-1 col-md-6">
                   <label for="select-unite-article" class="form-label">Unite</label>
-                  <select class="form-select" id="select-unite-article">
+                  <select required class="form-select" id="select-unite-article">
                   </select>
                 </div>
               </div>
@@ -84,12 +84,12 @@
                 <div class="row g-2">
                   <div class="mb-1 col-md-6">
                     <label class="form-label">Prix d'Achat (Ar)</label>
-                    <input type="number" id="input-prix-achat-article" class="form-control" placeholder="0 Ar"
+                    <input type="number" required id="input-prix-achat-article" class="form-control" placeholder="0 Ar"
                            aria-label="Recipient's username" value="0">
                   </div>
                   <div class="mb-1 col-md-6">
                     <label class="form-label">Prix de vente (Ar)</label>
-                    <input type="number" id="input-prix-vente-article" class="form-control" placeholder="0 Ar"
+                    <input type="number" required id="input-prix-vente-article" class="form-control" placeholder="0 Ar"
                            aria-label="Recipient's username" value="0">
                   </div>
                 </div>

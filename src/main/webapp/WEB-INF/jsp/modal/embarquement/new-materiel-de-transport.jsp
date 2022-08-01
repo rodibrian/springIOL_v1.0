@@ -3,7 +3,7 @@
      aria-labelledby="standard-modalLabel"
      aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content was-validated">
       <div class="modal-header">
         <h4 class="modal-title" id="standard-modalLabel">Nouveau Mat&eacute;riel Transport</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>

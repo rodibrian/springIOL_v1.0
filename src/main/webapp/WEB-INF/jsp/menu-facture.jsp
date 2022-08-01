@@ -25,7 +25,7 @@
       <div class="d-inline-flex mt-1">
         <input type="date" class="form-control btn-40">&nbsp;&agrave;&nbsp;
         <input type="date" class="form-control btn-40">&nbsp;
-        <select name="magasin" id="" class="form-select btn-40">
+        <select required name="magasin" id="" class="form-select btn-40">
           <option value="0">Magasin I</option>
           <option value="0">Magasin II</option>
         </select>&nbsp;

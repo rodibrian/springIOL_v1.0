@@ -6,7 +6,7 @@
      data-plugin="dragula">
   <div class="col-md-11">
     <div class="card mb-0 mt-3">
-      <div class="card-body bg-light text-dark">
+      <div class="card-body bg-light text-dark was-validated">
         <blockquote class="card-bodyquote mb-0">
           <!-- vente content -->
           <div class="row">
@@ -17,7 +17,7 @@
             <div class="col-lg-5">
               <div class="mt-1 mb-1 select-type-transfert">
                 <label for="source-destination" class="form-label">Source - Destination</label>
-                <select class="form-select" id="source-destination">
+                <select required class="form-select" id="source-destination">
                   <option value="MM">Magasin - Magasin</option>
                   <option value="MV">Magasin - Voyage</option>
                   <option value="VM">Voyage - Magasin</option>
@@ -26,7 +26,7 @@
               </div>
               <div class="mt-1 mb-1 select-src">
                 <label class="form-label">De (Source) : </label>
-                <select id="select-magasin-source" class="form-select MM MV">
+                <select required id="select-magasin-source" class="form-select MM MV">
                   <c:forEach var="magasin" items="${magasins}">
                     <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
                   </c:forEach>
@@ -34,7 +34,7 @@
               </div>
               <div class="mt-1 mb-1 select-dst">
                 <label class="form-label">&agrave; (Destination) : </label>
-                <select id="select-magasin-dest" class="form-select MM VM">
+                <select required id="select-magasin-dest" class="form-select MM VM">
                   <c:forEach var="magasin" items="${magasins}">
                     <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
                   </c:forEach>
@@ -43,7 +43,7 @@
               <br>
               <div class="mb-1">
                 <label class="form-label">référence</label>
-                <input type="text" name="reference" id="input-reference" class="form-control">
+                <input type="text" required name="reference" id="input-reference" class="form-control">
               </div>
               <br>
               <h4>Ajouter Article
@@ -53,7 +53,7 @@
               <div class="mb-1">
                 <label class="form-label">Designation</label>
                 <div class="input-group">
-                  <input id="input-designation-article" type="text" class="form-control designation-article" placeholder="Designation article"
+                  <input id="input-designation-article" type="text" required class="form-control designation-article" placeholder="Designation article"
                          aria-label="Designation article">
                   <button type="button" class="btn btn-primary btn-chercher-article" data-bs-toggle="modal"
                           data-bs-target="#modal-liste-article"><i class="uil-search"></i></button>
@@ -63,18 +63,18 @@
               <div class="row g-2">
                 <div class="mb-1 col-md-6">
                   <label for="input-quantite" class="form-label">Quantite</label>
-                  <input type="number" class="form-control" id="input-quantite" placeholder="00">
+                  <input type="number" required class="form-control" id="input-quantite" placeholder="00">
                 </div>
                 <div class="mb-1 col-md-6">
                   <label for="select-unite" class="form-label">Unite</label>
-                  <select class="form-select" id="select-unite">
+                  <select required class="form-select" id="select-unite">
                   </select>
                 </div>
               </div>
 
               <div class="mb-1">
                 <label class="form-label">Chauffeur</label>
-                <input type="text" name="chauffeur" id="input-chauffeur" class="form-control">
+                <input type="text" required name="chauffeur" id="input-chauffeur" class="form-control">
               </div>
 
               <div class="mb-1">

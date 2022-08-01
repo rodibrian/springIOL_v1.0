@@ -3,7 +3,7 @@
      aria-labelledby="standard-modalLabel_ii"
      aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    <div class="modal-content">
+    <div class="modal-content was-validated">
       <div class="modal-header">
         <h4 class="modal-title" id="standard-modalLabel_ii">Info Fournisseur</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>

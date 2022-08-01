@@ -7,7 +7,7 @@
       <div class="page-title-box">
         <div class="page-title-right">
           <div class="input-group">
-            <input type="text" class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
+            <input type="text" required class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
             <button class="input-group-text btn-primary" type="submit"><i class="uil-search"></i></button>
           </div>
         </div>
@@ -37,7 +37,7 @@
         &nbsp;
         <div class="d-inline-flex s-value">
           <div class="mb-3 mr-1">
-            <select class="form-select" id="magasin-select">
+            <select required class="form-select" id="magasin-select">
                 <option value="${magasin.id}">Toutes</option>
                 <c:forEach var="magasin" items="${magasins}">
                   <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>

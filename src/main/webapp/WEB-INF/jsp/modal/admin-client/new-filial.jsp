@@ -2,7 +2,7 @@
 <div id="nouveau-filial" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
      aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content was-validated">
       <div class="modal-header">
         <h4 class="modal-title">Nouveau filial</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>

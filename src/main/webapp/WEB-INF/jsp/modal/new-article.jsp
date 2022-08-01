@@ -2,7 +2,7 @@
 <div id="new-article" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    <div class="modal-content">
+    <div class="modal-content was-validated">
       <div class="modal-header">
         <h4 class="modal-title" id="standard-modalLabel">Nouveau Article</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
@@ -10,11 +10,11 @@
       <div class="modal-body">
         <div class="mb-3">
           <label for="designation" class="form-label">Designation</label>
-          <input type="text" id="designation" class="form-control">
+          <input type="text" required id="designation" class="form-control">
         </div>
         <div class="mb-3">
           <label for="categorie" class="form-label">Categorie</label>
-          <select class="form-select" id="categorie">
+          <select required class="form-select" id="categorie">
           </select>
         </div>
         <div class="mb-3">
@@ -35,11 +35,11 @@
             </thead>
             <tbody>
             <tr>
-              <td class="d-none"><input type="text" class="form-control input-sm" value=""></td>
-              <td><input type="text" class="form-control input-sm not-editable" value="1"></td>
-              <td><input type="text" class="form-control input-sm" value="designation"></td>
-              <td><input type="text" class="form-control input-sm not-editable" value="0"></td>
-              <td><input type="text" class="form-control input-sm" value="0"></td>
+              <td class="d-none"><input type="text" required class="form-control input-sm" value=""></td>
+              <td><input type="text" required class="form-control input-sm not-editable" value="1"></td>
+              <td><input type="text" required class="form-control input-sm" value="designation"></td>
+              <td><input type="text" required class="form-control input-sm not-editable" value="0"></td>
+              <td><input type="text" required class="form-control input-sm" value="0"></td>
               <td class="d-inline-flex">
                 <a class="btn btn-primary btn-sm btn-edit-unite"><i class="uil-pen"></i></a>&nbsp;
                 <a class="btn btn-success btn-sm btn-add-unite"><i class="uil-check-square"></i></a>

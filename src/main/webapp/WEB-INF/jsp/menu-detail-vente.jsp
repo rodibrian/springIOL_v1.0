@@ -24,8 +24,8 @@
       <div class="d-inline-flex mt-1">
         <input type="date" class="form-control">&nbsp;
         <input type="date" class="form-control">&nbsp;
-        <input type="text" class="form-control" placeholder="Nom du client">&nbsp;
-        <input type="text" class="form-control" placeholder="Nom d'article">
+        <input type="text" required class="form-control" placeholder="Nom du client">&nbsp;
+        <input type="text" required class="form-control" placeholder="Nom d'article">
         <a type="button" class="btn btn-success mr-1">
           <i class="uil-search-alt"></i>
         </a>

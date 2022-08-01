@@ -14,4 +14,19 @@ $(function () {
     else
         $('title').text('IOL - ' + $('.no-title').attr('title'))
 
+        (function () {
+            'use strict'
+            const forms = document.querySelectorAll('.was-validated')
+            Array.from(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
 })

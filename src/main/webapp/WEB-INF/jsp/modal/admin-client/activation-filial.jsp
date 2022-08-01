@@ -1,7 +1,7 @@
 <!-- Info Alert Modal -->
 <div id="activation-filial" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-sm modal-dialog-centered">
-    <div class="modal-content">
+    <div class="modal-content was-validated">
       <div class="modal-body p-4">
         <div class="text-center">
           <i class="dripicons-information h1 text-info"></i>

@@ -2,7 +2,7 @@
 <div id="nouveau-client" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
      aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content was-validated">
       <div class="modal-header">
         <h4 class="modal-title" id="standard-modalLabel">Nouveau Client</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
@@ -10,22 +10,22 @@
       <div class="modal-body">
         <div class="mb-1">
           <label for="numCIN" class="form-label">Numero CIN</label>
-          <input name="numCIN" type="text" id="numCIN" class="form-control">
+          <input name="numCIN" type="text" required id="numCIN" class="form-control">
         </div>
         <div class="mb-1">
           <label for="nomClient" class="form-label">Nom du Client</label>
-          <input name="nnomClient" type="text" id="nomClient" class="form-control">
+          <input name="nnomClient" type="text" required id="nomClient" class="form-control">
         </div>
 
         <div class="mb-1">
           <div class="row">
             <div class="col-md-6">
               <label for="adresse" class="form-label">Adresse</label>
-              <input name="adresse" type="text" id="adresse" class="form-control">
+              <input name="adresse" type="text" required id="adresse" class="form-control">
             </div>
             <div class="col-md-6">
               <label for="contact" class="form-label">Contact</label>
-              <input name="contact" type="text" id="contact" class="form-control">
+              <input name="contact" type="text" required id="contact" class="form-control">
             </div>
           </div>
 

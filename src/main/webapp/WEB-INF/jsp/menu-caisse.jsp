@@ -9,7 +9,7 @@
       <div class="page-title-box">
         <div class="page-title-right">
           <div class="input-group">
-            <input type="text" class="form-control dropdown-toggle" placeholder="Search..." id="input-search-operation">
+            <input type="text" required class="form-control dropdown-toggle" placeholder="Search..." id="input-search-operation">
             <button id="btn-search-operation" class="input-group-text btn-primary" type="submit"><i
                     class="uil-search"></i></button>
           </div>
@@ -29,7 +29,7 @@
       <div class="d-inline-flex mt-1">
         <input type="date" id="input-date-debut" class="form-control">&nbsp;
         <input type="date" id="input-date-fin" class="form-control">&nbsp;
-        <select name="select-magasin" id="select-magasin" class="form-select">
+        <select required name="select-magasin" id="select-magasin" class="form-select">
         </select>
         <a type="button" id="btn-search-filter" class="btn btn-success mr-1">
           Valider
