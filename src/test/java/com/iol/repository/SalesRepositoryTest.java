@@ -6,9 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -17,6 +19,12 @@ class SalesRepositoryTest {
 
     @Autowired
     private SalesRepository salesRepository;
+
+
+    @Test
+    void findAllTest(){
+        List<Vente> all = salesRepository.getSalesByStore(1L);
+    }
 
     @Test
     void findByProductName() {

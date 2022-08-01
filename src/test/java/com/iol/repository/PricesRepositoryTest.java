@@ -22,7 +22,6 @@ class PricesRepositoryTest {
         List<PrixArticleFiliale> allByLastDate = pricesRepository.findAllByLastDate();
         assertThat(allByLastDate.size()).isEqualTo(2);
     }
-
     @Test
     void findAll() {
         List<PrixArticleFiliale> all = pricesRepository.findAll(2L, 1L, 7L);

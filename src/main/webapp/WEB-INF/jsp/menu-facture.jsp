@@ -26,8 +26,9 @@
         <input type="date" class="form-control btn-40">&nbsp;&agrave;&nbsp;
         <input type="date" class="form-control btn-40">&nbsp;
         <select name="magasin" id="" class="form-select btn-40">
-          <option value="0">Magasin I</option>
-          <option value="0">Magasin II</option>
+          <c:forEach var="magasin" items="${magasins}">
+            <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
+          </c:forEach>
         </select>&nbsp;
         <h4 class="d-none">Nombre : <%= "00" %>
         </h4>
@@ -52,39 +53,31 @@
           <tr>
             <th>Réference</th>
             <th>Client</th>
-            <th>Article</th>
-            <th>Unite</th>
-            <th>Quantite</th>
-            <th>Prix Unitaire</th>
             <th>Montant</th>
-            <th>Date</th>
+            <th>Operateur</th>
+            <th>Date et heure</th>
             <th>Action</th>
           </tr>
           </thead>
           <tbody>
-          <% for (int i = 0; i < 10; i++) { %>
-          <tr>
-            <td>Ref 000 000 000 00</td>
-            <td>Nom du Client</td>
-            <td>Designation d'article</td>
-            <td>unite</td>
-            <td>00</td>
-            <td>0Ar</td>
-            <td>0Ar</td>
-            <td>05/06/2022</td>
-            <td class="d-flex justify-content-center">
-              <div>
-                <a class="btn-sm btn-info info-facture"><i class="uil-info-circle"></i></a>
-                <a class="btn-sm btn-success imprimer-facture"><i class="uil-print"></i></a>
-              </div>
-            </td>
-          </tr>
-          <% } %>
+<%--          <c:forEach var="vente" items="${sales}">--%>
+<%--            <tr id ="${vente.id}">--%>
+<%--              <td>${vente.infoArticleMagasin.reference}</td>--%>
+<%--              <td>${vente.client.nom}</td>--%>
+<%--              <td></td>--%>
+<%--              <td >${vente.infoArticleMagasin.user.nom}</td>--%>
+<%--              <td><c:out value="${vente.infoArticleMagasin.date}"/></td>--%>
+<%--              <td class="d-flex justify-content-center">--%>
+<%--                <div>--%>
+<%--                  <a class="btn-sm btn-info info-facture"><i class="uil-info-circle"></i></a>--%>
+<%--                  <a class="btn-sm btn-success imprimer-facture"><i class="uil-print"></i></a>--%>
+<%--                </div>--%>
+<%--              </td>--%>
+<%--            </tr>--%>
+<%--          </c:forEach>--%>
           </tbody>
         </table>
-
         <!-- Collapse facture information -->
-
         <div class="accordion" id="accordionExample">
           <div class="card mb-0">
             <div id="facture-info" class="collapse"

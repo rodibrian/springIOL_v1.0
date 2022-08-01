@@ -37,6 +37,7 @@ public class MenuNavController{
     private final String OPERATION_LIST = "operations";
 
     public MenuNavController() {
+
     }
 
     @RequestMapping(value = "/embarquement", method = RequestMethod.GET)
@@ -70,8 +71,9 @@ public class MenuNavController{
     }
 
     @RequestMapping(value = "/peremption", method = RequestMethod.GET)
-    public String getMenuPeremption() {
-        return "menu-peremption";
+    public ModelAndView getMenuPeremption(){
+        ModelAndView modelAndView = new ModelAndView("menu-peremption");
+        return modelAndView;
     }
 
     @RequestMapping(value = "/voyage", method = RequestMethod.GET)
@@ -79,9 +81,13 @@ public class MenuNavController{
         return "menu-voyage";
     }
 
+
     @RequestMapping(value = "/facture", method = RequestMethod.GET)
-    public String getMenuFacture() {
-        return "menu-facture";
+    public ModelAndView getMenuFacture() {
+        ModelAndView modelAndView = new ModelAndView( "menu-facture");
+        modelAndView.addObject(SALES_LIST, salesRepository.findAll());
+        modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
+        return modelAndView;
     }
 
 
