@@ -30,7 +30,7 @@
             <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
           </c:forEach>
         </select>&nbsp;
-        <h4 class="d-none">Nombre : <%= "00" %>
+        <h4 class="d-none">Nombre : ${factures.size()}
         </h4>
       </div>
     </div>
@@ -60,21 +60,21 @@
           </tr>
           </thead>
           <tbody>
-<%--          <c:forEach var="vente" items="${sales}">--%>
-<%--            <tr id ="${vente.id}">--%>
-<%--              <td>${vente.infoArticleMagasin.reference}</td>--%>
-<%--              <td>${vente.client.nom}</td>--%>
-<%--              <td></td>--%>
-<%--              <td >${vente.infoArticleMagasin.user.nom}</td>--%>
-<%--              <td><c:out value="${vente.infoArticleMagasin.date}"/></td>--%>
-<%--              <td class="d-flex justify-content-center">--%>
-<%--                <div>--%>
-<%--                  <a class="btn-sm btn-info info-facture"><i class="uil-info-circle"></i></a>--%>
-<%--                  <a class="btn-sm btn-success imprimer-facture"><i class="uil-print"></i></a>--%>
-<%--                </div>--%>
-<%--              </td>--%>
-<%--            </tr>--%>
-<%--          </c:forEach>--%>
+          <c:forEach var="facture" items="${factures}">
+            <tr id="${facture.reference}">
+              <td>${facture.reference}</td>
+              <td>${facture.client}</td>
+              <td>${facture.montantTotal}</td>
+              <td>${facture.operateur}</td>
+              <td>${facture.date}</td>
+              <td class="d-flex justify-content-center">
+                <div>
+                  <a class="btn-sm btn-info info-facture"><i class="uil-info-circle"></i></a>
+                  <a class="btn-sm btn-success imprimer-facture"><i class="uil-print"></i></a>
+                </div>
+              </td>
+            </tr>
+          </c:forEach>
           </tbody>
         </table>
         <!-- Collapse facture information -->
@@ -88,32 +88,25 @@
                 </div>
                 <div class="row" id="tab-article">
                   <div class="col-md-6">
-                    <table class="table table-striped table-sm dt-responsive norwap">
+                    <table id="facture-details-tab" class="table table-striped table-sm dt-responsive norwap">
                       <thead>
                       <th>Designation</th>
                       <th>Unite</th>
                       <th>Prix Unitaire</th>
+                      <th>Quantite</th>
                       <th>Montant</th>
                       </thead>
                       <tbody>
-                      <% for (int i = 0; i < 5; i++) { %>
-                      <tr>
-                        <td>Nomdelarticle</td>
-                        <td>unite</td>
-                        <td>0Ar</td>
-                        <td>0Ar</td>
-                      </tr>
-                      <% } %>
                       </tbody>
                     </table>
                   </div>
                   <div class="col-md-6">
-                    <h4>Facture numero : <%= "Ref 00000" %>
-                    </h4><br>
-                    <h4>Epece : <%= "0Ar" %>
-                    </h4><br>
-                    <h4>Autres : <%= "0Ar" %>
-                    </h4><br><br>
+                    <h4 id="num-facture"></h4><br>
+                    <h4 id="montant-facture"></h4><br>
+                    <h4 id="mode-payement"></h4><br>
+                    <h4 id="client-facture"></h4><br>
+                    <h4 id="date-facture"></h4><br>
+                    <h4 id="operateur-facture"></h4><br>
                     <button class="btn btn-danger btn-lg btn-avoir"><i class="uil-refresh"></i>&nbsp;Avoir</button>
                   </div>
                 </div>
@@ -144,10 +137,8 @@
 
 </div>
 </div>
-
 <!-- ============================================================== -->
 <!-- End Page content -->
 <!-- ============================================================== -->
-
 <%@ include file="template/footer.jsp" %>
 <%@ include file="template/setting.jsp" %>

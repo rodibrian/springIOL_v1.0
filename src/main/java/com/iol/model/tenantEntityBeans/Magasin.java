@@ -46,6 +46,7 @@ public class Magasin{
     @JoinColumn(name = "filialeId",foreignKey = @ForeignKey(name = "magasin_filiale_key_constraint"))
     private Filiale filiale;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "magasin",cascade = CascadeType.PERSIST)
     private Set<User> users;
 

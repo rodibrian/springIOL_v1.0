@@ -1,8 +1,11 @@
 package com.iol.controller.servletController;
 
+import com.iol.model.tenantEntityBeans.Filiale;
+import com.iol.model.tenantEntityBeans.User;
 import com.iol.service.ArticleService;
 import com.iol.model.tenantEntityBeans.Magasin;
 import com.iol.repository.*;
+import com.iol.service.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -35,6 +40,7 @@ public class MenuNavController{
     private final String SORTIE_LIST = "sorties";
     private final String PRICES_LIST = "prices";
     private final String OPERATION_LIST = "operations";
+    private final String FACTURE_LIST = "factures";
 
     public MenuNavController() {
 
@@ -70,22 +76,30 @@ public class MenuNavController{
         return "menu-paiement";
     }
 
+    @RequestMapping(value = "/voyage", method = RequestMethod.GET)
+    public String getMenuVoyage() {
+        return "menu-voyage";
+    }
+
     @RequestMapping(value = "/peremption", method = RequestMethod.GET)
     public ModelAndView getMenuPeremption(){
         ModelAndView modelAndView = new ModelAndView("menu-peremption");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/voyage", method = RequestMethod.GET)
-    public String getMenuVoyage() {
-        return "menu-voyage";
-    }
-
-
     @RequestMapping(value = "/facture", method = RequestMethod.GET)
-    public ModelAndView getMenuFacture() {
+    public ModelAndView getMenuFacture(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView( "menu-facture");
-        modelAndView.addObject(SALES_LIST, salesRepository.findAll());
+        HttpSession session = request.getSession();
+        User connectedUser = (User)session.getAttribute("connectedUser");
+        List<Magasin> magasinList = connectedUser.getMagasin();
+        Filiale filiale = connectedUser.getFiliale();
+        Long filialeId = filiale.getId();
+        if (magasinList.size()>0){
+            Magasin magasin = magasinList.get(0);
+            Long magasinId = magasin.getId();
+            modelAndView.addObject(FACTURE_LIST,salesService.getFactureGroupByRefAndFilialeAndMagasin(magasinId,filialeId));
+        }else modelAndView.addObject(FACTURE_LIST,salesService.getFactureGroupByRefAndFiliale(filialeId));
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
         return modelAndView;
     }
@@ -246,6 +260,6 @@ public class MenuNavController{
     @Autowired private SalesRepository salesRepository;
     @Autowired private TransfertRepository transfertRepository;
     @Autowired private PricesRepository pricesRepository;
-
+    @Autowired private SalesService salesService;
 }
 

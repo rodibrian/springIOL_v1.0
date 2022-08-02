@@ -1,6 +1,7 @@
 package com.iol.repository;
 
 import com.iol.model.tenantEntityBeans.Vente;
+import com.iol.model.wrapper.FactureWrapper;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,8 @@ class SalesRepositoryTest {
     }
 
     @Test
-    void getSalesByStore() {
+    void getSalesByStore(){
+
     }
 
     @Test
@@ -61,5 +63,17 @@ class SalesRepositoryTest {
         List<Vente> salesByBetweenDate = salesRepository.getSalesByBetweenDate(1L, LocalDate.now(Clock.systemDefaultZone()),
                 LocalDate.now(Clock.systemDefaultZone()));
         assertThat(salesByBetweenDate).isNotEmpty();
+    }
+
+    @Test
+    void getFactureGroupByRef() {
+        List<String> factureGroupByRef = salesRepository.getFactureGroupByRef(1L);
+        System.out.println(factureGroupByRef);
+    }
+
+    @Test
+    void getBillDetails() {
+        List<Vente> billDetails = salesRepository.getBillDetails("12");
+        assertThat(billDetails).isNotEmpty();
     }
 }

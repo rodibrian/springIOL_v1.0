@@ -12,13 +12,18 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1")
 public class SalesRessource {
-
     @Autowired private SalesRepository salesRepository;
     @Autowired private ArticleRepository articleRepository;
 
     @GetMapping("/sales")
     public ResponseEntity<Object> getAll(){
         return new ResponseEntity<>(salesRepository.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/sales/{reference}")
+    public ResponseEntity<Object> getAll(@PathVariable("reference")String reference){
+        List<Vente> billDetails = salesRepository.getBillDetails(reference);
+        return new ResponseEntity<>(billDetails, HttpStatus.OK);
     }
 
     @PostMapping("/sales")
@@ -47,5 +52,4 @@ public class SalesRessource {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.valueOf(500));
         }
     }
-
 }

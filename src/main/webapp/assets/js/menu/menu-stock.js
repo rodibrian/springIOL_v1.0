@@ -12,31 +12,8 @@ $(function () {
     $('.btn-40').css('height', '40px');
     // Chargement des données de stock
 
-    // $.each($lesArticles, function (key, article) {
-    //     $.each(article.uniteArticle, function (keyU, articleU) {
-    //         $trArticle = $('<tr></tr>').attr('id', article.codeArticle + '-' + keyU);
-    //         $trArticle.append('' +
-    //             '            <td class="s-no-value code-article">' + $trArticle.attr('id') + '</td>\n' +
-    //             '            <td class="designation-article">' + article.nomArticle + '</td>\n' +
-    //             '            <td class="unite-article">' + articleU + '</td>\n' +
-    //             '            <td class="article-prix">' + article.prix[keyU] + '</td>\n' +
-    //             '            <td class="s-no-value article-stock-1">' + article.stock[0] + '</td>\n' +
-    //             '            <td class="s-no-value article-stock-2">' + article.stock[1] + '</td>\n' +
-    //             '            <td class="td-info-stock">\n' +
-    //             '              <a type="button" class="btn-default mr-1 btn-info-stock" data-bs-toggle="modal"\n' +
-    //             '                 data-bs-target="#info-stock">' + (parseFloat(article.stock[0]) + parseFloat(article.stock[1])) + '</a>\n' +
-    //             '            </td>\n' +
-    //             '            <td class="s-no-value article-date-peremption">' + article.peremption + '</td>\n' +
-    //             '            <td class="s-value article-valeur">' + ( (parseFloat(article.stock[0]) + parseFloat(article.stock[1]))  * parseFloat(article.prix[keyU])) + ' Ar</td>\n' +
-    //             '          ' +
-    //             '').html();
-    //         $('.table-article-stock tbody').append($trArticle);
-    //     })
-    //
-    //
-    // })
     // Details d'event stock
-    $(document).on('click', '.td-info-stock .btn-info-stock', function () {
+    $(document).on('click', '.td-info-stock .btn-info-stock', function (){
         $currentArticleTr = $(this).closest('tr');
         $('#info-stock').attr('data-id', $currentArticleTr.attr('id'));
         // affectation des valeur de chaque paragraphe
@@ -60,7 +37,6 @@ $(function () {
                 $(namespace + " #inventory-table tbody tr").empty();
                 // ajouter les donnés dans la table
                 $.each(data, function (key, value){
-                    console.log(value);
                     $tr = [value.article, value.unite,value.categorie,value.nomMagasin,value.quantite];
                     $stockId = value.magasinId + "-" + value.articleId + "-" + value.uniteId;
                     push_to_inventory_table_list(namespace + " #inventory-table",$stockId,$tr);
