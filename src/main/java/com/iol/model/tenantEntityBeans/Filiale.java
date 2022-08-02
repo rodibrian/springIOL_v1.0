@@ -31,6 +31,9 @@ public class Filiale extends Personne{
     @OneToMany(mappedBy = "filiale",cascade = CascadeType.MERGE)
     private List<Magasin> magasins;
 
+    @OneToMany(mappedBy = "filiale")
+    private List<Article> articles;
+
     @Transient
     private Double chiffreAffaire=0D;
 
@@ -38,6 +41,5 @@ public class Filiale extends Personne{
     private void setChiffreAffaire(){
 
     }
-
     private boolean active = true;
 }

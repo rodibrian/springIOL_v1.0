@@ -83,7 +83,6 @@
           <tr>
               <th>Designation</th>
               <th>categorie</th>
-              <th>Code</th>
               <th>Poids(Kg)</th>
               <th>unite</th>
               <th>quantite</th>
@@ -91,20 +90,19 @@
           </tr>
           </thead>
           <tbody>
-          <c:forEach var="article" items="${articles}">
-              <tr id="${article[0]}">
-                <td><c:out value="${article[1]}"/></td>
-                <td><c:out value="${article[2]}"/></td>
-                <td><c:out value="${article[3]}"/></td>
-                <td><c:out value="${article[4]}"/></td>
-                <td><c:out value="${article[5]}"/></td>
-                <td><c:out value="${article[6]}"/></td>
+          <c:forEach var="au" items="${articles}">
+              <tr id="${au.article.id}">
+                <td>${au.article.designation}</td>
+                <td>${au.article.categorie.libelle}</td>
+                <td>${au.poids}</td>
+                <td>${au.unite.designation}</td>
+                <td>${au.quantiteNiveau}</td>
                 <td class="d-flex justify-content-center">
                   <div>
-                    <a id="${article[0]}" data-bs-toggle="modal" data-bs-target="#new-article"
+                    <a id="${au.article.id}" data-bs-toggle="modal" data-bs-target="#new-article"
                        class="btn-sm btn-info editArticleBtn"><i class="uil-pen"></i></a>
-                    <a id="${article[0]}" class="btn-sm btn-danger deleteArticleBtn "><i class="uil-trash-alt"></i></a>
-                    <a id="${article[0]}" class="btn-sm btn-warning hideArticleBtn"><i class="uil-eye-slash"></i></a>
+                    <a id="${au.article.id}" class="btn-sm btn-danger deleteArticleBtn "><i class="uil-trash-alt"></i></a>
+                    <a id="${au.article.id}" class="btn-sm btn-warning hideArticleBtn"><i class="uil-eye-slash"></i></a>
                   </div>
                 </td>
               </tr>

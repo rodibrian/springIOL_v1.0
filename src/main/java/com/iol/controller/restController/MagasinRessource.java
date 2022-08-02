@@ -117,7 +117,7 @@ public class MagasinRessource {
 
     @GetMapping("/magasins/{id}/filiales")
     public ResponseEntity<Object> getMagasinBy(@PathVariable("id") Long id){
-        return new ResponseEntity<>(magasinRepository.getById(id).getFiliale(), HttpStatus.OK);
+        return new ResponseEntity<>(magasinRepository.findById(id).get().getFiliale(), HttpStatus.OK);
     }
 
     @GetMapping("/magasins/{id}/stocks")

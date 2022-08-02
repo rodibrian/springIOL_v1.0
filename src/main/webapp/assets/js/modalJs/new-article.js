@@ -4,7 +4,7 @@ $(function () {
         JS NOUVEAU ARTICLE
 
      ---------------------------*/
-    let namespace = "#new-article";
+    let namespace = "#new-article ";
     let isCreateArticle = true;
     let editedArticleId = 1;
 
@@ -15,11 +15,8 @@ $(function () {
     $deleted = true;
 
     function initTableUnite() {
-
         $('#table-unite input').attr('disabled', '')
-
         // ajout du nouveau unite
-
         $("#btn-new-unite").click(
             function () {
 
@@ -118,7 +115,6 @@ $(function () {
         });
 
         function getAllUniteOnTable(data) {
-
             let tr = $('#table-unite tbody tr');
             let articleId = data.id;
             let articleUniteTab = [];
@@ -153,20 +149,19 @@ $(function () {
             return articleUniteTab;
         }
 
-        function createArticleAndUnite() {
-
+        function persistArticleAndUnite(){
             let designation = $("#designation").val();
             let categorieId = $("#categorie option:selected").val();
             let categorieLibelle = $("#categorie option:selected").text();
+            let filialeId = $(namespace + '#filiale-id').attr("value-id");
             let articleStatus = "USED";
             let article = {}
+            article.filiale = {id : filialeId};
             article.designation = designation;
             article.categorie = {id: categorieId, libelle: categorieLibelle};
             article.status = articleStatus;
             if (!isCreateArticle) article.id = editedArticleId;
-
             function saveAllUnite(data) {
-
                 let articleUniteTab = getAllUniteOnTable(data);
                 $.ajax({
                     type: "POST",
@@ -194,10 +189,11 @@ $(function () {
                             </tr>`;
                             table.append(tableRow);
                         });
+                        // Clear the form
+                        $("#designation").text("");
                     }
                 })
             }
-
             $.ajax({
                 type: 'POST',
                 url: $articleUrl,
@@ -219,7 +215,7 @@ $(function () {
         $("#saveArticleBtn").click(() => {
 
             if (isCreateArticle) {
-                createArticleAndUnite();
+                persistArticleAndUnite();
                 createToast('bg-success', 'uil-file-check', 'Creation Fait', 'Creation d\'un nouveau article effectu&eacute; avec succ&egrave;s!')
             } else {
                 updateArticle();
@@ -235,9 +231,7 @@ $(function () {
     }
 
     function initTableRowEvent() {
-
         // Initialisation de l'evenement des tr
-
         let div = $("#articleTable tbody tr td div");
         let tr = $("#articleTable tbody tr");
         div.hide();
@@ -248,11 +242,9 @@ $(function () {
             $(this).children().last().children().first().hide();
         });
     }
-
     /*
      niveau article dynamique
      */
-
     function updateNiveauUnite() {
 
         $('#table-unite tbody tr').each(function (key, value) {
@@ -260,7 +252,6 @@ $(function () {
             $('.not-editable').attr('disabled','');
         })
     }
-
 
     function initTableAction() {
         function initCategorieSelect() {
@@ -284,7 +275,6 @@ $(function () {
 
         $(".editArticleBtn").click(function () {
 
-
             isCreateArticle = false;
             editedArticleId = $(this).attr("id");
             console.log(" Edited article = " + editedArticleId);
@@ -294,7 +284,6 @@ $(function () {
             categorie = $tr.children()[5].innerText;
 
             // affectation dans la formulaire
-
             $('input#designation').val(designation)
             $('select#categorie option:contains("' + categorie + '")').attr('selected', 'true')
             let url = 'http://localhost:8080/api/v1/articles/' + editedArticleId + "/unites";
@@ -327,7 +316,6 @@ $(function () {
         });
 
         function updateArticle($trCurrent, $deleted, $codeArticle) {
-
             $id = $($trCurrent).attr("id");
             $modalId = $deleted ? "suppression-article" : "masquer-article";
             $modalText = $deleted ? 'Suppression Article' : 'Masquer Article';
@@ -335,8 +323,8 @@ $(function () {
                 : 'Voulez vraiment masquer cet article (id:' + $codeArticle + ') ?';
             $labelButton = $deleted ? "supprimer" : "masquer";
             $classButton = $deleted ? "btn-danger" : "bg-warning";
-            create_confirm_dialog($modalText, $modalTitle, $modalId, "Oui ," + $labelButton, $classButton)
-                .on('click', function () {
+            create_confirm_dialog($modalText, $modalTitle, $modalId, "Oui ,"+$labelButton, $classButton)
+                .on('click', function (){
                     $status = $deleted ? "DELETED" : "HIDDEN";
                     $url = $articleUrl + "/" + $id + "/" + $status;
                     $.ajax({
@@ -350,29 +338,23 @@ $(function () {
                     });
                 })
         }
-
         $(document).on('click', '#articleTable .deleteArticleBtn', function () {
-
             $codeArticle = $(this).closest('tr').children().eq(0).text();
             $trCurrent = $(this).closest('tr');
             updateArticle($trCurrent, $deleted, $codeArticle);
 
         })
-
         $(".hideArticleBtn").click(function () {
-
             $codeArticle = $(this).closest('tr').children().eq(0).text();
             $trCurrent = $(this).closest('tr');
             updateArticle($trCurrent, !$deleted, $codeArticle);
 
         });
     }
-
     function initArticleTable() {
         initTableAction();
         initTableRowEvent();
     }
-
     initArticleTable();
     initAddArticleModal();
 });

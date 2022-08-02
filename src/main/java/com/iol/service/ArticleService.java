@@ -14,11 +14,12 @@ import java.util.stream.Collectors;
 public class ArticleService{
 
     @Autowired private ArticleRepository articleRepository;
-    public List<String[]> findAll(){
-        List<String> allArticle = articleRepository.getAll();
-        List<String[]> collect = allArticle.stream().map(s -> s.split(",")).collect(Collectors.toList());
-        return collect;
-    }
+
+//    public List<String[]> findAll(){
+//        List<String> allArticle = articleRepository.getAllByMagasin();
+//        List<String[]> collect = allArticle.stream().map(s -> s.split(",")).collect(Collectors.toList());
+//        return collect;
+//    }
 
     public List<InventoryViewWrapper> getAllInventories(){
         List<String> stockWithPriceAndExpirationDate = articleRepository.getStockWithPriceAndExpirationDate();

@@ -22,4 +22,7 @@ public interface UserRepository extends JpaRepository<User,Long>{
 
     @Query(value = "from _user u join u.fonction f where f.id =:id")
     List<User> getUserByFontionId(@Param("id") Long id);
+
+    @Query(value = "from _user u join u.filiale f where f.id =:id")
+    List<User> getAllByFiliale(@Param("id")Long id);
 }

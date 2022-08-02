@@ -1,5 +1,6 @@
 package com.iol.repository;
 import com.iol.model.tenantEntityBeans.Article;
+import com.iol.model.tenantEntityBeans.ArticleUnite;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -19,8 +20,11 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
     @Query(value = "select id,code,designation,niveau,poids from unite u inner join article_unite au ON u.id = au.unite_id WHERE au.article_id =:param",nativeQuery = true)
     List<String> getAllUnite(@Param("param") Long id);
 
-    @Query(value = "select a.article_id,a.designation,c.libelle,u.id,u.code,u.designation as ud,au.quantite_niveau from unite u,article_unite au ,article a ,categorie c WHERE u.id = au.unite_id AND au.article_id = a.article_id and a.categorie_id = c.id",nativeQuery = true)
-    List<String> getAll();
+    @Query(value = "from ArticleUnite au join au.article a join a.filiale f where f.id=:filialeId and a.status ='USED'")
+    List<ArticleUnite> getAllNotDeletedAndNotHidden(@Param("filialeId")Long filialeId);
+
+    @Query(value = "from ArticleUnite au join au.article a join a.filiale f where f.id=:filialeId")
+    List<ArticleUnite> getAll(@Param("filialeId")Long filialeId);
 
     @Query(value = "select a.article_id,u.id,s.magasin_id,a.designation as ad,c.libelle,u.designation,"+
             "(s.count/(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as nb , m.nom_magasin " +
@@ -33,10 +37,18 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
     @Query(value = "select a.article_id,u.id,s.magasin_id,a.designation as ad,c.libelle, u.designation," +
             "(s.count/(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as nb , m.nom_magasin " +
             "FROM unite u , Stock s , article_unite as au , article a , categorie  c , magasin m " +
-            "WHERE au.article_id = a.article_id and au.unite_id = u.id " +
+            "WHERE au.article_id = a.article_id and au.unite_id = u.id "+
             "and a.categorie_id = c.id " +
             "and s.article_id = au.article_id and s.magasin_id=:magasinId and m.id_magasin = s.magasin_id ",nativeQuery = true)
     List<String> getStockWithPriceAndExpirationDate(@Param("magasinId") Long magasinId);
+
+    @Query(value = "select a.article_id,u.id,s.magasin_id,a.designation as ad,c.libelle, u.designation," +
+            "(s.count/(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as nb , m.nom_magasin " +
+            "FROM unite u , Stock s , article_unite as au , article a , categorie  c , magasin m " +
+            "WHERE au.article_id = a.article_id and au.unite_id = u.id "+
+            "and a.categorie_id = c.id " +
+            "and s.article_id = au.article_id and s.magasin_id=:magasinId and m.filiale_id=:filialeId and m.id_magasin = s.magasin_id ",nativeQuery = true)
+    List<String> getStockWithPriceAndExpirationDate(@Param("magasinId") Long magasinId,@Param("filialeId") Long filialeId);
 
     @Query(value = "SELECT prix_vente from prix_article_filiale where article_id =:artId and unite_id =:uId and filiale_id =:fId order by date_enregistrement limit 1",nativeQuery = true)
     String getPrix(@Param("artId") Long artId,@Param("uId") Long uId,@Param("fId") Long fId);

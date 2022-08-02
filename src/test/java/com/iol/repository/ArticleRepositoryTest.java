@@ -1,5 +1,6 @@
 package com.iol.repository;
 
+import com.iol.model.tenantEntityBeans.ArticleUnite;
 import com.iol.service.ArticleService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -100,5 +101,17 @@ class ArticleRepositoryTest{
     void testSaveInventory(){
         int i = articleRepository.saveInventory(1L, 1L, 1L, 4D);
         assertThat(i).isEqualTo(1);
+    }
+
+    @Test
+    void getAllNotDeletedAndNotHidden() {
+        List<ArticleUnite> allNotDeletedAndNotHidden = articleRepository.getAllNotDeletedAndNotHidden(1L);
+        assertThat(allNotDeletedAndNotHidden).isEmpty();
+    }
+
+    @Test
+    void testGetAll1() {
+        List<ArticleUnite> all = articleRepository.getAll(1L);
+        assertThat(all).isNotEmpty();
     }
 }

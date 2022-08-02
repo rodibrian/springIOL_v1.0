@@ -2,6 +2,7 @@
 <div id="nouvelle-fonction" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
      aria-hidden="true">
   <div class="modal-dialog">
+    <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
     <div class="modal-content was-validated">
       <div class="modal-header">
         <h4 class="modal-title" id="standard-modalLabel">Nouvelle Fonction</h4>

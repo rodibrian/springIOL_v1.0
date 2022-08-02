@@ -22,11 +22,11 @@
           </tr>
           </thead>
           <tbody>
-          <c:forEach var="article" items="${articles}">
-            <tr id ="${article[0]}">
-              <td><c:out value="${article[4]}"/></td>
-              <td><c:out value="${article[1]}"/></td>
-              <td id="${article[3]}"><c:out value="${article[5]}"/></td>
+          <c:forEach var="au" items="${articles}">
+            <tr id ="${au[0]}">
+              <td><c:out value="${au[4]}"/></td>
+              <td><c:out value="${au[1]}"/></td>
+              <td id="${au[3]}"><c:out value="${au[5]}"/></td>
             </tr>
           </c:forEach>
           </tbody>
