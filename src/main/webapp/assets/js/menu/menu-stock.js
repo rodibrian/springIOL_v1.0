@@ -32,7 +32,6 @@ $(function () {
             url: url,
             contentType: "application/json",
             success: function (data) {
-                console.log(data);
                 // Supprimer les données dans la table
                 $(namespace + " #inventory-table tbody tr").empty();
                 // ajouter les donnés dans la table
