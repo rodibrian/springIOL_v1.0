@@ -16,6 +16,27 @@ $(function () {
     let CLIENT = 0 ;
 
     /*
+
+    mask et validation
+
+     */
+
+    $(function() {
+
+        $(namespace + 'form').validate({
+            rules: {
+                adresse : {required:true},
+            },
+            messages : {
+                adresse: {required: 'Veuillez remplir l\'adresse'}
+            }
+        })
+
+        $(namespace + '#numCIN').mask('999 999 999 999')
+        $(namespace + '#contact').mask('+261 99 99 999 99')
+    })
+
+    /*
      fermer l'info listes article facture
      */
 
@@ -85,25 +106,36 @@ $(function () {
      enregistrement nouveau client
      */
 
+    function validation_client() {
+        $(namespace + 'form').validate();
+        return $(namespace + 'form').valid();
+    }
+
     $(namespace + '#nouveau-client #btn-enregistrer-client').on('click', function () {
 
-        let nomClient = $(namespace + '#nouveau-client input#nomClient').val();
-        let cin = $(namespace + '#nouveau-client input#numCIN').val();
-        let adresse = $(namespace + '#nouveau-client input#adresse').val();
-        let contact = $(namespace + '#nouveau-client input#contact').val();
-        let nif = $(namespace + '#nouveau-client input#nif').val();
-        let stat = $(namespace + '#nouveau-client input#stat').val();
-        let cif = $(namespace + '#nouveau-client input#cif').val();
-        let client = {};
-        client.nom = nomClient;
-        client.cin = cin;
-        client.adresse = adresse;
-        client.numTel = contact;
-        client.nif = nif;
-        client.stat = stat;
-        client.cif = cif;
-        client.typeCf = CLIENT;
-        enregistrerClientOuFournisseur(client);
+        if (validation_client()) {
+
+            $(namespace + ".modal").modal('hide');
+
+            let nomClient = $(namespace + '#nouveau-client input#nomClient').val();
+            let cin = $(namespace + '#nouveau-client input#numCIN').val();
+            let adresse = $(namespace + '#nouveau-client input#adresse').val();
+            let contact = $(namespace + '#nouveau-client input#contact').val();
+            let nif = $(namespace + '#nouveau-client input#nif').val();
+            let stat = $(namespace + '#nouveau-client input#stat').val();
+            let cif = $(namespace + '#nouveau-client input#cif').val();
+            let client = {};
+            client.nom = nomClient;
+            client.cin = cin;
+            client.adresse = adresse;
+            client.numTel = contact;
+            client.nif = nif;
+            client.stat = stat;
+            client.cif = cif;
+            client.typeCf = CLIENT;
+            enregistrerClientOuFournisseur(client);
+        }
+
     })
 
     /*

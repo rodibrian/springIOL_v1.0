@@ -4,7 +4,7 @@ $(function () {
         JS NOUVEAU ARTICLE
 
      ---------------------------*/
-    let namespace = "#new-article";
+    let namespace = "#new-article ";
     let isCreateArticle = true;
     let editedArticleId = 1;
 
@@ -35,12 +35,12 @@ $(function () {
 
                 $("#table-unite tbody tr th #edit_" + length).hide();
                 $("#table-unite tbody tr th #del_" + length).hide();
-                let tr = `<tr>
+                let tr = `<tr class="not-default-unite">
                             <td class="d-none"><input type="text" required  class="form-control input-sm" value="000"></td>
                             <td><input type="text" required  class="form-control input-sm not-editable" value="0"></td>
                             <td><input type="text" required  class="form-control input-sm" value="designation"></td>
-                            <td><input type="text" required  class="form-control input-sm" value="0"></td>
-                            <td><input type="text" required  class="form-control input-sm" value="0Kg"></td>
+                            <td><input type="text" required  class="form-control input-sm" value="1"></td>
+                            <td><input type="text" required  class="form-control input-sm" value="1"></td>
                             <td class="d-inline-flex">
                                 <a class="btn btn-primary btn-sm btn-edit-unite"><i class="uil-pen"></i></a>&nbsp;
                                 <a class="btn btn-danger btn-sm btn-del-unite"><i class="uil-trash-alt"></i></a>&nbsp;
@@ -193,6 +193,7 @@ $(function () {
                                 </td>
                             </tr>`;
                             table.append(tableRow);
+
                         });
                     }
                 })
@@ -205,6 +206,9 @@ $(function () {
                 data: JSON.stringify(article),
                 success: function (data) {
                     saveAllUnite(data);
+                    $(namespace + '#table-unite tbody').children('.not-default-unite').remove();
+                    $(namespace + '#table-unite tbody tr.default-unite').children().eq(2).children().val('designation');
+                    $(namespace + '#table-unite tbody tr.default-unite').children().eq(4).children().val('1');
                 }
             });
         }
@@ -214,18 +218,29 @@ $(function () {
             let categorieLibelle = $("#categorie option:selected").text();
         }
 
+        function isValidArticle() {
+
+            // validation rules
+
+            return $(namespace + 'form').valid();
+        }
+
         // enregistrement de l'article
 
         $("#saveArticleBtn").click(() => {
+            if (isValidArticle()) {
+                $(namespace).modal('hide');
 
-            if (isCreateArticle) {
-                createArticleAndUnite();
-                createToast('bg-success', 'uil-file-check', 'Creation Fait', 'Creation d\'un nouveau article effectu&eacute; avec succ&egrave;s!')
-            } else {
-                updateArticle();
-                isCreateArticle = true;
-                createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification de l\'article effectu&eacute; avec succ&egrave;s!')
+                if (isCreateArticle) {
+                    createArticleAndUnite();
+                    createToast('bg-success', 'uil-file-check', 'Creation Fait', 'Creation d\'un nouveau article effectu&eacute; avec succ&egrave;s!')
+                } else {
+                    updateArticle();
+                    isCreateArticle = true;
+                    createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification de l\'article effectu&eacute; avec succ&egrave;s!')
+                }
             }
+
         });
     }
 

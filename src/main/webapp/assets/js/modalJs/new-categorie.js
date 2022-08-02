@@ -29,43 +29,25 @@ $(function () {
 
     });
 
-    $("#saveCategorieBtn").click(function () {
+    function isValidCategorie() {
+        // validation rules
+        return $(namespace + "form").valid();
+    }
 
-        let newVal = $("#nomCategorie").val();
-        if (!isUpdateOperation) {
-            let categoriesUrl = 'http://localhost:8080/api/v1/categories';
-            let jsonData = {
-                libelle: newVal
-            };
-            $.ajax({
-                type: 'POST',
-                url: categoriesUrl,
-                contentType: 'application/json',
-                data: JSON.stringify(jsonData),
-                success: function (data) {
+    $(namespace + "#saveCategorieBtn").click(function () {
+        if (isValidCategorie()) {
 
-                    //reset the input
+            $(this).closest('.modal').modal('hide')
 
-                    $("#nomCategorie").val("");
-
-                    /* ACTION */
-
-                    $tdActionContent = $(' ' + '<div class="d-inline-flex justify-content-center">' + '<a href="#" class="deleteCategorie"><i class="uil-trash-alt"></i></a>' + '<a href="#" class="editCategorie"><i class="uil-pen"></i></a>' + '</div>');
-                    $oneCategorie = [data.libelle,$tdActionContent];
-                    push_to_table_list("#categorieTabList",data.id,$oneCategorie)
-
-                }
-            });
-            createToast('bg-success', 'uil-file-check', 'Creation Fait', 'Creation du nouveau cat&eacute;gorie effectu&eacute; avec succ&egrave;s!')
-        } else {
-            if (selectedVal !== newVal) {
-                let url = "http://localhost:8080/api/v1/categories/" + editBtnId;
+            let newVal = $("#nomCategorie").val();
+            if (!isUpdateOperation) {
+                let categoriesUrl = 'http://localhost:8080/api/v1/categories';
                 let jsonData = {
                     libelle: newVal
                 };
                 $.ajax({
-                    type: 'PUT',
-                    url: url,
+                    type: 'POST',
+                    url: categoriesUrl,
                     contentType: 'application/json',
                     data: JSON.stringify(jsonData),
                     success: function (data) {
@@ -73,12 +55,39 @@ $(function () {
                         //reset the input
 
                         $("#nomCategorie").val("");
-                        siblings.html(newVal)
+
+                        /* ACTION */
+
+                        $tdActionContent = $(' ' + '<div class="d-inline-flex justify-content-center">' + '<a href="#" class="deleteCategorie"><i class="uil-trash-alt"></i></a>' + '<a href="#" class="editCategorie"><i class="uil-pen"></i></a>' + '</div>');
+                        $oneCategorie = [data.libelle,$tdActionContent];
+                        push_to_table_list("#categorieTabList",data.id,$oneCategorie)
+
                     }
                 });
-                createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification du cat&eacute;gorie effectu&eacute; avec succ&egrave;s!')
+                createToast('bg-success', 'uil-file-check', 'Creation Fait', 'Creation du nouveau cat&eacute;gorie effectu&eacute; avec succ&egrave;s!')
+            } else {
+                if (selectedVal !== newVal) {
+                    let url = "http://localhost:8080/api/v1/categories/" + editBtnId;
+                    let jsonData = {
+                        libelle: newVal
+                    };
+                    $.ajax({
+                        type: 'PUT',
+                        url: url,
+                        contentType: 'application/json',
+                        data: JSON.stringify(jsonData),
+                        success: function (data) {
+
+                            //reset the input
+
+                            $("#nomCategorie").val("");
+                            siblings.html(newVal)
+                        }
+                    });
+                    createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification du cat&eacute;gorie effectu&eacute; avec succ&egrave;s!')
+                }
+                isUpdateOperation = false;
             }
-            isUpdateOperation = false;
         }
     });
 

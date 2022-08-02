@@ -1,9 +1,10 @@
 <%@ include file="template/head.jsp" %>
+
 <i class="no-title" title="Vente"></i>
 <div class="row d-flex justify-content-center align-items-center bg-ligth" id="menu-vente" data-plugin="dragula">
   <div class="col-md-11">
     <div class="card mt-3 mb-3">
-      <div class="card-body bg-light text-dark was-validated">
+      <form class="card-body bg-light text-dark needs-validation">
         <blockquote class="card-bodyquote mb-0">
           <!-- vente content -->
           <div class="row form-vente">
@@ -80,7 +81,7 @@
                 <button type="button" class="btn btn-ajouter-article-vente btn-success mb-1 mt-3"><i
                         class="uil-plus"></i>&nbsp;Ajouter
                 </button>
-                <button type="button" class="btn btn-enregistrer-vente btn-primary mb-1"><i class="uil-save"></i>Enregistrer</button>
+                <button type="submit" class="btn btn-enregistrer-vente btn-primary mb-1"><i class="uil-save"></i>Enregistrer</button>
               </div>
               <!-- end d-grid -->
             </div>
@@ -109,20 +110,27 @@
           </div>
           <!-- end vente content -->
         </blockquote>
-      </div> <!-- end card-body-->
+      </form> <!-- end card-body-->
     </div> <!-- end card-->
   </div> <!-- end col-->
 
 
   <!-- modal list -->
+
   <div class="all-modal">
+
     <div class="temporally"></div>
+
     <%@ include file="modal/vente/list-article.jsp" %>
     <%@ include file="modal/vente/list-client.jsp" %>
     <%@ include file="modal/vente/prix-special.jsp" %>
     <%@ include file="modal/impression/ticket-caisse.jsp" %>
     <%@ include file="modal/impression/facture-vente.jsp" %>
+
   </div>
+
   <!-- end modal list -->
+
 </div>
+
 <%@ include file="template/setting.jsp" %>

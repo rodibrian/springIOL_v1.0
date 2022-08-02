@@ -148,39 +148,51 @@ $(function () {
         '<li>Somme : <strong>' + $sommeVente + ' Ar</strong></li>' +
         '';
 
+    function isValidVente() {
+
+        // validation rules
+        return $(namespace + 'form').valid();
+
+    }
+
     $(namespace+'.form-vente .btn-enregistrer-vente').on('click',function (){
+        if (isValidVente()) {
 
-        $modalId = 'confirmation-de-vente';
+            console.log('ici--')
 
-        function persistSales() {
+            $modalId = 'confirmation-de-vente';
 
-            // button de validation
+            function persistSales() {
 
-            $.ajax({
-                type: "POST",
-                url: "http://localhost:8080/api/v1/sales",
-                contentType: "application/json",
-                data: JSON.stringify(venteTab),
-                success: function (data) {
-                    venteTab = [];
+                // button de validation
 
-                    // impresion
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8080/api/v1/sales",
+                    contentType: "application/json",
+                    data: JSON.stringify(venteTab),
+                    success: function (data) {
+                        venteTab = [];
 
-                    // vider table
+                        // impresion
 
-                    $(namespace + '#table-liste-article-vente tbody tr').remove();
-                    $(namespace + '#' + $modalId).modal('hide');
-                    createToast('bg-success', 'uil-file-check-alt', 'Vente Fait', 'Vente enregistr&eacute; avec succ&egrave;s!')
+                        // vider table
+
+                        $(namespace + '#table-liste-article-vente tbody tr').remove();
+                        $(namespace + '#' + $modalId).modal('hide');
+                        createToast('bg-success', 'uil-file-check-alt', 'Vente Fait', 'Vente enregistr&eacute; avec succ&egrave;s!')
 
 
-                }
-            });
+                    }
+                });
+            }
+            create_confirm_dialog('Confirmation de Vente', $content, $modalId, 'Enregistrer', 'btn-primary')
+                .on('click', function () {
+                    impression_vente();
+                    persistSales();
+                })
         }
-        create_confirm_dialog('Confirmation de Vente', $content, $modalId, 'Enregistrer', 'btn-primary')
-            .on('click', function () {
-                impression_vente();
-                persistSales();
-            })
+
     });
 
     function impression_vente() {
