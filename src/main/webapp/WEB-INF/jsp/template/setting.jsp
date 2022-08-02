@@ -130,6 +130,7 @@
 <script src=”https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js”></script>
 
 <script src="${pageContext.request.contextPath}/assets/js/mini-function.js"></script>
+<%--<script src="${pageContext.request.contextPath}/assets/js/validation/dist/bootstrap-validate.js"></script>--%>
 <script src="${pageContext.request.contextPath}/assets/js/html-content.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/impression.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/dashboard.js"></script>

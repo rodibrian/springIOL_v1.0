@@ -1,3 +1,5 @@
+import {bootstrapValidate} from "../bootstrap-validate";
+
 $(function () {
 
     let namespace = "#menu-magasin ";
@@ -32,8 +34,15 @@ $(function () {
 
     --------------------------------------------------------- */
 
+    function validation() {
+        $('#new-magasin form').on('submit', function() {
+            alert('submit')
+        })
+    }
 
     $(namespace + '#btn-enregistrer-magasin').on('click', function () {
+
+        validation();
 
         // $nomMagasin = $(namespace + '#nom-magasin').val();
         // $adresseMagasin = $(namespace + '#adresse-magasin').val();

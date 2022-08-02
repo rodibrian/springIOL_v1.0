@@ -2,7 +2,7 @@
 <div class="row d-flex justify-content-center align-items-center bg-secondary namespace" id="menu-entree-article"
      data-plugin="dragula">
   <div class="col-md-11">
-    <div class="card mt-3 mb-3 was-validated">
+    <form class="card mt-3 mb-3 was-validated needs-validation" novalidate>
       <div class="card-body bg-light text-dark">
         <blockquote class="card-bodyquote mb-0">
           <!-- vente content -->
@@ -102,7 +102,7 @@
                 <button type="button" id="btn-ajouter-article-entree" class="btn btn-success mb-1 mt-3"><i
                         class="uil-plus"></i>&nbsp;Ajouter
                 </button>
-                <button type="button" id="btn-enregistrer-article-entree" class="btn btn-primary mb-1"><i
+                <button type="submit" id="btn-enregistrer-article-entree" class="btn btn-primary mb-1"><i
                         class="uil-save"></i>Enregistrer
                 </button>
               </div>
@@ -132,7 +132,7 @@
           <!-- end vente content -->
         </blockquote>
       </div> <!-- end card-body-->
-    </div> <!-- end card-->
+    </form> <!-- end card-->
     <div class="all-modal">
       <!-- modal list -->
       <%@ include file="../modal/vente/list-article.jsp" %>
