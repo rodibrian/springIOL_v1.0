@@ -20,7 +20,6 @@ import java.util.List;
 @Controller
 @SessionAttributes(names = {"connectedUser","articles"})
 public class MenuNavController{
-
     private final String CATEGORIE_LIST = "categories";
     private final String ARTICLE_LIST = "articles";
     private final String MAGASIN_LIST = "magasins";
@@ -50,14 +49,6 @@ public class MenuNavController{
         return "embarquement/menu-embarquement";
     }
 
-    @RequestMapping(value = "/embarquement-nouveau", method = RequestMethod.GET)
-    public ModelAndView getNouveauEmbarquement() {
-        ModelAndView modelAndView = new ModelAndView("embarquement/nouveau-embarquement");
-        modelAndView.addObject("cfList_embarquement", clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR));
-        modelAndView.addObject(MATERIEL_TRANSPORT_LIST, this.materielTransportRepository.findAll());
-        return modelAndView;
-    }
-
     @RequestMapping(value = "/archivage", method = RequestMethod.GET)
     public String getMenuArchivage() {
         return "menu-archivage";
@@ -83,20 +74,6 @@ public class MenuNavController{
         return "menu-paiement";
     }
 
-    @RequestMapping(value = "/peremption", method = RequestMethod.GET)
-    public String getMenuPeremption() {
-        return "menu-peremption";
-    }
-
-
-    @RequestMapping(value = "/utilisateur",method = RequestMethod.GET)
-    public ModelAndView getMenuUtilisateur(){
-        ModelAndView modelAndView = new ModelAndView("menu-utilisateur");
-        modelAndView.addObject(FONCTION_LIST, fonctionRepository.findAll());
-        modelAndView.addObject(USER_LIST, userRepository.findAll());
-        modelAndView.addObject(MAGASIN_LIST, magasinRepository.findAll());
-        return modelAndView;
-    }
 
     @RequestMapping(value = "/voyage", method = RequestMethod.GET)
     public String getMenuVoyage() {
@@ -203,15 +180,6 @@ public class MenuNavController{
         return modelAndView;
     }
 
-    @RequestMapping(value = "/operation/changer-de-code", method = RequestMethod.GET)
-    public String getOperationLChangerDeCode() {
-        return "operation/changer-de-code";
-    }
-
-    @RequestMapping(value = "/operation/rectification", method = RequestMethod.GET)
-    public String getOperationRectification() {
-        return "operation/rectification";
-    }
 
 
     /*
@@ -226,6 +194,7 @@ public class MenuNavController{
     }
 
 
+    
     /*
     Administration
      */
@@ -311,7 +280,6 @@ public class MenuNavController{
     @Autowired private InfoArticleMagasinRepository infoArticleMagasinRepository;
     @Autowired private VenteRepository venteRepository;
     @Autowired private TransfertRepository transfertRepository;
-    @Autowired private PricesRepository pricesRepository;
     @Autowired private SalesService salesService;
 }
 

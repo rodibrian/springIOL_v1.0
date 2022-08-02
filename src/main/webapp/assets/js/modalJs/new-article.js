@@ -1,13 +1,9 @@
 $(function () {
 
-
     /*--------------------------
-
         JS NOUVEAU ARTICLE
 
      ---------------------------*/
-
-
     let namespace = "#new-article";
     let isCreateArticle = true;
     let editedArticleId = 1;
@@ -288,6 +284,7 @@ $(function () {
 
         $(".editArticleBtn").click(function () {
 
+
             isCreateArticle = false;
             editedArticleId = $(this).attr("id");
             console.log(" Edited article = " + editedArticleId);
@@ -340,7 +337,7 @@ $(function () {
             $classButton = $deleted ? "btn-danger" : "bg-warning";
             create_confirm_dialog($modalText, $modalTitle, $modalId, "Oui ," + $labelButton, $classButton)
                 .on('click', function () {
-                    $status = $deleted ? "DELETED" : "HIDEN";
+                    $status = $deleted ? "DELETED" : "HIDDEN";
                     $url = $articleUrl + "/" + $id + "/" + $status;
                     $.ajax({
                         type: 'PUT',

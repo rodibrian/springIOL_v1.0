@@ -14,7 +14,7 @@ $(function() {
     //             hideAndRemove(namespace + '#' + $modalId + '');
     //         })
     // })
-    // masquer article
+    // // masquer article
     // $(document).on('click',namespace + '#articleTable .hideArticleBtn', function() {
     //     $codeArticle = $(this).closest('tr').children().eq(0).text();
     //     $trCurrent = $(this).closest('tr');

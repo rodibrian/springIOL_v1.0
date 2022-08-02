@@ -41,15 +41,15 @@ BEGIN
             nouveau_quantite_en_stock := quantite_en_stock_actuelement + (new.quantite_ajout*quantite_niveau_unite) ;
 
             new.quantite_stock_apres_operation := (quantite_en_stock_actuelement/quantite_niveau_unite) + new.quantite_ajout;
-
+            
             if new.type_operation like '%TRANSFERT%' AND  new.type_operation like '%VERS%' then
+                   
+                    nouveau_quantite_en_stock := quantite_en_stock_actuelement - (new.quantite_ajout*quantite_niveau_unite);
 
-                nouveau_quantite_en_stock := quantite_en_stock_actuelement - (new.quantite_ajout*quantite_niveau_unite);
-
-                new.quantite_stock_apres_operation :=  (quantite_en_stock_actuelement/quantite_niveau_unite) - quantite_niveau_unite;
-
+                    new.quantite_stock_apres_operation :=  (quantite_en_stock_actuelement/quantite_niveau_unite) - quantite_niveau_unite;
+            
             end if;
-
+            
         end if;
 
         if new.type_operation = 'VENTE' or new.type_operation = 'SORTIE' or new.type_operation = 'AVOIR' then
@@ -57,16 +57,17 @@ BEGIN
             nouveau_quantite_en_stock := quantite_en_stock_actuelement - (new.quantite_ajout*quantite_niveau_unite) ;
 
             new.quantite_stock_apres_operation :=  (quantite_en_stock_actuelement/quantite_niveau_unite) - new.quantite_ajout;
-
+        
         end if;
 
         -- Mis-a-jour du stock
         update stock set count = nouveau_quantite_en_stock where article_id = NEW.article_id AND unite_id = primary_unite_id AND magasin_id = NEW.magasin_id;
         quantite_en_stock_actuelement :=0;
+
     end if;
-    RETURN NEW; --ignored since this is after trigger
+    RETURN NEW; --ignored since this is after trigger 
 END;
 $$;
 
 alter function before_insert_on_info_article_unite_magasin() owner to postgres;
-create trigger info_article_trigger before insert on info_article_magasin FOR EACH ROW execute procedure before_insert_on_info_article_unite_magasin();
+
