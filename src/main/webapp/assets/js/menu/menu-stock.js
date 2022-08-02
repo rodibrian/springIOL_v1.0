@@ -1,5 +1,4 @@
 $(function () {
-
     const namespace = "#menu-stock ";
     const TOUTES = "";
     const INVENTORY_URL = "http://localhost:8080/api/v1/inventories";
@@ -14,13 +13,9 @@ $(function () {
     exportToExcel(namespace + '.btn-export-to-excel','stocks-' , namespace + '#inventory-table')
 
     // CONST
-
     const QUANTITE_ALERT = 0;
-
     // css
-
     $('.btn-40').css('height', '40px');
-
     // Chargement des données de stock
 
     // $.each($lesArticles, function (key, article) {
@@ -55,9 +50,7 @@ $(function () {
 
         $currentArticleTr = $(this).closest('tr');
         $('#info-stock').attr('data-id', $currentArticleTr.attr('id'));
-
         // affectation des valeur de chaque paragraphe
-
         $('#info-stock p.label-code-article').text('Code Article : ' + $currentArticleTr.attr('id'));
         $('#info-stock p.label-designation-article').text('Designation : ' + $currentArticleTr.children('.designation-article').text());
         $('#info-stock p.label-unite-article').text('Unite : ' + $currentArticleTr.children('.unite-article').text());

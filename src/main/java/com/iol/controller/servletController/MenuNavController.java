@@ -1,8 +1,11 @@
 package com.iol.controller.servletController;
 
+import com.iol.model.tenantEntityBeans.Filiale;
+import com.iol.model.tenantEntityBeans.User;
 import com.iol.service.ArticleService;
 import com.iol.model.tenantEntityBeans.Magasin;
 import com.iol.repository.*;
+import com.iol.service.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,33 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
 @SessionAttributes(names = {"connectedUser","articles"})
 public class MenuNavController{
-    @Autowired
-    private CategorieRepository categorieRepository;
-    @Autowired
-    private MagasinRepository magasinRepository;
-    @Autowired
-    private FonctionRepository fonctionRepository;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private ClientFournisseurRepository clientFournisseurRepository;
-
-    @Autowired
-    private SupplyRepository supplyRepository;
-
-    @Autowired
-    private ArticleService articleService;
-
-    @Autowired
-    private MaterielTransportRepository materielTransportRepository;
-
-    @Autowired
-    private SubsidiaryRepository subsidiaryRepository;
 
     private final String CATEGORIE_LIST = "categories";
     private final String ARTICLE_LIST = "articles";
@@ -57,30 +40,10 @@ public class MenuNavController{
     private final String SORTIE_LIST = "sorties";
     private final String PRICES_LIST = "prices";
     private final String OPERATION_LIST = "operations";
+    private final String FACTURE_LIST = "factures";
 
     public MenuNavController() {
     }
-
-    @RequestMapping(
-            value = {"/articles"},
-            method = {RequestMethod.GET}
-    )
-    public ModelAndView getArticles() {
-        ModelAndView modelAndView = new ModelAndView("menu-article");
-        modelAndView.addObject(CATEGORIE_LIST, this.categorieRepository.findAll());
-        modelAndView.addObject(ARTICLE_LIST,articleService.findAll());
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/ventes", method = RequestMethod.GET)
-    public ModelAndView getVentes() {
-        ModelAndView modelAndView = new ModelAndView("menu-vente");
-        modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
-        modelAndView.addObject(ARTICLE_LIST,articleService.findAll());
-        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(CLIENT));
-        return modelAndView;
-    }
-
 
     @RequestMapping(value = "/embarquement", method = RequestMethod.GET)
     public String getMenuEmbarquement() {
@@ -108,20 +71,6 @@ public class MenuNavController{
     @RequestMapping(value = "/caisse", method = RequestMethod.GET)
     public String getMenuCaisse() {
         return "menu-caisse";
-    }
-
-    @RequestMapping(value = "/client", method = RequestMethod.GET)
-    public ModelAndView getClient() {
-        ModelAndView modelAndView = new ModelAndView("menu-client");
-        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST, clientFournisseurRepository.getAllExternalEntities(CLIENT));
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/fournisseur", method = RequestMethod.GET)
-    public ModelAndView getMenuFournisseur() {
-        ModelAndView modelAndView = new ModelAndView("menu-fournisseur");
-        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST, clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR));
-        return modelAndView;
     }
 
     @RequestMapping(value = "/livraison", method = RequestMethod.GET)
@@ -154,9 +103,27 @@ public class MenuNavController{
         return "menu-voyage";
     }
 
+    @RequestMapping(value = "/peremption", method = RequestMethod.GET)
+    public ModelAndView getMenuPeremption(){
+        ModelAndView modelAndView = new ModelAndView("menu-peremption");
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/facture", method = RequestMethod.GET)
-    public String getMenuFacture() {
-        return "menu-facture";
+    public ModelAndView getMenuFacture(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView( "menu-facture");
+        HttpSession session = request.getSession();
+        User connectedUser = (User)session.getAttribute("connectedUser");
+        List<Magasin> magasinList = connectedUser.getMagasin();
+        Filiale filiale = connectedUser.getFiliale();
+        Long filialeId = filiale.getId();
+        if (magasinList.size()>0){
+            Magasin magasin = magasinList.get(0);
+            Long magasinId = magasin.getId();
+            modelAndView.addObject(FACTURE_LIST,salesService.getFactureGroupByRefAndFilialeAndMagasin(magasinId,filialeId));
+        }else modelAndView.addObject(FACTURE_LIST,salesService.getFactureGroupByRefAndFiliale(filialeId));
+        modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
+        return modelAndView;
     }
 
     @Autowired
@@ -165,7 +132,49 @@ public class MenuNavController{
     @RequestMapping(value = "/prix", method = RequestMethod.GET)
     public ModelAndView getMenuPrix() {
         ModelAndView modelAndView = new ModelAndView("menu-prix");
-        modelAndView.addObject(PRICES_LIST,pricesRepository.findAll());
+        modelAndView.addObject(PRICES_LIST,pricesRepository.findAllByLastDate());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/operation/changer-de-code", method = RequestMethod.GET)
+    public String getOperationLChangerDeCode() {
+        return "operation/changer-de-code";
+    }
+
+    @RequestMapping(value = "/operation/rectification", method = RequestMethod.GET)
+    public String getOperationRectification() {
+        return "operation/rectification";
+    }
+
+    @RequestMapping(value = "/client", method = RequestMethod.GET)
+    public ModelAndView getClient() {
+        ModelAndView modelAndView = new ModelAndView("menu-client");
+        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST, clientFournisseurRepository.getAllExternalEntities(CLIENT));
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/fournisseur", method = RequestMethod.GET)
+    public ModelAndView getMenuFournisseur() {
+        ModelAndView modelAndView = new ModelAndView("menu-fournisseur");
+        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST, clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR));
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/embarquement-nouveau", method = RequestMethod.GET)
+    public ModelAndView getNouveauEmbarquement() {
+        ModelAndView modelAndView = new ModelAndView("embarquement/nouveau-embarquement");
+        modelAndView.addObject("cfList_embarquement", clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR));
+        modelAndView.addObject(MATERIEL_TRANSPORT_LIST, this.materielTransportRepository.findAll());
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/utilisateur",method = RequestMethod.GET)
+    public ModelAndView getMenuUtilisateur(){
+        ModelAndView modelAndView = new ModelAndView("menu-utilisateur");
+        modelAndView.addObject(FONCTION_LIST, fonctionRepository.findAll());
+        modelAndView.addObject(USER_LIST, userRepository.findAll());
+        modelAndView.addObject(MAGASIN_LIST, magasinRepository.findAll());
         return modelAndView;
     }
 
@@ -240,8 +249,26 @@ public class MenuNavController{
     @RequestMapping(value = "/operation/liste",method = RequestMethod.GET)
     public ModelAndView getOperationListe(){
         ModelAndView modelAndView = new ModelAndView("operation/liste");
-        modelAndView.addObject(OPERATION_LIST,infoArticleMagasinRepository.findAll());
+        modelAndView.addObject(OPERATION_LIST, activityRepository.findAll());
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"/articles"},method = {RequestMethod.GET}
+    )
+    public ModelAndView getArticles() {
+        ModelAndView modelAndView = new ModelAndView("menu-article");
+        modelAndView.addObject(CATEGORIE_LIST, this.categorieRepository.findAll());
+        modelAndView.addObject(ARTICLE_LIST,articleService.findAll());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/ventes", method = RequestMethod.GET)
+    public ModelAndView getVentes() {
+        ModelAndView modelAndView = new ModelAndView("menu-vente");
+        modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
+        modelAndView.addObject(ARTICLE_LIST,articleService.findAll());
+        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(CLIENT));
         return modelAndView;
     }
 
@@ -250,7 +277,8 @@ public class MenuNavController{
     @RequestMapping(value = "/detail-ventes", method = RequestMethod.GET)
     public ModelAndView getDetailVentes() {
         ModelAndView modelAndView = new ModelAndView("menu-detail-vente");
-        modelAndView.addObject(SALES_LIST, venteRepository.findAll());
+        modelAndView.addObject(SALES_LIST, salesRepository.findAll());
+        modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAll());
         return modelAndView;
     }
 
@@ -270,8 +298,20 @@ public class MenuNavController{
         return modelAndView;
     }
 
+    @Autowired private ActivityRepository activityRepository;
+    @Autowired private CategorieRepository categorieRepository;
+    @Autowired private MagasinRepository magasinRepository;
+    @Autowired private FonctionRepository fonctionRepository;
+    @Autowired private UserRepository userRepository;
+    @Autowired private ClientFournisseurRepository clientFournisseurRepository;
+    @Autowired private ArticleService articleService;
+    @Autowired private MaterielTransportRepository materielTransportRepository;
+    @Autowired private SubsidiaryRepository subsidiaryRepository;
+    @Autowired private SalesRepository salesRepository;
     @Autowired private InfoArticleMagasinRepository infoArticleMagasinRepository;
     @Autowired private VenteRepository venteRepository;
     @Autowired private TransfertRepository transfertRepository;
+    @Autowired private PricesRepository pricesRepository;
+    @Autowired private SalesService salesService;
 }
 

@@ -4,13 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd9c0e93-77b1-4a8f-96ad-44ae32dfbfef" name="Changes" comment="mapping de la trigger avec la table approvisionnement">
+    <list default="true" id="bd9c0e93-77b1-4a8f-96ad-44ae32dfbfef" name="Changes" comment="reste menu-operation filtre">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/AlertStock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/wrapper/FactureWrapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iol/repository/AlertStockRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/new-magasin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/new-magasin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/operation/entree.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/operation/entree.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/template/setting.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/template/setting.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-magasin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-magasin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/SalesRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/SalesRessource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/servletController/MenuNavController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/servletController/MenuNavController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Magasin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Magasin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Vente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Vente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/repository/SalesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/repository/SalesRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/service/SalesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/service/SalesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-facture.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-facture.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/info-stock.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/info-stock.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-facture.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-facture.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-stock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-stock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/iol/repository/SalesRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/iol/repository/SalesRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/SalesRessource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/SalesRessource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/servletController/MenuNavController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/servletController/MenuNavController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Magasin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Magasin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Vente.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Vente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/SalesRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/repository/SalesRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/service/SalesService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/service/SalesService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/iol/repository/SalesRepositoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/iol/repository/SalesRepositoryTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +38,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
         <option value="Interface" />
       </list>
     </option>
@@ -43,11 +61,11 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/iol/model/entityEnum/Sexe.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/iol/model/entityEnum/SituationMatrimoniale.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Personne.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/PersonnePhysique.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/User.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/iol/model/entityEnum/Sexe.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/PersonnePhysique.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Personne.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
@@ -79,19 +97,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;385464f942b4e33331157569038c93a2&quot;
-  }
-}</component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="postgresql" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
+  </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -103,89 +125,49 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\PROJET\Intellij\springIOL_v1.0\src\main\webapp\assets\js" />
       <recent name="C:\Users\tombo augustin\IdeaProjects\springIOL_v1.0\src\main\resources\SCRIPT" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.iol.repository" />
     </key>
   </component>
-  <component name="RunAnythingCache">
-    <option name="myCommands">
-      <command value="magasin" />
-    </option>
-  </component>
-  <component name="RunDashboard">
-    <option name="configurationTypes">
-      <set>
-        <option value="SpringBootApplicationConfigurationType" />
-      </set>
+  <component name="RestClientSettings">
+    <option name="REQUEST_HISTORY">
+      <list>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/v1/subsidiaries/7/2/1" />
+          <option name="urlPath" value="" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/v1/subsidiaries/7/1/2" />
+          <option name="urlPath" value="" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/v1/magasins/2/sales" />
+          <option name="urlPath" value="" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8080/api/v1/magasins/1/sales" />
+          <option name="urlPath" value="" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+      </list>
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.Iol">
-    <configuration name="ArticleRepositoryTest.getQuantiteNiveau" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="iol" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.iol.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.iol.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.iol.repository.ArticleRepositoryTest" />
-      <option name="METHOD_NAME" value="getQuantiteNiveau" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ArticleRepositoryTest.testGetStockWithPriceAndExpirationDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="iol" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.iol.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.iol.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.iol.repository.ArticleRepositoryTest" />
-      <option name="METHOD_NAME" value="testGetStockWithPriceAndExpirationDate" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ArticleRepositoryTest.testGetStockWithPriceAndExpirationDate1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="iol" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.iol.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.iol.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.iol.repository.ArticleRepositoryTest" />
-      <option name="METHOD_NAME" value="testGetStockWithPriceAndExpirationDate1" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ArticleRepositoryTest.testSaveInventory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="iol" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.iol.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.iol.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.iol.repository.ArticleRepositoryTest" />
-      <option name="METHOD_NAME" value="testSaveInventory" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="generated-requests#93" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="93" runType="Run single request">
+      <method v="2" />
     </configuration>
     <configuration name="PricesRepositoryTest.findAllByLastDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="iol" />
@@ -203,6 +185,54 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SalesRepositoryTest.findAllTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="iol" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.iol.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.iol.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.iol.repository.SalesRepositoryTest" />
+      <option name="METHOD_NAME" value="findAllTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SalesRepositoryTest.getBillDetails" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="iol" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.iol.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.iol.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.iol.repository.SalesRepositoryTest" />
+      <option name="METHOD_NAME" value="getBillDetails" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SalesRepositoryTest.getFactureGroupByRef" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="iol" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.iol.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.iol.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.iol.repository.SalesRepositoryTest" />
+      <option name="METHOD_NAME" value="getFactureGroupByRef" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Iol (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="iol" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.iol.Iol" />
@@ -211,20 +241,20 @@
       </method>
     </configuration>
     <configuration name="Iol" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <option name="ACTIVE_PROFILES" />
       <module name="iol" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.iol.Iol" />
+      <option name="ACTIVE_PROFILES" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ArticleRepositoryTest.testGetStockWithPriceAndExpirationDate1" />
-        <item itemvalue="JUnit.ArticleRepositoryTest.testGetStockWithPriceAndExpirationDate" />
+        <item itemvalue="JUnit.SalesRepositoryTest.getBillDetails" />
+        <item itemvalue="JUnit.SalesRepositoryTest.getFactureGroupByRef" />
+        <item itemvalue="JUnit.SalesRepositoryTest.findAllTest" />
         <item itemvalue="JUnit.PricesRepositoryTest.findAllByLastDate" />
-        <item itemvalue="JUnit.ArticleRepositoryTest.testSaveInventory" />
-        <item itemvalue="JUnit.ArticleRepositoryTest.getQuantiteNiveau" />
+        <item itemvalue="HTTP Request.generated-requests#93" />
       </list>
     </recent_temporary>
   </component>
@@ -261,13 +291,21 @@
       <workItem from="1658945206023" duration="14262000" />
       <workItem from="1658963916800" duration="4652000" />
       <workItem from="1658982565041" duration="6186000" />
-      <workItem from="1658996524157" duration="5388000" />
-      <workItem from="1659085737417" duration="1702000" />
-      <workItem from="1659092761490" duration="9336000" />
-      <workItem from="1659105077316" duration="2844000" />
-      <workItem from="1659118655176" duration="8493000" />
-      <workItem from="1659339619584" duration="13486000" />
-      <workItem from="1659426403918" duration="801000" />
+      <workItem from="1658996524157" duration="5507000" />
+      <workItem from="1659004767475" duration="12704000" />
+      <workItem from="1659061682510" duration="13553000" />
+      <workItem from="1659085818809" duration="22805000" />
+      <workItem from="1659191351617" duration="10901000" />
+      <workItem from="1659211727844" duration="75000" />
+      <workItem from="1659266417755" duration="530000" />
+      <workItem from="1659273827530" duration="4432000" />
+      <workItem from="1659282431879" duration="4049000" />
+      <workItem from="1659326261746" duration="878000" />
+      <workItem from="1659346200220" duration="579000" />
+      <workItem from="1659351156258" duration="21256000" />
+      <workItem from="1659411707894" duration="1184000" />
+      <workItem from="1659415451562" duration="720000" />
+      <workItem from="1659422451607" duration="2644000" />
     </task>
     <task id="LOCAL-00001" summary="mapping de la trigger avec la table approvisionnement">
       <created>1658448504125</created>
@@ -276,7 +314,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658448504125</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="reste menu-operation filtre">
+      <created>1659002035360</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1659002035360</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,11 +337,13 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="RELOAD_CONTEXT" value="false" />
     <MESSAGE value="mapping de la trigger avec la table approvisionnement" />
-    <option name="LAST_COMMIT_MESSAGE" value="mapping de la trigger avec la table approvisionnement" />
+    <MESSAGE value="reste menu-operation filtre" />
+    <option name="LAST_COMMIT_MESSAGE" value="reste menu-operation filtre" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

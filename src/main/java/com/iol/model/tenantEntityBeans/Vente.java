@@ -33,5 +33,8 @@ public class Vente implements Serializable{
     private Double remise;
 
     @Column
+    private Double reste;
+
+    @Column
     private Double montantVente;
 }

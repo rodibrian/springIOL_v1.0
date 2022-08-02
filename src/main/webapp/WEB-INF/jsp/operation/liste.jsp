@@ -23,9 +23,16 @@
         </div>
       </div>
       <div class="d-inline-flex mt-1">
-        <input type="date" class="form-control">&nbsp;
-        <input type="date" class="form-control">&nbsp;
-        <select required name="magasin" id="magasin" class="form-select">
+
+          <input type="date" id="begin-date-input" class="form-control">&nbsp;
+
+          <input type="date" id="end-date-input" class="form-control">&nbsp;
+
+          <a type="button" id="search-button" class="btn btn-success mr-1">
+              <i class="uil-search-alt"></i>
+          </a>
+
+        <select name="magasin" id="magasin-select-operation" class="form-select">
           <c:forEach var="magasin" items="${magasins}">
             <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
           </c:forEach>

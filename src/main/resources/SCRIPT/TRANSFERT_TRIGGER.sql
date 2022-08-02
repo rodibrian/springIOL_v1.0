@@ -1,1 +1,0 @@
-create trigger transfert_trigger before insert or update on transfert for each row execute procedure update_stock();

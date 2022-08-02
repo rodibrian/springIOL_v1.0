@@ -25,11 +25,11 @@
       <div class="d-inline-flex mt-1">
         <input type="date" class="form-control btn-40">&nbsp;&agrave;&nbsp;
         <input type="date" class="form-control btn-40">&nbsp;
-        <select required name="magasin" id="" class="form-select btn-40">
+        <select name="magasin" id="" class="form-select btn-40">
           <option value="0">Magasin I</option>
           <option value="0">Magasin II</option>
         </select>&nbsp;
-        <h4 class="d-none">Nombre : <%= "00" %>
+        <h4 class="">Nombre : ${factures.size()}
         </h4>
       </div>
     </div>
@@ -52,39 +52,31 @@
           <tr>
             <th>Réference</th>
             <th>Client</th>
-            <th>Article</th>
-            <th>Unite</th>
-            <th>Quantite</th>
-            <th>Prix Unitaire</th>
             <th>Montant</th>
-            <th>Date</th>
+            <th>Operateur</th>
+            <th>Date et heure</th>
             <th>Action</th>
           </tr>
           </thead>
           <tbody>
-          <% for (int i = 0; i < 10; i++) { %>
-          <tr>
-            <td>Ref 000 000 000 00</td>
-            <td>Nom du Client</td>
-            <td>Designation d'article</td>
-            <td>unite</td>
-            <td>00</td>
-            <td>0Ar</td>
-            <td>0Ar</td>
-            <td>05/06/2022</td>
-            <td class="d-flex justify-content-center">
-              <div>
-                <a class="btn-sm btn-info info-facture"><i class="uil-info-circle"></i></a>
-                <a class="btn-sm btn-success imprimer-facture"><i class="uil-print"></i></a>
-              </div>
-            </td>
-          </tr>
-          <% } %>
+          <c:forEach var="facture" items="${factures}">
+            <tr id="${facture.reference}">
+              <td>${facture.reference}</td>
+              <td>${facture.client}</td>
+              <td>${facture.montantTotal}</td>
+              <td>${facture.operateur}</td>
+              <td>${facture.date}</td>
+              <td class="d-flex justify-content-center">
+                <div>
+                  <a class="btn-sm btn-info info-facture"><i class="uil-info-circle"></i></a>
+                  <a class="btn-sm btn-success imprimer-facture"><i class="uil-print"></i></a>
+                </div>
+              </td>
+            </tr>
+          </c:forEach>
           </tbody>
         </table>
-
         <!-- Collapse facture information -->
-
         <div class="accordion" id="accordionExample">
           <div class="card mb-0">
             <div id="facture-info" class="collapse"
@@ -95,32 +87,25 @@
                 </div>
                 <div class="row" id="tab-article">
                   <div class="col-md-6">
-                    <table class="table table-striped table-sm dt-responsive norwap">
+                    <table id="facture-details-tab" class="table table-striped table-sm dt-responsive norwap">
                       <thead>
                       <th>Designation</th>
                       <th>Unite</th>
                       <th>Prix Unitaire</th>
+                      <th>Quantite</th>
                       <th>Montant</th>
                       </thead>
                       <tbody>
-                      <% for (int i = 0; i < 5; i++) { %>
-                      <tr>
-                        <td>Nomdelarticle</td>
-                        <td>unite</td>
-                        <td>0Ar</td>
-                        <td>0Ar</td>
-                      </tr>
-                      <% } %>
                       </tbody>
                     </table>
                   </div>
                   <div class="col-md-6">
-                    <h4>Facture numero : <%= "Ref 00000" %>
-                    </h4><br>
-                    <h4>Epece : <%= "0Ar" %>
-                    </h4><br>
-                    <h4>Autres : <%= "0Ar" %>
-                    </h4><br><br>
+                    <h4 id="num-facture"></h4><br>
+                    <h4 id="montant-facture"></h4><br>
+                    <h4 id="mode-payement"></h4><br>
+                    <h4 id="client-facture"></h4><br>
+                    <h4 id="date-facture"></h4><br>
+                    <h4 id="operateur-facture"></h4><br>
                     <button class="btn btn-danger btn-lg btn-avoir"><i class="uil-refresh"></i>&nbsp;Avoir</button>
                   </div>
                 </div>

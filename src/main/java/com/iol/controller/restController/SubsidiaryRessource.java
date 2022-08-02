@@ -1,24 +1,39 @@
 package com.iol.controller.restController;
 
 import com.iol.model.tenantEntityBeans.Filiale;
+import com.iol.model.tenantEntityBeans.PrixArticleFiliale;
+import com.iol.repository.PricesRepository;
+import com.iol.repository.SalesRepository;
 import com.iol.repository.SubsidiaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
-public class SubsidiaryRessource {
+public class SubsidiaryRessource{
 
     @Autowired
     private SubsidiaryRepository subsidiaryRepository;
 
+    @Autowired
+    private PricesRepository pricesRepository;
+
     @GetMapping(value = "/subsidiaries")
     public ResponseEntity<Object> getAllSubdiaries(){
         return new ResponseEntity<>(subsidiaryRepository.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/subsidiaries/{id}/{uniteId}/{articleId}")
+    public ResponseEntity<Object> getSubdiaryProductPrice(@PathVariable("id")Long filialeId,
+                                                          @PathVariable("uniteId")Long uniteId,
+                                                          @PathVariable("articleId") Long articleId){
+        List<PrixArticleFiliale> all = pricesRepository.findAll(uniteId, articleId, filialeId);
+        return new ResponseEntity<>(all, HttpStatus.OK);
     }
 
     @PutMapping("/subsidiaries/{id}")

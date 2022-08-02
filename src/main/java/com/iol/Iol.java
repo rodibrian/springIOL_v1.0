@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import pl.allegro.finance.tradukisto.MoneyConverters;
 import pl.allegro.finance.tradukisto.ValueConverters;
 import pl.allegro.finance.tradukisto.internal.IntegerToStringConverter;
@@ -21,6 +22,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 @SpringBootApplication
+@ServletComponentScan
 public class Iol {
     public static void main(String[] args) {
         SpringApplication.run(Iol.class,args);

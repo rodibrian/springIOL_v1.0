@@ -1,8 +1,6 @@
 package com.iol.model.tenantEntityBeans;
 import com.iol.model.entityEnum.ModePayement;
 import lombok.Data;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Date;

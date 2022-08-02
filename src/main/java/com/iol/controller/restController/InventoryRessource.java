@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1")
 public class InventoryRessource {
 
-    @Autowired
-    private ArticleService articleService;
+    @Autowired private ArticleService articleService;
 
     @GetMapping("/inventories/stores/{id}")
     public ResponseEntity<Object> getInventories(@PathVariable("id") Long id){
@@ -28,5 +27,4 @@ public class InventoryRessource {
     public ResponseEntity<Object> createInventories(@RequestBody InventoryWrapper inventoryWrapper){
         return new ResponseEntity<>(articleService.getAllInventories(),HttpStatus.OK);
     }
-
 }

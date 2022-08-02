@@ -1,8 +1,7 @@
 <%@ include file='template/header.jsp' %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Start Content-->
-<div class="container-fluid" id="menu-prix">
-
+<div class="container-fluid">
   <!-- start page title -->
   <div class="row">
     <div class="col-12">
@@ -31,6 +30,8 @@
   <!-- suite -->
 
   <input type="hidden" id="user-id" value-id="${connectedUser.id}">
+  <input type="hidden" id="user-name" value-id="${connectedUser.nom}">
+  <div class="container -fluid" id="menu-prix">
 
   <div class="container -fluid">
     <div class="row">
@@ -47,11 +48,11 @@
           </thead>
           <tbody>
           <c:forEach var="price" items="${prices}">
-            <tr id="${price.id}">
-              <td><c:out value="${price.article.designation}"/></td>
-              <td><c:out value="${price.unite.designation}"/></td>
-              <td><c:out value="${price.prixVente}"/></td>
-              <td><c:out value="${price.dateEnregistrement}"/></td>
+            <tr id="${price.filiale.id}-${price.article.id}-${price.unite.id}">
+              <td>${price.article.designation}</td>
+              <td>${price.unite.designation}</td>
+              <td>${price.prixVente}</td>
+              <td>${price.dateEnregistrement}</td>
               <td class="d-flex justify-content-center"><a role="button" class="btn btn-sm btn-info info-prix"><i class="uil-pen"></i></a></td>
             </tr>
           </c:forEach>

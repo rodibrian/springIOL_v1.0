@@ -11,6 +11,7 @@ import org.hibernate.annotations.OnDelete;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity(name = "_user")
@@ -28,11 +29,11 @@ public class User extends PersonnePhysique implements Serializable{
    @Column(columnDefinition = "TEXT")
    private String password;
 
-   @ManyToMany(cascade = CascadeType.MERGE)
+   @ManyToMany(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
    @JoinTable(name = "user_magasin",
            joinColumns = {@JoinColumn(name = "user_id",foreignKey = @ForeignKey(name = "FK_UM_USER_ID",foreignKeyDefinition = "FOREIGN KEY (user_id) REFERENCES _user(id) ON DELETE NO ACTION"))},
    inverseJoinColumns = {@JoinColumn(name = "magasin_id",foreignKey = @ForeignKey(name = "FK_UM_MAGASIN_ID",foreignKeyDefinition = "FOREIGN KEY (magasin_id) REFERENCES magasin(id_magasin) ON DELETE CASCADE"))})
-   private Set<Magasin> magasin;
+   private List<Magasin> magasin;
 
    @ManyToOne(cascade= CascadeType.MERGE)
    @JoinColumn(name = "filialeId",foreignKey = @ForeignKey(name = "user_filiale_key_constraint"))

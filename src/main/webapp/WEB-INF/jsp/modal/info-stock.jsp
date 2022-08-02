@@ -51,7 +51,6 @@
         <!-- inventaire -->
 
         <!-- modifier alerte -->
-
       </div>
       <div class="modal-footer d-inline-flex">
         <button type="button" class="btn btn-warning w-50 m-0">Mettre à jour stock</button>
