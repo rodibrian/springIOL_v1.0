@@ -69,7 +69,7 @@
 -- END;
 -- $$;
 -- alter function before_insert_on_info_article_unite_magasin() owner to postgres;
--- create trigger info_article_trigger before insert on info_article_magasin FOR EACH ROW execute procedure before_insert_on_info_article_unite_magasin();
+create trigger info_article_trigger before insert on info_article_magasin FOR EACH ROW execute procedure before_insert_on_info_article_unite_magasin();
 create function before_insert_on_info_article_unite_magasin() returns trigger
     language plpgsql
 as
