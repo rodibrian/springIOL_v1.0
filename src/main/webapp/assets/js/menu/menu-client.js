@@ -26,14 +26,21 @@ $(function () {
         $(namespace + 'form').validate({
             rules: {
                 adresse : {required:true},
+                numCIN : {required:true},
+                nomClient: {required:true},
+                contact : {required: true},
             },
             messages : {
-                adresse: {required: 'Veuillez remplir l\'adresse'}
+                adresse: {required: 'Adresse requis'},
+                numCIN : {required: 'Numero CIN requis'},
+                nomClient: {required: 'Nom client requis'},
+                contact : {required: 'Contact requis'}
             }
         })
 
         $(namespace + '#numCIN').mask('999 999 999 999')
         $(namespace + '#contact').mask('+261 99 99 999 99')
+        // $(namespace + '#nif').mask('X99999999')
     })
 
     /*
@@ -101,6 +108,7 @@ $(function () {
             }
         });
     }
+
 
     /*
      enregistrement nouveau client

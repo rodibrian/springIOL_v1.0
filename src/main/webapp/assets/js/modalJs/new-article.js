@@ -14,6 +14,7 @@ $(function () {
     $articleUrl = 'http://localhost:8080/api/v1/articles';
     $deleted = true;
 
+
     function initTableUnite() {
 
         $('#table-unite input').attr('disabled', '')
@@ -22,6 +23,7 @@ $(function () {
 
         $("#btn-new-unite").click(
             function () {
+
 
                 let table = $("#table-unite tbody");
                 let length = $("#table-unite tbody tr").length;
@@ -53,7 +55,7 @@ $(function () {
         )
 
         /*
-         edition ou enregistrement enregistrement
+         edition ou enregistrement
          */
 
         $('#table-unite').on('click', '.btn-add-unite', (function () {
@@ -166,7 +168,6 @@ $(function () {
             if (!isCreateArticle) article.id = editedArticleId;
 
             function saveAllUnite(data) {
-
                 let articleUniteTab = getAllUniteOnTable(data);
                 $.ajax({
                     type: "POST",
@@ -198,7 +199,6 @@ $(function () {
                     }
                 })
             }
-
             $.ajax({
                 type: 'POST',
                 url: $articleUrl,
@@ -218,17 +218,34 @@ $(function () {
             let categorieLibelle = $("#categorie option:selected").text();
         }
 
-        function isValidArticle() {
+        /*
 
-            // validation rules
+        mask and validation form
 
+         */
+
+        $(function() {
+            $(namespace + 'form').validate({
+                rules : {
+                    designation : {required: true},
+                    categorie : {required: true}
+                },
+                messages : {
+                    designation : {required: 'designation de l\'article requis'},
+                    categorie : {required: 'categorie requis'}
+                }
+            })
+        })
+
+        function validation_article() {
+            $(namespace + 'form').validate();
             return $(namespace + 'form').valid();
         }
 
         // enregistrement de l'article
 
         $("#saveArticleBtn").click(() => {
-            if (isValidArticle()) {
+            if (validation_article()) {
                 $(namespace).modal('hide');
 
                 if (isCreateArticle) {

@@ -84,20 +84,59 @@ $(function () {
     }
 
     /*
+
+    mask et validation
+
+     */
+
+    $(function() {
+
+        $(namespace + 'form').validate({
+            rules: {
+                nom : {required:true},
+                adresse : {required:true},
+                contact : {required: true},
+            },
+            messages : {
+                nom: {required: 'Nom ou/et prénoms requis'},
+                adresse: {required: 'Adresse requis'},
+                contact : {required: 'Contact requis'}
+            }
+        })
+
+        $(namespace + '#contact').mask('+261 99 99 999 99')
+    })
+
+    /*
+     enregistrement nouveau fournisseur
+     */
+
+    function validation_fournisseur() {
+        $(namespace + 'form').validate();
+        return $(namespace + 'form').valid();
+    }
+
+    /*
      enregistrement nouveau fournisseur
      */
 
     $(namespace + '#nouveau-fournisseur #btn-enregistrer-fournisseur').on('click', function () {
 
-        let nomFournisseur = $(namespace + '#nouveau-fournisseur input#nom').val();
-        let adresse = $(namespace + '#nouveau-fournisseur input#adresse').val();
-        let contact = $(namespace + '#nouveau-fournisseur input#contact').val();
-        let fr = {};
-        fr.nom = nomFournisseur;
-        fr.adresse = adresse;
-        fr.numTel = contact;
-        fr.type = 1;
-        enregistrerClientOuFournisseur(fr)
+        if (validation_fournisseur()) {
+            $(namespace).modal('hide')
+
+            let nomFournisseur = $(namespace + '#nouveau-fournisseur input#nom').val();
+            let adresse = $(namespace + '#nouveau-fournisseur input#adresse').val();
+            let contact = $(namespace + '#nouveau-fournisseur input#contact').val();
+            let fr = {};
+            fr.nom = nomFournisseur;
+            fr.adresse = adresse;
+            fr.numTel = contact;
+            fr.type = 1;
+
+            enregistrerClientOuFournisseur(fr)
+        }
+
     })
 
     /*

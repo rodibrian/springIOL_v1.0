@@ -208,9 +208,9 @@ function personnaliserMenu($title) {
 
 
 function exportToExcel($btn, $prefix, $table) {
-    $filename = $prefix + '-' + new Date().getTime().toString() + '.xls';
+    // $filename = $prefix + '-' + new Date().getTime().toString() + '.xls';
+    $filename = 'Data-' + new Date().getTime().toString() + '.xls';
     $($btn).on('click', function () {
-        console.log($prefix)
         $($table).table2excel({
             filename: $filename
         });
@@ -218,7 +218,8 @@ function exportToExcel($btn, $prefix, $table) {
 }
 
 function exportToExcelCustomBtn($btn, $prefix, $table) {
-    $filename = $prefix + '-' + new Date().getTime().toString() + '.xls';
+    // $filename = $prefix + '-' + new Date().getTime().toString() + '.xls';
+    $filename = 'Data-' + new Date().getTime().toString() + '.xls';
     $($btn).on('click', function () {
         $($table).table2excel({
             filename: $filename

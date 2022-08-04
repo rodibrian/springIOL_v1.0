@@ -2,7 +2,7 @@
 <div id="operation-caisse" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
      aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content was-validated bg-dark text-light">
+    <form class="modal-content bg-dark text-light">
       <div class="modal-header">
         <h4 class="modal-title label-title" id="standard-modalLabel">Encaissement/Decaissement</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
@@ -27,9 +27,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-        <button id="btn-enregistrer-operation-caisse" type="button" data-bs-dismiss="modal" class="btn btn-primary">Enregistrer</button>
+        <button id="btn-enregistrer-operation-caisse" type="button" class="btn btn-primary">Enregistrer</button>
       </div>
-    </div><!-- /.modal-content -->
+    </form><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->

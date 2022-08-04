@@ -122,14 +122,18 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<script src="${pageContext.request.contextPath}/assets/js/table2excel.js"></script>
+
 
 <script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/nombre_en_lettre.js"></script>
 
 <script src=”https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js”></script>
 
+
+<script src="${pageContext.request.contextPath}/assets/js/table2excel.js"></script>
+
 <script src="${pageContext.request.contextPath}/assets/js/mini-function.js"></script>
+
 <script src="${pageContext.request.contextPath}/assets/js/jquery.maskedinput.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/html-content.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/impression.js"></script>

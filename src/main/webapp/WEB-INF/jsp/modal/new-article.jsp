@@ -2,7 +2,7 @@
 <div id="new-article" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    <form class="modal-content needs-validation" novalidate>
+    <form class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" id="standard-modalLabel">Nouveau Article</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
@@ -10,11 +10,11 @@
       <div class="modal-body">
         <div class="mb-3">
           <label for="designation" class="form-label">Designation</label>
-          <input type="text" required id="designation" class="form-control">
+          <input type="text" name="designation" id="designation" class="form-control">
         </div>
         <div class="mb-3">
           <label for="categorie" class="form-label">Categorie</label>
-          <select required class="form-select" id="categorie">
+          <select name="categorie" class="form-select" id="categorie">
           </select>
         </div>
         <div class="mb-3">

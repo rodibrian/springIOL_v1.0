@@ -8,7 +8,10 @@ $(function () {
 
 
     /*-------------------------------------------------------------------------------
+
     let namespace = "#menu-vente ";
+
+     */
 
     /*------------------------------------------------------------------------------
                                             OPERATION
@@ -148,18 +151,25 @@ $(function () {
         '<li>Somme : <strong>' + $sommeVente + ' Ar</strong></li>' +
         '';
 
-    function isValidVente() {
+    /*
 
+    mask et validation
+
+     */
+
+    $(function() {
+        $(namespace + 'form').validate( {
+
+        })
+    })
+
+    function validation_vente() {
         // validation rules
         return $(namespace + 'form').valid();
-
     }
 
     $(namespace+'.form-vente .btn-enregistrer-vente').on('click',function (){
-        if (isValidVente()) {
-
-            console.log('ici--')
-
+        if (validation_vente()) {
             $modalId = 'confirmation-de-vente';
 
             function persistSales() {

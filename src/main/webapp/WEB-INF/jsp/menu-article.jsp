@@ -42,7 +42,7 @@
 
   <div class="container -fluid"><br><br>
     <div class="row">
-      <div class="col-lg-3">
+      <div class="col-lg-2">
         <table id="categorieTabList" class="table table-sm table-hover">
           <thead>
           <th>Listes des categories</th>
@@ -77,13 +77,12 @@
           </tfoot>
         </table>
       </div>
-      <div class="col-lg-9">
+      <div class="col-lg-10">
         <table id="articleTable" class="table table-sm dt-responsive nowrap table-hover">
           <thead>
           <tr>
               <th>Designation</th>
               <th>categorie</th>
-              <th>Code</th>
               <th>Poids(Kg)</th>
               <th>unite</th>
               <th>quantite</th>
@@ -95,11 +94,10 @@
               <tr id="${article[0]}">
                 <td><c:out value="${article[1]}"/></td>
                 <td><c:out value="${article[2]}"/></td>
-                <td><c:out value="${article[3]}"/></td>
                 <td><c:out value="${article[4]}"/></td>
                 <td><c:out value="${article[5]}"/></td>
                 <td><c:out value="${article[6]}"/></td>
-                <td class="d-flex justify-content-center">
+                <td class="d-flex justify-content-center td-action">
                   <div>
                     <a id="${article[0]}" data-bs-toggle="modal" data-bs-target="#new-article"
                        class="btn-sm btn-info editArticleBtn"><i class="uil-pen"></i></a>

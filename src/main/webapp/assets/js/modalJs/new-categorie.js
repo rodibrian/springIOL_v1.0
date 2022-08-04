@@ -29,15 +29,32 @@ $(function () {
 
     });
 
-    function isValidCategorie() {
-        // validation rules
+    /*
+
+    mask et validation formulaire
+
+     */
+
+    $(function () {
+        $(namespace + 'form').validate({
+            rules: {
+                nomCategorie: {required: true},
+            },
+            messages: {
+                nomCategorie: {required: 'Designation du categorie requis'}
+            }
+        })
+    })
+
+    function validation_categorie() {
+        $(namespace + 'form').validate();
         return $(namespace + "form").valid();
     }
 
     $(namespace + "#saveCategorieBtn").click(function () {
-        if (isValidCategorie()) {
+        if (validation_categorie()) {
 
-            $(this).closest('.modal').modal('hide')
+            $(namespace).modal('hide')
 
             let newVal = $("#nomCategorie").val();
             if (!isUpdateOperation) {
@@ -59,8 +76,8 @@ $(function () {
                         /* ACTION */
 
                         $tdActionContent = $(' ' + '<div class="d-inline-flex justify-content-center">' + '<a href="#" class="deleteCategorie"><i class="uil-trash-alt"></i></a>' + '<a href="#" class="editCategorie"><i class="uil-pen"></i></a>' + '</div>');
-                        $oneCategorie = [data.libelle,$tdActionContent];
-                        push_to_table_list("#categorieTabList",data.id,$oneCategorie)
+                        $oneCategorie = [data.libelle, $tdActionContent];
+                        push_to_table_list("#categorieTabList", data.id, $oneCategorie)
 
                     }
                 });
@@ -95,7 +112,7 @@ $(function () {
      editer categorie
      */
 
-    $(document).on('click', ".editCategorie",function () {
+    $(document).on('click', ".editCategorie", function () {
 
         $(namespace).modal('show')
         isUpdateOperation = true;
@@ -109,7 +126,7 @@ $(function () {
      supprimer categorie
      */
 
-    $(document).on('click', ".deleteCategorie",function () {
+    $(document).on('click', ".deleteCategorie", function () {
 
         let btn = $(this);
         let deleteBtnId = btn.attr("id");

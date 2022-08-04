@@ -193,9 +193,8 @@ $(function () {
             'Voulez vous vraiment enregistrer les articles entr&eacute;s?' +
             '<li><strong>' + $nArticle + '</strong> Articles</li>';
         create_confirm_dialog('Confirmation d enregistrement des articles', $content, $modalId, 'Oui, Enregistrer', 'btn-success')
-        impression_entree()
             .on('click', function () {
-
+                //impression_entree()
                 let supplyWrapper = {};
                 supplyWrapper.supplies = supplyTab;
                 supplyWrapper.prixArticleFiliales = pvuafTab;
