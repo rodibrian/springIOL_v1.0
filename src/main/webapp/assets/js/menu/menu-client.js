@@ -1,7 +1,11 @@
 $(function () {
+
     /*-------------------------
+
             MENU CLIENT
+
      --------------------------*/
+
     let namespace = "#menu-client ";
     let cfUrl = "http://localhost:8080/api/v1/externalEntities";
 
@@ -10,6 +14,27 @@ $(function () {
     $NOUVEAU_CLIENT  = true;
 
     let CLIENT = 0 ;
+
+    /*
+
+    mask et validation
+
+     */
+
+    $(function() {
+
+        $(namespace + 'form').validate({
+            rules: {
+                adresse : {required:true},
+            },
+            messages : {
+                adresse: {required: 'Veuillez remplir l\'adresse'}
+            }
+        })
+
+        $(namespace + '#numCIN').mask('999 999 999 999')
+        $(namespace + '#contact').mask('+261 99 99 999 99')
+    })
 
     /*
      fermer l'info listes article facture
@@ -81,26 +106,36 @@ $(function () {
      enregistrement nouveau client
      */
 
+    function validation_client() {
+        $(namespace + 'form').validate();
+        return $(namespace + 'form').valid();
+    }
+
     $(namespace + '#nouveau-client #btn-enregistrer-client').on('click', function () {
-        $filialeId = $(namespace + '#filiale-id').attr("value-id");
-        let nomClient = $(namespace + '#nouveau-client input#nomClient').val();
-        let cin = $(namespace + '#nouveau-client input#numCIN').val();
-        let adresse = $(namespace + '#nouveau-client input#adresse').val();
-        let contact = $(namespace + '#nouveau-client input#contact').val();
-        let nif = $(namespace + '#nouveau-client input#nif').val();
-        let stat = $(namespace + '#nouveau-client input#stat').val();
-        let cif = $(namespace + '#nouveau-client input#cif').val();
-        let client = {};
-        client.nom = nomClient;
-        client.cin = cin;
-        client.adresse = adresse;
-        client.numTel = contact;
-        client.nif = nif;
-        client.stat = stat;
-        client.cif = cif;
-        client.typeCf = CLIENT;
-        client.filiale = {id : $filialeId};
-        enregistrerClientOuFournisseur(client);
+
+        if (validation_client()) {
+
+            $(namespace + ".modal").modal('hide');
+            $filialeId = $(namespace + '#filiale-id').attr("value-id");            let nomClient = $(namespace + '#nouveau-client input#nomClient').val();
+            let cin = $(namespace + '#nouveau-client input#numCIN').val();
+            let adresse = $(namespace + '#nouveau-client input#adresse').val();
+            let contact = $(namespace + '#nouveau-client input#contact').val();
+            let nif = $(namespace + '#nouveau-client input#nif').val();
+            let stat = $(namespace + '#nouveau-client input#stat').val();
+            let cif = $(namespace + '#nouveau-client input#cif').val();
+            let client = {};
+            client.nom = nomClient;
+            client.cin = cin;
+            client.adresse = adresse;
+            client.numTel = contact;
+            client.nif = nif;
+            client.stat = stat;
+            client.cif = cif;
+            client.typeCf = CLIENT;
+            client.filiale = {id : $filialeId};
+            enregistrerClientOuFournisseur(client);
+        }
+
     })
 
     /*
@@ -121,6 +156,7 @@ $(function () {
      */
 
     $(document).on('click', namespace + '#table-client .deleteClient', function () {
+
         $trClient = $(this).closest('tr');
         $idModalDelete = "suppression-client";
         let idCf = $trClient.attr("id");
@@ -145,22 +181,32 @@ $(function () {
      */
 
     $(namespace + '.btn-nouveau-credit').on('click', function() {
+
         $(namespace + '#nouveau-credit input#nomClient').val($trClient.children().eq(0).text())
+
     })
 
     $(namespace + '#nouveau-credit #btn-enregistrer-credit-client').on('click', function () {
+
         $montant = $(namespace + '#nouveau-credit input#somme').val();
         $description = $(namespace + '#nouveau-credit textarea#description').val();
+
         $credit = ['ref-00000',new Date().toLocaleDateString(), $montant, 0, $montant, $description];
+
         push_to_table_list(namespace + '.table-credit-client', '', $credit);
+
         createToast('bg-success', 'uil-check-sign', 'Credit enregistre', 'Nouveau credit enregistre avec success!');
+
         $(namespace + '#nouveau-credit input').val('');
         $(namespace + '#nouveau-credit textarea').val('');
     })
+
     /*
     SUpprimer credit
      */
+
     $(namespace + '.btn-supprimer-credit').on('click', function () {
+
         $modalId = "suppression-credit-client"
         create_confirm_dialog('Suppression credit', 'Voulez vraiment supprimer les credits impayes ?', $modalId, 'Oui, supprimer tout', 'btn-danger')
             .on('click', function() {

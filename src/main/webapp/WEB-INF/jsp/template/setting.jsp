@@ -130,7 +130,7 @@
 <script src=”https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js”></script>
 
 <script src="${pageContext.request.contextPath}/assets/js/mini-function.js"></script>
-<%--<script src="${pageContext.request.contextPath}/assets/js/validation/dist/bootstrap-validate.js"></script>--%>
+<script src="${pageContext.request.contextPath}/assets/js/jquery.maskedinput.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/html-content.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/impression.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/dashboard.js"></script>
@@ -186,6 +186,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
+
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 
 <%@ include file="footer.jsp" %>
 

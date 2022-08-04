@@ -2,7 +2,7 @@
 <div id="new-article" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    <div class="modal-content was-validated">
+    <form class="modal-content needs-validation" novalidate>
       <div class="modal-header">
         <h4 class="modal-title" id="standard-modalLabel">Nouveau Article</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
@@ -36,7 +36,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr class="default-unite">
               <td class="d-none"><input type="text" required class="form-control input-sm" value=""></td>
               <td><input type="text" required class="form-control input-sm not-editable" value="1"></td>
               <td><input type="text" required class="form-control input-sm" value="designation"></td>
@@ -56,9 +56,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-        <button type="button" id="saveArticleBtn" data-bs-dismiss="modal" class="btn btn-primary">Enregistrer</button>
+        <button type="submit" id="saveArticleBtn" class="btn btn-primary">Enregistrer</button>
       </div>
-    </div><!-- /.modal-content -->
+    </form><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->

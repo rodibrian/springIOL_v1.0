@@ -2,7 +2,7 @@
 <div id="standard-modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
      aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content was-validated">
+    <form class="modal-content needs-validation" novalidate>
       <div class="modal-header">
         <h4 class="modal-title" id="standard-modalLabel">Nouvelle Categorie</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
@@ -15,9 +15,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-        <button id="saveCategorieBtn" type="button" data-bs-dismiss="modal" class="btn btn-primary">Enregistrer</button>
+        <button id="saveCategorieBtn" type="submit" class="btn btn-primary">Enregistrer</button>
       </div>
-    </div><!-- /.modal-content -->
+    </form><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
