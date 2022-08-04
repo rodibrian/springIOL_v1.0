@@ -12,7 +12,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1")
 public class ClientFournisseurRessource{
-
     @Autowired
     private ClientFournisseurRepository cfRepository;
 

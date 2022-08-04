@@ -8,33 +8,23 @@ $(function () {
     /*
      LISTE DES PRIX DE VENTE
      */
-
     let pvuafTab = [];
-
     /*
     ENTREE ARTICLE
      */
-
     // Chargement des données de la page;
-
     $("#btn-search-article").click(function () {
 
     })
-
     // Selection des fournisseurs
-
     $(document).on('dblclick', namespace + '#table-liste-fournisseur tbody tr', function () {
-
         get_select_affect_to_input(namespace + '#input-nom-fournisseur', $(this).attr('id'), $(this).children().eq(0).text());
         $(namespace + '#modal-liste-fournisseur').modal('hide');
-
     })
-
     /*
      Nouveau Fournisseur
      */
-
-    $(namespace + '#btn-enregistrer-fournisseur').on('click', function () {
+    $(namespace + '#btn-enregistrer-fournisseur').on('click', function (){
         let nomFournisseur = $(namespace + '#nouveau-fournisseur input#nom').val();
         let adresse = $(namespace + '#nouveau-fournisseur input#adresse').val();
         let contact = $(namespace + '#nouveau-fournisseur input#contact').val();
@@ -56,13 +46,10 @@ $(function () {
                 $(namespace + '#nouveau-fournisseur input#nom').val("");
             }
         })
-
     })
-
     /*
      Selecter article
      */
-
     $(namespace + '#table-liste-article tbody tr').on('dblclick', function () {
         let article_id = $(this).attr("id");
         let unite_id = $(this).children().eq(2).attr("value-id");
@@ -156,14 +143,12 @@ $(function () {
      */
 
     $(document).on('dblclick', "#table-liste-article-entree tbody tr", function () {
-
         $(this).remove();
         let id = $(this).attr("id");
         delete (pvuafTab[id]);
         delete (supplyTab[id]);
         $designation = $(this).children().eq(1).text();
         createToast('bg-danger', 'uil-trash-alt', 'Enlevement Article', $designation + ' supprim&eacute;')
-
     });
 
     function onSuppliesCreated() {
@@ -233,24 +218,18 @@ $(function () {
         let space = namespace + '#impression-bon-entree-ou-sortie ';
         $(space + '.label-bon-entree-ou-sortie').text('Bon d\'entrée');
         $(space + '.no-entree').hide();
-
         /*
         information facture
          */
-
         $fournisseur = $(namespace + "#input-nom-fournisseur").val();
         $magasin = $(namespace + "#select-magasin option:selected").text();
         $user = $('.account-user-name').text();
-
         /*
         add information
          */
-
         $(space + '.label-magasin').text($magasin);
         $(space + '.label-utilisateur').text($user);
-
         $somme = 0;
-
         $(namespace + '#table-liste-article-entree tbody tr').each(function (index, tr) {
             $array = [$(tr).children().eq(0).text(), $(tr).children().eq(1).text(), $(tr).children().eq(2).text(), $(tr).children().eq(3).text(), $(tr).children().eq(4).text(), $(tr).children().eq(5).text()]
             push_to_table_list(space + '#liste-article-bon', '', $array)
@@ -259,9 +238,7 @@ $(function () {
         ;
         $(space + '.label-total-entree').text($somme + 'Ar');
         $(space + '.label-somme-en-lettre').text(NumberToLetter($somme) + ' ariary');
-
         // print
-
         $(space).printThis()
     }
 })

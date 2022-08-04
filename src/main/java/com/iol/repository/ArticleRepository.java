@@ -55,7 +55,7 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
             "and s.article_id = au.article_id and s.magasin_id=:magasinId and m.filiale_id=:filialeId and m.id_magasin = s.magasin_id ",nativeQuery = true)
     List<String> getStockWithPriceAndExpirationDate(@Param("magasinId") Long magasinId,@Param("filialeId") Long filialeId);
 
-    @Query(value = "SELECT prix_vente from prix_article_filiale where article_id =:artId and unite_id =:uId and filiale_id =:fId order by date_enregistrement limit 1",nativeQuery = true)
+    @Query(value = "SELECT prix_vente from prix_article_filiale where article_id =:artId and unite_id =:uId and filiale_id =:fId order by date_enregistrement desc limit 1",nativeQuery = true)
     String getPrix(@Param("artId") Long artId,@Param("uId") Long uId,@Param("fId") Long fId);
 
     @Modifying(clearAutomatically = true)

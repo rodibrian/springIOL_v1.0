@@ -20,8 +20,50 @@ $(function () {
      Selecter client
      */
 
-    $(namespace + '#table-liste-client tbody tr').on('dblclick', function () {
+    function clearForm() {
+        $(namespace + '#nouveau-client input#cif').val("");
+        $(namespace + '#nouveau-client input#stat').val("");
+        $(namespace + '#nouveau-client input#nif').val("");
+        $(namespace + '#nouveau-client input#contact').val("");
+        $(namespace + '#nouveau-client input#adresse').val("");
+        $(namespace + '#nouveau-client input#numCIN').val("");
+        $(namespace + '#nouveau-client input#nomClient').val("");
+    }
 
+// ENREGISTRER NOUVEAU CLIENT
+    $(namespace + '#nouveau-client #btn-enregistrer-client').on('click', function () {
+        let filialeId = $(namespace + '#filiale-id').attr("value-id");
+        let nomClient = $(namespace + '#nouveau-client input#nomClient').val();
+        let cin = $(namespace + '#nouveau-client input#numCIN').val();
+        let adresse = $(namespace + '#nouveau-client input#adresse').val();
+        let contact = $(namespace + '#nouveau-client input#contact').val();
+        let nif = $(namespace + '#nouveau-client input#nif').val();
+        let stat = $(namespace + '#nouveau-client input#stat').val();
+        let cif = $(namespace + '#nouveau-client input#cif').val();
+        let client = {};
+        client.nom = nomClient;
+        client.cin = cin;
+        client.adresse = adresse;
+        client.numTel = contact;
+        client.nif = nif;
+        client.stat = stat;
+        client.cif = cif;
+        client.typeCf =0;
+        client.filiale = {id : filialeId};
+        $.ajax({
+            type : "POST",
+            url : "http://localhost:8080/api/v1/externalEntities",
+            contentType : "application/json",
+            data: JSON.stringify(client),
+            success : (data)=>{
+                get_select_affect_to_input(namespace + '#name-client',data.id,data.nom);
+            }
+        })
+        clearForm();
+    })
+
+
+    $(namespace + '#table-liste-client tbody tr').on('dblclick', function () {
         get_select_affect_to_input(namespace + '#name-client', $(this).attr('id'), $(this).children().eq(0).text());
         $(namespace + '#modal-liste-client').modal('hide');
 
@@ -32,29 +74,26 @@ $(function () {
     -------------------------------------------------------------------------------*/
 
     function updatePrixUnitaire(article_id, unite_id, filialeId) {
-
+       let url = "http://localhost:8080/api/v1/articles/" + article_id + "/unites/" + unite_id + "/filiales/" + filialeId + "/prices";
         $.ajax({
             type: "get",
-            url: "http://localhost:8080/api/v1/articles/" + article_id + "/unites/" + unite_id + "/filiales/" + filialeId + "/prices",
+            url: url,
             contentType: "application/json",
             success: function (data) {
-                console.log(data);
                 $(namespace + "#input-prix-unitaire").val(data);
             }
         });
     }
 
     $(document).on('dblclick', namespace + '#table-liste-article tbody tr', function () {
-
         let article_id = $(this).attr("id");
-        let unite_id = $(this).children().eq(2).attr("id");
+        let unite_id = $(this).children().eq(2).attr("value-id");
         let filialeId = $(namespace + '#filiale-id').attr("value-id");
         get_select_affect_to_input(namespace + '#designation-article',article_id,$(this).children().eq(1).text());
         $(namespace + '#modal-liste-article').modal('hide');
         set_select_option_value([unite_id, $(this).children().eq(2).text()], namespace + "#input-unite-article");
         updatePrixUnitaire(article_id, unite_id, filialeId);
         get_select_affect_to_input(namespace + "#input-prix-unitaire", "", $(this).children().eq(5).text())
-
         // après selection article, select * unite de l'article
         // ainsi que son prix
 
@@ -87,7 +126,6 @@ $(function () {
         $userId = $(namespace + '#user-id').attr("value-id");
         $reference = $(namespace + '#input-reference-facture').val();
         $montant = $quantite * $prix_unitaire;
-
         $article_vente = [$designation, $unite, $quantite, $prix_unitaire, $montant];
 
         let infoArticleMagasin = {};
@@ -99,37 +137,27 @@ $(function () {
         infoArticleMagasin.quantiteAjout = $quantite;
         infoArticleMagasin.date = new Date();
         infoArticleMagasin.reference = $reference;
-
         $vente = {};
         $vente.infoArticleMagasin = infoArticleMagasin;
         $vente.client = {id:$clientId};
         $vente.montantVente = $montant;
-
         venteTab.push($vente);
+
         push_to_table_list(namespace + '#table-liste-article-vente', $articleId, $article_vente);
-
         // vider form vente
-
         $('.form-vente input').each(function () {
             if ($(this).attr('id') != 'name-client') $(this).attr('value', '');
             if ($(this).attr('type') === 'number') $(this).val(0);
         });
-
         // vide option
-
         $(namespace + "#input-unite-article option").remove();
-
         //impression_vente()
     })
-
     /*------------------------------------------------------------------------------
                                             SUPPRESSION D'UN ARTICLE
      -------------------------------------------------------------------------------*/
-
     $(namespace + '#table-liste-article-vente tbody tr').on('dblclick', function () {
-
         $(this).remove();
-
     })
 
     /*
@@ -145,13 +173,9 @@ $(function () {
         '';
 
     $(namespace+'.form-vente .btn-enregistrer-vente').on('click',function (){
-
         $modalId = 'confirmation-de-vente';
-
         function persistSales() {
-
             // button de validation
-
             $.ajax({
                 type: "POST",
                 url: "http://localhost:8080/api/v1/sales",
@@ -159,16 +183,10 @@ $(function () {
                 data: JSON.stringify(venteTab),
                 success: function (data) {
                     venteTab = [];
-
-                    // impresion
-
                     // vider table
-
                     $(namespace + '#table-liste-article-vente tbody tr').remove();
                     $(namespace + '#' + $modalId).modal('hide');
                     createToast('bg-success', 'uil-file-check-alt', 'Vente Fait', 'Vente enregistr&eacute; avec succ&egrave;s!')
-
-
                 }
             });
         }
@@ -190,35 +208,27 @@ $(function () {
 
     function generer_ticket() {
         let space = namespace + '#impression-ticket-caisse ';
-
         /*
         information ticket
          */
-
         $client = $(namespace + "#name-client").val();
         $magasin = $(namespace + "#select-magasin option:selected").text();
         $user = $('.account-user-name').text();
-
         /*
         add information
          */
-
         $(space + '.label-nom-client').text($client);
         $(space + '.label-magasin').text($magasin);
         $(space + '.label-utilisateur').text($user);
-
         $somme = 0;
-
         $(namespace + '#table-liste-article-vente tbody tr').each(function (index,tr) {
             $array = [$(tr).children().eq(0).text(),$(tr).children().eq(1).text(),$(tr).children().eq(2).text(),$(tr).children().eq(3).text(),$(tr).children().eq(4).text()]
             push_to_table_list(space + '#table-liste-ventes','',$array)
             $somme += parseFloat($(tr).children().eq(4).text());
         })
-
         $(space + '.label-subtotal-vente').text($somme + 'Ar');
         $(space + '.label-total-vente').text($somme + 'Ar');
         $(space + '.label-somme-en-lettre').text(NumberToLetter($somme) + ' ariary');
-
         // print
         $(space).printThis();
     }
