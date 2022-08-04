@@ -15,8 +15,8 @@
               <p class="label-code-article"></p>
               <p class="label-designation-article"></p>
               <p class="label-unite-article"></p>
-              <p class="label-stock-initial-article"></p>
-              <p class="label-stock-final-article"></p>
+              Stock initial : <p class="label-stock-initial-article"></p>
+              Stock final : <p class="label-stock-final-article"></p>
               <p class="label-quantite-alerte-article">Quantit&eacute; d'alerte : <%= "00"%></p>
             </div>
             <div class="filter-date">
@@ -53,7 +53,7 @@
         <!-- modifier alerte -->
       </div>
       <div class="modal-footer d-inline-flex">
-        <button type="button" class="btn btn-warning w-50 m-0">Mettre à jour stock</button>
+        <button type="button" class="btn btn-update-stock btn-warning w-50 m-0">Mettre à jour stock</button>
         <button type="button" class="btn btn-primary w-50 m-0">Modifier Quantité d'alerte</button>
       </div>
     </div><!-- /.modal-content -->

@@ -54,8 +54,8 @@ $(function () {
         $('#info-stock p.label-code-article').text('Code Article : ' + $currentArticleTr.attr('id'));
         $('#info-stock p.label-designation-article').text('Designation : ' + $currentArticleTr.children('.designation-article').text());
         $('#info-stock p.label-unite-article').text('Unite : ' + $currentArticleTr.children('.unite-article').text());
-        $('#info-stock p.label-stock-initial-article').text('Stock Initial : ' + $currentArticleTr.children('.td-info-stock').text());
-        $('#info-stock p.label-stock-final-article').text('Stock Final : ' + $currentArticleTr.children('.td-info-stock').text());
+        $('#info-stock p.label-stock-initial-article').text($currentArticleTr.children('.td-info-stock').text());
+        $('#info-stock p.label-stock-final-article').text($currentArticleTr.children('.td-info-stock').text());
         $('#info-stock #date-debut').val(formatDate(new Date()));
         $('#info-stock #date-fin').val(formatDate(new Date()));
 

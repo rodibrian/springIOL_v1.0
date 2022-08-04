@@ -52,7 +52,8 @@
     </div>
   </div>
   <div class="all-modal">
-    <%@ include file="modal/info-stock.jsp" %>
+    <%@ include file="modal/stock/info-stock.jsp" %>
+    <%@ include file="modal/stock/inventaire-stock.jsp" %>
   </div>
   <!-- suite -->
   <div class="container -fluid"><br><br>
