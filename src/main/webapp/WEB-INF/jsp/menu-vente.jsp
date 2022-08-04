@@ -98,9 +98,9 @@
                 </tbody>
               </table>
               <div class="foot-vente d-flex justify-content-end text-decoration-underline">
-                <p class="m-1">Nombre d'article : <span>00</span></p>
+                <p class="m-1">Nombre d'article : <span class="label-count-article-vente">00</span></p>
                 <p class="m-1">
-                  <p class="m-1">Somme : 0Ar (0Fmg)</p>
+                  <p class="m-1">Somme : <span class="label-montant-vente-ar"></span>Ar (<span class="label-montant-vente-fmg">0</span>Fmg)</p>
                 </p>
               </div>
             </div>

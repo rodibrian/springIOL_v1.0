@@ -126,7 +126,16 @@ $(function () {
 
         $(namespace + "#input-unite-article option").remove();
 
-        //impression_vente()
+        //update label bottom for count, price
+        $countArticle = $(namespace + '#table-liste-article-vente tbody tr').length;
+        $sommeVente = 0;
+        $(namespace + '#table-liste-article-vente tbody tr').each(function(k,v) {
+            $sommeVente += parseFloat($(v).children().eq(4).text());
+        })
+
+        $(namespace + '.label-count-article-vente').text($countArticle);
+        $(namespace + '.label-montant-vente-ar').text($sommeVente);
+        $(namespace + '.label-montant-vente-fmg').text($sommeVente*5);
     })
 
     /*------------------------------------------------------------------------------
@@ -139,17 +148,7 @@ $(function () {
 
     })
 
-    /*
-     enregistrement du vente
-     */
 
-    $sommeVente = 0;
-    $countArticle = 0;
-    $content = '' +
-        'Voulez vous vraiment enregistrer ce vente? <br><br>' +
-        '<li>Nombre d\'article : <strong>' + $countArticle + '</strong></li>' +
-        '<li>Somme : <strong>' + $sommeVente + ' Ar</strong></li>' +
-        '';
 
     /*
 
@@ -170,6 +169,22 @@ $(function () {
 
     $(namespace+'.form-vente .btn-enregistrer-vente').on('click',function (){
         if (validation_vente()) {
+
+            /*
+              enregistrement du vente
+            */
+
+            $countArticle = $(namespace + '#table-liste-article-vente tbody tr').length;
+            $sommeVente = 0;
+            $(namespace + '#table-liste-article-vente tbody tr').each(function(k,v) {
+                $sommeVente += parseFloat($(v).children().eq(4).text());
+            })
+            $content = '' +
+                'Voulez vous vraiment enregistrer ce vente? <br><br>' +
+                '<li>Nombre d\'article : <strong>' + $countArticle + '</strong></li>' +
+                '<li>Somme : <strong>' + $sommeVente + ' Ar</strong></li>' +
+                '';
+
             $modalId = 'confirmation-de-vente';
 
             function persistSales() {
