@@ -27,10 +27,6 @@ public class Article implements Serializable{
     @JoinColumn(name = "categorieId",foreignKey = @ForeignKey(name = "article_categorie_key_constraint"),nullable = false)
     private Categorie categorie;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "filiale_id",nullable = false)
-    private Filiale filiale;
-
     @Lob
     private byte[] image;
 

@@ -1,21 +1,5 @@
-$(function () {
-
-    let namespace = "#menu-detail-vente ";
-
-    /*--------------------------
-
-        MENU DETAIL VENTE
-
-     ----------------------*/
-
-    exportToExcel(namespace + '.btn-export-to-excel','detail-ventes-' , namespace + '.table-detail-vente')
-
-    /*
-     insert into table > tbody > tr
-     */
-
-
 $(function(){
+    exportToExcel(namespace + '.btn-export-to-excel','detail-ventes-' , namespace + '.table-detail-vente')
     //
     let namespace = "#menu-detail-vente ";
     let appendDataToTable = (data) =>{

@@ -20,11 +20,16 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
     @Query(value = "select id,code,designation,niveau,poids from unite u inner join article_unite au ON u.id = au.unite_id WHERE au.article_id =:param",nativeQuery = true)
     List<String> getAllUnite(@Param("param") Long id);
 
-    @Query(value = "from ArticleUnite au join au.article a join a.filiale f where f.id=:filialeId and a.status ='USED'")
+    @Query(value = "from ArticleUnite au join au.filiale f join au.article a where f.id=:filialeId and a.status ='USED'")
     List<ArticleUnite> getAllNotDeletedAndNotHidden(@Param("filialeId")Long filialeId);
 
-    @Query(value = "from ArticleUnite au join au.article a join a.filiale f where f.id=:filialeId")
+    @Query(value = "from ArticleUnite au join au.filiale f where f.id=:filialeId")
     List<ArticleUnite> getAll(@Param("filialeId")Long filialeId);
+
+    @Query(value = "from ArticleUnite au join au.filiale f join au.article a where f.id=:filialeId and lower(a.designation) like concat('%',lower(:name),'%') ")
+    List<ArticleUnite> getAllByItemName(@Param("filialeId")Long filialeId,@Param("name") String name);
+
+
 
     @Query(value = "select a.article_id,u.id,s.magasin_id,a.designation as ad,c.libelle,u.designation,"+
             "(s.count/(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as nb , m.nom_magasin " +

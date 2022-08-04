@@ -63,9 +63,7 @@ $(function () {
     /*------------------------------------------------------------------------------
                                             PRIX- SPECIAL ARTICLE
      -------------------------------------------------------------------------------*/
-
-    $(namespace + '#modal-prix-special .btn-enregistrer-modal').on('click', function () {
-
+    $(namespace + '#modal-prix-special .btn-enregistrer-modal').on('click', function (){
         $isRemise = $(namespace + '#check-prix-special-remise').is(':checked');
         $current_price = $(namespace + '#input-prix-unitaire').val();
         $special_value = $(namespace + '#input-prix-special').val();
@@ -73,11 +71,9 @@ $(function () {
         get_select_affect_to_input(namespace + '#input-prix-unitaire', null, $special_price_final);
         $(namespace + '#modal-prix-special').modal('hide')
     })
-
     /*------------------------------------------------------------------------------
                                             AJOUT DUN ARTICLE
      -------------------------------------------------------------------------------*/
-
     $('.btn-ajouter-article-vente').on('click', function (){
 
         $articleId = $(namespace + '#designation-article').attr('value-id');

@@ -2,7 +2,6 @@ package com.iol.repository;
 
 import com.iol.model.tenantEntityBeans.ArticleUnite;
 import com.iol.service.ArticleService;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
 class ArticleRepositoryTest{
 
@@ -113,5 +112,11 @@ class ArticleRepositoryTest{
     void testGetAll1() {
         List<ArticleUnite> all = articleRepository.getAll(1L);
         assertThat(all).isNotEmpty();
+    }
+
+    @Test
+    void getAllByItemName() {
+        List<ArticleUnite> riz = articleRepository.getAllByItemName(1L, "RIZ");
+        assertThat(riz).isNotEmpty();
     }
 }

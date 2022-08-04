@@ -15,18 +15,24 @@
         <hr>
         <table id="table-liste-article" class="table table-special-form table-sm dt-responsive nowrap w-100">
           <thead>
-          <tr>
-            <th>Code</th>
-            <th>Designation</th>
-            <th>Unite</th>
-          </tr>
+              <tr>
+                <th>Code</th>
+                <th>Designation</th>
+                <th>Unite</th>
+                <th>quantite(Niveau)</th>
+                <th>Stock</th>
+                <th>Prix</th>
+              </tr>
           </thead>
           <tbody>
           <c:forEach var="au" items="${articles}">
-            <tr id ="${au[0]}">
-              <td><c:out value="${au[4]}"/></td>
-              <td><c:out value="${au[1]}"/></td>
-              <td id="${au[3]}"><c:out value="${au[5]}"/></td>
+            <tr id ="${au.article.id}">
+              <td>  </td>
+              <td>${au.article.designation}</td>
+              <td value-id ="${au.unite.id}">${au.unite.designation}</td>
+              <td>${au.quantiteNiveau}</td>
+              <td>  </td>
+              <td>  </td>
             </tr>
           </c:forEach>
           </tbody>

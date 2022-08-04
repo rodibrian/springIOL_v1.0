@@ -14,12 +14,12 @@ import java.util.Set;
 @Transactional
 public
 interface ClientFournisseurRepository extends JpaRepository<ClientFournisseur,Long> {
-    @Query("from  ClientFournisseur f where f.type =:typeCf ")
-    List<ClientFournisseur> getAllExternalEntities(@Param("typeCf") Integer typeCf);
+    @Query("from  ClientFournisseur cf join cf.filiale f where cf.type =:typeCf and f.id=:filialeId ")
+    List<ClientFournisseur> getAllExternalEntities(@Param("typeCf") Integer typeCf,@Param("filialeId") Long filialeId);
 
-    @Query("from  ClientFournisseur f where f.type =0 ")
-    List<ClientFournisseur> getAllClient();
+    @Query("from  ClientFournisseur cf join cf.filiale f where cf.type =0 and f.id=:filialeId ")
+    List<ClientFournisseur> getAllClient(@Param("filialeId") Long filialeId );
 
-    @Query("from  ClientFournisseur f where f.type =1 ")
-    List<ClientFournisseur> getAllCustomer();
+    @Query("from  ClientFournisseur cf join cf.filiale f where cf.type =1 and f.id=:filialeId")
+    List<ClientFournisseur> getAllCustomer(@Param("filialeId") Long filialeId );
 }

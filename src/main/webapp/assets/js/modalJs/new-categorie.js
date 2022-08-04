@@ -1,11 +1,7 @@
 $(function () {
-
     /*------------------------------
-
         JS NOUVEAU CATEGORIE
-
      -------------------------------*/
-
     let namespace = "#standard-modal2 ";
 
     let isUpdateOperation = false;
@@ -43,14 +39,12 @@ $(function () {
                 contentType: 'application/json',
                 data: JSON.stringify(jsonData),
                 success: function (data) {
-
                     //reset the input
-
                     $("#nomCategorie").val("");
-
                     /* ACTION */
-
-                    $tdActionContent = $(' ' + '<div class="d-inline-flex justify-content-center">' + '<a href="#" class="deleteCategorie"><i class="uil-trash-alt"></i></a>' + '<a href="#" class="editCategorie"><i class="uil-pen"></i></a>' + '</div>');
+                    $tdActionContent = $(' ' + '<div class="d-inline-flex justify-content-center">' +
+                        '<a id="'+data.id+'" href="#" class="editCategorie"><i class="uil-pen"></i></a> ' +
+                        '<a id="'+data.id+'" href="#" class="deleteCategorie"><i class="uil-trash-alt"></i></a>' + '</div>');
                     $oneCategorie = [data.libelle,$tdActionContent];
                     push_to_table_list("#categorieTabList",data.id,$oneCategorie)
 
@@ -95,24 +89,24 @@ $(function () {
         let text = siblings.html();
         selectedVal = $("#nomCategorie").val(text);
     });
-
     /*
      supprimer categorie
      */
-
     $(document).on('click', ".deleteCategorie",function () {
-
         let btn = $(this);
         let deleteBtnId = btn.attr("id");
         let url = "http://localhost:8080/api/v1/categories/" + deleteBtnId;
-        $.ajax({
-            type: 'DELETE', url: url, complete: function () {
-
-                // Supprimer l'element
-
-                btn.parent().parent().parent().detach();
-            }
-        });
-        createToast('bg-danger', 'uil-trash-alt', 'Suppression Fait', 'Suppression du cat&eacute;gorie effectu&eacute; avec succ&egrave;s!')
+        $modalId = "delete-categorie-article";
+        create_confirm_dialog('Supprimer categorie', 'Voulez vraiment supprimer cette categorie ? ',$modalId, "Oui, supprimer", "btn-warning")
+            .on('click', function() {
+                $.ajax({
+                    type: 'DELETE', url: url, success: function () {
+                        // Supprimer l'element
+                        btn.parent().parent().parent().detach();
+                        hideAndRemove( '#' + $modalId );
+                        createToast('bg-danger', 'uil-trash-alt', 'Suppression Fait', 'Suppression du cat&eacute;gorie effectu&eacute; avec succ&egrave;s!')
+                    }
+                });
+            })
     });
 });

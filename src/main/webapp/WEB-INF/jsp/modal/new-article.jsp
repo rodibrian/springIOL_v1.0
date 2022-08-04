@@ -17,7 +17,8 @@
           <select required class="form-select" id="categorie">
           </select>
         </div>
-        <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
+          <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
+          <input type="hidden" id="user-id" value-id="${connectedUser.id}">
         <div class="mb-3">
           <label for="table-unite" class="form-label text-underline">Unite</label>
           <table id="table-unite"
@@ -40,7 +41,7 @@
               <td><input type="text" required class="form-control input-sm not-editable" value="1"></td>
               <td><input type="text" required class="form-control input-sm" value="designation"></td>
               <td><input type="text" required class="form-control input-sm not-editable" value="1"></td>
-              <td><input type="text" required class="form-control input-sm" value="0"></td>
+              <td><input type="text" required class="form-control input-sm" value="1"></td>
               <td class="d-inline-flex">
                 <a class="btn btn-primary btn-sm btn-edit-unite"><i class="uil-pen"></i></a>&nbsp;
                 <a class="btn btn-success btn-sm btn-add-unite"><i class="uil-check-square"></i></a>

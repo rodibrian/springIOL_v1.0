@@ -3,6 +3,7 @@
      aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content was-validated">
+      <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
       <div class="modal-header">
         <h4 class="modal-title" id="standard-modalLabel">Nouveau Fournisseur</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>

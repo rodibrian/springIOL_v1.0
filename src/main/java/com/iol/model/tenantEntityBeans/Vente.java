@@ -1,5 +1,6 @@
 package com.iol.model.tenantEntityBeans;
 
+import com.iol.model.entityEnum.ModePayement;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
@@ -37,4 +38,8 @@ public class Vente implements Serializable{
 
     @Column
     private Double montantVente;
+
+    @Column(length = 50)
+    @Enumerated(value = EnumType.STRING)
+    private ModePayement modePayement;
 }

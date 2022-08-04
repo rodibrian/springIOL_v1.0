@@ -1,6 +1,7 @@
 $(function(){
     let namespace = "#liste-operation ";
     let url = "http://localhost:8080/api/v1/magasins/";
+
     function appendDataToTable(data) {
         $(namespace + ".table-liste-operation tbody tr").empty();
         $.each(data, function (key, value) {

@@ -1,11 +1,7 @@
 $(function () {
-
     /*-------------------------
-
             MENU CLIENT
-
      --------------------------*/
-
     let namespace = "#menu-client ";
     let cfUrl = "http://localhost:8080/api/v1/externalEntities";
 
@@ -86,7 +82,7 @@ $(function () {
      */
 
     $(namespace + '#nouveau-client #btn-enregistrer-client').on('click', function () {
-
+        $filialeId = $(namespace + '#filiale-id').attr("value-id");
         let nomClient = $(namespace + '#nouveau-client input#nomClient').val();
         let cin = $(namespace + '#nouveau-client input#numCIN').val();
         let adresse = $(namespace + '#nouveau-client input#adresse').val();
@@ -103,6 +99,7 @@ $(function () {
         client.stat = stat;
         client.cif = cif;
         client.typeCf = CLIENT;
+        client.filiale = {id : $filialeId};
         enregistrerClientOuFournisseur(client);
     })
 
@@ -124,7 +121,6 @@ $(function () {
      */
 
     $(document).on('click', namespace + '#table-client .deleteClient', function () {
-
         $trClient = $(this).closest('tr');
         $idModalDelete = "suppression-client";
         let idCf = $trClient.attr("id");
@@ -149,32 +145,22 @@ $(function () {
      */
 
     $(namespace + '.btn-nouveau-credit').on('click', function() {
-
         $(namespace + '#nouveau-credit input#nomClient').val($trClient.children().eq(0).text())
-
     })
 
     $(namespace + '#nouveau-credit #btn-enregistrer-credit-client').on('click', function () {
-
         $montant = $(namespace + '#nouveau-credit input#somme').val();
         $description = $(namespace + '#nouveau-credit textarea#description').val();
-
         $credit = ['ref-00000',new Date().toLocaleDateString(), $montant, 0, $montant, $description];
-
         push_to_table_list(namespace + '.table-credit-client', '', $credit);
-
         createToast('bg-success', 'uil-check-sign', 'Credit enregistre', 'Nouveau credit enregistre avec success!');
-
         $(namespace + '#nouveau-credit input').val('');
         $(namespace + '#nouveau-credit textarea').val('');
     })
-
     /*
     SUpprimer credit
      */
-
     $(namespace + '.btn-supprimer-credit').on('click', function () {
-
         $modalId = "suppression-credit-client"
         create_confirm_dialog('Suppression credit', 'Voulez vraiment supprimer les credits impayes ?', $modalId, 'Oui, supprimer tout', 'btn-danger')
             .on('click', function() {

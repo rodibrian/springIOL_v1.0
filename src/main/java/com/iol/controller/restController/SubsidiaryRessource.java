@@ -1,7 +1,9 @@
 package com.iol.controller.restController;
 
+import com.iol.model.tenantEntityBeans.ArticleUnite;
 import com.iol.model.tenantEntityBeans.Filiale;
 import com.iol.model.tenantEntityBeans.PrixArticleFiliale;
+import com.iol.repository.ArticleRepository;
 import com.iol.repository.PricesRepository;
 import com.iol.repository.SalesRepository;
 import com.iol.repository.SubsidiaryRepository;
@@ -35,6 +37,31 @@ public class SubsidiaryRessource{
         List<PrixArticleFiliale> all = pricesRepository.findAll(uniteId, articleId, filialeId);
         return new ResponseEntity<>(all, HttpStatus.OK);
     }
+
+    @Autowired
+    private ArticleRepository articleRepository;
+
+
+    @GetMapping(value = "/subsidiaries/{id}/items/{itemName}")
+    public ResponseEntity<Object> getItemByName(@PathVariable("id")Long filialeId
+                                                         , @PathVariable("itemName")String itemName){
+        List<ArticleUnite> allByItemName = articleRepository.getAllByItemName(filialeId, itemName);
+        return new ResponseEntity<>(allByItemName, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/subsidiaries/{id}/prices/{itemName}")
+    public ResponseEntity<Object> getPricesByItemName(@PathVariable("id")Long filialeId
+            , @PathVariable("itemName")String itemName){
+        List<PrixArticleFiliale> all = pricesRepository.findAllByLastDateAndItemName(filialeId,itemName);
+        return new ResponseEntity<>(all, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/subsidiaries/{id}/items")
+    public ResponseEntity<Object> getItem(@PathVariable("id")Long filialeId){
+        List<ArticleUnite> allByItemName = articleRepository.getAll(filialeId);
+        return new ResponseEntity<>(allByItemName, HttpStatus.OK);
+    }
+
 
     @PutMapping("/subsidiaries/{id}")
     public ResponseEntity<Object> update(@RequestBody Filiale filiale, @PathVariable(value = "id") Long id){

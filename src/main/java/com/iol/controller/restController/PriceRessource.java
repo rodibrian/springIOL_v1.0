@@ -22,7 +22,7 @@ public class PriceRessource{
     private PricesRepository repository;
 
     @PostMapping("/prices")
-    public ResponseEntity<Object> create(@RequestBody PrixArticleFiliale prixArticleFiliale){
-        return new ResponseEntity<>(repository.save(prixArticleFiliale),HttpStatus.OK);
+    public ResponseEntity<Object> create(@RequestBody List<PrixArticleFiliale> prixArticleFilialeList){
+        return new ResponseEntity<>(repository.saveAll(prixArticleFilialeList),HttpStatus.OK);
     }
 }

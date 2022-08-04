@@ -3,6 +3,7 @@
 <!-- Start Content-->
 <div class="container-fluid" id="menu-article">
   <!-- start page title -->
+    <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
   <div class="row">
     <div class="col-12">
       <div class="page-title-box">
@@ -28,6 +29,8 @@
         <a id="newArticleBtn" type="button" class="btn btn-success mr-1" data-bs-toggle="modal"
            data-bs-target="#new-article"><i
                 class="uil-file-plus">&nbsp;</i>Nouveau Article</a>
+        <a id="refresh-btn" type="button" class="btn btn-success mr-1"><i
+                class="uil-refresh">&nbsp;</i>actualiser</a>
       </div>
     </div>
   </div>

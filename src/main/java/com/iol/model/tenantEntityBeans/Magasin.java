@@ -44,6 +44,6 @@ public class Magasin{
     @ManyToMany(mappedBy = "magasin",cascade = CascadeType.PERSIST)
     private Set<User> users;
 
-    @OneToMany
-    private Set<Operation> operations;
+//    @OneToMany
+//    private Set<Operation> operations;
 }

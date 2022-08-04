@@ -11,6 +11,7 @@ $(function () {
     let idCf = 1;
     let NOUVEAU_FOURNISSEUR = true;
 
+    $filialeId = $(namespace + '#filiale-id').attr("value-id");
 
     exportToExcel(namespace + '.btn-export-to-excel','fournisseurs', namespace + '#table-fournisseur')
 
@@ -27,10 +28,8 @@ $(function () {
      */
 
     $(namespace + '.btn-nouveau-fournisseur').on('click', function () {
-
         $(namespace + '#nouveau-fournisseur').attr('data-value', 'nouveau-fournisseur');
         $(namespace + '#nouveau-fournisseur').modal('show')
-
         $(namespace + '#nouveau-fournisseur .modal-title').text('Nouveau Fournisseur');
     })
 
@@ -54,7 +53,6 @@ $(function () {
     })
 
     function enregistrerClientOuFournisseur(fournisseur){
-
         let cfResourceUrl = NOUVEAU_FOURNISSEUR ? cfUrl :cfUrl+"/"+idCf;
         let methodType = NOUVEAU_FOURNISSEUR ? "POST" : "PUT";
         $.ajax({
@@ -97,6 +95,7 @@ $(function () {
         fr.adresse = adresse;
         fr.numTel = contact;
         fr.type = 1;
+        fr.filiale = {id : $filialeId };
         enregistrerClientOuFournisseur(fr)
     })
 

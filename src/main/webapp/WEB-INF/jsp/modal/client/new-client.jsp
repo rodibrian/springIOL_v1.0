@@ -7,6 +7,7 @@
         <h4 class="modal-title" id="standard-modalLabel">Nouveau Client</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
       </div>
+      <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
       <div class="modal-body">
         <div class="mb-1">
           <label for="numCIN" class="form-label">Numero CIN</label>

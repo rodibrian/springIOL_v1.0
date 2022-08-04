@@ -126,23 +126,29 @@ public class MenuNavController{
     }
 
     @RequestMapping(value = "/client", method = RequestMethod.GET)
-    public ModelAndView getClient() {
+    public ModelAndView getClient(HttpServletRequest request) {
+        Map<String, Long> connectedUserMagasinId = getConnectedUserInfo(request);
+        Long filialeId = connectedUserMagasinId.get(FILIALE_ID);
         ModelAndView modelAndView = new ModelAndView("menu-client");
-        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST, clientFournisseurRepository.getAllExternalEntities(CLIENT));
+        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST, clientFournisseurRepository.getAllExternalEntities(CLIENT,filialeId));
         return modelAndView;
     }
 
     @RequestMapping(value = "/fournisseur", method = RequestMethod.GET)
-    public ModelAndView getMenuFournisseur() {
+    public ModelAndView getMenuFournisseur(HttpServletRequest request) {
+        Map<String, Long> connectedUserMagasinId = getConnectedUserInfo(request);
+        Long filialeId = connectedUserMagasinId.get(FILIALE_ID);
         ModelAndView modelAndView = new ModelAndView("menu-fournisseur");
-        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST, clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR));
+        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST, clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR,filialeId));
         return modelAndView;
     }
 
     @RequestMapping(value = "/embarquement-nouveau", method = RequestMethod.GET)
-    public ModelAndView getNouveauEmbarquement() {
+    public ModelAndView getNouveauEmbarquement(HttpServletRequest request) {
+        Map<String, Long> connectedUserMagasinId = getConnectedUserInfo(request);
+        Long filialeId = connectedUserMagasinId.get(FILIALE_ID);
         ModelAndView modelAndView = new ModelAndView("embarquement/nouveau-embarquement");
-        modelAndView.addObject("cfList_embarquement", clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR));
+        modelAndView.addObject("cfList_embarquement", clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR,filialeId));
         modelAndView.addObject(MATERIEL_TRANSPORT_LIST, this.materielTransportRepository.findAll());
         return modelAndView;
     }
@@ -165,7 +171,7 @@ public class MenuNavController{
         ModelAndView modelAndView = new ModelAndView("operation/entree");
         modelAndView.addObject(ARTICLE_LIST,articleRepository.getAllNotDeletedAndNotHidden(filialeId));
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
-        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR));
+        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR,filialeId));
         return modelAndView;
     }
 
@@ -216,10 +222,12 @@ public class MenuNavController{
 
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public ModelAndView getDashboard() {
+    public ModelAndView getDashboard(HttpServletRequest request){
+        Map<String, Long> connectedUserMagasinId = getConnectedUserInfo(request);
+        Long filialeId = connectedUserMagasinId.get(FILIALE_ID);
         ModelAndView modelAndView = new ModelAndView("dashboard");
-        modelAndView.addObject("client_list", clientFournisseurRepository.getAllExternalEntities(CLIENT));
-        modelAndView.addObject("fournisseur_list", clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR));
+        modelAndView.addObject("client_list", clientFournisseurRepository.getAllExternalEntities(CLIENT,filialeId));
+        modelAndView.addObject("fournisseur_list", clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR,filialeId));
         return modelAndView;
     }
 
@@ -247,12 +255,19 @@ public class MenuNavController{
 
     @RequestMapping(value = "/ventes", method = RequestMethod.GET)
     public ModelAndView getVentes(HttpServletRequest request){
+
         Map<String, Long> connectedUserMagasinId = getConnectedUserInfo(request);
+
         Long filialeId = connectedUserMagasinId.get(FILIALE_ID);
+
         ModelAndView modelAndView = new ModelAndView("menu-vente");
+
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
+
         modelAndView.addObject(ARTICLE_LIST,articleRepository.getAllNotDeletedAndNotHidden(filialeId));
-        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(CLIENT));
+
+        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(CLIENT,filialeId));
+
         return modelAndView;
     }
 
