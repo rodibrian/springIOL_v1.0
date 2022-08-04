@@ -24,11 +24,8 @@ public class Article implements Serializable{
     private String designation;
 
     @ManyToOne(targetEntity = Categorie.class,cascade = CascadeType.MERGE)
-    @JoinColumn(name = "categorieId",foreignKey = @ForeignKey(name = "article_categorie_key_constraint"))
+    @JoinColumn(name = "categorieId",foreignKey = @ForeignKey(name = "article_categorie_key_constraint"),nullable = false)
     private Categorie categorie;
-
-    @ManyToMany(mappedBy = "articles",cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
-    private Set<Magasin> magasins;
 
     @Lob
     private byte[] image;

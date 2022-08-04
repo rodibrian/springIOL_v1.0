@@ -29,4 +29,8 @@ public class Fonction{
             @JoinColumn(name = "fonctionnalite_id",foreignKey = @ForeignKey(name = "ff_fonctionnalite_key_constraint"))
     })
     private List<Fonctionnalite> fonctionnalites;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "filiale_id",nullable = false)
+    private Filiale filiale;
 }

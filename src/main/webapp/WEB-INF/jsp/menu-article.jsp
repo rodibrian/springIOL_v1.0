@@ -3,6 +3,7 @@
 <!-- Start Content-->
 <div class="container-fluid" id="menu-article">
   <!-- start page title -->
+    <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
   <div class="row">
     <div class="col-12">
       <div class="page-title-box">
@@ -28,6 +29,8 @@
         <a id="newArticleBtn" type="button" class="btn btn-success mr-1" data-bs-toggle="modal"
            data-bs-target="#new-article"><i
                 class="uil-file-plus">&nbsp;</i>Nouveau Article</a>
+        <a id="refresh-btn" type="button" class="btn btn-success mr-1"><i
+                class="uil-refresh">&nbsp;</i>actualiser</a>
       </div>
     </div>
   </div>
@@ -90,6 +93,7 @@
           </tr>
           </thead>
           <tbody>
+<<<<<<< HEAD
           <c:forEach var="article" items="${articles}">
               <tr id="${article[0]}">
                 <td><c:out value="${article[1]}"/></td>
@@ -98,11 +102,21 @@
                 <td><c:out value="${article[5]}"/></td>
                 <td><c:out value="${article[6]}"/></td>
                 <td class="d-flex justify-content-center td-action">
+=======
+          <c:forEach var="au" items="${articles}">
+              <tr id="${au.article.id}">
+                <td>${au.article.designation}</td>
+                <td>${au.article.categorie.libelle}</td>
+                <td>${au.poids}</td>
+                <td>${au.unite.designation}</td>
+                <td>${au.quantiteNiveau}</td>
+                <td class="d-flex justify-content-center">
+>>>>>>> 75deffab8e455a3e21881daea716de7c6b9bc557
                   <div>
-                    <a id="${article[0]}" data-bs-toggle="modal" data-bs-target="#new-article"
+                    <a id="${au.article.id}" data-bs-toggle="modal" data-bs-target="#new-article"
                        class="btn-sm btn-info editArticleBtn"><i class="uil-pen"></i></a>
-                    <a id="${article[0]}" class="btn-sm btn-danger deleteArticleBtn "><i class="uil-trash-alt"></i></a>
-                    <a id="${article[0]}" class="btn-sm btn-warning hideArticleBtn"><i class="uil-eye-slash"></i></a>
+                    <a id="${au.article.id}" class="btn-sm btn-danger deleteArticleBtn "><i class="uil-trash-alt"></i></a>
+                    <a id="${au.article.id}" class="btn-sm btn-warning hideArticleBtn"><i class="uil-eye-slash"></i></a>
                   </div>
                 </td>
               </tr>

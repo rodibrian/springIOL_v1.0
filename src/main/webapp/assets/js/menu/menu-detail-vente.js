@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 $(function () {
 
     let namespace = "#menu-detail-vente ";
@@ -60,6 +61,35 @@ $(function () {
             if (text !== undefined && text !== "") {
                 let ressource_url = url + magasinId + "/sales/" + typeFilter + "/" + text;
                 getAllSales(ressource_url);
+=======
+$(function(){
+    exportToExcel(namespace + '.btn-export-to-excel','detail-ventes-' , namespace + '.table-detail-vente')
+    //
+    let namespace = "#menu-detail-vente ";
+    let appendDataToTable = (data) =>{
+        $.each(data,(key,value) =>{
+            let tr =[
+                value.infoArticleMagasin.reference,
+                value.client.nom,
+                value.infoArticleMagasin.article.designation,
+                value.infoArticleMagasin.unite.designation,
+                value.infoArticleMagasin.quantiteAjout,
+                (value.montantVente/value.infoArticleMagasin.quantiteAjout),
+                value.montantVente,
+                value.infoArticleMagasin.date
+            ]
+            push_to_table_list(namespace+"#details-vente-table",value.id,tr);
+        });
+    }
+    let getAllSales = (url) =>{
+        $.ajax({
+            type : "GET",
+            url : url,
+            contentType: "application/json",
+            success : function (data){
+                $(namespace+"#details-vente-table tbody tr").empty();
+                appendDataToTable(data);
+>>>>>>> 75deffab8e455a3e21881daea716de7c6b9bc557
             }
         });
         // SEARCH BUTTON

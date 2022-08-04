@@ -5,10 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bd9c0e93-77b1-4a8f-96ad-44ae32dfbfef" name="Changes" comment="reste menu-operation filtre">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/2a002b1e-de08-4e81-8290-5e2db6c7aa30.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2a002b1e-de08-4e81-8290-5e2db6c7aa30.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-vente.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-vente.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-vente.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-vente.js" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/ClientFournisseurRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/ClientFournisseurRessource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/repository/ArticleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/repository/ArticleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-vente.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-vente.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-fournisseur.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-fournisseur.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-vente.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-vente.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/operation/entree.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/operation/entree.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/ClientFournisseurRessource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/ClientFournisseurRessource.class" afterDir="false" />
+>>>>>>> 75deffab8e455a3e21881daea716de7c6b9bc557
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,9 +29,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
         <option value="Interface" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -41,11 +52,11 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/iol/model/entityEnum/Sexe.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/iol/model/entityEnum/SituationMatrimoniale.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Personne.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/PersonnePhysique.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/iol/model/entityEnum/Sexe.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/User.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/iol/model/entityEnum/SituationMatrimoniale.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
@@ -80,6 +91,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
@@ -98,6 +110,22 @@
     ]
   }
 }</component>
+=======
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+>>>>>>> 75deffab8e455a3e21881daea716de7c6b9bc557
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -116,6 +144,7 @@
       <recent name="C:\Users\tombo augustin\IdeaProjects\springIOL_v1.0\src\main\resources\SCRIPT" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.iol.controller.restController" />
       <recent name="com.iol.repository" />
     </key>
   </component>
@@ -161,10 +190,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.Iol">
-    <configuration name="generated-requests#93" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="93" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="PricesRepositoryTest.findAllByLastDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ArticleRepositoryTest.getAllByItemName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="iol" />
       <extension name="coverage">
         <pattern>
@@ -173,14 +199,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.iol.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.iol.repository.PricesRepositoryTest" />
-      <option name="METHOD_NAME" value="findAllByLastDate" />
+      <option name="MAIN_CLASS_NAME" value="com.iol.repository.ArticleRepositoryTest" />
+      <option name="METHOD_NAME" value="getAllByItemName" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SalesRepositoryTest.findAllTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ArticleRepositoryTest.getAllNotDeletedAndNotHidden" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="iol" />
       <extension name="coverage">
         <pattern>
@@ -189,14 +215,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.iol.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.iol.repository.SalesRepositoryTest" />
-      <option name="METHOD_NAME" value="findAllTest" />
+      <option name="MAIN_CLASS_NAME" value="com.iol.repository.ArticleRepositoryTest" />
+      <option name="METHOD_NAME" value="getAllNotDeletedAndNotHidden" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SalesRepositoryTest.getBillDetails" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ArticleRepositoryTest.testGetAll1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="iol" />
       <extension name="coverage">
         <pattern>
@@ -205,14 +231,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.iol.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.iol.repository.SalesRepositoryTest" />
-      <option name="METHOD_NAME" value="getBillDetails" />
+      <option name="MAIN_CLASS_NAME" value="com.iol.repository.ArticleRepositoryTest" />
+      <option name="METHOD_NAME" value="testGetAll1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SalesRepositoryTest.getFactureGroupByRef" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MagasinRepositoryTest.findAllByFiliale" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="iol" />
       <extension name="coverage">
         <pattern>
@@ -221,8 +247,24 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.iol.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.iol.repository.SalesRepositoryTest" />
-      <option name="METHOD_NAME" value="getFactureGroupByRef" />
+      <option name="MAIN_CLASS_NAME" value="com.iol.repository.MagasinRepositoryTest" />
+      <option name="METHOD_NAME" value="findAllByFiliale" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserRepositoryTest.getAllUserByMagasinId1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="iol" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.iol.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.iol.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.iol.repository.UserRepositoryTest" />
+      <option name="METHOD_NAME" value="getAllUserByMagasinId1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -236,20 +278,20 @@
       </method>
     </configuration>
     <configuration name="Iol" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <option name="ACTIVE_PROFILES" />
       <module name="iol" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.iol.Iol" />
+      <option name="ACTIVE_PROFILES" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SalesRepositoryTest.getBillDetails" />
-        <item itemvalue="JUnit.SalesRepositoryTest.getFactureGroupByRef" />
-        <item itemvalue="JUnit.SalesRepositoryTest.findAllTest" />
-        <item itemvalue="JUnit.PricesRepositoryTest.findAllByLastDate" />
-        <item itemvalue="HTTP Request.generated-requests#93" />
+        <item itemvalue="JUnit.ArticleRepositoryTest.getAllByItemName" />
+        <item itemvalue="JUnit.UserRepositoryTest.getAllUserByMagasinId1" />
+        <item itemvalue="JUnit.MagasinRepositoryTest.findAllByFiliale" />
+        <item itemvalue="JUnit.ArticleRepositoryTest.getAllNotDeletedAndNotHidden" />
+        <item itemvalue="JUnit.ArticleRepositoryTest.testGetAll1" />
       </list>
     </recent_temporary>
   </component>
@@ -301,6 +343,7 @@
       <workItem from="1659411707894" duration="1184000" />
       <workItem from="1659415451562" duration="720000" />
       <workItem from="1659422451607" duration="2644000" />
+<<<<<<< HEAD
       <workItem from="1659450724139" duration="4424000" />
       <workItem from="1659468483709" duration="3931000" />
       <workItem from="1659500074704" duration="9320000" />
@@ -308,6 +351,14 @@
       <workItem from="1659551451144" duration="4945000" />
       <workItem from="1659618424058" duration="1992000" />
       <workItem from="1659623305545" duration="2354000" />
+=======
+      <workItem from="1659434031506" duration="20285000" />
+      <workItem from="1659505918211" duration="52000" />
+      <workItem from="1659533539911" duration="3869000" />
+      <workItem from="1659548225909" duration="5334000" />
+      <workItem from="1659583927860" duration="7831000" />
+      <workItem from="1659597868903" duration="19746000" />
+>>>>>>> 75deffab8e455a3e21881daea716de7c6b9bc557
     </task>
     <task id="LOCAL-00001" summary="mapping de la trigger avec la table approvisionnement">
       <created>1658448504125</created>
@@ -339,6 +390,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="RELOAD_CONTEXT" value="false" />

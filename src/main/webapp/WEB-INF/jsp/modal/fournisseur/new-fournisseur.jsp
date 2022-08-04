@@ -2,7 +2,12 @@
 <div id="nouveau-fournisseur" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
      aria-hidden="true">
   <div class="modal-dialog">
+<<<<<<< HEAD
     <form class="modal-content">
+=======
+    <div class="modal-content was-validated">
+      <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
+>>>>>>> 75deffab8e455a3e21881daea716de7c6b9bc557
       <div class="modal-header">
         <h4 class="modal-title" id="standard-modalLabel">Nouveau Fournisseur</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>

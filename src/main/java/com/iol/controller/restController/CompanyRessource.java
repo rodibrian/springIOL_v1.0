@@ -1,6 +1,5 @@
 package com.iol.controller.restController;
 
-import com.google.common.io.Resources;
 import com.iol.model.adminBeans.Societe;
 import com.iol.repository.CompanyRepository;
 import com.iol.repository.ConnectionFactory;
@@ -11,7 +10,6 @@ import org.springframework.data.web.config.SpringDataWebConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Mono;
 
 import java.io.*;
 import java.net.URL;
@@ -60,8 +58,9 @@ public class CompanyRessource {
 
 
     private String readFile(final String relFilePath) throws IOException {
-        final URL url = Resources.getResource(relFilePath);
-        return Resources.toString(url, StandardCharsets.UTF_8);
+//        final URL url = Resources.getResource(relFilePath);
+//        return Resources.toString(url, StandardCharsets.UTF_8);
+        return "";
     }
 
     @DeleteMapping("/companies/{id}")

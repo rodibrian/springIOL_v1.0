@@ -12,13 +12,12 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1")
 public class ClientFournisseurRessource{
-
     @Autowired
     private ClientFournisseurRepository cfRepository;
 
-    @GetMapping(value = "/externalEntities/{typeCf}")
-    public ResponseEntity<Object> getAllByType(@PathVariable(name = "typeCf") Integer type){
-        return new ResponseEntity<>(cfRepository.getAllExternalEntities(type),HttpStatus.OK);
+    @GetMapping(value = "/externalEntities/{typeCf}/{filialeId}")
+    public ResponseEntity<Object> getAllByType(@PathVariable(name = "typeCf") Integer type,@PathVariable(name = "filialeId") Long filialeId){
+        return new ResponseEntity<>(cfRepository.getAllExternalEntities(type,filialeId),HttpStatus.OK);
     }
 
     @GetMapping(value = "/externalEntities")

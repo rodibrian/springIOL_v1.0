@@ -1,5 +1,4 @@
 $(function () {
-
     $fonctionUrl = "http://localhost:8080/api/v1/fonctions";
     $userUrl = "http://localhost:8080/api/v1/users";
     $NEW_USER = true;
@@ -9,7 +8,6 @@ $(function () {
         ------------------------------------------------------------------------- */
 
     let namespace = "#menu-utilisateur "
-
     /*----------------------------------------------------------------------------
                         NOUVELLE FONCTION
     ------------------------------------------------------------------------ */
@@ -31,14 +29,15 @@ $(function () {
      */
 
     $(namespace + '#btn-enregistrer-fonction').on('click', function () {
-
         let libelle = $(namespace + '#nouvelle-fonction input#libelle-fonction').val();
         let dataValue = $(namespace + '#nouvelle-fonction').attr('data-value');
+        let filialeId = $(namespace + '#filiale-id').attr("value-id");
         $isNew = dataValue === NEW;
         $fonctionResourcesUrl = $isNew ? $fonctionUrl :$fonctionUrl+"/"+$idfonction;
         $methodType = $isNew ? "POST" : "PUT";
         $nouveauFonction = {
-            nomFonction : libelle
+            nomFonction : libelle,
+            filiale : {id : filialeId}
         }
         $.ajax({
             type: $methodType,
@@ -111,9 +110,7 @@ $(function () {
         })
 
     }
-
     load_select_fonction();
-
     /*
      enregistrement d'un nouveau utilisateur
      */

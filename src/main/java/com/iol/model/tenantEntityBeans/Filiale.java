@@ -38,6 +38,5 @@ public class Filiale extends Personne{
     private void setChiffreAffaire(){
 
     }
-
     private boolean active = true;
 }

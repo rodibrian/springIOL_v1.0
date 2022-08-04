@@ -6,7 +6,6 @@ DECLARE
     quantite_en_stock_actuelement DOUBLE PRECISION = 0.0;
     quantite_niveau_unite DOUBLE PRECISION = 0.0;
     nouveau_quantite_en_stock DOUBLE PRECISION =0.0;
-    quantite_stock_apres_operation DOUBLE PRECISION = 0.0;
     primary_unite_id BIGINT =0;
     item_count INT =0;
 BEGIN
@@ -47,11 +46,8 @@ BEGIN
                 nouveau_quantite_en_stock := quantite_en_stock_actuelement - (new.quantite_ajout*quantite_niveau_unite);
 
                 new.quantite_stock_apres_operation :=  (quantite_en_stock_actuelement/quantite_niveau_unite) - quantite_niveau_unite;
-
             end if;
-
         end if;
-
         if new.type_operation = 'VENTE' or new.type_operation = 'SORTIE' or new.type_operation = 'AVOIR' then
 
             nouveau_quantite_en_stock := quantite_en_stock_actuelement - (new.quantite_ajout*quantite_niveau_unite) ;

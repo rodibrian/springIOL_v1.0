@@ -1,76 +1,66 @@
 $(function () {
-
     /*----------------------------------
-
               JS OPERATION ENTREE
-
      -----------------------------------*/
-
     let namespace = "#menu-entree-article ";
     let supplyTab = [];
     let trIndex = 0;
-
     /*
      LISTE DES PRIX DE VENTE
      */
-
     let pvuafTab = [];
-
     /*
     ENTREE ARTICLE
      */
-
     // Chargement des données de la page;
-
     $("#btn-search-article").click(function () {
 
     })
-
     // Selection des fournisseurs
-
     $(document).on('dblclick', namespace + '#table-liste-fournisseur tbody tr', function () {
-
         get_select_affect_to_input(namespace + '#input-nom-fournisseur', $(this).attr('id'), $(this).children().eq(0).text());
         $(namespace + '#modal-liste-fournisseur').modal('hide');
-
     })
-
     /*
      Nouveau Fournisseur
      */
-
-    $(namespace + '#btn-enregistrer-fournisseur').on('click', function () {
-
+    $(namespace + '#btn-enregistrer-fournisseur').on('click', function (){
         let nomFournisseur = $(namespace + '#nouveau-fournisseur input#nom').val();
         let adresse = $(namespace + '#nouveau-fournisseur input#adresse').val();
         let contact = $(namespace + '#nouveau-fournisseur input#contact').val();
+        let filialeId = $(namespace + '#filiale-id').attr("value-id");
         let fr = {};
         fr.nom = nomFournisseur;
         fr.adresse = adresse;
         fr.numTel = contact;
         fr.type = 1;
-        // enregistrerClientOuFournisseur(fr)
-        get_select_affect_to_input(namespace + '#input-nom-fournisseur', '', nomFournisseur);
-        // vider les champs fournisseurs
-
+        fr.filiale = {id : filialeId};
+        $.ajax({
+            type : "POST",
+            url : "http://localhost:8080/api/v1/externalEntities",
+            contentType: "application/json",
+            data : JSON.stringify(fr),
+            success : (data) =>{
+                get_select_affect_to_input(namespace + '#input-nom-fournisseur', data.id, nomFournisseur);
+                // vider les champs fournisseurs
+                $(namespace + '#nouveau-fournisseur input#nom').val("");
+            }
+        })
     })
-
     /*
      Selecter article
      */
-
     $(namespace + '#table-liste-article tbody tr').on('dblclick', function () {
-
         let article_id = $(this).attr("id");
-        let unite_id = $(this).children().eq(2).attr("id");
+        let unite_id = $(this).children().eq(2).attr("value-id");
+        let prix = $(this).children().eq(5).text();
         get_select_affect_to_input(namespace + '#input-designation-article', article_id, $(this).children().eq(1).text());
         let IS_CREATE = $(namespace + "#select-unite-article").children().length == 0;
         set_select_option_value_or_update_option([[unite_id, $(this).children().eq(2).text()]], namespace + "#select-unite-article", IS_CREATE);
-        $(namespace + ' #input-prix-vente-article').val($(this).children().eq(5).text());
+        $(namespace + '#input-prix-vente-article').val("");
         $(namespace + '#modal-liste-article').modal('hide');
         // après selection article, select * unite de l'article
         // ainsi que son prix
-
     });
 
     /*
@@ -93,7 +83,6 @@ $(function () {
         let datePeremption = $(namespace + "#input-date-peremption").val();
 
         // PRIX ARTICLE UNITE FILIALE
-
         let fuap = {};
         fuap.filiale = {
             id: filialeId
@@ -110,7 +99,6 @@ $(function () {
         fuap.dateEnregistrement = dateApprov;
         fuap.prixVente = prixVente;
         pvuafTab.push(fuap);
-
         let infoArticleMagasin = {};
         infoArticleMagasin.typeOperation = "ENTRE";
         infoArticleMagasin.magasin = {
@@ -122,9 +110,7 @@ $(function () {
         infoArticleMagasin.quantiteAjout = quantite;
         infoArticleMagasin.date = dateApprov;
         infoArticleMagasin.reference = refFact;
-
         // APPROVISIONNEMENT
-
         let supply = {};
         supply.infoArticleMagasin = infoArticleMagasin;
         supply.fournisseur = {
@@ -157,18 +143,15 @@ $(function () {
      */
 
     $(document).on('dblclick', "#table-liste-article-entree tbody tr", function () {
-
         $(this).remove();
         let id = $(this).attr("id");
         delete (pvuafTab[id]);
         delete (supplyTab[id]);
         $designation = $(this).children().eq(1).text();
         createToast('bg-danger', 'uil-trash-alt', 'Enlevement Article', $designation + ' supprim&eacute;')
-
     });
 
     function onSuppliesCreated() {
-
         supplyTab = [];
         pvuafTab = [];
         trIndex = 0;
@@ -186,7 +169,7 @@ $(function () {
      */
 
     $(namespace + "#btn-enregistrer-article-entree").on('click', function () {
-
+        console.log('ato');
         $modalId = 'confirmation-d-entree-article'
         $nArticle = $(namespace + '#table-liste-article-entree tbody tr').length;
         $content = '' +
@@ -194,7 +177,10 @@ $(function () {
             '<li><strong>' + $nArticle + '</strong> Articles</li>';
         create_confirm_dialog('Confirmation d enregistrement des articles', $content, $modalId, 'Oui, Enregistrer', 'btn-success')
             .on('click', function () {
+<<<<<<< HEAD
                 //impression_entree()
+=======
+>>>>>>> 75deffab8e455a3e21881daea716de7c6b9bc557
                 let supplyWrapper = {};
                 supplyWrapper.supplies = supplyTab;
                 supplyWrapper.prixArticleFiliales = pvuafTab;
@@ -205,11 +191,12 @@ $(function () {
                     data: JSON.stringify(supplyWrapper),
                     success: function (data) {
                         onSuppliesCreated();
+                        impression_entree()
                     }
                 });
 
             })
-    })
+    });
 
     /*
      switch magasin <-> voyage
@@ -235,24 +222,18 @@ $(function () {
         let space = namespace + '#impression-bon-entree-ou-sortie ';
         $(space + '.label-bon-entree-ou-sortie').text('Bon d\'entrée');
         $(space + '.no-entree').hide();
-
         /*
         information facture
          */
-
         $fournisseur = $(namespace + "#input-nom-fournisseur").val();
         $magasin = $(namespace + "#select-magasin option:selected").text();
         $user = $('.account-user-name').text();
-
         /*
         add information
          */
-
         $(space + '.label-magasin').text($magasin);
         $(space + '.label-utilisateur').text($user);
-
         $somme = 0;
-
         $(namespace + '#table-liste-article-entree tbody tr').each(function (index, tr) {
             $array = [$(tr).children().eq(0).text(), $(tr).children().eq(1).text(), $(tr).children().eq(2).text(), $(tr).children().eq(3).text(), $(tr).children().eq(4).text(), $(tr).children().eq(5).text()]
             push_to_table_list(space + '#liste-article-bon', '', $array)
@@ -261,9 +242,7 @@ $(function () {
         ;
         $(space + '.label-total-entree').text($somme + 'Ar');
         $(space + '.label-somme-en-lettre').text(NumberToLetter($somme) + ' ariary');
-
         // print
-
         $(space).printThis()
     }
 })

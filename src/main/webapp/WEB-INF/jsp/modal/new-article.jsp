@@ -17,6 +17,8 @@
           <select name="categorie" class="form-select" id="categorie">
           </select>
         </div>
+          <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
+          <input type="hidden" id="user-id" value-id="${connectedUser.id}">
         <div class="mb-3">
           <label for="table-unite" class="form-label text-underline">Unite</label>
           <table id="table-unite"

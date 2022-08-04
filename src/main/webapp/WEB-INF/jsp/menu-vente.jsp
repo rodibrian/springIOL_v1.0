@@ -29,6 +29,9 @@
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                           data-bs-target="#modal-liste-client" id="btn-search-client"><i class="uil-search"></i>
                   </button>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                          data-bs-target="#nouveau-client" id="btn-nouveau-client"><i
+                          class="uil-plus-circle"></i></button>
                 </div>
               </div>
               <hr>
@@ -121,6 +124,7 @@
     <%@ include file="modal/vente/list-article.jsp" %>
     <%@ include file="modal/vente/list-client.jsp" %>
     <%@ include file="modal/vente/prix-special.jsp" %>
+    <%@ include file="modal/client/new-client.jsp" %>
     <%@ include file="modal/impression/ticket-caisse.jsp" %>
     <%@ include file="modal/impression/facture-vente.jsp" %>
 

@@ -1,60 +1,20 @@
 $(function () {
 
     let namespace = "#menu-prix ";
+    const PRICES_RESOURCES = "http://localhost:8080/api/v1/prices";
+    const $table_prix = $(namespace+"#table-prix tbody");
     /*
-
-    MENU PRIX
-
-     */
-
-    // // Chargement des données de la table
-    //
-    // $lesArticles = [
-    //     {
-    //         codeArticle: '123',
-    //         nomArticle: 'Biscuit',
-    //         uniteArticle: ['piece', 'carton', 'sac'],
-    //         prix: ['0', '0', '0'] // prix par unité
-    //     },
-    //     {
-    //         codeArticle: '456',
-    //         nomArticle: 'Bonbon',
-    //         uniteArticle: ['piece', 'carton', 'sac', 'sac10'],
-    //         prix: ['0', '0', '0', '0'] // prix par unité
-    //     },
-    //     {
-    //         codeArticle: '789',
-    //         nomArticle: 'Jus',
-    //         uniteArticle: ['Litre', 'Bouteille de 5L', 'Bidon de 20L'],
-    //         prix: ['0', '0', '0'] // prix par unité
-    //     }
-    // ]
-    //
-    // $.each($lesArticles, function(keyArticle, valueArticle) {
-    //     $.each(valueArticle.uniteArticle, function(keyUnite, valueUnite) {
-    //         $trArticle = $('<tr></tr>').attr('id', valueArticle.codeArticle + '-' + keyUnite);
-    //         $trArticle.append('\n' +
-    //             '            <td>' + $trArticle.attr("id") + '</td>\n' +
-    //             '            <td class="designation">' + valueArticle.nomArticle + '</td>\n' +
-    //             '            <td class="unite">' + valueArticle.uniteArticle[keyUnite] + '</td>\n' +
-    //             '            <td class="prix">' + valueArticle.prix[keyUnite] + '</td>\n' +
-    //             '            <td class="date-maj">' + new Date().toLocaleString() + '</td>\n' +
-    //             '            <td class="d-flex justify-content-center">\n' +
-    //             '              <a role="button" class="btn btn-sm btn-info info-prix">\n' +
-    //             '                <i class="uil-pen"></i>\n' +
-    //             '              </a>\n' +
-    //             '            </td>\n' +
-    //             '          ');
-    //         $(namespace + '.table-article-prix tbody').append($trArticle);
-    //     })
-    // })
-
-    /*
-
     EVENT MANAGER
-
      */
     const SUBSDIARIES_URL = "http://localhost:8080/api/v1/subsidiaries";
+
+    function appendPriceToTable(data) {
+        $(namespace+"#table-historique-prix tbody tr").empty();
+        $.each(data, (key, value) => {
+            let tr = [value.dateEnregistrement, value.prixVente, value.user.nom];
+            push_to_table_list("#table-historique-prix", value.id, tr);
+        })
+    }
 
     const fecthPricesData = (uniteId,articleId,filialeId)=>{
         let url = SUBSDIARIES_URL+"/"+filialeId+"/"+uniteId+"/"+articleId;
@@ -63,11 +23,7 @@ $(function () {
             url : url,
             contentType: "application/json",
             success : (data) =>{
-                $("#table-historique-prix tbody tr").empty();
-                $.each(data,(key,value)=>{
-                    let tr = [value.dateEnregistrement,value.prixVente,value.user.nom];
-                    push_to_table_list("#table-historique-prix",value.id,tr);
-                })
+                appendPriceToTable(data);
             }
         })
     };
@@ -97,35 +53,62 @@ $(function () {
         let user_name = $('#user-name').attr("value-id");
         let nouveauPrix = $('.input-prix-edit').val();
         let  price = {};
-        price.filiale = {
-            id : $filiale_id
-        }
-        price.user = {id:user_id}
-        price.unite = {id:$unite_id}
-        price.article = {id : $article_id}
-        price.prixVente = nouveauPrix;
-        price.dateEnregistrement = new Date();
-        $.ajax({
-            type : "POST",
-            url : "http://localhost:8080/api/v1/prices",
-            contentType: "application/json",
-            data : JSON.stringify(price),
-            success : (data) =>{
-                let tr = [data.dateEnregistrement,data.prixVente,user_name];
-                push_to_table_list("#table-historique-prix",data.id,tr);
-                createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification du prix effectu&eacute; avec succ&egrave;s!')
+        if (nouveauPrix!==""){
+            price.filiale = {
+                id : $filiale_id
             }
-        })
+            price.user = {id:user_id}
+            price.unite = {id:$unite_id}
+            price.article = {id : $article_id}
+            price.prixVente = nouveauPrix;
+            price.dateEnregistrement = new Date();
+            $.ajax({
+                type : "POST",
+                url : PRICES_RESOURCES,
+                contentType: "application/json",
+                data : JSON.stringify([price]),
+                success : (data) =>{
+                    $.each(data,(key,value)=>{
+                        let tr = [value.dateEnregistrement,value.prixVente,user_name];
+                        push_to_table_list("#table-historique-prix",value.id,tr);
+                        createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification du prix effectu&eacute; avec succ&egrave;s!')
+                    })
+                }
+            })
+        }
     })
 
     // double click of tr, open facture info
     $('.table-article-prix tbody tr').dblclick(function () {
-
         // get code article when dblcliked article
-
         let code = $(this).children()[0].innerText;
-        console.log(code)
     })
-
-
+    // RECHERCHER PRIX
+    $(document).on("keyup",namespace+"#prices-search",()=>{
+        let text = $(namespace+"#prices-search").val();
+        let filialeId = $(namespace+"#filiale-id").attr("value-id");
+        if (text!==""){
+            let url = "http://localhost:8080/api/v1/subsidiaries/"+filialeId+"/prices/"+text;
+            $.ajax({
+                type : "GET",
+                url : url,
+                contentType : "application/json",
+                success : (data) => {
+                    $table_prix.empty();
+                    $.each(data,(key,value)=>{
+                        let tr = `
+                        <tr id=`+value.filiale.id+`-`+value.article.id+`-`+value.unite.id+`>
+                        <td>`+value.article.designation+`</td>
+                        <td>`+value.unite.designation+`</td>
+                        <td>`+value.prixVente+`</td>
+                        <td>`+value.dateEnregistrement+`</td>
+                        <td class="d-flex justify-content-center"><a role="button" class="btn btn-sm btn-info info-prix"><i class="uil-pen"></i></a></td>
+                         </tr>
+                        `;
+                        $table_prix.append(tr);
+                    })
+                }
+            })
+        }
+    })
 })

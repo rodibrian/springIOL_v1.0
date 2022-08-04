@@ -1,45 +1,31 @@
 $(function () {
-
     /*--------------------------
-
         MENU FOURNISSEUR
-
      ----------------------------*/
-
     let namespace = "#menu-fournisseur ";
     let cfUrl = "http://localhost:8080/api/v1/externalEntities";
     let idCf = 1;
     let NOUVEAU_FOURNISSEUR = true;
-
-
+    $filialeId = $(namespace + '#filiale-id').attr("value-id");
     exportToExcel(namespace + '.btn-export-to-excel','fournisseurs', namespace + '#table-fournisseur')
-
     /*
      fermer l'info listes article facture
      */
-
     $(namespace + '.btn-close-info-credit').click(function () {
         $(namespace + '#info-credit').removeClass("show")
     })
-
     /*
      nouveau fournisseur
      */
-
     $(namespace + '.btn-nouveau-fournisseur').on('click', function () {
-
         $(namespace + '#nouveau-fournisseur').attr('data-value', 'nouveau-fournisseur');
         $(namespace + '#nouveau-fournisseur').modal('show')
-
         $(namespace + '#nouveau-fournisseur .modal-title').text('Nouveau Fournisseur');
     })
-
     /*
      editer fournisseur
      */
-
     $(document).on('click', namespace + '.editFournisseur', function () {
-
         $(namespace + '#nouveau-fournisseur').attr('data-value', 'editer-fournisseur');
         $(namespace + '#nouveau-fournisseur').modal('show')
 
@@ -49,12 +35,10 @@ $(function () {
         $(namespace + '#nouveau-fournisseur input#nom').val($trFournisseur.children().eq(0).text());
         $(namespace + '#nouveau-fournisseur input#adresse').val($trFournisseur.children().eq(1).text());
         $(namespace + '#nouveau-fournisseur input#contact').val($trFournisseur.children().eq(2).text());
-
         NOUVEAU_FOURNISSEUR = false;
     })
 
     function enregistrerClientOuFournisseur(fournisseur){
-
         let cfResourceUrl = NOUVEAU_FOURNISSEUR ? cfUrl :cfUrl+"/"+idCf;
         let methodType = NOUVEAU_FOURNISSEUR ? "POST" : "PUT";
         $.ajax({
@@ -122,6 +106,7 @@ $(function () {
 
     $(namespace + '#nouveau-fournisseur #btn-enregistrer-fournisseur').on('click', function () {
 
+<<<<<<< HEAD
         if (validation_fournisseur()) {
             $(namespace).modal('hide')
 
@@ -137,6 +122,18 @@ $(function () {
             enregistrerClientOuFournisseur(fr)
         }
 
+=======
+        let nomFournisseur = $(namespace + '#nouveau-fournisseur input#nom').val();
+        let adresse = $(namespace + '#nouveau-fournisseur input#adresse').val();
+        let contact = $(namespace + '#nouveau-fournisseur input#contact').val();
+        let fr = {};
+        fr.nom = nomFournisseur;
+        fr.adresse = adresse;
+        fr.numTel = contact;
+        fr.type = 1;
+        fr.filiale = {id : $filialeId };
+        enregistrerClientOuFournisseur(fr)
+>>>>>>> 75deffab8e455a3e21881daea716de7c6b9bc557
     })
 
     /*
@@ -178,34 +175,23 @@ $(function () {
      */
 
     $(namespace + '.btn-nouveau-dette').on('click', function() {
-
         $(namespace + '#nouveau-dette input#nomFournisseur').val($trFournisseur.children().eq(0).text())
-
     })
 
     $(namespace + '#nouveau-dette #btn-enregistrer-dette-fournisseur').on('click', function () {
-
         $montant = $(namespace + '#nouveau-dette input#somme').val();
         $description = $(namespace + '#nouveau-dette textarea#description').val();
-
         $dette = ['ref-00000',new Date().toLocaleDateString(), $montant, 0, $montant, $description];
-
         push_to_table_list(namespace + '.table-dette-fournisseur', '', $dette);
-
         createToast('bg-success', 'uil-check-sign', 'Dette enregistre', 'Nouveau dette enregistre avec success!');
-
         $(namespace + '#nouveau-dette input').val('');
         $(namespace + '#nouveau-dette textarea').val('');
     })
-
     /*
-    SUpprimer dette
+    Supprimer dette
      */
-
     $(namespace + '.btn-supprimer-dette').on('click', function () {
-
         $modalId = "suppression-dette-fournisseur"
-
         create_confirm_dialog('Suppression dette', 'Voulez vraiment supprimer les dettes impayes ?', $modalId, 'Oui, supprimer tout', 'btn-danger')
             .on('click', function() {
                 $(namespace + '.table-dette-fournisseur tbody tr').remove();

@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @Entity
 public class AlertStock{
-
     @EmbeddedId
     private InfoArticleMagasinId infoArticleMagasinId;
 

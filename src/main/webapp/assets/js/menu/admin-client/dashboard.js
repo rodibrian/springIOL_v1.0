@@ -20,15 +20,12 @@ $(function () {
     /*
      event activatiot filial
      */
-
     $(document).on('click', namespace + ' .btn-activer-filial', function () {
         $(namespace + "#activation-filial").modal('show')
     })
-
     /*
      edit filial
      */
-
     $(document).on('click', namespace + ' .btn-editer-filial', function () {
 
         $(namespace + "#nouveau-filial .modal-title").text('Editer filial')
@@ -42,11 +39,9 @@ $(function () {
         $(namespace + '#nouveau-filial input#input-adresse').val($(namespace + '#' + $cardCurrent + ' .label-adresse').text())
         $(namespace + '#nouveau-filial input#input-contact').val($(namespace + '#' + $cardCurrent + ' .label-contact').text())
     })
-
     /*
      enregsitrement filial
      */
-
     function onCreateSubsdiariesSuccess() {
 
         switch ($typeOperation) {
@@ -60,9 +55,7 @@ $(function () {
                 $(namespace + '#' + $cardCurrent + ' .label-contact').text($contact)
                 break;
         }
-
         // empty input text
-
         $(namespace + '#nouveau-filial input#input-nom').val(' ')
         $(namespace + '#nouveau-filial input#input-adresse').val(' ')
         $(namespace + '#nouveau-filial input#input-contact').val(' ')
@@ -71,13 +64,24 @@ $(function () {
     }
 
     function persistDefaultStore() {
-
         $default_magasin = {
             adresse: $filiale.adresse,
             nomMagasin: "default_magasin",
             filiale: {
                 id: $filiale.id
             }
+        };
+        $admin_filiale_user = {
+            username: $username,
+            password: $password,
+            fonction: {
+                id: $fonction.id
+            },
+            filiale: {
+                id: $filiale.id
+            },
+            magasin : [$default_magasin],
+            enabled: true
         };
         $.ajax({
             type: "POST",
@@ -89,8 +93,7 @@ $(function () {
         })
     }
 
-    function persistFonctionSucceed() {
-
+    function persistFiliale(){
         $filiale = {};
         $filiale.nom = $nom;
         $filiale.adresse = $adresse;
@@ -100,17 +103,21 @@ $(function () {
             url: "http://localhost:8080/api/v1/subsidiaries",
             contentType: "application/json",
             data: JSON.stringify($filiale),
-            success: function (data) {
+            success: function (data){
                 $filiale = data;
-                persistDefaultUser();
-                onCreateSubsdiariesSuccess();
-                persistDefaultStore();
+                persistFonction();
             }
         })
     }
 
     function persistDefaultUser() {
-
+        $default_magasin = {
+            adresse: $filiale.adresse,
+            nomMagasin: "default_magasin",
+            filiale: {
+                id: $filiale.id
+            }
+        };
         $admin_filiale_user = {
             username: $username,
             password: $password,
@@ -120,6 +127,7 @@ $(function () {
             filiale: {
                 id: $filiale.id
             },
+            magasin : [$default_magasin],
             enabled: true
         };
         $.ajax({
@@ -127,12 +135,19 @@ $(function () {
             url: "http://localhost:8080/api/v1/users",
             contentType: "application/json",
             data: JSON.stringify($admin_filiale_user),
-            success: function (user) {
+            success: function (data) {
+                $admin_filiale_user = data;
             }
         })
     }
-
     function persistFonction() {
+        $fonction = {
+            nomFonction: "admin",
+            fonctionnalites: [{
+                nom: "all"
+            }],
+            filiale : {id : $filiale.id}
+        };
         $.ajax({
             type: "POST",
             url: "http://localhost:8080/api/v1/fonctions",
@@ -140,15 +155,14 @@ $(function () {
             data: JSON.stringify($fonction),
             success: function (data) {
                 $fonction = data;
-                persistFonctionSucceed($fonction);
+                persistDefaultUser();
+                onCreateSubsdiariesSuccess();
             }
         })
     }
-
     /*
      enregistrement filial
     */
-
     $(namespace + "#nouveau-filial #btn-enregistrer-filial").on('click', function () {
         $nom = $(namespace + '#nouveau-filial input#input-nom').val()
         $adresse = $(namespace + '#nouveau-filial input#input-adresse').val()
@@ -156,19 +170,11 @@ $(function () {
         $username = $(namespace + '#nouveau-filial input#input-username').val()
         $password = $(namespace + '#nouveau-filial input#input-password').val()
         $typeOperation = $(namespace + "#nouveau-filial").attr('data-id');
-        $fonction = {
-            nomFonction: "admin",
-            fonctionnalites: [{
-                nom: "all"
-            }]
-        };
-        persistFonction($fonction);
+        persistFiliale();
     })
-
     /*
      suppression filial
      */
-
     $(document).on('click', '.btn-desactiver-filial', function () {
         $cardCurrent = $(this).closest('.item-filial').attr('id');
         $idModal = 'desactiver-filial';

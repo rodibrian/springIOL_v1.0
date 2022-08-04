@@ -36,12 +36,6 @@ public class Magasin{
     @Column(columnDefinition = "TEXT")
     private String nomMagasin;
 
-    @ManyToMany
-    @JoinTable(name = "magasin_article",
-            joinColumns = {@JoinColumn(name = "magasin_id",foreignKey = @ForeignKey(name ="FK_MA_MAGASIN_ID",foreignKeyDefinition = "foreign key (magasin_id) references magasin(id_magasin) on delete cascade"))},
-            inverseJoinColumns = {@JoinColumn(name = "article_id",foreignKey = @ForeignKey(name = "FK_MA_ARTICLE_ID",foreignKeyDefinition = "foreign key (article_id) references article(article_id) on delete cascade"))})
-    private Set<Article> articles;
-
     @ManyToOne(cascade= CascadeType.MERGE)
     @JoinColumn(name = "filialeId",foreignKey = @ForeignKey(name = "magasin_filiale_key_constraint"))
     private Filiale filiale;
@@ -50,6 +44,6 @@ public class Magasin{
     @ManyToMany(mappedBy = "magasin",cascade = CascadeType.PERSIST)
     private Set<User> users;
 
-    @OneToMany
-    private Set<Operation> operations;
+//    @OneToMany
+//    private Set<Operation> operations;
 }
