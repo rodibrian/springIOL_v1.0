@@ -5,7 +5,7 @@ import com.iol.model.entityEmbededId.InfoArticleMagasinId;
 import javax.persistence.*;
 
 @Entity
-public class AlertStock{
+public class InventoryAlert{
     @EmbeddedId
     private InfoArticleMagasinId infoArticleMagasinId;
 

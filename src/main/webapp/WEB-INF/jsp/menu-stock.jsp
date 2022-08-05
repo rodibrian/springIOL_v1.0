@@ -1,4 +1,5 @@
 <%@ include file='template/header.jsp' %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!-- Start Content-->
 <div class="container-fluid" id="menu-stock">
   <!-- start page title -->
@@ -7,7 +8,7 @@
       <div class="page-title-box">
         <div class="page-title-right">
           <div class="input-group">
-            <input type="text" required class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
+            <input type="text" required class="form-control dropdown-toggle" placeholder="Search..." id="stock-search">
             <button class="input-group-text btn-primary" type="submit"><i class="uil-search"></i></button>
           </div>
         </div>
@@ -15,6 +16,7 @@
       </div>
     </div>
   </div>
+  <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
   <!-- end page title -->
   <div class="row mr-2">
     <div class="col-12">
@@ -38,7 +40,7 @@
         <div class="d-inline-flex s-value">
           <div class="mb-3 mr-1">
             <select required class="form-select" id="magasin-select">
-                <option value="${magasin.id}">Toutes</option>
+                <option value="">Toutes</option>
                 <c:forEach var="magasin" items="${magasins}">
                   <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
                 </c:forEach>
@@ -71,11 +73,11 @@
           </thead>
           <tbody>
           <c:forEach var="stock" items="${stocks}">
-            <tr>
+            <tr id="${stock.magasinId}-${stock.articleId}-${stock.uniteId}">
                 <td>${stock.article}</td>
                 <td>${stock.unite}</td>
                 <td>${stock.categorie}</td>
-                <th>${stock.nomMagasin}</th>
+                <td>${stock.nomMagasin}</td>
                 <td class="td-info-stock">
                        <a type="button" class="btn-default mr-1 btn-info-stock" data-bs-toggle="modal" data-bs-target="#info-stock">${stock.quantite} ${stock.unite}</a>
                 </td>
@@ -90,14 +92,17 @@
 </div> <!-- container -->
 
 </div> <!-- content -->
+
+</div>
+
 </div>
 
 </div>
 
 </div>
-</div>
 
 </div>
+
 </div>
 <!-- ============================================================== -->
 <!-- End Page content -->

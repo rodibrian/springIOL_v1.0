@@ -1,11 +1,10 @@
 package com.iol.controller.restController;
 import com.iol.model.tenantEntityBeans.InfoArticleMagasin;
+import com.iol.model.tenantEntityBeans.InventoryAlert;
 import com.iol.model.tenantEntityBeans.Magasin;
 import com.iol.model.tenantEntityBeans.Vente;
-import com.iol.repository.ActivityRepository;
-import com.iol.repository.MagasinRepository;
-import com.iol.repository.SalesRepository;
-import com.iol.repository.UserRepository;
+import com.iol.model.wrapper.InventoryViewWrapper;
+import com.iol.repository.*;
 import com.iol.service.ArticleService;
 import com.iol.service.MagasinService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.spi.DateFormatProvider;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +19,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1")
 public class MagasinRessource {
+
+    @Autowired
+    private InventoryAlertRepository inventoryAlertRepository;
 
     private MagasinRepository magasinRepository;
 
@@ -58,9 +59,22 @@ public class MagasinRessource {
 
     @GetMapping("/magasins/{id}/activities")
     public ResponseEntity<Object> getAllActivities(@PathVariable("id")Long id){
-        List<InfoArticleMagasin> allByMagasin = activityRepository.findAllByMagasin(id);
+        List<InfoArticleMagasin> allByMagasin = activityRepository.findAllByStoreId(id);
         return new ResponseEntity<>(allByMagasin,HttpStatus.OK) ;
     }
+
+//    @GetMapping("/magasins/{id}/activities/{articleId}")
+//    public ResponseEntity<Object> getAllActivitiesByItem(@PathVariable("id")Long storeId, @PathVariable("articleId")Long itemId){
+//        List<InfoArticleMagasin> allByMagasin = activityRepository.findAllByStoreAndItem(storeId, itemId);
+//        return new ResponseEntity<>(allByMagasin,HttpStatus.OK) ;
+//    }
+
+//    @GetMapping("/magasins/{id}/activities/{articleId}/{uniteId}")
+//    public ResponseEntity<Object> getAllActivitiesByItemAndUnit(@PathVariable("id")Long storeId,
+//                                                                @PathVariable("articleId")Long itemId,@PathVariable("uniteId")Long uniteId){
+//        List<InfoArticleMagasin> allByMagasin = activityRepository.findAllByStoreAndItemAndUnit(storeId, itemId,uniteId);
+//        return new ResponseEntity<>(allByMagasin,HttpStatus.OK) ;
+//    }
 
     @GetMapping("/magasins/{id}/sales/{type}/{name}")
     public ResponseEntity<Object> getAllSalesByName(@PathVariable("id")Long id,
@@ -75,6 +89,18 @@ public class MagasinRessource {
     @GetMapping("/magasins/{id}/sales")
     public ResponseEntity<Object> getStoreSales(@PathVariable("id")Long id){
         return new ResponseEntity<>(salesRepository.getSalesByStore(id),HttpStatus.OK) ;
+    }
+
+    @GetMapping("/magasins/{id}/inventories")
+    public ResponseEntity<Object> getStoreInventories(@PathVariable("id")Long id){
+        List<InventoryViewWrapper> inventory = articleService.getInventoryByStore(id);
+        return new ResponseEntity<>(inventory,HttpStatus.OK) ;
+    }
+
+    @GetMapping("/magasins/{id}/inventories/{itemName}")
+    public ResponseEntity<Object> getStoreInventoryByItemName(@PathVariable("id")Long id,@PathVariable("itemName")String name){
+        List<InventoryViewWrapper> inventory = articleService.getInventoryByStoreAndItemName(id,name);
+        return new ResponseEntity<>(inventory,HttpStatus.OK) ;
     }
 
     @GetMapping("/magasins/{id}/sales/{type}/{begin}/{end}")
@@ -94,7 +120,6 @@ public class MagasinRessource {
         List<InfoArticleMagasin> allByMagasin = activityRepository.findAllByDate(id,localDate);
         return new ResponseEntity<>(allByMagasin,HttpStatus.OK) ;
     }
-
 
 
     @GetMapping("/magasins/{id}/activities/{beginDate}/{endDate}")
@@ -122,9 +147,17 @@ public class MagasinRessource {
 
     @GetMapping("/magasins/{id}/stocks")
     public ResponseEntity<Object> getStocksBy(@PathVariable("id") Long id){
-        return new ResponseEntity<>(articleService.getStockByMagasin(id), HttpStatus.OK);
+        return new ResponseEntity<>(articleService.getInventoryByStore(id), HttpStatus.OK);
     }
 
+
+    @GetMapping("/magasins/{id}/inventory-alerts/{articleId}/{uniteId}")
+    public ResponseEntity<Object> getInventoryAlert(@PathVariable("id") Long storeId,
+                                                    @PathVariable("uniteId") Long uniteId,
+                                                    @PathVariable("articleId") Long articleId){
+        List<InventoryAlert> allByArticleAndUniteAndMagasin = inventoryAlertRepository.getAllByArticleAndUniteAndMagasin(storeId, articleId, uniteId);
+        return new ResponseEntity<>(allByArticleAndUniteAndMagasin, HttpStatus.OK);
+    }
 
     @PostMapping("/magasins")
     public ResponseEntity<Object> create(@RequestBody Magasin magasin){

@@ -47,7 +47,7 @@ class ArticleRepositoryTest{
 
     @Test
     void testGetStockWithPriceAndExpirationDate1() {
-        List<String> stockWithPriceAndExpirationDate = articleRepository.getStockWithPriceAndExpirationDate(1L);
+        List<String> stockWithPriceAndExpirationDate = articleRepository.getStockWithPriceAndExpirationDateByItemName(1L);
         assertThat(stockWithPriceAndExpirationDate).isNotEmpty();
         stockWithPriceAndExpirationDate.forEach(System.out::println);
     }

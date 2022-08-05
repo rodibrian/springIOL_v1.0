@@ -312,7 +312,7 @@ public class MenuNavController{
         Long filialeId = connectedUserMagasinId.get(FILIALE_ID);
         ModelAndView modelAndView = new ModelAndView("menu-stock");
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
-        modelAndView.addObject(STOCKS,articleService.getAllInventories());
+        modelAndView.addObject(STOCKS,articleService.getAllInventories(filialeId));
         return modelAndView;
     }
 

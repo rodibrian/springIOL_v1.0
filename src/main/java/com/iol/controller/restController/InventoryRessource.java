@@ -15,7 +15,7 @@ public class InventoryRessource {
 
     @GetMapping("/inventories/stores/{id}")
     public ResponseEntity<Object> getInventories(@PathVariable("id") Long id){
-        return new ResponseEntity<>(articleService.getStockByMagasin(id),HttpStatus.OK);
+        return new ResponseEntity<>(articleService.getInventoryByStore(id),HttpStatus.OK);
     }
 
     @GetMapping("/inventories")

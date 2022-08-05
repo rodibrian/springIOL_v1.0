@@ -10,4 +10,13 @@ public class InventoryWrapper{
     private Long uniteId;
     private Long magasinId;
     private Double quantite;
+    @Override
+    public String toString() {
+        return "InventoryWrapper{" +
+                "articleId=" + articleId +
+                ", uniteId=" + uniteId +
+                ", magasinId=" + magasinId +
+                ", quantite=" + quantite +
+                '}';
+    }
 }

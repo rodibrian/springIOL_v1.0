@@ -22,28 +22,21 @@
         </div>
       </div>
       <div class="d-inline-flex mt-1">
-        <input type="date" class="form-control">&nbsp;
-        <input type="date" class="form-control">&nbsp;
-        <input type="text" required class="form-control" placeholder="Nom du client">&nbsp;
-        <input type="text" required class="form-control" placeholder="Nom d'article">
-        <a type="button" class="btn btn-success mr-1">
-          <i class="uil-search-alt"></i>
-        </a>
-        <input type="date" id="begin-date-input" class="form-control">&nbsp;
-        <input type="date" id="end-date-input" class="form-control">&nbsp;&nbsp;
-          <a type="button" id="search-button" class="btn btn-success mr-1"><i class="uil-search-alt"></i></a>&nbsp;&nbsp;
-        <input type="text" id="nom-input" class="form-control" placeholder="Nom">&nbsp;&nbsp;
-          <select name="magasin" id="type-filter" class="form-select">&nbsp;&nbsp;
+        <input type="date" id="begin-date-input" class="form-control">
+        <input type="date" id="end-date-input" class="form-control">
+          <a type="button" id="search-button" class="btn btn-success mr-1"><i class="uil-search-alt"></i></a>
+        <input type="text" id="nom-input" class="form-control" placeholder="Nom">
+          <select name="magasin" id="type-filter" class="form-select">
             <option value="CLIENT">NOM CLIENT</option>
             <option value="ARTICLE">NOM ARTICLE</option>
               <option value="DATE">DATE</option>
-          </select><br><br>&nbsp;&nbsp;
+          </select><br>
           <select name="magasin" id="magasin-select-operation" class="form-select">
               <c:forEach var="magasin" items="${magasins}">
                   <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
               </c:forEach>
           </select>
-          <br><br>
+          <br>
       </div>
     </div>
   </div>

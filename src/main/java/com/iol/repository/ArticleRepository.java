@@ -37,23 +37,39 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
             "WHERE au.article_id = a.article_id and au.unite_id = u.id " +
             "and a.categorie_id = c.id "+
             "and s.article_id = au.article_id and m.id_magasin = s.magasin_id ",nativeQuery = true)
-    List<String> getStockWithPriceAndExpirationDate();
+    List<String> getStockWithPriceAndExpirationDateByItemName();
 
     @Query(value = "select a.article_id,u.id,s.magasin_id,a.designation as ad,c.libelle, u.designation," +
             "(s.count/(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as nb , m.nom_magasin " +
             "FROM unite u , Stock s , article_unite as au , article a , categorie  c , magasin m " +
             "WHERE au.article_id = a.article_id and au.unite_id = u.id "+
             "and a.categorie_id = c.id " +
-            "and s.article_id = au.article_id and s.magasin_id=:magasinId and m.id_magasin = s.magasin_id ",nativeQuery = true)
-    List<String> getStockWithPriceAndExpirationDate(@Param("magasinId") Long magasinId);
+            "and s.article_id = au.article_id and s.magasin_id=:magasinId and m.id_magasin = s.magasin_id",nativeQuery = true)
+    List<String> getStockWithPriceAndExpirationDateByItemName(@Param("magasinId") Long magasinId);
 
     @Query(value = "select a.article_id,u.id,s.magasin_id,a.designation as ad,c.libelle, u.designation," +
             "(s.count/(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as nb , m.nom_magasin " +
             "FROM unite u , Stock s , article_unite as au , article a , categorie  c , magasin m " +
             "WHERE au.article_id = a.article_id and au.unite_id = u.id "+
             "and a.categorie_id = c.id " +
-            "and s.article_id = au.article_id and s.magasin_id=:magasinId and m.filiale_id=:filialeId and m.id_magasin = s.magasin_id ",nativeQuery = true)
-    List<String> getStockWithPriceAndExpirationDate(@Param("magasinId") Long magasinId,@Param("filialeId") Long filialeId);
+            "and s.article_id = au.article_id and s.magasin_id=:magasinId and m.id_magasin = s.magasin_id and lower(trim(a.designation)) like concat('%',lower(trim(:name)),'%') ",nativeQuery = true)
+    List<String> getStockWithPriceAndExpirationDateByItemName(@Param("magasinId") Long magasinId,@Param("name")String name);
+
+    @Query(value = "select a.article_id,u.id,s.magasin_id,a.designation as ad,c.libelle, u.designation," +
+            "(s.count/(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as nb , m.nom_magasin " +
+            "FROM unite u , Stock s , article_unite as au , article a , categorie  c , magasin m " +
+            "WHERE au.article_id = a.article_id and au.unite_id = u.id "+
+            "and a.categorie_id = c.id " +
+            "and s.article_id = au.article_id and m.filiale_id=:filialeId and m.id_magasin = s.magasin_id and lower(trim(a.designation)) like concat('%',lower(trim(:name)),'%')",nativeQuery = true)
+    List<String> getSubsidiaryInventoryWithPriceAndExpirationDateByItemName(@Param("filialeId") Long filialeId,@Param("name")String name);
+
+    @Query(value = "select a.article_id,u.id,s.magasin_id,a.designation as ad,c.libelle, u.designation," +
+            "(s.count/(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as nb , m.nom_magasin " +
+            "FROM unite u , Stock s , article_unite as au , article a , categorie  c , magasin m " +
+            "WHERE au.article_id = a.article_id and au.unite_id = u.id "+
+            "and a.categorie_id = c.id " +
+            "and s.article_id = au.article_id and m.filiale_id=:filialeId and m.id_magasin = s.magasin_id",nativeQuery = true)
+    List<String> getSubsidiaryInventoryWithPriceAndExpirationDate(@Param("filialeId") Long filialeId);
 
     @Query(value = "SELECT prix_vente from prix_article_filiale where article_id =:artId and unite_id =:uId and filiale_id =:fId order by date_enregistrement desc limit 1",nativeQuery = true)
     String getPrix(@Param("artId") Long artId,@Param("uId") Long uId,@Param("fId") Long fId);

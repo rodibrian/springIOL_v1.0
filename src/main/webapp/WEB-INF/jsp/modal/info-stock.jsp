@@ -1,6 +1,6 @@
 <!-- Standard modal -->
-<div id="info-stock" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
-     aria-hidden="true">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<div id="info-stock" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content was-validated">
       <div class="modal-header">
@@ -11,10 +11,10 @@
         <div class="row">
           <div class="col-md-4 aside">
             <div class="label">
-              <p class="label-magasin">Magasin <%= "Magasin ii" %></p>
-              <p class="label-code-article"></p>
+              <p class="label-magasin"></p>
               <p class="label-designation-article"></p>
               <p class="label-unite-article"></p>
+              <p class="label-categorie-article"></p>
               <p class="label-stock-initial-article"></p>
               <p class="label-stock-final-article"></p>
               <p class="label-quantite-alerte-article">Quantit&eacute; d'alerte : <%= "00"%></p>
@@ -35,12 +35,11 @@
             </div>
             <table id="table-operation-stock" class="table table-hover table-striped norwap table-sm dt-responsive">
               <thead>
-              <th>Numero</th>
-              <th>Date</th>
+              <th>reference</th>
               <th>Operation</th>
-              <th>Entree</th>
-              <th>Sortie</th>
-              <th>Stock</th>
+              <th>Quantité</th>
+              <th>Quantité en stock</th>
+              <th>Date</th>
               <th>Operateur</th>
               </thead>
               <tbody>
@@ -49,7 +48,6 @@
           </div>
         </div>
         <!-- inventaire -->
-
         <!-- modifier alerte -->
       </div>
       <div class="modal-footer d-inline-flex">

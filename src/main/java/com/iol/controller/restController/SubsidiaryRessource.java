@@ -3,10 +3,12 @@ package com.iol.controller.restController;
 import com.iol.model.tenantEntityBeans.ArticleUnite;
 import com.iol.model.tenantEntityBeans.Filiale;
 import com.iol.model.tenantEntityBeans.PrixArticleFiliale;
+import com.iol.model.wrapper.InventoryViewWrapper;
 import com.iol.repository.ArticleRepository;
 import com.iol.repository.PricesRepository;
 import com.iol.repository.SalesRepository;
 import com.iol.repository.SubsidiaryRepository;
+import com.iol.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,12 +43,21 @@ public class SubsidiaryRessource{
     @Autowired
     private ArticleRepository articleRepository;
 
+    @Autowired
+    private ArticleService articleService;
 
     @GetMapping(value = "/subsidiaries/{id}/items/{itemName}")
     public ResponseEntity<Object> getItemByName(@PathVariable("id")Long filialeId
                                                          , @PathVariable("itemName")String itemName){
         List<ArticleUnite> allByItemName = articleRepository.getAllByItemName(filialeId, itemName);
         return new ResponseEntity<>(allByItemName, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/subsidiaries/{id}/inventories/{itemName}")
+    public ResponseEntity<Object> getSubsidiariesInventories(@PathVariable("id")Long filialeId
+            , @PathVariable("itemName")String itemName){
+        List<InventoryViewWrapper> subsidiaryInventoryByStoreAndItemName = articleService.getSubsidiaryInventoryByStoreAndItemName(filialeId, itemName);
+        return new ResponseEntity<>(subsidiaryInventoryByStoreAndItemName, HttpStatus.OK);
     }
 
     @GetMapping(value = "/subsidiaries/{id}/prices/{itemName}")

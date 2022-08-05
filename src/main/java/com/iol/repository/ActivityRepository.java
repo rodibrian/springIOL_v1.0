@@ -23,6 +23,13 @@ public interface ActivityRepository extends JpaRepository<InfoArticleMagasin,Lon
                                                 @Param("endDate")LocalDate endDate);
 
     @Query(value = "from InfoArticleMagasin iam join iam.magasin m where m.id =:magasinId")
-    List<InfoArticleMagasin> findAllByMagasin(@Param("magasinId")Long magasinId);
+    List<InfoArticleMagasin> findAllByStoreId(@Param("magasinId")Long magasinId);
 
+    @Query(value = "from InfoArticleMagasin iam join iam.magasin m join iam.article a where m.id =:magasinId and a.id=:articleId ")
+    List<InfoArticleMagasin> findAllByStoreAndItem(@Param("magasinId")Long magasinId,@Param("articleId") Long articleId);
+
+    @Query(value = "from InfoArticleMagasin iam join iam.magasin m join iam.article a join iam.unite u where m.id =:magasinId and a.id=:articleId  and u.id=:uniteId")
+    List<InfoArticleMagasin> findAllByStoreAndItemAndUnit(@Param("magasinId")Long magasinId
+                                                         ,@Param("articleId") Long articleId
+                                                         ,@Param("uniteId") Long uniteId);
 }

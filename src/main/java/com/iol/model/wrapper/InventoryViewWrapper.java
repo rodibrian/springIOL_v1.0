@@ -12,4 +12,9 @@ public class InventoryViewWrapper extends InventoryWrapper {
     private String categorie;
     private String unite;
     private String nomMagasin;
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

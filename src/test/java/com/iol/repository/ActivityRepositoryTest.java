@@ -37,7 +37,7 @@ class ActivityRepositoryTest {
 
     @Test
     void testFindAllByMagasin() {
-        List<InfoArticleMagasin> allByMagasin = activityRepository.findAllByMagasin(2L);
+        List<InfoArticleMagasin> allByMagasin = activityRepository.findAllByStoreId(2L);
         assertThat(allByMagasin.size()).isEqualTo(1);
     }
 }
