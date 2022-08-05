@@ -1,10 +1,8 @@
 import {bootstrapValidate} from "../bootstrap-validate";
 
 $(function () {
-
     let namespace = "#menu-magasin ";
-    clientUrl = "http://localhost:8080/api/v1/magasins";
-
+    let clientUrl = "http://localhost:8080/api/v1/magasins";
     /*-------------------------
 
             MENU MAGASIN
@@ -41,7 +39,6 @@ $(function () {
     }
 
     $(namespace + '#btn-enregistrer-magasin').on('click', function () {
-
         validation();
 
         // $nomMagasin = $(namespace + '#nom-magasin').val();
