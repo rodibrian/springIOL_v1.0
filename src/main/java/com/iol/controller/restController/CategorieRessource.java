@@ -15,6 +15,7 @@ public class CategorieRessource {
 
     @Autowired
     private CategorieRepository categorieRepository;
+
     @GetMapping(value = "/categories")
     public ResponseEntity<Object> getAllCategories(){
         return new ResponseEntity<>(categorieRepository.findAll(),HttpStatus.OK);

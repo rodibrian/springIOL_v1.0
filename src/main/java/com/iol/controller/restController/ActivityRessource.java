@@ -38,5 +38,4 @@ public class ActivityRessource {
 //        List<InfoArticleMagasin> allByMagasin = activityRepository.findAllByStoreAndItem(storeId, itemId);
 //        return new ResponseEntity<>(allByMagasin,HttpStatus.OK) ;
 //    }
-
 }

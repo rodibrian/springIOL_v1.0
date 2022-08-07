@@ -3,6 +3,7 @@ import {bootstrapValidate} from "../bootstrap-validate";
 $(function () {
     let namespace = "#menu-magasin ";
     let clientUrl = "http://localhost:8080/api/v1/magasins";
+    let
     /*-------------------------
 
             MENU MAGASIN
@@ -11,8 +12,7 @@ $(function () {
 
 
     // constante
-
-    const NOUVEAU = 'nouveau', EDITION = 'edition';
+    NOUVEAU = 'nouveau', EDITION = 'edition';
 
     /*
      click de bouton nouveau
@@ -40,18 +40,19 @@ $(function () {
 
     $(namespace + '#btn-enregistrer-magasin').on('click', function () {
         validation();
-        $nomMagasin = $(namespace + '#nom-magasin').val();
-        $adresseMagasin = $(namespace + '#adresse-magasin').val();
-        $filialeId = $(namespace + '#filiale-id').attr("value-id");
-        $newMagasin = {
-            adresse : $adresseMagasin,
-            nomMagasin : $nomMagasin,
+        let nomMagasin = $(namespace + '#nom-magasin').val();
+        let adresseMagasin = $(namespace + '#adresse-magasin').val();
+        let filialeId = $(namespace + '#filiale-id').attr("value-id");
+        let newMagasin = {
+            adresse : adresseMagasin,
+            nomMagasin : nomMagasin,
             filiale : {
-                id : $filialeId
+                id : filialeId
             }
         };
+        console.log($newMagasin);
         NOUVEAU_UTILISATEUR = $(namespace + '#new-magasin').attr('data-type') === NOUVEAU;
-        $magasinResourcesUrl = NOUVEAU_UTILISATEUR ? clientUrl :clientUrl+"/"+$idCf;
+        let magasinResourcesUrl = NOUVEAU_UTILISATEUR ? clientUrl :clientUrl+"/"+$idCf;
         $methodType = NOUVEAU_UTILISATEUR ? "POST" : "PUT";
         $.ajax({
             type: $methodType,
@@ -131,24 +132,23 @@ $(function () {
 
     function getAllUserByMagasinId($idMagasin){
 
-        $magasinResourcesUrl = clientUrl+"/"+$idMagasin+"/users";
+        let magasinResourcesUrl = clientUrl+"/"+$idMagasin+"/users";
         $.ajax({
             type: "GET",
             url: $magasinResourcesUrl,
             contentType: 'application/json',
             success : function (data) {
                 for (let i = 0; i < data.length; i++) {
-                    $userInfo = data[i].split(",");
-                    push_to_table_list_magasin($userInfo);
+                    let userInfo = data[i].split(",");
+                    push_to_table_list_magasin(userInfo);
                 }
             }
         });
     }
 
     $(document).on('click', namespace + '#table-liste-magasin tbody tr', function () {
-
         // Charger les listes d'utilisateur de ce magasin
-        $idMagasin = $(this).attr('id');
+        let idMagasin = $(this).attr('id');
 
         // Supprimer toutes les elements dans la table
 
@@ -156,7 +156,7 @@ $(function () {
 
         // affichage des utilisateur
 
-        getAllUserByMagasinId($idMagasin);
+        getAllUserByMagasinId(idMagasin);
 
     })
 })
