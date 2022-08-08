@@ -20,7 +20,7 @@ class UserRepositoryTest {
 
     @Test
     void getAllUserByMagasinId1() {
-        List<User> allUserByMagasinId1 = userRepository.getAllUserByMagasinId1(1L);
+        List<User> allUserByMagasinId1 = userRepository.getAllUserByMagasinId(1L);
         Assertions.assertThat(allUserByMagasinId1).isEmpty();
     }
 }

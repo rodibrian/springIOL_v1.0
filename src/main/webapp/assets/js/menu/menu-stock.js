@@ -38,8 +38,27 @@ $(function () {
         })
     }
 
+    function updateInfoLabel(storeName, article, unite, categorie) {
+        $('#info-stock p.label-magasin').text('Magasin : ' + storeName);
+        $('#info-stock p.label-designation-article').text('Designation : ' + article);
+        $('#info-stock p.label-unite-article').text('Unite : ' + unite);
+        $('#info-stock p.label-categorie-article').text('Categorie : ' + categorie);
+        $('#info-stock p.label-stock-initial-article').text('Stock Initial : ' + $currentArticleTr.children('.td-info-stock').text());
+        $('#info-stock p.label-stock-final-article').text('Stock Final : ' + $currentArticleTr.children('.td-info-stock').text());
+        $('#info-stock #date-debut').val(formatDate(new Date()));
+        $('#info-stock #date-fin').val(formatDate(new Date()));
+    }
+
+    function fetchInventoryAlert(articleId) {
+        let url = "http://localhost:8080/api/v1/inventories-alert/" + $filialeId + "/" + articleId;
+        execute_ajax_request("get", url, null, (data) => {
+            $('#info-stock p.label-quantite-alerte-article').text(" Quantité alert : " + data);
+        })
+    }
+
     $(document).on('click', '.td-info-stock .btn-info-stock', function () {
         $currentArticleTr = $(this).closest('tr');
+        $filialeId = $(namespace+"#filiale-id").attr("value-id");
         let storeName = $currentArticleTr.children().eq(3).text();
         let categorie = $currentArticleTr.children().eq(2).text();
         let unite = $currentArticleTr.children().eq(1).text();
@@ -52,14 +71,8 @@ $(function () {
         $('#info-stock').attr('data-id',[magasinId,articleId]);
         fetchInventoryActivities(magasinId, articleId, uniteId);
         // affectation des valeur de chaque paragraphe
-        $('#info-stock p.label-magasin').text('Magasin : ' +storeName);
-        $('#info-stock p.label-designation-article').text('Designation : ' +article);
-        $('#info-stock p.label-unite-article').text('Unite : ' +unite);
-        $('#info-stock p.label-categorie-article').text('Categorie : ' +categorie);
-        $('#info-stock p.label-stock-initial-article').text('Stock Initial : ' + $currentArticleTr.children('.td-info-stock').text());
-        $('#info-stock p.label-stock-final-article').text('Stock Final : ' + $currentArticleTr.children('.td-info-stock').text());
-        $('#info-stock #date-debut').val(formatDate(new Date()));
-        $('#info-stock #date-fin').val(formatDate(new Date()));
+        updateInfoLabel(storeName, article, unite, categorie);
+        fetchInventoryAlert(articleId);
     })
 
     function getStoreInventories(url){

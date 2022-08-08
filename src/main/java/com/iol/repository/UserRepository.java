@@ -19,10 +19,7 @@ public interface UserRepository extends JpaRepository<User,Long>{
     Optional<User> checkUser(@Param("name") String username,@Param("pass") String password);
 
     @Query(value = "from _user u join u.magasin m where m.id=:idMagasin")
-    List<String> getAllUserByMagasinId(@Param("idMagasin") Long id);
-
-    @Query(value = "from _user u join u.magasin m where m.id=:idMagasin")
-    List<User> getAllUserByMagasinId1(@Param("idMagasin") Long id);
+    List<User> getAllUserByMagasinId(@Param("idMagasin") Long id);
 
     @Query(value = "from _user u join u.fonction f where f.id =:id")
     List<User> getUserByFontionId(@Param("id") Long id);

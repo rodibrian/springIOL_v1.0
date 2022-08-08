@@ -21,10 +21,6 @@ public class Fonctionnalite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "fonctionnalites")
-    private Set<Fonction> fonction;
-
     @Column(columnDefinition = "TEXT")
     private String nom;
 }

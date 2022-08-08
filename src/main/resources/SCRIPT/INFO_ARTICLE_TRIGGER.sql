@@ -61,8 +61,6 @@ BEGIN
 
         end if;
 
-
-
         if new.type_operation = 'VENTE' or new.type_operation = 'SORTIE' or new.type_operation = 'AVOIR' then
 
             nouveau_quantite_en_stock := quantite_en_stock_actuelement - (new.quantite_ajout*quantite_niveau_unite) ;
@@ -95,6 +93,5 @@ BEGIN
 
 END;
 $$;
-
 alter function before_insert_on_info_article_unite_magasin() owner to postgres;
 

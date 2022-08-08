@@ -3,9 +3,9 @@ create function before_insert_on_info_article_unite_magasin() returns trigger
 as
 $$
 DECLARE
-    quantite_en_stock_actuelement DOUBLE PRECISION = 0.0;
-    quantite_niveau_unite DOUBLE PRECISION = 0.0;
-    nouveau_quantite_en_stock DOUBLE PRECISION =0.0;
+    quantite_en_stock_actuelement DOUBLE PRECISION = 0;
+    quantite_niveau_unite DOUBLE PRECISION = 0;
+    nouveau_quantite_en_stock DOUBLE PRECISION =0;
     primary_unite_id BIGINT =0;
     item_count INT =0;
 BEGIN
@@ -22,7 +22,7 @@ BEGIN
     -- RECUPERER LE STOCK ACTUEL
     SELECT count into quantite_en_stock_actuelement FROM  stock  WHERE article_id = new.article_id AND unite_id = primary_unite_id AND magasin_id = new.magasin_id;
 
-    if item_count = 0 or quantite_en_stock_actuelement is null or quantite_en_stock_actuelement = 0 then
+    if item_count = 0 then
 
         nouveau_quantite_en_stock := new.quantite_ajout*quantite_niveau_unite;
 
@@ -42,6 +42,16 @@ BEGIN
 
             new.quantite_stock_apres_operation := (quantite_en_stock_actuelement/quantite_niveau_unite) + new.quantite_ajout;
 
+            -- INITIALISATION DE LA QUANTITE EN ALERT DE CHAQUE ARTICLE ET FILIALE
+
+            if new.type_operation = 'ENTRE' then
+
+                insert into inventory_alert(article_id, filiale_id, quantite)
+
+                values (new.article_id,(select m.filiale_id from magasin m where m.id_magasin=new.magasin_id),0.0);
+
+            end if;
+
             if new.type_operation like '%TRANSFERT%' AND  new.type_operation like '%VERS%' then
 
                 nouveau_quantite_en_stock := quantite_en_stock_actuelement - (new.quantite_ajout*quantite_niveau_unite);
@@ -50,8 +60,6 @@ BEGIN
             end if;
 
         end if;
-
-
 
         if new.type_operation = 'VENTE' or new.type_operation = 'SORTIE' or new.type_operation = 'AVOIR' then
 
@@ -85,6 +93,5 @@ BEGIN
 
 END;
 $$;
-
 alter function before_insert_on_info_article_unite_magasin() owner to postgres;
 

@@ -794,7 +794,7 @@ false Zulu
     <database id="3" parent="1" name="ioldb">
       <ObjectId>163794</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>549006</IntrospectionStateNumber>
+      <IntrospectionStateNumber>549011</IntrospectionStateNumber>
       <Current>1</Current>
       <Relations>sequence|table|163812|163813|1
 sequence|table|163826|163827|1
@@ -903,7 +903,7 @@ UC/10
 </Acl>
       <StateNumber>527</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>549007</IntrospectionStateNumber>
+      <IntrospectionStateNumber>549012</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="22" parent="3" name="plpgsql">
@@ -1390,8 +1390,8 @@ UC/10
     <routine id="106" parent="21" name="before_insert_on_info_article_unite_magasin">
       <ObjectId>164460</ObjectId>
       <Owner>postgres</Owner>
-      <SourceTextLength>3791</SourceTextLength>
-      <StateNumber>549005</StateNumber>
+      <SourceTextLength>3789</SourceTextLength>
+      <StateNumber>549010</StateNumber>
       <ResultsDefinition>trigger</ResultsDefinition>
       <LanguageName>plpgsql</LanguageName>
       <RoutineKind>function</RoutineKind>

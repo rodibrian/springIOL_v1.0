@@ -51,9 +51,6 @@ public class MagasinRessource {
 
     @GetMapping("/magasins/{id}/users")
     public ResponseEntity<Object> getAllUser(@PathVariable("id")Long id){
-        Optional<Magasin> optionalMagasin = magasinRepository.findById(id);
-        if (!optionalMagasin.isPresent()) return new ResponseEntity<>(" Le magasin avec l'id "+id+" n'existe pas dans la base de donné", HttpStatus.NOT_FOUND);
-        Magasin magasin = optionalMagasin.get();
         return new ResponseEntity<>(userRepository.getAllUserByMagasinId(id),HttpStatus.OK);
     }
 

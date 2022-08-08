@@ -23,4 +23,7 @@ public interface InventoryAlertRepository extends CrudRepository<InventoryAlert,
       @Modifying(clearAutomatically = true)
       @Query(value = "update inventory_alert set quantite =:qt where article_id=:articleId and filiale_id=:filialeId",nativeQuery = true)
       void updateInventoryAlert(@Param("filialeId")Long filialeId,@Param("articleId")Long articleId,@Param("qt")Double quantite);
+
+      @Query(value = "select quantite from inventory_alert where article_id=:articleId and filiale_id=:filialeId",nativeQuery = true)
+      String getInventoryAlertBy(@Param("filialeId")Long filialeId,@Param("articleId")Long articleId);
 }

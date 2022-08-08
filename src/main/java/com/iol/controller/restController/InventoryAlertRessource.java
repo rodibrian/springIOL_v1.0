@@ -30,4 +30,12 @@ public class InventoryAlertRessource {
         inventoryAlertRepository.updateInventoryAlert(filialeId,articleId,quantite);
         return new ResponseEntity<>("", HttpStatus.CREATED);
     }
+
+    @GetMapping("/inventories-alert/{filialeId}/{articleId}")
+    public ResponseEntity<Object> create(@PathVariable("filialeId")Long filialeId,
+                                         @PathVariable("articleId")Long articleId){
+        return new ResponseEntity<>(inventoryAlertRepository.getInventoryAlertBy(filialeId,articleId), HttpStatus.CREATED);
+    }
+
+
 }

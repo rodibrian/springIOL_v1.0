@@ -1,28 +1,22 @@
-import {bootstrapValidate} from "../bootstrap-validate";
 
 $(function () {
     let namespace = "#menu-magasin ";
     let clientUrl = "http://localhost:8080/api/v1/magasins";
-    let
+    let NOUVEAU_UTILISATEUR = true;
     /*-------------------------
 
             MENU MAGASIN
 
      --------------------------*/
-
-
     // constante
-    NOUVEAU = 'nouveau', EDITION = 'edition';
-
+   const NOUVEAU = 'nouveau', EDITION = 'edition';
     /*
      click de bouton nouveau
      */
 
     $(namespace + '#btn-nouveau-magasin').on('click', function () {
-
         $(namespace + '#new-magasin').attr('data-type', NOUVEAU);
         $(namespace + '#new-magasin .modal-title').html('Nouveau magasin');
-
     })
 
 
@@ -39,31 +33,30 @@ $(function () {
     }
 
     $(namespace + '#btn-enregistrer-magasin').on('click', function () {
-        validation();
+        // validation();
         let nomMagasin = $(namespace + '#nom-magasin').val();
         let adresseMagasin = $(namespace + '#adresse-magasin').val();
         let filialeId = $(namespace + '#filiale-id').attr("value-id");
-        let newMagasin = {
+        $newMagasin = {
             adresse : adresseMagasin,
             nomMagasin : nomMagasin,
             filiale : {
                 id : filialeId
             }
         };
-        console.log($newMagasin);
         NOUVEAU_UTILISATEUR = $(namespace + '#new-magasin').attr('data-type') === NOUVEAU;
         let magasinResourcesUrl = NOUVEAU_UTILISATEUR ? clientUrl :clientUrl+"/"+$idCf;
         $methodType = NOUVEAU_UTILISATEUR ? "POST" : "PUT";
         $.ajax({
             type: $methodType,
-            url: $magasinResourcesUrl,
+            url: magasinResourcesUrl,
             contentType: 'application/json',
             data: JSON.stringify($newMagasin),
             success: function (data) {
                 $newMagasin = data;
                 /* ACTION */
                 $tdActionContent = $(' ' + '<div class="d-inline-flex justify-content-center">' + '<a href="#" class="delete-magasin"><i class="uil-trash-alt"></i></a>' + '<a href="#" class="edit-magasin"><i class="uil-pen"></i></a>' + '</div>');
-                $oneMagasin = [$nomMagasin, $adresseMagasin, $tdActionContent];
+                $oneMagasin = [nomMagasin,adresseMagasin, $tdActionContent];
                 if (NOUVEAU_UTILISATEUR) {
                     push_to_table_list("#table-liste-magasin",data.id,$oneMagasin);
                     createToast('bg-success', 'uil-file-check', 'Creation Fait', 'Creation d\'un nouveau magasin effectu&eacute; avec succ&egrave;s!')
@@ -72,7 +65,6 @@ $(function () {
                 // EDITION MAGASIN OPERATION
 
                 else{
-                    console.log(" UPDATE ");
                     update_to_table_list(namespace + '#table-liste-magasin', $(namespace + '#new-magasin').attr('data-id'), $oneMagasin);
                     createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification du magasin effectu&eacute; avec succ&egrave;s!')
                 }
@@ -131,17 +123,17 @@ $(function () {
      */
 
     function getAllUserByMagasinId($idMagasin){
-
         let magasinResourcesUrl = clientUrl+"/"+$idMagasin+"/users";
         $.ajax({
             type: "GET",
-            url: $magasinResourcesUrl,
+            url: magasinResourcesUrl,
             contentType: 'application/json',
             success : function (data) {
-                for (let i = 0; i < data.length; i++) {
-                    let userInfo = data[i].split(",");
-                    push_to_table_list_magasin(userInfo);
-                }
+                $(namespace+"#table-liste-utilisateur-magasin tbody").empty();
+                 $.each(data,(key,value)=>{
+                     let tr = [value.nom,value.fonction.nomFonction];
+                     push_to_table_list(namespace+"#table-liste-utilisateur-magasin",key,tr);
+                 })
             }
         });
     }
