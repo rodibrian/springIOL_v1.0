@@ -16,12 +16,6 @@ public class ArticleService{
 
     @Autowired private ArticleRepository articleRepository;
 
-//    public List<String[]> findAll(){
-//        List<String> allArticle = articleRepository.getAllByMagasin();
-//        List<String[]> collect = allArticle.stream().map(s -> s.split(",")).collect(Collectors.toList());
-//        return collect;
-//    }
-
     public List<InventoryViewWrapper> getAllInventories(){
         List<String> stockWithPriceAndExpirationDate = articleRepository.getStockWithPriceAndExpirationDateByItemName();
         List<String[]> collect = stockWithPriceAndExpirationDate.stream().map(s -> s.split(",")).collect(Collectors.toList());
@@ -58,16 +52,16 @@ public class ArticleService{
     }
 
     public InfoArticleMagasin updateInventory(InfoArticleMagasin[] infoArticleMagasinTab){
-        Double quantiteEnStock = 0D;
+        Double sum = 0D;
         for (InfoArticleMagasin iam : infoArticleMagasinTab){
             Long articleId = iam.getArticle().getId();
             Long uniteId = iam.getUnite().getId();
             Double quantiteNiveau = articleRepository.getQuantiteNiveau(uniteId, articleId);
             Double quantiteAjout = iam.getQuantiteAjout();
-            quantiteEnStock=+(quantiteAjout*quantiteNiveau);
+            sum+=(quantiteAjout*quantiteNiveau);
         }
         InfoArticleMagasin infoArticleMagasin = infoArticleMagasinTab[0];
-        infoArticleMagasin.setQuantiteAjout(quantiteEnStock);
+        infoArticleMagasin.setQuantiteAjout(sum);
         return infoArticleMagasin;
     }
 

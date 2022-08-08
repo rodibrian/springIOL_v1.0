@@ -60,7 +60,6 @@ $(function () {
         $('#info-stock p.label-stock-final-article').text('Stock Final : ' + $currentArticleTr.children('.td-info-stock').text());
         $('#info-stock #date-debut').val(formatDate(new Date()));
         $('#info-stock #date-fin').val(formatDate(new Date()));
-
     })
 
     function getStoreInventories(url){
