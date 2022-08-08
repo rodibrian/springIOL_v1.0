@@ -18,36 +18,37 @@ public class ArticleService{
 
     public List<InventoryViewWrapper> getAllInventories(){
         List<String> stockWithPriceAndExpirationDate = articleRepository.getStockWithPriceAndExpirationDateByItemName();
-        List<String[]> collect = stockWithPriceAndExpirationDate.stream().map(s -> s.split(",")).collect(Collectors.toList());
-        List<InventoryViewWrapper> list = createInventoryViewWrappers(collect);
+        List<InventoryViewWrapper> list = createInventoryViewWrappers(stockWithPriceAndExpirationDate);
         return list;
     }
 
     public List<InventoryViewWrapper> getAllInventories(Long filialeId){
         List<String> stockWithPriceAndExpirationDate = articleRepository.getSubsidiaryInventoryWithPriceAndExpirationDate(filialeId);
-        List<String[]> collect = stockWithPriceAndExpirationDate.stream().map(s -> s.split(",")).collect(Collectors.toList());
-        List<InventoryViewWrapper> list = createInventoryViewWrappers(collect);
+        List<InventoryViewWrapper> list = createInventoryViewWrappers(stockWithPriceAndExpirationDate);
+        return list;
+    }
+
+    public List<InventoryViewWrapper> getAllInventoryAlert(Long filialeId){
+        List<String> stockWithPriceAndExpirationDate = articleRepository.getSubsidiaryInventoryAlert(filialeId);
+        List<InventoryViewWrapper> list = createInventoryViewWrappers(stockWithPriceAndExpirationDate);
         return list;
     }
 
     public List<InventoryViewWrapper> getInventoryByStore(Long magasinId){
         List<String> stockWithPriceAndExpirationDate = articleRepository.getStockWithPriceAndExpirationDateByItemName(magasinId);
-        List<String[]> collect = stockWithPriceAndExpirationDate.stream().map(s -> s.split(",")).collect(Collectors.toList());
-        List<InventoryViewWrapper> list = createInventoryViewWrappers(collect);
+        List<InventoryViewWrapper> list = createInventoryViewWrappers(stockWithPriceAndExpirationDate);
         return list;
     }
 
     public List<InventoryViewWrapper> getInventoryByStoreAndItemName(Long magasinId,String name){
         List<String> stockWithPriceAndExpirationDate = articleRepository.getStockWithPriceAndExpirationDateByItemName(magasinId,name);
-        List<String[]> collect = stockWithPriceAndExpirationDate.stream().map(s -> s.split(",")).collect(Collectors.toList());
-        List<InventoryViewWrapper> list = createInventoryViewWrappers(collect);
+        List<InventoryViewWrapper> list = createInventoryViewWrappers(stockWithPriceAndExpirationDate);
         return list;
     }
 
     public List<InventoryViewWrapper> getSubsidiaryInventoryByStoreAndItemName(Long filialeId,String name){
         List<String> stockWithPriceAndExpirationDate = articleRepository.getSubsidiaryInventoryWithPriceAndExpirationDateByItemName(filialeId,name);
-        List<String[]> collect = stockWithPriceAndExpirationDate.stream().map(s -> s.split(",")).collect(Collectors.toList());
-        List<InventoryViewWrapper> list = createInventoryViewWrappers(collect);
+        List<InventoryViewWrapper> list = createInventoryViewWrappers(stockWithPriceAndExpirationDate);
         return list;
     }
 
@@ -65,8 +66,10 @@ public class ArticleService{
         return infoArticleMagasin;
     }
 
-    private List<InventoryViewWrapper> createInventoryViewWrappers(List<String[]> collect) {
+
+    private List<InventoryViewWrapper> createInventoryViewWrappers(List<String> stockWithPriceAndExpirationDate ) {
         List<InventoryViewWrapper> list = new ArrayList<>();
+        List<String[]> collect = stockWithPriceAndExpirationDate.stream().map(s -> s.split(",")).collect(Collectors.toList());
         collect.forEach(strings -> {
             InventoryViewWrapper inventoryViewWrapper = new InventoryViewWrapper();
             inventoryViewWrapper.setArticleId(Long.valueOf(strings[0]));

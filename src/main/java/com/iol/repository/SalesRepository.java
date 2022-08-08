@@ -33,8 +33,6 @@ public interface SalesRepository extends JpaRepository<Vente,Long>{
                                       @Param("end")LocalDate endDate);
 
 
-
-
     @Query(value = "select refgroup.reference reference,"+
             "refgroup.somme montantTotal," +
             "iam1.date date," +

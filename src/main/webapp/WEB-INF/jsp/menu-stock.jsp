@@ -28,11 +28,9 @@
         </div>
       </div>
       <div class="d-inline-flex mt-1">
-        <a type="button" id="toutes-button" class="btn s-no-value btn-40 btn-success mr-1 btn-all-stock" data-bs-toggle="modal"
-           data-bs-target="#new-article"><i
+        <a type="button" id="toutes-button" class="btn s-no-value btn-40 btn-success mr-1 btn-all-stock"><i
                 class="uil-table">&nbsp;</i>Toutes</a>
-        <a id="btn-article-alert" type="button" class="btn s-no-value btn-40 btn-warning mr-1 btn-alert-stock" data-bs-toggle="modal"
-           data-bs-target="#new-article"><i
+        <a id="btn-article-alert" type="button" class="btn s-no-value btn-40 btn-warning mr-1 btn-alert-stock"><i
                 class="uil-apps">&nbsp;</i>Alertes</a>
         <h4 class="s-value label-valeur-stock">Montant total : <%= "0Ar" %>
         </h4>

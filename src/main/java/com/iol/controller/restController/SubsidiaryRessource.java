@@ -53,6 +53,13 @@ public class SubsidiaryRessource{
         return new ResponseEntity<>(allByItemName, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/subsidiaries/{id}/inventories")
+    public ResponseEntity<Object> getSubsidiariesInventoriesAlert(@PathVariable("id")Long filialeId){
+        List<InventoryViewWrapper> subsidiaryInventoryByStoreAndItemName = articleService.getAllInventoryAlert(filialeId);
+        return new ResponseEntity<>(subsidiaryInventoryByStoreAndItemName, HttpStatus.OK);
+    }
+
+
     @GetMapping(value = "/subsidiaries/{id}/inventories/{itemName}")
     public ResponseEntity<Object> getSubsidiariesInventories(@PathVariable("id")Long filialeId
             , @PathVariable("itemName")String itemName){
