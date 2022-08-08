@@ -46,7 +46,7 @@ BEGIN
 
             if new.type_operation = 'ENTRE' then
 
-                insert into inventory_alert(article_id, filiale_id, quantite)
+                insert into inventory_alert(article_id,filiale_id,quantite)
 
                 values (new.article_id,(select m.filiale_id from magasin m where m.id_magasin=new.magasin_id),0.0);
 

@@ -68,7 +68,6 @@ $(function () {
      */
 
     $(namespace + '#btn-ajouter-article-entree').on('click', function () {
-
         let fId = $(namespace + '#input-nom-fournisseur').attr("value-id");
         let magasinId = $(namespace + '#select-magasin').val();
         let articleId = $(namespace + '#input-designation-article').attr("value-id");
@@ -81,7 +80,6 @@ $(function () {
         let userId = $(namespace + '#user-id').attr("value-id");
         let filialeId = $(namespace + '#filiale-id').attr("value-id");
         let datePeremption = $(namespace + "#input-date-peremption").val();
-
         // PRIX ARTICLE UNITE FILIALE
         let fuap = {};
         fuap.filiale = {

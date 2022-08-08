@@ -1,13 +1,12 @@
 package com.iol.controller.restController;
 
+import com.iol.model.entityEmbededId.InventoryAlertId;
+import com.iol.model.tenantEntityBeans.InventoryAlert;
 import com.iol.model.tenantEntityBeans.PrixArticleFiliale;
 import com.iol.model.tenantEntityBeans.Supply;
 import com.iol.model.tenantEntityBeans.Unite;
 import com.iol.model.wrapper.SupplyWrapper;
-import com.iol.repository.ArticleRepository;
-import com.iol.repository.InventoryRepository;
-import com.iol.repository.PuafRepository;
-import com.iol.repository.SupplyRepository;
+import com.iol.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,6 +52,9 @@ public class SupplyRessource {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.valueOf(500));
         }
     }
+
+    @Autowired
+    private InventoryAlertRepository inventoryAlertRepository;
 
     @PostMapping(value = "/supplies")
     public ResponseEntity<Object> create(@RequestBody SupplyWrapper supplyWrapper){
