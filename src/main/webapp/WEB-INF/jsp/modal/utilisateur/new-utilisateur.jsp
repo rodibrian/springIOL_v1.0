@@ -15,7 +15,7 @@
               <input required name="nom" type="text" id="input-nom" class="form-control">
             </div>
           </div>
-
+          <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
         </div>
         <div class="mb-1">
           <div class="row">

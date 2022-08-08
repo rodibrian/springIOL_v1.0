@@ -69,6 +69,12 @@ function push_to_table_list($table, $id, $array_td) {
     return $tr;
 }
 
+function execute_ajax_request(method_type,api_url,data=null,onsuccess){
+    let requestObject = {type : method_type,url : api_url,success : onsuccess,contentType: "application/json"};
+    if (data!==null) requestObject.data = JSON.stringify(data);
+    $.ajax(requestObject);
+}
+
 function push_to_inventory_table_list($table, $id, $array_td) {
     $tr = $('<tr></tr>').attr('id', $id);
     for (let i = 0; i < $array_td.length; i++) {

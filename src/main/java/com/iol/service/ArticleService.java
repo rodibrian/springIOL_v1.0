@@ -1,5 +1,6 @@
 package com.iol.service;
 
+import com.iol.model.tenantEntityBeans.InfoArticleMagasin;
 import com.iol.model.wrapper.InventoryViewWrapper;
 import com.iol.model.wrapper.InventoryWrapper;
 import com.iol.repository.ArticleRepository;
@@ -54,6 +55,20 @@ public class ArticleService{
         List<String[]> collect = stockWithPriceAndExpirationDate.stream().map(s -> s.split(",")).collect(Collectors.toList());
         List<InventoryViewWrapper> list = createInventoryViewWrappers(collect);
         return list;
+    }
+
+    public InfoArticleMagasin updateInventory(InfoArticleMagasin[] infoArticleMagasinTab){
+        Double quantiteEnStock = 0D;
+        for (InfoArticleMagasin iam : infoArticleMagasinTab){
+            Long articleId = iam.getArticle().getId();
+            Long uniteId = iam.getUnite().getId();
+            Double quantiteNiveau = articleRepository.getQuantiteNiveau(uniteId, articleId);
+            Double quantiteAjout = iam.getQuantiteAjout();
+            quantiteEnStock=+(quantiteAjout*quantiteNiveau);
+        }
+        InfoArticleMagasin infoArticleMagasin = infoArticleMagasinTab[0];
+        infoArticleMagasin.setQuantiteAjout(quantiteEnStock);
+        return infoArticleMagasin;
     }
 
     private List<InventoryViewWrapper> createInventoryViewWrappers(List<String[]> collect) {

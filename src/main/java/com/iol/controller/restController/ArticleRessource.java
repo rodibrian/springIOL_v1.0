@@ -1,6 +1,7 @@
 package com.iol.controller.restController;
 
 import com.iol.model.tenantEntityBeans.Article;
+import com.iol.model.tenantEntityBeans.ArticleUnite;
 import com.iol.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,6 +37,12 @@ public class ArticleRessource {
     @GetMapping(value = "/articles/{id}/unites")
     public ResponseEntity<Object> getAllUnites(@PathVariable("id") Long id){
         List<String> articleUnite = articleRepository.getAllUnite(id);
+        return new ResponseEntity<>(articleUnite, HttpStatus.CREATED);
+    }
+
+    @GetMapping(value = "/articles/{id}/{filialeId}")
+    public ResponseEntity<Object> getAllUnites(@PathVariable("id") Long id,@PathVariable("filialeId")Long filialeId){
+        List<ArticleUnite> articleUnite = articleRepository.getAllUnite(id,filialeId);
         return new ResponseEntity<>(articleUnite, HttpStatus.CREATED);
     }
 

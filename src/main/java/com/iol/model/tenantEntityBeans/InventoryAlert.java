@@ -1,28 +1,26 @@
 package com.iol.model.tenantEntityBeans;
 
 import com.iol.model.entityEmbededId.InfoArticleMagasinId;
+import com.iol.model.entityEmbededId.InventoryAlertId;
+import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
+@Data
 public class InventoryAlert{
     @EmbeddedId
-    private InfoArticleMagasinId infoArticleMagasinId;
+    private InventoryAlertId inventoryAlertId;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @MapsId("magasinId")
-    @JoinColumn(name = "magasin_id",foreignKey = @ForeignKey(name = "FK_MAGASIN_ID",foreignKeyDefinition = "FOREIGN KEY (magasin_id) REFERENCES magasin(id_magasin) ON DELETE CASCADE ON UPDATE NO ACTION"))
-    private Magasin magasin;
+    @MapsId("filialeId")
+    @JoinColumn(name = "filiale_id")
+    private Filiale filiale;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @MapsId("articleId")
     @JoinColumn(name = "article_id",foreignKey = @ForeignKey(name = "FK_ARTICLE_ID",foreignKeyDefinition = "FOREIGN KEY (article_id) REFERENCES article(article_id) ON DELETE CASCADE ON UPDATE NO ACTION"))
     private Article article;
-
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @MapsId("uniteId")
-    @JoinColumn(name = "unite_id",foreignKey = @ForeignKey(name = "FK_UNITE_ID",foreignKeyDefinition = "FOREIGN KEY (unite_id) REFERENCES unite(id) ON DELETE CASCADE ON UPDATE NO ACTION"))
-    private Unite unite;
 
     private Double quantite;
 }

@@ -5,10 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bd9c0e93-77b1-4a8f-96ad-44ae32dfbfef" name="Changes" comment="reste menu-operation filtre">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/InfoArticleMagasinRessource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/entityEmbededId/InventoryAlertId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/stock/inventaire-stock.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/stock/quantite-alert-stock.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_staging_/database/ioldb.BLv7BQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_staging_/database/ioldb.BLv7BQ/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_staging_/database/ioldb.BLv7BQ/schema/public.abK9xQ/routine/before_insert_on_info_article_unite_magasin.qzgtbQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_staging_/database/ioldb.BLv7BQ/schema/public.abK9xQ/routine/before_insert_on_info_article_unite_magasin.qzgtbQ.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/ActivityRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/ActivityRessource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/CategorieRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/CategorieRessource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-magasin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-magasin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/ArticleRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/ArticleRessource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/MagasinRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/MagasinRessource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/InfoArticleMagasin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/InfoArticleMagasin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/InventoryAlert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/InventoryAlert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/repository/ArticleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/repository/ArticleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/repository/InventoryAlertRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/repository/InventoryAlertRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/service/ArticleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/service/ArticleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/SCRIPT/INFO_ARTICLE_TRIGGER.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/SCRIPT/INFO_ARTICLE_TRIGGER.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-stock.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-stock.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/info-stock.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/stock/info-stock.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/utilisateur/new-utilisateur.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/utilisateur/new-utilisateur.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-stock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-stock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/mini-function.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/mini-function.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/modalJs/info-stock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/modalJs/info-stock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SCRIPT/INFO_ARTICLE_TRIGGER.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SCRIPT/INFO_ARTICLE_TRIGGER.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/ArticleRessource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/ArticleRessource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/MagasinRessource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/MagasinRessource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/InventoryAlert.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/InventoryAlert.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/ArticleRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/repository/ArticleRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/InventoryAlertRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/repository/InventoryAlertRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/service/ArticleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/service/ArticleService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +50,7 @@
         <option value="JUnit5 Test Class" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -85,6 +115,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/stock" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
@@ -95,10 +126,14 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.iol.model.entityEmbededId" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\tombo augustin\Desktop\iolV2\src\main\webapp\WEB-INF\jsp\modal\stock" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\tombo augustin\Desktop\iolV2\src\main\webapp\WEB-INF\jsp\modal\stock" />
       <recent name="C:\Users\tombo augustin\IdeaProjects\springIOL_v1.0\src\main\resources\SCRIPT" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
@@ -291,6 +326,12 @@
       <workItem from="1659636498916" duration="22291000" />
       <workItem from="1659698244327" duration="3546000" />
       <workItem from="1659865359864" duration="1399000" />
+      <workItem from="1659895246780" duration="186000" />
+      <workItem from="1659895476469" duration="169000" />
+      <workItem from="1659895665432" duration="10633000" />
+      <workItem from="1659933234048" duration="1098000" />
+      <workItem from="1659934435261" duration="2402000" />
+      <workItem from="1659940437441" duration="362000" />
     </task>
     <task id="LOCAL-00001" summary="mapping de la trigger avec la table approvisionnement">
       <created>1658448504125</created>

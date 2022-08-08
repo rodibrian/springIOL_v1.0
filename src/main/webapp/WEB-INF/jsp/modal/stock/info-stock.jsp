@@ -7,6 +7,8 @@
         <h4 class="modal-title" id="standard-modalLabel">Information Stock</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
       </div>
+      <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
+      <input type="hidden" id="user-id" value-id="${connectedUser.id}">
       <div class="modal-body">
         <div class="row">
           <div class="col-md-4 aside">
@@ -51,8 +53,8 @@
         <!-- modifier alerte -->
       </div>
       <div class="modal-footer d-inline-flex">
-        <button type="button" class="btn btn-warning w-50 m-0">Mettre à jour stock</button>
-        <button type="button" class="btn btn-primary w-50 m-0">Modifier Quantité d'alerte</button>
+        <button type="button" class="btn btn-warning w-50 m-0 btn-update-stock">Mettre à jour stock</button>
+        <button type="button" class="btn btn-primary w-50 m-0 btn-update-alert">Modifier Quantité d'alerte</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

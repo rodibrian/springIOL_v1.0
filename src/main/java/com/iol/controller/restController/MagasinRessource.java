@@ -155,8 +155,8 @@ public class MagasinRessource {
     public ResponseEntity<Object> getInventoryAlert(@PathVariable("id") Long storeId,
                                                     @PathVariable("uniteId") Long uniteId,
                                                     @PathVariable("articleId") Long articleId){
-        List<InventoryAlert> allByArticleAndUniteAndMagasin = inventoryAlertRepository.getAllByArticleAndUniteAndMagasin(storeId, articleId, uniteId);
-        return new ResponseEntity<>(allByArticleAndUniteAndMagasin, HttpStatus.OK);
+//        List<InventoryAlert> allByArticleAndUniteAndMagasin = inventoryAlertRepository.getAllByArticleAndUniteAndMagasin(storeId, articleId, uniteId);
+        return new ResponseEntity<>("", HttpStatus.OK);
     }
 
     @PostMapping("/magasins")

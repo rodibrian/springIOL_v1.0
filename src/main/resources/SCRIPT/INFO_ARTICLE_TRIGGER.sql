@@ -47,7 +47,11 @@ BEGIN
 
                 new.quantite_stock_apres_operation :=  (quantite_en_stock_actuelement/quantite_niveau_unite) - quantite_niveau_unite;
             end if;
+
         end if;
+
+
+
         if new.type_operation = 'VENTE' or new.type_operation = 'SORTIE' or new.type_operation = 'AVOIR' then
 
             nouveau_quantite_en_stock := quantite_en_stock_actuelement - (new.quantite_ajout*quantite_niveau_unite) ;
@@ -56,13 +60,30 @@ BEGIN
 
         end if;
 
+        if new.type_operation = 'INVENTAIRE' then
+
+            nouveau_quantite_en_stock := new.quantite_ajout ;
+
+            new.quantite_stock_apres_operation := new.quantite_ajout;
+
+            -- ENREGISTRER L'ANNULATION
+            insert into info_article_magasin (date, description, quantite_ajout,quantite_stock_apres_operation,reference, type_operation, article_id, magasin_id, unite_id, user_id)
+            values (new.date,'Modification de la quantité en stock suite a un inventaire',quantite_en_stock_actuelement,new.quantite_ajout,new.reference,'ANNULATION',new.article_id,new.magasin_id,new.unite_id,new.user_id);
+
+        end if;
+
         -- Mis-a-jour du stock
+
         update stock set count = nouveau_quantite_en_stock where article_id = NEW.article_id AND unite_id = primary_unite_id AND magasin_id = NEW.magasin_id;
+
         quantite_en_stock_actuelement :=0;
+
     end if;
+
     RETURN NEW; --ignored since this is after trigger
+
 END;
 $$;
 
 alter function before_insert_on_info_article_unite_magasin() owner to postgres;
-create trigger info_article_trigger before insert on info_article_magasin FOR EACH ROW execute procedure before_insert_on_info_article_unite_magasin();
+

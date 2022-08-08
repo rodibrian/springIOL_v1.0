@@ -49,9 +49,8 @@ $(function () {
         let magasinId = split[0];
         let articleId = split[1];
         let uniteId = split[2];
-        $('#info-stock').attr('data-id', id);
+        $('#info-stock').attr('data-id',[magasinId,articleId]);
         fetchInventoryActivities(magasinId, articleId, uniteId);
-
         // affectation des valeur de chaque paragraphe
         $('#info-stock p.label-magasin').text('Magasin : ' +storeName);
         $('#info-stock p.label-designation-article').text('Designation : ' +article);

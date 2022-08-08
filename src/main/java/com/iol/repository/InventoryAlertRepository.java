@@ -13,8 +13,8 @@ import java.util.List;
 @Transactional
 @Repository
 public interface InventoryAlertRepository extends CrudRepository<InventoryAlert,InfoArticleMagasinId>{
-    @Query(value = "from InventoryAlert ia join ia.unite u join ia.article a join ia.magasin m where m.id=:magasinId and a.id=:articleId and u.id=:uniteId")
-    List<InventoryAlert> getAllByArticleAndUniteAndMagasin(@Param("magasinId") Long magasinId
-                                                          ,@Param("articleId") Long articleId ,
-                                                           @Param("uniteId") Long uniteId );
+//    @Query(value = "from InventoryAlert ia join ia.unite u join ia.article a join ia.magasin m where m.id=:magasinId and a.id=:articleId and u.id=:uniteId")
+//    List<InventoryAlert> getAllByArticleAndUniteAndMagasin(@Param("magasinId") Long magasinId
+//                                                          ,@Param("articleId") Long articleId ,
+//                                                           @Param("uniteId") Long uniteId );
 }
