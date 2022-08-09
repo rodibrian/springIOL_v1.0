@@ -249,16 +249,11 @@ $(function () {
         else $(namespace + '#btn-' + $modalId).removeAttr('disabled')
 
     });
-
     function impression_vente() {
-
         generer_ticket()
         generer_facture()
     }
-
-
     // Facturation de vente
-
     function generer_ticket() {
         let space = namespace + '#impression-ticket-caisse ';
         /*
