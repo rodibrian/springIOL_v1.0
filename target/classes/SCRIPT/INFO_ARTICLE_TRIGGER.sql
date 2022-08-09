@@ -94,6 +94,5 @@ BEGIN
 
 END;
 $$;
-
 alter function before_insert_on_info_article_unite_magasin() owner to postgres;
 

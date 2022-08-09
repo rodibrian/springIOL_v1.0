@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity(name = "vente")
@@ -24,8 +25,9 @@ public class Vente implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    private InfoArticleMagasin infoArticleMagasin;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "vente_info_article_magasin")
+    private List<InfoArticleMagasin> infoArticleMagasin;
 
     @ManyToOne
     @JoinColumn(name = "client_id",foreignKey = @ForeignKey(name = "FK_CLIENT_ID"))
@@ -38,6 +40,9 @@ public class Vente implements Serializable{
 
     @Column
     private Double montantVente;
+
+    @Column
+    private String refVente;
 
     @Column(length = 50)
     @Enumerated(value = EnumType.STRING)

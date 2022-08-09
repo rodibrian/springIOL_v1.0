@@ -21,13 +21,12 @@ public class Avoir{
     @JoinColumn(name = "vente_id",foreignKey = @ForeignKey(name = "avoir_vente_key_constraint"))
     private Vente vente;
 
-    private int nombreArticle;
-
     private Double montant;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    private InfoArticleMagasin infoArticleMagasin;
+    @Column(columnDefinition = "TEXT")
+    private String refAvoir;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "avoir_info_article_magasin")
+    private List<InfoArticleMagasin> infoArticleMagasin;
 }

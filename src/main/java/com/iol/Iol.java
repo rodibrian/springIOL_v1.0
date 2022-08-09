@@ -25,7 +25,6 @@ public class Iol implements CommandLineRunner {
         SpringApplication.run(Iol.class,args);
     }
 
-
     @Override
     public void run(String... args) throws Exception {
         String property = (String)entityManagerFactory.getJpaPropertyMap().get("hibernate.hbm2ddl.auto");

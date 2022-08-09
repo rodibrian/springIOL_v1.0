@@ -5,6 +5,18 @@ function appendOptionToSelect($value, $select) {
             .text($value[1]));
 }
 
+function create_reference(type,date){
+    let date_and_hours = date+"-"+date.getUTCHours();
+    switch (type) {
+       case "VENTE" : return "VT-"+date_and_hours;
+       case "INVENTAIRE" : return "INV-"+date_and_hours;
+       case "SORTIE" : return "SORT-"+date_and_hours;
+       case "ENTRE" : return "ENT-"+date_and_hours;
+       case "AVOIR" : return "AV-"+date_and_hours;
+       case "TRANSFERT":return "TF-"+date_and_hours;
+    }
+}
+
 function set_select_option_value($array, $select) {
     let children = $($select).children();
     if (children.length === 0) {
