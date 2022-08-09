@@ -174,7 +174,6 @@ $(function () {
                              <tr id=` + au.article.id + `>
                                 <td>` + article.designation + `</td>
                                 <td>` + article.categorie.libelle + `</td>
-                                <td>` + au.unite.code + `</td>
                                 <td>` + au.poids + `</td>
                                 <td>` + au.unite.designation + `</td>
                                 <td>` + au.quantiteNiveau + `</td>
@@ -209,16 +208,46 @@ $(function () {
             let designation = $("#designation").val();
             let categorieLibelle = $("#categorie option:selected").text();
         }
+
+        /*
+
+        mask et validation
+
+         */
+
+        $(function() {
+            $(namespace + 'form').validate({
+                rules : {
+                    designation : {required: true},
+                    categorie : {required: true}
+                },
+                messages : {
+                    designation : {required : 'designation requis pour une article'},
+                    categorie : {required : 'categorire requis pour une article'}
+                }
+            })
+        })
+
+        function validation_nouveau_article() {
+            $(namespace + 'form').validate();
+
+            return $(namespace + 'form').valid();
+        }
+
         // enregistrement de l'article
         $("#saveArticleBtn").click(() => {
-            if (isCreateArticle) {
-                persistArticleAndUnite();
-                createToast('bg-success', 'uil-file-check', 'Creation Fait', 'Creation d\'un nouveau article effectu&eacute; avec succ&egrave;s!')
-            } else {
-                updateArticle();
-                isCreateArticle = true;
-                createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification de l\'article effectu&eacute; avec succ&egrave;s!')
+            if (validation_nouveau_article()) {
+                if (isCreateArticle) {
+                    persistArticleAndUnite();
+                    createToast('bg-success', 'uil-file-check', 'Creation Fait', 'Creation d\'un nouveau article effectu&eacute; avec succ&egrave;s!')
+                } else {
+                    updateArticle();
+                    isCreateArticle = true;
+                    createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification de l\'article effectu&eacute; avec succ&egrave;s!')
+                }
+                $(namespace).modal('hide');
             }
+
         });
     }
 

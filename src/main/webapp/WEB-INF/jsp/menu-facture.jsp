@@ -38,9 +38,11 @@
 
   <div class="all-modal">
     <%@ include file="modal/facture/info-facture.jsp" %>
-    <%@ include file="modal/facture/avoir.jsp" %>
   </div>
+
   <!-- suite -->
+
+
   <div class="container -fluid"><br><br>
     <div class="row">
       <div class="col-lg-12">

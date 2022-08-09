@@ -67,65 +67,97 @@ $(function () {
      Ajout des articles
      */
 
+    $(function() {
+        $(namespace + 'form').validate({
+            rules : {
+                designation : {required : true},
+                quantite : {required: true,number : true, min : 0.0001},
+                unite : {required : true},
+                prixAchat : {required : true, number : true, min : 1},
+                prixVente : {required : true, number : true, min : 1},
+                datePeremption : {required : true}
+            },
+            messages : {
+                designation : { required : ''},
+                quantite : {required : 'Quantite non valide', min : 'Quantite doit être >0'},
+                unite : {required : 'Unite requis pour un article'},
+                prixAchat: {required : 'Prix \'achat non valide', number : 'Prix \'achat non valide', min : 'Prix d\'achat doit être >0'},
+                prixVente: {required : 'Prix de vente non valide', number : 'Prix \'achat non valide', min : 'Prix de vente doit être >0'},
+                datePeremption : {required : 'date de peremption requis'}
+            }
+        })
+    })
+
+    function validation_ajout_article() {
+        $(namespace + 'form').validate();
+
+        return $(namespace + 'form').valid();
+    }
+
+
     $(namespace + '#btn-ajouter-article-entree').on('click', function () {
-        let fId = $(namespace + '#input-nom-fournisseur').attr("value-id");
-        let magasinId = $(namespace + '#select-magasin').val();
-        let articleId = $(namespace + '#input-designation-article').attr("value-id");
-        let uniteId = $(namespace + '#select-unite-article option:selected').val();
-        let refFact = $(namespace + '#input-reference-facture').val();
-        let prixVente = $(namespace + '#input-prix-vente-article').val();
-        let prixAchat = $(namespace + '#input-prix-achat-article').val();
-        let quantite = $(namespace + '#input-quantite-article').val();
-        let dateApprov = new Date();
-        let userId = $(namespace + '#user-id').attr("value-id");
-        let filialeId = $(namespace + '#filiale-id').attr("value-id");
-        let datePeremption = $(namespace + "#input-date-peremption").val();
-        // PRIX ARTICLE UNITE FILIALE
-        let fuap = {};
-        fuap.filiale = {
-            id: filialeId
-        }
-        fuap.unite = {
-            id: uniteId
-        };
-        fuap.article = {
-            id: articleId
-        }
-        fuap.user = {
-            id: userId
-        }
-        fuap.dateEnregistrement = dateApprov;
-        fuap.prixVente = prixVente;
-        pvuafTab.push(fuap);
-        let infoArticleMagasin = {};
-        infoArticleMagasin.typeOperation = "ENTRE";
-        infoArticleMagasin.magasin = {
-            id: magasinId
-        }
-        infoArticleMagasin.user = fuap.user;
-        infoArticleMagasin.unite = fuap.unite;
-        infoArticleMagasin.article = fuap.article;
-        infoArticleMagasin.quantiteAjout = quantite;
-        infoArticleMagasin.date = dateApprov;
-        infoArticleMagasin.reference = refFact;
-        // APPROVISIONNEMENT
-        let supply = {};
-        supply.infoArticleMagasin = infoArticleMagasin;
-        supply.fournisseur = {
-            id: fId
-        };
-        supply.montantApprov = prixAchat;
-        supply.datePeremption = datePeremption;
-        supplyTab.push(supply);
-        $articleAjout = [
-            $(namespace + '#input-reference-facture').val(),
-            $(namespace + '#input-designation-article').val(),
-            $(namespace + '#select-unite-article option:selected').text(),
-            quantite,
-            $(namespace + '#input-prix-achat-article').val(),
-            parseFloat($(namespace + '#input-prix-achat-article').val()) * parseFloat(quantite)
-        ]
-        push_to_table_list(namespace + "#table-liste-article-entree", trIndex++, $articleAjout);
+
+        if (validation_ajout_article()) {
+
+            let fId = $(namespace + '#input-nom-fournisseur').attr("value-id");
+            let magasinId = $(namespace + '#select-magasin').val();
+            let articleId = $(namespace + '#input-designation-article').attr("value-id");
+            let uniteId = $(namespace + '#select-unite-article option:selected').val();
+            let refFact = $(namespace + '#input-reference-facture').val();
+            let prixVente = $(namespace + '#input-prix-vente-article').val();
+            let prixAchat = $(namespace + '#input-prix-achat-article').val();
+            let quantite = $(namespace + '#input-quantite-article').val();
+            let dateApprov = new Date();
+            let userId = $(namespace + '#user-id').attr("value-id");
+            let filialeId = $(namespace + '#filiale-id').attr("value-id");
+            let datePeremption = $(namespace + "#input-date-peremption").val();
+
+            // PRIX ARTICLE UNITE FILIALE
+            let fuap = {};
+            fuap.filiale = {
+                id: filialeId
+            }
+            fuap.unite = {
+                id: uniteId
+            };
+            fuap.article = {
+                id: articleId
+            }
+            fuap.user = {
+                id: userId
+            }
+            fuap.dateEnregistrement = dateApprov;
+            fuap.prixVente = prixVente;
+            pvuafTab.push(fuap);
+            let infoArticleMagasin = {};
+            infoArticleMagasin.typeOperation = "ENTRE";
+            infoArticleMagasin.magasin = {
+                id: magasinId
+            }
+            infoArticleMagasin.user = fuap.user;
+            infoArticleMagasin.unite = fuap.unite;
+            infoArticleMagasin.article = fuap.article;
+            infoArticleMagasin.quantiteAjout = quantite;
+            infoArticleMagasin.date = dateApprov;
+            infoArticleMagasin.reference = refFact;
+            // APPROVISIONNEMENT
+            let supply = {};
+            supply.infoArticleMagasin = infoArticleMagasin;
+            supply.fournisseur = {
+                id: fId
+            };
+            supply.montantApprov = prixAchat;
+            supply.datePeremption = datePeremption;
+            supplyTab.push(supply);
+            $articleAjout = [
+                $(namespace + '#input-reference-facture').val(),
+                $(namespace + '#input-designation-article').val(),
+                $(namespace + '#select-unite-article option:selected').text(),
+                quantite,
+                $(namespace + '#input-prix-achat-article').val(),
+                parseFloat($(namespace + '#input-prix-achat-article').val()) * parseFloat(quantite)
+            ]
+            push_to_table_list(namespace + "#table-liste-article-entree", trIndex++, $articleAjout);
 
         // vider les input
 
@@ -134,7 +166,8 @@ $(function () {
         $(namespace + '#input-prix-achat-article').val(0)
         $(namespace + '#input-prix-vente-article').val(0);
         $(namespace + '#select-unite-article option').remove();
-    })
+        }
+    });
 
     /*
      suppression articles à la table
@@ -167,7 +200,6 @@ $(function () {
      */
 
     $(namespace + "#btn-enregistrer-article-entree").on('click', function () {
-        console.log('ato');
         $modalId = 'confirmation-d-entree-article'
         $nArticle = $(namespace + '#table-liste-article-entree tbody tr').length;
         $content = '' +
@@ -178,18 +210,13 @@ $(function () {
                 let supplyWrapper = {};
                 supplyWrapper.supplies = supplyTab;
                 supplyWrapper.prixArticleFiliales = pvuafTab;
-                $.ajax({
-                    type: "POST",
-                    url: "http://localhost:8080/api/v1/supplies",
-                    contentType: "application/json",
-                    data: JSON.stringify(supplyWrapper),
-                    success: function (data) {
-                        onSuppliesCreated();
-                        impression_entree()
-                    }
+                let url ="http://localhost:8080/api/v1/supplies";
+                execute_ajax_request("post",url,supplyWrapper,(data)=>{
+                    onSuppliesCreated();
+                    impression_entree()
                 });
-
-            })
+                })
+            if ($nArticle == 0) $(namespace + '#btn-' + $modalId).attr('disabled', 'disabled');
     });
 
     /*

@@ -56,19 +56,6 @@ $(function () {
         $(namespace+"#operateur-facture").text("Operateur :"+operateur);
 
         fetchBillsData(reference);
-
-    })
-
-    $(document).on('click', namespace + '.table-facture a.info-facture', function() {
-        $('#facture-info').addClass('show')
-    })
-
-    /*
-     fermer l'info listes article facture
-     */
-
-    $(namespace + '.btn-close-info-facture').click(function () {
-        $(namespace + '#facture-info').removeClass("show")
     })
 
     /*
@@ -80,42 +67,57 @@ $(function () {
         // get reference of dblcliked facture
 
         let reference = $(this).children()[0].innerText;
-        console.log(reference)
+
+        // hide avoir
+
+        $(namespace + '.avoir-checkbox').hide();
+        $(namespace + '.avoir-checkbox-all').hide();
+        $(namespace + '.avoir-checkbox').prop('checked', true)
+        $(namespace + '.avoir-checkbox-all').prop('checked', true)
+        $(namespace + '.btn-valider-avoir').hide();
 
         $(namespace + '#info-facture').modal('show')
     })
 
     /*
-     avoir
+
+    créer un avoir
+
      */
 
-    $(namespace + '.btn-avoir').click(function () {
-        console.log('btn voir facture')
-        $(namespace + '#avoir-facture').modal('show')
+    $(namespace + '.btn-creer-avoir').on('click', function() {
+        $(namespace + '.avoir-checkbox-all').toggle();
+        $(namespace + '.avoir-checkbox').toggle();
+        $(namespace + '.btn-valider-avoir').toggle();
     })
 
-    /*
-     chargement des données de la table
-     */
+    $(namespace + '.avoir-checkbox-all').on('change', function() {
+        $(namespace + '.avoir-checkbox').prop('checked', $(this).is(':checked'))
+    })
 
 
     /*
      validation avoir
      */
 
-    $(namespace + '#avoir-facture #btn-valider-avoir').on('click', function() {
-        $modalId = 'validation-avoir';
+    $(namespace + '.btn-valider-avoir').on('click', function() {
+        $sommeAvoir = 0;
 
-        create_confirm_dialog('Confirmation avoir', 'Voulez vous vraiment valider cette avoir ?',$modalId,'Oui, valider!','btn-danger')
-            .on('click', function () {
-                createToast('bg-danger', 'uil-trash-alt','Avoir valid&eacute;','Avoir effectu&eacute; avec success!')
+        $(namespace + '#table-facture-avoir tbody tr').each(function(key,value) {
+            if ($(value).find('.avoir-checkbox').is(':checked'))
+                $sommeAvoir += parseFloat($(value).children().eq(4).text().replace('Ar',''))
+        })
+        $content = 'Voulez vous vraiment valider cette avoir ?' +
+            '<li> Nombre article annulé: ' + $(namespace + '.avoir-checkbox:checked').length + '</li>' +
+            '<li> Somme à rembourser: ' + $sommeAvoir + ' Ar</li>';
 
-                hideAndRemove('#' + $modalId)
+        create_confirm_dialog('Confirmation avoir', $content,$modalId,'Oui, valider!','btn-danger')
 
-                $('#avoir-facture').modal('hide')
-            })
+        // effectué operation AVOIR
 
+        createToast('bg-danger', 'uil-trash-alt','Avoir valid&eacute;','Avoir effectu&eacute; avec success!')
+
+        hideAndRemove('#' + $modalId)
     })
-
 
 })

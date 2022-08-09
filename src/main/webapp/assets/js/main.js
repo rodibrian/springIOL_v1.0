@@ -5,6 +5,12 @@ $(function () {
 
     -------------- */
 
+    // modal clear on hide
+
+    $('.modal-temporaire').on('hidden.bs.modal', function () {
+        $(this).remove();
+    });
+
     // conversion to excel
 
     $('.table-special-form').parent().addClass('table-special-form-parent');

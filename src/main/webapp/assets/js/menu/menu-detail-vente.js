@@ -1,7 +1,9 @@
 $(function(){
-    exportToExcel(namespace + '.btn-export-to-excel','detail-ventes-' , namespace + '.table-detail-vente')
-    //
+
     let namespace = "#menu-detail-vente ";
+
+    exportToExcel(namespace + '.btn-export-to-excel','detail-ventes-' , namespace + '.table-detail-vente')
+
     let appendDataToTable = (data) =>{
         $.each(data,(key,value) =>{
             let tr =[

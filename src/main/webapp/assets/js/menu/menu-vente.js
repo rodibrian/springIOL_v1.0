@@ -1,10 +1,25 @@
 $(function () {
 
     let venteTab = [];
+
+    /* -------------------------------------------------------------------------------
+                                       MENU VENTE SCRIPT
+    -------------------------------------------------------------------------------- */
+
+
+    /*-------------------------------------------------------------------------------
     let namespace = "#menu-vente ";
+
+    /*------------------------------------------------------------------------------
+                                            OPERATION
+     -------------------------------------------------------------------------------*/
+
+     let namespace = "#menu-vente ";
+
      /*
      Selecter client
      */
+
     function clearForm() {
         $(namespace + '#nouveau-client input#cif').val("");
         $(namespace + '#nouveau-client input#stat').val("");
@@ -14,7 +29,8 @@ $(function () {
         $(namespace + '#nouveau-client input#numCIN').val("");
         $(namespace + '#nouveau-client input#nomClient').val("");
     }
-    // ENREGISTRER NOUVEAU CLIENT
+
+// ENREGISTRER NOUVEAU CLIENT
     $(namespace + '#nouveau-client #btn-enregistrer-client').on('click', function () {
         let filialeId = $(namespace + '#filiale-id').attr("value-id");
         let nomClient = $(namespace + '#nouveau-client input#nomClient').val();
@@ -34,17 +50,23 @@ $(function () {
         client.cif = cif;
         client.typeCf =0;
         client.filiale = {id : filialeId};
-        let url = "http://localhost:8080/api/v1/externalEntities";
-        execute_ajax_request("POST",url,client,(data)=> {
-            $(namespace + '#nouveau-client').modal('hide');
-            get_select_affect_to_input(namespace + '#name-client',data.id,data.nom);
+        $.ajax({
+            type : "POST",
+            url : "http://localhost:8080/api/v1/externalEntities",
+            contentType : "application/json",
+            data: JSON.stringify(client),
+            success : (data)=>{
+                get_select_affect_to_input(namespace + '#name-client',data.id,data.nom);
+            }
         })
         clearForm();
     })
 
+
     $(namespace + '#table-liste-client tbody tr').on('dblclick', function () {
         get_select_affect_to_input(namespace + '#name-client', $(this).attr('id'), $(this).children().eq(0).text());
         $(namespace + '#modal-liste-client').modal('hide');
+
     })
 
     /*------------------------------------------------------------------------------
@@ -53,7 +75,14 @@ $(function () {
 
     function updatePrixUnitaire(article_id, unite_id, filialeId) {
        let url = "http://localhost:8080/api/v1/articles/" + article_id + "/unites/" + unite_id + "/filiales/" + filialeId + "/prices";
-        execute_ajax_request("get",url,null,(data)=>$(namespace + "#input-prix-unitaire").val(data))
+        $.ajax({
+            type: "get",
+            url: url,
+            contentType: "application/json",
+            success: function (data) {
+                $(namespace + "#input-prix-unitaire").val(data);
+            }
+        });
     }
 
     $(document).on('dblclick', namespace + '#table-liste-article tbody tr', function () {
@@ -84,20 +113,53 @@ $(function () {
     /*------------------------------------------------------------------------------
                                             AJOUT DUN ARTICLE
      -------------------------------------------------------------------------------*/
-    $('.btn-ajouter-article-vente').on('click', function (){
 
-        $articleId = $(namespace + '#designation-article').attr('value-id');
-        $uniteId = $(namespace + '#input-unite-article option:selected').val();
+    /*
 
-        $designation = $(namespace + '#designation-article').val();
-        $unite = $(namespace + '#input-unite-article option:selected').text();
-        $quantite = $(namespace + '#input-quantite-article').val();
-        $prix_unitaire = $(namespace + '#input-prix-unitaire').val();
-        $clientId = $(namespace + '#name-client').attr("value-id");
-        $magasinId= $(namespace + '#select-magasin').val();
-        $userId = $(namespace + '#user-id').attr("value-id");
-        $montant = $quantite * $prix_unitaire;
-        $article_vente = [$designation, $unite, $quantite, $prix_unitaire, $montant];
+    mask et validation
+
+     */
+
+    $(function () {
+        $(namespace + 'form').validate({
+            rules: {
+                designation: {required: true},
+                unite: {required: true},
+                inputQuantiteArticle: {required: true, min: 0.0001, number: true},
+                inputPrixUnitaire: {required: true, min: 0.0001, number: true},
+            },
+            messages: {
+                designation: {required: ''},
+                unite: {required: 'Unite d\'article requis'},
+                inputQuantiteArticle: {required: 'Quantite non valide', min: "Quantite doit d\'être >0", number: true},
+                inputPrixUnitaire: {required: '', min: '', number: true},
+            }
+        })
+    })
+
+    function validation_ajout_article() {
+        $(namespace + 'form').validate();
+
+        return $(namespace + 'form').valid();
+    }
+
+    $('.btn-ajouter-article-vente').on('click', function () {
+
+        if (validation_ajout_article()) {
+
+
+            $articleId = $(namespace + '#designation-article').attr('value-id');
+            $designation = $(namespace + '#designation-article').val();
+            $unite = $(namespace + '#input-unite-article option:selected').text();
+            $uniteId = $(namespace + '#input-unite-article option:selected').val();
+            $quantite = $(namespace + '#input-quantite-article').val();
+            $prix_unitaire = $(namespace + '#input-prix-unitaire').val();
+            $clientId = $(namespace + '#name-client').attr("value-id");
+            $magasinId = $(namespace + '#select-magasin').val();
+            $userId = $(namespace + '#user-id').attr("value-id");
+            $reference = $(namespace + '#input-reference-facture').val();
+            $montant = $quantite * $prix_unitaire;
+            $article_vente = [$designation, $unite, $quantite, $prix_unitaire, $montant];
 
         let date = new Date();
         let infoArticleMagasin = {};
@@ -123,6 +185,9 @@ $(function () {
         });
         // vide option
         $(namespace + "#input-unite-article option").remove();
+        //impression_vente()
+            updateLabelFooter()
+        }
     })
     /*------------------------------------------------------------------------------
                                             SUPPRESSION D'UN ARTICLE
@@ -150,19 +215,20 @@ $(function () {
     /*
      enregistrement du vente
      */
-    $sommeVente = 0;
-    $countArticle = 0;
-    $content = '' +
-        'Voulez vous vraiment enregistrer ce vente? <br><br>' +
-        '<li>Nombre d\'article : <strong>' + $countArticle + '</strong></li>' +
-        '<li>Somme : <strong>' + $sommeVente + ' Ar</strong></li>' +
-        '';
-    function isValidVente() {
-        // validation rules
-        return $(namespace + 'form').valid();
-    }
+
     $(namespace+'.form-vente .btn-enregistrer-vente').on('click',function (){
-        if (isValidVente()) {
+
+        $countArticl = $(namespace + '#table-liste-article-vente tbody tr').length;
+        $sommeMontant = 0
+        $(namespace + '#table-liste-article-vente tbody tr').each(function (key, value) {
+            $sommeMontant += parseFloat($(value).children().eq(4).text());
+        })
+        $content = '' +
+            'Voulez vous vraiment enregistrer ce vente? <br><br>' +
+            '<li>Nombre d\'article : <strong>' + $countArticle + '</strong></li>' +
+            '<li>Somme : <strong>' + $sommeMontant + ' Ar</strong></li>' +
+            '';
+
             $modalId = 'confirmation-de-vente';
             create_confirm_dialog('Confirmation de Vente', $content, $modalId, 'Enregistrer', 'btn-primary')
                 .on('click', function () {
@@ -177,14 +243,22 @@ $(function () {
                         createToast('bg-success', 'uil-file-check-alt', 'Vente Fait', 'Vente enregistr&eacute; avec succ&egrave;s!')
                     });
                 })
-        }
+
+        $nArticle = $(namespace + '#table-liste-article-vente tbody tr').length;
+        if ($nArticle == 0) $(namespace + '#btn-' + $modalId).attr('disabled', 'disabled');
+        else $(namespace + '#btn-' + $modalId).removeAttr('disabled')
+
     });
 
     function impression_vente() {
+
         generer_ticket()
         generer_facture()
     }
+
+
     // Facturation de vente
+
     function generer_ticket() {
         let space = namespace + '#impression-ticket-caisse ';
         /*
@@ -192,7 +266,7 @@ $(function () {
          */
         $client = $(namespace + "#name-client").val();
         $magasin = $(namespace + "#select-magasin option:selected").text();
-        $user = $('.account-user-name').text();
+        $user = $(namespace + '#user-id').attr('value-id');
         /*
         add information
          */
@@ -214,12 +288,16 @@ $(function () {
 
     function generer_facture() {
         let space = namespace + '#impression-facture-vente ';
+
         /*
         information facture
          */
+
         $client = $(namespace + "#name-client").val();
         $magasin = $(namespace + "#select-magasin option:selected").text();
-        $user = $('.account-user-name').text();
+        $user = $(namespace + '#user-id').attr('value-id');
+
+        console.log($user)
 
         /*
         add information
@@ -243,6 +321,23 @@ $(function () {
 
         // print
         $(space).printThis()
+
     }
+
+
+    function updateLabelFooter() {
+        $countArticle = $(namespace + '#table-liste-article-vente tbody tr').length;
+
+        $sommeMontant = 0
+        $(namespace + '#table-liste-article-vente tbody tr').each(function (key, value) {
+            $sommeMontant += parseFloat($(value).children().eq(4).text());
+        })
+
+        $(namespace + '.label-nombre-article').text($countArticle)
+        $(namespace + '.label-somme-ariary').text($sommeMontant)
+        $(namespace + '.label-somme-fmg').text($sommeMontant * 5)
+
+    }
+
 
 })

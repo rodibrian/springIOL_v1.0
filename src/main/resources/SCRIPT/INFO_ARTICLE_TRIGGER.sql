@@ -3,13 +3,12 @@ create function before_insert_on_info_article_unite_magasin() returns trigger
 as
 $$
 DECLARE
-    quantite_en_stock_actuelement DOUBLE PRECISION = 0;
-    quantite_niveau_unite DOUBLE PRECISION = 0;
-    nouveau_quantite_en_stock DOUBLE PRECISION =0;
+    quantite_en_stock_actuelement DOUBLE PRECISION = 0.0;
+    quantite_niveau_unite DOUBLE PRECISION = 0.0;
+    nouveau_quantite_en_stock DOUBLE PRECISION =0.0;
     primary_unite_id BIGINT =0;
     item_count INT =0;
 BEGIN
-
     -- recuperer l'unite primaire de l'article
     SELECT au.unite_id into primary_unite_id FROM article_unite au where article_id = new.article_id and au.niveau = 1;
 
@@ -61,6 +60,8 @@ BEGIN
 
         end if;
 
+
+
         if new.type_operation = 'VENTE' or new.type_operation = 'SORTIE' or new.type_operation = 'AVOIR' then
 
             nouveau_quantite_en_stock := quantite_en_stock_actuelement - (new.quantite_ajout*quantite_niveau_unite) ;
@@ -93,5 +94,6 @@ BEGIN
 
 END;
 $$;
+
 alter function before_insert_on_info_article_unite_magasin() owner to postgres;
 

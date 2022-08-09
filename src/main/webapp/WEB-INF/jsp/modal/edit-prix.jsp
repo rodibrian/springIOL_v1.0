@@ -2,7 +2,7 @@
 <div id="modal-info-prix" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    <div class="modal-content was-validated">
+    <form class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" id="standard-modalLabel">Mis &agrave; jour Prix</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
@@ -23,7 +23,7 @@
               <hr>
               <input type="hidden" id="user-id" value-id="${connectedUser.id}" >
               <div class="d-inline-flex">
-                <input type="text" required class="form-control text-right w-75 mr-1 input-prix-edit" placeholder="" value="0Ar">
+                <input type="number" name="inputPrix" class="form-control text-right w-75 mr-1 input-prix-edit" placeholder="" value="0Ar">
                 <button class="btn btn-success w-25 btn-enregistrer-prix-editer"><i class="uil-money-insert"></i>
                 </button>
               </div>
@@ -52,7 +52,7 @@
           de modification
         </button>
       </div>
-    </div><!-- /.modal-content -->
+    </form><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 
   <div class="all-modal">

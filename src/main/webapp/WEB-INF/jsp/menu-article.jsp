@@ -45,7 +45,7 @@
 
   <div class="container -fluid"><br><br>
     <div class="row">
-      <div class="col-lg-3">
+      <div class="col-lg-3 t-list-75">
         <table id="categorieTabList" class="table table-sm table-hover">
           <thead>
           <th>Listes des categories</th>
@@ -80,7 +80,7 @@
           </tfoot>
         </table>
       </div>
-      <div class="col-lg-9">
+      <div class="col-lg-9 t-list-75">
         <table id="articleTable" class="table table-sm dt-responsive nowrap table-hover">
           <thead>
           <tr>
@@ -100,7 +100,7 @@
                 <td>${au.poids}</td>
                 <td>${au.unite.designation}</td>
                 <td>${au.quantiteNiveau}</td>
-                <td class="d-flex justify-content-center">
+                <td class="d-flex justify-content-center td-action">
                   <div>
                     <a id="${au.article.id}" data-bs-toggle="modal" data-bs-target="#new-article"
                        class="btn-sm btn-info editArticleBtn"><i class="uil-pen"></i></a>
