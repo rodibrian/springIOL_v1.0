@@ -104,7 +104,6 @@
 
 <!-- third party js -->
 
-<script src="${pageContext.request.contextPath}/assets/js/vendor/apexcharts.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
 
@@ -127,7 +126,7 @@
 <script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/nombre_en_lettre.js"></script>
 
-<script src=”https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js”></script>
+<%--<script src=”https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js”></script>--%>
 
 <script src="${pageContext.request.contextPath}/assets/js/mini-function.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/jquery.maskedinput.js"></script>
@@ -186,9 +185,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
+<script src="${pageContext.request.contextPath}/assets/js/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/additional-methods.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<%--<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>--%>
+<%--<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>--%>
 
 <%@ include file="footer.jsp" %>
 

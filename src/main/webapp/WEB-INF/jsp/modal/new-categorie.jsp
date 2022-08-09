@@ -2,7 +2,7 @@
 <div id="standard-modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
      aria-hidden="true">
   <div class="modal-dialog">
-    <form class="modal-content needs-validation" novalidate>
+    <form class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" id="standard-modalLabel">Nouvelle Categorie</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>

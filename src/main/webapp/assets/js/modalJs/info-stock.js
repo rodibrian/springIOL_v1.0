@@ -20,7 +20,16 @@ $(function() {
                 ]
                 push_to_table_list("#inventaire-table-unite",value.unite.id,$tr);
             });
+
+            let magasin = $('#info-stock p.label-magasin').text();
+            let article = $('#info-stock p.label-designation-article').text();
+            $("#label-magasin").text(magasin);
+            $("#label-designation-article").text(" Nombre d'unité : "+data.length);
+            $("#label-nb-unite").text(article);
+
+
         });
+
         $('#modal-inventaire-stock').modal('show');
     })
     // ENREGISTRER INVENTAIRE
@@ -63,6 +72,8 @@ $(function() {
         $magasinId = data[0];
         $articleId = data[1];
         let qtt_alert = $("#input-quantite-stock").val();
+
+
 
     });
 })

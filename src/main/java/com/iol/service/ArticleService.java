@@ -58,16 +58,16 @@ public class ArticleService{
     }
 
     public InfoArticleMagasin updateInventory(InfoArticleMagasin[] infoArticleMagasinTab){
-        Double quantiteEnStock = 0D;
+        Double sum = 0D;
         for (InfoArticleMagasin iam : infoArticleMagasinTab){
             Long articleId = iam.getArticle().getId();
             Long uniteId = iam.getUnite().getId();
             Double quantiteNiveau = articleRepository.getQuantiteNiveau(uniteId, articleId);
             Double quantiteAjout = iam.getQuantiteAjout();
-            quantiteEnStock=+(quantiteAjout*quantiteNiveau);
+            sum+=(quantiteAjout*quantiteNiveau);
         }
         InfoArticleMagasin infoArticleMagasin = infoArticleMagasinTab[0];
-        infoArticleMagasin.setQuantiteAjout(quantiteEnStock);
+        infoArticleMagasin.setQuantiteAjout(sum);
         return infoArticleMagasin;
     }
 

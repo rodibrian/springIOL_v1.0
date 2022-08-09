@@ -47,35 +47,62 @@ $(function () {
         $('#modal-info-prix .label-date-prix').text('Date : ' + $trArticle.children('.date-maj').text())
     })
 
-    // enregistrement d'un prix courant
-    $('#modal-info-prix .btn-enregistrer-prix-editer').on('click', function(){
-        let user_id = $('#user-id').attr("value-id");
-        let user_name = $('#user-name').attr("value-id");
-        let nouveauPrix = $('.input-prix-edit').val();
-        let  price = {};
-        if (nouveauPrix!==""){
-            price.filiale = {
-                id : $filiale_id
+    /*
+
+    mask et validation
+
+     */
+
+    $(function() {
+        $(namespace + 'form').validate({
+            rules : {
+                inputPrix : {required : true, number : true}
+            },
+            messages : {
+                inputPrix : {required : 'Prix d\' article requis', number : 'Veuillez entrée une nombre'}
             }
-            price.user = {id:user_id}
-            price.unite = {id:$unite_id}
-            price.article = {id : $article_id}
-            price.prixVente = nouveauPrix;
-            price.dateEnregistrement = new Date();
-            $.ajax({
-                type : "POST",
-                url : PRICES_RESOURCES,
-                contentType: "application/json",
-                data : JSON.stringify([price]),
-                success : (data) =>{
-                    $.each(data,(key,value)=>{
-                        let tr = [value.dateEnregistrement,value.prixVente,user_name];
-                        push_to_table_list("#table-historique-prix",value.id,tr);
-                        createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification du prix effectu&eacute; avec succ&egrave;s!')
-                    })
+        })
+    })
+
+    function validation_input_prix() {
+        $(namespace + 'form').validate();
+
+        return $(namespace + 'form').valid();
+    }
+
+    // enregistrement d'un prix courant
+
+    $('#modal-info-prix .btn-enregistrer-prix-editer').on('click', function(){
+        if (validation_input_prix()) {
+            let user_id = $('#user-id').attr("value-id");
+            let user_name = $('#user-name').attr("value-id");
+            let nouveauPrix = $('.input-prix-edit').val();
+            let  price = {};
+            if (nouveauPrix!==""){
+                price.filiale = {
+                    id : $filiale_id
                 }
-            })
+                price.user = {id:user_id}
+                price.unite = {id:$unite_id}
+                price.article = {id : $article_id}
+                price.prixVente = nouveauPrix;
+                price.dateEnregistrement = new Date();
+                $.ajax({
+                    type : "POST",
+                    url : PRICES_RESOURCES,
+                    contentType: "application/json",
+                    data : JSON.stringify([price]),
+                    success : (data) =>{
+                        $.each(data,(key,value)=>{
+                            let tr = [value.dateEnregistrement,value.prixVente,user_name];
+                            push_to_table_list("#table-historique-prix",value.id,tr);
+                            createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification du prix effectu&eacute; avec succ&egrave;s!')
+                        })
+                    }
+                })
+            }
         }
+
     })
 
     // double click of tr, open facture info

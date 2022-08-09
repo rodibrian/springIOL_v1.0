@@ -9,6 +9,7 @@ DECLARE
     primary_unite_id BIGINT =0;
     item_count INT =0;
 BEGIN
+
     -- recuperer l'unite primaire de l'article
     SELECT au.unite_id into primary_unite_id FROM article_unite au where article_id = new.article_id and au.niveau = 1;
 
@@ -21,7 +22,7 @@ BEGIN
     -- RECUPERER LE STOCK ACTUEL
     SELECT count into quantite_en_stock_actuelement FROM  stock  WHERE article_id = new.article_id AND unite_id = primary_unite_id AND magasin_id = new.magasin_id;
 
-    if item_count<=0 or quantite_en_stock_actuelement is null or quantite_en_stock_actuelement = 0.0 then
+    if item_count = 0 or quantite_en_stock_actuelement is null or quantite_en_stock_actuelement = 0 then
 
         nouveau_quantite_en_stock := new.quantite_ajout*quantite_niveau_unite;
 
@@ -30,10 +31,6 @@ BEGIN
         -- INSERTION DANS LA TABLE STOCK
 
         insert into stock(article_id,unite_id,magasin_id,count) values (NEW.article_id,primary_unite_id,NEW.magasin_id,nouveau_quantite_en_stock);
-
-        -- CREATION DU STOCK EN ALERT
-
-        insert into alert_stock(article_id,unite_id,magasin_id,quantite) values (NEW.article_id,primary_unite_id,NEW.magasin_id,0);
 
     end if;
 
@@ -88,4 +85,6 @@ BEGIN
 
 END;
 $$;
+
 alter function before_insert_on_info_article_unite_magasin() owner to postgres;
+

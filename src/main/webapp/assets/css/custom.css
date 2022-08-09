@@ -176,3 +176,35 @@ label.error {
     font-size: 12px;
     color: #fa5c7c;
 }
+
+
+/*
+
+    AUTRES
+
+ */
+
+td.td-action {
+    height: 38.8px!important;
+}
+
+td.td-action div {
+    display: block!important;
+    opacity: .01;
+    transition: .1s opacity;
+}
+
+table tbody tr:hover .td-action div {
+    opacity: 1!important;
+}
+
+.t-list-75 {
+    /*height: 80vh!important;*/
+    /*overflow-y: scroll;*/
+}
+
+.foot-vente {
+    position: absolute;
+    bottom: 5%;
+    right : 5%;
+}

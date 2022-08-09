@@ -2,7 +2,7 @@
 <div id="nouveau-fournisseur" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
      aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content was-validated">
+    <form class="modal-content">
       <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
       <div class="modal-header">
         <h4 class="modal-title" id="standard-modalLabel">Nouveau Fournisseur</h4>
@@ -11,22 +11,22 @@
       <div class="modal-body">
         <div class="mb-1">
           <label for="nom" class="form-label">Nom & Prenoms</label>
-          <input name="nom" type="text" required id="nom" class="form-control">
+          <input name="nom" type="text" id="nom" class="form-control">
         </div>
         <div class="mb-1">
           <label for="adresse" class="form-label">Adresse</label>
-          <input name="adresse" type="text" required id="adresse" class="form-control">
+          <input name="adresse" type="text" id="adresse" class="form-control">
         </div>
         <div class="mb-1">
           <label for="contact" class="form-label">Contact</label>
-          <input name="contact" type="text" required id="contact" class="form-control">
+          <input name="contact" type="text" id="contact" class="form-control">
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-        <button id="btn-enregistrer-fournisseur" data-bs-dismiss="modal" type="button" class="btn btn-primary">Enregistrer</button>
+        <button id="btn-enregistrer-fournisseur" type="button" class="btn btn-primary">Enregistrer</button>
       </div>
-    </div><!-- /.modal-content -->
+    </form><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->

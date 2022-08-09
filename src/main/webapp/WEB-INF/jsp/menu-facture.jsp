@@ -23,21 +23,19 @@
         </div>
       </div>
       <div class="d-inline-flex mt-1">
-        <input type="date" class="form-control btn-40">&nbsp;&agrave;&nbsp;
-        <input type="date" class="form-control btn-40">&nbsp;
-        <select name="magasin" id="" class="form-select btn-40">
+        <input type="date" class="form-control btn-40 m-1">
+        <input type="date" class="form-control btn-40 m-1">
+        <select name="magasin" id="" class="form-select btn-40 m-1">
           <option value="0">Magasin I</option>
           <option value="0">Magasin II</option>
         </select>&nbsp;
-        <h4 class="">Nombre : ${factures.size()}
-        </h4>
+        <h4 class="d-inline-flex d-none">Nombre : ${factures.size()}</h4>
       </div>
     </div>
   </div>
 
   <div class="all-modal">
     <%@ include file="modal/facture/info-facture.jsp" %>
-    <%@ include file="modal/facture/avoir.jsp" %>
   </div>
 
   <!-- suite -->
@@ -59,6 +57,19 @@
           </tr>
           </thead>
           <tbody>
+          <tr id="1">
+            <td>facture.reference</td>
+            <td>facture.client</td>
+            <td>facture.montantTotal</td>
+            <td>facture.operateur</td>
+            <td>facture.date</td>
+            <td class="d-flex justify-content-center">
+              <div>
+                <a class="btn-sm btn-info info-facture"><i class="uil-info-circle"></i></a>
+                <a class="btn-sm btn-success imprimer-facture"><i class="uil-print"></i></a>
+              </div>
+            </td>
+          </tr>
           <c:forEach var="facture" items="${factures}">
             <tr id="${facture.reference}">
               <td>${facture.reference}</td>
@@ -76,46 +87,6 @@
           </c:forEach>
           </tbody>
         </table>
-        <!-- Collapse facture information -->
-        <div class="accordion" id="accordionExample">
-          <div class="card mb-0">
-            <div id="facture-info" class="collapse"
-                 aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-              <div class="card-body">
-                <div class="close w-100 d-flex justify-content-end">
-                  <button type="button" class="btn-close-info-facture btn-close pull-right" aria-label="Close"></button>
-                </div>
-                <div class="row" id="tab-article">
-                  <div class="col-md-6">
-                    <table id="facture-details-tab" class="table table-striped table-sm dt-responsive norwap">
-                      <thead>
-                      <th>Designation</th>
-                      <th>Unite</th>
-                      <th>Prix Unitaire</th>
-                      <th>Quantite</th>
-                      <th>Montant</th>
-                      </thead>
-                      <tbody>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="col-md-6">
-                    <h4 id="num-facture"></h4><br>
-                    <h4 id="montant-facture"></h4><br>
-                    <h4 id="mode-payement"></h4><br>
-                    <h4 id="client-facture"></h4><br>
-                    <h4 id="date-facture"></h4><br>
-                    <h4 id="operateur-facture"></h4><br>
-                    <button class="btn btn-danger btn-lg btn-avoir"><i class="uil-refresh"></i>&nbsp;Avoir</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- End collapse facture information -->
       </div>
     </div>
 

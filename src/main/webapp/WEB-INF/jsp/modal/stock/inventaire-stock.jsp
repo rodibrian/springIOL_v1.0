@@ -9,8 +9,13 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
       </div>
       <div class="modal-body">
-<%--        <input type="number" required id="input-quantite-stock" class="form-control" placeholder="valeur en stock"--%>
-<%--               aria-label="">--%>
+
+          <div class="row">
+              <p id = "label-magasin" ></p>
+              <p id = "label-designation-article" ></p>
+              <p id="label-nb-unite"></p>
+          </div>
+
         <div class="row">
           <table id="inventaire-table-unite" class="table table-hover table-striped norwap table-sm dt-responsive">
             <thead>
@@ -21,6 +26,7 @@
             </tbody>
           </table>
         </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>

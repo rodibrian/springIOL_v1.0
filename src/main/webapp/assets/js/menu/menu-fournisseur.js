@@ -71,18 +71,52 @@ $(function () {
      enregistrement nouveau fournisseur
      */
 
+    /*
+
+    mask et validation
+
+     */
+
+    $(function() {
+        $(namespace + 'form').validate({
+            rules : {
+                nom : {required : true},
+                adresse : {required : true},
+                contact : {required : true}
+            },
+            messages : {
+                nom : {required : 'Nom du fournisseur requis'},
+                adresse: {required : 'Adresse du fournisseur requis'},
+                contact : {required : 'Contact requis'}
+            }
+        })
+
+        $(namespace + 'form input#contact').mask('+261 99 99 999 99')
+    })
+
+    function validation_nouveau_founisseur() {
+        $(namespace + 'form').validate();
+
+        return $(namespace + 'form').valid();
+    }
+
     $(namespace + '#nouveau-fournisseur #btn-enregistrer-fournisseur').on('click', function () {
 
-        let nomFournisseur = $(namespace + '#nouveau-fournisseur input#nom').val();
-        let adresse = $(namespace + '#nouveau-fournisseur input#adresse').val();
-        let contact = $(namespace + '#nouveau-fournisseur input#contact').val();
-        let fr = {};
-        fr.nom = nomFournisseur;
-        fr.adresse = adresse;
-        fr.numTel = contact;
-        fr.type = 1;
-        fr.filiale = {id : $filialeId };
-        enregistrerClientOuFournisseur(fr)
+        if (validation_nouveau_founisseur()) {
+            let nomFournisseur = $(namespace + '#nouveau-fournisseur input#nom').val();
+            let adresse = $(namespace + '#nouveau-fournisseur input#adresse').val();
+            let contact = $(namespace + '#nouveau-fournisseur input#contact').val();
+            let fr = {};
+            fr.nom = nomFournisseur;
+            fr.adresse = adresse;
+            fr.numTel = contact;
+            fr.type = 1;
+            fr.filiale = {id : $filialeId };
+            enregistrerClientOuFournisseur(fr)
+
+            $("#nouveau-fournisseur").modal('hide')
+        }
+
     })
 
     /*
