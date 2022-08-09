@@ -31,10 +31,6 @@ BEGIN
 
         insert into stock(article_id,unite_id,magasin_id,count) values (NEW.article_id,primary_unite_id,NEW.magasin_id,nouveau_quantite_en_stock);
 
-        -- CREATION DU STOCK EN ALERT
-
-        insert into alert_stock(article_id,unite_id,magasin_id,quantite) values (NEW.article_id,primary_unite_id,NEW.magasin_id,0);
-
     end if;
 
     if item_count > 0 then
@@ -98,4 +94,6 @@ BEGIN
 
 END;
 $$;
+
 alter function before_insert_on_info_article_unite_magasin() owner to postgres;
+

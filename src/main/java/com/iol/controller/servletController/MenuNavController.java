@@ -92,6 +92,12 @@ public class MenuNavController{
         return modelAndView;
     }
 
+    @RequestMapping(value = "/gerer-utilisateur", method = RequestMethod.GET)
+    public ModelAndView getGererUtilisateur(){
+        ModelAndView modelAndView = new ModelAndView("gerer-utilisateur");
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/facture", method = RequestMethod.GET)
     public ModelAndView getMenuFacture(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView( "menu-facture");

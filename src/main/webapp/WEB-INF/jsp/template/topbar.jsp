@@ -68,13 +68,13 @@
           </div>
 
           <!-- item-->
-          <a href="" class="dropdown-item notify-item">
+          <a href="/gerer-utilisateur" class="dropdown-item notify-item">
             <i class="mdi mdi-account-circle me-1"></i>
             <span>Gérer mon compte</span>
           </a>
 
           <!-- item-->
-          <a href="" class="dropdown-item notify-item">
+          <a href="/gerer-utilisateur#anchor-history-session" class="dropdown-item notify-item">
             <i class="mdi mdi-account-edit me-1"></i>
             <span>Historiques de session</span>
           </a>

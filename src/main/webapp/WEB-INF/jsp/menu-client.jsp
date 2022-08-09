@@ -8,7 +8,7 @@
       <div class="page-title-box">
         <div class="page-title-right">
           <div class="input-group">
-            <input type="text" required class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
+            <input type="text" class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
             <button class="input-group-text btn-primary" type="submit"><i class="uil-search"></i></button>
           </div>
         </div>
