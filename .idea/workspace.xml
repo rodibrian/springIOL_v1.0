@@ -5,152 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bd9c0e93-77b1-4a8f-96ad-44ae32dfbfef" name="Changes" comment="reste menu-operation filtre">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_micrometer_micrometer_core_1_8_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hdrhistogram_HdrHistogram_2_1_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_latencyutils_LatencyUtils_2_0_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_actuator_2_6_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_actuator_autoconfigure_2_6_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_actuator_2_6_7.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_3_0_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_errorprone_error_prone_annotations_2_7_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_failureaccess_1_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_31_0_1_jre.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_listenablefuture_9999_0_empty_to_avoid_conflict_with_guava.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_j2objc_j2objc_annotations_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_11_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_checkerframework_checker_qual_3_12_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iol.iml" beforeDir="false" afterPath="$PROJECT_DIR$/iol.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/Iol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/Iol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/CompanyRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/CompanyRessource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Avoir.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Avoir.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Vente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Vente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-vente.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-vente.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/mini-function.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/mini-function.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SCRIPT/INFO_ARTICLE_TRIGGER.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SCRIPT/INFO_ARTICLE_TRIGGER.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/Iol.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/config/AsyncConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/config/CustomSessionListner.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/ActivityRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/ArticleRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/CategorieRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/ClientFournisseurRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/CompanyRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/IRessourceHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/InfoArticleMagasinRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/InventoryAlertRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/InventoryRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/MagasinRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/MaterielTransportRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/PriceRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/SalesRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/SortieRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/SubsidiaryRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/SupplyRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/TransfertRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/TrosaRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/UniteRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/UserRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/fonctionRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/fonctionnaliteRessource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/servletController/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/servletController/MenuNavController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/exception/ResourceNotFountException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/adminBeans/AdminUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/adminBeans/DataSourceConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/adminBeans/Societe.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEmbededId/ApprovArticleId.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEmbededId/ApprovisionnementId.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEmbededId/ArticleUniteId.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEmbededId/InfoArticleId.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEmbededId/InfoArticleMagasinId.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEmbededId/InfoVenteId.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEmbededId/InventoryAlertId.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEmbededId/OperationCaisseId.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEmbededId/PrixArticleFilialeId.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEmbededId/PrixVenteUniteArticleFilialeId.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEmbededId/StockId.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEmbededId/TransfertArticleId.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEmbededId/TransfertId.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEmbededId/VoyageId.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEnum/ArticleStatus.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEnum/ModePayement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEnum/Sexe.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEnum/SituationMatrimoniale.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEnum/SocieteStatus.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEnum/StatutVoyage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEnum/TypeOperationCaisse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEnum/TypeTrosa.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEnum/TypeVoyage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Article.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/ArticleUnite.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Avoir.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Categorie.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/ClientFournisseur.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/EmbarquementArticle.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Filiale.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Fonction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Fonctionnalite.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/InfoArticleMagasin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/InfoVente.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/InventoryAlert.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Livraison.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Magasin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/MaterielTransport.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Operation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/OperationCaisse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/OperationData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Payement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Personne.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/PersonneMorale.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/PersonnePhysique.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/PrixArticleFiliale.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Sortie.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Stock.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Supply.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Transfert.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/TransfertArticle.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Trosa.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Unite.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Vente.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Voyage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/wrapper/FactureWrapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/wrapper/InventoryViewWrapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/wrapper/InventoryWrapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/wrapper/SupplyWrapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/ActivityRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/ArticleRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/ArticleUniteRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/CategorieRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/ClientFournisseurRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/CompanyRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/ConnectionFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/DataSourceConfigRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/FonctionRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/FonctionnaliteRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/InfoArticleMagasinRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/InventoryAlertRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/InventoryRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/LivraisonRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/MagasinRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/MaterielTransportRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/PersonnePhysiqueRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/PricesRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/PuafRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/SalesRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/SortieRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/SubsidiaryRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/SupplyRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/TransfertRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/TrosaRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/UniteRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/UserRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/VenteRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/service/ArticleService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/service/MagasinService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/service/SalesService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -467,7 +323,7 @@
       <workItem from="1660050931692" duration="8422000" />
       <workItem from="1660060738239" duration="1337000" />
       <workItem from="1660068993879" duration="2062000" />
-      <workItem from="1660081138106" duration="1402000" />
+      <workItem from="1660081138106" duration="1709000" />
     </task>
     <task id="LOCAL-00001" summary="mapping de la trigger avec la table approvisionnement">
       <created>1658448504125</created>
