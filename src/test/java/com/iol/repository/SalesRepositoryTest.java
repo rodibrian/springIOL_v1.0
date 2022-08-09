@@ -76,4 +76,10 @@ class SalesRepositoryTest {
         List<Vente> billDetails = salesRepository.getBillDetails("12");
         assertThat(billDetails).isNotEmpty();
     }
+
+    @Test
+    void getFactureGroupByRefAndFiliale() {
+        List<String> factureGroupByRefAndFiliale = salesRepository.getFactureGroupByRefAndFiliale(1L);
+        System.out.println(factureGroupByRefAndFiliale);
+    }
 }

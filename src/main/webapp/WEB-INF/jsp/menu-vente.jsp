@@ -69,7 +69,7 @@
                 </div>
               </div>
 
-              <div class="mb-1">
+              <daiv class="mb-1">
                 <label class="form-label">Prix Unitaire (Ar)</label>
                 <div class="input-group">
                   <input id="input-prix-unitaire" type="text" required class="form-control" value="0"
@@ -78,7 +78,7 @@
                           data-bs-target="#modal-prix-special"><i class="uil-dollar-alt"></i>&nbsp;Prix special
                   </button>
                 </div>
-              </div>
+              </daiv>
 
               <div class="d-grid">
                 <button type="button" class="btn btn-ajouter-article-vente btn-success mb-1 mt-3"><i

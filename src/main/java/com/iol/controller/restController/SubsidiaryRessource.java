@@ -47,8 +47,7 @@ public class SubsidiaryRessource{
     private ArticleService articleService;
 
     @GetMapping(value = "/subsidiaries/{id}/items/{itemName}")
-    public ResponseEntity<Object> getItemByName(@PathVariable("id")Long filialeId
-                                                         , @PathVariable("itemName")String itemName){
+    public ResponseEntity<Object> getItemByName(@PathVariable("id")Long filialeId,@PathVariable("itemName")String itemName){
         List<ArticleUnite> allByItemName = articleRepository.getAllByItemName(filialeId, itemName);
         return new ResponseEntity<>(allByItemName, HttpStatus.OK);
     }

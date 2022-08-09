@@ -60,6 +60,4 @@ public interface SalesRepository extends JpaRepository<Vente,Long>{
             "join vente v on iam1.id = v.info_article_magasin_id ",nativeQuery = true)
     List<String> getFactureGroupByRefAndFiliale(@Param("filialeId")Long filialeId);
 
-
-
 }

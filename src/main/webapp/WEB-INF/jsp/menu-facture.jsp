@@ -1,5 +1,5 @@
 <%@ include file='template/header.jsp' %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!-- Start Content-->
 <div class="container-fluid" id="menu-facture">
 
@@ -26,8 +26,9 @@
         <input type="date" class="form-control btn-40">&nbsp;&agrave;&nbsp;
         <input type="date" class="form-control btn-40">&nbsp;
         <select name="magasin" id="" class="form-select btn-40">
-          <option value="0">Magasin I</option>
-          <option value="0">Magasin II</option>
+          <c:forEach var="magasin" items="${magasins}">
+            <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
+          </c:forEach>
         </select>&nbsp;
         <h4 class="">Nombre : ${factures.size()}
         </h4>
@@ -39,10 +40,7 @@
     <%@ include file="modal/facture/info-facture.jsp" %>
     <%@ include file="modal/facture/avoir.jsp" %>
   </div>
-
   <!-- suite -->
-
-
   <div class="container -fluid"><br><br>
     <div class="row">
       <div class="col-lg-12">
@@ -76,46 +74,6 @@
           </c:forEach>
           </tbody>
         </table>
-        <!-- Collapse facture information -->
-        <div class="accordion" id="accordionExample">
-          <div class="card mb-0">
-            <div id="facture-info" class="collapse"
-                 aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-              <div class="card-body">
-                <div class="close w-100 d-flex justify-content-end">
-                  <button type="button" class="btn-close-info-facture btn-close pull-right" aria-label="Close"></button>
-                </div>
-                <div class="row" id="tab-article">
-                  <div class="col-md-6">
-                    <table id="facture-details-tab" class="table table-striped table-sm dt-responsive norwap">
-                      <thead>
-                      <th>Designation</th>
-                      <th>Unite</th>
-                      <th>Prix Unitaire</th>
-                      <th>Quantite</th>
-                      <th>Montant</th>
-                      </thead>
-                      <tbody>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="col-md-6">
-                    <h4 id="num-facture"></h4><br>
-                    <h4 id="montant-facture"></h4><br>
-                    <h4 id="mode-payement"></h4><br>
-                    <h4 id="client-facture"></h4><br>
-                    <h4 id="date-facture"></h4><br>
-                    <h4 id="operateur-facture"></h4><br>
-                    <button class="btn btn-danger btn-lg btn-avoir"><i class="uil-refresh"></i>&nbsp;Avoir</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- End collapse facture information -->
       </div>
     </div>
 

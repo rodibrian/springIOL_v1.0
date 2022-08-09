@@ -147,6 +147,16 @@ public class MagasinRessource {
         return new ResponseEntity<>(articleService.getInventoryByStore(id), HttpStatus.OK);
     }
 
+    @Autowired
+    private ArticleRepository articleRepository;
+
+    @GetMapping("/magasins/{magasinId}/inventories/{articleId}/{uniteId}")
+    public ResponseEntity<Object> getStocksBy(@PathVariable("magasinId") Long magasinId
+                                             ,@PathVariable("articleId") Long articleId
+                                             ,@PathVariable("uniteId") Long uniteId){
+        return new ResponseEntity<>(articleRepository.getStock(uniteId,magasinId,articleId),HttpStatus.OK);
+    }
+
 
     @GetMapping("/magasins/{id}/inventory-alerts/{articleId}/{uniteId}")
     public ResponseEntity<Object> getInventoryAlert(@PathVariable("id") Long storeId,

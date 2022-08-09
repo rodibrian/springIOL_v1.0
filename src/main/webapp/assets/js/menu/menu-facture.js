@@ -57,8 +57,6 @@ $(function () {
 
         fetchBillsData(reference);
 
-        $(namespace + "#facture-info").addClass("show")
-
     })
 
     $(document).on('click', namespace + '.table-facture a.info-facture', function() {

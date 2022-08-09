@@ -42,7 +42,6 @@ $(function () {
         clearForm();
     })
 
-
     $(namespace + '#table-liste-client tbody tr').on('dblclick', function () {
         get_select_affect_to_input(namespace + '#name-client', $(this).attr('id'), $(this).children().eq(0).text());
         $(namespace + '#modal-liste-client').modal('hide');
@@ -88,9 +87,10 @@ $(function () {
     $('.btn-ajouter-article-vente').on('click', function (){
 
         $articleId = $(namespace + '#designation-article').attr('value-id');
+        $uniteId = $(namespace + '#input-unite-article option:selected').val();
+
         $designation = $(namespace + '#designation-article').val();
         $unite = $(namespace + '#input-unite-article option:selected').text();
-        $uniteId = $(namespace + '#input-unite-article option:selected').val();
         $quantite = $(namespace + '#input-quantite-article').val();
         $prix_unitaire = $(namespace + '#input-prix-unitaire').val();
         $clientId = $(namespace + '#name-client').attr("value-id");
@@ -130,6 +130,23 @@ $(function () {
     $(namespace + '#table-liste-article-vente tbody tr').on('dblclick', function () {
         $(this).remove();
     })
+
+    $(namespace + '#input-quantite-article').on("keyup",()=>{
+        $quantite_a_vendre = $(namespace + '#input-quantite-article').val();
+        $articleId = $(namespace + '#designation-article').attr('value-id');
+        $uniteId = $(namespace + '#input-unite-article option:selected').val();
+        $magasinId= $(namespace + '#select-magasin').val();
+        if (quantite_a_vendre!==""){
+           let url = "http://localhost:8080/api/v1/magasins/"+$magasinId+"/inventories/"+$articleId+"/"+$uniteId;
+           execute_ajax_request("get",url,null,(data)=>{
+               if($quantite_a_vendre>data){
+                   console.log(" Quantite insuffisante ")
+               }else {
+                   console.log(" Quantite suffisante ")
+               }
+           });
+        }
+    })
     /*
      enregistrement du vente
      */
@@ -144,7 +161,6 @@ $(function () {
         // validation rules
         return $(namespace + 'form').valid();
     }
-
     $(namespace+'.form-vente .btn-enregistrer-vente').on('click',function (){
         if (isValidVente()) {
             $modalId = 'confirmation-de-vente';
@@ -228,6 +244,5 @@ $(function () {
         // print
         $(space).printThis()
     }
-
 
 })
