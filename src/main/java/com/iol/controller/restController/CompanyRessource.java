@@ -1,5 +1,6 @@
 package com.iol.controller.restController;
 
+import com.google.common.io.Resources;
 import com.iol.model.adminBeans.Societe;
 import com.iol.repository.CompanyRepository;
 import com.iol.repository.ConnectionFactory;
@@ -56,11 +57,9 @@ public class CompanyRessource {
         return list;
     }
 
-
-    private String readFile(final String relFilePath) throws IOException {
-//        final URL url = Resources.getResource(relFilePath);
-//        return Resources.toString(url, StandardCharsets.UTF_8);
-        return "";
+    private String readFile(final String relFilePath) throws IOException{
+        final URL url = Resources.getResource(relFilePath);
+        return Resources.toString(url, StandardCharsets.UTF_8);
     }
 
     @DeleteMapping("/companies/{id}")

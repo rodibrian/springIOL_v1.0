@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table
@@ -20,13 +21,12 @@ public class Avoir{
     @JoinColumn(name = "vente_id",foreignKey = @ForeignKey(name = "avoir_vente_key_constraint"))
     private Vente vente;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id",foreignKey = @ForeignKey(name = "avoir_user_key_constraint"))
-    private User user;
+    private int nombreArticle;
 
     private Double montant;
 
-    private int nombreArticle;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private InfoArticleMagasin infoArticleMagasin;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
