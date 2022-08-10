@@ -68,16 +68,18 @@
           </thead>
           <tbody>
           <c:forEach var="vente" items="${sales}">
+            <c:forEach var="info" items="${vente.infoArticleMagasin}">
             <tr id="${vente.id}">
-              <td><c:out value="${vente.infoArticleMagasin.reference}"/></td>
+              <td><c:out value="${vente.refVente}"/></td>
               <td><c:out value="${vente.client.nom}"/></td>
-              <td><c:out value="${vente.infoArticleMagasin.article.designation}"/></td>
-              <td><c:out value="${vente.infoArticleMagasin.unite.designation}"/></td>
-              <td><c:out value="${vente.infoArticleMagasin.quantiteAjout}"/></td>
-              <td><c:out value="${vente.montantVente/vente.infoArticleMagasin.quantiteAjout}"/></td>
+              <td><c:out value="${info.article.designation}"/></td>
+              <td><c:out value="${info.unite.designation}"/></td>
+              <td><c:out value="${info.quantiteAjout}"/></td>
+              <td><c:out value="${vente.montantVente/info.quantiteAjout}"/></td>
               <td><c:out value="${vente.montantVente}"/></td>
-              <td><c:out value="${vente.infoArticleMagasin.date}"/></td>
+              <td><c:out value="${info.date}"/></td>
             </tr>
+            </c:forEach>
           </c:forEach>
           </tbody>
         </table>

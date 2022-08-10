@@ -1,15 +1,11 @@
 $(function () {
-
     /* -------------------------------------------------------------------------------
                                        MENU VENTE SCRIPT
     -------------------------------------------------------------------------------- */
-
     let namespace = "#menu-vente ";
-
     /*
     Selecter client
     */
-
     function clearForm() {
         $(namespace + '#nouveau-client input#cif').val("");
         $(namespace + '#nouveau-client input#stat').val("");
@@ -41,7 +37,13 @@ $(function () {
         client.typeCf = 0;
         client.filiale = {id: filialeId};
         let url = "http://localhost:8080/api/v1/externalEntities";
-        execute_ajax_request("post", url, client, (data) => get_select_affect_to_input(namespace + '#name-client', data.id, data.nom));
+        execute_ajax_request("post", url, client, (data) => {
+            get_select_affect_to_input(namespace + '#name-client', data.id, data.nom)
+            $(namespace+"#nouveau-client").modal("hide");
+            // insertion dans la liste des clients du nouveau client enregistrer
+            let tr= [data.nom,data.adresse,data.numTel];
+            push_to_table_list(namespace+"#table-liste-client",data.id,tr);
+        });
         clearForm();
     })
 
@@ -49,11 +51,9 @@ $(function () {
         get_select_affect_to_input(namespace + '#name-client', $(this).attr('id'), $(this).children().eq(0).text());
         $(namespace + '#modal-liste-client').modal('hide');
     })
-
     /*------------------------------------------------------------------------------
                                             SELECTER ARTICLE
     -------------------------------------------------------------------------------*/
-
     function updatePrixUnitaire(article_id, unite_id, filialeId) {
         let url = "http://localhost:8080/api/v1/articles/" + article_id + "/unites/" + unite_id + "/filiales/" + filialeId + "/prices";
         execute_ajax_request("get", url, null, (data) => $(namespace + "#input-prix-unitaire").val(data))
@@ -83,9 +83,6 @@ $(function () {
         get_select_affect_to_input(namespace + '#input-prix-unitaire', null, $special_price_final);
         $(namespace + '#modal-prix-special').modal('hide')
     })
-    /*------------------------------------------------------------------------------
-                                            AJOUT DUN ARTICLE
-     -------------------------------------------------------------------------------*/
     /*------------------------------------------------------------------------------
                                             SUPPRESSION D'UN ARTICLE
      -------------------------------------------------------------------------------*/
@@ -129,7 +126,7 @@ $(function () {
     mask et validation
 
      */
-    $('.btn-ajouter-article-vente').on('click', function () {
+    $('.btn-ajouter-article-vente').on('click', function (){
         if (validation_ajout_article()) {
             $articleId = $(namespace + '#designation-article').attr('value-id');
             $designation = $(namespace + '#designation-article').val();
@@ -171,7 +168,7 @@ $(function () {
             '';
 
         const getDataFromTable = (ref,date,user_id)=>{
-           let tr_tab = $(namespace + '#table-liste-client tbody tr');
+           let tr_tab = $(namespace + '#table-liste-article-vente tbody tr');
            let tab = [];
            $.each(tr_tab,(key,value)=>{
                let row_id = $(value).attr("id");
@@ -180,7 +177,7 @@ $(function () {
                let article_id = split[1];
                let unite_id = split[2];
                let info = {};
-               let quantite = value.children().eq(2).text();
+               let quantite = $(value).children().eq(2).text();
                info.typeOperation = "VENTE";
                info.magasin = {id: magasin_id};
                info.user = {id: user_id};

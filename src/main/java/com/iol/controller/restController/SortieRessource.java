@@ -20,7 +20,6 @@ import java.util.List;
 public class SortieRessource{
     @Autowired
     private SortieRepository sortieRepository;
-
     @PostMapping(value = "/sorties")
     public ResponseEntity<Object> create(@RequestBody List<Sortie> sortieList){
         return new ResponseEntity<>(sortieRepository.saveAll(sortieList),HttpStatus.CREATED);

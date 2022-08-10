@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
-public class UniteRessource {
+public class UnityRessource {
 
     @Autowired
     private UniteRepository uniteRepository;

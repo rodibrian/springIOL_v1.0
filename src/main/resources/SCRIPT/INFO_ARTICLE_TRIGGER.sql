@@ -35,7 +35,7 @@ BEGIN
 
     if item_count > 0 then
 
-        if new.type_operation = 'ENTRE' or new.type_operation like '%TRANSFERT%' then
+        if new.type_operation = 'ENTRE' or new.type_operation like '%TRANSFERT%' or new.type_operation = 'AVOIR' then
 
             nouveau_quantite_en_stock := quantite_en_stock_actuelement + (new.quantite_ajout*quantite_niveau_unite) ;
 
@@ -62,7 +62,7 @@ BEGIN
 
 
 
-        if new.type_operation = 'VENTE' or new.type_operation = 'SORTIE' or new.type_operation = 'AVOIR' then
+        if new.type_operation = 'VENTE' or new.type_operation = 'SORTIE'then
 
             nouveau_quantite_en_stock := quantite_en_stock_actuelement - (new.quantite_ajout*quantite_niveau_unite) ;
 
@@ -95,4 +95,5 @@ BEGIN
 END;
 $$;
 alter function before_insert_on_info_article_unite_magasin() owner to postgres;
+create trigger info_article_trigger before insert on info_article_magasin FOR EACH ROW execute procedure before_insert_on_info_article_unite_magasin();
 

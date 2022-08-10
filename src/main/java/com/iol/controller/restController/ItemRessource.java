@@ -13,12 +13,12 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
-public class ArticleRessource {
+public class ItemRessource {
 
     private ArticleRepository articleRepository;
 
     @Autowired
-    public ArticleRessource(ArticleRepository articleRepository) {
+    public ItemRessource(ArticleRepository articleRepository) {
         this.articleRepository = articleRepository;
     }
     @GetMapping(value = "/articles")

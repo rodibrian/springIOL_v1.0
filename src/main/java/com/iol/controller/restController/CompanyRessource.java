@@ -2,18 +2,11 @@ package com.iol.controller.restController;
 
 import com.iol.model.adminBeans.Societe;
 import com.iol.repository.CompanyRepository;
-import com.iol.repository.ConnectionFactory;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.util.BeanDefinitionUtils;
-import org.springframework.data.web.config.SpringDataWebConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.*;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

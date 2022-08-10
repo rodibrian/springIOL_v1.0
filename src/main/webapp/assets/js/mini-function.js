@@ -6,14 +6,14 @@ function appendOptionToSelect($value, $select) {
 }
 
 function create_reference(type,date){
-    let date_and_hours = date+"-"+date.getUTCHours();
+    let time = date.getTime();
     switch (type) {
-       case "VENTE" : return "VT-"+date_and_hours;
-       case "INVENTAIRE" : return "INV-"+date_and_hours;
-       case "SORTIE" : return "SORT-"+date_and_hours;
-       case "ENTRE" : return "ENT-"+date_and_hours;
-       case "AVOIR" : return "AV-"+date_and_hours;
-       case "TRANSFERT":return "TF-"+date_and_hours;
+       case "VENTE" : return "VT-"+time;
+       case "INVENTAIRE" : return "INV-"+time;
+       case "SORTIE" : return "SORT-"+time;
+       case "ENTRE" : return "ENT-"+time;
+       case "AVOIR" : return "AV-"+time;
+       case "TRANSFERT":return "TF-"+time;
     }
 }
 

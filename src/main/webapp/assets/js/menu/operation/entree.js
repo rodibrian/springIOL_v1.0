@@ -35,16 +35,12 @@ $(function () {
         fr.numTel = contact;
         fr.type = 1;
         fr.filiale = {id : filialeId};
-        $.ajax({
-            type : "POST",
-            url : "http://localhost:8080/api/v1/externalEntities",
-            contentType: "application/json",
-            data : JSON.stringify(fr),
-            success : (data) =>{
-                get_select_affect_to_input(namespace + '#input-nom-fournisseur', data.id, nomFournisseur);
-                // vider les champs fournisseurs
-                $(namespace + '#nouveau-fournisseur input#nom').val("");
-            }
+        let url = "http://localhost:8080/api/v1/externalEntities";
+        execute_ajax_request("POST",url,fr,(data) =>{
+            get_select_affect_to_input(namespace + '#input-nom-fournisseur', data.id, nomFournisseur);
+            // vider les champs fournisseurs
+            $(namespace + '#nouveau-fournisseur input#nom').val("");
+            $(namespace+"#nouveau-fournisseur").modal("hide");
         })
     })
     /*

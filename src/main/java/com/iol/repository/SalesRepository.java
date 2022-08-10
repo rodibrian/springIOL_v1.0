@@ -25,7 +25,7 @@ public interface SalesRepository extends JpaRepository<Vente,Long>{
     List<Vente> getSalesByStore(@Param("magasinId") Long magasinId);
 
     @Query(value = "from vente v join v.infoArticleMagasin  info where info.reference=:ref ")
-    List<Vente> getBillDetails(@Param("ref")String reference);
+    Vente getBillDetails(@Param("ref")String reference);
 
     @Query(value = "from vente v join v.infoArticleMagasin info where info.magasin.id=:magasinId and (info.date between :begin and :end)")
     List<Vente> getSalesByBetweenDate(@Param("magasinId") Long magasinId,
@@ -38,17 +38,18 @@ public interface SalesRepository extends JpaRepository<Vente,Long>{
             "iam1.date date," +
             "(select p.nom from personne p join client_fournisseur cf on p.id = cf.id  where cf.id = v.client_id) client," +
             "(select p.nom from personne p join _user u on u.id = p.id where u.id = iam1.user_id) operateur from info_article_magasin iam1 " +
-            "join (select iam.reference,sum(montant_vente) somme from info_article_magasin iam join vente v2 on iam.id = v2.info_article_magasin_id where iam.magasin_id=:magasinId group by iam.reference) refgroup on refgroup.reference = iam1.reference " +
-            "join vente v on iam1.id = v.info_article_magasin_id",nativeQuery = true)
+            "join (select iam.reference,sum(montant_vente) somme from info_article_magasin iam join vente_info_article_magasin viam on iam.id = viam.info_article_magasin_id join vente v2 on viam.vente_id = v2.id where iam.magasin_id=:magasinId group by iam.reference) refgroup on refgroup.reference = iam1.reference " +
+            "join vente_info_article_magasin viam2 on iam1.id = viam2.info_article_magasin_id join vente v on v.id = viam2.vente_id",nativeQuery = true)
     List<String> getFactureGroupByRef(@Param("magasinId") Long magasinId);
 
     @Query(value = "select refgroup.reference reference,"+
             "refgroup.somme montantTotal," +
             "iam1.date date," +
             "(select p.nom from personne p join client_fournisseur cf on p.id = cf.id  where cf.id = v.client_id) client," +
-            "(select p.nom from personne p join _user u on u.id = p.id where u.id = iam1.user_id) operateur from info_article_magasin iam1 " +
-            "join (select iam.reference,sum(montant_vente) somme from info_article_magasin iam join vente v2 on iam.id = v2.info_article_magasin_id join magasin m on iam.magasin_id = m.id_magasin where m.filiale_id=:filialeId and iam.magasin_id=:magasinId group by iam.reference) refgroup on refgroup.reference = iam1.reference " +
-            "join vente v on iam1.id = v.info_article_magasin_id ",nativeQuery = true)
+            "(select p.nom from personne p join _user u on u.id = p.id where u.id = iam1.user_id) operateur " +
+            "from info_article_magasin iam1 " +
+            "      join (select iam.reference,sum(montant_vente) somme from info_article_magasin iam join vente_info_article_magasin viam on iam.id = viam.info_article_magasin_id join vente v2 on viam.vente_id = v2.id join magasin m on iam.magasin_id = m.id_magasin where m.filiale_id=:filialeId and iam.magasin_id=:magasinId group by iam.reference) refgroup on refgroup.reference = iam1.reference " +
+            "join vente_info_article_magasin viam2 on iam1.id = viam2.info_article_magasin_id join vente v on v.id = viam2.vente_id ",nativeQuery = true)
     List<String> getFactureGroupByRefAndFilialeAndMagasin(@Param("magasinId") Long magasinId, @Param("filialeId")Long filialeId);
 
     @Query(value = "select refgroup.reference reference,"+
@@ -56,8 +57,8 @@ public interface SalesRepository extends JpaRepository<Vente,Long>{
             "iam1.date date," +
             "(select p.nom from personne p join client_fournisseur cf on p.id = cf.id  where cf.id = v.client_id) client," +
             "(select p.nom from personne p join _user u on u.id = p.id where u.id = iam1.user_id) operateur from info_article_magasin iam1 " +
-            "join (select iam.reference,sum(montant_vente) somme from info_article_magasin iam join vente v2 on iam.id = v2.info_article_magasin_id join magasin m on iam.magasin_id = m.id_magasin where m.filiale_id=:filialeId group by iam.reference) refgroup on refgroup.reference = iam1.reference " +
-            "join vente v on iam1.id = v.info_article_magasin_id ",nativeQuery = true)
+            "join (select iam.reference,sum(montant_vente) somme from info_article_magasin iam join vente_info_article_magasin viam on iam.id = viam.info_article_magasin_id join vente v2 on viam.vente_id = v2.id  join magasin m on iam.magasin_id = m.id_magasin where m.filiale_id=:filialeId group by iam.reference) refgroup on refgroup.reference = iam1.reference " +
+            "join vente_info_article_magasin viam2 on iam1.id = viam2.info_article_magasin_id join vente v on v.id = viam2.vente_id ",nativeQuery = true)
     List<String> getFactureGroupByRefAndFiliale(@Param("filialeId")Long filialeId);
 
 }

@@ -22,14 +22,12 @@ public class SalesRessource {
 
     @GetMapping("/sales/{reference}")
     public ResponseEntity<Object> getAll(@PathVariable("reference")String reference){
-        List<Vente> billDetails = salesRepository.getBillDetails(reference);
-        return new ResponseEntity<>(billDetails, HttpStatus.OK);
+        return new ResponseEntity<>(salesRepository.getBillDetails(reference),HttpStatus.OK);
     }
 
     @PostMapping("/sales")
-    public ResponseEntity<Object> create(@RequestBody List<Vente> ventes){
-        List<Vente> ventes1 = salesRepository.saveAll(ventes);
-        return new ResponseEntity<>(ventes1,HttpStatus.OK);
+    public ResponseEntity<Object> create(@RequestBody Vente v){
+        return new ResponseEntity<>(salesRepository.save(v),HttpStatus.OK);
     }
 
     @PutMapping("/sales/{id}")

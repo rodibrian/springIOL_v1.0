@@ -7,6 +7,8 @@
         <h4 class="modal-title" id="num-facture"></h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
       </div>
+      <input type="hidden" id="user-id" value-id="${connectedUser.id}">
+      <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
       <div class="modal-body">
         <div class="row">
           <div class="col-md-4 aside">

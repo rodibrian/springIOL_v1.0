@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
-public class CategorieRessource {
+public class CategoryRessource {
 
     @Autowired
     private CategorieRepository categorieRepository;
