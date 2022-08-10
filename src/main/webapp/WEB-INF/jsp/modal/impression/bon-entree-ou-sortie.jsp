@@ -25,7 +25,7 @@
               <span>BE n°: <span class="label-numero-bon">(XXXXX)</span></span><br>
               <span class="label-date-bon">Le <%= new Date().toLocaleString()  %></span><br>
               Magasin : <span class="label-magasin"></span><br>
-              <span>Reference : <span class="label-referene">(XXXXX)</span></span><br>
+              <span>Reference : <span class="label-reference">(XXXXX)</span></span><br>
               <span>Opérateur : <span class="label-utilisateur">(username)</span></span>
             </address>
           </div>

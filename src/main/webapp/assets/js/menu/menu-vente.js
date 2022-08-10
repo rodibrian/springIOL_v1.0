@@ -261,7 +261,7 @@ $(function () {
          */
         $client = $(namespace + "#name-client").val();
         $magasin = $(namespace + "#select-magasin option:selected").text();
-        $user = $(namespace + '#user-id').attr('value-id');
+        $user = $(namespace + '#user-id').attr('value-name');
         /*
         add information
          */
@@ -290,7 +290,7 @@ $(function () {
 
         $client = $(namespace + "#name-client").val();
         $magasin = $(namespace + "#select-magasin option:selected").text();
-        $user = $(namespace + '#user-id').attr('value-id');
+        $user = $(namespace + '#user-id').attr('value-name');
 
         console.log($user)
 

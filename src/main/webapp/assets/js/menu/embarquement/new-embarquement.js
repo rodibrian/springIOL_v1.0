@@ -26,32 +26,60 @@ $(function () {
         AJOUT DUN ARTICLE
     -------------------------------------------------------------------------------*/
 
+    /*
+
+    mask et validation
+
+     */
+
+    $(namespace + 'form.form-article-embarquement').validate({
+        rules: {
+            designationArticle: {required: true},
+            iQuantiteArticle: {required: true, min: 0.0001},
+            iSelectUniteArticle: {required: true},
+            iPrixAchat: {required: true, number: true},
+            iPrixVente: {required: true, number: true}
+        },
+        messages: {
+            designationArticle: {required: 'Designation article requis'},
+            iQuantiteArticle: {required: 'Quantite de l\'article requis', min: 'Quantite article doit être >0'},
+            iSelectUniteArticle: {required: 'Unite de l\'article requis'},
+            iPrixAchat: {required: 'Prix Achat requis', number: ''},
+            iPrixVente: {required: 'Prix Vente requis', number: ''}
+        }
+    })
+
+    function validation_ajout_article_embarquement() {
+        $(namespace + 'form.form-article-embarquement').validate()
+        return $(namespace + 'form.form-article-embarquement').valid()
+    }
+
     $('.btn-ajouter-article').on('click', function () {
+        if (validation_ajout_article_embarquement()) {
+            $id = $(namespace + '#designation-article').attr('value-id');
+            $designation = $(namespace + '#designation-article').val();
+            $unite = $(namespace + '#select-unite-article option:selected').text();
+            $quantite = $(namespace + '#input-quantite-article').val();
+            $prix_achat_article = $(namespace + '#input-prix-achat-article').val();
+            $prix_vente_article = $(namespace + '#input-prix-vente-article').val();
+            const POIDS_ARTICLE = 1;
+            $poids = POIDS_ARTICLE * parseInt($quantite);
 
-        $id = $(namespace + '#designation-article').attr('value-id');
-        $designation = $(namespace + '#designation-article').val();
-        $unite = $(namespace + '#select-unite-article option:selected').text();
-        $quantite = $(namespace + '#input-quantite-article').val();
-        $prix_achat_article = $(namespace + '#input-prix-achat-article').val();
-        $prix_vente_article = $(namespace + '#input-prix-vente-article').val();
-        const POIDS_ARTICLE = 1;
-        $poids = POIDS_ARTICLE * parseInt($quantite);
+            $article_embarquement = [$designation, $unite, $quantite, $poids];
 
-        $article_embarquement = [$designation, $unite, $quantite, $poids];
+            push_to_table_list(namespace + '#table-liste-article-embarquement', $id, $article_embarquement);
 
-        push_to_table_list(namespace + '#table-liste-article-embarquement', $id, $article_embarquement);
+            // vider form vente
 
-        // vider form vente
+            $('.form-vente input').each(function () {
+                if ($(this).attr('id') != 'name-client') $(this).attr('value', '');
+                if ($(this).attr('type') === 'number') $(this).val(0);
+            });
 
-        $('.form-vente input').each(function () {
-            if ($(this).attr('id') != 'name-client') $(this).attr('value', '');
-            if ($(this).attr('type') === 'number') $(this).val(0);
-        });
+            // vide option
 
-        // vide option
-
-        $(namespace + "#input-unite-article option").remove();
-
+            $(namespace + "#input-unite-article option").remove();
+        }
     })
 
     /*
@@ -78,7 +106,36 @@ $(function () {
 
     })
 
-    // enregistrement du vente
+    /*
+
+    enregistrement du vente
+
+     */
+
+    // mask et validation
+
+    $(namespace + 'form.form-embarquement-information').validate({
+        rules: {
+            iReference: {required: true},
+            iMoyenDeTransport: {required: true},
+            selectFournisseur: {required: false},
+            iTrajet: {required: true},
+            iFacture: {required: true}
+        },
+        messages: {
+            iReference: {required: 'Reference d\'embarquement requis'},
+            iMoyenDeTransport: {required: 'Moyen de transport requis'},
+            selectFournisseur: {required: 'Fournisseur requis'},
+            iTrajet: {required: 'Trajectoire d\'embarquement requis'},
+            iFacture: {required: 'Facture d\'embarquement requis'}
+        }
+    })
+
+    function validation_embarquement_information() {
+        $(namespace + 'form.form-embarquement-information').validate();
+
+        return $(namespace + 'form.form-embarquement-information').valid();
+    }
 
     $sommeVente = 0;
     $countArticle = 0;
@@ -89,26 +146,29 @@ $(function () {
         '<li>Somme : <strong>' + $sommeVente + ' Ar</strong></li>' +
         '';
 
-    $(namespace + '.form-embarquement .btn-enregistrer-embarquement').on('click', function () {
-        $modalId = 'confirmation-embarquement';
+    $(namespace + '.btn-enregistrer-embarquement').on('click', function () {
+        if (validation_embarquement_information()) {
+            $modalId = 'confirmation-embarquement';
 
-        create_confirm_dialog('Confirmation d-embarquement', $content, $modalId, 'Enregistrer', 'btn-primary')
-            .on('click', function () { // button de validation
+            create_confirm_dialog('Confirmation d-embarquement', $content, $modalId, 'Enregistrer', 'btn-primary')
+                .on('click', function () { // button de validation
 
-                /*
+                    /*
 
-                 requete d'insertion embarquement
+                     requete d'insertion embarquement
 
-                 */
+                     */
 
-                // vider table
+                    // vider table
 
-                $(namespace + '#table-liste-article-embarquement tbody tr').remove();
+                    $(namespace + '#table-liste-article-embarquement tbody tr').remove();
 
-                $(namespace + '#' + $modalId).modal('hide');
+                    $(namespace + '#' + $modalId).modal('hide');
 
-                createToast('bg-success', 'uil-file-check-alt', 'Vente Fait', 'Vente enregistr&eacute; avec succ&egrave;s!')
-            })
+                    createToast('bg-success', 'uil-file-check-alt', 'Vente Fait', 'Vente enregistr&eacute; avec succ&egrave;s!')
+                })
+        }
+
     })
 
 
@@ -122,6 +182,26 @@ $(function () {
      Nouveau materiel de transport
      */
 
+    /*
+    mask et validation
+     */
+
+    $(namespace + '#nouveau-materiel-de-transport form').validate({
+        rules: {
+            reference: {required: true},
+            typeMateriel: {required: true}
+        },
+        messages: {
+            reference: {required: 'Reference du materiel requis'},
+            typeMateriel: {required: 'Type du materiel requis'}
+        }
+    })
+
+    function validation_nouveau_materiel_de_transport() {
+        $(namespace + '#nouveau-materiel-de-transport form').validate()
+        return $(namespace + '#nouveau-materiel-de-transport form').valid()
+    }
+
     $(namespace + "#btn-nouveau-moyen-de-transport").on('click', function () {
 
         $(namespace + "#nouveau-materiel-de-transport").modal('show')
@@ -134,14 +214,18 @@ $(function () {
 
     $(namespace + "#btn-enregistrer-materiel-de-transport").on('click', function () {
 
-        $reference = $(namespace + '#reference').val();
-        $typeMateriel = $(namespace + '#type-materiel').val();
+        if (validation_nouveau_materiel_de_transport()) {
+            $reference = $(namespace + '#reference').val();
+            $typeMateriel = $(namespace + '#type-materiel').val();
 
-        $materielTransport = {};
-        $materielTransport.reference = $reference;
-        $materielTransport.typeMateriel = $typeMateriel;
+            $materielTransport = {};
+            $materielTransport.reference = $reference;
+            $materielTransport.typeMateriel = $typeMateriel;
 
-        enregistrerMaterielTransport($materielTransport);
+            enregistrerMaterielTransport($materielTransport);
+
+            $(namespace + '#nouveau-materiel-de-transport').modal('hide')
+        }
 
     })
 

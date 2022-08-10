@@ -9,10 +9,14 @@
       <div class="page-title-box">
         <div class="page-title-right">
           <div class="input-group">
-            <input type="text" required class="form-control dropdown-toggle" placeholder="Search..." id="input-search-operation">
+            <input type="text" required class="form-control dropdown-toggle" placeholder="Search..."
+                   id="input-search-operation">
             <button id="btn-search-operation" class="input-group-text btn-primary" type="submit"><i
                     class="uil-search"></i></button>
           </div>
+          <input type="hidden" id="user-id" value-id="${connectedUser.id}" value-name="${connectedUser.username}">
+          <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
+
         </div>
         <h4 class="page-title">Caisse</h4>
       </div>

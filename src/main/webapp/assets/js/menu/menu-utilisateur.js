@@ -28,35 +28,57 @@ $(function () {
      enregistrement du nouvelle fonction
      */
 
-    $(namespace + '#btn-enregistrer-fonction').on('click', function () {
-        let libelle = $(namespace + '#nouvelle-fonction input#libelle-fonction').val();
-        let dataValue = $(namespace + '#nouvelle-fonction').attr('data-value');
-        let filialeId = $(namespace + '#filiale-id').attr("value-id");
-        $isNew = dataValue === NEW;
-        $fonctionResourcesUrl = $isNew ? $fonctionUrl :$fonctionUrl+"/"+$idfonction;
-        $methodType = $isNew ? "POST" : "PUT";
-        $nouveauFonction = {
-            nomFonction : libelle,
-            filiale : {id : filialeId}
+    /*
+    mask et validation
+     */
+
+    $(namespace + '#nouvelle-fonction form').validate({
+        rules : {
+            libelle : {required : true}
+        },
+        messages : {
+            libelle : {required : 'Libelle de la fonction requis'}
         }
-        $.ajax({
-            type: $methodType,
-            url: $fonctionResourcesUrl,
-            contentType: 'application/json',
-            data: JSON.stringify($nouveauFonction),
-            success: function (data){
-                if ($isNew){
-                    $td = [libelle, $actionNouvelleFonctionMenuUtilisateur]
-                    push_to_table_list(namespace + '#table-liste-fonction',data.id,$td);
-                    createToast('bg-success', 'uil-check-sign', 'Enregistement Fait', 'Nouvelle fonction enregistre avec success!')
-                }else{
-                    $trEdit.children().eq(0).text(libelle)
-                    createToast('bg-success', 'uil-check-sign', 'Modification fait', 'Modification du fonction fait!')
-                }
-                $(namespace + '#nouvelle-fonction input#libelle-fonction').val('')
-                load_select_fonction()
+    })
+
+    function validation_nouvelle_fonction() {
+        $(namespace + '#nouvelle-fonction form').validate()
+        return $(namespace + '#nouvelle-fonction form').valid()
+    }
+
+    $(namespace + '#btn-enregistrer-fonction').on('click', function () {
+        if (validation_nouvelle_fonction()) {
+            let libelle = $(namespace + '#nouvelle-fonction input#libelle-fonction').val();
+            let dataValue = $(namespace + '#nouvelle-fonction').attr('data-value');
+            let filialeId = $(namespace + '#filiale-id').attr("value-id");
+            $isNew = dataValue === NEW;
+            $fonctionResourcesUrl = $isNew ? $fonctionUrl :$fonctionUrl+"/"+$idfonction;
+            $methodType = $isNew ? "POST" : "PUT";
+            $nouveauFonction = {
+                nomFonction : libelle,
+                filiale : {id : filialeId}
             }
-        });
+            $.ajax({
+                type: $methodType,
+                url: $fonctionResourcesUrl,
+                contentType: 'application/json',
+                data: JSON.stringify($nouveauFonction),
+                success: function (data){
+                    if ($isNew){
+                        $td = [libelle, $actionNouvelleFonctionMenuUtilisateur]
+                        push_to_table_list(namespace + '#table-liste-fonction',data.id,$td);
+                        createToast('bg-success', 'uil-check-sign', 'Enregistement Fait', 'Nouvelle fonction enregistre avec success!')
+                    }else{
+                        $trEdit.children().eq(0).text(libelle)
+                        createToast('bg-success', 'uil-check-sign', 'Modification fait', 'Modification du fonction fait!')
+                    }
+                    $(namespace + '#nouvelle-fonction input#libelle-fonction').val('')
+                    load_select_fonction()
+                }
+            });
+
+            $(namespace + '#nouvelle-fonction').modal('hide')
+        }
     })
 
     /*
@@ -115,57 +137,92 @@ $(function () {
      enregistrement d'un nouveau utilisateur
      */
 
+    /*
+    mask et validation
+     */
+
+    $(namespace + '#nouveau-utilisateur form #input-contact').mask('+261 99 99 999 99')
+
+    $(namespace + '#nouveau-utilisateur form').validate({
+        rules : {
+            nomEtPrenoms : {required : true},
+            adresse : {required : true},
+            contact : {required : true},
+            fonction : {required : true},
+            magasin : {required : true},
+            username : {required : true, minlength : 4},
+            password : {required : true, minlength : 4}
+        },
+        messages : {
+            nomEtPrenoms : {required : 'Nom et prenoms requis'},
+            adresse : {required : 'Adresse requis'},
+            contact : {required : 'Contact requis'},
+            fonction : {required : 'Fonction requis'},
+            magasin : {required : 'Magasin requis'},
+            username : {required : 'Nom d\'utilisateur requis', minlength : 'Nom d\'utilisateur trop court (min 04 caractères)'},
+            password : {required : 'Mot de passe requis', minlength : 'Mot de passe trop court (min 04 caractères)'}
+        }
+    })
+
+    function validation_nouveau_utilisateur() {
+        $(namespace + '#nouveau-utilisateur form').validate();
+
+        return $(namespace + '#nouveau-utilisateur form').valid();
+    }
+
     let magasinIdTab = [];
     $(namespace + "#nouveau-utilisateur #btn-enregistrer-utilisateur").on('click', function() {
-
-        $nom = $(namespace + "#nouveau-utilisateur #input-nom").val();
-        $adresse = $(namespace + "#nouveau-utilisateur #input-adresse").val();
-        $contact = $(namespace + "#nouveau-utilisateur #input-contact").val();
-        $username = $(namespace + "#nouveau-utilisateur #input-username").val();
-        $password = $(namespace + "#nouveau-utilisateur #input-password").val();
-        $(namespace + "#nouveau-utilisateur #select-magasin option:selected").each(function (key,value){
-            magasinIdTab.push({ id : $(value).val()});
-        });
-        $fonctionId = $(namespace + "#nouveau-utilisateur #select-fonction option:selected").val();
-        $fonctionNom = $(namespace + "#nouveau-utilisateur #select-fonction option:selected").text();
-        $statut = $(namespace + "#nouveau-utilisateur #check-statut").is(':checked')
-        $newUser = {
-            nom : $nom,
-            adresse : $adresse,
-            numTel : $contact,
-            username : $username,
-            password : $password,
-            enabled : $statut,
-            fonction : {
-                id : $fonctionId
-            },
-            magasin : magasinIdTab
-        }
-        let methodType = $NEW_USER ? "POST" : "PUT";
-        let userRessourceUrl = $NEW_USER ? $userUrl : $userUrl+'/'+$userId;
-        $.ajax({
-            type: methodType,
-            url: userRessourceUrl,
-            contentType: 'application/json',
-            data: JSON.stringify($newUser),
-            success:function (data){
-                if ($NEW_USER){
-                    $trUser = [$nom,$username,$contact,$fonctionNom,$statut === true ? insert_badge('success', 'active') : insert_badge('danger', 'desactive'), $actionListeUtilisateurMenuUtilisatuer];
-                    push_to_table_list(namespace + "#table-liste-utilisateur",data.id, $trUser)
-                }else{
-
-                }
-                createToast('bg-success', 'uil-check-sign', 'Utilisateur enregistre', 'Nouveau utilisateur enregistre avec success!')
-
-                // empty all
-
-                $(namespace + "#nouveau-utilisateur input").val("");
-                $('#nouveau-utilisateur select#select-fonction option:first').prop('selected', true);
-                $('#nouveau-utilisateur select#select-magasin option:first').prop('selected', true);
-                $('#nouveau-utilisateur #check-statut').prop('checked', true)
-                $NEW_USER = true;
+        if (validation_nouveau_utilisateur()) {
+            $nom = $(namespace + "#nouveau-utilisateur #input-nom").val();
+            $adresse = $(namespace + "#nouveau-utilisateur #input-adresse").val();
+            $contact = $(namespace + "#nouveau-utilisateur #input-contact").val();
+            $username = $(namespace + "#nouveau-utilisateur #input-username").val();
+            $password = $(namespace + "#nouveau-utilisateur #input-password").val();
+            $(namespace + "#nouveau-utilisateur #select-magasin option:selected").each(function (key,value){
+                magasinIdTab.push({ id : $(value).val()});
+            });
+            $fonctionId = $(namespace + "#nouveau-utilisateur #select-fonction option:selected").val();
+            $fonctionNom = $(namespace + "#nouveau-utilisateur #select-fonction option:selected").text();
+            $statut = $(namespace + "#nouveau-utilisateur #check-statut").is(':checked')
+            $newUser = {
+                nom : $nom,
+                adresse : $adresse,
+                numTel : $contact,
+                username : $username,
+                password : $password,
+                enabled : $statut,
+                fonction : {
+                    id : $fonctionId
+                },
+                magasin : magasinIdTab
             }
-        });
+            let methodType = $NEW_USER ? "POST" : "PUT";
+            let userRessourceUrl = $NEW_USER ? $userUrl : $userUrl+'/'+$userId;
+            $.ajax({
+                type: methodType,
+                url: userRessourceUrl,
+                contentType: 'application/json',
+                data: JSON.stringify($newUser),
+                success:function (data){
+                    if ($NEW_USER){
+                        $trUser = [$nom,$username,$contact,$fonctionNom,$statut === true ? insert_badge('success', 'active') : insert_badge('danger', 'desactive'), $actionListeUtilisateurMenuUtilisatuer];
+                        push_to_table_list(namespace + "#table-liste-utilisateur",data.id, $trUser)
+                    }else{
+
+                    }
+                    createToast('bg-success', 'uil-check-sign', 'Utilisateur enregistre', 'Nouveau utilisateur enregistre avec success!')
+
+                    // empty all
+
+                    $(namespace + "#nouveau-utilisateur input").val("");
+                    $('#nouveau-utilisateur select#select-fonction option:first').prop('selected', true);
+                    $('#nouveau-utilisateur select#select-magasin option:first').prop('selected', true);
+                    $('#nouveau-utilisateur #check-statut').prop('checked', true)
+                    $NEW_USER = true;
+                }
+            });
+            $(namespace + '#nouveau-utilisateur').modal('hide')
+        }
     })
 
     /*

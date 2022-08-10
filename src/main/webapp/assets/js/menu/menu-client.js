@@ -25,14 +25,22 @@ $(function () {
 
         $(namespace + 'form').validate({
             rules: {
+                numCIN : {required : true},
+                nomClient : {required : true},
                 adresse : {required:true},
+                contact : {required : true}
             },
             messages : {
-                adresse: {required: 'Veuillez remplir l\'adresse'}
+                numCIN : {required : 'Numero CIN requis pourun client'},
+                nomClient : {required : 'Nom du client requis'},
+                adresse: {required: 'Veuillez remplir l\'adresse'},
+                contact : {required : 'Contact du client requis'}
             }
         })
 
         $(namespace + '#numCIN').mask('999 999 999 999')
+        $(namespace + '#nif').mask('999 999 9 999')
+        $(namespace + '#stat').mask('99 999 99 9999 9 99999')
         $(namespace + '#contact').mask('+261 99 99 999 99')
     })
 

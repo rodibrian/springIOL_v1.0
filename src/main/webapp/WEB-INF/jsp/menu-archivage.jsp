@@ -30,5 +30,4 @@
 
 </div> <!-- container -->
 
-<%@ include file="template/footer.jsp" %>
 <%@ include file="template/setting.jsp" %>

@@ -12,7 +12,7 @@
           <div class="row form-vente">
             <h4>Vente</h4>
             <hr>
-            <input type="hidden" id="user-id" value-id="${connectedUser.id}">
+            <input type="hidden" id="user-id" value-id="${connectedUser.id}" value-name="${connectedUser.username}">
             <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
             <div class="col-lg-5">
               <div class="mb-1">

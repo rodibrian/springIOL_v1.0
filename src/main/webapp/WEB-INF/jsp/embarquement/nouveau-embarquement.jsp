@@ -5,7 +5,7 @@
 <div class="row d-flex justify-content-center align-items-center" id="nouveau-embarquement" data-plugin="dragula">
   <div class="col-md-11">
     <div class="card mb-0 mt-3">
-      <div class="card-body was-validated">
+      <div class="card-body">
         <blockquote class="card-bodyquote mb-0">
 
           <!-- vente content -->
@@ -13,90 +13,98 @@
           <div class="row">
             <h4 class="label-title">Nouveau Embarquement</h4>
             <hr>
-            <div class="col-lg-5 form-embarquement">
-              <div class="mb-1">
-                <label for="input-reference" class="form-label">Reference</label>
-                <input type="text" required id="input-reference" class="form-control" placeholder="2022/001">
-              </div>
-              <div class="mb-1">
-                <label for="input-moyen-de-transport" class="form-label">Moyen de transport</label>
-                <div class="input-group">
-                  <select required class="form-select" id="input-moyen-de-transport">
-                    <c:forEach var="mat_transport" items="${materiel_transportList}" >
-                      <option value="${mat_transport.id}">${mat_transport.typeMateriel}</option>
-                    </c:forEach>
-                  </select>
-                  <a type="button" role="button" class="btn btn-primary" id="btn-nouveau-moyen-de-transport"><i class="uil-plus"></i></a>
+            <div class="col-lg-5">
+              <form class="form-embarquement-information">
+                <div class="mb-1">
+                  <label for="input-reference" class="form-label">Reference</label>
+                  <input type="text" name="iReference" id="input-reference" class="form-control" placeholder="2022/001">
+                </div>
+                <div class="mb-1">
+                  <label for="input-moyen-de-transport" class="form-label">Moyen de transport</label>
+                  <div class="input-group">
+                    <select name="iMoyenDeTransport" class="form-select" id="input-moyen-de-transport">
+                      <c:forEach var="mat_transport" items="${materiel_transportList}" >
+                        <option value="${mat_transport.id}">${mat_transport.typeMateriel}</option>
+                      </c:forEach>
+                    </select>
+                    <a type="button" role="button" class="btn btn-primary" id="btn-nouveau-moyen-de-transport"><i class="uil-plus"></i></a>
+                  </div>
+
+                </div>
+                <div class="mb-1">
+                  <label for="select-fournisseur" class="form-label">Nom du Fournisseur</label>
+                  <div class="input-group">
+                    <select name="selectFournisseur" class="form-select" id="select-fournisseur">
+                      <c:forEach var="frs" items="${cfList_embarquement}" >
+                        <option value="${frs.id}">${frs.nom}</option>
+                      </c:forEach>
+                    </select>
+                    <a role="button" class="btn btn-primary" id="btn-nouveau-fournisseur"><i class="uil-plus"></i></a>
+                  </div>
+
+                </div>
+                <div class="mb-1">
+                  <label for="input-trajet" class="form-label">Trajet</label>
+                  <input type="text" name="iTrajet" id="input-trajet" class="form-control" placeholder="depart - destination">
+                </div>
+                <div class="mb-1">
+                  <label for="input-facture" class="form-label">Facture</label>
+                  <input type="text" name="iFacture" id="input-facture" class="form-control" placeholder="reference facture">
                 </div>
 
-              </div>
-              <div class="mb-1">
-                <label for="select-fournisseur" class="form-label">Nom du Fournisseur</label>
-                <div class="input-group">
-                  <select required class="form-select" id="select-fournisseur">
-                    <c:forEach var="frs" items="${cfList_embarquement}" >
-                      <option value="${frs.id}">${frs.nom}</option>
-                    </c:forEach>
-                  </select>
-                  <a role="button" class="btn btn-primary" id="btn-nouveau-fournisseur"><i class="uil-plus"></i></a>
-                </div>
-
-              </div>
-              <div class="mb-1">
-                <label for="input-trajet" class="form-label">Trajet</label>
-                <input type="text" required id="input-trajet" class="form-control" placeholder="depart - destination">
-              </div>
-              <div class="mb-1">
-                <label for="input-facture" class="form-label">Facture</label>
-                <input type="text" required id="input-facture" class="form-control" placeholder="reference facture">
-              </div>
+              </form>
 
               <hr>
 
-              <div class="mb-1">
-                <label class="designation-article">Designation</label>
-                <div class="input-group">
-                  <input type="text" required id="designation-article" class="form-control" placeholder="Nom de l'article"
-                         aria-label="Recipient's username">
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                          data-bs-target="#modal-liste-article"><i class="uil-search"></i></button>
+              <form class="form-article-embarquement">
+                <div class="mb-1">
+                  <label class="designation-article">Designation</label>
+                  <div class="input-group">
+                    <input type="text" name="designationArticle" id="designation-article" class="form-control" placeholder="Nom de l'article"
+                           aria-label="Recipient's username">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#modal-liste-article"><i class="uil-search"></i></button>
+                  </div>
                 </div>
-              </div>
 
-              <div class="row g-2">
-                <div class="mb-1 col-md-6">
-                  <label for="input-quantite-article" class="form-label">Quantite (Poids : <span class="label-poids-article">0</span>T)</label>
-                  <input type="number" required class="form-control" id="input-quantite-article" placeholder="00">
+                <div class="row g-2">
+                  <div class="mb-1 col-md-6">
+                    <label for="input-quantite-article" class="form-label">Quantite (Poids : <span class="label-poids-article">0</span>T)</label>
+                    <input type="number" name="iQuantiteArticle" class="form-control" id="input-quantite-article" placeholder="00">
+                  </div>
+                  <div class="mb-1 col-md-6">
+                    <label for="select-unite-article" class="form-label">Unite</label>
+                    <select name="iSelectUniteArticle" class="form-select" id="select-unite-article">
+                    </select>
+                  </div>
                 </div>
-                <div class="mb-1 col-md-6">
-                  <label for="select-unite-article" class="form-label">Unite</label>
-                  <select required class="form-select" id="select-unite-article">
-                  </select>
+                <div class="mb-1">
+                  <label class="form-label">Prix d'achat</label>
+                  <div class="input-group">
+                    <input type="number" name="iPrixAchat" class="form-control" id="input-prix-achat-article" placeholder="0 Ar" aria-label="Recipient's username">
+                    <button type="button" class="btn btn-primary btn-prix-special-article" data-bs-toggle="modal"
+                            data-bs-target="#bs-example-modal-sm"><i class="uil-dollar-alt"></i>&nbsp;Prix special
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <div class="mb-1">
-                <label class="form-label">Prix d'achat</label>
-                <div class="input-group">
-                  <input type="text" required class="form-control" id="input-prix-achat-article" placeholder="0 Ar" aria-label="Recipient's username">
-                  <button type="button" class="btn btn-primary btn-prix-special-article" data-bs-toggle="modal"
-                          data-bs-target="#bs-example-modal-sm"><i class="uil-dollar-alt"></i>&nbsp;Prix special
-                  </button>
+                <div class="mb-1">
+                  <label class="form-label">Prix de vente</label>
+                  <div class="input-group">
+                    <input type="number" name="iPrixVente" id="input-prix-vente-article" class="form-control" placeholder="0 Ar" aria-label="Recipient's username">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#bs-example-modal-sm"><i class="uil-dollar-alt"></i>&nbsp;Prix special
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <div class="mb-1">
-                <label class="form-label">Prix de vente</label>
-                <div class="input-group">
-                  <input type="text" required id="input-prix-vente-article" class="form-control" placeholder="0 Ar" aria-label="Recipient's username">
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                          data-bs-target="#bs-example-modal-sm"><i class="uil-dollar-alt"></i>&nbsp;Prix special
-                  </button>
-                </div>
-              </div>
 
-              <div class="d-grid">
-                <button type="button" class="btn btn-success mb-1 btn-ajouter-article"><i class="uil-plus"></i>&nbsp;Ajouter</button>
-                <button type="button" class="btn btn-primary mb-1 btn-enregistrer-embarquement"><i class="uil-save"></i>Enregistrer</button>
-              </div>
+                <div class="d-grid mt-3">
+                  <button type="submit" class="btn btn-success mb-1 btn-ajouter-article"><i class="uil-plus"></i>&nbsp;Ajouter</button>
+                  <button type="button" class="btn btn-primary mb-1 btn-enregistrer-embarquement"><i class="uil-save"></i>Enregistrer</button>
+                </div>
+
+              </form>
+
+
               <!-- end d-grid -->
             </div>
             <div class="col-lg-7">
@@ -124,16 +132,7 @@
 
 
 
-              <!-- modal list -->
 
-
-              <%@ include file="../modal/embarquement/new-materiel-de-transport.jsp" %>
-              <%@ include file="../modal/fournisseur/new-fournisseur.jsp" %>
-              <%@ include file="../modal/vente/list-article.jsp" %>
-              <%@ include file="../modal/vente/prix-special.jsp" %>
-              <%@ include file="../modal/new-chauffeur.jsp" %>
-
-              <!-- end modal list -->
 
 
             </div>
@@ -144,6 +143,19 @@
       </div> <!-- end card-body-->
     </div> <!-- end card-->
   </div> <!-- end col-->
+
+  <div class="all-modal">
+    <!-- modal list -->
+
+
+    <%@ include file="../modal/embarquement/new-materiel-de-transport.jsp" %>
+    <%@ include file="../modal/fournisseur/new-fournisseur.jsp" %>
+    <%@ include file="../modal/vente/list-article.jsp" %>
+    <%@ include file="../modal/vente/prix-special.jsp" %>
+    <%@ include file="../modal/new-chauffeur.jsp" %>
+
+    <!-- end modal list -->
+  </div>
 </div>
 
 <%@ include file="../template/setting.jsp" %>

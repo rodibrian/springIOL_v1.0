@@ -21,6 +21,7 @@ $(function () {
         get_select_affect_to_input(namespace + '#input-nom-fournisseur', $(this).attr('id'), $(this).children().eq(0).text());
         $(namespace + '#modal-liste-fournisseur').modal('hide');
     })
+
     /*
      Nouveau Fournisseur
      */
@@ -212,11 +213,12 @@ $(function () {
                 supplyWrapper.prixArticleFiliales = pvuafTab;
                 let url ="http://localhost:8080/api/v1/supplies";
                 execute_ajax_request("post",url,supplyWrapper,(data)=>{
-                    onSuppliesCreated();
+
                     impression_entree()
+                    onSuppliesCreated();
                 });
                 })
-            if ($nArticle == 0) $(namespace + '#btn-' + $modalId).attr('disabled', 'disabled');
+            $(namespace + '#btn-' + $modalId).attr('disabled', $nArticle == 0);
     });
 
     /*
@@ -248,7 +250,7 @@ $(function () {
          */
         $fournisseur = $(namespace + "#input-nom-fournisseur").val();
         $magasin = $(namespace + "#select-magasin option:selected").text();
-        $user = $('.account-user-name').text();
+        $user = $(namespace + '#user-id').attr('value-name');
         /*
         add information
          */

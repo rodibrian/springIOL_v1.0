@@ -7,7 +7,7 @@ $(function () {
      --------------------------*/
 
     let namespace = "#menu-caisse ";
-    exportToExcel(namespace + '.btn-export-to-excel','caisse', namespace + '.table-liste-operation-caisse')
+    exportToExcel(namespace + '.btn-export-to-excel', 'caisse', namespace + '.table-liste-operation-caisse')
 
 
     // mode de paiement
@@ -21,7 +21,7 @@ $(function () {
         OP_RECETTE = $(namespace + "#caisse-recette").attr('value-filter'),
         OP_AVOIR = $(namespace + "#caisse-avoir").attr('value-filter'),
         OP_CREDIT = $(namespace + "#caisse-credit").attr('value-filter');
-        OP_CONSO = $(namespace + "#caisse-consommation").attr('value-filter');
+    OP_CONSO = $(namespace + "#caisse-consommation").attr('value-filter');
 
     // type operation
 
@@ -145,51 +145,77 @@ $(function () {
      enregistrement operation
      */
 
-    $("#operation-caisse #btn-enregistrer-operation-caisse").on('click', function () {
+    /*
+    mask et validation
+     */
 
-        switch ($typeOperation) {
-            case OP_IN :
-                push_to_table_list(
-                    namespace + ".table-liste-operation-caisse",
-                    "",
-                    [OP_RECETTE,
-                        new Date().toLocaleDateString(),
-                        $('#operation-caisse #input-reference').val(),
-                        '[' + $('#operation-caisse #input-categorie').val() + '] ' + $('#operation-caisse #area-description').val(),
-                        $('#operation-caisse #input-montant').val(),
-                        "-",
-                        "-"]
-                )
-                    .attr('data-filter', [OP_RECETTE, ESPECE])
-                createToast('bg-success', 'uil-folder-check', 'Encaissement enregistre', 'ENcaissement enregistrer avec success!');
-                impression_EncDecAissement(true)
-            break;
-            case OP_OUT :
-                push_to_table_list(
-                    namespace + ".table-liste-operation-caisse",
-                    "",
-                    [OP_DEPENSE,
-                        new Date().toLocaleDateString(),
-                        $('#operation-caisse #input-reference').val(),
-                        '[' + $('#operation-caisse #input-categorie').val() + '] ' + $('#operation-caisse #area-description').val(),
-                        "-",
-                        $('#operation-caisse #input-montant').val(),
-                        "-"]
-                )
-                    .attr('data-filter', [OP_DEPENSE, OP_CONSO])
-                createToast('bg-warning', 'uil-folder-check', 'Decaissement enregistre', 'Decaissement enregistrer avec success!');
-                impression_EncDecAissement(false)
-                break;
-
+    $(namespace + '#operation-caisse form').validate({
+        rules: {
+            reference: {required: true},
+            categorie: {required: true},
+            montant: {required: true, min: 0.0001}
+        },
+        messages: {
+            reference: {required: 'Reference de l\'operation requis'},
+            categorie: {required: 'Categorie de l\'operation requis'},
+            montant: {required: 'Montant de l\'operation requis', min: 'Montant doit être >0'}
         }
+    })
 
-        // vider les champs
+    function validation_operation_caisse() {
+        $(namespace + '#operation-caisse form').validate();
 
-        $('#operation-caisse #input-reference').val('');
-        $('#operation-caisse #input-montant').val(0);
-        $('#operation-caisse #area-description').val('');
-        $('#operation-caisse #input-categorie').val('');
+        return $(namespace + '#operation-caisse form').valid();
+    }
 
+    $("#operation-caisse #btn-enregistrer-operation-caisse").on('click', function () {
+        if (validation_operation_caisse()) {
+
+            switch ($typeOperation) {
+                case OP_IN :
+                    push_to_table_list(
+                        namespace + ".table-liste-operation-caisse",
+                        "",
+                        [OP_RECETTE,
+                            new Date().toLocaleDateString(),
+                            $('#operation-caisse #input-reference').val(),
+                            '[' + $('#operation-caisse #input-categorie').val() + '] ' + $('#operation-caisse #area-description').val(),
+                            $('#operation-caisse #input-montant').val(),
+                            "-",
+                            "-"]
+                    )
+                        .attr('data-filter', [OP_RECETTE, ESPECE])
+                    createToast('bg-success', 'uil-folder-check', 'Encaissement enregistre', 'ENcaissement enregistrer avec success!');
+                    impression_EncDecAissement(true)
+                    break;
+                case OP_OUT :
+                    push_to_table_list(
+                        namespace + ".table-liste-operation-caisse",
+                        "",
+                        [OP_DEPENSE,
+                            new Date().toLocaleDateString(),
+                            $('#operation-caisse #input-reference').val(),
+                            '[' + $('#operation-caisse #input-categorie').val() + '] ' + $('#operation-caisse #area-description').val(),
+                            "-",
+                            $('#operation-caisse #input-montant').val(),
+                            "-"]
+                    )
+                        .attr('data-filter', [OP_DEPENSE, OP_CONSO])
+                    createToast('bg-warning', 'uil-folder-check', 'Decaissement enregistre', 'Decaissement enregistrer avec success!');
+                    impression_EncDecAissement(false)
+                    break;
+
+            }
+
+            // vider les champs
+
+            $('#operation-caisse #input-reference').val('');
+            $('#operation-caisse #input-montant').val(0);
+            $('#operation-caisse #area-description').val('');
+            $('#operation-caisse #input-categorie').val('');
+
+            $('#operation-caisse').modal('hide')
+        }
     })
 
     /*
@@ -258,6 +284,7 @@ $(function () {
 
         $title = $isEnc ? 'Encaissement' : 'Decaissement';
         $reference = $(namespace + '#operation-caisse #input-reference').val();
+        $user = $(namespace + '#user-id').attr('value-name');
         $categorie = $(namespace + '#operation-caisse #input-categorie').val();
         $montant = $(namespace + '#operation-caisse #input-montant').val();
         $description = $(namespace + '#operation-caisse #area-description').val();
@@ -265,6 +292,7 @@ $(function () {
         // affectation
 
         $(space + '.label-title').text($title)
+        $(space + '.label-utilisateur').text($user)
         $(space + '.label-reference').text($reference)
         $(space + '.td-reference').text($reference)
         $(space + '.td-description').text('[' + $categorie + '] ' + $description)
@@ -273,7 +301,6 @@ $(function () {
         $(space).printThis()
 
     }
-
 
 
 })

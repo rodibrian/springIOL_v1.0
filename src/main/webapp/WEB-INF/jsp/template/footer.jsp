@@ -14,7 +14,7 @@
 <!-- ============================================================== -->
 
 <!-- Footer Start -->
-<footer class="footer">
+<footer class="footer" style="z-index: -10">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6">

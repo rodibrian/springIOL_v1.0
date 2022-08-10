@@ -74,14 +74,16 @@
       <!-- Personal-Information -->
       <div class="card">
         <div class="card-body">
-         <div class="row mb-2">
-           <div class="col-8"> <h4 class="header-title mt-0 mb-3">Information général</h4></div>
-           <div class="col-4 text-end">
-             <button class="btn btn-editer-infos-general btn-info"><i class="uil uil-pen"></i> Editer</button>
-           </div>
-         </div>
+          <div class="row mb-2">
+            <div class="col-8"><h4 class="header-title mt-0 mb-3">Information général</h4></div>
+            <div class="col-4 text-end">
+              <button class="btn btn-editer-infos-general btn-info"><i class="uil uil-pen"></i> Editer</button>
+            </div>
+          </div>
           <p class="text-muted">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet asperiores delectus est id nihil nobis obcaecati qui rem veritatis. Consectetur dignissimos eius illum itaque magnam necessitatibus numquam perspiciatis qui temporibus!
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet asperiores delectus est id nihil nobis
+            obcaecati qui rem veritatis. Consectetur dignissimos eius illum itaque magnam necessitatibus numquam
+            perspiciatis qui temporibus!
           </p>
           <hr>
           <form class="text-start">
@@ -110,7 +112,7 @@
                 <td>Contact</td>
                 <td>
                   <input name="iContact" class="input-contact form-control" type="text" disabled
-                         value="contact utilisateur">
+                         value="+261 00 00 000 00">
                 </td>
               </tr>
               <tr>
@@ -135,7 +137,11 @@
                 </td>
               </tr>
               <tr>
-                <td><button type="submit" class="btn btn-success btn-enregistrer-infos-general"><i class="uil uil-check-circle"></i> Enregistrer</button></td>
+                <td>
+                  <button type="submit" class="btn btn-success btn-enregistrer-infos-general"><i
+                          class="uil uil-check-circle"></i> Enregistrer
+                  </button>
+                </td>
                 <td></td>
               </tr>
             </table>
@@ -150,13 +156,15 @@
       <div class="card">
         <div class="card-body">
           <div class="row mb-2">
-            <div class="col-8"> <h4 class="header-title mt-0 mb-3">Information de sécurité</h4></div>
+            <div class="col-8"><h4 class="header-title mt-0 mb-3">Information de sécurité</h4></div>
             <div class="col-4 text-end">
               <button class="btn btn-editer-infos-securite btn-info"><i class="uil uil-pen"></i> Editer</button>
             </div>
           </div>
           <p class="text-muted">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aut beatae eius eligendi, eos exercitationem expedita illum, inventore perferendis quaerat quisquam, quod repellendus voluptatibus? Ipsam laudantium nulla possimus saepe similique.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aut beatae eius eligendi, eos
+            exercitationem expedita illum, inventore perferendis quaerat quisquam, quod repellendus voluptatibus? Ipsam
+            laudantium nulla possimus saepe similique.
           </p>
           <hr>
 
@@ -171,24 +179,31 @@
               <tr>
                 <td>Ancien Mot de passe</td>
                 <td>
-                  <input name="iOldPassword" class="input-old-password form-control" type="password" disabled value="password">
+                  <input name="iOldPassword" class="input-old-password form-control" type="password" disabled
+                         value="password">
                 </td>
               </tr>
               <tr>
                 <td>Nouveau Mot de passe</td>
                 <td>
-                  <input name="iNewPassword" class="input-new-password form-control" type="password" disabled value="password">
+                  <input name="iNewPassword" class="input-new-password form-control" type="password" disabled
+                         value="password">
                 </td>
               </tr>
               <tr>
                 <td>Retapez Nouveau Mot de passe</td>
                 <td>
-                  <input name="iRetypeNewPassword" class="input-retype-new-password form-control" type="password" disabled value="password">
+                  <input name="iRetypeNewPassword" class="input-retype-new-password form-control" type="password"
+                         disabled value="password">
                 </td>
               </tr>
 
               <tr>
-                <td><button type="submit" class="btn btn-enregistrer-infos-securite btn-success"><i class="uil uil-check-circle"></i> Enregistrer</button></td>
+                <td>
+                  <button type="submit" class="btn btn-enregistrer-infos-securite btn-success"><i
+                          class="uil uil-check-circle"></i> Enregistrer
+                  </button>
+                </td>
                 <td>
                 </td>
               </tr>
@@ -208,7 +223,9 @@
         <div class="card-body">
           <h4 class="header-title mb-3">Historiques des sessions</h4>
           <p class="text-muted">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aperiam culpa dicta dolore eaque earum eius enim eum exercitationem facilis, ipsum iste mollitia nihil numquam officiis quisquam repellendus, velit voluptas.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aperiam culpa dicta dolore eaque earum
+            eius enim eum exercitationem facilis, ipsum iste mollitia nihil numquam officiis quisquam repellendus, velit
+            voluptas.
           </p>
           <hr>
           <div class="table-responsive t-list-75">
@@ -241,5 +258,4 @@
   <!-- end row -->
 </div>
 <!-- container -->
-<%@ include file="template/footer.jsp" %>
 <%@ include file="template/setting.jsp" %>

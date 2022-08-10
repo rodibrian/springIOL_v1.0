@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
 
     /*
 
@@ -8,10 +8,33 @@ $(function() {
 
     let namespace = "#choix-magasin ";
 
-    $(namespace + ".btn-choix-magasin").on('click', function() {
+    /*
+    validation
+     */
 
-        $magasin = $(namespace + '#choixMagasin option:selected');
+    $(namespace + 'form').validate({
+        rules: {
+            choixMagasin: {required: true}
+        },
+        messages: {
+            choixMagasin: {required: 'Magasin requis'}
+        }
+    })
 
-        createToast('bg-success', 'uil-check-file', 'Magasin changer', 'Votre magasin a ete change a ' + $magasin.text() + '!!')
+    function validation_choix_magasin() {
+        $(namespace + 'form').validate();
+
+        return $(namespace + 'form').valid();
+    }
+
+    $(namespace + ".btn-choix-magasin").on('click', function () {
+
+        if (validation_choix_magasin()) {
+            $magasin = $(namespace + '#choixMagasin option:selected');
+
+            createToast('bg-success', 'uil-check-file', 'Magasin changer', 'Votre magasin a ete change a ' + $magasin.text() + '!!')
+            $(namespace).modal('hide')
+        }
+
     })
 })
