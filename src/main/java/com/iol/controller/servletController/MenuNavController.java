@@ -43,11 +43,13 @@ public class MenuNavController{
     private final String PRICES_LIST = "prices";
     private final String OPERATION_LIST = "operations";
     private final String FACTURE_LIST = "factures";
+    private final String PEREMPTION_LIST= "expirations";
 
     private final String MAGASIN_ID = "MAGASIN_ID";
     private final String FILIALE_ID = "FILIALE_ID";
 
-    public MenuNavController() {
+    public MenuNavController(){
+
     }
 
     @RequestMapping(value = "/embarquement", method = RequestMethod.GET)
@@ -86,9 +88,15 @@ public class MenuNavController{
         return "menu-voyage";
     }
 
+    @Autowired
+    private SupplyRepository supplyRepository;
+
     @RequestMapping(value = "/peremption", method = RequestMethod.GET)
-    public ModelAndView getMenuPeremption(){
+    public ModelAndView getMenuPeremption(HttpServletRequest request){
+        Map<String, Long> connectedUserMagasinId = getConnectedUserInfo(request);
+        Long filialeId = connectedUserMagasinId.get(FILIALE_ID);
         ModelAndView modelAndView = new ModelAndView("menu-peremption");
+        modelAndView.addObject(PEREMPTION_LIST,articleService.getProductByExpiration(filialeId));
         return modelAndView;
     }
 

@@ -48,32 +48,28 @@
   <div class="container -fluid">
     <div class="row">
       <div class="col-lg-12">
-        <table id="scroll-vertical-datatable"
-               class="table-peremption table table-sm dt-responsive nowrap table-hover table-striped">
+        <table id="scroll-vertical-datatable" class="table-peremption table table-sm dt-responsive nowrap table-hover table-striped">
           <thead>
           <tr>
-            <th>Code</th>
             <th>Designation</th>
             <th>Unite</th>
-            <th>Quantite</th>
+            <th>Quantite en stock</th>
             <th>Date de peremption</th>
             <th>Etat</th>
           </tr>
           </thead>
           <tbody>
-          <% for (int i = 0; i < 10; i++) { %>
-          <tr>
-            <th>000 000 000 00</th>
-            <td>Designation d'article</td>
-            <td>unite</td>
-            <td>0</td>
-            <td>05/06/2022</td>
-            <td><span class="badge badge-danger-lighten">p&eacute;rim&eacute;</span></td>
-          </tr>
-          <% } %>
+              <c:forEach var="au" items="${expirations}">
+                <tr>
+                  <td>${au.nomArticle}</td>
+                  <td>${au.nomUnite}</td>
+                  <td>${au.quantitePeremetion}</td>
+                  <td>${au.datePeremption}</td>
+                  <td><span class="badge badge-danger-lighten">p&eacute;rim&eacute;</span></td>
+                </tr>
+              </c:forEach>
           </tbody>
         </table>
-
 
       </div>
     </div>
@@ -95,10 +91,8 @@
 
 </div>
 </div>
-
 <!-- ============================================================== -->
 <!-- End Page content -->
 <!-- ============================================================== -->
-
 <%@ include file="template/footer.jsp" %>
 <%@ include file="template/setting.jsp" %>

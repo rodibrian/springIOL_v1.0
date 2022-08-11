@@ -91,10 +91,8 @@ $(function () {
     }
 
 
-    $(namespace + '#btn-ajouter-article-entree').on('click', function () {
-
+    $(namespace + '#btn-ajouter-article-entree').on('click', function (){
         if (validation_ajout_article()) {
-
             let fId = $(namespace + '#input-nom-fournisseur').attr("value-id");
             let magasinId = $(namespace + '#select-magasin').val();
             let articleId = $(namespace + '#input-designation-article').attr("value-id");
@@ -107,7 +105,6 @@ $(function () {
             let userId = $(namespace + '#user-id').attr("value-id");
             let filialeId = $(namespace + '#filiale-id').attr("value-id");
             let datePeremption = $(namespace + "#input-date-peremption").val();
-
             // PRIX ARTICLE UNITE FILIALE
             let fuap = {};
             fuap.filiale = {
@@ -144,6 +141,7 @@ $(function () {
             };
             supply.montantApprov = prixAchat;
             supply.datePeremption = datePeremption;
+            supply.quantitePeremption = quantite;
             supplyTab.push(supply);
             $articleAjout = [
                 $(namespace + '#input-reference-facture').val(),
@@ -154,9 +152,7 @@ $(function () {
                 parseFloat($(namespace + '#input-prix-achat-article').val()) * parseFloat(quantite)
             ]
             push_to_table_list(namespace + "#table-liste-article-entree", trIndex++, $articleAjout);
-
         // vider les input
-
         $(namespace + '#input-designation-article').attr('value', '');
         $(namespace + '#input-quantite-article').val(0);
         $(namespace + '#input-prix-achat-article').val(0)

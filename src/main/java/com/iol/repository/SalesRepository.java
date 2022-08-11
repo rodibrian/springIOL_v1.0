@@ -25,7 +25,10 @@ public interface SalesRepository extends JpaRepository<Vente,Long>{
     List<Vente> getSalesByStore(@Param("magasinId") Long magasinId);
 
     @Query(value = "from vente v join v.infoArticleMagasin  info where info.reference=:ref ")
-    Vente getBillDetails(@Param("ref")String reference);
+    Vente getInvoiceBySaleRef(@Param("ref")String reference);
+
+    @Query(value = "from vente v join v.infoArticleMagasin  info where info.reference=:ref ")
+    Vente getInvoiceBysaleId(@Param("ref")String reference);
 
     @Query(value = "from vente v join v.infoArticleMagasin info where info.magasin.id=:magasinId and (info.date between :begin and :end)")
     List<Vente> getSalesByBetweenDate(@Param("magasinId") Long magasinId,

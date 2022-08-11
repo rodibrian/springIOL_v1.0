@@ -122,7 +122,6 @@ $(function () {
                 articleUnite.filiale = {id: $filialeId};
                 articleUniteTab.push(articleUnite);
             }
-            ;
             return articleUniteTab;
         }
 
@@ -140,14 +139,16 @@ $(function () {
                 fuap.prixVente = "0";
                 pvuafTab.push(fuap);
             })
-            $.ajax({
-                type: "POST",
-                url: "http://localhost:8080/api/v1/prices",
-                contentType: 'application/json',
-                data: JSON.stringify(pvuafTab),
-                success: function (data){
-                }
-            })
+            let url = "http://localhost:8080/api/v1/prices";
+            execute_ajax_request("POST",url,pvuafTab,null);
+            // $.ajax({
+            //     type: "POST",
+            //     url: "http://localhost:8080/api/v1/prices",
+            //     contentType: 'application/json',
+            //     data: JSON.stringify(pvuafTab),
+            //     success: function (data){
+            //     }
+            // })
         }
         function persistArticleAndUnite(){
             let designation = $("#designation").val();
@@ -160,6 +161,7 @@ $(function () {
             article.designation = designation;
             article.categorie = {id: categorieId, libelle: categorieLibelle};
             article.status = articleStatus;
+            article.isPerishable = true;
             if (!isCreateArticle) article.id = editedArticleId;
             function saveAllUnite(data) {
                 let articleUniteTab = getAllUniteOnTable(data);
@@ -194,15 +196,7 @@ $(function () {
                     }
                 })
             }
-            $.ajax({
-                type: 'POST',
-                url: $articleUrl,
-                contentType: 'application/json',
-                data: JSON.stringify(article),
-                success: function (data) {
-                    saveAllUnite(data);
-                }
-            });
+            execute_ajax_request('POST',$articleUrl,article,(data)=>saveAllUnite(data))
         }
         function updateArticle() {
             let designation = $("#designation").val();
@@ -308,15 +302,12 @@ $(function () {
             $('input#designation').val(designation)
             $('select#categorie option:contains("' + categorie + '")').attr('selected', 'true')
             let url = 'http://localhost:8080/api/v1/articles/' + editedArticleId + "/unites";
-            $.ajax({
-                type: 'GET',
-                url: url,
-                success: function (data) {
-                    let table = $("#table-unite tbody");
-                    // SUPRIMER TOUTES LES DONNE
-                    table.empty();
-                    for (let i = 0; i < data.length; i++) {
-                        let tr = `<tr id="` + data[i].id + `">
+            execute_ajax_request('get',url,null,(data)=>{
+                let table = $("#table-unite tbody");
+                // SUPRIMER TOUTES LES DONNE
+                table.empty();
+                for (let i = 0; i < data.length; i++) {
+                    let tr = `<tr id="` + data[i].id + `">
                                     <td class="d-none"><input type="text" required  class="form-control input-sm" value="` + data[i].code + `"></td>
                                     <td><input type="text" required  class="form-control input-sm not-editable" value="` + data[i].niveau + `"></td>
                                     <td><input type="text" required  class="form-control input-sm" value="` + data[i].designation + `"></td>
@@ -328,23 +319,18 @@ $(function () {
                                         <a class="btn btn-success btn-sm btn-add-unite"><i class="uil-check-square"></i></a>
                                     </td>
                                 </tr>`;
-                        table.append(tr);
-                    }
+                    table.append(tr);
                 }
             });
         });
         function updateItem($deleted, $trCurrent) {
             $status = $deleted ? "DELETED" : "HIDDEN";
             $url = $articleUrl + "/" + $id + "/" + $status;
-            $.ajax({
-                type: 'PUT',
-                url: $url,
-                success: function (data) {
-                    $trCurrent.remove();
-                    hideAndRemove('#' + $modalId + '');
-                    createToast('bg-danger', 'uil-trash-alt', 'Suppression Fait', 'Suppression de l\' article effectu&eacute; avec succ&egrave;s!')
-                }
-            });
+            execute_ajax_request('PUT',$url,null,(data)=>{
+                $trCurrent.remove();
+                hideAndRemove('#' + $modalId + '');
+                createToast('bg-danger', 'uil-trash-alt', 'Suppression Fait', 'Suppression de l\' article effectu&eacute; avec succ&egrave;s!')
+            })
         }
         function updateArticle($trCurrent, $deleted, $codeArticle) {
             $id = $($trCurrent).attr("id");

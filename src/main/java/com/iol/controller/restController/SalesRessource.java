@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
+
 import java.util.Optional;
 
 @RestController
@@ -22,7 +22,7 @@ public class SalesRessource {
 
     @GetMapping("/sales/{reference}")
     public ResponseEntity<Object> getAll(@PathVariable("reference")String reference){
-        return new ResponseEntity<>(salesRepository.getBillDetails(reference),HttpStatus.OK);
+        return new ResponseEntity<>(salesRepository.getInvoiceBySaleRef(reference),HttpStatus.OK);
     }
 
     @PostMapping("/sales")

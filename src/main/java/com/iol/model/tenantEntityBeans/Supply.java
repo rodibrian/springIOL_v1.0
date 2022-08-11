@@ -35,4 +35,6 @@ public class Supply implements Serializable{
    private Double montantApprov;
 
    private LocalDate datePeremption;
+
+   private Double quantitePeremption;
 }

@@ -30,6 +30,8 @@ public class Article implements Serializable{
     @Lob
     private byte[] image;
 
+    private Boolean isPerishable;
+
     @Column(length = 15)
     private String status;
 }

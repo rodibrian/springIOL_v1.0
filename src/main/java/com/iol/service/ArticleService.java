@@ -1,6 +1,7 @@
 package com.iol.service;
 
 import com.iol.model.tenantEntityBeans.InfoArticleMagasin;
+import com.iol.model.wrapper.ExpirationWrapper;
 import com.iol.model.wrapper.InventoryViewWrapper;
 import com.iol.model.wrapper.InventoryWrapper;
 import com.iol.repository.ArticleRepository;
@@ -64,6 +65,20 @@ public class ArticleService{
         InfoArticleMagasin infoArticleMagasin = infoArticleMagasinTab[0];
         infoArticleMagasin.setQuantiteAjout(sum);
         return infoArticleMagasin;
+    }
+
+    public List<ExpirationWrapper> getProductByExpiration(Long filialeId){
+        List<ExpirationWrapper> list = new ArrayList<>();
+        List<String[]> collect = articleRepository.getProductexpiration(filialeId).stream().map(s -> s.split(",")).collect(Collectors.toList());
+        collect.forEach(strings -> {
+            ExpirationWrapper expirationWrapper = new ExpirationWrapper();
+            expirationWrapper.setNomArticle(strings[0]);
+            expirationWrapper.setNomUnite(strings[1]);
+            expirationWrapper.setDatePeremption(strings[2]);
+            expirationWrapper.setQuantitePeremetion(strings[3]);
+            list.add(expirationWrapper);
+        });
+        return list;
     }
 
 

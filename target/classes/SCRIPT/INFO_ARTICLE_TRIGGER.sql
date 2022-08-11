@@ -8,6 +8,8 @@ DECLARE
     nouveau_quantite_en_stock DOUBLE PRECISION =0.0;
     primary_unite_id BIGINT =0;
     item_count INT =0;
+    nombre_quantite_alert INT = 0;
+    ALERT_FILIALE_ID BIGINT = 0;
 BEGIN
     -- recuperer l'unite primaire de l'article
     SELECT au.unite_id into primary_unite_id FROM article_unite au where article_id = new.article_id and au.niveau = 1;
@@ -20,6 +22,16 @@ BEGIN
 
     -- RECUPERER LE STOCK ACTUEL
     SELECT count into quantite_en_stock_actuelement FROM  stock  WHERE article_id = new.article_id AND unite_id = primary_unite_id AND magasin_id = new.magasin_id;
+
+    -- MIS A JOUR DU QUANTITE PEREMPTION
+
+    if     new.type_operation = 'VENTE'
+        or (new.type_operation like '%TRANSFERT%' AND  new.type_operation like '%VERS%')
+        or  new.type_operation = 'VENTE'  then
+
+
+
+    end if;
 
     if item_count = 0 then
 
@@ -35,21 +47,12 @@ BEGIN
 
     if item_count > 0 then
 
-        if new.type_operation = 'ENTRE' or new.type_operation like '%TRANSFERT%' then
+        if new.type_operation = 'ENTRE' or new.type_operation like '%TRANSFERT%' or new.type_operation = 'AVOIR' then
 
             nouveau_quantite_en_stock := quantite_en_stock_actuelement + (new.quantite_ajout*quantite_niveau_unite) ;
 
             new.quantite_stock_apres_operation := (quantite_en_stock_actuelement/quantite_niveau_unite) + new.quantite_ajout;
 
-            -- INITIALISATION DE LA QUANTITE EN ALERT DE CHAQUE ARTICLE ET FILIALE
-
-            if new.type_operation = 'ENTRE' then
-
-                insert into inventory_alert(article_id, filiale_id, quantite)
-
-                values (new.article_id,(select m.filiale_id from magasin m where m.id_magasin=new.magasin_id),0.0);
-
-            end if;
 
             if new.type_operation like '%TRANSFERT%' AND  new.type_operation like '%VERS%' then
 
@@ -58,11 +61,25 @@ BEGIN
                 new.quantite_stock_apres_operation :=  (quantite_en_stock_actuelement/quantite_niveau_unite) - quantite_niveau_unite;
             end if;
 
+            -- INITIALISATION DE LA QUANTITE EN ALERT DE CHAQUE ARTICLE ET FILIALE
+
+            if new.type_operation = 'ENTRE' then
+
+                select m.filiale_id into ALERT_FILIALE_ID from magasin m where m.id_magasin=new.magasin_id;
+
+                select count(ia.filiale_id) into nombre_quantite_alert from inventory_alert ia where ia.article_id = new.article_id and ia.filiale_id = ALERT_FILIALE_ID;
+
+                if nombre_quantite_alert = 0 then
+                    insert into inventory_alert(article_id, filiale_id, quantite) values (new.article_id,ALERT_FILIALE_ID,0.0);
+                end if;
+
+            end if;
+
         end if;
 
 
 
-        if new.type_operation = 'VENTE' or new.type_operation = 'SORTIE' or new.type_operation = 'AVOIR' then
+        if new.type_operation = 'VENTE' or new.type_operation = 'SORTIE'then
 
             nouveau_quantite_en_stock := quantite_en_stock_actuelement - (new.quantite_ajout*quantite_niveau_unite) ;
 
@@ -94,6 +111,6 @@ BEGIN
 
 END;
 $$;
+
 alter function before_insert_on_info_article_unite_magasin() owner to postgres;
-create trigger info_article_trigger before insert on info_article_magasin FOR EACH ROW execute procedure before_insert_on_info_article_unite_magasin();
 

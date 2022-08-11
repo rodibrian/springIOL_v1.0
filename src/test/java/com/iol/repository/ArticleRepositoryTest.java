@@ -119,4 +119,10 @@ class ArticleRepositoryTest{
         List<ArticleUnite> riz = articleRepository.getAllByItemName(1L, "RIZ");
         assertThat(riz).isNotEmpty();
     }
+
+    @Test
+    void getProductexpiration() {
+        List<String> productexpiration = articleRepository.getProductexpiration(1L);
+        assertThat(productexpiration.size()).isEqualTo(3);
+    }
 }

@@ -113,6 +113,11 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
                        @Param("articleId") Long articleId,
                        @Param("count") Double count);
 
+    @Query(value = " select a.designation ad,u.designation ud,gp.date_pr,gp.sum_quantite from article a join (select iam.article_id,iam.unite_id,ap.date_peremption date_pr ,sum(ap.quantite_peremption) sum_quantite from approv ap join info_article_magasin iam on iam.id = ap.info_article_magasin_id " +
+            " join magasin m on m.id_magasin = iam.magasin_id" +
+            " where m.filiale_id = :filialeId and ap.quantite_peremption > 0 group by date_peremption ,iam.article_id,iam.unite_id order by date_peremption) as gp on a.article_id = gp.article_id join unite u on u.id = gp.unite_id ",nativeQuery = true)
+    List<String> getProductexpiration(@Param("filialeId") Long filialeId);
+
 }
 
 
