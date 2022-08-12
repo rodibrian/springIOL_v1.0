@@ -31,6 +31,11 @@ public class ExpirationRessource{
         return new ResponseEntity<>(articleService.getProductByExpirationByStatus(name,filialeId), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/expirations/{magasin-id}")
+    public ResponseEntity<Object> getExpirationByStore(@PathVariable("magasin-id")Long magasinId){
+        return new ResponseEntity<>(articleService.getProductByExpirationByStore(magasinId), HttpStatus.OK);
+    }
+
     @PutMapping(value = "/expirations/{magasinId}/{articleId}/{uniteId}")
     public ResponseEntity<Object> getExpirationByStatus(@PathVariable("magasinId")Long magasinId,
                                                         @PathVariable("articleId")Long articleId,

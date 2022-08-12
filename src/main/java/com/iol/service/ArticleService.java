@@ -16,7 +16,12 @@ import java.util.stream.Collectors;
 @Service
 public class ArticleService{
 
-    @Autowired private ArticleRepository articleRepository;
+    @Autowired
+    private ArticleRepository articleRepository;
+
+    private final int MONTH = 30;
+    private final int THREE_MONTH = 3*MONTH;
+    private final int TWO_MONTH = 2*MONTH;
 
     public List<InventoryViewWrapper> getAllInventories(){
         List<String> stockWithPriceAndExpirationDate = articleRepository.getStockWithPriceAndExpirationDateByItemName();
@@ -86,9 +91,6 @@ public class ArticleService{
         return list;
     }
 
-    private final int  ONE_YEARS = 366;
-    private final int TWO_YEARS = 2*ONE_YEARS;
-    private final int SIX_MONTH = ONE_YEARS/2;
 
     public List<ExpirationWrapper> getProductByExpirationByStatus(String status,Long filialeId){
         List<String> productExpirationByStatus = createExpirationDataByStatus(status, filialeId);
@@ -99,10 +101,10 @@ public class ArticleService{
 
     private List<String> createExpirationDataByStatus(String status, Long filialeId){
         switch (status){
-            case  "Périmé" : return articleRepository.getProductExpirationByStatusExpired(filialeId,SIX_MONTH);
-            case  "Faible" : return articleRepository.getProductExpirationByStatus(filialeId,SIX_MONTH,ONE_YEARS);
-            case  "Moyenne": return articleRepository.getProductExpirationByStatus(filialeId, ONE_YEARS,TWO_YEARS);
-            case  "Forte"  : return articleRepository.getProductExpirationByStatusStrong(filialeId,TWO_YEARS);
+            case  "Forte"  : return articleRepository.getProductExpirationByStatusStrong(filialeId,THREE_MONTH);
+            case  "Moyenne": return articleRepository.getProductExpirationByStatus(filialeId,MONTH,TWO_MONTH);
+            case  "Faible" : return articleRepository.getProductExpirationByStatus(filialeId,0,MONTH);
+            case  "Périmé" : return articleRepository.getProductExpirationByStatusExpired(filialeId,0);
             default: return articleRepository.getProductExpiration(filialeId);
         }
     }
@@ -125,10 +127,10 @@ public class ArticleService{
     }
 
     private String dayCount2ExpirationStatus(Double count){
-        if (count>TWO_YEARS) return "forte";
-        if (count<SIX_MONTH) return "périmé";
-        if (count> SIX_MONTH && count< ONE_YEARS) return "faible";
-        if (count> ONE_YEARS && count< TWO_YEARS) return "Moyenne";
+        if (count>=THREE_MONTH) return "forte";
+        if (count<=0) return "périmé";
+        if (count> 0 && count<=MONTH ) return "faible";
+        if (count> MONTH  && count<=TWO_MONTH) return "moyenne";
         return "";
     }
 

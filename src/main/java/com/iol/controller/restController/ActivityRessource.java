@@ -32,10 +32,4 @@ public class ActivityRessource {
         List<InfoArticleMagasin> allByMagasin = activityRepository.findAllByStoreAndItemAndUnit(storeId, itemId,uniteId);
         return new ResponseEntity<>(allByMagasin,HttpStatus.OK) ;
     }
-
-//        @GetMapping("/magasins/{id}/activities/{articleId}")
-//    public ResponseEntity<Object> getAllActivitiesByItem(@PathVariable("id")Long storeId, @PathVariable("articleId")Long itemId){
-//        List<InfoArticleMagasin> allByMagasin = activityRepository.findAllByStoreAndItem(storeId, itemId);
-//        return new ResponseEntity<>(allByMagasin,HttpStatus.OK) ;
-//    }
 }

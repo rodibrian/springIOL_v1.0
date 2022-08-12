@@ -1,4 +1,5 @@
 <%@ include file='template/header.jsp' %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!-- Start Content-->
 <div class="container-fluid" id="menu-peremption">
 
@@ -27,12 +28,24 @@
           <a class="btn btn-success btn-export-to-excel"><i class="uil-navigator"></i>&nbsp;</a>
         </div>
       </div>
-      <div class="d-block mt-1">
-        <a role="btn" class="btn btn-outline-primary mr-1 btn-status">Tout</a>
-        <a role="btn" class="btn btn-outline-info mr-1 btn-status">Forte</a>
-        <a role="btn" class="btn btn-outline-success mr-1 btn-status" >Moyenne</a>
-        <a role="btn" class="btn btn-outline-warning mr-1 btn-status">Faible</a>
-        <a role="btn" class="btn btn-outline-danger mr-1 btn-status">P&eacute;rim&eacute;</a>
+      <div class="row">
+        <div class="col-3 d-block mt-1">
+          <a role="btn" class="btn btn-outline-primary mr-1 btn-status">Tout</a>
+          <a role="btn" class="btn btn-outline-info mr-1 btn-status">Forte</a>
+          <a role="btn" class="btn btn-outline-success mr-1 btn-status" >Moyenne</a>
+          <a role="btn" class="btn btn-outline-warning mr-1 btn-status">Faible</a>
+          <a role="btn" class="btn btn-outline-danger mr-1 btn-status">P&eacute;rim&eacute;</a>
+        </div>
+        <div class="col-3">
+              <select name="magasin" id="magasin-select-item" class="form-select m-1">
+                    <option value="toutes" selected > TOUTES </option>
+                    <c:forEach var="magasin" items="${magasins}">
+                      <option value="${magasin.id}"><c:out value="${magasin.nomMagasin}"/></option>
+                    </c:forEach>
+              </select>
+        </div>
+      </div>
+
       </div>
     </div>
   </div>
@@ -45,7 +58,7 @@
   <!-- suite -->
 
 
-  <div class="container -fluid">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-lg-12">
         <table id="expiration-table" class="table-peremption table table-sm dt-responsive nowrap table-hover table-striped">
@@ -65,7 +78,18 @@
                   <td>${au.nomUnite}</td>
                   <td>${au.quantitePeremetion}</td>
                   <td>${au.datePeremption}</td>
-                  <td><span class="badge badge-danger-lighten">p&eacute;rim&eacute;</span></td>
+                  <c:if test = "${au.expirationStatus eq 'périmé' }">
+                    <td><span class="badge badge-danger-lighten">périmé</span></td>
+                  </c:if>
+                  <c:if test = "${au.expirationStatus eq 'faible' }">
+                    <td><span class="badge badge-warning-lighten">faible</span></td>
+                  </c:if>
+                  <c:if test = "${au.expirationStatus eq 'moyenne' }">
+                    <td><span class="badge badge-primary-lighten">moyenne</span></td>
+                  </c:if>
+                  <c:if test = "${au.expirationStatus eq 'forte' }">
+                    <td><span class="badge badge-success-lighten">forte</span></td>
+                  </c:if>
                 </tr>
               </c:forEach>
           </tbody>

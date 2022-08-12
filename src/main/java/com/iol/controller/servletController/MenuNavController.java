@@ -97,6 +97,7 @@ public class MenuNavController{
         Long filialeId = connectedUserMagasinId.get(FILIALE_ID);
         ModelAndView modelAndView = new ModelAndView("menu-peremption");
         modelAndView.addObject(PEREMPTION_LIST,articleService.getProductByExpiration(filialeId));
+        modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
         return modelAndView;
     }
 

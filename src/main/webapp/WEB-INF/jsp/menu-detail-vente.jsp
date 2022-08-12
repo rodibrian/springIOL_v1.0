@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file='template/header.jsp' %>
-
 <!-- Start Content-->
 <div class="container-fluid" id="menu-detail-vente">
 
@@ -86,12 +85,8 @@
       </div>
     </div>
   </div>
-
-
 </div>
 
 </div> <!-- container -->
-
-
 <%@ include file="template/footer.jsp" %>
 <%@ include file="template/setting.jsp" %>

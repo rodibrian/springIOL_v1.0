@@ -16,8 +16,6 @@ BEGIN
 
 END;
 $$;
-alter procedure mettre_a_jour_date_peremption(bigint, bigint, bigint, double precision,timestamp ,timestamp) owner to postgres;
-
 ---  PROCEDURE
 
 create procedure mettre_a_jour_quantite_en_peremption(IN id_magasin bigint, IN id_article bigint, IN id_unite bigint, IN nouveau_quantite double precision)

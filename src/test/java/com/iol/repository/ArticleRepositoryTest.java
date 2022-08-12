@@ -143,4 +143,10 @@ class ArticleRepositoryTest{
     void updateQuantiteAlert() {
         articleRepository.updateQuantiteAlert(1L,1L,5D);
     }
+
+    @Test
+    void getProductExpirationByStore() {
+        List<String> productExpirationByStore = articleRepository.getProductExpirationByStore(2L);
+        assertThat(productExpirationByStore).isNotEmpty();
+    }
 }

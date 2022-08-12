@@ -2,11 +2,9 @@ $(function () {
     /*-------------------------
             MENU PEREMPTION
      ---------------------------*/
-
     let namespace = "#menu-peremption ";
 
     exportToExcel(namespace +'.btn-export-to-excel','peremptions', namespace + '.table-peremption');
-
     $(document).on('dblclick',namespace + '.table-peremption tbody tr',function () {
         // get code of current article
         let tr = $(this);
@@ -24,10 +22,9 @@ $(function () {
             date_wrapper.newDate = new Date($datePeremption);
             date_wrapper.oldDate = new Date(old_date);
             let url = "http://localhost:8080/api/v1/expirations/"+magasin_id+"/"+article_id+"/"+unite_id;
-            console.log(url);
             execute_ajax_request("PUT",url,date_wrapper,(data)=>{
-                $(tr).children().eq(4).text(new Date($datePeremption).toLocaleDateString())
-                $(tr).children().eq(5).text(setLabelPeremption(new Date($datePeremption)))
+                $(tr).children().eq(3).text(new Date($datePeremption).toLocaleDateString());
+
             })
         })
     })
@@ -38,8 +35,18 @@ $(function () {
     *
     * */
 
+    function createBadgeClass(value){
+        switch (value) {
+            case "périmé" : return "badge badge-danger-lighten";
+            case "fort" : return "badge badge-success-lighten";
+            case "faible" : return "badge badge-warning-lighten";
+            case 'moyenne': return "badge badge-primary-lighten";
+        }
+    }
+
     const appendExpirationData = (expiration_data) =>{
-        $(namespace+"#expiration-table tbody").empty();
+        $("#expiration-table tbody").empty();
+        console.log(expiration_data);
         $.each(expiration_data,(key,value)=>{
             let row_id = value.magasinId +"-"+ value.articleId +"-"+ value.uniteId ;
             let tr= [
@@ -47,9 +54,9 @@ $(function () {
                 value.nomUnite,
                 value.quantitePeremetion,
                 value.datePeremption,
-                `<span class="badge badge-danger-lighten">p&eacute;rim&eacute;</span>`
+                `<span class="badge `+createBadgeClass(value.expirationStatus)+`">`+value.expirationStatus+`</span>`
             ];
-            push_to_table_list(namespace+"#expiration-table",row_id,tr)
+            push_to_table_list("#expiration-table",row_id,tr)
           })
     }
 
@@ -86,11 +93,9 @@ $(function () {
 
         $(namespace + "#modal-liste-article").modal('hide')
     })
-
     /*
      ajouter bouton date de peremption
      */
-
     function setLabelPeremption($datePeremption) {
 
         if ($datePeremption > new Date())
@@ -98,5 +103,18 @@ $(function () {
         return $('<span class="badge badge-danger-lighten">p&eacute;rim&eacute;</span>').html()
 
     }
+
+    /*
+    *  FILTRER EN FONCTION MAGASIN
+    * */
+
+    // Magasin filter
+    $(document).on('change',namespace+"#magasin-select-item",function(){
+        let magasinId = $(this).val();
+        if (magasinId!=="toutes"){
+            let url = "http://localhost:8080/api/v1/expirations/"+magasinId;
+            execute_ajax_request('get',url,null,(data)=>appendExpirationData(data));
+        }
+    })
 
 })
