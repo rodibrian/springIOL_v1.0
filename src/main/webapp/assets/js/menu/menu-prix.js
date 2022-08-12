@@ -3,6 +3,11 @@ $(function () {
     let namespace = "#menu-prix ";
     const PRICES_RESOURCES = "http://localhost:8080/api/v1/prices";
     const $table_prix = $(namespace+"#table-prix tbody");
+
+    //exportation excel
+    exportToExcel(namespace + '.btn-export-to-excel','prix-' , namespace + '.table-article-prix')
+
+
     /*
     EVENT MANAGER
      */

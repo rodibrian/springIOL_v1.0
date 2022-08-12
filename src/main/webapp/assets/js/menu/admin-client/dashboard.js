@@ -163,14 +163,51 @@ $(function () {
     /*
      enregistrement filial
     */
+
+
+    /*
+    mask et validation
+     */
+
+    $(namespace + "#nouveau-filial form #input-contact").mask('+261 99 99 999 99')
+
+    $(namespace + '#nouveau-filial form').validate({
+        rules : {
+            nom : {required : true},
+            adresse : {required : true},
+            contact : {required : true},
+            inputUsername : {required : true},
+            inputPassword : {required : true, minlength : 4}
+        },
+        messages : {
+            nom : {required : "Nom du filial requis"},
+            adresse : {required : "Adresse du filial requis"},
+            contact : {required : "Contact du filial requis"},
+            inputUsername : {required : "Nom d'utilisateur requis"},
+            inputPassword : {required : "Mot de passe requis", minlength : "Minimum de mot de passe 04 caractères"}
+        }
+    })
+
+    function validation_nouveau_filial() {
+        $('.error').css('color', 'red')
+        $(namespace + '#nouveau-filial form').validate();
+
+        return $(namespace + '#nouveau-filial form').valid();
+    }
+
+
     $(namespace + "#nouveau-filial #btn-enregistrer-filial").on('click', function () {
-        $nom = $(namespace + '#nouveau-filial input#input-nom').val()
-        $adresse = $(namespace + '#nouveau-filial input#input-adresse').val()
-        $contact = $(namespace + '#nouveau-filial input#input-contact').val()
-        $username = $(namespace + '#nouveau-filial input#input-username').val()
-        $password = $(namespace + '#nouveau-filial input#input-password').val()
-        $typeOperation = $(namespace + "#nouveau-filial").attr('data-id');
-        persistFiliale();
+        if (validation_nouveau_filial()) {
+            $nom = $(namespace + '#nouveau-filial input#input-nom').val()
+            $adresse = $(namespace + '#nouveau-filial input#input-adresse').val()
+            $contact = $(namespace + '#nouveau-filial input#input-contact').val()
+            $username = $(namespace + '#nouveau-filial input#input-username').val()
+            $password = $(namespace + '#nouveau-filial input#input-password').val()
+            $typeOperation = $(namespace + "#nouveau-filial").attr('data-id');
+            persistFiliale();
+
+            $(namespace + '#nouveau-filial').modal('hide')
+        }
     })
     /*
      suppression filial
@@ -250,4 +287,39 @@ $(function () {
                 </div> <!-- end card-->
             </div>`
     }
+
+
+    /*
+
+    ACTIVATION FILIAL
+
+     */
+
+    //mask et validation
+
+    $(namespace + '#activation-filial form #text').mask('9999-9999-9999')
+
+    $(namespace + '#activation-filial form').validate({
+        rules : {
+            text : {required : true}
+        },
+        messages : {
+            text : {required : ""}}
+    })
+
+    function validation_activation_filial() {
+        $(namespace + '#activation-filial form').validate();
+
+        return $(namespace + '#activation-filial form').valid();
+    }
+
+    $(namespace + '#activation-filial #btn-validation').on('click', function() {
+        if (validation_activation_filial()) {
+            createToast('bg-success', 'uil-check', 'Activation Filial fait', 'Activation du filial fait avec succès!!');
+            $(namespace + '#activation-filial').modal('hide')
+        }
+        else createToast('bg-danger', 'uil-check', 'Activation Filial éronné', 'Activation du filial non fait!!');
+
+    })
+
 })

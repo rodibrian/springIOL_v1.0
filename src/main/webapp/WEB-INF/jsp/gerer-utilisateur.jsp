@@ -18,7 +18,7 @@
   <div class="row">
     <div class="col-sm-12">
       <!-- Profile -->
-      <div class="card bg-primary">
+      <div class="card bg-light">
         <div class="card-body profile-user-panel-box">
           <div class="row">
             <div class="col-sm-8">
@@ -34,7 +34,7 @@
                     <h4 class="mt-1 mb-1 text-white nom-complet-user-panel">Nom Complet d'utilisateur</h4>
                     <p class="font-13 text-white-50 fonction-user-panel"> (Fonction de l'utilisateur)</p>
 
-                    <ul class="mb-0 list-inline text-light">
+                    <ul class="mb-0 list-inline text-dark">
                       <li class="list-inline-item me-3">
                         <h5 class="mb-1 magasin-user-panel">M1</h5>
                         <p class="mb-0 font-13 text-white-50">Magasin Principal</p>

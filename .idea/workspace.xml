@@ -6,6 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="bd9c0e93-77b1-4a8f-96ad-44ae32dfbfef" name="Changes" comment="reste menu-operation filtre">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/servletController/MenuNavController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/servletController/MenuNavController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/gerer-utilisateur.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/gerer-utilisateur.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-prix.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-prix.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/admin-client/activation-filial.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/admin-client/activation-filial.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/admin-client/new-filial.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/admin-client/new-filial.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/administrateur/new-societe.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/administrateur/new-societe.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/template/admin-client/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/template/admin-client/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/template/administrateur/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/template/administrateur/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/admin-client/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/admin-client/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/administrateur/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/administrateur/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-prix.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-prix.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/mini-function.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/mini-function.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/table2excel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/table2excel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/servletController/MenuNavController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/servletController/MenuNavController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

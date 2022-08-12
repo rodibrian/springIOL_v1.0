@@ -226,6 +226,13 @@ public class MenuNavController{
         return modelAndView;
     }
 
+    @RequestMapping(value = "/administrateur/dashboard",method = RequestMethod.GET)
+    public ModelAndView getAdministration(){
+        ModelAndView modelAndView = new ModelAndView("administrateur/dashboard");
+        //modelAndView.addObject(SUBSDIARIES,subsidiaryRepository.findAll());
+        return modelAndView;
+    }
+
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public ModelAndView getDashboard(HttpServletRequest request){
