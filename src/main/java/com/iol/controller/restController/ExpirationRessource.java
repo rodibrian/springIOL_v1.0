@@ -36,7 +36,6 @@ public class ExpirationRessource{
                                                         @PathVariable("articleId")Long articleId,
                                                         @PathVariable("uniteId")Long uniteId,
                                                         @RequestBody ExpirationDateWrapper dateWrapper){
-        System.out.println(dateWrapper);
         articleRepository.updateExpirationDate(magasinId, articleId, uniteId,dateWrapper.getNewDate(),dateWrapper.getOldDate());
         return new ResponseEntity<>("",HttpStatus.OK);
     }

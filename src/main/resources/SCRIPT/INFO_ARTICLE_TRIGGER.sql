@@ -1,7 +1,7 @@
 
 
--- MIS A JOUR DATE DE PEREMPTION
-create procedure mettre_a_jour_date_peremption(IN id_magasin bigint, IN id_article bigint, IN id_unite bigint, IN new_date timestamp , IN old_date timestamp)
+-- -- MIS A JOUR DATE DE PEREMPTION
+create or replace procedure mettre_a_jour_date_peremption(IN id_magasin bigint, IN id_article bigint, IN id_unite bigint, IN new_date timestamp , IN old_date timestamp)
     language plpgsql
 as
 $$
@@ -16,7 +16,7 @@ BEGIN
 
 END;
 $$;
-alter procedure mettre_a_jour_date_peremption(bigint, bigint, bigint, double precision) owner to postgres;
+alter procedure mettre_a_jour_date_peremption(bigint, bigint, bigint, double precision,timestamp ,timestamp) owner to postgres;
 
 ---  PROCEDURE
 

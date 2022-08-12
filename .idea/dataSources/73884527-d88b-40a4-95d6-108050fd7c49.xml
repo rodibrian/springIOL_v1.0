@@ -798,7 +798,7 @@ false Zulu
     <database id="4" parent="1" name="ioldb">
       <ObjectId>165315</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>549703</IntrospectionStateNumber>
+      <IntrospectionStateNumber>550725</IntrospectionStateNumber>
       <Current>1</Current>
     </database>
     <database id="5" parent="1" name="postgres">
@@ -883,7 +883,7 @@ UC/10
 </Acl>
       <StateNumber>527</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>549704</IntrospectionStateNumber>
+      <IntrospectionStateNumber>550726</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="23" parent="4" name="plpgsql">
@@ -983,11 +983,5 @@ UC/10
       <HandlerId>335</HandlerId>
       <Type>index</Type>
     </access-method>
-    <sequence id="35" parent="22" name="hibernate_sequence">
-      <ObjectId>165316</ObjectId>
-      <Owner>postgres</Owner>
-      <StateNumber>549211</StateNumber>
-      <DataType>bigint|0s</DataType>
-    </sequence>
   </database-model>
 </dataSource>

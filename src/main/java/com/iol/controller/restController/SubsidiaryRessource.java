@@ -58,8 +58,11 @@ public class SubsidiaryRessource{
         return new ResponseEntity<>(subsidiaryInventoryByStoreAndItemName, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/subsidiaries/{id}/alerts/{new_quantite}")
-    public ResponseEntity<Object> updateQuantiteAlert(@PathVariable("id")Long filialeId,@RequestBody Double newValue){
+    @PutMapping(value = "/subsidiaries/{id}/alerts/{article-id}/{new_quantite}")
+    public ResponseEntity<Object> updateQuantiteAlert(@PathVariable("id")Long filialeId ,
+                                                      @PathVariable("article-id") Long articleId
+                                                     ,@RequestBody Double newValue){
+        articleRepository.updateQuantiteAlert(filialeId,articleId,newValue);
         return new ResponseEntity<>("",HttpStatus.OK);
     }
 

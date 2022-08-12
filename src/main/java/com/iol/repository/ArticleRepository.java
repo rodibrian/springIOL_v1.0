@@ -158,7 +158,7 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
 
     @Modifying(clearAutomatically = true)
     @Query(value = "update inventory_alert set quantite=:newValue where filiale_id=:id_filiale and article_id=:id_article",nativeQuery = true)
-    void updateQuantiteAlert(@Param("id_filiale") Long magasinId,
+    void updateQuantiteAlert(@Param("id_filiale") Long filialeId,
                             @Param("id_article")Long articleId,
                             @Param("newValue") Double quantite);
 

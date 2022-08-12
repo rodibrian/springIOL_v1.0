@@ -58,6 +58,10 @@ $(function() {
 
     // UPDATE QUANTITE ALERT
     $(".btn-update-alert").click(()=>{
+        $filialeId = $(namespace+"#filiale-id").attr("value-id");
+        let data = $('#info-stock').attr('data-id').split(",");
+        $magasinId = data[0];
+        $articleId = data[1];
         $('#modal-qtt-alert-stock').modal('show');
         let quantite = $('#info-stock p.label-quantite-alerte-article').text().split(":")[1];
         $("#input-quantite-stock").val(quantite);
