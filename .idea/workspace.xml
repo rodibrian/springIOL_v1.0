@@ -5,14 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bd9c0e93-77b1-4a8f-96ad-44ae32dfbfef" name="Changes" comment="reste menu-operation filtre">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/wrapper/ExpirationDateWrapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/Iol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/Iol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/ExpirationRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/ExpirationRessource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/SubsidiaryRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/SubsidiaryRessource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/repository/ArticleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/repository/ArticleRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/SCRIPT/INFO_ARTICLE_TRIGGER.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/SCRIPT/INFO_ARTICLE_TRIGGER.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-peremption.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-peremption.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/modalJs/info-stock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/modalJs/info-stock.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/iol/repository/ArticleRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/iol/repository/ArticleRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SCRIPT/INFO_ARTICLE_TRIGGER.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SCRIPT/INFO_ARTICLE_TRIGGER.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/ExpirationRessource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/ExpirationRessource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/SubsidiaryRessource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/SubsidiaryRessource.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/ArticleRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/repository/ArticleRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/iol/repository/ArticleRepositoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/iol/repository/ArticleRepositoryTest.class" afterDir="false" />
     </list>
@@ -127,6 +134,13 @@
     <option name="REQUEST_HISTORY">
       <list>
         <RestClientRequest>
+          <option name="httpMethod" value="PUT" />
+          <option name="urlBase" value="http://localhost:8080/api/v1/expirations/2/2/2" />
+          <option name="urlPath" value="" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
           <option name="httpMethod" value="GET" />
           <option name="urlBase" value="http://localhost:8080/api/v1/inventories-alert/1/1" />
           <option name="urlPath" value="" />
@@ -171,7 +185,10 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ArticleRepositoryTest.updateExpirationDate">
+  <component name="RunManager" selected="Spring Boot.Iol">
+    <configuration name="generated-requests#125" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="125" runType="Run single request">
+      <method v="2" />
+    </configuration>
     <configuration name="ArticleRepositoryTest.getProductExpirationByProductName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="iol" />
       <extension name="coverage">
@@ -220,7 +237,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InvoiceRegulationRepositoryTest.getInvoiceBySaleId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ArticleRepositoryTest.updateQuantiteAlert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="iol" />
       <extension name="coverage">
         <pattern>
@@ -229,24 +246,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.iol.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.iol.repository.InvoiceRegulationRepositoryTest" />
-      <option name="METHOD_NAME" value="getInvoiceBySaleId" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SupplyRepositoryTest.getBySellByDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="iol" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.iol.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.iol.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.iol.repository.SupplyRepositoryTest" />
-      <option name="METHOD_NAME" value="getBySellByDate" />
+      <option name="MAIN_CLASS_NAME" value="com.iol.repository.ArticleRepositoryTest" />
+      <option name="METHOD_NAME" value="updateQuantiteAlert" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -269,11 +270,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ArticleRepositoryTest.updateQuantiteAlert" />
+        <item itemvalue="HTTP Request.generated-requests#125" />
         <item itemvalue="JUnit.ArticleRepositoryTest.updateExpirationDate" />
         <item itemvalue="JUnit.ArticleRepositoryTest.getProductExpirationByProductName" />
         <item itemvalue="JUnit.ArticleRepositoryTest.getProductexpiration" />
-        <item itemvalue="JUnit.SupplyRepositoryTest.getBySellByDate" />
-        <item itemvalue="JUnit.InvoiceRegulationRepositoryTest.getInvoiceBySaleId" />
       </list>
     </recent_temporary>
   </component>
@@ -352,7 +353,7 @@
       <workItem from="1660191339050" duration="1457000" />
       <workItem from="1660207359028" duration="24692000" />
       <workItem from="1660244277709" duration="24536000" />
-      <workItem from="1660286853258" duration="4513000" />
+      <workItem from="1660286853258" duration="7117000" />
     </task>
     <task id="LOCAL-00001" summary="mapping de la trigger avec la table approvisionnement">
       <created>1658448504125</created>

@@ -11,7 +11,7 @@ $(function () {
         // get code of current article
         let tr = $(this);
         let tr_id = tr.attr("id");
-        let split = tr_id.split(",");
+        let split = tr_id.split("-");
         let magasin_id = split[0];
         let article_id = split[1];
         let unite_id = split[2];
@@ -20,8 +20,12 @@ $(function () {
         $(namespace + "#modal-date-peremption #btn-enregistrer-date-peremption").on('click', function(){
             let old_date = $(tr).children().eq(3).text();
             $datePeremption = $(namespace + '#modal-date-peremption #input-date-peremption').val();
-            let url = "http://localhost:8080/api/v1/expirations/"+magasin_id+"/"+article_id+"/"+unite_id+"/"+$datePeremption+"/"+old_date;
-            execute_ajax_request("PUT",url,null,(data)=>{
+            let date_wrapper = {};
+            date_wrapper.newDate = new Date($datePeremption);
+            date_wrapper.oldDate = new Date(old_date);
+            let url = "http://localhost:8080/api/v1/expirations/"+magasin_id+"/"+article_id+"/"+unite_id;
+            console.log(url);
+            execute_ajax_request("PUT",url,date_wrapper,(data)=>{
                 $(tr).children().eq(4).text(new Date($datePeremption).toLocaleDateString())
                 $(tr).children().eq(5).text(setLabelPeremption(new Date($datePeremption)))
             })

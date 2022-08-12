@@ -148,15 +148,6 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
     List<String> getProductExpirationByProductName(@Param("name") String productName,@Param("filialeId") Long filialeId);
 
 
-//    @Modifying(clearAutomatically = true)
-//    @Query(value = "update approv ap set date_peremption =:new_data " +
-//            "where (select ap1.id from approv ap1 join info_article_magasin iam on iam.id = ap1.info_article_magasin_id where iam.magasin_id=1 and iam.article_id=1 and iam.unite_id =2 and ap1.date_peremption =:old_date ) = ap.id ",nativeQuery = true)
-//    void updateExpirationDate(@Param("magasinId") Long magasinId,
-//                                     @Param("articleId")Long articleId,
-//                                     @Param("uniteId")Long uniteId,
-//                                     @Param("new_date") LocalDate newDate,
-//                                     @Param("old_date")LocalDate oldDate);
-
     @Modifying(clearAutomatically = true)
     @Query(value= "CALL mettre_a_jour_date_peremption(:id_magasin,:id_article,:id_unite,:new_date,:old_date)",nativeQuery = true)
     void updateExpirationDate(@Param("id_magasin") Long magasinId,
@@ -164,6 +155,12 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
                               @Param("id_unite")Long uniteId,
                               @Param("new_date") LocalDate newDate,
                               @Param("old_date")LocalDate oldDate);
+
+    @Modifying(clearAutomatically = true)
+    @Query(value = "update inventory_alert set quantite=:newValue where filiale_id=:id_filiale and article_id=:id_article",nativeQuery = true)
+    void updateQuantiteAlert(@Param("id_filiale") Long magasinId,
+                            @Param("id_article")Long articleId,
+                            @Param("newValue") Double quantite);
 
 }
 

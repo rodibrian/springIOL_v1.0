@@ -138,4 +138,9 @@ class ArticleRepositoryTest{
     void updateExpirationDate() {
         articleRepository.updateExpirationDate(1L,1L,2L, LocalDate.now(),LocalDate.of(2022,8,11));
     }
+
+    @Test
+    void updateQuantiteAlert() {
+        articleRepository.updateQuantiteAlert(1L,1L,5D);
+    }
 }

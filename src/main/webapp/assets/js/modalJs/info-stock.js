@@ -61,7 +61,7 @@ $(function() {
         $('#modal-qtt-alert-stock').modal('show');
         let quantite = $('#info-stock p.label-quantite-alerte-article').text().split(":")[1];
         $("#input-quantite-stock").val(quantite);
-    })
+    });
 
     // ENREGISTRER QUANTITE EN ALERT
     $(".btn-enregistrer-qtt-alert").click(()=>{

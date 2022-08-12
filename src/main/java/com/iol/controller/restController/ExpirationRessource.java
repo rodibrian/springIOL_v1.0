@@ -1,6 +1,7 @@
 package com.iol.controller.restController;
 
 
+import com.iol.model.wrapper.ExpirationDateWrapper;
 import com.iol.repository.ArticleRepository;
 import com.iol.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class ExpirationRessource{
 
     private ArticleService articleService;
 
+    @Autowired private ArticleRepository articleRepository;
+
     @GetMapping(value = "/expirations/{filiale-id}/{product-name}")
     public ResponseEntity<Object> getExpirationByProductName(@PathVariable("filiale-id")Long filialeId,
                                                           @PathVariable("product-name")String name){
@@ -28,13 +31,13 @@ public class ExpirationRessource{
         return new ResponseEntity<>(articleService.getProductByExpirationByStatus(name,filialeId), HttpStatus.OK);
     }
 
-    @PutMapping(value = "/expirations/{magasinId}/{articleId}/{uniteId}/{new-date}/{old-date}")
+    @PutMapping(value = "/expirations/{magasinId}/{articleId}/{uniteId}")
     public ResponseEntity<Object> getExpirationByStatus(@PathVariable("magasinId")Long magasinId,
                                                         @PathVariable("articleId")Long articleId,
                                                         @PathVariable("uniteId")Long uniteId,
-                                                        @PathVariable("new-date")LocalDate newDate,
-                                                        @PathVariable("old-date")LocalDate oldDate){
-
+                                                        @RequestBody ExpirationDateWrapper dateWrapper){
+        System.out.println(dateWrapper);
+        articleRepository.updateExpirationDate(magasinId, articleId, uniteId,dateWrapper.getNewDate(),dateWrapper.getOldDate());
         return new ResponseEntity<>("",HttpStatus.OK);
     }
 

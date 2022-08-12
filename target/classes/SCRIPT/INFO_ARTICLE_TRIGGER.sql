@@ -102,6 +102,16 @@ BEGIN
 
         insert into stock(article_id,unite_id,magasin_id,count) values (NEW.article_id,primary_unite_id,NEW.magasin_id,nouveau_quantite_en_stock);
 
+        -- INITIALISATION DE LA QUANTITE EN ALERT DE CHAQUE ARTICLE ET FILIALE
+
+        select m.filiale_id into ALERT_FILIALE_ID from magasin m where m.id_magasin=new.magasin_id;
+
+        select count(ia.filiale_id) into nombre_quantite_alert from inventory_alert ia where ia.article_id = new.article_id and ia.filiale_id = ALERT_FILIALE_ID;
+
+        if nombre_quantite_alert = 0 then
+            insert into inventory_alert(article_id, filiale_id, quantite) values (new.article_id,ALERT_FILIALE_ID,0.0);
+        end if;
+
     end if;
 
     if item_count > 0 then

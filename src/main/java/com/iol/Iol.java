@@ -31,7 +31,7 @@ public class Iol implements CommandLineRunner {
         if (property.equals("create")) createPostgresqlFunctionAndTrigger();
     }
 
-    private void createPostgresqlFunctionAndTrigger() throws SQLException, IOException {
+    private void createPostgresqlFunctionAndTrigger() throws SQLException, IOException{
         var dataSource = entityManagerFactory.getDataSource();
         Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement();
