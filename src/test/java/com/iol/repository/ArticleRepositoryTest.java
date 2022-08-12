@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -18,8 +19,8 @@ class ArticleRepositoryTest{
 
     @Test
     void getArticleUnite() {
-//        String[] allArticle = articleRepository.getAllArticle();
-//        Assertions.assertThat(allArticle).isNotNull();
+        String[] allArticle = articleRepository.getAllArticle();
+        Assertions.assertThat(allArticle).isNotNull();
     }
 
     @Test
@@ -122,7 +123,19 @@ class ArticleRepositoryTest{
 
     @Test
     void getProductexpiration() {
-        List<String> productexpiration = articleRepository.getProductexpiration(1L);
+        List<String> productexpiration = articleRepository.getProductExpiration(1L);
         assertThat(productexpiration.size()).isEqualTo(3);
+    }
+
+    @Test
+    void getProductExpirationByProductName() {
+        List<String> riz = articleRepository.getProductExpirationByProductName("fil", 1L);
+        assertThat(riz).isNotEmpty();
+        System.out.println(riz);
+    }
+
+    @Test
+    void updateExpirationDate() {
+        articleRepository.updateExpirationDate(1L,1L,2L, LocalDate.now(),LocalDate.now());
     }
 }

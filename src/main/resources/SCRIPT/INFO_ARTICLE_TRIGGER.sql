@@ -1,3 +1,50 @@
+
+---  PROCEDURE
+
+create procedure mettre_a_jour_quantite_en_peremption(IN id_magasin bigint, IN id_article bigint, IN id_unite bigint, IN nouveau_quantite double precision)
+    language plpgsql
+as
+$$
+DECLARE
+    row RECORD;
+    QUANTITE_AJOUT_TEMP double precision = 0;
+BEGIN
+
+    QUANTITE_AJOUT_TEMP := nouveau_quantite;
+
+    FOR row IN select ap.id,ap.quantite_peremption from approv ap join info_article_magasin iam on iam.id = ap.info_article_magasin_id
+               where iam.magasin_id =id_magasin and iam.unite_id=id_unite and iam.article_id = id_article and ap.quantite_peremption > 0 order by ap.date_peremption asc
+        LOOP
+
+            if QUANTITE_AJOUT_TEMP > 0 then
+
+                if QUANTITE_AJOUT_TEMP > row.quantite_peremption then
+
+                    update approv set quantite_peremption = 0 where id = row.id;
+
+                end if;
+
+                if QUANTITE_AJOUT_TEMP < row.quantite_peremption then
+
+                    update approv set quantite_peremption = ( row.quantite_peremption - QUANTITE_AJOUT_TEMP)  where id = row.id;
+
+                end if;
+
+                QUANTITE_AJOUT_TEMP := ( QUANTITE_AJOUT_TEMP - row.quantite_peremption );
+
+
+            end if;
+
+        END LOOP;
+
+end;
+$$;
+alter procedure mettre_a_jour_quantite_en_peremption(bigint, bigint, bigint, double precision) owner to postgres;
+
+-- FIN PROCEDURE
+
+--  DEBUT TRIGER
+
 create function before_insert_on_info_article_unite_magasin() returns trigger
     language plpgsql
 as
@@ -25,39 +72,6 @@ BEGIN
     -- RECUPERER LE STOCK ACTUEL
     SELECT count into quantite_en_stock_actuelement FROM  stock  WHERE article_id = new.article_id AND unite_id = primary_unite_id AND magasin_id = new.magasin_id;
 
-    -- MIS A JOUR DU QUANTITE PEREMPTION
-
-    if     new.type_operation = 'VENTE'
-        or (new.type_operation like '%TRANSFERT%' AND  new.type_operation like '%VERS%')
-        or  new.type_operation = 'SORTIE'  then
-
-        QUANTITE_AJOUT_TEMP := new.quantite_ajout;
-
-        for  QTT_PEREMPTION_DATE in select ap.id, ap.date_peremption ,ap.quantite_peremption  from approv ap join info_article_magasin iam on iam.id = ap.info_article_magasin_id
-                                    where iam.magasin_id =new.magasin_id and iam.unite_id=new.unite_id and iam.article_id = new.article_id and ap.quantite_peremption > 0 order by ap.date_peremption asc
-            LOOP
-
-                while QUANTITE_AJOUT_TEMP > 0 loop
-
-                        if QUANTITE_AJOUT_TEMP >= QTT_PEREMPTION_DATE.quantite_peremption then
-
-                            QTT_PEREMPTION_DATE.quantite_peremption :=0;
-
-                        end if;
-
-                        if QUANTITE_AJOUT_TEMP < QTT_PEREMPTION_DATE.quantite_peremption then
-
-                            QTT_PEREMPTION_DATE.quantite_peremption := ( QTT_PEREMPTION_DATE.quantite_peremption - QUANTITE_AJOUT_TEMP);
-
-                        end if;
-
-                        QUANTITE_AJOUT_TEMP := ( QUANTITE_AJOUT_TEMP - QTT_PEREMPTION_DATE.quantite_peremption );
-
-                    end loop;
-
-            end loop;
-
-    end if;
 
     if item_count = 0 then
 
@@ -113,12 +127,13 @@ BEGIN
 
         if new.type_operation = 'INVENTAIRE' then
 
-            nouveau_quantite_en_stock := new.quantite_ajout ;
+            nouveau_quantite_en_stock := new.quantite_ajout;
 
             new.quantite_stock_apres_operation := new.quantite_ajout;
 
             -- ENREGISTRER L'ANNULATION
             insert into info_article_magasin (date, description, quantite_ajout,quantite_stock_apres_operation,reference, type_operation, article_id, magasin_id, unite_id, user_id)
+
             values (new.date,'Modification de la quantité en stock suite a un inventaire',quantite_en_stock_actuelement,new.quantite_ajout,new.reference,'ANNULATION',new.article_id,new.magasin_id,new.unite_id,new.user_id);
 
         end if;
@@ -131,6 +146,16 @@ BEGIN
 
     end if;
 
+    -- MIS A JOUR DU QUANTITE PEREMPTION
+
+    if     new.type_operation = 'VENTE'
+        or (new.type_operation like '%TRANSFERT%' AND  new.type_operation like '%VERS%')
+        or  new.type_operation = 'SORTIE'  then
+
+        call mettre_a_jour_quantite_en_peremption(new.magasin_id,new.article_id,new.unite_id,new.quantite_ajout);
+
+    end if;
+
     RETURN NEW; --ignored since this is after trigger
 
 END;
@@ -138,20 +163,7 @@ $$;
 
 alter function before_insert_on_info_article_unite_magasin() owner to postgres;
 
+--  FIN TIGGER
 
-
-create function get_article_unite_quantite_peremption(magasinid bigint, articleid bigint, uniteid bigint)
-    returns TABLE(date_peremption date, quantite_peremption double precision)
-    language plpgsql
-as
-$$
-begin
-    return query select ap.date_peremption,sum(ap.quantite_peremption) from approv ap join info_article_magasin iam on iam.id = ap.info_article_magasin_id
-                 where iam.magasin_id =magasinId and iam.unite_id=uniteId and iam.article_id = articleId and ap.quantite_peremption > 0 group by ap.date_peremption order by date_peremption;
-end
-$$;
-
-alter function get_article_unite_quantite_peremption(bigint, bigint, bigint) owner to postgres;
-
-
+create trigger info_article_trigger before insert on info_article_magasin FOR EACH ROW execute procedure before_insert_on_info_article_unite_magasin();
 

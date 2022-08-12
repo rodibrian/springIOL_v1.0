@@ -798,7 +798,7 @@ false Zulu
     <database id="4" parent="1" name="ioldb">
       <ObjectId>165315</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>549422</IntrospectionStateNumber>
+      <IntrospectionStateNumber>549621</IntrospectionStateNumber>
       <Current>1</Current>
       <Relations>sequence|table|165329|165330|1
 sequence|table|165343|165344|1
@@ -908,7 +908,7 @@ UC/10
 </Acl>
       <StateNumber>527</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>549423</IntrospectionStateNumber>
+      <IntrospectionStateNumber>549622</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="23" parent="4" name="plpgsql">
@@ -1396,23 +1396,22 @@ UC/10
     <routine id="107" parent="22" name="before_insert_on_info_article_unite_magasin">
       <ObjectId>165991</ObjectId>
       <Owner>postgres</Owner>
-      <SourceTextLength>4876</SourceTextLength>
-      <StateNumber>549421</StateNumber>
+      <SourceTextLength>4597</SourceTextLength>
+      <StateNumber>549620</StateNumber>
       <ResultsDefinition>trigger</ResultsDefinition>
       <LanguageName>plpgsql</LanguageName>
       <RoutineKind>function</RoutineKind>
       <Rows>0.0</Rows>
     </routine>
-    <routine id="108" parent="22" name="get_article_unite_quantite_peremption">
-      <ObjectId>166030</ObjectId>
+    <routine id="108" parent="22" name="mettre_a_jour_quantite_en_peremption">
+      <ObjectId>171967</ObjectId>
       <Owner>postgres</Owner>
-      <SourceTextLength>335</SourceTextLength>
-      <StateNumber>549415</StateNumber>
-      <ArgumentsDefinition>magasinid bigint, articleid bigint, uniteid bigint</ArgumentsDefinition>
-      <ResultsDefinition>TABLE(date_peremption date, quantite_peremption double precision)</ResultsDefinition>
+      <SourceTextLength>1034</SourceTextLength>
+      <StateNumber>549615</StateNumber>
+      <ArgumentsDefinition>IN id_magasin bigint, IN id_article bigint, IN id_unite bigint, IN nouveau_quantite double precision</ArgumentsDefinition>
       <LanguageName>plpgsql</LanguageName>
-      <RoutineKind>function</RoutineKind>
-      <ReturnsSet>1</ReturnsSet>
+      <RoutineKind>procedure</RoutineKind>
+      <Rows>0.0</Rows>
     </routine>
     <column id="109" parent="60" name="enabled">
       <Position>1</Position>
@@ -4204,21 +4203,25 @@ transfert_id</ColNames>
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>trigger|0s</DataType>
     </argument>
-    <argument id="469" parent="108" name="magasinid">
+    <argument id="469" parent="108" name="id_magasin">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
     </argument>
-    <argument id="470" parent="108" name="articleid">
+    <argument id="470" parent="108" name="id_article">
       <Position>2</Position>
       <DataType>bigint|0s</DataType>
     </argument>
-    <argument id="471" parent="108" name="uniteid">
+    <argument id="471" parent="108" name="id_unite">
       <Position>3</Position>
       <DataType>bigint|0s</DataType>
     </argument>
-    <argument id="472" parent="108">
-      <ArgumentDirection>T</ArgumentDirection>
-      <DataType>table(&quot;date_peremption&quot; date, &quot;quantite_peremption&quot; double precision)|0v</DataType>
+    <argument id="472" parent="108" name="nouveau_quantite">
+      <Position>4</Position>
+      <DataType>double precision|0s</DataType>
+    </argument>
+    <argument id="473" parent="108">
+      <ArgumentDirection>R</ArgumentDirection>
+      <DataType>void|0s</DataType>
     </argument>
   </database-model>
 </dataSource>

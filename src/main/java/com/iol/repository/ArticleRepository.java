@@ -7,7 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -113,10 +115,46 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
                        @Param("articleId") Long articleId,
                        @Param("count") Double count);
 
-    @Query(value = " select a.designation ad,u.designation ud,gp.date_pr,gp.sum_quantite from article a join (select iam.article_id,iam.unite_id,ap.date_peremption date_pr ,sum(ap.quantite_peremption) sum_quantite from approv ap join info_article_magasin iam on iam.id = ap.info_article_magasin_id " +
+    @Query(value = " select a.designation ad,u.designation ud,gp.date_pr,gp.sum_quantite,gp.magasin_id,gp.article_id,gp.unite_id ,gp.day_count from article a join (select iam.magasin_id,iam.article_id,iam.unite_id,ap.date_peremption date_pr ,sum(ap.quantite_peremption) sum_quantite , date_part('day',(now()-date_peremption))  day_count   from approv ap join info_article_magasin iam on iam.id = ap.info_article_magasin_id " +
             " join magasin m on m.id_magasin = iam.magasin_id" +
-            " where m.filiale_id = :filialeId and ap.quantite_peremption > 0 group by date_peremption ,iam.article_id,iam.unite_id order by date_peremption) as gp on a.article_id = gp.article_id join unite u on u.id = gp.unite_id ",nativeQuery = true)
-    List<String> getProductexpiration(@Param("filialeId") Long filialeId);
+            " where m.filiale_id = :filialeId and ap.quantite_peremption > 0 group by date_peremption ,iam.article_id,iam.unite_id,iam.magasin_id order by date_peremption) as gp on a.article_id = gp.article_id join unite u on u.id = gp.unite_id ",nativeQuery = true)
+    List<String> getProductExpiration(@Param("filialeId") Long filialeId);
+
+    @Query(value = " select a.designation ad,u.designation ud,gp.date_pr,gp.sum_quantite,gp.magasin_id,gp.article_id,gp.unite_id,gp.day_count from article a join (select iam.magasin_id,iam.article_id,iam.unite_id,ap.date_peremption date_pr ,sum(ap.quantite_peremption) sum_quantite, date_part('day',(now()-date_peremption))  day_count   from approv ap join info_article_magasin iam on iam.id = ap.info_article_magasin_id " +
+            " join magasin m on m.id_magasin = iam.magasin_id" +
+            " where m.filiale_id = :filialeId and ap.quantite_peremption > 0 and date_part('day',(now()-date_peremption)) between :begin and :end  group by date_peremption ,iam.article_id,iam.unite_id,iam.magasin_id order by date_peremption) as gp on a.article_id = gp.article_id join unite u on u.id = gp.unite_id ",nativeQuery = true)
+    List<String> getProductExpirationByStatus(@Param("filialeId") Long filialeId, @PathVariable("begin") int begin , @PathVariable("end") int end);
+
+    @Query(value = " select a.designation ad,u.designation ud,gp.date_pr,gp.sum_quantite,gp.magasin_id,gp.article_id,gp.unite_id,gp.day_count from article a join (select iam.magasin_id,iam.article_id,iam.unite_id,ap.date_peremption date_pr ,sum(ap.quantite_peremption) sum_quantite, date_part('day',(now()-date_peremption))  day_count  from approv ap join info_article_magasin iam on iam.id = ap.info_article_magasin_id " +
+            " join magasin m on m.id_magasin = iam.magasin_id" +
+            " where m.filiale_id = :filialeId and ap.quantite_peremption > 0 and date_part('day',(now()-date_peremption)) > :value  group by date_peremption ,iam.article_id,iam.unite_id,iam.magasin_id order by date_peremption) as gp on a.article_id = gp.article_id join unite u on u.id = gp.unite_id ",nativeQuery = true)
+    List<String> getProductExpirationByStatusStrong(@Param("filialeId") Long filialeId, @PathVariable("value") int value );
+
+    @Query(value = " select a.designation ad,u.designation ud,gp.date_pr,gp.sum_quantite,gp.magasin_id,gp.article_id,gp.unite_id,gp.day_count  from article a join (select iam.magasin_id,iam.article_id,iam.unite_id,ap.date_peremption date_pr ,sum(ap.quantite_peremption) sum_quantite, date_part('day',(now()-date_peremption))  day_count from approv ap join info_article_magasin iam on iam.id = ap.info_article_magasin_id " +
+            " join magasin m on m.id_magasin = iam.magasin_id" +
+            " where m.filiale_id = :filialeId and ap.quantite_peremption > 0 and date_part('day',(now()-date_peremption)) <= :value  group by date_peremption ,iam.article_id,iam.unite_id,iam.magasin_id order by date_peremption) as gp on a.article_id = gp.article_id join unite u on u.id = gp.unite_id ",nativeQuery = true)
+    List<String> getProductExpirationByStatusExpired(@Param("filialeId") Long filialeId, @PathVariable("value") int value );
+
+    @Query(value = " select a.designation ad,u.designation ud,gp.date_pr,gp.sum_quantite,gp.magasin_id,gp.article_id,gp.unite_id,gp.day_count from article a join (select iam.magasin_id,iam.article_id,iam.unite_id,ap.date_peremption date_pr ,sum(ap.quantite_peremption) sum_quantite, date_part('day',(now()-date_peremption))  day_count  from approv ap join info_article_magasin iam on iam.id = ap.info_article_magasin_id " +
+            " join magasin m on m.id_magasin = iam.magasin_id" +
+            " where m.id_magasin = :magasinId and ap.quantite_peremption > 0 group by date_peremption ,iam.article_id,iam.unite_id,iam.magasin_id order by date_peremption) as gp on a.article_id = gp.article_id join unite u on u.id = gp.unite_id ",nativeQuery = true)
+    List<String> getProductExpirationByStore(@Param("magasinId") Long magasinId);
+
+    @Query(value = "select a.designation ad,u.designation ud,gp.date_pr,gp.sum_quantite,gp.magasin_id,gp.article_id,gp.unite_id,gp.day_count from article a " +
+            " join (select iam.magasin_id,iam.article_id,iam.unite_id,ap.date_peremption date_pr ,sum(ap.quantite_peremption) sum_quantite,date_part('day',(now()-date_peremption))  day_count from approv ap join info_article_magasin iam on iam.id = ap.info_article_magasin_id " +
+            " join magasin m on m.id_magasin = iam.magasin_id where m.filiale_id = :filialeId and ap.quantite_peremption > 0 group by date_peremption ,iam.article_id,iam.unite_id,iam.magasin_id order by date_peremption) as gp on a.article_id = gp.article_id join unite u on u.id = gp.unite_id" +
+            " where trim(lower(a.designation)) like concat('%',trim(lower(:name)),'%')  ",nativeQuery = true)
+    List<String> getProductExpirationByProductName(@Param("name") String productName,@Param("filialeId") Long filialeId);
+
+
+    @Modifying(clearAutomatically = true)
+    @Query(value = "update approv ap set date_peremption =:new_data " +
+            "where (select ap1.id from approv ap1 join info_article_magasin iam on iam.id = ap1.info_article_magasin_id and iam.magasin_id=:magasinId and iam.article_id=:articleId and iam.unite_id =: uniteId ).id = ap.id and ap.date_peremption =:old_date ",nativeQuery = true)
+    public void updateExpirationDate(@Param("magasinId") Long magasinId,
+                                     @Param("articleId")Long articleId,
+                                     @Param("uniteId")Long uniteId,
+                                     @Param("new_date") LocalDate newDate,
+                                     @Param("old_date")LocalDate oldDate);
 
 }
 

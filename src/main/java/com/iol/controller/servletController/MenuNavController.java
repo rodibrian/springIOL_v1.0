@@ -91,7 +91,7 @@ public class MenuNavController{
     @Autowired
     private SupplyRepository supplyRepository;
 
-    @RequestMapping(value = "/peremption", method = RequestMethod.GET)
+    @RequestMapping(value = "/peremption",method = RequestMethod.GET)
     public ModelAndView getMenuPeremption(HttpServletRequest request){
         Map<String, Long> connectedUserMagasinId = getConnectedUserInfo(request);
         Long filialeId = connectedUserMagasinId.get(FILIALE_ID);

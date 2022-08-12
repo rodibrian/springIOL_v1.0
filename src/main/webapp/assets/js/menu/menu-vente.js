@@ -198,7 +198,7 @@ $(function () {
                 let user_id = $(namespace + '#user-id').attr("value-id");
                 let date = new Date();
                 let ref = create_reference("VENTE",date);
-                $vente = {};
+                let $vente = {};
                 $vente.infoArticleMagasin = getDataFromTable(ref,date,user_id);
                 $vente.client = {id: $clientId};
                 $vente.montantVente = $sommeMontant;
@@ -212,6 +212,7 @@ $(function () {
                     $(namespace + '#' + $modalId).modal('hide');
                     createToast('bg-success', 'uil-file-check-alt', 'Vente Fait', 'Vente enregistr&eacute; avec succ&egrave;s!')
                 });
+                hideAndRemove('#' + $modalId)
             })
 
         $nArticle = $(namespace + '#table-liste-article-vente tbody tr').length;
@@ -228,6 +229,12 @@ $(function () {
     // Facturation de vente
     function generer_ticket() {
         let space = namespace + '#impression-ticket-caisse ';
+
+        /*
+        vider la table
+         */
+        $(space + '#table-liste-ventes tbody tr').remove()
+
         /*
         information ticket
          */
@@ -251,10 +258,16 @@ $(function () {
         $(space + '.label-somme-en-lettre').text(NumberToLetter($somme) + ' ariary');
         // print
         $(space).printThis();
+
     }
 
     function generer_facture() {
         let space = namespace + '#impression-facture-vente ';
+
+        /*
+        vider la table
+         */
+        $(space + '#table-liste-ventes tbody tr').remove()
 
         /*
         information facture
@@ -286,6 +299,7 @@ $(function () {
 
         // print
         $(space).printThis()
+
 
     }
 

@@ -14,4 +14,5 @@ public class ExpirationWrapper {
     private String uniteId;
     private String magasinId;
     private String approvId;
+    private String expirationStatus;
 }

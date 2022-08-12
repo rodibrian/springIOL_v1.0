@@ -8,6 +8,7 @@ import com.iol.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -68,17 +69,67 @@ public class ArticleService{
     }
 
     public List<ExpirationWrapper> getProductByExpiration(Long filialeId){
+        List<String[]> collect = articleRepository.getProductExpiration(filialeId).stream().map(s -> s.split(",")).collect(Collectors.toList());
+        List<ExpirationWrapper> expirationWrapper = createExpirationWrapper(collect);
+        return expirationWrapper;
+    }
+
+    public List<ExpirationWrapper> getProductByExpirationByStore(Long storeId){
+        List<String[]> collect = articleRepository.getProductExpirationByStore(storeId).stream().map(s -> s.split(",")).collect(Collectors.toList());
+        List<ExpirationWrapper> list = createExpirationWrapper(collect);
+        return list;
+    }
+
+    public List<ExpirationWrapper> getProductByExpirationByProductName(String name,Long filialeId){
+        List<String[]> collect = articleRepository.getProductExpirationByProductName(name,filialeId).stream().map(s -> s.split(",")).collect(Collectors.toList());
+        List<ExpirationWrapper> list = createExpirationWrapper(collect);
+        return list;
+    }
+
+    private final int  ONE_YEARS = 366;
+    private final int TWO_YEARS = 2*ONE_YEARS;
+    private final int SIX_MONTH = ONE_YEARS/2;
+
+    public List<ExpirationWrapper> getProductByExpirationByStatus(String status,Long filialeId){
+        List<String> productExpirationByStatus = createExpirationDataByStatus(status, filialeId);
+        List<String[]> collect = productExpirationByStatus.stream().map(s -> s.split(",")).collect(Collectors.toList());
+        List<ExpirationWrapper> list = createExpirationWrapper(collect);
+        return list;
+    }
+
+    private List<String> createExpirationDataByStatus(String status, Long filialeId){
+        switch (status){
+            case  "Périmé" : return articleRepository.getProductExpirationByStatusExpired(filialeId,SIX_MONTH);
+            case  "Faible" : return articleRepository.getProductExpirationByStatus(filialeId,SIX_MONTH,ONE_YEARS);
+            case  "Moyenne": return articleRepository.getProductExpirationByStatus(filialeId, ONE_YEARS,TWO_YEARS);
+            case  "Forte"  : return articleRepository.getProductExpirationByStatusStrong(filialeId,TWO_YEARS);
+            default: return articleRepository.getProductExpiration(filialeId);
+        }
+    }
+
+    private List<ExpirationWrapper> createExpirationWrapper(List<String[]> collect) {
         List<ExpirationWrapper> list = new ArrayList<>();
-        List<String[]> collect = articleRepository.getProductexpiration(filialeId).stream().map(s -> s.split(",")).collect(Collectors.toList());
         collect.forEach(strings -> {
             ExpirationWrapper expirationWrapper = new ExpirationWrapper();
             expirationWrapper.setNomArticle(strings[0]);
             expirationWrapper.setNomUnite(strings[1]);
             expirationWrapper.setDatePeremption(strings[2]);
             expirationWrapper.setQuantitePeremetion(strings[3]);
+            expirationWrapper.setMagasinId(strings[4]);
+            expirationWrapper.setArticleId(strings[5]);
+            expirationWrapper.setUniteId(strings[6]);
+            expirationWrapper.setExpirationStatus(dayCount2ExpirationStatus(Double.valueOf(strings[7])));
             list.add(expirationWrapper);
         });
         return list;
+    }
+
+    private String dayCount2ExpirationStatus(Double count){
+        if (count>TWO_YEARS) return "forte";
+        if (count<SIX_MONTH) return "périmé";
+        if (count> SIX_MONTH && count< ONE_YEARS) return "faible";
+        if (count> ONE_YEARS && count< TWO_YEARS) return "Moyenne";
+        return "";
     }
 
 

@@ -10,6 +10,8 @@ DECLARE
     item_count INT =0;
     nombre_quantite_alert INT = 0;
     ALERT_FILIALE_ID BIGINT = 0;
+    QTT_PEREMPTION_DATE record;
+    QUANTITE_AJOUT_TEMP DOUBLE PRECISION = 0.0;
 BEGIN
     -- recuperer l'unite primaire de l'article
     SELECT au.unite_id into primary_unite_id FROM article_unite au where article_id = new.article_id and au.niveau = 1;
@@ -27,9 +29,33 @@ BEGIN
 
     if     new.type_operation = 'VENTE'
         or (new.type_operation like '%TRANSFERT%' AND  new.type_operation like '%VERS%')
-        or  new.type_operation = 'VENTE'  then
+        or  new.type_operation = 'SORTIE'  then
 
+        QUANTITE_AJOUT_TEMP := new.quantite_ajout;
 
+        for  QTT_PEREMPTION_DATE in select ap.id, ap.date_peremption ,ap.quantite_peremption  from approv ap join info_article_magasin iam on iam.id = ap.info_article_magasin_id
+                                    where iam.magasin_id =new.magasin_id and iam.unite_id=new.unite_id and iam.article_id = new.article_id and ap.quantite_peremption > 0 order by ap.date_peremption asc
+            LOOP
+
+                while QUANTITE_AJOUT_TEMP > 0 loop
+
+                        if QUANTITE_AJOUT_TEMP >= QTT_PEREMPTION_DATE.quantite_peremption then
+
+                            QTT_PEREMPTION_DATE.quantite_peremption :=0;
+
+                        end if;
+
+                        if QUANTITE_AJOUT_TEMP < QTT_PEREMPTION_DATE.quantite_peremption then
+
+                            QTT_PEREMPTION_DATE.quantite_peremption := ( QTT_PEREMPTION_DATE.quantite_peremption - QUANTITE_AJOUT_TEMP);
+
+                        end if;
+
+                        QUANTITE_AJOUT_TEMP := ( QUANTITE_AJOUT_TEMP - QTT_PEREMPTION_DATE.quantite_peremption );
+
+                    end loop;
+
+            end loop;
 
     end if;
 
@@ -77,8 +103,6 @@ BEGIN
 
         end if;
 
-
-
         if new.type_operation = 'VENTE' or new.type_operation = 'SORTIE'then
 
             nouveau_quantite_en_stock := quantite_en_stock_actuelement - (new.quantite_ajout*quantite_niveau_unite) ;
@@ -113,4 +137,21 @@ END;
 $$;
 
 alter function before_insert_on_info_article_unite_magasin() owner to postgres;
+
+
+
+create function get_article_unite_quantite_peremption(magasinid bigint, articleid bigint, uniteid bigint)
+    returns TABLE(date_peremption date, quantite_peremption double precision)
+    language plpgsql
+as
+$$
+begin
+    return query select ap.date_peremption,sum(ap.quantite_peremption) from approv ap join info_article_magasin iam on iam.id = ap.info_article_magasin_id
+                 where iam.magasin_id =magasinId and iam.unite_id=uniteId and iam.article_id = articleId and ap.quantite_peremption > 0 group by ap.date_peremption order by date_peremption;
+end
+$$;
+
+alter function get_article_unite_quantite_peremption(bigint, bigint, bigint) owner to postgres;
+
+
 

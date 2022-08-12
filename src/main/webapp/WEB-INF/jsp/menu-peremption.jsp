@@ -1,5 +1,4 @@
 <%@ include file='template/header.jsp' %>
-
 <!-- Start Content-->
 <div class="container-fluid" id="menu-peremption">
 
@@ -10,13 +9,14 @@
         <div class="page-title-right">
           <div class="input-group">
             <input type="text" required class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
-            <button class="input-group-text btn-primary" type="submit"><i class="uil-search"></i></button>
+            <button id="search-btn" class="input-group-text btn-primary" type="submit"><i class="uil-search"></i></button>
           </div>
         </div>
         <h4 class="page-title">Peremption</h4>
       </div>
     </div>
   </div>
+  <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
   <!-- end page title -->
   <div class="row mr-2">
     <div class="col-12">
@@ -28,11 +28,11 @@
         </div>
       </div>
       <div class="d-block mt-1">
-        <a href="" role="btn" class="btn btn-outline-primary mr-1">Tout</a>
-        <a href="" role="btn" class="btn btn-outline-info mr-1">Forte</a>
-        <a href="" role="btn" class="btn btn-outline-success mr-1">Moyenne</a>
-        <a href="" role="btn" class="btn btn-outline-warning mr-1">Faible</a>
-        <a href="" role="btn" class="btn btn-outline-danger mr-1">P&eacute;rim&eacute;</a>
+        <a role="btn" class="btn btn-outline-primary mr-1 btn-status">Tout</a>
+        <a role="btn" class="btn btn-outline-info mr-1 btn-status">Forte</a>
+        <a role="btn" class="btn btn-outline-success mr-1 btn-status" >Moyenne</a>
+        <a role="btn" class="btn btn-outline-warning mr-1 btn-status">Faible</a>
+        <a role="btn" class="btn btn-outline-danger mr-1 btn-status">P&eacute;rim&eacute;</a>
       </div>
     </div>
   </div>
@@ -48,7 +48,7 @@
   <div class="container -fluid">
     <div class="row">
       <div class="col-lg-12">
-        <table id="scroll-vertical-datatable" class="table-peremption table table-sm dt-responsive nowrap table-hover table-striped">
+        <table id="expiration-table" class="table-peremption table table-sm dt-responsive nowrap table-hover table-striped">
           <thead>
           <tr>
             <th>Designation</th>
@@ -60,7 +60,7 @@
           </thead>
           <tbody>
               <c:forEach var="au" items="${expirations}">
-                <tr>
+                <tr id="${au.magasinId}-${au.articleId}-${au.uniteId}">
                   <td>${au.nomArticle}</td>
                   <td>${au.nomUnite}</td>
                   <td>${au.quantitePeremetion}</td>

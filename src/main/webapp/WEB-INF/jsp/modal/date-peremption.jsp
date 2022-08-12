@@ -1,5 +1,5 @@
 <!-- Standard modal -->
-<div id="date-peremption" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+<div id="modal-date-peremption" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-sm modal-dialog-centered">
     <div class="modal-content was-validated">
