@@ -4,6 +4,7 @@ import com.iol.model.tenantEntityBeans.ArticleUnite;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -147,14 +148,22 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
     List<String> getProductExpirationByProductName(@Param("name") String productName,@Param("filialeId") Long filialeId);
 
 
+//    @Modifying(clearAutomatically = true)
+//    @Query(value = "update approv ap set date_peremption =:new_data " +
+//            "where (select ap1.id from approv ap1 join info_article_magasin iam on iam.id = ap1.info_article_magasin_id where iam.magasin_id=1 and iam.article_id=1 and iam.unite_id =2 and ap1.date_peremption =:old_date ) = ap.id ",nativeQuery = true)
+//    void updateExpirationDate(@Param("magasinId") Long magasinId,
+//                                     @Param("articleId")Long articleId,
+//                                     @Param("uniteId")Long uniteId,
+//                                     @Param("new_date") LocalDate newDate,
+//                                     @Param("old_date")LocalDate oldDate);
+
     @Modifying(clearAutomatically = true)
-    @Query(value = "update approv ap set date_peremption =:new_data " +
-            "where (select ap1.id from approv ap1 join info_article_magasin iam on iam.id = ap1.info_article_magasin_id and iam.magasin_id=:magasinId and iam.article_id=:articleId and iam.unite_id =: uniteId ).id = ap.id and ap.date_peremption =:old_date ",nativeQuery = true)
-    public void updateExpirationDate(@Param("magasinId") Long magasinId,
-                                     @Param("articleId")Long articleId,
-                                     @Param("uniteId")Long uniteId,
-                                     @Param("new_date") LocalDate newDate,
-                                     @Param("old_date")LocalDate oldDate);
+    @Query(value= "CALL mettre_a_jour_date_peremption(:id_magasin,:id_article,:id_unite,:new_date,:old_date)",nativeQuery = true)
+    void updateExpirationDate(@Param("id_magasin") Long magasinId,
+                              @Param("id_article")Long articleId,
+                              @Param("id_unite")Long uniteId,
+                              @Param("new_date") LocalDate newDate,
+                              @Param("old_date")LocalDate oldDate);
 
 }
 
