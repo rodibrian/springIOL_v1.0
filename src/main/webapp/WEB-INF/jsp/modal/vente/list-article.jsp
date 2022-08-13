@@ -16,12 +16,9 @@
         <table id="table-liste-article" class="table table-special-form table-sm dt-responsive nowrap w-100">
           <thead>
               <tr>
-                <th>Code</th>
                 <th>Designation</th>
                 <th>Unite</th>
                 <th>quantite(Niveau)</th>
-                <th>Stock</th>
-                <th>Prix</th>
               </tr>
           </thead>
           <tbody>
@@ -31,8 +28,6 @@
               <td>${au.article.designation}</td>
               <td value-id ="${au.unite.id}">${au.unite.designation}</td>
               <td>${au.quantiteNiveau}</td>
-              <td>  </td>
-              <td>  </td>
             </tr>
           </c:forEach>
           </tbody>

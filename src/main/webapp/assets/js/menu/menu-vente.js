@@ -38,7 +38,7 @@ $(function () {
         client.filiale = {id: filialeId};
         let url = "http://localhost:8080/api/v1/externalEntities";
         execute_ajax_request("post", url, client, (data) => {
-            get_select_affect_to_input(namespace + '#name-client', data.id, data.nom)
+            get_select_affect_to_input(namespace + '#name-client',data.id,data.nom)
             $(namespace+"#nouveau-client").modal("hide");
             // insertion dans la liste des clients du nouveau client enregistrer
             let tr= [data.nom,data.adresse,data.numTel];
@@ -318,5 +318,28 @@ $(function () {
 
     }
 
+    /*
+   *  RECHERCHER ARTICLE
+   */
+   $(document).on("keyup",namespace+"#inpute-article-search",()=>{
+       let item_name = $(this).val();
+       if (item_name!==""){
+           let url = ""
+           execute_ajax_request("get",url,null,(data)=> {
+               $(namespace+"#table-liste-article tbody").empty();
+               $.each(data,(key,value)=>{
+                 let tr = `
+                        <tr id ="`+value.itemId+`">
+                            <td>`+value.itemName+`</td>
+                            <td value-id ="value.uniteId">`+value.uniteName+`</td>
+                            <td>`+value.stock+`</td>
+                            <td>`+value.price+`</td>
+                        </tr>
+                  `;
+                 $(namespace+"#table-liste-article tbody").append(tr);
+             })
+           })
+       }
+   })
 
 })

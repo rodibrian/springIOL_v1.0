@@ -70,11 +70,47 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
 
     @Query(value = "select a.article_id,u.id,s.magasin_id,a.designation as ad,c.libelle, u.designation," +
             "(s.count/(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as nb , m.nom_magasin " +
-            "FROM unite u , Stock s , article_unite as au , article a , categorie  c , magasin m " +
+            "FROM unite u ,Stock s ,article_unite as au ,article a , categorie  c,magasin m " +
             "WHERE au.article_id = a.article_id and au.unite_id = u.id "+
             "and a.categorie_id = c.id " +
             "and s.article_id = au.article_id and m.filiale_id=:filialeId and m.id_magasin = s.magasin_id",nativeQuery = true)
     List<String> getSubsidiaryInventoryWithPriceAndExpirationDate(@Param("filialeId") Long filialeId);
+
+    @Query(value = "select " +
+            "a.article_id" +
+            ",u.id" +
+            ",a.designation as designation_article,"+
+            "u.designation," +
+            "(s.count/(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as _stock," +
+            "(select paf2.prix_vente from prix_article_filiale paf2 where paf2.filiale_id =:filialeId and paf2.unite_id=u.id and paf2.article_id = a.article_id order by date_enregistrement desc limit 1) as prix " +
+            "FROM unite u,Stock s,article_unite as au,article a "+
+            "WHERE au.article_id = a.article_id and au.unite_id = u.id and au.filiale_id =:filialeId "+
+            "and s.article_id = au.article_id and a.status ='USED' and  s.magasin_id =:magasinId",nativeQuery = true)
+    List<String> getSubsidiaryItemInfo(@Param("filialeId") Long filialeId,@Param("magasinId") Long magasinId);
+
+    @Query(value = "select "+
+            "a.article_id" +
+            ",u.id" +
+            ",a.designation as designation_article,"+
+            "u.designation,"+
+            "(s.count/(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as _stock," +
+            "(select paf2.prix_vente from prix_article_filiale paf2 where paf2.filiale_id =:filialeId and paf2.unite_id=u.id and paf2.article_id = a.article_id order by date_enregistrement desc limit 1) as prix " +
+            "FROM unite u,Stock s,article_unite as au,article a "+
+            "WHERE au.article_id = a.article_id and au.unite_id = u.id and au.filiale_id =:filialeId "+
+            "and s.article_id = au.article_id and s.magasin_id =:magasinId and a.status ='USED' and trim(lower(a.designation)) like concat('%',trim(lower(:name)),'%')",nativeQuery = true)
+    List<String> getSubsidiaryItemInfoByName(@Param("filialeId") Long filialeId,@Param("magasinId") Long magasinId,@Param("name")String name);
+
+    @Query(value = "select " +
+            "a.article_id" +
+            ",u.id" +
+            ",a.designation as designation_article,"+
+            "u.designation,"+
+            "(s.count/(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as _stock," +
+            "(select paf2.prix_vente from prix_article_filiale paf2 where paf2.filiale_id =:filialeId and paf2.unite_id=u.id and paf2.article_id = a.article_id order by date_enregistrement desc limit 1) as prix " +
+            "FROM unite u,Stock s,article_unite as au,article a "+
+            "WHERE au.article_id = a.article_id and au.unite_id = u.id and au.filiale_id =:filialeId "+
+            "and s.article_id = au.article_id and s.magasin_id =:magasinId and a.status ='USED' and trim(lower(u.designation)) like concat('%',trim(lower(:name)),'%')",nativeQuery = true)
+    List<String> getSubsidiaryItemInfoByUniteName(@Param("filialeId") Long filialeId,@Param("magasinId") Long magasinId,@Param("name")String name);
 
     @Query(value = "select a.article_id,u.id,s.magasin_id,a.designation as ad,c.libelle, u.designation," +
             "(s.count/(SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id = a.article_id AND au.unite_id = u.id)) as nb , m.nom_magasin " +
@@ -82,7 +118,7 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
             "WHERE au.article_id = a.article_id and au.unite_id = u.id "+
             "and a.categorie_id = c.id " +
             "and s.article_id = au.article_id and m.filiale_id=:filialeId and m.id_magasin = s.magasin_id " +
-            "and s.count<=(select ia.quantite from inventory_alert ia where a.article_id=ia.article_id and ia.filiale_id=m.filiale_id) ",nativeQuery = true)
+            "and s.count<=(select ia.quantite from inventory_alert ia  where a.article_id=ia.article_id and a.status ='USED' and  ia.filiale_id=m.filiale_id) ",nativeQuery = true)
     List<String> getSubsidiaryInventoryAlert(@Param("filialeId") Long filialeId);
 
     @Query(value = "SELECT prix_vente from prix_article_filiale where article_id =:artId and unite_id =:uId and filiale_id =:fId order by date_enregistrement desc limit 1",nativeQuery = true)

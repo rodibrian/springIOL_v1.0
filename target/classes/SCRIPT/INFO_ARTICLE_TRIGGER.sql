@@ -1,5 +1,3 @@
-
-
 -- -- MIS A JOUR DATE DE PEREMPTION
 create or replace procedure mettre_a_jour_date_peremption(IN id_magasin bigint, IN id_article bigint, IN id_unite bigint, IN new_date timestamp , IN old_date timestamp)
     language plpgsql
@@ -10,9 +8,9 @@ DECLARE
 BEGIN
 
     for row in select ap1.id from approv ap1 join info_article_magasin iam on iam.id = ap1.info_article_magasin_id where iam.magasin_id=id_magasin and iam.article_id= id_article and iam.unite_id = id_unite and ap1.date_peremption =old_date
-        loop
+    loop
             update approv set  date_peremption =  new_date where id = row.id;
-        end loop;
+    end loop;
 
 END;
 $$;
@@ -49,11 +47,9 @@ BEGIN
 
                 QUANTITE_AJOUT_TEMP := ( QUANTITE_AJOUT_TEMP - row.quantite_peremption );
 
-
             end if;
 
         END LOOP;
-
 end;
 $$;
 alter procedure mettre_a_jour_quantite_en_peremption(bigint, bigint, bigint, double precision) owner to postgres;

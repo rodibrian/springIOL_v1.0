@@ -2,22 +2,23 @@ $(function () {
     /*-------------------------
             MENU PEREMPTION
      ---------------------------*/
-    let namespace = "#menu-peremption ";
+    let namespace = "#menu-peremption  ";
 
     exportToExcel(namespace +'.btn-export-to-excel','peremptions', namespace + '.table-peremption');
-    $(document).on('dblclick',namespace + '.table-peremption tbody tr',function () {
+    $(document).on('dblclick','.table-peremption tbody tr',function () {
         // get code of current article
+        console.log("Ato");
         let tr = $(this);
         let tr_id = tr.attr("id");
         let split = tr_id.split("-");
         let magasin_id = split[0];
         let article_id = split[1];
         let unite_id = split[2];
-        $(namespace + '#modal-date-peremption').modal('show')
+        $('#modal-date-peremption').modal('show')
         // enregistrement du date de peremption
-        $(namespace + "#modal-date-peremption #btn-enregistrer-date-peremption").on('click', function(){
+        $("#modal-date-peremption #btn-enregistrer-date-peremption").on('click', function(){
             let old_date = $(tr).children().eq(3).text();
-            $datePeremption = $(namespace + '#modal-date-peremption #input-date-peremption').val();
+            $datePeremption = $('#modal-date-peremption #input-date-peremption').val();
             let date_wrapper = {};
             date_wrapper.newDate = new Date($datePeremption);
             date_wrapper.oldDate = new Date(old_date);
@@ -38,7 +39,7 @@ $(function () {
     function createBadgeClass(value){
         switch (value) {
             case "périmé" : return "badge badge-danger-lighten";
-            case "fort" : return "badge badge-success-lighten";
+            case "forte" : return "badge badge-success-lighten";
             case "faible" : return "badge badge-warning-lighten";
             case 'moyenne': return "badge badge-primary-lighten";
         }
@@ -46,7 +47,6 @@ $(function () {
 
     const appendExpirationData = (expiration_data) =>{
         $("#expiration-table tbody").empty();
-        console.log(expiration_data);
         $.each(expiration_data,(key,value)=>{
             let row_id = value.magasinId +"-"+ value.articleId +"-"+ value.uniteId ;
             let tr= [
@@ -81,19 +81,6 @@ $(function () {
         execute_ajax_request("get",url,null,(expiration_data)=> appendExpirationData(expiration_data));
     })
     /*
-     ajouter un article à peremption
-     */
-
-    $(document).on('dblclick', namespace + "#modal-liste-article tbody tr", function() {
-
-        $article = $(this);
-
-        push_to_table_list(namespace + ".table-peremption", $article.children().eq(0).text(),
-            [$article.children().eq(0).text(), $article.children().eq(1).text(), $article.children().eq(2).text(), $article.children().eq(3).text(), new Date().toLocaleDateString(), setLabelPeremption( new Date()) ])
-
-        $(namespace + "#modal-liste-article").modal('hide')
-    })
-    /*
      ajouter bouton date de peremption
      */
     function setLabelPeremption($datePeremption) {
@@ -111,10 +98,11 @@ $(function () {
     // Magasin filter
     $(document).on('change',namespace+"#magasin-select-item",function(){
         let magasinId = $(this).val();
-        if (magasinId!=="toutes"){
-            let url = "http://localhost:8080/api/v1/expirations/"+magasinId;
-            execute_ajax_request('get',url,null,(data)=>appendExpirationData(data));
-        }
+        let url = "";
+        let filialeId = $(namespace + '#filiale-id').attr("value-id");
+        if (magasinId!=="toutes") url = "http://localhost:8080/api/v1/expirations/"+magasinId;
+        else url ="http://localhost:8080/api/v1/expirations/"+filialeId+"/status/toutes";
+        execute_ajax_request('get',url,null,(data)=>appendExpirationData(data));
     })
 
 })

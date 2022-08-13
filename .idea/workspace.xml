@@ -5,26 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bd9c0e93-77b1-4a8f-96ad-44ae32dfbfef" name="Changes" comment="reste menu-operation filtre">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/wrapper/ItemWrapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/vente/list-article-info.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iol.iml" beforeDir="false" afterPath="$PROJECT_DIR$/iol.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/ActivityRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/ActivityRessource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/ExpirationRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/ExpirationRessource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/SupplyRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/SupplyRessource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/servletController/MenuNavController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/servletController/MenuNavController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/repository/ArticleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/repository/ArticleRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/service/ArticleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/service/ArticleService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/SCRIPT/INFO_ARTICLE_TRIGGER.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/SCRIPT/INFO_ARTICLE_TRIGGER.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-detail-vente.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-detail-vente.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-peremption.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-peremption.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-vente.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-vente.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/vente/list-article.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/vente/list-article.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-peremption.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-peremption.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-vente.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-vente.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/iol/repository/ArticleRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/iol/repository/ArticleRepositoryTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/SCRIPT/INFO_ARTICLE_TRIGGER.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SCRIPT/INFO_ARTICLE_TRIGGER.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/ExpirationRessource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/ExpirationRessource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/SupplyRessource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/SupplyRessource.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/servletController/MenuNavController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/servletController/MenuNavController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/ArticleRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/repository/ArticleRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/iol/service/ArticleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/service/ArticleService.class" afterDir="false" />
@@ -39,9 +37,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Jsp File" />
         <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -110,6 +108,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="database.data.extractors.current.export.id" value="Comma-separated (CSV)_id" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="H:/iolV2" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -196,22 +195,6 @@
     <configuration name="generated-requests#125" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="125" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="ArticleRepositoryTest.getProductExpirationByProductName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="iol" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.iol.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.iol.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.iol.repository.ArticleRepositoryTest" />
-      <option name="METHOD_NAME" value="getProductExpirationByProductName" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ArticleRepositoryTest.getProductExpirationByStore" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="iol" />
       <extension name="coverage">
@@ -223,6 +206,22 @@
       <option name="PACKAGE_NAME" value="com.iol.repository" />
       <option name="MAIN_CLASS_NAME" value="com.iol.repository.ArticleRepositoryTest" />
       <option name="METHOD_NAME" value="getProductExpirationByStore" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ArticleRepositoryTest.getSubsidiaryItemInfo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="iol" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.iol.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.iol.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.iol.repository.ArticleRepositoryTest" />
+      <option name="METHOD_NAME" value="getSubsidiaryItemInfo" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -277,11 +276,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ArticleRepositoryTest.getSubsidiaryItemInfo" />
         <item itemvalue="JUnit.ArticleRepositoryTest.getProductExpirationByStore" />
         <item itemvalue="JUnit.ArticleRepositoryTest.updateQuantiteAlert" />
         <item itemvalue="HTTP Request.generated-requests#125" />
         <item itemvalue="JUnit.ArticleRepositoryTest.updateExpirationDate" />
-        <item itemvalue="JUnit.ArticleRepositoryTest.getProductExpirationByProductName" />
       </list>
     </recent_temporary>
   </component>
@@ -361,7 +360,9 @@
       <workItem from="1660207359028" duration="24692000" />
       <workItem from="1660244277709" duration="24536000" />
       <workItem from="1660286853258" duration="9784000" />
-      <workItem from="1660308341049" duration="12600000" />
+      <workItem from="1660308341049" duration="13369000" />
+      <workItem from="1660387215940" duration="3536000" />
+      <workItem from="1660406564025" duration="5424000" />
     </task>
     <task id="LOCAL-00001" summary="mapping de la trigger avec la table approvisionnement">
       <created>1658448504125</created>
@@ -413,26 +414,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/iol/Iol.java</url>
           <line>39</line>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/iol/service/ArticleService.java</url>
-          <line>129</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/iol/service/ArticleService.java</url>
-          <line>130</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/iol/service/ArticleService.java</url>
-          <line>131</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/iol/service/ArticleService.java</url>
-          <line>132</line>
-          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

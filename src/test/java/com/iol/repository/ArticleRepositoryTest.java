@@ -149,4 +149,11 @@ class ArticleRepositoryTest{
         List<String> productExpirationByStore = articleRepository.getProductExpirationByStore(2L);
         assertThat(productExpirationByStore).isNotEmpty();
     }
+
+    @Test
+    void getSubsidiaryItemInfo() {
+        List<String> subsidiaryItemInfo = articleRepository.getSubsidiaryItemInfo(1L, 1L);
+        assertThat(subsidiaryItemInfo.size()).isEqualTo(2);
+        System.out.println(subsidiaryItemInfo);
+    }
 }

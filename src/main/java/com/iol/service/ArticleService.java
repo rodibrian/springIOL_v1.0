@@ -4,6 +4,7 @@ import com.iol.model.tenantEntityBeans.InfoArticleMagasin;
 import com.iol.model.wrapper.ExpirationWrapper;
 import com.iol.model.wrapper.InventoryViewWrapper;
 import com.iol.model.wrapper.InventoryWrapper;
+import com.iol.model.wrapper.ItemWrapper;
 import com.iol.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class ArticleService{
-
     @Autowired
     private ArticleRepository articleRepository;
 
@@ -33,6 +33,37 @@ public class ArticleService{
         List<String> stockWithPriceAndExpirationDate = articleRepository.getSubsidiaryInventoryWithPriceAndExpirationDate(filialeId);
         List<InventoryViewWrapper> list = createInventoryViewWrappers(stockWithPriceAndExpirationDate);
         return list;
+    }
+
+    public List<ItemWrapper> getAllItemInfo(Long filialeId,Long magasinId){
+        List<String> strings = articleRepository.getSubsidiaryItemInfo(filialeId,magasinId);
+        return createItemWrapper(strings);
+    }
+
+    public List<ItemWrapper> getAllItemInfoByName(Long filialeId,Long magasinId,String name){
+        List<String> strings = articleRepository.getSubsidiaryItemInfoByName(filialeId,magasinId,name);
+        return createItemWrapper(strings);
+    }
+
+    public List<ItemWrapper> getAllItemInfoByUniteName(Long filialeId,Long magasinId,String name){
+        List<String> strings = articleRepository.getSubsidiaryItemInfoByUniteName(filialeId,magasinId,name);
+        return createItemWrapper(strings);
+    }
+
+    private ArrayList<ItemWrapper> createItemWrapper(List<String> strings) {
+        List<String[]> collect = strings.stream().map(s -> s.split(",")).collect(Collectors.toList());
+        ArrayList<ItemWrapper> wrappers = new ArrayList<>();
+        collect.forEach(t -> {
+            ItemWrapper itemWrapper = new ItemWrapper();
+            itemWrapper.setItemId(t[0]);
+            itemWrapper.setUniteId(t[1]);
+            itemWrapper.setItemName(t[2]);
+            itemWrapper.setUniteName(t[3]);
+            itemWrapper.setStock(t[4]);
+            itemWrapper.setPrice(t[5]);
+            wrappers.add(itemWrapper);
+        });
+        return wrappers;
     }
 
     public List<InventoryViewWrapper> getAllInventoryAlert(Long filialeId){
@@ -91,15 +122,12 @@ public class ArticleService{
         return list;
     }
 
-
     public List<ExpirationWrapper> getProductByExpirationByStatus(String status,Long filialeId){
-        List<String> productExpirationByStatus = createExpirationDataByStatus(status, filialeId);
+        var productExpirationByStatus = createExpirationDataByStatus(status, filialeId);
         List<String[]> collect = productExpirationByStatus.stream().map(s -> s.split(",")).collect(Collectors.toList());
-        List<ExpirationWrapper> list = createExpirationWrapper(collect);
-        return list;
+        return createExpirationWrapper(collect);
     }
-
-    private List<String> createExpirationDataByStatus(String status, Long filialeId){
+    private List<String> createExpirationDataByStatus(String status,Long filialeId){
         switch (status){
             case  "Forte"  : return articleRepository.getProductExpirationByStatusStrong(filialeId,THREE_MONTH);
             case  "Moyenne": return articleRepository.getProductExpirationByStatus(filialeId,MONTH,TWO_MONTH);
@@ -108,8 +136,7 @@ public class ArticleService{
             default: return articleRepository.getProductExpiration(filialeId);
         }
     }
-
-    private List<ExpirationWrapper> createExpirationWrapper(List<String[]> collect) {
+    private List<ExpirationWrapper> createExpirationWrapper(List<String[]> collect){
         List<ExpirationWrapper> list = new ArrayList<>();
         collect.forEach(strings -> {
             ExpirationWrapper expirationWrapper = new ExpirationWrapper();
@@ -125,7 +152,6 @@ public class ArticleService{
         });
         return list;
     }
-
     private String dayCount2ExpirationStatus(Double count){
         if (count>=THREE_MONTH) return "forte";
         if (count<=0) return "périmé";
@@ -133,9 +159,7 @@ public class ArticleService{
         if (count> MONTH  && count<=TWO_MONTH) return "moyenne";
         return "";
     }
-
-
-    private List<InventoryViewWrapper> createInventoryViewWrappers(List<String> stockWithPriceAndExpirationDate ) {
+    private List<InventoryViewWrapper> createInventoryViewWrappers(List<String> stockWithPriceAndExpirationDate ){
         List<InventoryViewWrapper> list = new ArrayList<>();
         List<String[]> collect = stockWithPriceAndExpirationDate.stream().map(s -> s.split(",")).collect(Collectors.toList());
         collect.forEach(strings -> {
@@ -153,11 +177,9 @@ public class ArticleService{
         });
         return list;
     }
-
     public List<String[]> processUniteAndNiveau(Long articleId){
         return articleRepository.getAllUniteAndNiveau(articleId).stream().map(s -> s.split(",")).collect(Collectors.toList());
     }
-
     public void persistInventorieData(InventoryWrapper wrapper){
         Long uniteId = wrapper.getUniteId();
         Long articleId = wrapper.getArticleId();

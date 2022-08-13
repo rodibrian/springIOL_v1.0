@@ -137,7 +137,7 @@
 
     <div class="temporally"></div>
 
-    <%@ include file="modal/vente/list-article.jsp" %>
+    <%@ include file="modal/vente/list-article-info.jsp" %>
     <%@ include file="modal/vente/list-client.jsp" %>
     <%@ include file="modal/vente/prix-special.jsp" %>
     <%@ include file="modal/client/new-client.jsp" %>

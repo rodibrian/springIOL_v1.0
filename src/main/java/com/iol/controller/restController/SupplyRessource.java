@@ -22,11 +22,7 @@ public class SupplyRessource {
     @Autowired
     private SupplyRepository supplyRepository;
     @Autowired
-    private ArticleRepository articleRepository;
-    @Autowired
     private PuafRepository puafRepository;
-    @Autowired
-    private InventoryRepository inventoryRepository;
 
     @GetMapping(value = "/supplies")
     public ResponseEntity<Object> getAllUnites(){
