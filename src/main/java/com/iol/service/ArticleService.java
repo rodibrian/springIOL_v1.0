@@ -40,8 +40,13 @@ public class ArticleService{
         return createItemWrapper(strings);
     }
 
-    public List<ItemWrapper> getAllItemInfoByName(Long filialeId,Long magasinId,String name){
-        List<String> strings = articleRepository.getSubsidiaryItemInfoByName(filialeId,magasinId,name);
+    public List<ItemWrapper> getAllItemInfo(Long filialeId){
+        List<String> strings = articleRepository.getSubsidiaryItemInfo(filialeId);
+        return createItemWrapper(strings);
+    }
+
+    public List<ItemWrapper> getAllItemInfoByName(Long filialeId,String name){
+        List<String> strings = articleRepository.getSubsidiaryItemInfoByName(filialeId,name);
         return createItemWrapper(strings);
     }
 

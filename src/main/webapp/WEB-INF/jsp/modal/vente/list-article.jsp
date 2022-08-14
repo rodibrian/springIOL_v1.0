@@ -24,7 +24,6 @@
           <tbody>
           <c:forEach var="au" items="${articles}">
             <tr id ="${au.article.id}">
-              <td>  </td>
               <td>${au.article.designation}</td>
               <td value-id ="${au.unite.id}">${au.unite.designation}</td>
               <td>${au.quantiteNiveau}</td>

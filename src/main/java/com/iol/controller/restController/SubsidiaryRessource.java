@@ -58,10 +58,15 @@ public class SubsidiaryRessource{
         return new ResponseEntity<>(subsidiaryInventoryByStoreAndItemName, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/subsidiaries/{id}/items/{name}")
+    @GetMapping(value = "/subsidiaries/{id}/itemsInfo/{name}")
     public ResponseEntity<Object> getSubsidiariesItemsInfo(@PathVariable("id")Long filialeId
                                                           ,@PathVariable("name")String name){
-        return new ResponseEntity<>(articleService.getAllItemInfoByName(), HttpStatus.OK);
+        return new ResponseEntity<>(articleService.getAllItemInfoByName(filialeId,name), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/subsidiaries/{id}/itemsInfo")
+    public ResponseEntity<Object> getSubsidiariesItemsInfo(@PathVariable("id")Long filialeId){
+        return new ResponseEntity<>(articleService.getAllItemInfo(filialeId), HttpStatus.OK);
     }
 
 

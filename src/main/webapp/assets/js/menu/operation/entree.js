@@ -12,10 +12,6 @@ $(function () {
     /*
     ENTREE ARTICLE
      */
-    // Chargement des données de la page;
-    $("#btn-search-article").click(function () {
-
-    })
     // Selection des fournisseurs
     $(document).on('dblclick', namespace + '#table-liste-fournisseur tbody tr', function () {
         get_select_affect_to_input(namespace + '#input-nom-fournisseur', $(this).attr('id'), $(this).children().eq(0).text());
@@ -24,7 +20,7 @@ $(function () {
     /*
      Nouveau Fournisseur
      */
-    $(namespace + '#btn-enregistrer-fournisseur').on('click', function (){
+    $(namespace + '#btn-enregistrer-fournisseur').on('click',function(){
         let nomFournisseur = $(namespace + '#nouveau-fournisseur input#nom').val();
         let adresse = $(namespace + '#nouveau-fournisseur input#adresse').val();
         let contact = $(namespace + '#nouveau-fournisseur input#contact').val();
@@ -36,7 +32,7 @@ $(function () {
         fr.type = 1;
         fr.filiale = {id : filialeId};
         let url = "http://localhost:8080/api/v1/externalEntities";
-        execute_ajax_request("POST",url,fr,(data) =>{
+        execute_ajax_request("POST",url,fr,(data)=>{
             get_select_affect_to_input(namespace + '#input-nom-fournisseur', data.id, nomFournisseur);
             // vider les champs fournisseurs
             $(namespace + '#nouveau-fournisseur input#nom').val("");
@@ -46,23 +42,21 @@ $(function () {
     /*
      Selecter article
      */
-    $(namespace + '#table-liste-article tbody tr').on('dblclick', function () {
+    $(namespace + '#table-liste-article tbody tr').on('dblclick',function () {
         let article_id = $(this).attr("id");
-        let unite_id = $(this).children().eq(2).attr("value-id");
+        let unite_id = $(this).children().eq(1).attr("value-id");
         let prix = $(this).children().eq(5).text();
-        get_select_affect_to_input(namespace + '#input-designation-article', article_id, $(this).children().eq(1).text());
+        get_select_affect_to_input(namespace + '#input-designation-article', article_id, $(this).children().eq(0).text());
         let IS_CREATE = $(namespace + "#select-unite-article").children().length == 0;
-        set_select_option_value_or_update_option([[unite_id, $(this).children().eq(2).text()]], namespace + "#select-unite-article", IS_CREATE);
+        set_select_option_value_or_update_option([[unite_id, $(this).children().eq(1).text()]], namespace + "#select-unite-article", IS_CREATE);
         $(namespace + '#input-prix-vente-article').val("");
         $(namespace + '#modal-liste-article').modal('hide');
         // après selection article, select * unite de l'article
         // ainsi que son prix
     });
-
     /*
      Ajout des articles
      */
-
     $(function() {
         $(namespace + 'form').validate({
             rules : {
@@ -84,12 +78,10 @@ $(function () {
         })
     })
 
-    function validation_ajout_article() {
+    function validation_ajout_article(){
         $(namespace + 'form').validate();
-
         return $(namespace + 'form').valid();
     }
-
 
     $(namespace + '#btn-ajouter-article-entree').on('click', function (){
         if (validation_ajout_article()) {
@@ -160,11 +152,9 @@ $(function () {
         $(namespace + '#select-unite-article option').remove();
         }
     });
-
     /*
      suppression articles à la table
      */
-
     $(document).on('dblclick', "#table-liste-article-entree tbody tr", function () {
         $(this).remove();
         let id = $(this).attr("id");
@@ -210,21 +200,16 @@ $(function () {
                 })
             if ($nArticle == 0) $(namespace + '#btn-' + $modalId).attr('disabled', 'disabled');
     });
-
     /*
      switch magasin <-> voyage
      */
-
     $('.div-select-voyage').hide();
     $(namespace + '#check-magasin, #check-voyage').on('change', function () {
         $(namespace + '.div-select-magasin').toggle();
         $(namespace + '.div-select-voyage').toggle();
     })
-
     /*
-
     facturation
-
      */
 
     function impression_entree() {

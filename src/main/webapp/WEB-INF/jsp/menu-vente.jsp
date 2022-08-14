@@ -23,7 +23,6 @@
                   </c:forEach>
                 </select>
               </div>
-
               <div class="mb-1">
                 <label class="form-label">Client</label>
                 <div class="input-group">

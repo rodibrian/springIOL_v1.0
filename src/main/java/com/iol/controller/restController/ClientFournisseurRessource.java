@@ -41,7 +41,6 @@ public class ClientFournisseurRessource{
         if (!optional.isPresent()){
             return ResponseEntity.notFound().build();
         }
-      //  ClientFournisseur cf = cfRepository.findById(id).orElseThrow(() -> new ResourceAccessException("externalEntities with the " + id + "don't exist"));
         cf.setId(id);
         cfRepository.save(cf);
         return new ResponseEntity<>(cf, HttpStatus.OK);

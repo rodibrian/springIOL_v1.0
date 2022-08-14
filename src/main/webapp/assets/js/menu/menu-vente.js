@@ -16,7 +16,7 @@ $(function () {
         $(namespace + '#nouveau-client input#nomClient').val("");
     }
 
-// ENREGISTRER NOUVEAU CLIENT
+    // ENREGISTRER NOUVEAU CLIENT
     $(namespace + '#nouveau-client #btn-enregistrer-client').on('click', function(){
         let filialeId = $(namespace + '#filiale-id').attr("value-id");
         let nomClient = $(namespace + '#nouveau-client input#nomClient').val();
@@ -46,7 +46,6 @@ $(function () {
         });
         clearForm();
     })
-
     $(namespace + '#table-liste-client tbody tr').on('dblclick', function () {
         get_select_affect_to_input(namespace + '#name-client', $(this).attr('id'), $(this).children().eq(0).text());
         $(namespace + '#modal-liste-client').modal('hide');
@@ -58,20 +57,18 @@ $(function () {
         let url = "http://localhost:8080/api/v1/articles/" + article_id + "/unites/" + unite_id + "/filiales/" + filialeId + "/prices";
         execute_ajax_request("get", url, null, (data) => $(namespace + "#input-prix-unitaire").val(data))
     }
-
     $(document).on('dblclick', namespace + '#table-liste-article tbody tr', function () {
         let article_id = $(this).attr("id");
-        let unite_id = $(this).children().eq(2).attr("value-id");
+        let unite_id = $(this).children().eq(1).attr("value-id");
         let filialeId = $(namespace + '#filiale-id').attr("value-id");
         get_select_affect_to_input(namespace + '#designation-article', article_id, $(this).children().eq(1).text());
         $(namespace + '#modal-liste-article').modal('hide');
-        set_select_option_value([unite_id, $(this).children().eq(2).text()], namespace + "#input-unite-article");
-        updatePrixUnitaire(article_id, unite_id, filialeId);
+        set_select_option_value([unite_id, $(this).children().eq(1).text()], namespace + "#input-unite-article");
+        updatePrixUnitaire(article_id,unite_id,filialeId);
         get_select_affect_to_input(namespace + "#input-prix-unitaire", "", $(this).children().eq(5).text())
         // après selection article, select * unite de l'article
         // ainsi que son prix
     });
-
     /*------------------------------------------------------------------------------
                                             PRIX- SPECIAL ARTICLE
      -------------------------------------------------------------------------------*/
@@ -95,36 +92,11 @@ $(function () {
         $articleId = $(namespace + '#designation-article').attr('value-id');
         $uniteId = $(namespace + '#input-unite-article option:selected').val();
         $magasinId = $(namespace + '#select-magasin').val();
-        let url = "http://localhost:8080/api/v1/magasins/" + $magasinId + "/inventories/" + $articleId + "/" + $uniteId;
-        execute_ajax_request("get", url, null, function (data){
-            $(namespace + 'form').validate({
-                rules: {
-                    designation: {required: true},
-                    unite: {required: true},
-                    inputQuantiteArticle: {required: true, min: 0.0001, max: data, number: true},
-                    inputPrixUnitaire: {required: true, min: 0.0001, number: true},
-                },
-                messages: {
-                    designation: {required: ''},
-                    unite: {required: 'Unite d\'article requis'},
-                    inputQuantiteArticle: {
-                        required: 'Quantite non valide',
-                        min: "Quantite doit d\'être >0",
-                        number: true
-                    },
-                    inputPrixUnitaire: {required: '', min: '', number: true},
-                }
-            })
-        })
         $(namespace + 'form').validate();
         return $(namespace + 'form').valid();
     }
-
-
     /*
-
     mask et validation
-
      */
     $('.btn-ajouter-article-vente').on('click', function (){
         if (validation_ajout_article()) {
@@ -141,7 +113,7 @@ $(function () {
             push_to_table_list(namespace + '#table-liste-article-vente',$row_id, $article_vente);
             // vider form vente
             $('.form-vente input').each(function () {
-                if ($(this).attr('id') != 'name-client') $(this).attr('value', '');
+                if ($(this).attr('id') !== 'name-client') $(this).attr('value', '');
                 if ($(this).attr('type') === 'number') $(this).val(0);
             });
             // vide option
@@ -150,7 +122,6 @@ $(function () {
             updateLabelFooter()
         }
     })
-
     /*
      enregistrement du vente
      */
@@ -229,7 +200,6 @@ $(function () {
     // Facturation de vente
     function generer_ticket() {
         let space = namespace + '#impression-ticket-caisse ';
-
         /*
         vider la table
          */
@@ -299,10 +269,7 @@ $(function () {
 
         // print
         $(space).printThis()
-
-
     }
-
 
     function updateLabelFooter() {
         $countArticle = $(namespace + '#table-liste-article-vente tbody tr').length;
@@ -317,29 +284,92 @@ $(function () {
         $(namespace + '.label-somme-fmg').text($sommeMontant * 5)
 
     }
-
     /*
    *  RECHERCHER ARTICLE
    */
-   $(document).on("keyup",namespace+"#inpute-article-search",()=>{
-       let item_name = $(this).val();
-       if (item_name!==""){
-           let url = ""
-           execute_ajax_request("get",url,null,(data)=> {
-               $(namespace+"#table-liste-article tbody").empty();
-               $.each(data,(key,value)=>{
-                 let tr = `
-                        <tr id ="`+value.itemId+`">
-                            <td>`+value.itemName+`</td>
-                            <td value-id ="value.uniteId">`+value.uniteName+`</td>
-                            <td>`+value.stock+`</td>
-                            <td>`+value.price+`</td>
-                        </tr>
-                  `;
-                 $(namespace+"#table-liste-article tbody").append(tr);
-             })
-           })
+   let item_tab = [];
+    function appendDataToTable(data){
+        $(namespace + "#table-liste-article tbody").empty();
+        $.each(data, (key, value) => {
+            let tr = `
+                            <tr id ="` + value.itemId + `">
+                                <td>` + value.itemName + `</td>
+                                <td value-id ="` +value.uniteId+ `">` + value.uniteName + `</td>
+                                <td>` + value.stock + `</td>
+                                <td>` + value.price + `</td>
+                            </tr>
+                     `;
+            $(namespace + "#table-liste-article tbody").append(tr);
+            let map = [tr,value];
+            if (item_tab.length===0) item_tab.push(map);
+            else {
+                let finded_item = item_tab.find(item => (item[1].itemId === value.itemId && item[1].uniteId ===value.uniteId ) );
+                if (finded_item=== undefined) item_tab.push(map);
+            }
+        })
+    }
+    function find_item(item_name) {
+        let filialeId = $(namespace + '#filiale-id').attr("value-id");
+        let url = "http://localhost:8080/api/v1/subsidiaries/" + filialeId + "/itemsInfo/" + item_name;
+        execute_ajax_request("get", url, null, (data) => appendDataToTable(data))
+    }
+
+    $(document).on("keyup",namespace+"#inpute-article-search",()=>{
+       let item_name = $(namespace+"#inpute-article-search").val().toLowerCase().trim();
+       if (item_name!==''){
+           if (item_tab.length===0) find_item(item_name);
+           else{
+               let finded_item = item_tab.find(item => item[1].itemName.toLowerCase().trim().search(item_name)!==-1);
+               if (finded_item !== undefined && finded_item !== null){
+                   $(namespace + "#table-liste-article tbody").empty();
+                   $(namespace + "#table-liste-article tbody").append(finded_item[0]);
+               }else find_item(item_name);
+           }
+       }else if (item_tab.length!==0){
+           $(namespace + "#table-liste-article tbody").empty();
+           item_tab.forEach(value => $(namespace+"#table-liste-article tbody").append(value[0]));
        }
    })
+    /*
+    *  RECHERCHER  ARTICLE
+    * */
+    $(namespace+"#btn-search-article").click(()=>{
+        if (item_tab.length===0){
+            let filialeId = $(namespace + '#filiale-id').attr("value-id");
+            let url = "http://localhost:8080/api/v1/subsidiaries/"+filialeId+"/itemsInfo/";
+            execute_ajax_request("get", url, null, (data) => appendDataToTable(data))
+        }
+    })
+    /*
+    * RECHERCHER CLIENT
+    * */
+    let client_tab = [];
 
+    function append_client(data) {
+        $(namespace + "#table-liste-client tbody").empty();
+        data.forEach(cf => {
+            let tr = `
+                            <tr id="` + cf.id + `">
+                              <td>` + cf.nom + `</td>
+                              <td>` + cf.adresse + `</td>
+                              <td>` + cf.numTel + `</td>
+                            </tr>
+                    `;
+            let map = [tr, cf];
+            $(namespace + "#table-liste-client tbody").append(tr);
+            if (client_tab.length === 0) client_tab.push(map);
+            else {
+                let finded_client = client_tab.find(map => map[1].id === cf.id);
+                if (finded_client === undefined) client_tab.push(map);
+            }
+        })
+    }
+
+    $(namespace+"#btn-search-client").click(()=>{
+        if (client_tab.length===0){
+            let filialeId = $(namespace + '#filiale-id').attr("value-id");
+            let url  = "http://localhost:8080/api/v1/externalEntities/0/"+filialeId;
+            execute_ajax_request('get',url,null,(data)=> append_client(data))
+        }
+    })
 })

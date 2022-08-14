@@ -264,19 +264,13 @@ public class MenuNavController{
 
     @RequestMapping(value = "/ventes", method = RequestMethod.GET)
     public ModelAndView getVentes(HttpServletRequest request){
-
         Map<String, Long> map = getConnectedUserInfo(request);
-
         Long filialeId = map.get(FILIALE_ID);
         Long magasinId = map.get(MAGASIN_ID);
-
         ModelAndView modelAndView = new ModelAndView("menu-vente");
-
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
-
-        modelAndView.addObject(ARTICLE_LIST,articleService.getAllItemInfo(filialeId,magasinId));
-
-        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(CLIENT,filialeId));
+//        modelAndView.addObject(ARTICLE_LIST,articleService.getAllItemInfo(filialeId,magasinId));
+//        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(CLIENT,filialeId));
 
         return modelAndView;
     }

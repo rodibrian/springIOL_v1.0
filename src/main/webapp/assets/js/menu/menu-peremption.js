@@ -5,9 +5,9 @@ $(function () {
     let namespace = "#menu-peremption  ";
 
     exportToExcel(namespace +'.btn-export-to-excel','peremptions', namespace + '.table-peremption');
+
     $(document).on('dblclick','.table-peremption tbody tr',function () {
         // get code of current article
-        console.log("Ato");
         let tr = $(this);
         let tr_id = tr.attr("id");
         let split = tr_id.split("-");
@@ -25,15 +25,13 @@ $(function () {
             let url = "http://localhost:8080/api/v1/expirations/"+magasin_id+"/"+article_id+"/"+unite_id;
             execute_ajax_request("PUT",url,date_wrapper,(data)=>{
                 $(tr).children().eq(3).text(new Date($datePeremption).toLocaleDateString());
-
+                $('#modal-date-peremption #input-date-peremption').val(null);
             })
         })
     })
 
     /*
-    *
     *   RECHERCHER ARTICLE
-    *
     * */
 
     function createBadgeClass(value){
@@ -72,8 +70,8 @@ $(function () {
     /*
     *
     * ARTICLE STATUS [ PERIME,FAIBLE,MOYENNE,FORTE]
-    *
     * */
+
     $(namespace+".btn-status").click(function (){
         let expiration_status = $(this).text();
         let filialeId = $(namespace + '#filiale-id').attr("value-id");
@@ -84,18 +82,16 @@ $(function () {
      ajouter bouton date de peremption
      */
     function setLabelPeremption($datePeremption) {
-
         if ($datePeremption > new Date())
             return $('<span class="badge badge-primary-lighten">Forte</span>').html()
         return $('<span class="badge badge-danger-lighten">p&eacute;rim&eacute;</span>').html()
-
     }
 
     /*
     *  FILTRER EN FONCTION MAGASIN
     * */
-
     // Magasin filter
+
     $(document).on('change',namespace+"#magasin-select-item",function(){
         let magasinId = $(this).val();
         let url = "";
@@ -103,6 +99,6 @@ $(function () {
         if (magasinId!=="toutes") url = "http://localhost:8080/api/v1/expirations/"+magasinId;
         else url ="http://localhost:8080/api/v1/expirations/"+filialeId+"/status/toutes";
         execute_ajax_request('get',url,null,(data)=>appendExpirationData(data));
-    })
+    });
 
 })
