@@ -22,13 +22,6 @@
           </tr>
           </thead>
           <tbody>
-<%--          <c:forEach var="cf" items="${cfList}">--%>
-<%--            <tr id="${cf.id}">--%>
-<%--              <td><c:out value="${cf.nom}"/></td>--%>
-<%--              <td><c:out value="${cf.adresse}"/></td>--%>
-<%--              <td><c:out value="${cf.numTel}"/></td>--%>
-<%--            </tr>--%>
-<%--          </c:forEach>--%>
           </tbody>
         </table>
       </div>

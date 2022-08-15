@@ -15,7 +15,6 @@ $(function () {
         $(namespace + '#nouveau-client input#numCIN').val("");
         $(namespace + '#nouveau-client input#nomClient').val("");
     }
-
     // ENREGISTRER NOUVEAU CLIENT
     $(namespace + '#nouveau-client #btn-enregistrer-client').on('click', function(){
         let filialeId = $(namespace + '#filiale-id').attr("value-id");
@@ -46,6 +45,7 @@ $(function () {
         });
         clearForm();
     })
+
     $(namespace + '#table-liste-client tbody tr').on('dblclick', function () {
         get_select_affect_to_input(namespace + '#name-client', $(this).attr('id'), $(this).children().eq(0).text());
         $(namespace + '#modal-liste-client').modal('hide');
@@ -57,17 +57,19 @@ $(function () {
         let url = "http://localhost:8080/api/v1/articles/" + article_id + "/unites/" + unite_id + "/filiales/" + filialeId + "/prices";
         execute_ajax_request("get", url, null, (data) => $(namespace + "#input-prix-unitaire").val(data))
     }
+
     $(document).on('dblclick', namespace + '#table-liste-article tbody tr', function () {
         let article_id = $(this).attr("id");
         let unite_id = $(this).children().eq(1).attr("value-id");
+        $quantite_stock = $(this).children().eq(2).text();
+        $prix_article = $(this).children().eq(3).text();
         let filialeId = $(namespace + '#filiale-id').attr("value-id");
         get_select_affect_to_input(namespace + '#designation-article', article_id, $(this).children().eq(1).text());
-        $(namespace + '#modal-liste-article').modal('hide');
         set_select_option_value([unite_id, $(this).children().eq(1).text()], namespace + "#input-unite-article");
-        updatePrixUnitaire(article_id,unite_id,filialeId);
-        get_select_affect_to_input(namespace + "#input-prix-unitaire", "", $(this).children().eq(5).text())
-        // après selection article, select * unite de l'article
-        // ainsi que son prix
+        /* AFFECTATION DU PRIX UNITAIRE */
+        $(namespace + "#input-prix-unitaire").val($prix_unitaire);
+        get_select_affect_to_input(namespace + "#input-prix-unitaire", "", $(this).children().eq(5).text());
+        $(namespace + '#modal-liste-article').modal('hide');
     });
     /*------------------------------------------------------------------------------
                                             PRIX- SPECIAL ARTICLE
@@ -78,7 +80,7 @@ $(function () {
         $special_value = $(namespace + '#input-prix-special').val();
         $special_price_final = $isRemise ? $current_price - $current_price * ($special_value / 100) : $special_value;
         get_select_affect_to_input(namespace + '#input-prix-unitaire', null, $special_price_final);
-        $(namespace + '#modal-prix-special').modal('hide')
+        $(namespace + '#modal-prix-special').modal('hide');
     })
     /*------------------------------------------------------------------------------
                                             SUPPRESSION D'UN ARTICLE
@@ -98,7 +100,7 @@ $(function () {
     /*
     mask et validation
      */
-    $('.btn-ajouter-article-vente').on('click', function (){
+    $('.btn-ajouter-article-vente').on('click',function (){
         if (validation_ajout_article()) {
             $articleId = $(namespace + '#designation-article').attr('value-id');
             $designation = $(namespace + '#designation-article').val();
@@ -126,7 +128,6 @@ $(function () {
      enregistrement du vente
      */
     $(namespace + '.form-vente .btn-enregistrer-vente').on('click', function () {
-
         $countArticl = $(namespace + '#table-liste-article-vente tbody tr').length;
         $sommeMontant = 0
         $(namespace + '#table-liste-article-vente tbody tr').each(function (key, value) {
@@ -137,7 +138,6 @@ $(function () {
             '<li>Nombre d\'article : <strong>' + $countArticle + '</strong></li>' +
             '<li>Somme : <strong>' + $sommeMontant + ' Ar</strong></li>' +
             '';
-
         const getDataFromTable = (ref,date,user_id)=>{
            let tr_tab = $(namespace + '#table-liste-article-vente tbody tr');
            let tab = [];
@@ -161,7 +161,6 @@ $(function () {
             })
             return tab;
         };
-
         $modalId = 'confirmation-de-vente';
         create_confirm_dialog('Confirmation de Vente', $content, $modalId, 'Enregistrer', 'btn-primary')
             .on('click',function(){
@@ -185,20 +184,16 @@ $(function () {
                 });
                 hideAndRemove('#' + $modalId)
             })
-
         $nArticle = $(namespace + '#table-liste-article-vente tbody tr').length;
         if ($nArticle == 0) $(namespace + '#btn-' + $modalId).attr('disabled', 'disabled');
         else $(namespace + '#btn-' + $modalId).removeAttr('disabled')
-
     });
-
     function impression_vente() {
         generer_ticket()
         generer_facture()
     }
-
     // Facturation de vente
-    function generer_ticket() {
+    function generer_ticket(){
         let space = namespace + '#impression-ticket-caisse ';
         /*
         vider la table
@@ -230,10 +225,8 @@ $(function () {
         $(space).printThis();
 
     }
-
     function generer_facture() {
         let space = namespace + '#impression-facture-vente ';
-
         /*
         vider la table
          */
@@ -242,11 +235,9 @@ $(function () {
         /*
         information facture
          */
-
         $client = $(namespace + "#name-client").val();
         $magasin = $(namespace + "#select-magasin option:selected").text();
         $user = $(namespace + '#user-id').attr('value-id');
-
         /*
         add information
          */
@@ -254,9 +245,7 @@ $(function () {
         $(space + '.label-nom-client').text($client);
         $(space + '.label-magasin').text($magasin);
         $(space + '.label-utilisateur').text($user);
-
         $somme = 0;
-
         $(namespace + '#table-liste-article-vente tbody tr').each(function (index, tr) {
             $array = [$(tr).children().eq(0).text(), $(tr).children().eq(1).text(), $(tr).children().eq(2).text(), $(tr).children().eq(3).text(), $(tr).children().eq(4).text()]
             push_to_table_list(space + '#table-liste-ventes', '', $array)
@@ -270,7 +259,6 @@ $(function () {
         // print
         $(space).printThis()
     }
-
     function updateLabelFooter() {
         $countArticle = $(namespace + '#table-liste-article-vente tbody tr').length;
 
@@ -288,7 +276,7 @@ $(function () {
    *  RECHERCHER ARTICLE
    */
    let item_tab = [];
-    function appendDataToTable(data){
+   function appendDataToTable(data){
         $(namespace + "#table-liste-article tbody").empty();
         $.each(data, (key, value) => {
             let tr = `
@@ -308,31 +296,38 @@ $(function () {
             }
         })
     }
-    function find_item(item_name) {
+
+    function find_item(item_name){
         let filialeId = $(namespace + '#filiale-id').attr("value-id");
         let url = "http://localhost:8080/api/v1/subsidiaries/" + filialeId + "/itemsInfo/" + item_name;
         execute_ajax_request("get", url, null, (data) => appendDataToTable(data))
     }
 
-    $(document).on("keyup",namespace+"#inpute-article-search",()=>{
-       let item_name = $(namespace+"#inpute-article-search").val().toLowerCase().trim();
-       if (item_name!==''){
-           if (item_tab.length===0) find_item(item_name);
-           else{
-               let finded_item = item_tab.find(item => item[1].itemName.toLowerCase().trim().search(item_name)!==-1);
-               if (finded_item !== undefined && finded_item !== null){
-                   $(namespace + "#table-liste-article tbody").empty();
-                   $(namespace + "#table-liste-article tbody").append(finded_item[0]);
-               }else find_item(item_name);
-           }
-       }else if (item_tab.length!==0){
-           $(namespace + "#table-liste-article tbody").empty();
-           item_tab.forEach(value => $(namespace+"#table-liste-article tbody").append(value[0]));
-       }
-   })
+    function find_client(client_name){
+        let filialeId = $(namespace + '#filiale-id').attr("value-id");
+        let url = "http://localhost:8080/api/v1/externalEntities/0/"+filialeId;
+        execute_ajax_request("get", url, null, (data) => append_client(data))
+    }
     /*
     *  RECHERCHER  ARTICLE
     * */
+    $(document).on("keyup",namespace+"#inpute-article-search",()=>{
+        let item_name = $(namespace+"#inpute-article-search").val().toLowerCase().trim();
+        if (item_name!==''){
+            if (item_tab.length===0) find_item(item_name);
+            else{
+                let finded_item = item_tab.find(item => item[1].itemName.toLowerCase().trim().search(item_name)!==-1);
+                if (finded_item !== undefined && finded_item !== null){
+                    $(namespace + "#table-liste-article tbody").empty();
+                    $(namespace + "#table-liste-article tbody").append(finded_item[0]);
+                }else find_item(item_name);
+            }
+        }else if (item_tab.length!==0){
+            $(namespace + "#table-liste-article tbody").empty();
+            item_tab.forEach(value => $(namespace+"#table-liste-article tbody").append(value[0]));
+        }
+    });
+
     $(namespace+"#btn-search-article").click(()=>{
         if (item_tab.length===0){
             let filialeId = $(namespace + '#filiale-id').attr("value-id");
@@ -344,6 +339,22 @@ $(function () {
     * RECHERCHER CLIENT
     * */
     let client_tab = [];
+    $(document).on("keyup",namespace+"#input-client-search",()=>{
+        let client_name = $(namespace+"#input-client-search").val().toLowerCase().trim();
+        if (client_name!==''){
+            if (client_tab.length===0)find_client(client_name);
+            else{
+                let finded_client = client_tab.find(item => item[1].nom.toLowerCase().trim().search(client_name)!==-1);
+                if (finded_client !== undefined && finded_client !== null){
+                    $(namespace + "#table-liste-client tbody").empty();
+                    $(namespace + "#table-liste-client tbody").append(finded_client[0]);
+                }else find_client(client_name);
+            }
+        }else if (item_tab.length!==0){
+            $(namespace + "#table-liste-client tbody").empty();
+            client_tab.forEach(value => $(namespace+"#table-liste-client tbody").append(value[0]));
+        }
+    });
 
     function append_client(data) {
         $(namespace + "#table-liste-client tbody").empty();
@@ -362,7 +373,7 @@ $(function () {
                 let finded_client = client_tab.find(map => map[1].id === cf.id);
                 if (finded_client === undefined) client_tab.push(map);
             }
-        })
+        });
     }
 
     $(namespace+"#btn-search-client").click(()=>{
