@@ -1,11 +1,12 @@
 <%--
   Created by IntelliJ IDEA.
   User: tombo augustin
-  Date: 18/08/2022
+  Date: 18/08/2022mini
   Time: 09:11
   To change this template use File | Settings | File Templates.
 --%>
 <!-- Standard modal -->
+<%@ page contentType="text/html; charset=UTF-8" %>
 <div id="info-dette-cf" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
@@ -38,6 +39,7 @@
                                 <th>Reste</th>
                                 <th>Mode de payement</th>
                                 <th>Status</th>
+                                <th>Date échéance</th>
                                 <th>Description</th>
                                 <th>Action</th>
                             </thead>

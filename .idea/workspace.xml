@@ -10,6 +10,10 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/com/iol/repository/CaisseRepository.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/SCRIPT/CAISSE_SCRIPT.sql" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/client/info-dette-cf.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/SCRIPT/CAISSE_SCRIPT.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Caisse.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/InfoFilialeCaisse.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/iol/repository/CaisseRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.zip" afterDir="false" />
@@ -51,11 +55,13 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/servletController/MenuNavController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/servletController/MenuNavController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEnum/TypeOperationCaisse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/entityEnum/TypeOperationCaisse.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Avoir.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Avoir.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/ClientFournisseur.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/ClientFournisseur.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/InfoArticleMagasin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/InfoArticleMagasin.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Operation.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/OperationCaisse.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Trosa.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Trosa.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Vente.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Vente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/TrosaRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/repository/TrosaRepository.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -405,6 +411,7 @@
       <workItem from="1660759446339" duration="3830000" />
       <workItem from="1660794468487" duration="4932000" />
       <workItem from="1660801947373" duration="9421000" />
+      <workItem from="1660811624361" duration="1250000" />
     </task>
     <task id="LOCAL-00001" summary="mapping de la trigger avec la table approvisionnement">
       <created>1658448504125</created>

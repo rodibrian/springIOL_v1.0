@@ -206,6 +206,7 @@ $(function () {
                     value.reste,
                     value.typePayement,
                     `<span class="badge `+createBadge(value.reste)+`">`+createStatus(value.reste)+`</span>`,
+                    new Date().toLocaleString(),
                     value.description,
                     `<a  class="btn-sm btn-danger delete-trosa"><i class="uil-trash-alt"></i></a>`];
                 push_to_table_list(namespace + '#table-dette-cf',value.id,tr);
