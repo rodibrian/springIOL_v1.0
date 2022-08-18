@@ -267,7 +267,7 @@ $(function () {
 
     $(namespace + '#modal-payement-dette form').validate( {
         rules : {
-            montantPayer : { required : true, min : 0.0001, max : 100000},
+            montantPayer : { required : true, min : 0.0001, max : 10000000},
             typePayement : {required :true}
         },
         messages : {
