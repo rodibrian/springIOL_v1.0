@@ -91,17 +91,32 @@ $(function () {
         $(this).remove();
     })
 
+    /*
+   mask et validation
+    */
+
+    $(function () {
+        $(namespace + 'form').validate({
+            rules: {
+                designation: {required: true},
+                unite: {required: true},
+                inputQuantiteArticle: {required: true, min: 0.0001, number: true},
+                inputPrixUnitaire: {required: true, min: 0.0001, number: true},
+            },
+            messages: {
+                designation: {required: ''},
+                unite: {required: 'Unite d\'article requis'},
+                inputQuantiteArticle: {required: 'Quantite non valide', min: "Quantite doit d\'être >0", number: true},
+                inputPrixUnitaire: {required: '', min: '', number: true},
+            }
+        })
+    })
+
     function validation_ajout_article() {
-        $quantite_a_vendre = $(namespace + '#input-quantite-article').val();
-        $articleId = $(namespace + '#designation-article').attr('value-id');
-        $uniteId = $(namespace + '#input-unite-article option:selected').val();
-        $magasinId = $(namespace + '#select-magasin').val();
         $(namespace + 'form').validate();
+
         return $(namespace + 'form').valid();
     }
-    /*
-    mask et validation
-     */
     $('.btn-ajouter-article-vente').on('click',function (){
         if (validation_ajout_article()) {
             $articleId = $(namespace + '#designation-article').attr('value-id');
@@ -130,6 +145,7 @@ $(function () {
      enregistrement du vente
      */
     $(namespace + '.form-vente .btn-enregistrer-vente').on('click', function () {
+
         $countArticl = $(namespace + '#table-liste-article-vente tbody tr').length;
         $sommeMontant = 0
         $(namespace + '#table-liste-article-vente tbody tr').each(function (key, value) {
@@ -220,7 +236,7 @@ $(function () {
          */
         $client = $(namespace + "#name-client").val();
         $magasin = $(namespace + "#select-magasin option:selected").text();
-        $user = $(namespace + '#user-id').attr('value-id');
+        $user = $(namespace + '#user-id').attr('value-name');
         /*
         add information
          */
@@ -252,7 +268,7 @@ $(function () {
          */
         $client = $(namespace + "#name-client").val();
         $magasin = $(namespace + "#select-magasin option:selected").text();
-        $user = $(namespace + '#user-id').attr('value-id');
+        $user = $(namespace + '#user-id').attr('value-name');
         /*
         add information
          */
@@ -301,14 +317,14 @@ $(function () {
     /*
     * RECHERCHER CLIENT
     * */
-    // let client_tab = [];
-    // const LIST_CLIENT_TABLE = namespace+"#table-liste-client";
-    // const INPUT_CLIENT_SEARCH = namespace+"#input-client-search";
-    // init_input_search_keyup("CLIENT",
-    //     INPUT_CLIENT_SEARCH,
-    //     LIST_CLIENT_TABLE,
-    //     $filiale_id,
-    //     client_tab);
+    let client_tab = [];
+    const LIST_CLIENT_TABLE = namespace+"#table-liste-client";
+    const INPUT_CLIENT_SEARCH = namespace+"#input-client-search";
+    init_input_search_keyup("CLIENT",
+        INPUT_CLIENT_SEARCH,
+        LIST_CLIENT_TABLE,
+        $filiale_id,
+        client_tab);
     $(namespace+"#btn-search-client").click(()=>{
         let url = "http://localhost:8080/api/v1/externalEntities/0/"+$filiale_id;
         if (client_tab.length===0) fetch_item(url,client_tab,LIST_CLIENT_TABLE,"CLIENT")

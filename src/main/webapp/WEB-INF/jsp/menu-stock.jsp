@@ -24,7 +24,7 @@
         <div class="page-title-right">
           <a href="" class="btn btn-default s-no-value">Toute niveau 1</a>
           <button class="btn btn-info s-no-value btn-stock-valeur"><i class="uil-dollar-alt"></i>Valeur</button>
-          <a class="btn btn-success btn-export-to-excel"><i class="uil-navigator"></i>&nbsp;</a>
+          <a class="btn btn-success btn-export-to-excel bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="export-to-excel"/> &nbsp;</a>
         </div>
       </div>
       <div class="d-inline-flex mt-1">

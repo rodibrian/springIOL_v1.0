@@ -23,22 +23,25 @@
       <div class="page-title-box">
         <div class="page-title-right">
           <a href="" class="btn btn-primary"><i class="uil-refresh"></i></a>&nbsp;
-          <a class="btn btn-success btn-export-to-excel"><i class="uil-navigator"></i></a>
+          <a class="btn btn-success btn-export-to-excel bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="export-to-excel"/> </a>
         </div>
       </div>
       <div class="d-block mt-1">
         <a type="button" class="btn btn-success mr-1 btn-nouveau-fournisseur"><i
                 class="uil-plus">&nbsp;</i>Nouveau Fournisseur</a>
+
       </div>
     </div>
   </div>
 
+
   <div class="all-modal">
-    <%@ include file="modal/client/info-dette-cf.jsp" %>
     <%@ include file="modal/fournisseur/new-fournisseur.jsp" %>
     <%@ include file="modal/fournisseur/new-dette.jsp" %>
   </div>
+
   <!-- suite -->
+
   <div class="container -fluid"><br><br>
     <div class="row">
 
@@ -49,7 +52,7 @@
             <th>Nom & Prenoms</th>
             <th>Adresse</th>
             <th>Contact</th>
-            <th>Dette(Total)</th>
+            <th>Dette</th>
             <th>Action</th>
           </tr>
           </thead>
@@ -70,10 +73,61 @@
           </c:forEach>
           </tbody>
         </table>
+
+        <!-- Collapse facture information -->
+
+        <div class="accordion" id="accordionExample">
+          <div class="card mb-0">
+            <div id="info-credit" class="collapse"
+                 aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="card-body">
+                <div class="close w-100 d-flex justify-content-end">
+                  <button type="button" class="btn-close-info-credit btn-close pull-right" aria-label="Close"></button>
+                </div>
+                <div class="row" id="tab-article">
+                  <h4>Information Fournisseur</h4>
+                  <hr>
+                  <div class="page-title-box">
+                    <div class="page-title-right">
+                      <a href="" role="button" class="btn btn-success mb-1 bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="export-to-excel"/>  </a>
+                    </div>
+                    <div>
+                      <a type="button" class="btn btn-outline-secondary mr-1 btn-nouveau-dette" data-bs-target="#nouveau-dette"
+                         data-bs-toggle="modal"><i
+                              class="uil-file-plus">&nbsp;</i>Nouveau Dette</a>
+                      <a type="button" class="btn btn-outline-danger mr-1 btn-supprimer-dette"><i
+                              class="uil-trash-alt">&nbsp;</i>Supprimer Dette</a>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <table class="table table-dette-fournisseur table-bordered table-striped table-sm dt-responsive norwap">
+                      <thead>
+                          <th>Facture</th>
+                          <th>Date</th>
+                          <th>Credit</th>
+                          <th>Payer</th>
+                          <th>Reste</th>
+                          <th>Description</th>
+                      </thead>
+                      <tbody>
+
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End collapse facture information -->
       </div>
     </div>
   </div>
+
 </div>
+
 </div> <!-- container -->
+
 <%@ include file="template/footer.jsp" %>
 <%@ include file="template/setting.jsp" %>

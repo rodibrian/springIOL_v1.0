@@ -23,7 +23,7 @@
       <div class="page-title-box">
         <div class="page-title-right">
           <a href="" class="btn btn-primary"><i class="uil-print"></i></a>&nbsp;
-          <a class="btn btn-success btn-export-to-excel"><i class="uil-navigator"></i></a>
+          <a class="btn btn-success btn-export-to-excel bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="export-to-excel"/> </a>
         </div>
       </div>
       <div class="d-inline-flex mt-1">

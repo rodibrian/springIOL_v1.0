@@ -22,7 +22,7 @@
     <div class="col-12">
       <div class="page-title-box">
         <div class="page-title-right">
-          <a class="btn btn-success btn-export-to-excel"><i class="uil-navigator"></i></a>
+          <a class="btn btn-success btn-export-to-excel bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="export-to-excel"/> </a>
         </div>
       </div>
     </div>

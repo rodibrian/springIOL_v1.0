@@ -208,3 +208,8 @@ table tbody tr:hover .td-action div {
     bottom: 5%;
     right : 5%;
 }
+
+.btn-export-to-excel img {
+    height: 25px;
+    width: 25px;
+}

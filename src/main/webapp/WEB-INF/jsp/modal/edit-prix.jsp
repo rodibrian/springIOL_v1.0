@@ -32,7 +32,7 @@
           <div class="col-md-8">
             <div class="page-title-box">
               <div class="page-title-right">
-                <a class="btn btn-success btn-export-to-excel-modal"><i class="uil-navigator"></i>&nbsp;</a>
+                <a class="btn btn-success btn-export-to-excel-modal bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="export-to-excel"/> &nbsp;</a>
               </div>
             </div>
             <table id="table-historique-prix" class="table table-special-form table-striped norwap dt-responsive">

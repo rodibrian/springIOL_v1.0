@@ -22,7 +22,7 @@
                     <div class="col-md-8">
                         <div class="page-title-box">
                             <div class="page-title-right">
-                                <a class="btn btn-success btn-export-to-excel"><i class="uil-navigator"></i>&nbsp;</a>
+                                <a class="btn btn-success btn-export-to-excel bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="export-to-excel"/> &nbsp;</a>
                             </div>
                             <div>
                                 <a type="button" class="btn btn-outline-secondary mr-1 btn-nouveau-dette" data-bs-target="#nouveau-dette"

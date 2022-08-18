@@ -25,7 +25,7 @@
         <div class="page-title-right">
 <%--          <a href="" class="btn btn-primary" role="button" data-bs-toggle="modal" data-bs-target="#modal-liste-article"><i--%>
 <%--                  class="uil-plus"></i>&nbsp;</a>--%>
-          <a class="btn btn-success btn-export-to-excel"><i class="uil-navigator"></i>&nbsp;</a>
+          <a class="btn btn-success btn-export-to-excel bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="export-to-excel"/> &nbsp;</a>
         </div>
       </div>
       <div class="row">
