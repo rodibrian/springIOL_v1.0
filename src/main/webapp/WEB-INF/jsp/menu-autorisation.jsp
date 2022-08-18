@@ -22,7 +22,7 @@
       </div>
       <div class="d-block mt-1">
         <a type="button" class="btn btn-primary mr-1" href="" data-bs-toggle="modal"
-           data-bs-target="#nouvelle-fonction-autorisation"><i
+           data-bs-target="#nouvelle-fonction"><i
                 class="uil-plus">&nbsp;</i>Nouvelle Fonction</a>
       </div>
     </div>
@@ -242,10 +242,9 @@
 <!-- inclusion of modal -->
 
 <div class="all-modal">
-  <%@ include file="modal/new-fonction-autorisation.jsp" %>
+  <%@ include file="modal/utilisateur/new-fonction.jsp" %>
 </div>
 
 </div> <!-- container -->
 
-<%@ include file="template/footer.jsp" %>
 <%@ include file="template/setting.jsp" %>

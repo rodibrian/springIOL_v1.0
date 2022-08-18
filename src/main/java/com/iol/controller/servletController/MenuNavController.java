@@ -114,6 +114,12 @@ public class MenuNavController{
         return modelAndView;
     }
 
+    @RequestMapping(value = "/gerer-utilisateur", method = RequestMethod.GET)
+    public ModelAndView getGererUtilisateur(){
+        ModelAndView modelAndView = new ModelAndView("gerer-utilisateur");
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/facture", method = RequestMethod.GET)
     public ModelAndView getMenuFacture(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView( "menu-facture");
@@ -229,6 +235,13 @@ public class MenuNavController{
     public ModelAndView getAdministrationClientHome(){
         ModelAndView modelAndView = new ModelAndView("admin-client/dashboard");
         modelAndView.addObject(SUBSDIARIES,subsidiaryRepository.findAll());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/administrateur/dashboard",method = RequestMethod.GET)
+    public ModelAndView getAdministration(){
+        ModelAndView modelAndView = new ModelAndView("administrateur/dashboard");
+        //modelAndView.addObject(SUBSDIARIES,subsidiaryRepository.findAll());
         return modelAndView;
     }
 

@@ -1,4 +1,3 @@
-
 $(function () {
     let namespace = "#menu-magasin ";
     let clientUrl = "http://localhost:8080/api/v1/magasins";
@@ -9,7 +8,7 @@ $(function () {
 
      --------------------------*/
     // constante
-   const NOUVEAU = 'nouveau', EDITION = 'edition';
+    const NOUVEAU = 'nouveau', EDITION = 'edition';
     /*
      click de bouton nouveau
      */
@@ -26,53 +25,74 @@ $(function () {
 
     --------------------------------------------------------- */
 
-    function validation() {
-        $('#new-magasin form').on('submit', function() {
-            alert('submit')
+    /*
+
+    mask et validation
+
+     */
+
+    $(function () {
+        $(namespace + 'form').validate({
+            rules: {
+                nomMagasin: {required: true},
+                adresseMagasin: {required: true}
+            },
+            messages: {
+                nomMagasin: {required: "Nom du magasin requis"},
+                adresseMagasin: {required: "Adresse du magasin requis"}
+            }
         })
+    })
+
+    function validation_nouveau_magasin() {
+        $(namespace + 'form').validate();
+
+        return $(namespace + 'form').valid();
     }
 
     $(namespace + '#btn-enregistrer-magasin').on('click', function () {
-        // validation();
-        let nomMagasin = $(namespace + '#nom-magasin').val();
-        let adresseMagasin = $(namespace + '#adresse-magasin').val();
-        let filialeId = $(namespace + '#filiale-id').attr("value-id");
-        $newMagasin = {
-            adresse : adresseMagasin,
-            nomMagasin : nomMagasin,
-            filiale : {
-                id : filialeId
-            }
-        };
-        NOUVEAU_UTILISATEUR = $(namespace + '#new-magasin').attr('data-type') === NOUVEAU;
-        let magasinResourcesUrl = NOUVEAU_UTILISATEUR ? clientUrl :clientUrl+"/"+$idCf;
-        $methodType = NOUVEAU_UTILISATEUR ? "POST" : "PUT";
-        $.ajax({
-            type: $methodType,
-            url: magasinResourcesUrl,
-            contentType: 'application/json',
-            data: JSON.stringify($newMagasin),
-            success: function (data) {
-                $newMagasin = data;
-                /* ACTION */
-                $tdActionContent = $(' ' + '<div class="d-inline-flex justify-content-center">' + '<a href="#" class="delete-magasin"><i class="uil-trash-alt"></i></a>' + '<a href="#" class="edit-magasin"><i class="uil-pen"></i></a>' + '</div>');
-                $oneMagasin = [nomMagasin,adresseMagasin, $tdActionContent];
-                if (NOUVEAU_UTILISATEUR) {
-                    push_to_table_list("#table-liste-magasin",data.id,$oneMagasin);
-                    createToast('bg-success', 'uil-file-check', 'Creation Fait', 'Creation d\'un nouveau magasin effectu&eacute; avec succ&egrave;s!')
+        if (validation_nouveau_magasin()) {
+            let nomMagasin = $(namespace + '#nom-magasin').val();
+            let adresseMagasin = $(namespace + '#adresse-magasin').val();
+            let filialeId = $(namespace + '#filiale-id').attr("value-id");
+            $newMagasin = {
+                adresse: adresseMagasin,
+                nomMagasin: nomMagasin,
+                filiale: {
+                    id: filialeId
                 }
+            };
+            NOUVEAU_UTILISATEUR = $(namespace + '#new-magasin').attr('data-type') === NOUVEAU;
+            let magasinResourcesUrl = NOUVEAU_UTILISATEUR ? clientUrl : clientUrl + "/" + $idCf;
+            $methodType = NOUVEAU_UTILISATEUR ? "POST" : "PUT";
+            $.ajax({
+                type: $methodType,
+                url: magasinResourcesUrl,
+                contentType: 'application/json',
+                data: JSON.stringify($newMagasin),
+                success: function (data) {
+                    $newMagasin = data;
+                    /* ACTION */
+                    $tdActionContent = $(' ' + '<div class="d-inline-flex justify-content-center">' + '<a href="#" class="delete-magasin"><i class="uil-trash-alt"></i></a>' + '<a href="#" class="edit-magasin"><i class="uil-pen"></i></a>' + '</div>');
+                    $oneMagasin = [nomMagasin, adresseMagasin, $tdActionContent];
+                    if (NOUVEAU_UTILISATEUR) {
+                        push_to_table_list("#table-liste-magasin", data.id, $oneMagasin);
+                        createToast('bg-success', 'uil-file-check', 'Creation Fait', 'Creation d\'un nouveau magasin effectu&eacute; avec succ&egrave;s!')
+                    }
 
-                // EDITION MAGASIN OPERATION
+                    // EDITION MAGASIN OPERATION
 
-                else{
-                    update_to_table_list(namespace + '#table-liste-magasin', $(namespace + '#new-magasin').attr('data-id'), $oneMagasin);
-                    createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification du magasin effectu&eacute; avec succ&egrave;s!')
+                    else {
+                        update_to_table_list(namespace + '#table-liste-magasin', $(namespace + '#new-magasin').attr('data-id'), $oneMagasin);
+                        createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification du magasin effectu&eacute; avec succ&egrave;s!')
+                    }
+
+                    $(namespace + '#new-magasin input').val(''); // empty input
+                    $(namespace + '#new-magasin').modal('hide'); // close modal
                 }
+            });
+        }
 
-                $(namespace + '#new-magasin input').val(''); // empty input
-                $(namespace + '#new-magasin').modal('hide'); // close modal
-            }
-        });
     });
 
     /*
@@ -94,7 +114,7 @@ $(function () {
      SUPPRESSION MAGASIN ON-CLICK
      */
 
-    $(document).on('click', namespace + 'a.delete-magasin',function (){
+    $(document).on('click', namespace + 'a.delete-magasin', function () {
 
         $currentTR = $(this).closest('tr');
         $modalID = 'suppression-modal';
@@ -104,7 +124,7 @@ $(function () {
             .on('click', function () {
                 $.ajax({
                     type: "DELETE",
-                    url: clientUrl+"/"+idMagasin,
+                    url: clientUrl + "/" + idMagasin,
                     contentType: 'application/json',
                     success: function (data) {
                         $currentTR.remove()
@@ -113,7 +133,7 @@ $(function () {
                         $(namespace + '#' + $modalID + '').remove();
                         createToast('bg-danger', 'uil-trash-alt', 'Suppression Fait', 'Suppression du magasin effectu&eacute; avec succ&egrave;s!')
                     }
-                    });
+                });
             })
 
     })
@@ -122,18 +142,18 @@ $(function () {
     CLICK MAGASIN EVENT, SHOW ALL USERS OF THIS MAGASIN
      */
 
-    function getAllUserByMagasinId($idMagasin){
-        let magasinResourcesUrl = clientUrl+"/"+$idMagasin+"/users";
+    function getAllUserByMagasinId($idMagasin) {
+        let magasinResourcesUrl = clientUrl + "/" + $idMagasin + "/users";
         $.ajax({
             type: "GET",
             url: magasinResourcesUrl,
             contentType: 'application/json',
-            success : function (data) {
-                $(namespace+"#table-liste-utilisateur-magasin tbody").empty();
-                 $.each(data,(key,value)=>{
-                     let tr = [value.nom,value.fonction.nomFonction];
-                     push_to_table_list(namespace+"#table-liste-utilisateur-magasin",key,tr);
-                 })
+            success: function (data) {
+                $(namespace + "#table-liste-utilisateur-magasin tbody").empty();
+                $.each(data, (key, value) => {
+                    let tr = [value.nom, value.fonction.nomFonction];
+                    push_to_table_list(namespace + "#table-liste-utilisateur-magasin", key, tr);
+                })
             }
         });
     }

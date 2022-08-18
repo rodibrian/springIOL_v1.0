@@ -22,6 +22,10 @@
           </div>
         </div>
       </div>
+      <div class="d-block mt-1">
+        <a id="refresh-btn" type="button" class="btn btn-success mr-1"><i
+                class="uil-refresh">&nbsp;</i>actualiser</a>
+      </div>
     </div>
   </div>
 
@@ -96,5 +100,4 @@
 <!-- End Page content -->
 <!-- ============================================================== -->
 
-<%@ include file="template/footer.jsp" %>
 <%@ include file="template/setting.jsp" %>

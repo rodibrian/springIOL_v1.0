@@ -101,5 +101,4 @@
 <!-- End Page content -->
 <!-- ============================================================== -->
 
-<%@ include file="template/footer.jsp" %>
 <%@ include file="template/setting.jsp" %>

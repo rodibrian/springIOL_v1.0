@@ -44,41 +44,80 @@ $(function () {
      enregsitrement societe
      */
 
-    $(namespace + "#nouveau-societe #btn-enregistrer-societe").on('click', function () {
-        $nom = $(namespace + '#nouveau-societe input#input-nom').val()
-        $adresse = $(namespace + '#nouveau-societe input#input-adresse').val()
-        $contact = $(namespace + '#nouveau-societe input#input-contact').val()
-        $username = $(namespace + '#nouveau-societe input#input-username').val()
-        $password = $(namespace + '#nouveau-societe input#input-password').val()
-        $sloganI = $(namespace + '#nouveau-societe input#input-slogan-i').val()
-        $sloganII = $(namespace + '#nouveau-societe input#input-slogan-ii').val()
-        $logo = $(namespace + '#input-logo').val();
+    /*
+    mask et validation
+     */
 
-        $typeOperation = $(namespace + "#nouveau-societe").attr('data-id');
+    $(namespace + '#nouveau-societe form #input-contact').mask('+261 99 99 999 99')
 
-        switch ($typeOperation) {
-            case NEW:
-                $(namespace + '.liste-societe').append(createItemSociete(new Date().toLocaleTimeString(), $nom, $adresse, $contact, $sloganI, $sloganII))
-                createToast('bg-success', 'uil-file-check', 'Nouveau Societe cree', 'Creation d\'un nouveau societe fait!');
-                break;
-            case EDIT :
-                $(namespace + '#' + $cardCurrent + ' .label-nom').text($nom)
-                $(namespace + '#' + $cardCurrent + ' .label-adresse').text($adresse)
-                $(namespace + '#' + $cardCurrent + ' .label-contact').text($contact)
-                $(namespace + '#' + $cardCurrent + ' .label-slogan-i').text($sloganI)
-                $(namespace + '#' + $cardCurrent + ' .label-slogan-ii').text($sloganII)
-                break;
+    $(namespace + '#nouveau-societe form').validate({
+        rules : {
+            nom : {required : true},
+            logo : {required : true},
+            contact : {required : true},
+            adresse : {required : true},
+            inputSloganI : {required : true},
+            inputSloganII : {required : true, notEqualTo : '#input-slogan-i'},
+            inputUsername : {required : true},
+            inputPassword : {required : true, minlength : 4},
+        },
+        messages : {
+            nom : {required : "Nom du société requis"},
+            logo : {required : "Logo du société requis"},
+            contact : {required : "Contact du société requis"},
+            adresse : {required : "Adresse du société requis"},
+            inputSloganI : {required : "Slogan I requis"},
+            inputSloganII : {required : "Slogan II requis", notEqualTo : "Slogan I et Slogan II doit être différent"},
+            inputUsername : {required : "Nom d'utilisateur requis"},
+            inputPassword : {required : "Mot de passe requis", minlength : "Minimum mot de passe 04 caractères"},
         }
+    })
 
-        // empty input text
+    function validation_nouveau_societe() {
+        $(namespace + '#nouveau-societe form').validate();
 
-        $(namespace + '#nouveau-societe input#input-nom').val(' ')
-        $(namespace + '#nouveau-societe input#input-adresse').val(' ')
-        $(namespace + '#nouveau-societe input#input-contact').val(' ')
-        $(namespace + '#nouveau-societe input#input-username').val(' ')
-        $(namespace + '#nouveau-societe input#input-password').val('')
-        $(namespace + '#nouveau-societe input#input-slogan-i').val('')
-        $(namespace + '#nouveau-societe input#input-slogan-ii').val('')
+        return $(namespace + '#nouveau-societe form').valid();
+    }
+
+    $(namespace + "#nouveau-societe #btn-enregistrer-societe").on('click', function () {
+        if (validation_nouveau_societe()) {
+            $nom = $(namespace + '#nouveau-societe input#input-nom').val()
+            $adresse = $(namespace + '#nouveau-societe input#input-adresse').val()
+            $contact = $(namespace + '#nouveau-societe input#input-contact').val()
+            $username = $(namespace + '#nouveau-societe input#input-username').val()
+            $password = $(namespace + '#nouveau-societe input#input-password').val()
+            $sloganI = $(namespace + '#nouveau-societe input#input-slogan-i').val()
+            $sloganII = $(namespace + '#nouveau-societe input#input-slogan-ii').val()
+            $logo = $(namespace + '#input-logo').val();
+
+            $typeOperation = $(namespace + "#nouveau-societe").attr('data-id');
+
+            switch ($typeOperation) {
+                case NEW:
+                    $(namespace + '.liste-societe').append(createItemSociete(new Date().toLocaleTimeString(), $nom, $adresse, $contact, $sloganI, $sloganII))
+                    createToast('bg-success', 'uil-file-check', 'Nouveau Societe cree', 'Creation d\'un nouveau societe fait!');
+                    break;
+                case EDIT :
+                    $(namespace + '#' + $cardCurrent + ' .label-nom').text($nom)
+                    $(namespace + '#' + $cardCurrent + ' .label-adresse').text($adresse)
+                    $(namespace + '#' + $cardCurrent + ' .label-contact').text($contact)
+                    $(namespace + '#' + $cardCurrent + ' .label-slogan-i').text($sloganI)
+                    $(namespace + '#' + $cardCurrent + ' .label-slogan-ii').text($sloganII)
+                    break;
+            }
+
+            // empty input text
+
+            $(namespace + '#nouveau-societe input#input-nom').val(' ')
+            $(namespace + '#nouveau-societe input#input-adresse').val(' ')
+            $(namespace + '#nouveau-societe input#input-contact').val(' ')
+            $(namespace + '#nouveau-societe input#input-username').val(' ')
+            $(namespace + '#nouveau-societe input#input-password').val('')
+            $(namespace + '#nouveau-societe input#input-slogan-i').val('')
+            $(namespace + '#nouveau-societe input#input-slogan-ii').val('')
+
+            $(namespace + '#nouveau-societe').modal('hide')
+        }
     })
 
     /*

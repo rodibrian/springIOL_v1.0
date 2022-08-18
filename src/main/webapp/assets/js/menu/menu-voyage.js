@@ -34,50 +34,80 @@ $(function () {
     --------------------------------------------------------- */
 
 
+    /*
+
+    mask et validation
+
+     */
+
+    $(namespace + '#nouveau-voyage form').validate({
+        rules : {
+            reference : {required : true},
+            materielDeTransport : {required : true},
+            dateVoyage : {required : true}
+        },
+        messages : {
+            reference : {required : 'Reference du voyage requis'},
+            materielDeTransport  : {required : 'Materiel de transport requis'},
+            dateVoyage : {required : 'Date du voyage requis'}
+        }
+    })
+
+    function validation_nouveau_voyage() {
+        $(namespace + '#nouveau-voyage form').validate();
+
+        return $(namespace + '#nouveau-voyage form').valid();
+    }
+
     $(namespace + '#btn-enregistrer-voyage').on('click', function () {
 
-        $reference = $(namespace + '#nouveau-voyage #reference').val()
-        $materielTransport = $(namespace + '#nouveau-voyage #materielDeTransport option:selected').val()
-        $dateVoyage = $(namespace + '#nouveau-voyage #dateVoyage').val()
-        $description = $(namespace + '#nouveau-voyage #description').val()
+        if (validation_nouveau_voyage()) {
+            // $reference = $(namespace + '#nouveau-voyage #reference').val()
+            // $materielTransport = $(namespace + '#nouveau-voyage #materielDeTransport option:selected').val()
+            // $dateVoyage = $(namespace + '#nouveau-voyage #dateVoyage').val()
+            // $description = $(namespace + '#nouveau-voyage #description').val()
+            //
+            // $voyage = {};
+            //
+            //
+            // $newVoyage = {
+            //     adresse : $adresseVoyage,
+            //     nomVoyage : $nomVoyage,
+            //     filiale : {
+            //         id : $filialeId
+            //     }
+            // };
+            // NOUVEAU_UTILISATEUR = $(namespace + '#nouveau-voyage').attr('data-type') === NOUVEAU;
+            // $voyageResourcesUrl = NOUVEAU_UTILISATEUR ? voyageURL :voyageURL+"/"+$idCf;
+            // $methodType = NOUVEAU_UTILISATEUR ? "POST" : "PUT";
+            // $.ajax({
+            //     type: $methodType,
+            //     url: $voyageResourcesUrl,
+            //     contentType: 'application/json',
+            //     data: JSON.stringify($newVoyage),
+            //     success: function (data) {
+            //         $newVoyage = data;
+            //         /* ACTION */
+            //         $tdActionContent = $(' ' + '<div class="d-inline-flex justify-content-center">' + '<a href="#" class="delete-voyage"><i class="uil-trash-alt"></i></a>' + '<a href="#" class="edit-voyage"><i class="uil-pen"></i></a>' + '</div>');
+            //         $oneVoyage = [$nomVoyage, $adresseVoyage, $tdActionContent];
+            //         if (NOUVEAU_UTILISATEUR) {
+            //             push_to_table_list("#table-liste-voyage",data.id,$oneVoyage);
+            //             createToast('bg-success', 'uil-file-check', 'Creation Fait', 'Creation d\'un nouveau voyage effectu&eacute; avec succ&egrave;s!')
+            //         }
+            //         // EDITION MAGASIN OPERATION
+            //         else{
+            //             console.log(" UPDATE ");
+            //             update_to_table_list(namespace + '#table-liste-voyage', $(namespace + '#nouveau-voyage').attr('data-id'), $oneVoyage);
+            //             createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification du voyage effectu&eacute; avec succ&egrave;s!')
+            //         }
+            //         $(namespace + '#nouveau-voyage input').val(''); // empty input
+            //         $(namespace + '#nouveau-voyage').modal('hide'); // close modal
+            //     }
+            // });
 
-        $voyage = {};
+            $(namespace + '#nouveau-voyage').modal('hide')
+        }
 
-        //
-        // $newVoyage = {
-        //     adresse : $adresseVoyage,
-        //     nomVoyage : $nomVoyage,
-        //     filiale : {
-        //         id : $filialeId
-        //     }
-        // };
-        // NOUVEAU_UTILISATEUR = $(namespace + '#nouveau-voyage').attr('data-type') === NOUVEAU;
-        // $voyageResourcesUrl = NOUVEAU_UTILISATEUR ? voyageURL :voyageURL+"/"+$idCf;
-        // $methodType = NOUVEAU_UTILISATEUR ? "POST" : "PUT";
-        // $.ajax({
-        //     type: $methodType,
-        //     url: $voyageResourcesUrl,
-        //     contentType: 'application/json',
-        //     data: JSON.stringify($newVoyage),
-        //     success: function (data) {
-        //         $newVoyage = data;
-        //         /* ACTION */
-        //         $tdActionContent = $(' ' + '<div class="d-inline-flex justify-content-center">' + '<a href="#" class="delete-voyage"><i class="uil-trash-alt"></i></a>' + '<a href="#" class="edit-voyage"><i class="uil-pen"></i></a>' + '</div>');
-        //         $oneVoyage = [$nomVoyage, $adresseVoyage, $tdActionContent];
-        //         if (NOUVEAU_UTILISATEUR) {
-        //             push_to_table_list("#table-liste-voyage",data.id,$oneVoyage);
-        //             createToast('bg-success', 'uil-file-check', 'Creation Fait', 'Creation d\'un nouveau voyage effectu&eacute; avec succ&egrave;s!')
-        //         }
-        //         // EDITION MAGASIN OPERATION
-        //         else{
-        //             console.log(" UPDATE ");
-        //             update_to_table_list(namespace + '#table-liste-voyage', $(namespace + '#nouveau-voyage').attr('data-id'), $oneVoyage);
-        //             createToast('bg-success', 'uil-pen', 'Modification Fait', 'Modification du voyage effectu&eacute; avec succ&egrave;s!')
-        //         }
-        //         $(namespace + '#nouveau-voyage input').val(''); // empty input
-        //         $(namespace + '#nouveau-voyage').modal('hide'); // close modal
-        //     }
-        // });
     });
 
     /*

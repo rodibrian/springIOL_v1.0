@@ -2,7 +2,7 @@
 <div id="nouveau-utilisateur" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
      aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content was-validated">
+    <form class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" id="standard-modalLabel">Nouveau utilisatuer</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
@@ -12,7 +12,7 @@
           <div class="row">
             <div class="col-12">
               <label for="input-nom" class="form-label">Nom & Prenoms</label>
-              <input required name="nom" type="text" id="input-nom" class="form-control">
+              <input name="nomEtPrenoms" type="text" id="input-nom" class="form-control">
             </div>
           </div>
           <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
@@ -21,11 +21,11 @@
           <div class="row">
             <div class="col-6">
               <label for="input-adresse" class="form-label">Adresse</label>
-              <input required name="nom" type="text" id="input-adresse" class="form-control">
+              <input name="adresse" type="text" id="input-adresse" class="form-control">
             </div>
             <div class="col-6">
               <label for="input-contact" class="form-label">Contact</label>
-              <input name="prenoms" type="text" id="input-contact" class="form-control">
+              <input name="contact" type="text" id="input-contact" class="form-control">
             </div>
           </div>
 
@@ -34,12 +34,12 @@
           <div class="row">
             <div class="col-6">
               <label for="select-fonction" class="form-label">Fonction</label>
-              <select required name="fonction" id="select-fonction" class="form-select">
+              <select name="fonction" id="select-fonction" class="form-select">
               </select>
             </div>
             <div class="col-6">
               <label for="select-magasin" class="form-label">Magasin</label>
-              <select required name="magasin" id="select-magasin" class="selectpicker" multiple data-live-search="true">
+              <select name="magasin" id="select-magasin" class="selectpicker" multiple data-live-search="true">
                 <c:forEach var="magasin" items="${magasins}">
                   <option value="${magasin.id}">
                     <c:out value="${magasin.nomMagasin}"/>
@@ -52,16 +52,16 @@
         </div>
         <div class="mb-1">
           <label for="input-username" class="form-label">Nom d'utilisateur</label>
-          <input required name="input-username" type="text" id="input-username" class="form-control">
+          <input name="username" type="text" id="input-username" class="form-control">
         </div>
         <div class="mb-1">
           <label for="input-password" class="form-label">Mot de passe</label>
-          <input name="input-password" type="password" id="input-password" class="form-control">
+          <input name="password" type="password" id="input-password" class="form-control">
         </div>
         <div class="mb-1">
           <div class="mt-3">
             <div class="form-check">
-              <input required type="checkbox" class="form-check-input" id="check-statut" checked="">
+              <input type="checkbox" class="form-check-input" id="check-statut" checked="">
               <label class="form-check-label" for="check-statut">Statut utilisateur</label>
             </div>
           </div>
@@ -70,9 +70,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-        <button id="btn-enregistrer-utilisateur" data-bs-dismiss="modal" type="button" class="btn btn-primary">Enregistrer</button>
+        <button id="btn-enregistrer-utilisateur" type="submit" class="btn btn-primary">Enregistrer</button>
       </div>
-    </div><!-- /.modal-content -->
+    </form><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
