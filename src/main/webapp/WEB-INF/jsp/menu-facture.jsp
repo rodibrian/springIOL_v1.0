@@ -19,7 +19,7 @@
         <div class="page-title-right">
           <a href="" class="btn btn-info"><i class="uil-refresh"></i></a>
           <a href="" class="btn btn-warning d-none"><i class="uil-meh-closed-eye"></i></a>
-          <a class="btn btn-success btn-export-to-excel"><i class="uil-navigator"></i>&nbsp;</a>
+          <a class="btn btn-success btn-export-to-excel bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel">&nbsp;</a>
         </div>
       </div>
       <div class="d-inline-flex mt-1">

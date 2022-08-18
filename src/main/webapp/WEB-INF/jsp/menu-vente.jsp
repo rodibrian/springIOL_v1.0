@@ -84,11 +84,7 @@
               <div class="mb-1">
                 <label for="select-payement" class="form-label">Mode de payement</label>
                 <select class="form-select" id="select-payement">
-                  <option value="1">Espèces</option>
-                  <option value="2">Mobile Money</option>
-                  <option value="3">Chèques</option>
-                  <option value="4">Virement</option>
-                  <option value="5">Crédit</option>
+
                 </select>
               </div>
 

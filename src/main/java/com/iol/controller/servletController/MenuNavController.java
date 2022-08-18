@@ -58,6 +58,11 @@ public class MenuNavController{
         return "embarquement/menu-embarquement";
     }
 
+    @RequestMapping(value = "/gerer-utilisateur", method = RequestMethod.GET)
+    public String getGererUtilisateur() {
+        return "gerer-utilisateur";
+    }
+
     @RequestMapping(value = "/archivage", method = RequestMethod.GET)
     public String getMenuArchivage() {
         return "menu-archivage";

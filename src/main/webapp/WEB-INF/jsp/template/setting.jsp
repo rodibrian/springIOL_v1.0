@@ -133,6 +133,7 @@
 <script src="${pageContext.request.contextPath}/assets/js/html-content.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/impression.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/dashboard.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/menu/gerer-utilisateur.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-autorisation.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/menu/menu-article.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/modalJs/new-categorie.js"></script>

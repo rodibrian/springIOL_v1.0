@@ -208,3 +208,9 @@ table tbody tr:hover .td-action div {
     bottom: 5%;
     right : 5%;
 }
+
+
+.icon-excel {
+    width: 23px;
+    height: 23px;
+}

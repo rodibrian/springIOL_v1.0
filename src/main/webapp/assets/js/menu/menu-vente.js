@@ -90,6 +90,26 @@ $(function () {
     $(namespace + '#table-liste-article-vente tbody tr').on('dblclick', function () {
         $(this).remove();
     })
+    /*
+        mask et validation
+         */
+
+    $(function () {
+        $(namespace + 'form').validate({
+            rules: {
+                designation: {required: true},
+                unite: {required: true},
+                inputQuantiteArticle: {required: true, min: 0.0001, number: true},
+                inputPrixUnitaire: {required: true, min: 0.0001, number: true},
+            },
+            messages: {
+                designation: {required: ''},
+                unite: {required: 'Unite d\'article requis'},
+                inputQuantiteArticle: {required: 'Quantite non valide', min: "Quantite doit d\'être >0", number: true},
+                inputPrixUnitaire: {required: '', min: '', number: true},
+            }
+        })
+    })
 
     function validation_ajout_article() {
         $quantite_a_vendre = $(namespace + '#input-quantite-article').val();

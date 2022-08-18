@@ -48,7 +48,7 @@
           <div class="col-md-8">
             <div class="page-title-box">
               <div class="page-title-right">
-                <a class="btn btn-success btn-export-to-excel"><i class="uil-navigator"></i>&nbsp;</a>
+                <a class="btn btn-success btn-export-to-excel bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel">&nbsp;</a>
               </div>
             </div>
             <table id="table-historique-operation-fournisseur"

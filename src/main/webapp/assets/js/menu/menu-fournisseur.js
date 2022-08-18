@@ -146,26 +146,55 @@ $(function () {
         $(namespace + '#nouveau-dette input#nomFournisseur').val($trFournisseur.children().eq(0).text())
     })
 
+
+    /*
+
+    mask et validation
+
+     */
+
+    $(namespace + "#nouveau-dette form").validate({
+        rules : {
+            dateDette : {required : true},
+            dateEcheance : {required : true},
+            montant : {required : true, min: 0.0001}
+        },
+        messages : {
+            dateDette : {required : "Date du dette requis"},
+            dateEcheance : {required : "Date d'echeance requis"},
+            montant : {required : "Montant du dette requis", min: "Le montant doit être >0"}}
+    })
+
+    function validation_nouveau_dette() {
+        $(namespace + '#nouveau-dette form').validate();
+
+        return $(namespace + '#nouveau-dette form').valid();
+    }
+
     $(namespace + '#nouveau-dette #btn-enregistrer-dette-fournisseur').on('click', function () {
-        $montant = $(namespace + '#nouveau-dette input#somme').val();
-        $description = $(namespace + '#nouveau-dette textarea#description').val();
-        $dette = ['ref-00000',new Date().toLocaleDateString(), $montant, 0, $montant, $description];
-        let trosa = {};
-        trosa.clientFournisseur = {id: $cf_id};
-        trosa.montant = $montant;
-        trosa.description = $description;
-        trosa.typeTrosa = "DETTE";
-        trosa.date = new Date().getUTCDate();
-        trosa.reste = $montant;
-        let url = "http://localhost:8080/api/v1/trosas";
-        execute_ajax_request("post",url,trosa,(data)=>{
-            let tr = ["",trosa.date,trosa.montant,0,trosa.montant,trosa.description,
-                `<a  class="btn-sm btn-danger delete-trosa"><i class="uil-trash-alt"></i></a>`];
-            push_to_table_list(namespace + '#table-dette-cf',data.id,tr);
-            createToast('bg-success', 'uil-check-sign', 'Dette enregistre', 'Nouveau dette enregistre avec success!');
-            $(namespace + '#nouveau-dette input').val('');
-            $(namespace + '#nouveau-dette textarea').val('');
-        })
+       if (validation_nouveau_dette()) {
+           $montant = $(namespace + '#nouveau-dette input#somme').val();
+           $description = $(namespace + '#nouveau-dette textarea#description').val();
+           $dette = ['ref-00000',new Date().toLocaleDateString(), $montant, 0, $montant, $description];
+           let trosa = {};
+           trosa.clientFournisseur = {id: $cf_id};
+           trosa.montant = $montant;
+           trosa.description = $description;
+           trosa.typeTrosa = "DETTE";
+           trosa.date = new Date().getUTCDate();
+           trosa.reste = $montant;
+           let url = "http://localhost:8080/api/v1/trosas";
+           execute_ajax_request("post",url,trosa,(data)=>{
+               let tr = ["",trosa.date,trosa.montant,0,trosa.montant,trosa.description,
+                   `<a  class="btn-sm btn-danger delete-trosa"><i class="uil-trash-alt"></i></a>
+                    <a  class="btn-sm btn-infos payer-trosa"><i class="uil-money-withdrawal"></i></a>`];
+               push_to_table_list(namespace + '#table-dette-cf',data.id,tr);
+               createToast('bg-success', 'uil-check-sign', 'Dette enregistre', 'Nouveau dette enregistre avec success!');
+               $(namespace + '#nouveau-dette input').val('');
+               $(namespace + '#nouveau-dette textarea').val('');
+           })
+           $(namespace + '#nouveau-dette').modal('hide')
+       }
     })
     /*
     Supprimer dette
@@ -208,10 +237,56 @@ $(function () {
                     `<span class="badge `+createBadge(value.reste)+`">`+createStatus(value.reste)+`</span>`,
                     new Date().toLocaleString(),
                     value.description,
-                    `<a  class="btn-sm btn-danger delete-trosa"><i class="uil-trash-alt"></i></a>`];
+                    `<a  class="btn-sm btn-danger delete-trosa"><i class="uil-trash-alt"></i></a>
+                     <a  class="btn-sm btn-info payer-trosa"><i class="uil-money-withdrawal"></i></a>`];
                 push_to_table_list(namespace + '#table-dette-cf',value.id,tr);
             })
         })
 
+    })
+
+    // payement trosa
+
+    let montantReste = 0;
+
+    push_Type_paiement(namespace + '#modal-payement-dette #type-paiement')
+
+    $(document).on('click', namespace + '#table-dette-cf .payer-trosa', function () {
+        // get montant
+        montantReste = parseFloat($(this).closest('tr').children('td').eq(4).text());
+        $(namespace + '#modal-payement-dette form').validate();
+        $(namespace + '#modal-payement-dette input#Montant-payer').val(montantReste)
+        $(namespace + '#modal-payement-dette').modal('show')
+    })
+
+    /*
+
+    validation payement
+
+     */
+
+    $(namespace + '#modal-payement-dette form').validate( {
+        rules : {
+            montantPayer : { required : true, min : 0.0001, max : 100000},
+            typePayement : {required :true}
+        },
+        messages : {
+            montantPayer : { required : "Montant payer requis", min : "Montant payer doit être >0", max : "Le montant depasse le dette"},
+            typePayement : {required : "Type de payement required"}
+        }
+    })
+
+    function validation_payement_dette() {
+        $(namespace + '#modal-payement-dette form').validate();
+
+        return $(namespace + '#modal-payement-dette form').valid();
+    }
+
+    $(namespace + '#modal-payement-dette .btn-enregistrer-payement-dette').on('click', function() {
+        if (validation_payement_dette()) {
+            $(namespace + '#modal-payement-dette').modal('hide')
+
+            createToast('bg-success', 'uil-check', 'Dette payé', 'Dette payé avec succès');
+        }
     })
 })

@@ -23,7 +23,7 @@
       <div class="page-title-box">
         <div class="page-title-right">
           <a href="" class="btn btn-primary"><i class="uil-refresh"></i></a>&nbsp;
-          <a class="btn btn-success btn-export-to-excel"><i class="uil-navigator"></i></a>
+          <a class="btn btn-success btn-export-to-excel bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel"></a>
         </div>
       </div>
       <div class="d-block mt-1">
@@ -37,6 +37,7 @@
     <%@ include file="modal/client/info-dette-cf.jsp" %>
     <%@ include file="modal/fournisseur/new-fournisseur.jsp" %>
     <%@ include file="modal/fournisseur/new-dette.jsp" %>
+    <%@ include file="modal/fournisseur/payement-dette.jsp" %>
   </div>
   <!-- suite -->
   <div class="container -fluid"><br><br>
