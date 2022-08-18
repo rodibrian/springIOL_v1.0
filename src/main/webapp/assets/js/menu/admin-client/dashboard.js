@@ -189,7 +189,6 @@ $(function () {
     })
 
     function validation_nouveau_filial() {
-        $('.error').css('color', 'red')
         $(namespace + '#nouveau-filial form').validate();
 
         return $(namespace + '#nouveau-filial form').valid();
