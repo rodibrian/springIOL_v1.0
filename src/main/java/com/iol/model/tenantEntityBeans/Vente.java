@@ -44,7 +44,7 @@ public class Vente implements Serializable{
     @Column
     private String refVente;
 
-    @Column(length = 50)
-    @Enumerated(value = EnumType.STRING)
-    private ModePayement modePayement;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "info_id")
+    private InfoFilialeCaisse infoFilialeCaisse;
 }

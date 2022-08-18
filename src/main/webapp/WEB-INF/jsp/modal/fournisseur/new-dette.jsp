@@ -9,14 +9,9 @@
       </div>
       <div class="modal-body">
         <div class="mb-1">
-          <label for="nomFournisseur" class="form-label">Nom du Fournisseur</label>
-          <input name="nomClient" type="text" id="nomFournisseur" class="form-control" value="nomDuFournisseur">
-        </div>
-        <div class="mb-1">
           <label for="somme" class="form-label">Montant</label>
           <input name="somme" type="number" required id="somme" class="form-control">
         </div>
-
         <div class="mb-1">
           <label for="description" class="form-label">Description</label>
           <textarea name="description" id="description" class="form-control"></textarea>

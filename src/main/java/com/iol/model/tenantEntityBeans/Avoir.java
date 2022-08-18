@@ -29,4 +29,8 @@ public class Avoir{
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "avoir_info_article_magasin")
     private List<InfoArticleMagasin> infoArticleMagasin;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "info_id")
+    private InfoFilialeCaisse infoFilialeCaisse;
 }

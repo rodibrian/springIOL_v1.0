@@ -70,8 +70,6 @@ DECLARE
     item_count INT =0;
     nombre_quantite_alert INT = 0;
     ALERT_FILIALE_ID BIGINT = 0;
-    QTT_PEREMPTION_DATE record;
-    QUANTITE_AJOUT_TEMP DOUBLE PRECISION = 0.0;
 BEGIN
     -- recuperer l'unite primaire de l'article
     SELECT au.unite_id into primary_unite_id FROM article_unite au where article_id = new.article_id and au.niveau = 1;

@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 @SpringBootApplication
+@EnableJpaAuditing
 public class Iol implements CommandLineRunner {
 
     @Autowired

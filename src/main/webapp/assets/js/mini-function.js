@@ -14,6 +14,8 @@ function create_reference(type,date){
        case "ENTRE" : return "ENT-"+time;
        case "AVOIR" : return "AV-"+time;
        case "TRANSFERT":return "TF-"+time;
+       case "DECAISSEMENT" : return "DEC-"+time;
+       case "ENCAISSEMENT" : return "ENC-"+time;
     }
 }
 
@@ -58,15 +60,73 @@ function set_select_option_value_ajax($array, $select) {
     });
 }
 
-function deleteMagasin() {
-
-}
-
 function push_select_option_value($array, $select) {
     $($select)
         .append($("<option></option>")
             .attr("value", $array[0])
             .text($array[1]));
+}
+
+function push_item_table(type, value,table_id){
+    let tr = [];
+    let tr_id = "";
+    if (type === "ARTICLE"){
+        tr = [value.itemName,value.uniteName,value.stock,value.price];
+        tr_id = value.itemId + "-" + value.uniteId;
+    }else if (type === "CLIENT" || type === "FOURNISSEUR"){
+        tr = [value.nom,value.adresse, value.numTel];
+        tr_id = value.id;
+    }
+    push_to_table_list(table_id,tr_id,tr);
+}
+
+function append_data_to_table(table_id,type,data,tab){
+    $(table_id+" tbody").empty();
+    data.forEach(value =>{
+        push_item_table(type,value,table_id);
+        if (tab.length===0) tab.push(value);
+        else {
+            let finded_item = tab.find(create_consumer("BY_ID",type,value));
+            if (finded_item=== undefined) tab.push(value);
+        }
+    })
+}
+
+const create_consumer = (consumer_type,item_type,value)=>{
+   return consumer_type === "NAME" ? create_consumer_by_name(item_type,value) : create_consumer_by_id(item_type,value);
+}
+
+const create_consumer_by_name = (item_type,value)=>{
+    return item_type === "ARTICLE" ? (article) => article.itemName.search(value)!==-1 :
+        (cf) => cf.nom.search(value)!==-1;
+}
+
+const create_consumer_by_id = (item_type,value)=>{
+    return  item_type === "ARTICLE" ? (item) => item.itemId === value.itemId && item.uniteId ===value.uniteId :
+        (item) => item.id === value.id;
+}
+
+function find_item(table_id,filiale_id,item_name,type,tab){
+    let url = "";
+    if (type==="ARTICLE") url = "http://localhost:8080/api/v1/subsidiaries/" + filiale_id + "/itemsInfo/" + item_name;
+    else url = "http://localhost:8080/api/v1/externalEntities/"+(type==="CLIENT" ? "0":"1")+"/"+filiale_id;
+    execute_ajax_request("get", url, null, (data) => append_data_to_table(table_id,type,data,tab))
+}
+
+function fetch_item(url,tab,table_id,item_type){
+    execute_ajax_request("get", url, null, (data) => append_data_to_table(table_id,item_type,data,tab))
+}
+
+const init_input_search_keyup = function (item_type,input_id,table_id,filiale_id,tab){
+    $(document).on("keyup",input_id,function (){
+        let item_name = $(input_id).val().toLowerCase().trim();
+        $(table_id +" tbody").empty();
+        if (item_name!==''){
+            let finded_item = tab.find(create_consumer("NAME",item_type,item_name));
+            if (finded_item===undefined) find_item(table_id,filiale_id,item_name,tab);
+            else push_item_table(item_type,finded_item,table_id);
+        }else if (tab.length!==0) tab.forEach(value => push_item_table(item_type,value,table_id));
+    });
 }
 
 function get_select_affect_to_input($input, $id_element, $text_element) {
@@ -81,13 +141,17 @@ function push_to_table_list($table, $id, $array_td) {
     return $tr;
 }
 
+const clear_table = ($table)=>{
+    $($table+"tbody").empty();
+}
+
 function execute_ajax_request(method_type,api_url,data=null,onsuccess){
     let requestObject = {type : method_type,url : api_url,success : onsuccess,contentType: "application/json"};
     if (data!==null) requestObject.data = JSON.stringify(data);
     $.ajax(requestObject);
 }
 
-function push_to_inventory_table_list($table, $id, $array_td) {
+function push_to_inventory_table_list($table, $id, $array_td){
     $tr = $('<tr></tr>').attr('id', $id);
     for (let i = 0; i < $array_td.length; i++) {
         if (i !== 4) $tr.append($('<td></td>').html($array_td[i]))

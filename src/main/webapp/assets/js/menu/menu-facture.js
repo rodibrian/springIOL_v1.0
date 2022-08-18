@@ -3,6 +3,7 @@ $(function () {
     /*---------------------------------
                 MENU FACTURE
      ----------------------------------*/
+    $filiale_id = $(namespace + '#filiale-id').attr("value-id");
     exportToExcel(namespace + '.btn-export-to-excel','factures-' , namespace + '.table-facture')
     /*
      click of tr, open infos list articles in facture
@@ -87,20 +88,20 @@ $(function () {
     function get_data_from_table_avoir(ref,date){
         let tab = [];
         let tr_tab = $(namespace + '#table-facture-avoir tbody tr');
-        let user_id = $(namespace+"#user-id").attr("value-id");
+        $user_id = $(namespace+"#user-id").attr("value-id");
         total_montant_avoir = 0;
         $.each(tr_tab,(key,value)=>{
             if ($(value).find('.avoir-checkbox').is(':checked')){
                 let info = {};
                 let row_id = $(value).attr("id");
                 let split = row_id.split("-");
-                let magasin_id = split[0];
+                $magasin_id = split[0];
                 let article_id = split[1];
                 let unite_id = split[2];
                 let quantite = $(value).children().eq(3).text();
                 info.typeOperation = "AVOIR";
-                info.magasin = {id: magasin_id};
-                info.user = {id: user_id};
+                info.magasin = {id:$magasin_id};
+                info.user = {id: $user_id};
                 info.unite = {id: unite_id};
                 info.article = {id: article_id}
                 info.quantiteAjout = quantite;
@@ -131,10 +132,22 @@ $(function () {
                 let date = new Date();
                 let ref = create_reference("AVOIR",date);
                 let invoice_regulation = {};
+
+                let info_filiale_caisse = {};
+                info_filiale_caisse.operationCaisse = "AVOIR";
+                info_filiale_caisse.montantOperation = $sommeAvoir;
+                info_filiale_caisse.date = date;
+                info_filiale_caisse.reference = ref;
+                info_filiale_caisse.modePayement = "ESPECE";
+                info_filiale_caisse.user = {id:$user_id};
+                info_filiale_caisse.filiale = {id : $filiale_id};
+                info_filiale_caisse.magasin = {id :$magasin_id};
+
                 invoice_regulation.vente= {id:vente_id};
                 invoice_regulation.refAvoir = ref;
                 invoice_regulation.infoArticleMagasin = get_data_from_table_avoir(ref,date);
                 invoice_regulation.montant = $sommeAvoir;
+                invoice_regulation.infoFilialeCaisse = info_filiale_caisse;
                 let url = "http://localhost:8080/api/v1/regulations";
                 execute_ajax_request("post",url,invoice_regulation,(data)=>{
                     // effectué operation AVOIR

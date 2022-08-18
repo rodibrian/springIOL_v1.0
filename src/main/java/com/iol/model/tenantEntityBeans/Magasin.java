@@ -43,7 +43,4 @@ public class Magasin{
     @JsonIgnore
     @ManyToMany(mappedBy = "magasin",cascade = CascadeType.PERSIST)
     private Set<User> users;
-
-//    @OneToMany
-//    private Set<Operation> operations;
 }

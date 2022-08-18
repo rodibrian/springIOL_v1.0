@@ -7,6 +7,7 @@ import com.iol.model.tenantEntityBeans.Magasin;
 import com.iol.repository.*;
 import com.iol.service.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -67,11 +68,6 @@ public class MenuNavController{
         return "menu-autorisation";
     }
 
-    @RequestMapping(value = "/caisse", method = RequestMethod.GET)
-    public String getMenuCaisse() {
-        return "menu-caisse";
-    }
-
     @RequestMapping(value = "/livraison", method = RequestMethod.GET)
     public String getMenuLivraison() {
         return "menu-livraison";
@@ -82,14 +78,31 @@ public class MenuNavController{
         return "menu-paiement";
     }
 
-
     @RequestMapping(value = "/voyage", method = RequestMethod.GET)
     public String getMenuVoyage() {
         return "menu-voyage";
     }
 
-    @Autowired
-    private SupplyRepository supplyRepository;
+    @RequestMapping(value = "/operation/changer-de-code", method = RequestMethod.GET)
+    public String getOperationLChangerDeCode() {
+        return "operation/changer-de-code";
+    }
+
+    @RequestMapping(value = "/operation/rectification", method = RequestMethod.GET)
+    public String getOperationRectification() {
+        return "operation/rectification";
+    }
+
+
+    @RequestMapping(value = "/caisse", method = RequestMethod.GET)
+    public ModelAndView getMenuCaisse(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView("menu-caisse");
+        Map<String, Long> connectedUserMagasinId = getConnectedUserInfo(request);
+        Long filialeId = connectedUserMagasinId.get(FILIALE_ID);
+        modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
+        modelAndView.addObject("caisse",caisseRepository.findAll(filialeId));
+        return modelAndView;
+    }
 
     @RequestMapping(value = "/peremption",method = RequestMethod.GET)
     public ModelAndView getMenuPeremption(HttpServletRequest request){
@@ -122,16 +135,6 @@ public class MenuNavController{
         ModelAndView modelAndView = new ModelAndView("menu-prix");
         modelAndView.addObject(PRICES_LIST,pricesRepository.findAllByLastDate(filialeId));
         return modelAndView;
-    }
-
-    @RequestMapping(value = "/operation/changer-de-code", method = RequestMethod.GET)
-    public String getOperationLChangerDeCode() {
-        return "operation/changer-de-code";
-    }
-
-    @RequestMapping(value = "/operation/rectification", method = RequestMethod.GET)
-    public String getOperationRectification() {
-        return "operation/rectification";
     }
 
     @RequestMapping(value = "/client", method = RequestMethod.GET)
@@ -320,6 +323,7 @@ public class MenuNavController{
         return modelAndView;
     }
 
+    @Autowired private CaisseRepository caisseRepository;
     @Autowired private ActivityRepository activityRepository;
     @Autowired private CategorieRepository categorieRepository;
     @Autowired private MagasinRepository magasinRepository;
@@ -331,9 +335,7 @@ public class MenuNavController{
     @Autowired private MaterielTransportRepository materielTransportRepository;
     @Autowired private SubsidiaryRepository subsidiaryRepository;
     @Autowired private SalesRepository salesRepository;
-    @Autowired private InfoArticleMagasinRepository infoArticleMagasinRepository;
-    @Autowired private VenteRepository venteRepository;
-    @Autowired private TransfertRepository transfertRepository;
     @Autowired private SalesService salesService;
+    @Autowired private SupplyRepository supplyRepository;
 }
 

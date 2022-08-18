@@ -22,6 +22,11 @@ public class TrosaRessource {
         return new ResponseEntity<>(trosaRepository.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/trosas/cf/{id}")
+    public ResponseEntity<Object> getAlltrosas(@PathVariable("id") Long cfId){
+        return new ResponseEntity<>(trosaRepository.findAllByCfId(cfId),HttpStatus.OK);
+    }
+
     @PutMapping("/trosas/{id}")
     public ResponseEntity<Object> update(@RequestBody Trosa newTrosa, @PathVariable(value = "id") Long id){
         Optional<Trosa> trosaOptional = trosaRepository.findById(id);
@@ -42,6 +47,7 @@ public class TrosaRessource {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.valueOf(500));
         }
     }
+
     @PostMapping(value = "/trosas")
     public ResponseEntity<Object> create(@RequestBody Trosa trosa){
         Trosa save = trosaRepository.save(trosa);

@@ -32,12 +32,12 @@ public class InfoArticleMagasin{
     @Column(columnDefinition = "TEXT")
     private String reference;
 
+    private LocalDate date;
+
     private String typeOperation;
 
     @Column(name = "quantite_ajout")
     private Double quantiteAjout;
-
-    private LocalDate date;
 
     private Double quantiteStockApresOperation;
 

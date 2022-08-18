@@ -1,5 +1,6 @@
 package com.iol.model.tenantEntityBeans;
 
+import com.iol.model.entityEnum.ModePayement;
 import com.iol.model.entityEnum.TypeTrosa;
 import lombok.Data;
 
@@ -9,7 +10,7 @@ import java.time.LocalDate;
 @Entity(name = "trosa")
 @Table(name = "trosa")
 @Data
-public class Trosa {
+public class Trosa{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,15 +19,23 @@ public class Trosa {
 
     private LocalDate date;
 
+    private Double reste;
+
+    @Enumerated(EnumType.ORDINAL)
     private TypeTrosa typeTrosa;
 
-    @OneToOne
-    @JoinColumn(name = "filiale_id")
-    private Filiale filiale;
+    @ManyToOne
+    @JoinColumn(name = "cf_id")
+    private ClientFournisseur clientFournisseur;
 
-//    @OneToOne
-//    @JoinTable(name = "trosa_operation",
-//            joinColumns = {@JoinColumn(name = "trosa_id",foreignKey = @ForeignKey(name ="FK_TROSA_ID",foreignKeyDefinition = "foreign key (trosa_id) references trosa(id) on delete cascade"))},
-//            inverseJoinColumns = {@JoinColumn(name = "operation_id",foreignKey = @ForeignKey(name = "FK_OPERATION_ID",foreignKeyDefinition = "foreign key (operation_id) references operation(id) on delete cascade"))})
-//    private Operation operation;
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
+    private String typePayement;
+
+
+    private LocalDate dateEcheance;
+
+    @Column(columnDefinition = "TEXT")
+    private String reference;
 }

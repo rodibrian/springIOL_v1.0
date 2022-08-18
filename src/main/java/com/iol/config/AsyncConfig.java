@@ -11,14 +11,14 @@ import java.util.concurrent.ExecutorService;
 @Configuration
 @EnableAsync
 public class AsyncConfig{
-    @Bean(name = "taskExecutor")
-    public Executor executor(){
-        ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
-        threadPoolTaskExecutor.setCorePoolSize(2);
-        threadPoolTaskExecutor.setMaxPoolSize(4);
-        threadPoolTaskExecutor.setQueueCapacity(100);
-        threadPoolTaskExecutor.setThreadNamePrefix("iol-");
-        threadPoolTaskExecutor.initialize();
-        return threadPoolTaskExecutor;
-    }
+//    @Bean(name = "taskExecutor")
+//    public Executor executor(){
+//        ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+//        threadPoolTaskExecutor.setCorePoolSize(2);
+//        threadPoolTaskExecutor.setMaxPoolSize(4);
+//        threadPoolTaskExecutor.setQueueCapacity(100);
+//        threadPoolTaskExecutor.setThreadNamePrefix("iol-");
+//        threadPoolTaskExecutor.initialize();
+//        return threadPoolTaskExecutor;
+//    }
 }

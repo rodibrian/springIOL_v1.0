@@ -37,7 +37,6 @@ $(function () {
         $(namespace + '#nouveau-fournisseur input#contact').val($trFournisseur.children().eq(2).text());
         NOUVEAU_FOURNISSEUR = false;
     })
-
     function enregistrerClientOuFournisseur(fournisseur){
         let cfResourceUrl = NOUVEAU_FOURNISSEUR ? cfUrl :cfUrl+"/"+idCf;
         let methodType = NOUVEAU_FOURNISSEUR ? "POST" : "PUT";
@@ -66,17 +65,12 @@ $(function () {
             }
         });
     }
-
     /*
      enregistrement nouveau fournisseur
      */
-
     /*
-
     mask et validation
-
      */
-
     $(function() {
         $(namespace + 'form').validate({
             rules : {
@@ -93,13 +87,11 @@ $(function () {
 
         $(namespace + 'form input#contact').mask('+261 99 99 999 99')
     })
-
     function validation_nouveau_founisseur() {
         $(namespace + 'form').validate();
 
         return $(namespace + 'form').valid();
     }
-
     $(namespace + '#nouveau-fournisseur #btn-enregistrer-fournisseur').on('click', function () {
 
         if (validation_nouveau_founisseur()) {
@@ -118,11 +110,9 @@ $(function () {
         }
 
     })
-
     /*
      click fournisseur tr
      */
-
     $(document).on('click', namespace + '#table-fournisseur tbody tr', function () {
 
         // get reference of selected facture
@@ -133,7 +123,6 @@ $(function () {
     /*
      suppression fournisseur
      */
-
     $(document).on('click', namespace + '#table-fournisseur .deleteFournisseur', function () {
 
         $trFournisseur = $(this).closest('tr');
@@ -150,13 +139,9 @@ $(function () {
                 $(namespace + "#info-credit").removeClass("show")
             })
     })
-
     /*
-
     NOUVEAU DETTE
-
      */
-
     $(namespace + '.btn-nouveau-dette').on('click', function() {
         $(namespace + '#nouveau-dette input#nomFournisseur').val($trFournisseur.children().eq(0).text())
     })
@@ -165,10 +150,22 @@ $(function () {
         $montant = $(namespace + '#nouveau-dette input#somme').val();
         $description = $(namespace + '#nouveau-dette textarea#description').val();
         $dette = ['ref-00000',new Date().toLocaleDateString(), $montant, 0, $montant, $description];
-        push_to_table_list(namespace + '.table-dette-fournisseur', '', $dette);
-        createToast('bg-success', 'uil-check-sign', 'Dette enregistre', 'Nouveau dette enregistre avec success!');
-        $(namespace + '#nouveau-dette input').val('');
-        $(namespace + '#nouveau-dette textarea').val('');
+        let trosa = {};
+        trosa.clientFournisseur = {id: $cf_id};
+        trosa.montant = $montant;
+        trosa.description = $description;
+        trosa.typeTrosa = "DETTE";
+        trosa.date = new Date().getUTCDate();
+        trosa.reste = $montant;
+        let url = "http://localhost:8080/api/v1/trosas";
+        execute_ajax_request("post",url,trosa,(data)=>{
+            let tr = ["",trosa.date,trosa.montant,0,trosa.montant,trosa.description,
+                `<a  class="btn-sm btn-danger delete-trosa"><i class="uil-trash-alt"></i></a>`];
+            push_to_table_list(namespace + '#table-dette-cf',data.id,tr);
+            createToast('bg-success', 'uil-check-sign', 'Dette enregistre', 'Nouveau dette enregistre avec success!');
+            $(namespace + '#nouveau-dette input').val('');
+            $(namespace + '#nouveau-dette textarea').val('');
+        })
     })
     /*
     Supprimer dette
@@ -181,5 +178,39 @@ $(function () {
                 hideAndRemove('#' + $modalId);
                 createToast('bg-danger', 'uil-check-sign', 'Dette supprime', 'Tout les dettes fournisseur sont supprimer avec success!');
             })
+    })
+    /*
+    *  DOUBLE CLICK TR
+    * */
+    const createStatus = (montant)=>{
+        if (montant===0) return "payé";
+        else return "non payé";
+    }
+
+    const createBadge = (montant)=>{
+        if (montant===0) return "badge badge-success-lighten";
+        else return "badge badge-warning-lighten";
+    }
+
+    $(document).on('dblclick',namespace + '#table-fournisseur tbody tr',function () {
+        $(namespace+"#info-dette-cf").modal("show");
+        $cf_id = $(this).attr("id");
+        let url = "http://localhost:8080/api/v1/trosas/cf/"+$cf_id;
+        execute_ajax_request("get",url,null,(data)=>{
+            $(namespace + '#table-dette-cf tbody').empty();
+            data.forEach(value =>{
+                let tr = [value.reference,
+                    value.date,
+                    value.montant,
+                    value.montant-value.reste,
+                    value.reste,
+                    value.typePayement,
+                    `<span class="badge `+createBadge(value.reste)+`">`+createStatus(value.reste)+`</span>`,
+                    value.description,
+                    `<a  class="btn-sm btn-danger delete-trosa"><i class="uil-trash-alt"></i></a>`];
+                push_to_table_list(namespace + '#table-dette-cf',value.id,tr);
+            })
+        })
+
     })
 })

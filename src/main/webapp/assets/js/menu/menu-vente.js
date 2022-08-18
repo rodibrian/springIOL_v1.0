@@ -3,6 +3,7 @@ $(function () {
                                        MENU VENTE SCRIPT
     -------------------------------------------------------------------------------- */
     let namespace = "#menu-vente ";
+    $filiale_id = $(namespace + '#filiale-id').attr("value-id");
     /*
     Selecter client
     */
@@ -59,15 +60,16 @@ $(function () {
     }
 
     $(document).on('dblclick', namespace + '#table-liste-article tbody tr', function () {
-        let article_id = $(this).attr("id");
-        let unite_id = $(this).children().eq(1).attr("value-id");
+        let tr_id = $(this).attr("id");
+        let article_id = tr_id.split("-")[0];
+        let unite_id = tr_id.split("-")[1];
         $quantite_stock = $(this).children().eq(2).text();
         $prix_article = $(this).children().eq(3).text();
         let filialeId = $(namespace + '#filiale-id').attr("value-id");
         get_select_affect_to_input(namespace + '#designation-article', article_id, $(this).children().eq(1).text());
         set_select_option_value([unite_id, $(this).children().eq(1).text()], namespace + "#input-unite-article");
         /* AFFECTATION DU PRIX UNITAIRE */
-        $(namespace + "#input-prix-unitaire").val($prix_unitaire);
+        $(namespace + "#input-prix-unitaire").val($prix_article);
         get_select_affect_to_input(namespace + "#input-prix-unitaire", "", $(this).children().eq(5).text());
         $(namespace + '#modal-liste-article').modal('hide');
     });
@@ -144,13 +146,13 @@ $(function () {
            $.each(tr_tab,(key,value)=>{
                let row_id = $(value).attr("id");
                let split = row_id.split("-");
-               let magasin_id = split[0];
+               $magasin_id = split[0];
                let article_id = split[1];
                let unite_id = split[2];
                let info = {};
                let quantite = $(value).children().eq(2).text();
                info.typeOperation = "VENTE";
-               info.magasin = {id: magasin_id};
+               info.magasin = {id: $magasin_id};
                info.user = {id: user_id};
                info.unite = {id: unite_id};
                info.article = {id: article_id}
@@ -165,15 +167,28 @@ $(function () {
         create_confirm_dialog('Confirmation de Vente', $content, $modalId, 'Enregistrer', 'btn-primary')
             .on('click',function(){
                 $clientId = $(namespace + '#name-client').attr("value-id");
+                let nom_client = $(namespace + '#name-client').val();
                 let user_id = $(namespace + '#user-id').attr("value-id");
                 let date = new Date();
                 let ref = create_reference("VENTE",date);
                 let $vente = {};
+
+                let info_filiale_caisse = {};
+                info_filiale_caisse.operationCaisse = "FACTURE";
+                info_filiale_caisse.montantOperation = $sommeMontant;
+                info_filiale_caisse.date = date;
+                info_filiale_caisse.modePayement = "ESPECE";
+                info_filiale_caisse.user = {id:user_id};
+                info_filiale_caisse.filiale = {id : $filiale_id};
+                info_filiale_caisse.magasin = {id :$magasinId};
+                info_filiale_caisse.description = " Facture N°"+ref+" du client " + nom_client;
                 $vente.infoArticleMagasin = getDataFromTable(ref,date,user_id);
                 $vente.client = {id: $clientId};
                 $vente.montantVente = $sommeMontant;
                 $vente.refVente = ref;
                 $vente.remise = 0;
+                $vente.infoFilialeCaisse = info_filiale_caisse;
+
                 let url = "http://localhost:8080/api/v1/sales";
                 execute_ajax_request("post", url,$vente, (data) => {
                     // impresion
@@ -241,7 +256,6 @@ $(function () {
         /*
         add information
          */
-
         $(space + '.label-nom-client').text($client);
         $(space + '.label-magasin').text($magasin);
         $(space + '.label-utilisateur').text($user);
@@ -261,126 +275,42 @@ $(function () {
     }
     function updateLabelFooter() {
         $countArticle = $(namespace + '#table-liste-article-vente tbody tr').length;
-
         $sommeMontant = 0
         $(namespace + '#table-liste-article-vente tbody tr').each(function (key, value) {
             $sommeMontant += parseFloat($(value).children().eq(4).text());
         })
-
         $(namespace + '.label-nombre-article').text($countArticle)
         $(namespace + '.label-somme-ariary').text($sommeMontant)
         $(namespace + '.label-somme-fmg').text($sommeMontant * 5)
-
-    }
-    /*
-   *  RECHERCHER ARTICLE
-   */
-   let item_tab = [];
-   function appendDataToTable(data){
-        $(namespace + "#table-liste-article tbody").empty();
-        $.each(data, (key, value) => {
-            let tr = `
-                            <tr id ="` + value.itemId + `">
-                                <td>` + value.itemName + `</td>
-                                <td value-id ="` +value.uniteId+ `">` + value.uniteName + `</td>
-                                <td>` + value.stock + `</td>
-                                <td>` + value.price + `</td>
-                            </tr>
-                     `;
-            $(namespace + "#table-liste-article tbody").append(tr);
-            let map = [tr,value];
-            if (item_tab.length===0) item_tab.push(map);
-            else {
-                let finded_item = item_tab.find(item => (item[1].itemId === value.itemId && item[1].uniteId ===value.uniteId ) );
-                if (finded_item=== undefined) item_tab.push(map);
-            }
-        })
-    }
-
-    function find_item(item_name){
-        let filialeId = $(namespace + '#filiale-id').attr("value-id");
-        let url = "http://localhost:8080/api/v1/subsidiaries/" + filialeId + "/itemsInfo/" + item_name;
-        execute_ajax_request("get", url, null, (data) => appendDataToTable(data))
-    }
-
-    function find_client(client_name){
-        let filialeId = $(namespace + '#filiale-id').attr("value-id");
-        let url = "http://localhost:8080/api/v1/externalEntities/0/"+filialeId;
-        execute_ajax_request("get", url, null, (data) => append_client(data))
     }
     /*
     *  RECHERCHER  ARTICLE
     * */
-    $(document).on("keyup",namespace+"#inpute-article-search",()=>{
-        let item_name = $(namespace+"#inpute-article-search").val().toLowerCase().trim();
-        if (item_name!==''){
-            if (item_tab.length===0) find_item(item_name);
-            else{
-                let finded_item = item_tab.find(item => item[1].itemName.toLowerCase().trim().search(item_name)!==-1);
-                if (finded_item !== undefined && finded_item !== null){
-                    $(namespace + "#table-liste-article tbody").empty();
-                    $(namespace + "#table-liste-article tbody").append(finded_item[0]);
-                }else find_item(item_name);
-            }
-        }else if (item_tab.length!==0){
-            $(namespace + "#table-liste-article tbody").empty();
-            item_tab.forEach(value => $(namespace+"#table-liste-article tbody").append(value[0]));
-        }
-    });
-
+    let item_tab = [];
+    const LIST_ITEM_TABLE = namespace+"#table-liste-article";
+    const INPUT_ITEM_SEARCH = namespace+"#inpute-article-search";
+    init_input_search_keyup("ARTICLE",
+        INPUT_ITEM_SEARCH,
+        LIST_ITEM_TABLE,
+        $filiale_id
+        ,item_tab);
     $(namespace+"#btn-search-article").click(()=>{
-        if (item_tab.length===0){
-            let filialeId = $(namespace + '#filiale-id').attr("value-id");
-            let url = "http://localhost:8080/api/v1/subsidiaries/"+filialeId+"/itemsInfo/";
-            execute_ajax_request("get", url, null, (data) => appendDataToTable(data))
-        }
+        let url = "http://localhost:8080/api/v1/subsidiaries/"+$filiale_id+"/itemsInfo/";
+        if (item_tab.length===0) fetch_item(url,item_tab,LIST_ITEM_TABLE,"ARTICLE")
     })
     /*
     * RECHERCHER CLIENT
     * */
-    let client_tab = [];
-    $(document).on("keyup",namespace+"#input-client-search",()=>{
-        let client_name = $(namespace+"#input-client-search").val().toLowerCase().trim();
-        if (client_name!==''){
-            if (client_tab.length===0)find_client(client_name);
-            else{
-                let finded_client = client_tab.find(item => item[1].nom.toLowerCase().trim().search(client_name)!==-1);
-                if (finded_client !== undefined && finded_client !== null){
-                    $(namespace + "#table-liste-client tbody").empty();
-                    $(namespace + "#table-liste-client tbody").append(finded_client[0]);
-                }else find_client(client_name);
-            }
-        }else if (item_tab.length!==0){
-            $(namespace + "#table-liste-client tbody").empty();
-            client_tab.forEach(value => $(namespace+"#table-liste-client tbody").append(value[0]));
-        }
-    });
-
-    function append_client(data) {
-        $(namespace + "#table-liste-client tbody").empty();
-        data.forEach(cf => {
-            let tr = `
-                            <tr id="` + cf.id + `">
-                              <td>` + cf.nom + `</td>
-                              <td>` + cf.adresse + `</td>
-                              <td>` + cf.numTel + `</td>
-                            </tr>
-                    `;
-            let map = [tr, cf];
-            $(namespace + "#table-liste-client tbody").append(tr);
-            if (client_tab.length === 0) client_tab.push(map);
-            else {
-                let finded_client = client_tab.find(map => map[1].id === cf.id);
-                if (finded_client === undefined) client_tab.push(map);
-            }
-        });
-    }
-
+    // let client_tab = [];
+    // const LIST_CLIENT_TABLE = namespace+"#table-liste-client";
+    // const INPUT_CLIENT_SEARCH = namespace+"#input-client-search";
+    // init_input_search_keyup("CLIENT",
+    //     INPUT_CLIENT_SEARCH,
+    //     LIST_CLIENT_TABLE,
+    //     $filiale_id,
+    //     client_tab);
     $(namespace+"#btn-search-client").click(()=>{
-        if (client_tab.length===0){
-            let filialeId = $(namespace + '#filiale-id').attr("value-id");
-            let url  = "http://localhost:8080/api/v1/externalEntities/0/"+filialeId;
-            execute_ajax_request('get',url,null,(data)=> append_client(data))
-        }
+        let url = "http://localhost:8080/api/v1/externalEntities/0/"+$filiale_id;
+        if (client_tab.length===0) fetch_item(url,client_tab,LIST_CLIENT_TABLE,"CLIENT")
     })
 })

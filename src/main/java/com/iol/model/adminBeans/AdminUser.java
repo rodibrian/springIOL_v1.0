@@ -8,5 +8,4 @@ package com.iol.model.adminBeans;
 @Entity
 @Data
 public class AdminUser extends PersonnePhysique{
-
 }

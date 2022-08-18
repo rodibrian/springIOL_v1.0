@@ -4,10 +4,7 @@ import com.iol.model.tenantEntityBeans.ArticleUnite;
 import com.iol.model.tenantEntityBeans.Filiale;
 import com.iol.model.tenantEntityBeans.PrixArticleFiliale;
 import com.iol.model.wrapper.InventoryViewWrapper;
-import com.iol.repository.ArticleRepository;
-import com.iol.repository.PricesRepository;
-import com.iol.repository.SalesRepository;
-import com.iol.repository.SubsidiaryRepository;
+import com.iol.repository.*;
 import com.iol.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,9 +24,17 @@ public class SubsidiaryRessource{
     @Autowired
     private PricesRepository pricesRepository;
 
+    @Autowired
+    private TrosaRepository trosaRepository;
+
     @GetMapping(value = "/subsidiaries")
     public ResponseEntity<Object> getAllSubdiaries(){
         return new ResponseEntity<>(subsidiaryRepository.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/subsidiaries/{id}/trosa")
+    public ResponseEntity<Object> getAllSubdiariesTrosa(@PathVariable("id") Long filialeId){
+        return new ResponseEntity<>(trosaRepository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/subsidiaries/{id}/{uniteId}/{articleId}")
