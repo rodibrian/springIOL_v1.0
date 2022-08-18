@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
-<div id="impression-ticket-caisse" class="d-flex justify-content-center ticket-of">
+<div id="impression-ticket-caisse" class="d-flex justify-content-center ticket-of index-none">
 
   <div class="col-md-2 bg-blanc">
     <div class="invoice invoice-sm">

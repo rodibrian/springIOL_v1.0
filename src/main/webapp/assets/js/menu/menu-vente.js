@@ -4,6 +4,9 @@ $(function () {
     -------------------------------------------------------------------------------- */
     let namespace = "#menu-vente ";
     $filiale_id = $(namespace + '#filiale-id').attr("value-id");
+
+    push_Type_paiement(namespace + "#select-payement");
+
     /*
     Selecter client
     */

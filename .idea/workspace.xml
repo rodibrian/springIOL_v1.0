@@ -5,7 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bd9c0e93-77b1-4a8f-96ad-44ae32dfbfef" name="Changes" comment="reste menu-operation filtre">
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-fournisseur.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-fournisseur.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/bon-entree-ou-sortie.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/bon-entree-ou-sortie.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/bon-transfert.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/bon-transfert.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/facture-avoir.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/facture-avoir.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/facture-credit-or-dette-payement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/facture-credit-or-dette-payement.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/facture-encaissement-or-decaissement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/facture-encaissement-or-decaissement.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/facture-vente.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/facture-vente.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/ticket-avoir.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/ticket-avoir.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/ticket-caisse.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/ticket-caisse.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/ticket-credit-or-dette-payement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/ticket-credit-or-dette-payement.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/ticket-encaissement-or-decaissement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/impression/ticket-encaissement-or-decaissement.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/impression.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/impression.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-vente.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-vente.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +89,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Git.Branch.Popup.ShowAllRemotes": "true",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -342,7 +355,7 @@
       <workItem from="1660794468487" duration="4932000" />
       <workItem from="1660801947373" duration="9421000" />
       <workItem from="1660811624361" duration="1250000" />
-      <workItem from="1660821632990" duration="6737000" />
+      <workItem from="1660821632990" duration="10514000" />
     </task>
     <task id="LOCAL-00001" summary="mapping de la trigger avec la table approvisionnement">
       <created>1658448504125</created>

@@ -200,5 +200,17 @@ TICKET DE CAISSE
 }
 
 .invoice-sm .invoice-header {
-    margin: 0;
+    opacity: .5;
+}
+
+.index-none {
+    position: absolute!important;
+    top: -9999px;
+    z-index: -9999;
+}
+
+@media print {
+    .index-none {
+        top: 0;
+    }
 }

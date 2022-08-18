@@ -295,7 +295,7 @@ function personnaliserMenu($title) {
 
 
 function exportToExcel($btn, $prefix, $table) {
-    $filename = $prefix + '-' + new Date().getTime().toString() + '.xls';
+    $filename = 'file-' + new Date().getTime().toString() + '.xls';
     $($btn).on('click', function () {
         console.log($prefix)
         $($table).table2excel({
@@ -305,7 +305,7 @@ function exportToExcel($btn, $prefix, $table) {
 }
 
 function exportToExcelCustomBtn($btn, $prefix, $table) {
-    $filename = $prefix + '-' + new Date().getTime().toString() + '.xls';
+    $filename = 'file-' + new Date().getTime().toString() + '.xls';
     $($btn).on('click', function () {
         $($table).table2excel({
             filename: $filename
