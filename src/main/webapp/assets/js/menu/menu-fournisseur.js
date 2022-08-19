@@ -6,7 +6,9 @@ $(function () {
     let cfUrl = "http://localhost:8080/api/v1/externalEntities";
     let idCf = 1;
     let NOUVEAU_FOURNISSEUR = true;
+    $montant_reste = 0;
     $filialeId = $(namespace + '#filiale-id').attr("value-id");
+    $user_id = $(namespace+"#user-id").attr("value-id");
     exportToExcel(namespace + '.btn-export-to-excel','fournisseurs', namespace + '#table-fournisseur')
     /*
      fermer l'info listes article facture
@@ -93,7 +95,6 @@ $(function () {
         return $(namespace + 'form').valid();
     }
     $(namespace + '#nouveau-fournisseur #btn-enregistrer-fournisseur').on('click', function () {
-
         if (validation_nouveau_founisseur()) {
             let nomFournisseur = $(namespace + '#nouveau-fournisseur input#nom').val();
             let adresse = $(namespace + '#nouveau-fournisseur input#adresse').val();
@@ -114,12 +115,10 @@ $(function () {
      click fournisseur tr
      */
     $(document).on('click', namespace + '#table-fournisseur tbody tr', function () {
-
         // get reference of selected facture
         $trFournisseur = $(this);
         $(namespace + "#info-credit").addClass("show")
     })
-
     /*
      suppression fournisseur
      */
@@ -167,25 +166,34 @@ $(function () {
 
     function validation_nouveau_dette() {
         $(namespace + '#nouveau-dette form').validate();
-
         return $(namespace + '#nouveau-dette form').valid();
     }
 
-    $(namespace + '#nouveau-dette #btn-enregistrer-dette-fournisseur').on('click', function () {
+    $(namespace + '#nouveau-dette #btn-enregistrer-dette-fournisseur').on('click',function(){
        if (validation_nouveau_dette()) {
            $montant = $(namespace + '#nouveau-dette input#somme').val();
            $description = $(namespace + '#nouveau-dette textarea#description').val();
-           $dette = ['ref-00000',new Date().toLocaleDateString(), $montant, 0, $montant, $description];
+           $date_dette = $(namespace+"#date-dette").val();
+           $date_echeance = $(namespace+"#date-echeance").val();
            let trosa = {};
            trosa.clientFournisseur = {id: $cf_id};
            trosa.montant = $montant;
            trosa.description = $description;
            trosa.typeTrosa = "DETTE";
-           trosa.date = new Date().getUTCDate();
+           trosa.date = $date_dette;
+           trosa.dateEcheance = $date_echeance;
            trosa.reste = $montant;
            let url = "http://localhost:8080/api/v1/trosas";
            execute_ajax_request("post",url,trosa,(data)=>{
-               let tr = ["",trosa.date,trosa.montant,0,trosa.montant,trosa.description,
+               let tr = ["",
+                   trosa.date,
+                   trosa.montant,
+                   0,
+                   trosa.montant,
+                   trosa.typePayement,
+                   `<span class="badge `+createBadge($montant)+`">`+createStatus($montant)+`</span>`,
+                   trosa.dateEcheance,
+                   trosa.description,
                    `<a  class="btn-sm btn-danger delete-trosa"><i class="uil-trash-alt"></i></a>
                     <a  class="btn-sm btn-infos payer-trosa"><i class="uil-money-withdrawal"></i></a>`];
                push_to_table_list(namespace + '#table-dette-cf',data.id,tr);
@@ -193,7 +201,7 @@ $(function () {
                $(namespace + '#nouveau-dette input').val('');
                $(namespace + '#nouveau-dette textarea').val('');
            })
-           $(namespace + '#nouveau-dette').modal('hide')
+           $(namespace + '#nouveau-dette').modal('hide');
        }
     })
     /*
@@ -221,48 +229,53 @@ $(function () {
         else return "badge badge-warning-lighten";
     }
 
-    $(document).on('dblclick',namespace + '#table-fournisseur tbody tr',function () {
+    const init_action_column = (reste)=>{
+       let action =  `<a  class="btn-sm btn-danger delete-trosa"><i class="uil-trash-alt"></i></a>`;
+       return reste === 0 ? action : action+`<a  class="btn-sm btn-info payer-trosa"><i class="uil-money-withdrawal"></i></a>`;
+    }
+
+    function appendItem(data) {
+        $(namespace + '#table-dette-cf tbody').empty();
+        data.forEach(value => {
+            let tr = [value.reference,
+                value.date,
+                value.montant,
+                value.montant - value.reste,
+                value.reste,
+                value.typePayement,
+                `<span class="badge ` + createBadge(value.reste) + `">` + createStatus(value.reste) + `</span>`,
+                value.dateEcheance,
+                value.description,init_action_column(value.reste)];
+            push_to_table_list(namespace + '#table-dette-cf', value.id, tr);
+        })
+    }
+
+    function fetch_data(){
+        let url = "http://localhost:8080/api/v1/trosas/cf/" + $cf_id;
+        execute_ajax_request("get", url, null, (data) => appendItem(data))
+    }
+
+    $(document).on('dblclick',namespace + '#table-fournisseur tbody tr',function(){
         $(namespace+"#info-dette-cf").modal("show");
         $cf_id = $(this).attr("id");
-        let url = "http://localhost:8080/api/v1/trosas/cf/"+$cf_id;
-        execute_ajax_request("get",url,null,(data)=>{
-            $(namespace + '#table-dette-cf tbody').empty();
-            data.forEach(value =>{
-                let tr = [value.reference,
-                    value.date,
-                    value.montant,
-                    value.montant-value.reste,
-                    value.reste,
-                    value.typePayement,
-                    `<span class="badge `+createBadge(value.reste)+`">`+createStatus(value.reste)+`</span>`,
-                    new Date().toLocaleString(),
-                    value.description,
-                    `<a  class="btn-sm btn-danger delete-trosa"><i class="uil-trash-alt"></i></a>
-                     <a  class="btn-sm btn-info payer-trosa"><i class="uil-money-withdrawal"></i></a>`];
-                push_to_table_list(namespace + '#table-dette-cf',value.id,tr);
-            })
-        })
-
+        fetch_data();
     })
-
     // payement trosa
-
     let montantReste = 0;
 
     push_Type_paiement(namespace + '#modal-payement-dette #type-paiement')
 
-    $(document).on('click', namespace + '#table-dette-cf .payer-trosa', function () {
+    $(document).on('click', namespace + '#table-dette-cf .payer-trosa',function(){
+        $trosa_id = $(this).closest("tr").attr("id");
         // get montant
-        montantReste = parseFloat($(this).closest('tr').children('td').eq(4).text());
+        $montant_reste = parseFloat($(this).closest('tr').children('td').eq(4).text());
         $(namespace + '#modal-payement-dette form').validate();
-        $(namespace + '#modal-payement-dette input#Montant-payer').val(montantReste)
+        $(namespace + '#modal-payement-dette input#Montant-payer').val($montant_reste)
         $(namespace + '#modal-payement-dette').modal('show')
     })
 
     /*
-
     validation payement
-
      */
 
     $(namespace + '#modal-payement-dette form').validate( {
@@ -278,15 +291,38 @@ $(function () {
 
     function validation_payement_dette() {
         $(namespace + '#modal-payement-dette form').validate();
-
         return $(namespace + '#modal-payement-dette form').valid();
     }
 
-    $(namespace + '#modal-payement-dette .btn-enregistrer-payement-dette').on('click', function() {
-        if (validation_payement_dette()) {
-            $(namespace + '#modal-payement-dette').modal('hide')
+    $(namespace+"#refresh-list-btn").click(()=> fetch_data())
 
+    function update_reste(montant_payer) {
+        let montant_reste = $montant_reste - parseFloat(montant_payer);
+        execute_ajax_request("put", "http://localhost:8080/api/v1/trosas/" + $trosa_id, montant_reste, (data) => {
+            $(namespace + '#modal-payement-dette').modal('hide');
             createToast('bg-success', 'uil-check', 'Dette payé', 'Dette payé avec succès');
+        });
+    }
+
+    $(namespace + '#modal-payement-dette .btn-enregistrer-payement-dette').on('click',function(){
+        if (validation_payement_dette()){
+            let montant_payer = $(namespace+"#Montant-payer").val();
+            let type_payement = $(namespace+"#type-paiement option:selected").val();
+            let description = $(namespace+"#description-payement").val();
+            let ifc = {};
+            ifc.description = description;
+            ifc.montantOperation = montant_payer;
+            ifc.reference = "ref";
+            ifc.operationCaisse = "ENCAISSEMENT";
+            ifc.user = {id:$user_id};
+            ifc.modePayement = type_payement;
+            ifc.filiale = {id:$filialeId};
+            ifc.date = new Date();
+            let url = "http://localhost:8080/api/v1/ifc";
+            execute_ajax_request("post",url,ifc,(data)=>{
+                update_reste(montant_payer);
+            });
         }
     })
+
 })

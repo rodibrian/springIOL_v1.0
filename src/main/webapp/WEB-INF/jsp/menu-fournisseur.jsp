@@ -3,6 +3,8 @@
 <%@ include file="template/header.jsp" %>
 <!-- Start Content-->
 <div class="container-fluid" id="menu-fournisseur">
+  <input type="hidden" id="user-id" value-id="${connectedUser.id}">
+  <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
   <!-- start page title -->
   <div class="row">
     <div class="col-12">

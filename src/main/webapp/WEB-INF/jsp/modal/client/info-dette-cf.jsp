@@ -15,8 +15,6 @@
         <h4 class="modal-title" id="num-facture"></h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
       </div>
-      <input type="hidden" id="user-id" value-id="${connectedUser.id}">
-      <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12">
@@ -31,15 +29,17 @@
                    data-bs-target="#nouveau-dette"
                    data-bs-toggle="modal"><i
                         class="uil-file-plus">&nbsp;</i>Nouveau Dette</a>
+                <a type="button" id="refresh-list-btn" class="btn btn-success mr-1"><i
+                        class="uil-refresh">&nbsp;</i>Actualiser</a>
               </div>
             </div>
             <table id="table-dette-cf" class="table table-hover table-striped norwap table-sm dt-responsive">
               <thead>
               <th>Facture</th>
               <th>Date</th>
-              <th>Montant</th>
-              <th>Payer</th>
-              <th>Reste</th>
+              <th>Montant(Ar)</th>
+              <th>Payer(Ar)</th>
+              <th>Reste(Ar)</th>
               <th>Mode de payement</th>
               <th>Status</th>
               <th>Date échéance</th>

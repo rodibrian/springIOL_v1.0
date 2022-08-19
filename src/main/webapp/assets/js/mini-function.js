@@ -319,6 +319,5 @@ function push_Type_paiement($selectID) {
         ' <option value="1">Espèces</option>\n' +
         ' <option value="2">Mobile Money</option>\n' +
         ' <option value="3">Chèques</option>\n' +
-        ' <option value="4">Virement</option>\n' +
-        ' <option value="5">Crédit</option>')
+        ' <option value="4">Virement</option>\n')
 }

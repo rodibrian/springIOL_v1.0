@@ -27,12 +27,11 @@ public class InfoFilialeCaisse{
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(length = 50)
-    @Enumerated(value = EnumType.STRING)
-    private ModePayement modePayement;
-
     @Enumerated(EnumType.STRING)
     private TypeOperationCaisse operationCaisse;
+
+    @Column(columnDefinition = "TEXT")
+    private String modePayement;
 
     @Column(columnDefinition = "TEXT")
     private String reference;

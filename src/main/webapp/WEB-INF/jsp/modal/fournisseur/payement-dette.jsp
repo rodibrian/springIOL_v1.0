@@ -1,7 +1,7 @@
 <!-- Small modal -->
 <div class="modal fade" id="modal-payement-dette" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
      aria-hidden="true">
-  <div class="modal-dialog modal-sm">
+  <div class="modal-dialog modal-lg">
     <form class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" id="mySmallModalLabel">Payement du dette</h4>

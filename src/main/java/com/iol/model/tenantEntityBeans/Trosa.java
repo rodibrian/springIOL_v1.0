@@ -17,8 +17,6 @@ public class Trosa{
 
     private Double montant;
 
-    private LocalDate date;
-
     private Double reste;
 
     @Enumerated(EnumType.ORDINAL)
@@ -33,8 +31,9 @@ public class Trosa{
 
     private String typePayement;
 
-
     private LocalDate dateEcheance;
+
+    private LocalDate date;
 
     @Column(columnDefinition = "TEXT")
     private String reference;

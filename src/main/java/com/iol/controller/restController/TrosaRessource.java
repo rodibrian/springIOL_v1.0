@@ -28,14 +28,9 @@ public class TrosaRessource {
     }
 
     @PutMapping("/trosas/{id}")
-    public ResponseEntity<Object> update(@RequestBody Trosa newTrosa, @PathVariable(value = "id") Long id){
-        Optional<Trosa> trosaOptional = trosaRepository.findById(id);
-        if (!trosaOptional.isPresent()){
-            return ResponseEntity.notFound().build();
-        }
-        newTrosa.setId(id);
-        trosaRepository.save(newTrosa);
-        return new ResponseEntity<>(newTrosa, HttpStatus.OK);
+    public ResponseEntity<Object> update(@RequestBody Double newValue , @PathVariable(value = "id") Long id){
+        trosaRepository.updateReste(newValue,id);
+        return new ResponseEntity<>(newValue,HttpStatus.OK);
     }
 
     @DeleteMapping("/trosas/{id}")
