@@ -25,24 +25,25 @@
         <div class="page-title-right">
 <%--          <a href="" class="btn btn-primary" role="button" data-bs-toggle="modal" data-bs-target="#modal-liste-article"><i--%>
 <%--                  class="uil-plus"></i>&nbsp;</a>--%>
-          <a class="btn btn-success btn-export-to-excel bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel">&nbsp;</a>
         </div>
       </div>
       <div class="row">
-        <div class="col-3 d-block mt-1">
-          <a role="btn" class="btn btn-outline-primary mr-1 btn-status">Tout</a>
-          <a role="btn" class="btn btn-outline-info mr-1 btn-status">Forte</a>
-          <a role="btn" class="btn btn-outline-success mr-1 btn-status" >Moyenne</a>
-          <a role="btn" class="btn btn-outline-warning mr-1 btn-status">Faible</a>
-          <a role="btn" class="btn btn-outline-danger mr-1 btn-status">P&eacute;rim&eacute;</a>
+        <div class="col-md-11 d-inline-flex">
+          <a role="btn" class="btn btn-outline-primary mr-1 btn-status btn-40">Tout</a>&nbsp;
+          <a role="btn" class="btn btn-outline-info mr-1 btn-status btn-40">Forte</a>&nbsp;
+          <a role="btn" class="btn btn-outline-success mr-1 btn-status btn-40" >Moyenne</a>&nbsp;
+          <a role="btn" class="btn btn-outline-warning mr-1 btn-status btn-40">Faible</a>&nbsp;
+          <a role="btn" class="btn btn-outline-danger mr-1 btn-status btn-40">P&eacute;rim&eacute;</a>&nbsp;
+          <select name="magasin" id="magasin-select-item" class="form-select w-25">
+            <option value="toutes" selected > TOUTES </option>
+            <c:forEach var="magasin" items="${magasins}">
+              <option value="${magasin.id}"><c:out value="${magasin.nomMagasin}"/></option>
+            </c:forEach>
+          </select>&nbsp;
         </div>
-        <div class="col-3">
-              <select name="magasin" id="magasin-select-item" class="form-select m-1">
-                    <option value="toutes" selected > TOUTES </option>
-                    <c:forEach var="magasin" items="${magasins}">
-                      <option value="${magasin.id}"><c:out value="${magasin.nomMagasin}"/></option>
-                    </c:forEach>
-              </select>
+        <div class="col-md-1 d-inline-flex justify-content-end">
+          <a class="btn btn-success btn-export-to-excel bg-forest btn-40 float-end"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel">&nbsp;</a>
+
         </div>
       </div>
 
@@ -58,7 +59,7 @@
   <!-- suite -->
 
 
-  <div class="container-fluid">
+  <div><br>
     <div class="row">
       <div class="col-lg-12">
         <table id="expiration-table" class="table-peremption table table-sm dt-responsive nowrap table-hover table-striped">

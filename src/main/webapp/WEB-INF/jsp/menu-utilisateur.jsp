@@ -20,26 +20,30 @@
   <div class="row mr-2">
     <div class="col-12">
       <div class="page-title-box">
-        <div class="page-title-right">
-          <a class="btn btn-success btn-export-to-excel bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel">&nbsp;</a>&nbsp;
-          <a href="" class="btn btn-primary"><i class="uil-print"></i></a>
-        </div>
+
       </div>
       <div class="d-block mt-1">
         <a type="button" id="btn-nouveau-utilisateur" class="btn btn-success mr-1" data-bs-toggle="modal" data-bs-target="#nouveau-utilisateur"><i
                 class="uil-file-plus">&nbsp;</i>Nouveau Utilisateur</a>&nbsp;
         <a type="button" class="btn btn-success mr-1 btn-nouvelle-fonction"><i
                 class="uil-plus">&nbsp;</i>Nouvelle Fonction</a>
+        <div class="float-end">
+          <a class="btn btn-success btn-export-to-excel bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel">&nbsp;</a>&nbsp;
+          <a href="" class="btn btn-primary"><i class="uil-print"></i></a>
+        </div>
       </div>
+
     </div>
   </div>
   <!-- suite -->
-  <div class="container -fluid"><br><br>
+  <div><br>
     <div class="row">
       <div class="col-lg-2">
+        <%= start_content_table() %>
         <table id="table-liste-fonction" class="table table-sm table-hover">
           <thead>
           <th>Listes des fonctions</th>
+          <th></th>
           </thead>
           <tbody>
           <c:forEach var="fonction" items="${fonctions}">
@@ -56,8 +60,10 @@
           </c:forEach>
           </tbody>
         </table>
+        <%= end_content_table() %>
       </div>
       <div class="col-lg-10">
+        <%= start_content_table() %>
         <table id="table-liste-utilisateur" class="table table-sm dt-responsive nowrap table-hover">
           <thead>
           <tr>
@@ -94,6 +100,7 @@
           </c:forEach>
           </tbody>
         </table>
+        <%= end_content_table() %>
       </div>
       <!-- inclusion of modal -->
       <div class="all-modal">

@@ -3,7 +3,7 @@
 <!-- Start Content-->
 <div class="container-fluid" id="menu-article">
   <!-- start page title -->
-    <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
+  <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
   <div class="row">
     <div class="col-12">
       <div class="page-title-box">
@@ -22,16 +22,19 @@
     <div class="col-12">
       <div class="page-title-box">
         <div class="page-title-right">
-          <a class="btn btn-success btn-export-to-excel bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel">&nbsp;</a>
+
+        </div>
+        <div class="d-block mt-1">
+          <a id="newArticleBtn" type="button" class="btn btn-success mr-1" data-bs-toggle="modal"
+             data-bs-target="#new-article"><i
+                  class="uil-file-plus">&nbsp;</i>Nouveau Article</a>
+          <a id="refresh-btn" type="button" class="btn btn-success mr-1"><i
+                  class="uil-refresh">&nbsp;</i>actualiser</a>
+          <a class="btn btn-success btn-export-to-excel bg-forest float-end"><img
+                  src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel">&nbsp;</a>
         </div>
       </div>
-      <div class="d-block mt-1">
-        <a id="newArticleBtn" type="button" class="btn btn-success mr-1" data-bs-toggle="modal"
-           data-bs-target="#new-article"><i
-                class="uil-file-plus">&nbsp;</i>Nouveau Article</a>
-        <a id="refresh-btn" type="button" class="btn btn-success mr-1"><i
-                class="uil-refresh">&nbsp;</i>actualiser</a>
-      </div>
+
     </div>
   </div>
 
@@ -43,12 +46,14 @@
 
   <!-- suite -->
 
-  <div class="container -fluid"><br><br>
+  <div class=""><br>
     <div class="row">
       <div class="col-lg-3 t-list-75">
+        <%= start_content_table() %>
         <table id="categorieTabList" class="table table-sm table-hover">
           <thead>
           <th>Listes des categories</th>
+          <th></th>
           </thead>
           <tbody>
           <tr>
@@ -70,8 +75,8 @@
           </tbody>
           <tfoot>
           <tr>
-            <th>
-              <div class="d-flex justify-content-center mb-3">
+            <th class="border-bottom-0">
+              <div class="d-flex justify-content-start">
                 <a href="" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#standard-modal2"><i
                         class="uil-plus"></i></a>&nbsp;
               </div>
@@ -79,39 +84,46 @@
           </tr>
           </tfoot>
         </table>
+        <%= end_content_table() %>
+
       </div>
       <div class="col-lg-9 t-list-75">
+
+        <%= start_content_table() %>
         <table id="articleTable" class="table table-sm dt-responsive nowrap table-hover">
           <thead>
           <tr>
-              <th>Designation</th>
-              <th>categorie</th>
-              <th>Poids(Kg)</th>
-              <th>unite</th>
-              <th>quantite</th>
-              <th class="text-center">Action</th>
+            <th>Designation</th>
+            <th>categorie</th>
+            <th>Poids(Kg)</th>
+            <th>unite</th>
+            <th>quantite</th>
+            <th class="text-center">Action</th>
           </tr>
           </thead>
           <tbody>
           <c:forEach var="au" items="${articles}">
-              <tr id="${au.article.id}">
-                <td>${au.article.designation}</td>
-                <td>${au.article.categorie.libelle}</td>
-                <td>${au.poids}</td>
-                <td>${au.unite.designation}</td>
-                <td>${au.quantiteNiveau}</td>
-                <td class="d-flex justify-content-center td-action">
-                  <div>
-                    <a id="${au.article.id}" data-bs-toggle="modal" data-bs-target="#new-article"
-                       class="btn-sm btn-info editArticleBtn"><i class="uil-pen"></i></a>
-                    <a id="${au.article.id}" class="btn-sm btn-danger deleteArticleBtn "><i class="uil-trash-alt"></i></a>
-                    <a id="${au.article.id}" class="btn-sm btn-warning hideArticleBtn"><i class="uil-eye-slash"></i></a>
-                  </div>
-                </td>
-              </tr>
+            <tr id="${au.article.id}">
+              <td>${au.article.designation}</td>
+              <td>${au.article.categorie.libelle}</td>
+              <td>${au.poids}</td>
+              <td>${au.unite.designation}</td>
+              <td>${au.quantiteNiveau}</td>
+              <td class="d-flex justify-content-center td-action">
+                <div>
+                  <a id="${au.article.id}" data-bs-toggle="modal" data-bs-target="#new-article"
+                     class="btn-sm btn-info editArticleBtn"><i class="uil-pen"></i></a>
+                  <a id="${au.article.id}" class="btn-sm btn-danger deleteArticleBtn "><i
+                          class="uil-trash-alt"></i></a>
+                  <a id="${au.article.id}" class="btn-sm btn-warning hideArticleBtn"><i
+                          class="uil-eye-slash"></i></a>
+                </div>
+              </td>
+            </tr>
           </c:forEach>
           </tbody>
         </table>
+        <%= end_content_table() %>
       </div>
     </div>
   </div>

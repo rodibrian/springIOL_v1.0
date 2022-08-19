@@ -17,7 +17,7 @@
     <div class="col-12">
       <div class="page-title-box">
         <div class="page-title-right">
-          <a class="btn btn-success btn-export-to-excel bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel">&nbsp;</a>
+
         </div>
       </div>
       <div class="d-inline-flex mt-1">
@@ -35,7 +35,10 @@
           </c:forEach>
         </select>
         <a type="button" id="search-button" class="btn btn-success m-1"><i class="uil-search-alt"></i></a>
+
       </div>
+      <a class="btn btn-success btn-export-to-excel bg-forest float-end"><img
+              src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel">&nbsp;</a>
     </div>
   </div>
 
@@ -48,9 +51,10 @@
   <!-- suite -->
 
 
-  <div class="container -fluid"><br><br>
+  <div><br>
     <div class="row">
       <div class="col-lg-12">
+        <%= start_content_table() %>
         <table id="details-vente-table"
                class="table-detail-vente table-special-form table table-sm dt-responsive nowrap table-hover">
           <thead>
@@ -68,20 +72,20 @@
           <tbody>
           <c:forEach var="vente" items="${sales}">
             <c:forEach var="info" items="${vente.infoArticleMagasin}">
-            <tr id="${vente.id}">
-              <td><c:out value="${vente.refVente}"/></td>
-              <td><c:out value="${vente.client.nom}"/></td>
-              <td><c:out value="${info.article.designation}"/></td>
-              <td><c:out value="${info.unite.designation}"/></td>
-              <td><c:out value="${info.quantiteAjout}"/></td>
-              <td><c:out value="${vente.montantVente/info.quantiteAjout}"/></td>
-              <td><c:out value="${vente.montantVente}"/></td>
-              <td><c:out value="${info.date}"/></td>
-            </tr>
+              <tr id="${vente.id}">
+                <td><c:out value="${vente.refVente}"/></td>
+                <td><c:out value="${vente.client.nom}"/></td>
+                <td><c:out value="${info.article.designation}"/></td>
+                <td><c:out value="${info.unite.designation}"/></td>
+                <td><c:out value="${info.quantiteAjout}"/></td>
+                <td><c:out value="${vente.montantVente/info.quantiteAjout}"/></td>
+                <td><c:out value="${vente.montantVente}"/></td>
+                <td><c:out value="${info.date}"/></td>
+              </tr>
             </c:forEach>
           </c:forEach>
           </tbody>
-        </table>
+            <%= end_content_table() %>
       </div>
     </div>
   </div>

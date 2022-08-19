@@ -21,14 +21,15 @@
   <div class="row mr-2">
     <div class="col-12">
       <div class="page-title-box">
-        <div class="page-title-right">
-          <a href="" class="btn btn-primary"><i class="uil-refresh"></i></a>&nbsp;
-          <a class="btn btn-success btn-export-to-excel bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel"></a>
-        </div>
+
       </div>
       <div class="d-block mt-1">
         <a type="button" class="btn btn-success mr-1 btn-nouveau-fournisseur"><i
                 class="uil-plus">&nbsp;</i>Nouveau Fournisseur</a>
+        <div class="float-end">
+          <a href="" class="btn btn-primary"><i class="uil-refresh"></i></a>&nbsp;
+          <a class="btn btn-success btn-export-to-excel bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel"></a>
+        </div>
       </div>
     </div>
   </div>
@@ -40,10 +41,11 @@
     <%@ include file="modal/fournisseur/payement-dette.jsp" %>
   </div>
   <!-- suite -->
-  <div class="container -fluid"><br><br>
+  <div><br>
     <div class="row">
 
       <div class="col-lg-12">
+        <%= start_content_table() %>
         <table id="table-fournisseur" class="table table-sm dt-responsive nowrap table-hover">
           <thead>
           <tr>
@@ -71,6 +73,7 @@
           </c:forEach>
           </tbody>
         </table>
+        <%= end_content_table() %>
       </div>
     </div>
   </div>

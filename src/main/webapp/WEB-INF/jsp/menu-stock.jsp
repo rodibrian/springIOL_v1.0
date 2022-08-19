@@ -21,11 +21,7 @@
   <div class="row mr-2">
     <div class="col-12">
       <div class="page-title-box">
-        <div class="page-title-right">
-          <a href="" class="btn btn-default s-no-value">Toute niveau 1</a>
-          <button class="btn btn-info s-no-value btn-stock-valeur"><i class="uil-dollar-alt"></i>Valeur</button>
-          <a class="btn btn-success btn-export-to-excel bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel">&nbsp;</a>
-        </div>
+
       </div>
       <div class="d-inline-flex mt-1">
         <a type="button" id="toutes-button" class="btn s-no-value btn-40 btn-success mr-1 btn-all-stock"><i
@@ -38,16 +34,22 @@
         <div class="d-inline-flex s-value">
           <div class="mb-3 mr-1">
             <select required class="form-select" id="magasin-select">
-                <option value="">Toutes</option>
-                <c:forEach var="magasin" items="${magasins}">
-                  <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
-                </c:forEach>
+              <option value="">Toutes</option>
+              <c:forEach var="magasin" items="${magasins}">
+                <option value="${magasin.id}"><c:out value="${magasin.nomMagasin}"/></option>
+              </c:forEach>
             </select>
           </div>
         </div>
         <button class="btn s-value btn-40 btn-success mr-1 btn-alert-stock btn-stock-valider"><i
                 class="uil-check-square">&nbsp;</i>Valider
         </button>
+      </div>
+      <div class="float-end">
+        <a href="" class="btn btn-default s-no-value">Toute niveau 1</a>
+        <button class="btn btn-info s-no-value btn-stock-valeur"><i class="uil-dollar-alt"></i>Valeur</button>
+        <a class="btn btn-success btn-export-to-excel bg-forest"><img
+                src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel">&nbsp;</a>
       </div>
     </div>
   </div>
@@ -57,9 +59,11 @@
     <%@ include file="modal/stock/quantite-alert-stock.jsp" %>
   </div>
   <!-- suite -->
-  <div class="container -fluid"><br><br>
+  <div><br>
     <div class="row">
       <div class="col-lg-12">
+        <%= start_content_table() %>
+
         <table id="inventory-table"
                class="table-article-stock table table-special-form table-sm dt-responsive nowrap table-hover table-50">
           <thead>
@@ -68,23 +72,25 @@
             <th>Unite</th>
             <th>Categorie</th>
             <th>Magasin</th>
-            <th>Stock </th>
+            <th>Stock</th>
           </tr>
           </thead>
           <tbody>
           <c:forEach var="stock" items="${stocks}">
             <tr id="${stock.magasinId}-${stock.articleId}-${stock.uniteId}">
-                <td>${stock.article}</td>
-                <td>${stock.unite}</td>
-                <td>${stock.categorie}</td>
-                <td>${stock.nomMagasin}</td>
-                <td class="td-info-stock">
-                       <a type="button" class="btn-default mr-1 btn-info-stock" data-bs-toggle="modal" data-bs-target="#info-stock">${stock.quantite} ${stock.unite}</a>
-                </td>
+              <td>${stock.article}</td>
+              <td>${stock.unite}</td>
+              <td>${stock.categorie}</td>
+              <td>${stock.nomMagasin}</td>
+              <td class="td-info-stock">
+                <a type="button" class="btn-default mr-1 btn-info-stock" data-bs-toggle="modal"
+                   data-bs-target="#info-stock">${stock.quantite} ${stock.unite}</a>
+              </td>
             </tr>
           </c:forEach>
           </tbody>
         </table>
+        <%= end_content_table() %>
       </div>
     </div>
   </div>

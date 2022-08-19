@@ -24,7 +24,6 @@
     <div class="col-12">
       <div class="page-title-box">
         <div class="page-title-right">
-          <a class="btn btn-success btn-export-to-excel bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel">&nbsp;</a>
         </div>
       </div>
       <div class="d-inline-flex mt-1">
@@ -52,6 +51,8 @@
           Decaissement
         </a>
       </div>
+      <a class="btn btn-success btn-export-to-excel bg-forest float-end"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel">&nbsp;</a>
+
     </div>
   </div>
 
@@ -174,10 +175,11 @@
     </div>
     <div class="row">
       <div class="col-lg-12">
+        <%= start_content_table() %>
         <table id="scroll-vertical-datatable"
                class="table-liste-operation-caisse table-special-form table table-sm dt-responsive nowrap table-hover text-dark">
           <thead>
-          <tr>menu
+          <tr>
               <th>Operation</th>
               <th>Date</th>
               <th>Description</th>
@@ -199,6 +201,7 @@
           </c:forEach>
           </tbody>
         </table>
+        <%= end_content_table() %>
       </div>
     </div>
 

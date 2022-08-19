@@ -48,3 +48,5 @@
         id="dark-style">
 
 </head>
+
+<%@ include file="scroolbar/scroolbar.jsp"%>
