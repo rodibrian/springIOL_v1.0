@@ -12,6 +12,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1")
 public class ClientFournisseurRessource{
+
     @Autowired
     private ClientFournisseurRepository cfRepository;
 
@@ -23,6 +24,11 @@ public class ClientFournisseurRessource{
     @GetMapping(value = "/externalEntities")
     public ResponseEntity<Object> getAll(){
         return new ResponseEntity<>(cfRepository.findAll(),HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/externalEntities/{typeCf}/{filialeId}/name/{value}")
+    public ResponseEntity<Object> getAllByName(@PathVariable(name = "typeCf") Integer type,@PathVariable("filialeId") Long filialeId , @PathVariable("value") String value){
+        return new ResponseEntity<>(cfRepository.getAllCustomerByName(type,filialeId,value),HttpStatus.OK);
     }
 
     @GetMapping(value = "/externalEntities/{id}/dettes")
@@ -61,4 +67,5 @@ public class ClientFournisseurRessource{
         ClientFournisseur savedCf = cfRepository.save(cf);
         return new ResponseEntity<>(savedCf, HttpStatus.CREATED);
     }
+
 }

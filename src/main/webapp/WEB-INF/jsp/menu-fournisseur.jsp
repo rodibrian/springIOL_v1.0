@@ -12,7 +12,7 @@
         <div class="page-title-right">
           <div class="input-group">
             <input type="text" required class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
-            <button class="input-group-text btn-primary" type="submit"><i class="uil-search"></i></button>
+            <button id="search-btn" class="input-group-text btn-primary" type="submit"><i class="uil-search"></i></button>
           </div>
         </div>
         <h4 class="page-title">Fournisseur</h4>
@@ -31,6 +31,8 @@
       <div class="d-block mt-1">
         <a type="button" class="btn btn-success mr-1 btn-nouveau-fournisseur"><i
                 class="uil-plus">&nbsp;</i>Nouveau Fournisseur</a>
+        <a type="button"  class="btn btn-success mr-1 refresh-list-btn"><i
+                class="uil-refresh">&nbsp;</i>Actualiser</a>
       </div>
     </div>
   </div>

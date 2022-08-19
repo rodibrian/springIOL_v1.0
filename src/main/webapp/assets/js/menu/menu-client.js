@@ -5,22 +5,16 @@ $(function () {
             MENU CLIENT
 
      --------------------------*/
-
     let namespace = "#menu-client ";
     let cfUrl = "http://localhost:8080/api/v1/externalEntities";
-
+    $filialeId = $(namespace + '#filiale-id').attr("value-id");
+    $user_id = $(namespace+"#user-id").attr("value-id");
     exportToExcel(namespace + '.btn-export-to-excel','client', namespace + '#table-client')
-
     $NOUVEAU_CLIENT  = true;
-
     let CLIENT = 0 ;
-
     /*
-
     mask et validation
-
      */
-
     $(function() {
 
         $(namespace + 'form').validate({
@@ -35,21 +29,16 @@ $(function () {
         $(namespace + '#numCIN').mask('999 999 999 999')
         $(namespace + '#contact').mask('+261 99 99 999 99')
     })
-
     /*
      fermer l'info listes article facture
      */
-
     $(namespace + '.btn-close-info-credit').click(function () {
         $(namespace + '#info-credit').removeClass("show")
     })
-
     /*
      nouveau client
      */
-
     $(namespace + '.btn-nouveau-client').on('click', function () {
-
         $NOUVEAU_CLIENT = true;
         $(namespace + '#nouveau-client').attr('data-value', 'nouveau-client');
         $(namespace + '#nouveau-client').modal('show')
@@ -84,7 +73,7 @@ $(function () {
             data: JSON.stringify(client),
             success: function (data){
                 if ($NOUVEAU_CLIENT){
-                    $client = [data.nom,data.adresse,data.numTel,0,$('<div class="action-client">\n' +
+                    $client = [data.nom,data.adresse,data.numTel,data.totalMontantTrosa,$('<div class="action-client">\n' +
                         '                <a id="" class="btn-sm btn-info editClient "><i class="uil-pen"></i></a>\n' +
                         '                <a id="" class="btn-sm btn-danger deleteClient "><i class="uil-trash-alt"></i></a>\n' +
                         '              </div>')];
@@ -116,7 +105,7 @@ $(function () {
         if (validation_client()) {
 
             $(namespace + ".modal").modal('hide');
-            $filialeId = $(namespace + '#filiale-id').attr("value-id");            let nomClient = $(namespace + '#nouveau-client input#nomClient').val();
+            let nomClient = $(namespace + '#nouveau-client input#nomClient').val();
             let cin = $(namespace + '#nouveau-client input#numCIN').val();
             let adresse = $(namespace + '#nouveau-client input#adresse').val();
             let contact = $(namespace + '#nouveau-client input#contact').val();
@@ -156,63 +145,26 @@ $(function () {
      */
 
     $(document).on('click', namespace + '#table-client .deleteClient', function () {
-
         $trClient = $(this).closest('tr');
         $idModalDelete = "suppression-client";
         let idCf = $trClient.attr("id");
         create_confirm_dialog('Suppression Client', 'Voulez vous vraiment supprimer ce client (id : ' + $trClient.attr("id") + ') ?', $idModalDelete, 'Oui,supprimer', 'btn-danger')
-            .on('click', function () {
-                $.ajax({
-                    type: "DELETE",
-                    url: cfUrl+"/"+idCf,
-                    contentType: 'application/json',
-                    success: function (data){
-                        $trClient.remove();
-                        createToast('bg-danger', 'uil-trash-alt', 'Suppression fait', 'Le client est supprime avec success!');
-                        hideAndRemove('#' + $idModalDelete);
-                        $(namespace + "#info-credit").removeClass("show")
-                    }
-                });
+            .on('click', ()=>{
+                execute_ajax_request("DELETE",cfUrl+"/"+idCf,null,()=>{
+                    $trClient.remove();
+                    createToast('bg-danger', 'uil-trash-alt', 'Suppression fait', 'Le client est supprime avec success!');
+                    hideAndRemove('#' + $idModalDelete);
+                    $(namespace + "#info-credit").removeClass("show")
+                })
             })
     })
 
+    // INIT DOUBLE CLICK
+    init_dblclick_table(namespace,"#table-client");
+
+    init_modal_credit_dette_btn(namespace,"CREDIT",$filialeId,$user_id);
     /*
-    NOUVEAU CREDIT
-     */
-
-    $(namespace + '.btn-nouveau-credit').on('click', function() {
-
-        $(namespace + '#nouveau-credit input#nomClient').val($trClient.children().eq(0).text())
-
-    })
-
-    $(namespace + '#nouveau-credit #btn-enregistrer-credit-client').on('click', function () {
-
-        $montant = $(namespace + '#nouveau-credit input#somme').val();
-        $description = $(namespace + '#nouveau-credit textarea#description').val();
-
-        $credit = ['ref-00000',new Date().toLocaleDateString(), $montant, 0, $montant, $description];
-
-        push_to_table_list(namespace + '.table-credit-client', '', $credit);
-
-        createToast('bg-success', 'uil-check-sign', 'Credit enregistre', 'Nouveau credit enregistre avec success!');
-
-        $(namespace + '#nouveau-credit input').val('');
-        $(namespace + '#nouveau-credit textarea').val('');
-    })
-
-    /*
-    SUpprimer credit
-     */
-
-    $(namespace + '.btn-supprimer-credit').on('click', function () {
-
-        $modalId = "suppression-credit-client"
-        create_confirm_dialog('Suppression credit', 'Voulez vraiment supprimer les credits impayes ?', $modalId, 'Oui, supprimer tout', 'btn-danger')
-            .on('click', function() {
-                $(namespace + '.table-credit-client tbody tr').remove();
-                hideAndRemove('#' + $modalId);
-                createToast('bg-danger', 'uil-check-sign', 'Dette supprime', 'Tout les credits client sont supprimer avec success!');
-            })
-    })
+    *  RECHERCHER CLIENT
+    * */
+    init_seach_cf_btn(0,namespace,"#search-btn",$filialeId);
 })

@@ -142,6 +142,21 @@ $(function () {
                 info_filiale_caisse.user = {id:$user_id};
                 info_filiale_caisse.filiale = {id : $filiale_id};
                 info_filiale_caisse.magasin = {id :$magasin_id};
+                // let ifc = {};
+                // ifc.description = description;
+                // ifc.montantOperation = montant_payer;
+                // ifc.reference = "ref";
+                // ifc.operationCaisse = "ENCAISSEMENT";
+                // ifc.user = {id:user_id};
+                // ifc.modePayement = type_payement;
+                // ifc.filiale = {id:filiale_id};
+                // ifc.date = new Date();
+                // let url = "http://localhost:8080/api/v1/ifc";
+                // execute_ajax_request("post",url,ifc,(data)=>{
+                //     $(namespace+"#Montant-payer").val("");
+                //     $(namespace+"#description-payement").val("");
+                //     $(namespace + '#modal-payement-dette').modal('hide');
+                // });
 
                 invoice_regulation.vente= {id:vente_id};
                 invoice_regulation.refAvoir = ref;

@@ -10,7 +10,7 @@
       <div class="modal-body">
         <div class="row g-2">
           <div class="mb-1 col-md-6">
-            <label for="date-dette" class="form-label">Date du dette</label>
+            <label for="date-dette" class="form-label label-date-dette">Date du dette</label>
             <input type="date" class="form-control" id="date-dette" name="dateDette">
           </div>
           <div class="mb-1 col-md-6">

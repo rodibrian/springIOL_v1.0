@@ -277,9 +277,8 @@ public class MenuNavController{
         Long magasinId = map.get(MAGASIN_ID);
         ModelAndView modelAndView = new ModelAndView("menu-vente");
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
-//        modelAndView.addObject(ARTICLE_LIST,articleService.getAllItemInfo(filialeId,magasinId));
-//        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(CLIENT,filialeId));
-
+        modelAndView.addObject(ARTICLE_LIST,articleService.getAllItemInfo(filialeId,magasinId));
+        modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(CLIENT,filialeId));
         return modelAndView;
     }
 

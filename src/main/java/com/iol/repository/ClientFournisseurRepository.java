@@ -22,4 +22,7 @@ interface ClientFournisseurRepository extends JpaRepository<ClientFournisseur,Lo
 
     @Query("from  ClientFournisseur cf join cf.filiale f where cf.type =1 and f.id=:filialeId")
     List<ClientFournisseur> getAllCustomer(@Param("filialeId") Long filialeId );
+
+    @Query("from  ClientFournisseur cf join cf.filiale f where cf.type =:type and f.id=:filialeId and lower(trim(cf.nom)) like concat('%',trim(lower(:name)),'%')")
+    List<ClientFournisseur> getAllCustomerByName(@Param("type") Integer type,@Param("filialeId") Long filialeId, @Param("name") String name);
 }

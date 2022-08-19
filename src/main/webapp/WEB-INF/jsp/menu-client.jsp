@@ -2,6 +2,8 @@
 <%@ include file="template/header.jsp" %>
 <!-- Start Content-->
 <div id="menu-client" class="container-fluid">
+  <input type="hidden" id="user-id" value-id="${connectedUser.id}">
+  <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
   <!-- start page title -->
   <div class="row">
     <div class="col-12">
@@ -9,7 +11,7 @@
         <div class="page-title-right">
           <div class="input-group">
             <input type="text" required class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
-            <button class="input-group-text btn-primary" type="submit"><i class="uil-search"></i></button>
+            <button id="search-btn" class="input-group-text btn-primary" type="submit"><i class="uil-search"></i></button>
           </div>
         </div>
         <h4 class="page-title">Client</h4>
@@ -28,15 +30,17 @@
       <div class="d-block mt-1">
         <a type="button" class="btn btn-success mr-1 btn-nouveau-client"><i
                 class="uil-plus">&nbsp;</i>Nouveau Client</a>
-
+        <a type="button"  class="btn btn-success mr-1 refresh-list-btn"><i
+                class="uil-refresh">&nbsp;</i>Actualiser</a>
       </div>
     </div>
   </div>
 
   <div class="all-modal">
     <%@ include file="modal/client/new-client.jsp" %>
-    <%@ include file="modal/client/new-credit.jsp" %>
     <%@ include file="modal/client/info-dette-cf.jsp" %>
+    <%@ include file="modal/fournisseur/new-dette.jsp" %>
+    <%@ include file="modal/fournisseur/payement-dette.jsp" %>
   </div>
 
   <!-- suite -->

@@ -798,7 +798,7 @@ false Zulu
     <database id="4" parent="1" name="ioldb">
       <ObjectId>165315</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>551660</IntrospectionStateNumber>
+      <IntrospectionStateNumber>551726</IntrospectionStateNumber>
       <Current>1</Current>
       <Relations>sequence|table|177418|177419|1
 sequence|table|177432|177433|1
@@ -909,7 +909,7 @@ UC/10
 </Acl>
       <StateNumber>527</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>551661</IntrospectionStateNumber>
+      <IntrospectionStateNumber>551727</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="23" parent="4" name="plpgsql">
@@ -1373,7 +1373,7 @@ UC/10
     <table id="102" parent="22" name="trosa">
       <ObjectId>177665</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>551647</StateNumber>
+      <StateNumber>551723</StateNumber>
     </table>
     <table id="103" parent="22" name="unite">
       <ObjectId>177672</ObjectId>
@@ -4042,17 +4042,17 @@ transfert_id</ColNames>
       <StateNumber>551633</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <column id="450" parent="102" name="type_payement">
-      <Position>10</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <StateNumber>551646</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="451" parent="102" name="date_echeance">
+    <column id="450" parent="102" name="date_echeance">
       <Position>11</Position>
       <DataType>date|0s</DataType>
       <StateNumber>551647</StateNumber>
       <TypeId>1082</TypeId>
+    </column>
+    <column id="451" parent="102" name="mode_payement">
+      <Position>12</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>551723</StateNumber>
+      <TypeId>23</TypeId>
     </column>
     <index id="452" parent="102" name="trosa_pkey">
       <ObjectId>177669</ObjectId>

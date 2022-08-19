@@ -29,7 +29,8 @@ public class Trosa{
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    private String typePayement;
+    @Enumerated(EnumType.ORDINAL)
+    private  ModePayement modePayement;
 
     private LocalDate dateEcheance;
 
