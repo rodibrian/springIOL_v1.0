@@ -30,8 +30,8 @@ public class InfoFilialeCaisse{
     @Enumerated(EnumType.STRING)
     private TypeOperationCaisse operationCaisse;
 
-    @Column(columnDefinition = "TEXT")
-    private String modePayement;
+    @Enumerated(EnumType.ORDINAL)
+    private ModePayement modePayement;
 
     @Column(columnDefinition = "TEXT")
     private String reference;

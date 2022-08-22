@@ -113,9 +113,41 @@ $(function () {
         })
         return tab;
     }
+
+    function persit_invoice() {
+        let vente_id = $(namespace + "#info-facture").attr("vente-id");
+        let date = new Date();
+        let ref = create_reference("AVOIR", date);
+        $filiale_id = $(namespace + '#filiale-id').attr("value-id");
+        $user_id = $(namespace + "#user-id").attr("value-id");
+        let invoice_regulation = {};
+        let ifc = {};
+        ifc.operationCaisse = "AVOIR";
+        ifc.montantOperation = $sommeAvoir;
+        ifc.date = date;
+        ifc.reference = ref;
+        ifc.modePayement = "ESPECE";
+        ifc.user = {id: $user_id};
+        ifc.filiale = {id: $filiale_id};
+        ifc.description = " avoir sur la facture " + ref;
+        invoice_regulation.vente = {id: vente_id};
+        invoice_regulation.refAvoir = ref;
+        invoice_regulation.infoArticleMagasin = get_data_from_table_avoir(ref, date);
+        invoice_regulation.montant = $sommeAvoir;
+        invoice_regulation.infoFilialeCaisse = ifc;
+        let url = "http://localhost:8080/api/v1/regulations";
+        execute_ajax_request("post", url, invoice_regulation, (data) => {
+            // effectué operation AVOIR
+            createToast('bg-danger', 'uil-trash-alt', 'Avoir valid&eacute;', 'Avoir effectu&eacute; avec success!')
+            hideAndRemove('#' + $modalId)
+            $(namespace + ".btn-creer-avoir").click();
+            $(namespace + ".btn-creer-avoir").hide();
+        })
+    }
+
     /*
-         validation avoir
-    */
+             validation avoir
+        */
     $(namespace + '.btn-valider-avoir').on('click',function(){
         $sommeAvoir = 0;
         $(namespace + '#table-facture-avoir tbody tr').each(function(key,value) {
@@ -127,50 +159,8 @@ $(function () {
             '<li> Somme à rembourser: ' + $sommeAvoir + ' Ar</li>';
         $modalId = "modal-confirm-avoir";
         create_confirm_dialog('Confirmation avoir', $content,$modalId,'Oui, valider!','btn-danger')
-            .on("click", function () {
-                let vente_id= $(namespace+"#info-facture").attr("vente-id");
-                let date = new Date();
-                let ref = create_reference("AVOIR",date);
-                let invoice_regulation = {};
-
-                let info_filiale_caisse = {};
-                info_filiale_caisse.operationCaisse = "AVOIR";
-                info_filiale_caisse.montantOperation = $sommeAvoir;
-                info_filiale_caisse.date = date;
-                info_filiale_caisse.reference = ref;
-                info_filiale_caisse.modePayement = "ESPECE";
-                info_filiale_caisse.user = {id:$user_id};
-                info_filiale_caisse.filiale = {id : $filiale_id};
-                info_filiale_caisse.magasin = {id :$magasin_id};
-                // let ifc = {};
-                // ifc.description = description;
-                // ifc.montantOperation = montant_payer;
-                // ifc.reference = "ref";
-                // ifc.operationCaisse = "ENCAISSEMENT";
-                // ifc.user = {id:user_id};
-                // ifc.modePayement = type_payement;
-                // ifc.filiale = {id:filiale_id};
-                // ifc.date = new Date();
-                // let url = "http://localhost:8080/api/v1/ifc";
-                // execute_ajax_request("post",url,ifc,(data)=>{
-                //     $(namespace+"#Montant-payer").val("");
-                //     $(namespace+"#description-payement").val("");
-                //     $(namespace + '#modal-payement-dette').modal('hide');
-                // });
-
-                invoice_regulation.vente= {id:vente_id};
-                invoice_regulation.refAvoir = ref;
-                invoice_regulation.infoArticleMagasin = get_data_from_table_avoir(ref,date);
-                invoice_regulation.montant = $sommeAvoir;
-                invoice_regulation.infoFilialeCaisse = info_filiale_caisse;
-                let url = "http://localhost:8080/api/v1/regulations";
-                execute_ajax_request("post",url,invoice_regulation,(data)=>{
-                    // effectué operation AVOIR
-                    createToast('bg-danger', 'uil-trash-alt','Avoir valid&eacute;','Avoir effectu&eacute; avec success!')
-                    hideAndRemove('#' + $modalId)
-                    $(namespace+".btn-creer-avoir").click();
-                    $(namespace+".btn-creer-avoir").hide();
-                })
+            .on("click", function (){
+                persit_invoice();
             })
     })
 

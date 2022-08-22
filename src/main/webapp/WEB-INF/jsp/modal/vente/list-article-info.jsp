@@ -29,14 +29,14 @@
                             </tr>
                     </thead>
                     <tbody>
-<%--                    <c:forEach var="au" items="${articles}">--%>
-<%--                        <tr id ="${au.itemId}">--%>
-<%--                            <td>${au.itemName}</td>--%>
-<%--                            <td value-id ="${au.uniteId}">${au.uniteName}</td>--%>
-<%--                            <td>${au.stock}</td>--%>
-<%--                            <td>${au.price}</td>--%>
-<%--                        </tr>--%>
-<%--                    </c:forEach>--%>
+                    <c:forEach var="au" items="${articles}">
+                        <tr id ="${au.itemId}-${au.uniteId}">
+                            <td>${au.itemName}</td>
+                            <td value-id ="${au.uniteId}">${au.uniteName}</td>
+                            <td>${au.stock}</td>
+                            <td>${au.price}</td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>

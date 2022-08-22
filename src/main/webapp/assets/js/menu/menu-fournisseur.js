@@ -140,7 +140,7 @@ $(function () {
     // INIT DOUBLE CLICK
     init_dblclick_table(namespace,"#table-fournisseur");
 
-    init_modal_credit_dette_btn(namespace,"CREDIT",$filialeId,$user_id);
+    init_modal_credit_dette_btn(namespace,"DETTE",$filialeId,$user_id);
 
     /*
     *  RECHERCHER FOURNISSEUR

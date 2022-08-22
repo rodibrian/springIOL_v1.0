@@ -1,8 +1,8 @@
 <%@ include file='template/header.jsp' %>
-
 <!-- Start Content-->
 <div class="container-fluid" id="menu-facture">
-
+  <input type="hidden" id="user-id" value-id="${connectedUser.id}">
+  <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
   <!-- start page title -->
   <div class="row">
     <div class="col-12">
@@ -39,10 +39,7 @@
   <div class="all-modal">
     <%@ include file="modal/facture/info-facture.jsp" %>
   </div>
-
   <!-- suite -->
-
-
   <div class="container -fluid"><br><br>
     <div class="row">
       <div class="col-lg-12">

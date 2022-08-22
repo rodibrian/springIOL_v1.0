@@ -68,7 +68,8 @@
           </div>
           <div class="col-md-8 p-2 card-caisse bg-secondary text-light">
             <span>Factures</span><br>
-            <span class="label-montant">0Ar</span>
+            <span class="label-montant">
+            </span>
           </div>
         </div>
       </div>
@@ -79,7 +80,7 @@
           </div>
           <div class="col-md-8 p-2 card-caisse bg-secondary text-light">
             <span>Depenses</span><br>
-            <span class="label-montant">0Ar</span>
+            <span class="label-montant">${cheque}</span>
           </div>
         </div>
       </div>
@@ -90,7 +91,7 @@
           </div>
           <div class="col-md-8 p-2 card-caisse bg-secondary text-light">
             <span>Recette</span><br>
-            <span class="label-montant">0Ar</span>
+            <span class="label-montant">${cheque}</span>
           </div>
         </div>
       </div>
@@ -101,7 +102,7 @@
           </div>
           <div class="col-md-8 p-2 card-caisse bg-secondary text-light">
             <span>Consommation</span><br>
-            <span class="label-montant">0Ar</span>
+            <span class="label-montant">${cheque}</span>
           </div>
         </div>
       </div>
@@ -112,7 +113,7 @@
           </div>
           <div class="col-md-8 p-2 card-caisse bg-secondary text-light">
             <span>Avoir</span><br>
-            <span class="label-montant">0Ar</span>
+            <span class="label-montant">${avoir}</span>
           </div>
         </div>
       </div>
@@ -123,7 +124,7 @@
           </div>
           <div class="col-md-8 p-2 card-caisse bg-secondary text-light">
             <span>Especes</span><br>
-            <span class="label-montant">0Ar</span>
+            <span class="label-montant">${espece}</span>
           </div>
         </div>
       </div>
@@ -134,7 +135,7 @@
           </div>
           <div class="col-md-8 p-2 card-caisse bg-secondary text-light">
             <span>Cheque</span><br>
-            <span class="label-montant">0Ar</span>
+            <span class="label-montant">${cheque}</span>
           </div>
         </div>
       </div>
@@ -145,7 +146,7 @@
           </div>
           <div class="col-md-8 p-2 card-caisse bg-secondary text-light">
             <span>Credit</span><br>
-            <span class="label-montant">0Ar</span>
+            <span class="label-montant">${credit}</span>
           </div>
         </div>
       </div>
@@ -156,7 +157,7 @@
           </div>
           <div class="col-md-8 p-2 card-caisse bg-secondary text-light">
             <span>Virement</span><br>
-            <span class="label-montant">0Ar</span>
+            <span class="label-montant">${virement}</span>
           </div>
         </div>
       </div>
@@ -167,7 +168,7 @@
           </div>
           <div class="col-md-8 p-2 card-caisse bg-secondary text-light">
             <span>Autres</span><br>
-            <span class="label-montant">0Ar</span>
+            <span class="label-montant">${cheque}</span>
           </div>
         </div>
       </div>
@@ -177,18 +178,20 @@
         <table id="scroll-vertical-datatable"
                class="table-liste-operation-caisse table-special-form table table-sm dt-responsive nowrap table-hover text-dark">
           <thead>
-          <tr>menu
+          <tr>
+              <th>reference</th>
               <th>Operation</th>
               <th>Date</th>
               <th>Description</th>
               <th>Mode de paiement</th>
-              <th>Montant</th>
-              <th>Montant (après opération)</th>
+              <th>Montant(Ar) </th>
+              <th>Montant(Ar)(après opération)</th>
           </tr>
           </thead>
           <tbody>
           <c:forEach var="info" items="${caisse}">
             <tr id="${info.id}">
+                <td>${info.reference}</td>
                 <td>${info.operationCaisse}</td>
                 <td>${info.date}</td>
                 <td>${info.description}</td>
@@ -211,19 +214,16 @@
 
 </div>
 
-</div> <!-- container -->
-
-</div> <!-- content -->
-</div>
-
 </div>
 
 </div>
 </div>
 
 </div>
+
 </div>
-<!-- ============================================================== -->
-<!-- End Page content -->
-<!-- ============================================================== -->
+</div>
+
+</div>
+</div>
 <%@ include file="template/setting.jsp" %>

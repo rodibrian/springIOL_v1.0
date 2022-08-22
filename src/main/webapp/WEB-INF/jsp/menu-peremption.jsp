@@ -51,7 +51,7 @@
   </div>
 
   <div class="all-modal">
-    <%@ include file="modal/vente/list-article.jsp" %>
+<%--    <%@ include file="modal/vente/list-article.jsp" %>--%>
     <%@ include file="modal/date-peremption.jsp" %>
   </div>
 

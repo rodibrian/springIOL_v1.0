@@ -1,5 +1,4 @@
 package com.iol.model.tenantEntityBeans;
-
 import com.iol.model.entityEnum.ModePayement;
 import com.iol.model.entityEnum.TypeTrosa;
 import lombok.Data;

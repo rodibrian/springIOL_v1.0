@@ -2,6 +2,7 @@ $(function () {
     /* -------------------------------------------------------------------------------
                                        MENU VENTE SCRIPT
     -------------------------------------------------------------------------------- */
+    $quantite_stock = 0;
     let namespace = "#menu-vente ";
     $filiale_id = $(namespace + '#filiale-id').attr("value-id");
     /*
@@ -66,8 +67,23 @@ $(function () {
         $quantite_stock = $(this).children().eq(2).text();
         $prix_article = $(this).children().eq(3).text();
         let filialeId = $(namespace + '#filiale-id').attr("value-id");
-        get_select_affect_to_input(namespace + '#designation-article', article_id, $(this).children().eq(1).text());
+        get_select_affect_to_input(namespace + '#designation-article',article_id, $(this).children().eq(0).text());
         set_select_option_value([unite_id, $(this).children().eq(1).text()], namespace + "#input-unite-article");
+        $(namespace + 'form').validate({
+            rules: {
+                designation: {required: true},
+                unite: {required: true},
+                inputQuantiteArticle: {required: true, min: 0.0001,max : $quantite_stock, number: true},
+                inputPrixUnitaire: {required: true, min: 0.0001, number: true},
+            },
+            messages: {
+                designation: {required: ''},
+                unite: {required: 'Unite d\'article requis'},
+                inputQuantiteArticle: {required: 'Quantite non valide', min: "Quantite doit d\'être >0", number: true},
+                inputPrixUnitaire: {required: '', min: '', number: true},
+            }
+        })
+
         /* AFFECTATION DU PRIX UNITAIRE */
         $(namespace + "#input-prix-unitaire").val($prix_article);
         get_select_affect_to_input(namespace + "#input-prix-unitaire", "", $(this).children().eq(5).text());
@@ -92,25 +108,7 @@ $(function () {
     })
     /*
         mask et validation
-         */
-
-    $(function () {
-        $(namespace + 'form').validate({
-            rules: {
-                designation: {required: true},
-                unite: {required: true},
-                inputQuantiteArticle: {required: true, min: 0.0001, number: true},
-                inputPrixUnitaire: {required: true, min: 0.0001, number: true},
-            },
-            messages: {
-                designation: {required: ''},
-                unite: {required: 'Unite d\'article requis'},
-                inputQuantiteArticle: {required: 'Quantite non valide', min: "Quantite doit d\'être >0", number: true},
-                inputPrixUnitaire: {required: '', min: '', number: true},
-            }
-        })
-    })
-
+    */
     function validation_ajout_article() {
         $quantite_a_vendre = $(namespace + '#input-quantite-article').val();
         $articleId = $(namespace + '#designation-article').attr('value-id');
@@ -187,28 +185,42 @@ $(function () {
         create_confirm_dialog('Confirmation de Vente', $content, $modalId, 'Enregistrer', 'btn-primary')
             .on('click',function(){
                 $clientId = $(namespace + '#name-client').attr("value-id");
+                $filiale_id = $(namespace + '#filiale-id').attr("value-id");
                 let nom_client = $(namespace + '#name-client').val();
                 let user_id = $(namespace + '#user-id').attr("value-id");
+                let type_payement = $(namespace+"#type-payement option:selected").val();
                 let date = new Date();
                 let ref = create_reference("VENTE",date);
                 let $vente = {};
-
-                let info_filiale_caisse = {};
-                info_filiale_caisse.operationCaisse = "FACTURE";
-                info_filiale_caisse.montantOperation = $sommeMontant;
-                info_filiale_caisse.date = date;
-                info_filiale_caisse.modePayement = "ESPECE";
-                info_filiale_caisse.user = {id:user_id};
-                info_filiale_caisse.filiale = {id : $filiale_id};
-                info_filiale_caisse.magasin = {id :$magasinId};
-                info_filiale_caisse.description = " Facture N°"+ref+" du client " + nom_client;
                 $vente.infoArticleMagasin = getDataFromTable(ref,date,user_id);
                 $vente.client = {id: $clientId};
                 $vente.montantVente = $sommeMontant;
                 $vente.refVente = ref;
                 $vente.remise = 0;
-                $vente.infoFilialeCaisse = info_filiale_caisse;
-
+                if (type_payement!=="CREDIT"){
+                    let ifc = {};
+                    ifc.operationCaisse = "FACTURE";
+                    ifc.montantOperation = $sommeMontant;
+                    ifc.date = date;
+                    ifc.modePayement = type_payement;
+                    ifc.user = {id:user_id};
+                    ifc.filiale = {id : $filiale_id};
+                    ifc.magasin = {id :$magasinId};
+                    ifc.reference = ref;
+                    ifc.description = " Facture N°"+ref+" du client " + nom_client;
+                    $vente.infoFilialeCaisse = ifc;
+                }else{
+                    let trosa = {};
+                    trosa.clientFournisseur = {id: $clientId};
+                    trosa.montant = $sommeMontant;
+                    trosa.description = " Achat a credit sur la Facture N°"+ref;
+                    trosa.typeTrosa = "CREDIT";
+                    trosa.date = date;
+                    trosa.dateEcheance = date;
+                    trosa.reste = $sommeMontant;
+                    let url = "http://localhost:8080/api/v1/trosas";
+                    execute_ajax_request("post", url, trosa, (data) => {});
+                }
                 let url = "http://localhost:8080/api/v1/sales";
                 execute_ajax_request("post", url,$vente, (data) => {
                     // impresion
@@ -219,10 +231,13 @@ $(function () {
                 });
                 hideAndRemove('#' + $modalId)
             })
+
         $nArticle = $(namespace + '#table-liste-article-vente tbody tr').length;
         if ($nArticle == 0) $(namespace + '#btn-' + $modalId).attr('disabled', 'disabled');
         else $(namespace + '#btn-' + $modalId).removeAttr('disabled')
+
     });
+
     function impression_vente() {
         generer_ticket()
         generer_facture()
@@ -306,18 +321,18 @@ $(function () {
     /*
     *  RECHERCHER  ARTICLE
     * */
-    let item_tab = [];
-    const LIST_ITEM_TABLE = namespace+"#table-liste-article";
-    const INPUT_ITEM_SEARCH = namespace+"#inpute-article-search";
-    init_input_search_keyup("ARTICLE",
-        INPUT_ITEM_SEARCH,
-        LIST_ITEM_TABLE,
-        $filiale_id
-        ,item_tab);
-    $(namespace+"#btn-search-article").click(()=>{
-        let url = "http://localhost:8080/api/v1/subsidiaries/"+$filiale_id+"/itemsInfo/";
-        if (item_tab.length===0) fetch_item(url,item_tab,LIST_ITEM_TABLE,"ARTICLE")
-    })
+    // let item_tab = [];
+    // const LIST_ITEM_TABLE = namespace+"#table-liste-article";
+    // const INPUT_ITEM_SEARCH = namespace+"#inpute-article-search";
+    // init_input_search_keyup("ARTICLE",
+    //     INPUT_ITEM_SEARCH,
+    //     LIST_ITEM_TABLE,
+    //     $filiale_id
+    //     ,item_tab);
+    // $(namespace+"#btn-search-article").click(()=>{
+    //     let url = "http://localhost:8080/api/v1/subsidiaries/"+$filiale_id+"/itemsInfo/";
+    //     if (item_tab.length===0) fetch_item(url,item_tab,LIST_ITEM_TABLE,"ARTICLE")
+    // })
     /*
     * RECHERCHER CLIENT
     * */
@@ -329,8 +344,8 @@ $(function () {
     //     LIST_CLIENT_TABLE,
     //     $filiale_id,
     //     client_tab);
-    $(namespace+"#btn-search-client").click(()=>{
-        let url = "http://localhost:8080/api/v1/externalEntities/0/"+$filiale_id;
-        if (client_tab.length===0) fetch_item(url,client_tab,LIST_CLIENT_TABLE,"CLIENT")
-    })
+    // $(namespace+"#btn-search-client").click(()=>{
+    //     let url = "http://localhost:8080/api/v1/externalEntities/0/"+$filiale_id;
+    //     if (client_tab.length===0) fetch_item(url,client_tab,LIST_CLIENT_TABLE,"CLIENT")
+    // })
 })

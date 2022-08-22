@@ -1,9 +1,9 @@
 package com.iol.controller.servletController;
 
-import com.iol.model.tenantEntityBeans.Filiale;
-import com.iol.model.tenantEntityBeans.User;
+import com.iol.model.entityEnum.ModePayement;
+import com.iol.model.entityEnum.TypeOperationCaisse;
+import com.iol.model.tenantEntityBeans.*;
 import com.iol.service.ArticleService;
-import com.iol.model.tenantEntityBeans.Magasin;
 import com.iol.repository.*;
 import com.iol.service.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,7 +105,32 @@ public class MenuNavController{
         Map<String, Long> connectedUserMagasinId = getConnectedUserInfo(request);
         Long filialeId = connectedUserMagasinId.get(FILIALE_ID);
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
-        modelAndView.addObject("caisse",caisseRepository.findAll(filialeId));
+        List<InfoFilialeCaisse> all = caisseRepository.findAll(filialeId);
+
+        double facture = all.stream().filter(infoFilialeCaisse -> infoFilialeCaisse.getOperationCaisse().equals(TypeOperationCaisse.FACTURE))
+                .mapToDouble(InfoFilialeCaisse::getMontantOperation).sum();
+        modelAndView.addObject("facture",facture);
+
+        double avoir = all.stream().filter(infoFilialeCaisse -> infoFilialeCaisse.getOperationCaisse().equals(TypeOperationCaisse.AVOIR))
+                .mapToDouble(InfoFilialeCaisse::getMontantOperation).sum();
+        modelAndView.addObject("avoir",avoir);
+
+        double cheque = all.stream().filter(infoFilialeCaisse -> infoFilialeCaisse.getModePayement().equals(ModePayement.CHEQUE))
+                .mapToDouble(InfoFilialeCaisse::getMontantOperation).sum();
+        modelAndView.addObject("cheque",cheque);
+
+        double virement = all.stream().filter(infoFilialeCaisse -> infoFilialeCaisse.getModePayement().equals(ModePayement.VIREMENT))
+                .mapToDouble(InfoFilialeCaisse::getMontantOperation).sum();
+        modelAndView.addObject("virement",virement);
+
+        double espece = all.stream().filter(infoFilialeCaisse -> infoFilialeCaisse.getModePayement().equals(ModePayement.ESPECE))
+                .mapToDouble(InfoFilialeCaisse::getMontantOperation).sum();
+        modelAndView.addObject("espece",espece);
+
+        double credit = clientFournisseurRepository.getAllExternalEntities(0, filialeId).stream().mapToDouble(ClientFournisseur::getTotalMontantTrosa).sum();
+        modelAndView.addObject("credit", credit);
+
+        modelAndView.addObject("caisse", all);
         return modelAndView;
     }
 

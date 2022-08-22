@@ -5,22 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bd9c0e93-77b1-4a8f-96ad-44ae32dfbfef" name="Changes" comment="reste menu-operation filtre">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/ClientFournisseurRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/ClientFournisseurRessource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/servletController/MenuNavController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/servletController/MenuNavController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/entityEnum/ModePayement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/entityEnum/ModePayement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/InfoFilialeCaisse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/InfoFilialeCaisse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Trosa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/Trosa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/repository/ClientFournisseurRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/repository/ClientFournisseurRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-client.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-client.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-fournisseur.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-fournisseur.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/fournisseur/new-dette.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/fournisseur/new-dette.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-client.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/repository/CaisseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/repository/CaisseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-caisse.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-caisse.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-facture.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-facture.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-peremption.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-peremption.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-vente.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-vente.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/new-operation-caisse.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/new-operation-caisse.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/vente/list-article-info.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/vente/list-article-info.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/vente/list-client.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/vente/list-client.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-caisse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-caisse.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-facture.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-facture.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-fournisseur.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-fournisseur.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-vente.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-vente.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/mini-function.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/mini-function.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/ClientFournisseurRessource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/ClientFournisseurRessource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/servletController/MenuNavController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/servletController/MenuNavController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEnum/ModePayement.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/entityEnum/ModePayement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/InfoFilialeCaisse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/InfoFilialeCaisse.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Trosa.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Trosa.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/CaisseRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/repository/CaisseRepository.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -358,6 +366,21 @@
       <workItem from="1660842059133" duration="295000" />
       <workItem from="1660850010989" duration="1656000" />
       <workItem from="1660892227916" duration="21729000" />
+      <workItem from="1660935098597" duration="3174000" />
+      <workItem from="1660939142096" duration="5428000" />
+      <workItem from="1660945065276" duration="1507000" />
+      <workItem from="1660974711514" duration="2824000" />
+      <workItem from="1660983100681" duration="9000" />
+      <workItem from="1660986494505" duration="204000" />
+      <workItem from="1660986723563" duration="14000" />
+      <workItem from="1660986827028" duration="42000" />
+      <workItem from="1660987292251" duration="32000" />
+      <workItem from="1660987530413" duration="36000" />
+      <workItem from="1660987676802" duration="26000" />
+      <workItem from="1660987733149" duration="35000" />
+      <workItem from="1660987807450" duration="11000" />
+      <workItem from="1660988700300" duration="21000" />
+      <workItem from="1660989594939" duration="43000" />
     </task>
     <task id="LOCAL-00001" summary="mapping de la trigger avec la table approvisionnement">
       <created>1658448504125</created>
@@ -404,6 +427,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/iol/controller/restController/InfoArticleMagasinRessource.java</url>
           <line>28</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/vente/list-client.jsp</url>
+          <line>4</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

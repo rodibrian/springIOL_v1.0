@@ -13,6 +13,6 @@ import java.util.List;
 @Repository
 @Transactional
 public interface CaisseRepository  extends JpaRepository<InfoFilialeCaisse,Long>{
-    @Query(value = "from InfoFilialeCaisse  ifc join ifc.filiale f where f.id=:filialeId")
+    @Query(value = "from InfoFilialeCaisse  ifc join ifc.filiale f where f.id=:filialeId order by ifc.date asc")
     List<InfoFilialeCaisse> findAll(@Param("filialeId") Long filialeId);
 }

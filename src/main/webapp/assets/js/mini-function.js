@@ -197,7 +197,7 @@ function init_enregistrer_trosa_btn(namespace, type_trosa){
                     trosa.montant,
                     0,
                     trosa.montant,
-                    trosa.typePayement,
+                    '-',
                     `<span class="badge ` + createBadge($montant) + `">` + createStatus($montant) + `</span>`,
                     trosa.dateEcheance,
                     trosa.description,init_action_column(trosa.reste)];

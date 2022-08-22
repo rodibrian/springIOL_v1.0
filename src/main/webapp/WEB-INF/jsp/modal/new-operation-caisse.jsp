@@ -13,10 +13,6 @@
           <input name="reference" type="text" required id="input-reference" class="form-control">
         </div>
         <div class="mb-1">
-          <label for="input-categorie" class="form-label">Categorie</label>
-          <input name="categorie" type="text" required id="input-categorie" class="form-control">
-        </div>
-        <div class="mb-1">
           <label for="input-montant" class="form-label">Montant</label>
           <input name="montant" type="number" required id="input-montant" class="form-control" value="0">
         </div>
@@ -27,7 +23,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-        <button id="btn-enregistrer-operation-caisse" type="button" data-bs-dismiss="modal" class="btn btn-primary">Enregistrer</button>
+        <a type="button" id="btn-enregistrer-operation-caisse" class="btn btn-success mr-1">
+          Enregistrer
+        </a>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

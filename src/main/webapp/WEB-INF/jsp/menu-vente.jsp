@@ -82,9 +82,13 @@
               </daiv>
 
               <div class="mb-1">
-                <label for="select-payement" class="form-label">Mode de payement</label>
-                <select class="form-select" id="select-payement">
-
+                <label for="type-payement" class="form-label">Mode de payement</label>
+                <select class="form-select" id="type-payement">
+                  <option value="CREDIT">Credit</option>
+                  <option value="ESPECE">Espèces</option>
+                  <option value="MOBILE_MONEY">Mobile Money</option>
+                  <option value="CHEQUE">Chèques</option>
+                  <option value="VIREMENT">Virement</option>
                 </select>
               </div>
 

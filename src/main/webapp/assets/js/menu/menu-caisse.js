@@ -3,6 +3,9 @@ $(function () {
             MENU CAISSE
      --------------------------*/
     let namespace = "#menu-caisse ";
+    $filiale_id = $(namespace + '#filiale-id').attr("value-id");
+    $user_id = $(namespace + '#user-id').attr("value-id");
+
     exportToExcel(namespace + '.btn-export-to-excel','caisse', namespace + '.table-liste-operation-caisse');
     // mode de paiement
     const ESPECE = "espece", CHEQUE = "cheque", CREDIT = "credit", VIREMENT = "virement";
@@ -37,70 +40,68 @@ $(function () {
                 break;
         }
     })
+
     /*
      enregistrement operation
      */
-
-    $("#operation-caisse #btn-enregistrer-operation-caisse").on('click', function () {
+    $("#btn-enregistrer-operation-caisse").click(function () {
 
         let reference = $('#operation-caisse #input-reference').val();
-        let categorie = $('#operation-caisse #input-categorie').val();
         let description = $('#operation-caisse #area-description').val();
         let montant = $('#operation-caisse #input-montant').val();
-
         let date = new Date();
-        let info_filiale_caisse = {};
-        info_filiale_caisse.operationCaisse = "FACTURE";
-        info_filiale_caisse.montantOperation = $sommeMontant;
-        info_filiale_caisse.date = date;
-        info_filiale_caisse.modePayement = "ESPECE";
-        info_filiale_caisse.user = {id:user_id};
-        info_filiale_caisse.filiale = {id : $filiale_id};
-        info_filiale_caisse.magasin = {id :$magasinId};
-        info_filiale_caisse.description = description;
-
-        switch ($typeOperation) {
-            case OP_IN :
-                push_to_table_list(
-                    namespace + ".table-liste-operation-caisse",
-                    "",
-                    [OP_RECETTE,
-                        new Date().toLocaleDateString(),
-                        reference,
-                        '[' + categorie + '] ' + description,
-                        montant,
-                        "-",
-                        "-"]
-                )
-                    .attr('data-filter', [OP_RECETTE, ESPECE])
-                createToast('bg-success', 'uil-folder-check', 'Encaissement enregistre', 'ENcaissement enregistrer avec success!');
-                impression_EncDecAissement(true)
-            break;
-            case OP_OUT :
-                push_to_table_list(
-                    namespace + ".table-liste-operation-caisse",
-                    "",
-                    [OP_DEPENSE,
-                        new Date().toLocaleDateString(),
-                        reference,
-                        '[' + categorie + '] ' + description,
-                        "-",
-                        montant,
-                        "-"]
-                )
-                    .attr('data-filter', [OP_DEPENSE, OP_CONSO])
-                createToast('bg-warning', 'uil-folder-check', 'Decaissement enregistre', 'Decaissement enregistrer avec success!');
-                impression_EncDecAissement(false)
-                break;
-        }
-
-        // vider les champs
-
-        $('#operation-caisse #input-reference').val('');
-        $('#operation-caisse #input-montant').val(0);
-        $('#operation-caisse #area-description').val('');
-        $('#operation-caisse #input-categorie').val('');
-
+        let ifc = {};
+        ifc.reference = reference;
+        ifc.operationCaisse = $typeOperation === OP_IN ? "ENCAISSEMENT" : "DECAISSEMENT";
+        ifc.montantOperation = montant;
+        ifc.date = date;
+        ifc.modePayement = "ESPECE";
+        ifc.user = {id:$user_id};
+        ifc.filiale = {id : $filiale_id};
+        ifc.description = description;
+        let url = "http://localhost:8080/api/v1/ifc";
+        execute_ajax_request("post",url,ifc,(data)=>{
+            $(namespace+"#operation-caisse").modal("hide");
+            switch ($typeOperation) {
+                case OP_IN :
+                    push_to_table_list(
+                        namespace + ".table-liste-operation-caisse",
+                        "",
+                        [OP_RECETTE,
+                            new Date().toLocaleDateString(),
+                            reference,
+                            description,
+                            montant,
+                            "-",
+                            "-"]
+                    )
+                        .attr('data-filter', [OP_RECETTE, ESPECE])
+                    createToast('bg-success', 'uil-folder-check', 'Encaissement enregistre', 'ENcaissement enregistrer avec success!');
+                    impression_EncDecAissement(true)
+                    break;
+                case OP_OUT :
+                    push_to_table_list(
+                        namespace + ".table-liste-operation-caisse",
+                        "",
+                        [OP_DEPENSE,
+                            new Date().toLocaleDateString(),
+                            reference,
+                            description,
+                            "-",
+                            montant,
+                            "-"]
+                    )
+                        .attr('data-filter', [OP_DEPENSE, OP_CONSO])
+                    createToast('bg-warning', 'uil-folder-check', 'Decaissement enregistre', 'Decaissement enregistrer avec success!');
+                    impression_EncDecAissement(false)
+                    break;
+            }
+            // vider les champs
+            $('#operation-caisse #input-reference').val('');
+            $('#operation-caisse #input-montant').val(0);
+            $('#operation-caisse #area-description').val('');
+            $('#operation-caisse #input-categorie').val('');
+        });
     })
 
     /*
@@ -108,9 +109,7 @@ $(function () {
      */
 
     $(namespace + ".type-caisse").on('click', function () {
-
         filter_table(namespace + ".table-liste-operation-caisse", "value-filter", $(this).attr('value-filter'));
-
     })
 
     /*
@@ -118,7 +117,6 @@ $(function () {
      */
 
     function filter_table($idtable, $attr, $value_filter) {
-
         $table = $($idtable + " tbody tr");
         $table.hide();
 
@@ -164,27 +162,20 @@ $(function () {
 
     function generer_facture_EncDecAissement($isEnc) {
         let space = namespace + '#impression-facture-encaissement-ou-decaissement ';
-
         // receuille des données
-
         $title = $isEnc ? 'Encaissement' : 'Decaissement';
         $reference = $(namespace + '#operation-caisse #input-reference').val();
         $categorie = $(namespace + '#operation-caisse #input-categorie').val();
         $montant = $(namespace + '#operation-caisse #input-montant').val();
         $description = $(namespace + '#operation-caisse #area-description').val();
-
         // affectation
-
         $(space + '.label-title').text($title)
         $(space + '.label-reference').text($reference)
         $(space + '.td-reference').text($reference)
         $(space + '.td-description').text('[' + $categorie + '] ' + $description)
         $(space + '.td-montant').text($montant + 'Ar')
-
         $(space).printThis()
-
     }
-
 
 
 })
