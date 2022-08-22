@@ -36,13 +36,13 @@ public class ItemRessource {
 
     @GetMapping(value = "/articles/{id}/unites")
     public ResponseEntity<Object> getAllUnites(@PathVariable("id") Long id){
-        List<String> articleUnite = articleRepository.getAllUnite(id);
-        return new ResponseEntity<>(articleUnite, HttpStatus.CREATED);
+        List<ArticleUnite> allUnite = articleRepository.getAllUnite(id);
+        return new ResponseEntity<>(allUnite,HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/articles/{id}/{filialeId}")
     public ResponseEntity<Object> getAllUnites(@PathVariable("id") Long id,@PathVariable("filialeId")Long filialeId){
-        List<ArticleUnite> articleUnite = articleRepository.getAllUnite(id,filialeId);
+        List<ArticleUnite> articleUnite = articleRepository.getAllUnite(id);
         return new ResponseEntity<>(articleUnite, HttpStatus.CREATED);
     }
 

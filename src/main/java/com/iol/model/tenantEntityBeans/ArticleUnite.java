@@ -21,10 +21,6 @@ public class ArticleUnite {
     @JoinColumn(name = "unite_id")
     private Unite unite;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "filiale_id")
-    private Filiale filiale;
-
     private int niveau;
     private double quantiteNiveau;
     private double poids;

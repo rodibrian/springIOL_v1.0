@@ -20,20 +20,17 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
     @Query(value = "SELECT au.quantite_niveau FROM  article_unite au WHERE au.article_id =:articleId AND au.unite_id=:uniteId" ,nativeQuery = true)
     Double getQuantiteNiveau(@Param("uniteId") Long uniteId , @Param("articleId") Long articleId);
 
-    @Query(value = "select id,code,designation,niveau,poids from unite u inner join article_unite au ON u.id = au.unite_id WHERE au.article_id =:param",nativeQuery = true)
-    List<String> getAllUnite(@Param("param") Long id);
+    @Query(value = "from ArticleUnite au join au.article a  WHERE a.id=:articleId")
+    List<ArticleUnite> getAllUnite(@Param("articleId") Long articleId);
 
-    @Query(value = "from ArticleUnite au join au.article a join au.filiale f WHERE a.id=:articleId and f.id=:filialeId")
-    List<ArticleUnite> getAllUnite(@Param("articleId") Long articleId,@Param("filialeId") Long filialeId);
+    @Query(value = "from ArticleUnite au join au.article a where a.status ='USED'")
+    List<ArticleUnite> getAllNotDeletedAndNotHidden();
 
-    @Query(value = "from ArticleUnite au join au.filiale f join au.article a where f.id=:filialeId and a.status ='USED'")
-    List<ArticleUnite> getAllNotDeletedAndNotHidden(@Param("filialeId")Long filialeId);
+    @Query(value = "from ArticleUnite au")
+    List<ArticleUnite> getAll();
 
-    @Query(value = "from ArticleUnite au join au.filiale f where f.id=:filialeId")
-    List<ArticleUnite> getAll(@Param("filialeId")Long filialeId);
-
-    @Query(value = "from ArticleUnite au join au.filiale f join au.article a where f.id=:filialeId and lower(a.designation) like concat('%',lower(:name),'%') ")
-    List<ArticleUnite> getAllByItemName(@Param("filialeId")Long filialeId,@Param("name") String name);
+    @Query(value = "from ArticleUnite au join au.article a where lower(a.designation) like concat('%',lower(:name),'%') ")
+    List<ArticleUnite> getAllByItemName(@Param("name") String name);
 
 
     @Query(value = "select a.article_id,u.id,s.magasin_id,a.designation as ad,c.libelle,u.designation,"+

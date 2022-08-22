@@ -1372,6 +1372,7 @@ UC/10
     </table>
     <table id="102" parent="22" name="trosa">
       <ObjectId>177665</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
       <StateNumber>551723</StateNumber>
     </table>

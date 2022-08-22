@@ -105,19 +105,19 @@ class ArticleRepositoryTest{
 
     @Test
     void getAllNotDeletedAndNotHidden() {
-        List<ArticleUnite> allNotDeletedAndNotHidden = articleRepository.getAllNotDeletedAndNotHidden(1L);
+        List<ArticleUnite> allNotDeletedAndNotHidden = articleRepository.getAllNotDeletedAndNotHidden();
         assertThat(allNotDeletedAndNotHidden).isEmpty();
     }
 
     @Test
     void testGetAll1() {
-        List<ArticleUnite> all = articleRepository.getAll(1L);
+        List<ArticleUnite> all = articleRepository.getAll();
         assertThat(all).isNotEmpty();
     }
 
     @Test
     void getAllByItemName() {
-        List<ArticleUnite> riz = articleRepository.getAllByItemName(1L, "RIZ");
+        List<ArticleUnite> riz = articleRepository.getAllByItemName("RIZ");
         assertThat(riz).isNotEmpty();
     }
 

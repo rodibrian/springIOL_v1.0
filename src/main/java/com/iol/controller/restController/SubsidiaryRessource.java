@@ -27,6 +27,12 @@ public class SubsidiaryRessource{
     @Autowired
     private TrosaRepository trosaRepository;
 
+    @Autowired
+    private ArticleRepository articleRepository;
+
+    @Autowired
+    private ArticleService articleService;
+
     @GetMapping(value = "/subsidiaries")
     public ResponseEntity<Object> getAllSubdiaries(){
         return new ResponseEntity<>(subsidiaryRepository.findAll(), HttpStatus.OK);
@@ -45,15 +51,10 @@ public class SubsidiaryRessource{
         return new ResponseEntity<>(all, HttpStatus.OK);
     }
 
-    @Autowired
-    private ArticleRepository articleRepository;
-
-    @Autowired
-    private ArticleService articleService;
 
     @GetMapping(value = "/subsidiaries/{id}/items/{itemName}")
     public ResponseEntity<Object> getItemByName(@PathVariable("id")Long filialeId,@PathVariable("itemName")String itemName){
-        List<ArticleUnite> allByItemName = articleRepository.getAllByItemName(filialeId, itemName);
+        List<ArticleUnite> allByItemName = articleRepository.getAllByItemName(itemName);
         return new ResponseEntity<>(allByItemName, HttpStatus.OK);
     }
 
@@ -100,7 +101,7 @@ public class SubsidiaryRessource{
 
     @GetMapping(value = "/subsidiaries/{id}/items")
     public ResponseEntity<Object> getItem(@PathVariable("id")Long filialeId){
-        List<ArticleUnite> allByItemName = articleRepository.getAll(filialeId);
+        List<ArticleUnite> allByItemName = articleRepository.getAll();
         return new ResponseEntity<>(allByItemName, HttpStatus.OK);
     }
 

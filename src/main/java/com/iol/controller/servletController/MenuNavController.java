@@ -211,7 +211,7 @@ public class MenuNavController{
         Map<String, Long> connectedUserMagasinId = getConnectedUserInfo(request);
         Long filialeId = connectedUserMagasinId.get(FILIALE_ID);
         ModelAndView modelAndView = new ModelAndView("operation/entree");
-        modelAndView.addObject(ARTICLE_LIST,articleRepository.getAllNotDeletedAndNotHidden(filialeId));
+        modelAndView.addObject(ARTICLE_LIST,articleRepository.getAllNotDeletedAndNotHidden());
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
         modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR,filialeId));
         return modelAndView;
@@ -222,7 +222,7 @@ public class MenuNavController{
         Map<String, Long> connectedUserMagasinId = getConnectedUserInfo(request);
         Long filialeId = connectedUserMagasinId.get(FILIALE_ID);
         ModelAndView modelAndView = new ModelAndView("operation/sortie");
-            modelAndView.addObject(ARTICLE_LIST,articleRepository.getAllNotDeletedAndNotHidden(filialeId));
+            modelAndView.addObject(ARTICLE_LIST,articleRepository.getAllNotDeletedAndNotHidden());
             modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
             return modelAndView;
     }
@@ -233,7 +233,7 @@ public class MenuNavController{
         Long filialeId = connectedUserMagasinId.get(FILIALE_ID);
         ModelAndView modelAndView = new ModelAndView("operation/transfert");
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
-        modelAndView.addObject(ARTICLE_LIST,articleRepository.getAllNotDeletedAndNotHidden(filialeId));
+        modelAndView.addObject(ARTICLE_LIST,articleRepository.getAllNotDeletedAndNotHidden());
         return modelAndView;
     }
 
@@ -291,7 +291,7 @@ public class MenuNavController{
         Long filiale_id = connectedUserMap.get(FILIALE_ID);
         ModelAndView modelAndView = new ModelAndView("menu-article");
         modelAndView.addObject(CATEGORIE_LIST, this.categorieRepository.findAll());
-        modelAndView.addObject(ARTICLE_LIST,articleRepository.getAllNotDeletedAndNotHidden(filiale_id));
+        modelAndView.addObject(ARTICLE_LIST,articleRepository.getAllNotDeletedAndNotHidden());
         return modelAndView;
     }
 
