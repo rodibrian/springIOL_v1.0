@@ -1,4 +1,5 @@
 <%@ include file='template/header.jsp' %>
+
 <!-- Start Content-->
 <div class="container-fluid" id="menu-facture">
   <input type="hidden" id="user-id" value-id="${connectedUser.id}">
@@ -17,10 +18,7 @@
     <div class="col-12">
       <div class="page-title-box">
         <div class="page-title-right">
-          <a href="" class="btn btn-info"><i class="uil-refresh"></i></a>
-          <a href="" class="btn btn-warning d-none"><i class="uil-meh-closed-eye"></i></a>
-          <a class="btn btn-success btn-export-to-excel bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel">&nbsp;</a>
-        </div>
+          </div>
       </div>
       <div class="d-inline-flex mt-1">
         <input type="date" class="form-control btn-40">&nbsp;&agrave;&nbsp;
@@ -33,16 +31,25 @@
         <h4 class="">Nombre : ${factures.size()}
         </h4>
       </div>
+      <div class="float-end">
+        <a href="" class="btn btn-info"><i class="uil-refresh"></i></a>
+        <a href="" class="btn btn-warning d-none"><i class="uil-meh-closed-eye"></i></a>
+        <a class="btn btn-success btn-export-to-excel bg-forest"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel">&nbsp;</a>
+      </div>
     </div>
   </div>
 
   <div class="all-modal">
     <%@ include file="modal/facture/info-facture.jsp" %>
   </div>
+
   <!-- suite -->
-  <div class="container -fluid"><br><br>
+
+
+  <div><br>
     <div class="row">
       <div class="col-lg-12">
+        <%= start_content_table() %>
         <table id="scroll-vertical-datatable"
                class="table-facture table table-sm dt-responsive nowrap table-hover table-striped">
           <thead>
@@ -73,6 +80,7 @@
           </c:forEach>
           </tbody>
         </table>
+        <%= end_content_table() %>
       </div>
     </div>
 

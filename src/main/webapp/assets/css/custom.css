@@ -214,3 +214,11 @@ table tbody tr:hover .td-action div {
     width: 23px;
     height: 23px;
 }
+
+.page-title-box .page-title {
+    font-size: 25px!important;
+}
+
+.footer {
+    padding: 10px!important;
+}

@@ -5,40 +5,33 @@ $(function () {
             MENU CLIENT
 
      --------------------------*/
+
     let namespace = "#menu-client ";
     let cfUrl = "http://localhost:8080/api/v1/externalEntities";
     $filialeId = $(namespace + '#filiale-id').attr("value-id");
     $user_id = $(namespace+"#user-id").attr("value-id");
     exportToExcel(namespace + '.btn-export-to-excel','client', namespace + '#table-client')
+
     $NOUVEAU_CLIENT  = true;
+
     let CLIENT = 0 ;
-    /*
-    mask et validation
-     */
-    $(function() {
 
-        $(namespace + 'form').validate({
-            rules: {
-                adresse : {required:true},
-            },
-            messages : {
-                adresse: {required: 'Veuillez remplir l\'adresse'}
-            }
-        })
 
-        $(namespace + '#numCIN').mask('999 999 999 999')
-        $(namespace + '#contact').mask('+261 99 99 999 99')
-    })
+
     /*
      fermer l'info listes article facture
      */
+
     $(namespace + '.btn-close-info-credit').click(function () {
         $(namespace + '#info-credit').removeClass("show")
     })
+
     /*
      nouveau client
      */
+
     $(namespace + '.btn-nouveau-client').on('click', function () {
+
         $NOUVEAU_CLIENT = true;
         $(namespace + '#nouveau-client').attr('data-value', 'nouveau-client');
         $(namespace + '#nouveau-client').modal('show')
@@ -95,6 +88,32 @@ $(function () {
      enregistrement nouveau client
      */
 
+    /*
+    mask et validation
+     */
+
+    $(function() {
+
+        $(namespace + 'form').validate({
+            rules: {
+                adresse : {required:true},
+                numCIN : {required:true},
+                nomClient: {required:true},
+                contact : {required: true},
+            },
+            messages : {
+                adresse: {required: 'Adresse requise'},
+                numCIN : {required: 'Numero CIN requis'},
+                nomClient: {required: 'Nom client requis'},
+                contact : {required: 'Contact requis'}
+            }
+        })
+
+        $(namespace + '#numCIN').mask('999 999 999 999')
+        $(namespace + '#contact').mask('+261 99 99 999 99')
+        // $(namespace + '#nif').mask('X99999999')
+    })
+
     function validation_client() {
         $(namespace + 'form').validate();
         return $(namespace + 'form').valid();
@@ -145,6 +164,7 @@ $(function () {
      */
 
     $(document).on('click', namespace + '#table-client .deleteClient', function () {
+
         $trClient = $(this).closest('tr');
         $idModalDelete = "suppression-client";
         let idCf = $trClient.attr("id");

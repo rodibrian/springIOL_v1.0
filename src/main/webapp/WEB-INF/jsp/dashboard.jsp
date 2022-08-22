@@ -1,11 +1,8 @@
 <%@ include file="template/header.jsp" %>
 
+<br>
 <div id="dashboard">
-
-  <div class="row">
-    <div class="col-xl-12 col-lg-12">
-
-      <div class="row container-fluid">
+      <div class="row">
         <div class="col-lg-3">
           <div class="card widget-flat">
             <div class="card-body">
@@ -73,13 +70,6 @@
       </div> <!-- end row -->
 
 
-    </div> <!-- end col -->
-
-
-  </div>
-  <!-- end row -->
-
-
   <!-- begin row-->
 
   <div class="row">
@@ -92,6 +82,7 @@
           <h4 class="header-title mt-2 mb-3">Credit par client</h4>
 
           <div class="table-responsive">
+            <%= start_content_table() %>
             <table class="table table-special-form table-liste-dette-client table-centered table-striped table-nowrap table-hover mb-0">
               <tbody>
               <c:forEach var="clt" items="${client_list}">
@@ -102,6 +93,7 @@
               </c:forEach>
               </tbody>
             </table>
+            <%= end_content_table() %>
           </div> <!-- end table-responsive-->
         </div> <!-- end card-body-->
       </div> <!-- end card-->
@@ -149,6 +141,7 @@
           <h4 class="header-title mt-2 mb-3">Dette envers Fournisseur</h4>
 
           <div class="table-responsive">
+            <%= start_content_table() %>
             <table class="table table-special-form table-liste-dette-fournisseur table-centered table-striped table-nowrap table-hover mb-0">
               <tbody>
               <c:forEach var="frs" items="${fournisseur_list}">
@@ -159,6 +152,7 @@
               </c:forEach>
               </tbody>
             </table>
+            <%= end_content_table() %>
           </div> <!-- end table-responsive-->
         </div> <!-- end card-body-->
       </div> <!-- end card-->

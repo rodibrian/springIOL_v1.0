@@ -5,6 +5,9 @@ $(function () {
     $quantite_stock = 0;
     let namespace = "#menu-vente ";
     $filiale_id = $(namespace + '#filiale-id').attr("value-id");
+
+    push_Type_paiement(namespace + "#select-payement");
+
     /*
     Selecter client
     */

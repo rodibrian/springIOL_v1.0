@@ -252,7 +252,6 @@
       <!-- start page title -->
       <div class="row">
         <div class="col-12">
-          <br>
         </div>
       </div>
       <!-- end page title -->

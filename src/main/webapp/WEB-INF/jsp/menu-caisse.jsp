@@ -52,6 +52,8 @@
           Decaissement
         </a>
       </div>
+      <a class="btn btn-success btn-export-to-excel bg-forest float-end"><img src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel">&nbsp;</a>
+
     </div>
   </div>
 
@@ -175,6 +177,7 @@
     </div>
     <div class="row">
       <div class="col-lg-12">
+        <%= start_content_table() %>
         <table id="scroll-vertical-datatable"
                class="table-liste-operation-caisse table-special-form table table-sm dt-responsive nowrap table-hover text-dark">
           <thead>
@@ -202,6 +205,7 @@
           </c:forEach>
           </tbody>
         </table>
+        <%= end_content_table() %>
       </div>
     </div>
 
@@ -214,16 +218,19 @@
 
 </div>
 
+</div> <!-- container -->
+
+</div> <!-- content -->
+</div>
+
 </div>
 
 </div>
 </div>
 
 </div>
-
 </div>
-</div>
-
-</div>
-</div>
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
 <%@ include file="template/setting.jsp" %>

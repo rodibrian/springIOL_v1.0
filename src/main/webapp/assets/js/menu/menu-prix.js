@@ -1,6 +1,9 @@
 $(function () {
 
     let namespace = "#menu-prix ";
+
+    exportToExcel('.btn-export-to-excel','liste-prix-articles', '#table-historique-prix')
+
     const PRICES_RESOURCES = "http://localhost:8080/api/v1/prices";
     const $table_prix = $(namespace+"#table-prix tbody");
     /*

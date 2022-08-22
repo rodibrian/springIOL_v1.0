@@ -2,7 +2,7 @@
 <div id="nouveau-voyage" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
      aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content was-validated">
+    <form class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" id="standard-modalLabel">Nouveau Voyage</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
@@ -10,18 +10,18 @@
       <div class="modal-body">
         <div class="mb-reference1">
           <label for="reference" class="form-label">Reference</label>
-          <input name="reference" type="text" required id="reference" class="form-control">
+          <input name="reference" type="text" id="reference" class="form-control">
         </div>
         <div class="mb-1">
           <label for="materielDeTransport" class="form-label">Materiel de transport</label>
-          <select required name="materielDeTransport" class="form-control" id="materielDeTransport">
+          <select name="materielDeTransport" class="form-control" id="materielDeTransport">
             <option value="1">Auto</option>
             <option value="2">Moto</option>
           </select>
         </div>
         <div class="mb-1">
           <label for="dateVoyage" class="form-label">Date de voyage</label>
-          <input required name="dateVoyage" type="date" id="dateVoyage" class="form-control">
+          <input name="dateVoyage" type="date" id="dateVoyage" class="form-control">
         </div>
         <div class="mb-1">
           <label for="description" class="form-label">Description du voyage</label>
@@ -30,9 +30,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-        <button id="btn-enregistrer-voyage" data-bs-dismiss="modal" type="button" class="btn btn-primary">Enregistrer</button>
+        <button id="btn-enregistrer-voyage" type="submit" class="btn btn-primary">Enregistrer</button>
       </div>
-    </div><!-- /.modal-content -->
+    </form><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
