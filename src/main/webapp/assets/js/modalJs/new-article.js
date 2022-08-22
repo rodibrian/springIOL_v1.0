@@ -119,7 +119,7 @@ $(function () {
                 articleUnite.niveau = uniteRow[1];
                 articleUnite.quantiteNiveau = uniteRow[3];
                 articleUnite.poids = uniteRow[4];
-                articleUnite.filiale = {id: $filialeId};
+                articleUnite.filiale = {id: filiale_id};
                 articleUniteTab.push(articleUnite);
             }
             return articleUniteTab;

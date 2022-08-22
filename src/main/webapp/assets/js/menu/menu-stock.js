@@ -67,7 +67,7 @@ $(function () {
     }
 
     function fetchInventoryAlert(articleId) {
-        let url = "http://localhost:8080/api/v1/inventories-alert/" + $filialeId + "/" + articleId;
+        let url = "http://localhost:8080/api/v1/inventories-alert/" + filiale_id + "/" + articleId;
         execute_ajax_request("get", url, null, (data) => {
             $('#info-stock p.label-quantite-alerte-article').text(" Quantité alert : " + data);
         })

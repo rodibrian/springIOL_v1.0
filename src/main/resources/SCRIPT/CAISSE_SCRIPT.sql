@@ -57,3 +57,4 @@ BEGIN
 END;
 $$;
 alter function update_caisse_filiale() owner to postgres;
+create trigger on_insert_on_info_filiale_caisse before insert on info_filiale_caisse FOR EACH ROW execute procedure update_caisse_filiale();

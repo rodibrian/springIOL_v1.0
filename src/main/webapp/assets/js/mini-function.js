@@ -223,7 +223,7 @@ const init_modal_credit_dette_btn = (namespace, type_trosa,filiale_id,user_id)=>
     supprimer_dette(namespace);
 
     /* ACTUALISER LISTE */
-    $(namespace+"#refresh-list-btn").click(()=> fetch_trosa_data(namespace,$cf_id))
+    $(namespace+".refresh-list-btn").click(()=> fetch_trosa_data(namespace,user_id))
 
     /* validation payement */
     init_validation_payement(namespace);
@@ -266,7 +266,6 @@ const init_payement_dette_btn = (namespace,filiale_id,user_id)=>{
                 $(namespace + '#modal-payement-dette').modal('hide');
                 update_reste(namespace,montant_payer);
             });
-        // }
     })
 
     function update_reste(namespace,montant_payer) {
@@ -356,20 +355,22 @@ const clear_table = ($table) => {
     $($table+" tbody").empty();
 }
 
-const  init_seach_cf_btn = (type,namespace,$btn,$filiale_id)=>{
-    $(namespace+$btn).click(()=>{
+const  init_seach_cf_btn = (type,namespace,table,$filiale_id)=>{
+
+    $(namespace+"#search-btn").click(()=>{
         let text = $(namespace +"#top-search").val();
         let url = "http://localhost:8080/api/v1/externalEntities/"+type+"/"+$filiale_id+"/name/"+text;
         execute_ajax_request("get",url,null,(data)=> {
-            clear_table(namespace + '#table-fournisseur');
+            clear_table(namespace + table);
             data.forEach(value=>{
                 let tr = [value.nom,value.adresse,value.numTel,value.totalMontantTrosa, $('<div class="action-fournisseur">\n' +
                     '                <a id="" class="btn-sm btn-info editFournisseur "><i class="uil-pen"></i></a>\n' +
                     '                <a id="" class="btn-sm btn-danger deleteFournisseur "><i class="uil-trash-alt"></i></a>\n' +
                     '              </div>')];
-                push_to_table_list(namespace + '#table-fournisseur',value.id,tr);
+                push_to_table_list(namespace + table,value.id,tr);
             })
-        } )
+        })
+
     })
 }
 

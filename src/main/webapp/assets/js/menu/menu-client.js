@@ -5,23 +5,16 @@ $(function () {
             MENU CLIENT
 
      --------------------------*/
-
     let namespace = "#menu-client ";
     let cfUrl = "http://localhost:8080/api/v1/externalEntities";
-    $filialeId = $(namespace + '#filiale-id').attr("value-id");
-    $user_id = $(namespace+"#user-id").attr("value-id");
+    let filiale_id = $(namespace + '#filiale-id').attr("value-id");
+    let user_id = $(namespace+"#user-id").attr("value-id");
     exportToExcel(namespace + '.btn-export-to-excel','client', namespace + '#table-client')
-
     $NOUVEAU_CLIENT  = true;
-
     let CLIENT = 0 ;
-
-
-
     /*
      fermer l'info listes article facture
      */
-
     $(namespace + '.btn-close-info-credit').click(function () {
         $(namespace + '#info-credit').removeClass("show")
     })
@@ -122,8 +115,8 @@ $(function () {
     $(namespace + '#nouveau-client #btn-enregistrer-client').on('click', function () {
 
         if (validation_client()) {
-
             $(namespace + ".modal").modal('hide');
+            filiale_id = $(namespace + '#filiale-id').attr("value-id");
             let nomClient = $(namespace + '#nouveau-client input#nomClient').val();
             let cin = $(namespace + '#nouveau-client input#numCIN').val();
             let adresse = $(namespace + '#nouveau-client input#adresse').val();
@@ -140,7 +133,8 @@ $(function () {
             client.stat = stat;
             client.cif = cif;
             client.typeCf = CLIENT;
-            client.filiale = {id : $filialeId};
+            client.totalMontantTrosa = 0.0;
+            client.filiale = {id : filiale_id};
             enregistrerClientOuFournisseur(client);
         }
 
@@ -182,9 +176,9 @@ $(function () {
     // INIT DOUBLE CLICK
     init_dblclick_table(namespace,"#table-client");
 
-    init_modal_credit_dette_btn(namespace,"CREDIT",$filialeId,$user_id);
+    init_modal_credit_dette_btn(namespace,"CREDIT",filiale_id,user_id);
     /*
     *  RECHERCHER CLIENT
     * */
-    init_seach_cf_btn(0,namespace,"#search-btn",$filialeId);
+    init_seach_cf_btn(0,namespace,"#table-client",filiale_id);
 })

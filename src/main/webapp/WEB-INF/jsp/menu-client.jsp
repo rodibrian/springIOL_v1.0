@@ -28,7 +28,6 @@
         <a type="button" class="btn btn-success mr-1 btn-nouveau-client"><i
                 class="uil-plus">&nbsp;</i>Nouveau Client</a>
         <div class="float-end">
-          <a href="" class="btn btn-primary"><i class="uil-refresh"></i></a>&nbsp;
           <a class="btn btn-success btn-export-to-excel bg-forest"><img
                   src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image"
                   class="icon-excel"></a>

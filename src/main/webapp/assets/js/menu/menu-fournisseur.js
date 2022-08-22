@@ -141,9 +141,8 @@ $(function () {
     init_dblclick_table(namespace,"#table-fournisseur");
 
     init_modal_credit_dette_btn(namespace,"DETTE",$filialeId,$user_id);
-
     /*
     *  RECHERCHER FOURNISSEUR
     * */
-     init_seach_cf_btn(1,namespace,"#search-btn",$filialeId);
+     init_seach_cf_btn(1,namespace,"#table-fournisseur",$filialeId);
 })
