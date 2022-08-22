@@ -140,24 +140,18 @@ $(function () {
 
     function generer_ticket_EncDecAissement($isEnc) {
         let space = namespace + '#impression-ticket-encaissement-ou-decaissement ';
-
         // receuille des données
-
         $title = $isEnc ? 'Encaissement' : 'Decaissement';
         $reference = $(namespace + '#operation-caisse #input-reference').val();
         $categorie = $(namespace + '#operation-caisse #input-categorie').val();
         $montant = $(namespace + '#operation-caisse #input-montant').val();
         $description = $(namespace + '#operation-caisse #area-description').val();
-
         // affectation
-
         $(space + '.label-title').text($title)
         $(space + '.label-reference').text($reference)
         $(space + '.label-motif').text('[' + $categorie + '] ' + $description)
         $(space + '.label-montant').text($montant + 'Ar')
-
         $(space).printThis()
-
     }
 
     function generer_facture_EncDecAissement($isEnc) {

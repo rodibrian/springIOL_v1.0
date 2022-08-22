@@ -30,7 +30,7 @@ public class InfoFilialeCaisse{
     @Enumerated(EnumType.STRING)
     private TypeOperationCaisse operationCaisse;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private ModePayement modePayement;
 
     @Column(columnDefinition = "TEXT")

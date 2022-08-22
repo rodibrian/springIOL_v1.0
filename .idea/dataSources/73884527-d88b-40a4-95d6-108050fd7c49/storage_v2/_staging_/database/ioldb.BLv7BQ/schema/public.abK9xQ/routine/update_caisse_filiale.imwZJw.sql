@@ -4,10 +4,11 @@ as
 $$
 DECLARE
     montant_caisse double precision=0.0;
-    nombre_element BIGINT =0.0;
+    nombre_element int =0.0;
 BEGIN
 
     select count(c.id) into nombre_element from caisse c where c.filiale_id = new.filiale_id and c.mode_payement = new.mode_payement;
+
 
     if nombre_element = 0 then
 

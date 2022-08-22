@@ -228,7 +228,7 @@ const init_modal_credit_dette_btn = (namespace, type_trosa,filiale_id,user_id)=>
     /* validation payement */
     init_validation_payement(namespace);
 
-    init_payement_dette_btn(namespace,filiale_id,user_id);
+    init_payement_dette_btn(namespace,type_trosa,filiale_id,user_id);
 }
 
 function supprimer_dette(namespace) {
@@ -243,7 +243,7 @@ function supprimer_dette(namespace) {
     })
 }
 
-const init_payement_dette_btn = (namespace,filiale_id,user_id)=>{
+const init_payement_dette_btn = (namespace,type_trosa,filiale_id,user_id)=>{
 
     $(namespace + '#modal-payement-dette .btn-enregistrer-payement-dette').on('click',function(){
         // if (validation_payement_dette(namespace)){
@@ -253,8 +253,8 @@ const init_payement_dette_btn = (namespace,filiale_id,user_id)=>{
             let ifc = {};
             ifc.description = description;
             ifc.montantOperation = montant_payer;
-            ifc.reference = "ref";
-            ifc.operationCaisse = "ENCAISSEMENT";
+            ifc.reference =create_reference("DECAISSEMENT",new Date());
+            ifc.operationCaisse = "DETTE" === type_trosa ? "DECAISSEMENT" : "ENCAISSEMENT";
             ifc.user = {id:user_id};
             ifc.modePayement = type_payement;
             ifc.filiale = {id:filiale_id};
@@ -533,10 +533,10 @@ function exportToExcelCustomBtn($btn, $prefix, $table) {
 }
 
 
-function push_Type_paiement($selectID) {
+function push_Type_paiement($selectID){
     $($selectID).append('' +
-        ' <option value="ESPECE">Espèces</option>\n' +
-        ' <option value="MOBILE_MONEY">Mobile Money</option>\n' +
-        ' <option value="CHEQUE">Chèques</option>\n' +
-        ' <option value="VIREMENT">Virement</option>\n')
+        ' <option value="ESPECE">Espèces</option>' +
+        ' <option value="MOBILE_MONEY">Mobile Money</option>' +
+        ' <option value="CHEQUE">Chèques</option>' +
+        ' <option value="VIREMENT">Virement</option>')
 }

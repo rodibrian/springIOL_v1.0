@@ -16,7 +16,8 @@ public class Caisse {
     @JoinColumn(name = "filiale_id")
     private Filiale filiale;
 
-    @Column(length = 50)
-    @Enumerated(value = EnumType.STRING)
+    private Double value;
+
+    @Enumerated(EnumType.STRING)
     private ModePayement modePayement;
 }
