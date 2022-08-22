@@ -15,26 +15,6 @@ $(function () {
 
     let CLIENT = 0 ;
 
-    /*
-
-    mask et validation
-
-     */
-
-    $(function() {
-
-        $(namespace + 'form').validate({
-            rules: {
-                adresse : {required:true},
-            },
-            messages : {
-                adresse: {required: 'Veuillez remplir l\'adresse'}
-            }
-        })
-
-        $(namespace + '#numCIN').mask('999 999 999 999')
-        $(namespace + '#contact').mask('+261 99 99 999 99')
-    })
 
     /*
      fermer l'info listes article facture
