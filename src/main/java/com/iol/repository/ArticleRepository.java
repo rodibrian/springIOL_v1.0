@@ -23,8 +23,8 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
     @Query(value = "from ArticleUnite au join au.article a  WHERE a.id=:articleId")
     List<ArticleUnite> getAllUnite(@Param("articleId") Long articleId);
 
-    @Query(value = "from ArticleUnite au join au.article a where a.status ='USED'")
-    List<ArticleUnite> getAllNotDeletedAndNotHidden();
+    @Query(value = "from ArticleUnite au join au.article a where a.status =:status")
+    List<ArticleUnite> getAllNotDeletedAndNotHidden(@Param("status")String status);
 
     @Query(value = "from ArticleUnite au")
     List<ArticleUnite> getAll();

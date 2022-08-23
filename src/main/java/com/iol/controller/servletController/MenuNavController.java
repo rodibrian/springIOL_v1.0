@@ -1,13 +1,11 @@
 package com.iol.controller.servletController;
 
-import com.iol.model.entityEnum.ModePayement;
-import com.iol.model.entityEnum.TypeOperationCaisse;
 import com.iol.model.tenantEntityBeans.*;
 import com.iol.service.ArticleService;
 import com.iol.repository.*;
+import com.iol.service.CashService;
 import com.iol.service.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.Clock;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +23,6 @@ import java.util.Map;
 @Controller
 @SessionAttributes(names = {"connectedUser","articles"})
 public class MenuNavController{
-
     private final String CATEGORIE_LIST = "categories";
     private final String ARTICLE_LIST = "articles";
     private final String MAGASIN_LIST = "magasins";
@@ -45,13 +44,9 @@ public class MenuNavController{
     private final String OPERATION_LIST = "operations";
     private final String FACTURE_LIST = "factures";
     private final String PEREMPTION_LIST= "expirations";
-
     private final String MAGASIN_ID = "MAGASIN_ID";
     private final String FILIALE_ID = "FILIALE_ID";
-
-    public MenuNavController(){
-
-    }
+    public MenuNavController(){}
 
     @RequestMapping(value = "/embarquement", method = RequestMethod.GET)
     public String getMenuEmbarquement() {
@@ -104,32 +99,18 @@ public class MenuNavController{
         ModelAndView modelAndView = new ModelAndView("menu-caisse");
         Map<String, Long> connectedUserMagasinId = getConnectedUserInfo(request);
         Long filialeId = connectedUserMagasinId.get(FILIALE_ID);
+        List<InfoFilialeCaisse> all = cashRepository.findAllByDate(filialeId, LocalDate.now(Clock.systemDefaultZone()));
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
-        List<InfoFilialeCaisse> all = caisseRepository.findAll(filialeId);
-
-        double facture = all.stream().filter(infoFilialeCaisse -> infoFilialeCaisse.getOperationCaisse().equals(TypeOperationCaisse.FACTURE))
-                .mapToDouble(InfoFilialeCaisse::getMontantOperation).sum();
-        modelAndView.addObject("facture",facture);
-
-        double avoir = all.stream().filter(infoFilialeCaisse -> infoFilialeCaisse.getOperationCaisse().equals(TypeOperationCaisse.AVOIR))
-                .mapToDouble(InfoFilialeCaisse::getMontantOperation).sum();
-        modelAndView.addObject("avoir",avoir);
-
-        double cheque = all.stream().filter(infoFilialeCaisse -> infoFilialeCaisse.getModePayement().equals(ModePayement.CHEQUE))
-                .mapToDouble(InfoFilialeCaisse::getMontantOperation).sum();
-        modelAndView.addObject("cheque",cheque);
-
-        double virement = all.stream().filter(infoFilialeCaisse -> infoFilialeCaisse.getModePayement().equals(ModePayement.VIREMENT))
-                .mapToDouble(InfoFilialeCaisse::getMontantOperation).sum();
-        modelAndView.addObject("virement",virement);
-
-        double espece = all.stream().filter(infoFilialeCaisse -> infoFilialeCaisse.getModePayement().equals(ModePayement.ESPECE))
-                .mapToDouble(InfoFilialeCaisse::getMontantOperation).sum();
-        modelAndView.addObject("espece",espece);
-
-        double credit = clientFournisseurRepository.getAllExternalEntities(0, filialeId).stream().mapToDouble(ClientFournisseur::getTotalMontantTrosa).sum();
-        modelAndView.addObject("credit", credit);
-
+        Map<String, Double> cashInfo = cashService.getCashInfo(filialeId);
+        modelAndView.addObject("avoir",cashInfo.get(CashService.getSommeAvoir()));
+        modelAndView.addObject("vente",cashInfo.get(CashService.getSommeVente()));
+        modelAndView.addObject("cheque",cashInfo.get(CashService.getSommeCheque()));
+        modelAndView.addObject("virement",cashInfo.get(CashService.getSommeVirement()));
+        modelAndView.addObject("espece",cashInfo.get(CashService.getSommeEspece()));
+        modelAndView.addObject("credit",cashInfo.get(CashService.getSommeCredit()));
+        modelAndView.addObject("recette",cashInfo.get(CashService.getRecette()));
+        modelAndView.addObject("mobileMoney",cashInfo.get(CashService.getSommeMobileMoney()));
+        modelAndView.addObject("depense",cashInfo.get(CashService.getSommeDepense()));
         modelAndView.addObject("caisse", all);
         return modelAndView;
     }
@@ -154,9 +135,6 @@ public class MenuNavController{
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
         return modelAndView;
     }
-
-    @Autowired
-    private PricesRepository pricesRepository;
 
     @RequestMapping(value = "/prix", method = RequestMethod.GET)
     public ModelAndView getMenuPrix(HttpServletRequest request) {
@@ -211,7 +189,7 @@ public class MenuNavController{
         Map<String, Long> connectedUserMagasinId = getConnectedUserInfo(request);
         Long filialeId = connectedUserMagasinId.get(FILIALE_ID);
         ModelAndView modelAndView = new ModelAndView("operation/entree");
-        modelAndView.addObject(ARTICLE_LIST,articleRepository.getAllNotDeletedAndNotHidden());
+        modelAndView.addObject(ARTICLE_LIST,articleRepository.getAllNotDeletedAndNotHidden("USED"));
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
         modelAndView.addObject(CLIENT_FOURNISSEUR_LIST,clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR,filialeId));
         return modelAndView;
@@ -222,7 +200,7 @@ public class MenuNavController{
         Map<String, Long> connectedUserMagasinId = getConnectedUserInfo(request);
         Long filialeId = connectedUserMagasinId.get(FILIALE_ID);
         ModelAndView modelAndView = new ModelAndView("operation/sortie");
-            modelAndView.addObject(ARTICLE_LIST,articleRepository.getAllNotDeletedAndNotHidden());
+            modelAndView.addObject(ARTICLE_LIST,articleRepository.getAllNotDeletedAndNotHidden("USED"));
             modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
             return modelAndView;
     }
@@ -233,25 +211,17 @@ public class MenuNavController{
         Long filialeId = connectedUserMagasinId.get(FILIALE_ID);
         ModelAndView modelAndView = new ModelAndView("operation/transfert");
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
-        modelAndView.addObject(ARTICLE_LIST,articleRepository.getAllNotDeletedAndNotHidden());
+        modelAndView.addObject(ARTICLE_LIST,articleRepository.getAllNotDeletedAndNotHidden("USED"));
         return modelAndView;
     }
 
-
-
     /*
-
     PAGE TEST
-
      */
-
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String getpageTest() {
         return "page-test";
     }
-
-
-    
     /*
     Administration
      */
@@ -262,7 +232,6 @@ public class MenuNavController{
         return modelAndView;
     }
 
-
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public ModelAndView getDashboard(HttpServletRequest request){
         Map<String, Long> connectedUserMagasinId = getConnectedUserInfo(request);
@@ -272,7 +241,6 @@ public class MenuNavController{
         modelAndView.addObject("fournisseur_list", clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR,filialeId));
         return modelAndView;
     }
-
     // menu des opérations
     @RequestMapping(value = "/operation/liste",method = RequestMethod.GET)
     public ModelAndView getOperationListe(HttpServletRequest request){
@@ -283,18 +251,15 @@ public class MenuNavController{
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
         return modelAndView;
     }
-
-    @RequestMapping(value = {"/articles"},method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"/articles"},method = {RequestMethod.GET})
     public ModelAndView getArticles(HttpServletRequest request) {
         Map<String, Long> connectedUserMap = getConnectedUserInfo(request);
         Long filiale_id = connectedUserMap.get(FILIALE_ID);
         ModelAndView modelAndView = new ModelAndView("menu-article");
         modelAndView.addObject(CATEGORIE_LIST, this.categorieRepository.findAll());
-        modelAndView.addObject(ARTICLE_LIST,articleRepository.getAllNotDeletedAndNotHidden());
+        modelAndView.addObject(ARTICLE_LIST,articleRepository.getAllNotDeletedAndNotHidden("USED"));
         return modelAndView;
     }
-
     @RequestMapping(value = "/ventes", method = RequestMethod.GET)
     public ModelAndView getVentes(HttpServletRequest request){
         Map<String, Long> map = getConnectedUserInfo(request);
@@ -320,7 +285,6 @@ public class MenuNavController{
         map.put(MAGASIN_ID,magasinId);
         return map;
     }
-
 
     @RequestMapping(value = "/detail-ventes", method = RequestMethod.GET)
     public ModelAndView getDetailVentes(HttpServletRequest request) {
@@ -352,7 +316,6 @@ public class MenuNavController{
         return modelAndView;
     }
 
-    @Autowired private CaisseRepository caisseRepository;
     @Autowired private ActivityRepository activityRepository;
     @Autowired private CategorieRepository categorieRepository;
     @Autowired private MagasinRepository magasinRepository;
@@ -365,6 +328,8 @@ public class MenuNavController{
     @Autowired private SubsidiaryRepository subsidiaryRepository;
     @Autowired private SalesRepository salesRepository;
     @Autowired private SalesService salesService;
-    @Autowired private SupplyRepository supplyRepository;
+    @Autowired private CashRepository cashRepository;
+    @Autowired private CashService cashService;
+    @Autowired private PricesRepository pricesRepository;
 }
 

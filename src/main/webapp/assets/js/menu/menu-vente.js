@@ -200,30 +200,17 @@ $(function () {
                 $vente.montantVente = $sommeMontant;
                 $vente.refVente = ref;
                 $vente.remise = 0;
-                if (type_payement!=="CREDIT"){
-                    let ifc = {};
-                    ifc.operationCaisse = "FACTURE";
-                    ifc.montantOperation = $sommeMontant;
-                    ifc.date = date;
-                    ifc.modePayement = type_payement;
-                    ifc.user = {id:user_id};
-                    ifc.filiale = {id : $filiale_id};
-                    ifc.magasin = {id :$magasinId};
-                    ifc.reference = ref;
-                    ifc.description = " Facture N°"+ref+" du client " + nom_client;
-                    $vente.infoFilialeCaisse = ifc;
-                }else{
-                    let trosa = {};
-                    trosa.clientFournisseur = {id: $clientId};
-                    trosa.montant = $sommeMontant;
-                    trosa.description = " Achat a credit sur la Facture N°"+ref;
-                    trosa.typeTrosa = "CREDIT";
-                    trosa.date = date;
-                    trosa.dateEcheance = date;
-                    trosa.reste = $sommeMontant;
-                    let url = "http://localhost:8080/api/v1/trosas";
-                    execute_ajax_request("post", url, trosa, (data) => {});
-                }
+                let ifc = {};
+                ifc.operationCaisse = "FACTURE";
+                ifc.montantOperation = $sommeMontant;
+                ifc.date = date;
+                ifc.modePayement = type_payement;
+                ifc.user = {id:user_id};
+                ifc.filiale = {id : $filiale_id};
+                ifc.magasin = {id :$magasinId};
+                ifc.reference = ref;
+                ifc.description = " Facture N°"+ref+" du client " + nom_client;
+                $vente.infoFilialeCaisse = ifc;
                 let url = "http://localhost:8080/api/v1/sales";
                 execute_ajax_request("post", url,$vente, (data) => {
                     // impresion

@@ -54,7 +54,7 @@
   <div><br>
     <div class="row">
       <div class="col-lg-12">
-        <%= start_content_table() %>
+<%--        <%= start_content_table() %>--%>
         <table id="details-vente-table"
                class="table-detail-vente table-special-form table table-sm dt-responsive nowrap table-hover">
           <thead>
@@ -85,7 +85,7 @@
             </c:forEach>
           </c:forEach>
           </tbody>
-            <%= end_content_table() %>
+<%--            <%= end_content_table() %>--%>
       </div>
     </div>
   </div>

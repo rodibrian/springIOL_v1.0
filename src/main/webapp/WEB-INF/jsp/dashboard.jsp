@@ -9,8 +9,8 @@
               <div class="float-end">
                 <i class="mdi mdi-account-multiple widget-icon"></i>
               </div>
-              <h5 class="text-muted fw-normal mt-0" title="Number of Customers">Caisse update</h5>
-              <h3 class="mt-3 mb-3">0Ar</h3>
+              <h5 class="text-muted fw-normal mt-0" title="Number of Customers">Caisse</h5>
+              <h3 class="mt-3 mb-3">${espece}</h3>
               <p class="mb-0 text-muted">
                 <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 5.72%</span>
                 <span class="text-nowrap">Par rapport &agrave; hier</span>
@@ -26,7 +26,7 @@
                 <i class="mdi mdi-cart-plus widget-icon"></i>
               </div>
               <h5 class="text-muted fw-normal mt-0" title="Number of Orders">Credit</h5>
-              <h3 class="mt-3 mb-3">0Ar</h3>
+              <h3 class="mt-3 mb-3">${credit}</h3>
               <p class="mb-0 text-muted">
                 <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 1.08%</span>
                 <span class="text-nowrap">Par rapport &agrave; hier</span>
@@ -42,7 +42,7 @@
                 <i class="mdi mdi-account-multiple widget-icon"></i>
               </div>
               <h5 class="text-muted fw-normal mt-0" title="Number of Customers">Encaissement</h5>
-              <h3 class="mt-3 mb-3">0Ar</h3>
+              <h3 class="mt-3 mb-3">${encaissement}</h3>
               <p class="mb-0 text-muted">
                 <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 5.27%</span>
                 <span class="text-nowrap">Par rapport &agrave; hier</span>
@@ -58,7 +58,7 @@
                 <i class="mdi mdi-cart-plus widget-icon"></i>
               </div>
               <h5 class="text-muted fw-normal mt-0" title="Number of Orders">Decaissement</h5>
-              <h3 class="mt-3 mb-3">0Ar</h3>
+              <h3 class="mt-3 mb-3">${depense}</h3>
               <p class="mb-0 text-muted">
                 <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 1.08%</span>
                 <span class="text-nowrap">Par rapport &agrave; hier</span>

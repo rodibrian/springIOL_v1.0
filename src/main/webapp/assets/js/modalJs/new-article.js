@@ -7,9 +7,11 @@ $(function () {
     let editedArticleId = 1;
     // Tout les champ non editable par default
     let categorieUrl = 'http://localhost:8080/api/v1/categories';
+    let filiale_id = $(namespace + '#filiale-id').attr("value-id");
     $articleUrl = 'http://localhost:8080/api/v1/articles';
     $deleted = true;
     $articleTable = $("#articleTable tbody");
+
     function initTableUnite() {
         $('#table-unite input').attr('disabled', '')
         // ajout du nouveau unite
@@ -62,20 +64,17 @@ $(function () {
             $('.not-editable').attr('disabled','');
         }));
     }
-    function fetchCategorie(select) {
-        $.ajax({
-            type: 'GET',
-            url: categorieUrl,
-            success: function (categories) {
-                for (let i = 0; i < categories.length; i++) {
-                    let option = `<option value="` + categories[i].id + `">` + categories[i].libelle + `</option>`
-                    select.append(option);
-                }
+
+    function fetchCategorie(select){
+        execute_ajax_request("get",categorieUrl,null,(categories)=>{
+            for (let i = 0; i < categories.length; i++) {
+                let option = `<option value="` + categories[i].id + `">` + categories[i].libelle + `</option>`
+                select.append(option);
             }
-        });
+        })
     }
 
-    function initAddAndSaveArticleBtn() {
+    function initAddAndSaveArticleBtn(){
         // chargement des categories lors de l'affichage du formulaire de categorie
         $("#newArticleBtn").click(() => {
             let tdElement = $("#categorieTabList tbody tr td:first-child");
@@ -95,12 +94,10 @@ $(function () {
 
         function getAllUniteOnTable(data){
             let tr = $('#table-unite tbody tr');
-            let articleId = data.id;
             let articleUniteTab = [];
             for (let i = 0; i < tr.length; i++) {
                 let uniteRow = [];
                 let td = $(tr[i]).children();
-                let trId = $(tr[i]).attr("id");
                 let input = td.find("input");
                 for (let j = 0; j < input.length; j++) {
                     uniteRow.push(input[j].value)
@@ -110,29 +107,25 @@ $(function () {
                 unite.code = uniteRow[0];
                 unite.designation = uniteRow[2];
                 // ARTICLE UNITE
-
                 let articleUnite = {};
-                articleUnite.article = {
-                    id: articleId
-                };
+                articleUnite.article = data;
                 articleUnite.unite = unite;
                 articleUnite.niveau = uniteRow[1];
                 articleUnite.quantiteNiveau = uniteRow[3];
                 articleUnite.poids = uniteRow[4];
-                articleUnite.filiale = {id: filiale_id};
                 articleUniteTab.push(articleUnite);
             }
             return articleUniteTab;
         }
 
-        function persitDefaultPrice(data) {
+        function persitDefaultPrice(data){
             let pvuafTab = [];
             $.each(data,(key,value)=>{
                 let fuap = {};
                 fuap.user = {
                     id: $userId
                 }
-                fuap.filiale = {id : value.filiale.id }
+                fuap.filiale = {id : filiale_id }
                 fuap.unite = { id : value.unite.id }
                 fuap.article = {id: value.article.id}
                 fuap.dateEnregistrement = new Date();
@@ -141,20 +134,12 @@ $(function () {
             })
             let url = "http://localhost:8080/api/v1/prices";
             execute_ajax_request("POST",url,pvuafTab,null);
-            // $.ajax({
-            //     type: "POST",
-            //     url: "http://localhost:8080/api/v1/prices",
-            //     contentType: 'application/json',
-            //     data: JSON.stringify(pvuafTab),
-            //     success: function (data){
-            //     }
-            // })
         }
+
         function persistArticleAndUnite(){
             let designation = $("#designation").val();
             let categorieId = $("#categorie option:selected").val();
             let categorieLibelle = $("#categorie option:selected").text();
-            $filialeId = $(namespace + '#filiale-id').attr("value-id");
             $userId = $(namespace + '#user-id').attr("value-id");
             let articleStatus = "USED";
             let article = {}
@@ -163,19 +148,17 @@ $(function () {
             article.status = articleStatus;
             article.isPerishable = true;
             if (!isCreateArticle) article.id = editedArticleId;
-            function saveAllUnite(data) {
-                let articleUniteTab = getAllUniteOnTable(data);
-                $.ajax({
-                    type: "POST",
-                    url: "http://localhost:8080/api/v1/unites",
-                    contentType: 'application/json',
-                    data: JSON.stringify(articleUniteTab),
-                    success: function (data){
-                        articleUniteTab.forEach(function (au) {
-                            let tableRow = `
+            execute_ajax_request('POST',$articleUrl,article,(data)=>saveAllUnite(data));
+        }
+
+        function saveAllUnite(data){
+            let articleUniteTab = getAllUniteOnTable(data);
+            execute_ajax_request("POST","http://localhost:8080/api/v1/unites",articleUniteTab,(data)=>{
+               data.forEach(function (au){
+                    let tableRow = `
                              <tr id=` + au.article.id + `>
-                                <td>` + article.designation + `</td>
-                                <td>` + article.categorie.libelle + `</td>
+                                <td>` + au.article.designation + `</td>
+                                <td>` + au.article.categorie.libelle + `</td>
                                 <td>` + au.poids + `</td>
                                 <td>` + au.unite.designation + `</td>
                                 <td>` + au.quantiteNiveau + `</td>
@@ -187,28 +170,22 @@ $(function () {
                                             </div>
                                 </td>
                             </tr>`;
-                            $articleTable.append(tableRow);
-                        });
-                        // INSERTION DES PRIX
-                        persitDefaultPrice(data);
-                        // Clear the form
-                        $("#designation").text("");
-                    }
-                })
-            }
-            execute_ajax_request('POST',$articleUrl,article,(data)=>saveAllUnite(data))
+                    $articleTable.append(tableRow);
+                });
+                // INSERTION DES PRIX
+                persitDefaultPrice(data);
+                // Clear the form
+                $("#designation").text("");
+            });
         }
+
         function updateArticle() {
             let designation = $("#designation").val();
             let categorieLibelle = $("#categorie option:selected").text();
         }
-
         /*
-
         mask et validation
-
          */
-
         $(function() {
             $(namespace + 'form').validate({
                 rules : {
@@ -222,9 +199,8 @@ $(function () {
             })
         })
 
-        function validation_nouveau_article() {
+        function validation_nouveau_article(){
             $(namespace + 'form').validate();
-
             return $(namespace + 'form').valid();
         }
 
@@ -265,13 +241,12 @@ $(function () {
     /*
      niveau article dynamique
      */
-    function updateNiveauUnite() {
+    function updateNiveauUnite(){
         $('#table-unite tbody tr').each(function (key, value) {
             $(value).children().eq(1).children().val(++key);
             $('.not-editable').attr('disabled','');
         })
     }
-
     function initTableAction() {
         function initCategorieSelect() {
             let tdElement = $("#categorieTabList tbody tr td:first-child");
@@ -289,11 +264,9 @@ $(function () {
                 }
             }
         }
-
         $(".editArticleBtn").click(function () {
             isCreateArticle = false;
             editedArticleId = $(this).attr("id");
-            console.log(" Edited article = " + editedArticleId);
             initCategorieSelect();
             $tr = $(this).closest('tr');
             designation = $tr.children()[1].innerText;
@@ -323,7 +296,7 @@ $(function () {
                 }
             });
         });
-        function updateItem($deleted, $trCurrent) {
+        function updateItem($deleted, $trCurrent){
             $status = $deleted ? "DELETED" : "HIDDEN";
             $url = $articleUrl + "/" + $id + "/" + $status;
             execute_ajax_request('PUT',$url,null,(data)=>{
@@ -354,7 +327,6 @@ $(function () {
             $codeArticle = $(this).closest('tr').children().eq(0).text();
             $trCurrent = $(this).closest('tr');
             updateArticle($trCurrent, !$deleted, $codeArticle);
-
         });
     }
     function initArticleTable() {

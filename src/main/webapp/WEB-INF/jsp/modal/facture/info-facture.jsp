@@ -1,4 +1,5 @@
 <!-- Standard modal -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <div id="info-facture" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
@@ -20,7 +21,7 @@
               <p id="mode-payement"></p>
               <p id="montant-facture"></p>
             </div>
-            <button class="btn btn-success btn-block w-100 mt-2"><i class="uil-money-bill"></i>&nbsp;Changer Mode de
+            <button data-bs-toggle="modal" data-bs-target="#mode-payement-modal" class="btn btn-success btn-block w-100 mt-2"><i class="uil-money-bill"></i>&nbsp;Changer Mode de
               paiement
             </button>
             <button class="btn btn-danger btn-creer-avoir btn-block w-100 mt-2"><i class="uil-money-bill"></i>&nbsp;

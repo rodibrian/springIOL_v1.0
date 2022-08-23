@@ -48,10 +48,11 @@ public class UnityRessource {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.valueOf(500));
         }
     }
+
     @PostMapping(value = "/unites")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Object> create(@RequestBody List<ArticleUnite> articleUnites){
         Iterable<ArticleUnite> iterable = articleUniteRepository.saveAll(articleUnites);
-        return new ResponseEntity<>(iterable, HttpStatus.CREATED);
+        return new ResponseEntity<>(iterable,HttpStatus.CREATED);
     };
 }

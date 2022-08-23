@@ -105,7 +105,7 @@ class ArticleRepositoryTest{
 
     @Test
     void getAllNotDeletedAndNotHidden() {
-        List<ArticleUnite> allNotDeletedAndNotHidden = articleRepository.getAllNotDeletedAndNotHidden();
+        List<ArticleUnite> allNotDeletedAndNotHidden = articleRepository.getAllNotDeletedAndNotHidden("USED");
         assertThat(allNotDeletedAndNotHidden).isEmpty();
     }
 

@@ -4,6 +4,7 @@ $(function () {
                 MENU FACTURE
      ----------------------------------*/
     $filiale_id = $(namespace + '#filiale-id').attr("value-id");
+    let vente_id = "";
     exportToExcel(namespace + '.btn-export-to-excel','factures-' , namespace + '.table-facture')
     /*
      click of tr, open infos list articles in facture
@@ -33,7 +34,7 @@ $(function () {
         $(namespace + "#info-facture").attr("vente-id", vente.id);
     }
 
-// click of tr, open infos list articles in facture
+    // click of tr, open infos list articles in facture
     function fetchFactureInfo(reference) {
         var url = "http://localhost:8080/api/v1/sales/" + reference;
         execute_ajax_request("get", url, null, (vente) => {
@@ -51,6 +52,7 @@ $(function () {
 
     $(document).on('dblclick',namespace + '.table-facture tbody tr',function () {
         // get reference of dblcliked facture
+        vente_id = $(namespace + "#info-facture").attr("vente-id");
         $reference = $(this).children()[0].innerText;
         // get reference of selected facture
         let client = $(this).children()[1].innerText;
@@ -115,7 +117,6 @@ $(function () {
     }
 
     function persit_invoice() {
-        let vente_id = $(namespace + "#info-facture").attr("vente-id");
         let date = new Date();
         let ref = create_reference("AVOIR", date);
         $filiale_id = $(namespace + '#filiale-id').attr("value-id");
@@ -144,10 +145,9 @@ $(function () {
             $(namespace + ".btn-creer-avoir").hide();
         })
     }
-
     /*
-             validation avoir
-        */
+     Validation avoir
+     */
     $(namespace + '.btn-valider-avoir').on('click',function(){
         $sommeAvoir = 0;
         $(namespace + '#table-facture-avoir tbody tr').each(function(key,value) {
@@ -162,6 +162,16 @@ $(function () {
             .on("click", function (){
                 persit_invoice();
             })
+    });
+    /* ENREGISTRER MODE DE PAYEMENT */
+    $(namespace+"#save-payement-mode-btn").click(()=>{
+        let type_payement = $(namespace+"#type-payement option:selected").val();
+        let description = $(namespace+"#description").val();
+        let wrapper = {};
+        wrapper.modePayement = type_payement;
+        wrapper.description = description;
+        let url = "http://localhost:8080/api/v1/ifc/"+vente_id;
+        execute_ajax_request("put",url,wrapper,null);
     })
 
 })

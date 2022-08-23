@@ -1,5 +1,3 @@
-
-
 <%!
   public String start_content_table() {
     return "<div data-simplebar=\"init\" style=\"max-height: 550px\">\n" +
@@ -13,7 +11,6 @@
             "                  <div class=\"simplebar-content\" style=\"padding: 0px;\">\n" +
             "                    ";
   }
-
   public String end_content_table() {
       return "</div>\n" +
               "                </div>\n" +
@@ -30,5 +27,4 @@
               "          </div>\n" +
               "        </div>\n";
   }
-
 %>

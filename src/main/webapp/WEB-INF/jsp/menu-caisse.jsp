@@ -69,8 +69,9 @@
             <i class="uil-money-bill uil-size-10"></i>
           </div>
           <div class="col-md-8 p-2 card-caisse bg-secondary text-light">
-            <span>Factures</span><br>
+            <span>Vente</span><br>
             <span class="label-montant">
+                ${vente}
             </span>
           </div>
         </div>
@@ -82,7 +83,7 @@
           </div>
           <div class="col-md-8 p-2 card-caisse bg-secondary text-light">
             <span>Depenses</span><br>
-            <span class="label-montant">${cheque}</span>
+            <span class="label-montant">${depense}</span>
           </div>
         </div>
       </div>
@@ -93,7 +94,7 @@
           </div>
           <div class="col-md-8 p-2 card-caisse bg-secondary text-light">
             <span>Recette</span><br>
-            <span class="label-montant">${cheque}</span>
+            <span class="label-montant">${recette}</span>
           </div>
         </div>
       </div>
@@ -169,8 +170,8 @@
             <i class="uil-money-bill uil-size-10"></i>
           </div>
           <div class="col-md-8 p-2 card-caisse bg-secondary text-light">
-            <span>Autres</span><br>
-            <span class="label-montant">${cheque}</span>
+            <span>Mobile Money</span><br>
+            <span class="label-montant">${mobileMoney}</span>
           </div>
         </div>
       </div>

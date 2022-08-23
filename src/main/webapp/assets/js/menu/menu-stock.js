@@ -34,28 +34,23 @@ $(function () {
 
     function fetchInventoryActivities(magasinId, articleId, uniteId) {
         let url = "http://localhost:8080/api/v1/activities/" + magasinId + "/" + articleId + "/" + uniteId;
-        $.ajax({
-            type: "GET",
-            url: url,
-            contentType: "application/json",
-            success: (data) => {
-                $(namespace + "#table-operation-stock tbody").empty();
-                $.each(data, (key, value) => {
-                    let tr = [
-                        value.reference,
-                        value.typeOperation,
-                        value.quantiteAjout + " " + value.unite.designation,
-                        value.quantiteStockApresOperation + " " + value.unite.designation,
-                        value.date,
-                        value.user.nom
-                    ];
-                    push_to_table_list(namespace + "#table-operation-stock", key, tr);
-                })
-            }
+        execute_ajax_request("GET",url,null,(data)=>{
+            $(namespace + "#table-operation-stock tbody").empty();
+            $.each(data, (key, value) => {
+                let tr = [
+                    value.reference,
+                    value.typeOperation,
+                    value.quantiteAjout + " " + value.unite.designation,
+                    value.quantiteStockApresOperation + " " + value.unite.designation,
+                    value.date,
+                    value.user.nom
+                ];
+                push_to_table_list(namespace + "#table-operation-stock", key, tr);
+            })
         })
     }
 
-    function updateInfoLabel(storeName, article, unite, categorie) {
+    function updateInfoLabel(storeName, article, unite, categorie){
         $('#info-stock p.label-magasin').text('Magasin : ' + storeName);
         $('#info-stock p.label-designation-article').text('Designation : ' + article);
         $('#info-stock p.label-unite-article').text('Unite : ' + unite);
@@ -66,8 +61,8 @@ $(function () {
         $('#info-stock #date-fin').val(formatDate(new Date()));
     }
 
-    function fetchInventoryAlert(articleId) {
-        let url = "http://localhost:8080/api/v1/inventories-alert/" + filiale_id + "/" + articleId;
+    function fetchInventoryAlert(articleId,filialeId){
+        let url = "http://localhost:8080/api/v1/inventories-alert/" + filialeId + "/" + articleId;
         execute_ajax_request("get", url, null, (data) => {
             $('#info-stock p.label-quantite-alerte-article').text(" Quantité alert : " + data);
         })
@@ -89,7 +84,7 @@ $(function () {
         fetchInventoryActivities(magasinId, articleId, uniteId);
         // affectation des valeur de chaque paragraphe
         updateInfoLabel(storeName, article, unite, categorie);
-        fetchInventoryAlert(articleId);
+        fetchInventoryAlert(articleId,$filialeId);
     })
 
     function getStoreInventories(url){

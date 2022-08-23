@@ -45,7 +45,6 @@ $(function () {
      enregistrement operation
      */
     $("#btn-enregistrer-operation-caisse").click(function () {
-
         let reference = $('#operation-caisse #input-reference').val();
         let description = $('#operation-caisse #area-description').val();
         let montant = $('#operation-caisse #input-montant').val();
@@ -62,6 +61,7 @@ $(function () {
         let url = "http://localhost:8080/api/v1/ifc";
         execute_ajax_request("post",url,ifc,(data)=>{
             $(namespace+"#operation-caisse").modal("hide");
+            console.log(data);
             switch ($typeOperation) {
                 case OP_IN :
                     push_to_table_list(
@@ -71,9 +71,9 @@ $(function () {
                             new Date().toLocaleDateString(),
                             reference,
                             description,
+                            ifc.modePayement,
                             montant,
-                            "-",
-                            "-"]
+                            montant]
                     )
                         .attr('data-filter', [OP_RECETTE, ESPECE])
                     createToast('bg-success', 'uil-folder-check', 'Encaissement enregistre', 'ENcaissement enregistrer avec success!');
@@ -83,13 +83,13 @@ $(function () {
                     push_to_table_list(
                         namespace + ".table-liste-operation-caisse",
                         "",
-                        [OP_DEPENSE,
+                        [OP_RECETTE,
                             new Date().toLocaleDateString(),
                             reference,
                             description,
-                            "-",
+                            ifc.modePayement,
                             montant,
-                            "-"]
+                            montant]
                     )
                         .attr('data-filter', [OP_DEPENSE, OP_CONSO])
                     createToast('bg-warning', 'uil-folder-check', 'Decaissement enregistre', 'Decaissement enregistrer avec success!');
