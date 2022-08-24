@@ -29,7 +29,7 @@ public class User extends PersonnePhysique implements Serializable{
    @Column(columnDefinition = "TEXT")
    private String password;
 
-   @ManyToMany(cascade = CascadeType.ALL)
+   @ManyToMany(cascade = CascadeType.MERGE)
    @JoinTable(name = "user_magasin",
            joinColumns = {@JoinColumn(name = "user_id",foreignKey = @ForeignKey(name = "FK_UM_USER_ID",foreignKeyDefinition = "FOREIGN KEY (user_id) REFERENCES _user(id) ON DELETE NO ACTION"))},
    inverseJoinColumns = {@JoinColumn(name = "magasin_id",foreignKey = @ForeignKey(name = "FK_UM_MAGASIN_ID",foreignKeyDefinition = "FOREIGN KEY (magasin_id) REFERENCES magasin(id_magasin) ON DELETE CASCADE"))})

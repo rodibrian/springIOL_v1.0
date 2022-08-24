@@ -115,7 +115,8 @@ $(function () {
                         value.date,
                         value.description,
                         value.modePayement,
-                        value.montantOperation];
+                        value.montantOperation,
+                        value.user.nom];
                     push_to_table_list(namespace + ".table-liste-operation-caisse",value.id,tr);
                 })
             })
@@ -146,7 +147,8 @@ $(function () {
                     value.date,
                     value.description,
                     value.modePayement,
-                    value.montantOperation];
+                    value.montantOperation,
+                    value.user.nom];
                 push_to_table_list($idtable,value.id,tr);
             })
         })
@@ -192,4 +194,5 @@ $(function () {
         $(space + '.td-montant').text($montant + 'Ar')
         $(space).printThis()
     }
+
 })

@@ -34,8 +34,9 @@ class CashRepositoryTest{
 
     @Test
     void testFindByTypePayement() {
-        Double sumEspece = cashRepository.findByTypePayement(ModePayement.ESPECE, LocalDate.now()).orElse(0.0);
+        Double sumEspece = cashRepository.findByTypePayement(ModePayement.CONSOMMATION,LocalDate.now()).orElse(0.0);
         assertThat(sumEspece).isNotZero();
+        System.out.println(sumEspece);
     }
 
     @Test

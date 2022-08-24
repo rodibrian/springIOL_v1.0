@@ -117,7 +117,6 @@ $(function () {
 
     let magasinIdTab = [];
     $(namespace + "#nouveau-utilisateur #btn-enregistrer-utilisateur").on('click', function() {
-
         $nom = $(namespace + "#nouveau-utilisateur #input-nom").val();
         $adresse = $(namespace + "#nouveau-utilisateur #input-adresse").val();
         $contact = $(namespace + "#nouveau-utilisateur #input-contact").val();
@@ -126,6 +125,7 @@ $(function () {
         $(namespace + "#nouveau-utilisateur #select-magasin option:selected").each(function (key,value){
             magasinIdTab.push({ id : $(value).val()});
         });
+        $filiale_id = $(namespace + '#filiale-id').attr("value-id");
         $fonctionId = $(namespace + "#nouveau-utilisateur #select-fonction option:selected").val();
         $fonctionNom = $(namespace + "#nouveau-utilisateur #select-fonction option:selected").text();
         $statut = $(namespace + "#nouveau-utilisateur #check-statut").is(':checked')
@@ -139,32 +139,27 @@ $(function () {
             fonction : {
                 id : $fonctionId
             },
-            magasin : magasinIdTab
+            magasin : magasinIdTab,
+            filiale: {id : $filiale_id}
         }
         let methodType = $NEW_USER ? "POST" : "PUT";
         let userRessourceUrl = $NEW_USER ? $userUrl : $userUrl+'/'+$userId;
-        $.ajax({
-            type: methodType,
-            url: userRessourceUrl,
-            contentType: 'application/json',
-            data: JSON.stringify($newUser),
-            success:function (data){
-                if ($NEW_USER){
-                    $trUser = [$nom,$username,$contact,$fonctionNom,$statut === true ? insert_badge('success', 'active') : insert_badge('danger', 'desactive'), $actionListeUtilisateurMenuUtilisatuer];
-                    push_to_table_list(namespace + "#table-liste-utilisateur",data.id, $trUser)
-                }else{
+        execute_ajax_request(methodType,userRessourceUrl,$newUser,(data)=>{
+            if ($NEW_USER){
+                $trUser = [$nom,$username,$contact,$fonctionNom,$statut === true ? insert_badge('success', 'active') : insert_badge('danger', 'desactive'), $actionListeUtilisateurMenuUtilisatuer];
+                push_to_table_list(namespace + "#table-liste-utilisateur",data.id, $trUser)
+            }else{
 
-                }
-                createToast('bg-success', 'uil-check-sign', 'Utilisateur enregistre', 'Nouveau utilisateur enregistre avec success!')
-
-                // empty all
-
-                $(namespace + "#nouveau-utilisateur input").val("");
-                $('#nouveau-utilisateur select#select-fonction option:first').prop('selected', true);
-                $('#nouveau-utilisateur select#select-magasin option:first').prop('selected', true);
-                $('#nouveau-utilisateur #check-statut').prop('checked', true)
-                $NEW_USER = true;
             }
+            createToast('bg-success', 'uil-check-sign', 'Utilisateur enregistre', 'Nouveau utilisateur enregistre avec success!')
+
+            // empty all
+
+            $(namespace + "#nouveau-utilisateur input").val("");
+            $('#nouveau-utilisateur select#select-fonction option:first').prop('selected', true);
+            $('#nouveau-utilisateur select#select-magasin option:first').prop('selected', true);
+            $('#nouveau-utilisateur #check-statut').prop('checked', true)
+            $NEW_USER = true;
         });
     })
 

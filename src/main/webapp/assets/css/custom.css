@@ -222,3 +222,26 @@ table tbody tr:hover .td-action div {
 .footer {
     padding: 10px!important;
 }
+
+
+/*
+
+CODE BAR
+
+ */
+
+
+.barcode-articles-list {
+    z-index: -9999!important;
+    height: 30px!important;
+    width: 80px!important;
+    cursor: help;
+}
+
+#info-barcode #info-barcode-svg {
+    /*width: 250px;*/
+}
+
+.table-info-barcode tr td{
+    padding: 0;
+}

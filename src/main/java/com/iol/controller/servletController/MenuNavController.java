@@ -102,6 +102,7 @@ public class MenuNavController{
         List<InfoFilialeCaisse> all = cashRepository.findAllByDate(filialeId, LocalDate.now(Clock.systemDefaultZone()));
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
         Map<String, Double> cashInfo = cashService.getCashInfo(filialeId);
+        modelAndView.addObject(USER_LIST, userRepository.getAllByFiliale(filialeId));
         modelAndView.addObject("avoir",cashInfo.get(CashService.getSommeAvoir()));
         modelAndView.addObject("vente",cashInfo.get(CashService.getSommeVente()));
         modelAndView.addObject("cheque",cashInfo.get(CashService.getSommeCheque()));
@@ -111,6 +112,7 @@ public class MenuNavController{
         modelAndView.addObject("recette",cashInfo.get(CashService.getRecette()));
         modelAndView.addObject("mobileMoney",cashInfo.get(CashService.getSommeMobileMoney()));
         modelAndView.addObject("depense",cashInfo.get(CashService.getSommeDepense()));
+        modelAndView.addObject("consommation",cashInfo.get(CashService.getSommeConsommation()));
         modelAndView.addObject("caisse", all);
         return modelAndView;
     }

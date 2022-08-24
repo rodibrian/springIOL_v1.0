@@ -542,3 +542,30 @@ function push_Type_paiement($selectID){
         ' <option value="CHEQUE">Chèques</option>' +
         ' <option value="VIREMENT">Virement</option>')
 }
+
+
+function generate_barcode_text($text) {
+    /*
+    BarCode format
+
+    -04 chiffres : code societe (0-3)
+    -03 chiffres : code categorie (4-6)
+    -06 chiffres : code article (7-12)
+    -02 chiffres : code unite (13-14)
+
+     */
+
+    $codeArray = addSplitToObject(null, $text, '-');
+
+    return numberToStringZero($codeArray[0], 4) + ' ' + numberToStringZero($codeArray[1],3)
+        + ' ' + numberToStringZero($codeArray[2], 6) + ' ' + numberToStringZero($codeArray[3], 2)
+}
+
+function numberToStringZero($number, $length) {
+    $str = '';
+    while ($length >1) {
+        $str += (Math.pow(10,$length-1) > $number) ? '0' : '';
+        $length--;
+    }
+    return $str + $number;
+}

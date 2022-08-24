@@ -17,10 +17,10 @@
     </div>
   </div>
   <!-- end page title -->
+  <input type="hidden" id="filiale-id" value-id="${connectedUser.filiale.id}">
   <div class="row mr-2">
     <div class="col-12">
       <div class="page-title-box">
-
       </div>
       <div class="d-block mt-1">
         <a type="button" id="btn-nouveau-utilisateur" class="btn btn-success mr-1" data-bs-toggle="modal" data-bs-target="#nouveau-utilisateur"><i

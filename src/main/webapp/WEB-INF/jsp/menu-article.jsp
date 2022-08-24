@@ -30,8 +30,10 @@
                   class="uil-file-plus">&nbsp;</i>Nouveau Article</a>
           <a id="refresh-btn" type="button" class="btn btn-success mr-1"><i
                   class="uil-refresh">&nbsp;</i>actualiser</a>
+
           <a class="btn btn-success btn-export-to-excel bg-forest float-end"><img
                   src="${pageContext.request.contextPath}/assets/images/excel.png" alt="user-image" class="icon-excel">&nbsp;</a>
+          <a id="btn-barcode-toggle" class="btn btn-info bg-forest float-end ms-1 me-1"><i class="uil uil-eye-slash"></i> Barcode articles</a>
         </div>
       </div>
 
@@ -42,6 +44,7 @@
   <div class="all-modal">
     <%@ include file="modal/new-article.jsp" %>
     <%@ include file="modal/new-categorie.jsp" %>
+    <%@ include file="modal/info-barcode.jsp" %>
   </div>
 
   <!-- suite -->
@@ -90,9 +93,10 @@
       <div class="col-lg-9 t-list-75">
 
         <%= start_content_table() %>
-        <table id="articleTable" class="table table-sm dt-responsive nowrap table-hover">
+        <table id="articleTable" class="table table-sm dt-responsive nowrap table-hover text-uppercase">
           <thead>
           <tr>
+            <th class="barcode-list-articles">Code article</th>
             <th>Designation</th>
             <th>categorie</th>
             <th>Poids(Kg)</th>
@@ -104,12 +108,13 @@
           <tbody>
           <c:forEach var="au" items="${articles}">
             <tr id="${au.article.id}">
-              <td>${au.article.designation}</td>
-              <td>${au.article.categorie.libelle}</td>
+              <td class="barcode-list-articles"><span class="text d-none">1-${au.article.categorie.id}-${au.article.id}-${au.niveau}</span></td>
+              <td value-id="${au.article.id}">${au.article.designation}</td>
+              <td value-id="${au.article.categorie.id}">${au.article.categorie.libelle}</td>
               <td>${au.poids}</td>
-              <td>${au.unite.designation}</td>
+              <td value-id="${au.niveau}">${au.unite.designation}</td>
               <td>${au.quantiteNiveau}</td>
-              <td class="d-flex justify-content-center td-action">
+              <td class="td-action">
                 <div>
                   <a id="${au.article.id}" data-bs-toggle="modal" data-bs-target="#new-article"
                      class="btn-sm btn-info editArticleBtn"><i class="uil-pen"></i></a>

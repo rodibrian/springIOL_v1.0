@@ -35,6 +35,11 @@
                 <option value="${magasin.id}"> <c:out value="${magasin.nomMagasin}"/> </option>
             </c:forEach>
         </select>
+        <select required name="select-magasin" id="select-user" class="form-select">
+          <c:forEach var="user" items="${users}">
+              <option value="${user.id}"> <c:out value="${user.nom}"/> </option>
+          </c:forEach>
+        </select>
         <a type="button" id="btn-search-filter" class="btn btn-success mr-1">
           Valider
         </a>
@@ -105,7 +110,7 @@
           </div>
           <div class="col-md-8 p-2 card-caisse bg-secondary text-light">
             <span>Consommation</span><br>
-            <span class="label-montant">${cheque}</span>
+            <span class="label-montant">${consommation}</span>
           </div>
         </div>
       </div>
@@ -189,6 +194,7 @@
               <th>Description</th>
               <th>Mode de paiement</th>
               <th>Montant(Ar) </th>
+              <th>Operateur</th>
           </tr>
           </thead>
           <tbody>
@@ -200,6 +206,7 @@
                 <td>${info.description}</td>
                 <td>${info.modePayement}</td>
                 <td>${info.montantOperation}</td>
+                <td>${info.user.nom}</td>
             </tr>
           </c:forEach>
           </tbody>

@@ -23,6 +23,7 @@
                     <option value="MOBILE_MONEY">Mobile Money</option>
                     <option value="CHEQUE">Chèques</option>
                     <option value="VIREMENT">Virement</option>
+                    <option value="CONSOMMATION">Consommation interne</option>
                 </select>
                 <label for="description" class="form-label">description</label>
                 <textarea name="description" id="description" class="form-control"></textarea>

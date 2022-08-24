@@ -23,12 +23,14 @@ public class CashService {
     private final  static String SOMME_MOBILE_MONEY = "MOBILE_MONEY";
     private final  static String SOMME_DEPENSE = "DEPENSE";
     private final static  String SOMME_ENCAISSEMENT = "ENCAISSEMENT";
+    private final static String SOMME_CONSOMMATION = "CONSOMMATION";
 
     public Map<String,Double > getCashInfo(Long filialeId){
          Map<String,Double > info = new HashMap<>();
          LocalDate now = LocalDate.now(Clock.systemDefaultZone());
          Double sumVente = venteRepository.getSum(LocalDate.now()).orElse(0.0);
          Double sumEspece = cashRepository.findByTypePayement(ModePayement.ESPECE, now).orElse(0.0);
+         Double sumConsommation = cashRepository.findByTypePayement(ModePayement.CONSOMMATION,now).orElse(0.0);
          Double sumVirement = cashRepository.findByTypePayement(ModePayement.VIREMENT,now).orElse(0.0);
          Double sumCheque = cashRepository.findByTypePayement(ModePayement.CHEQUE,now).orElse(0.0);
          Double sumCredit = cashRepository.findByTypePayement(ModePayement.CREDIT,now).orElse(0.0);
@@ -38,6 +40,7 @@ public class CashService {
          Double sommeDepense = cashRepository.findByOperationType(TypeOperationCaisse.DECAISSEMENT,now).orElse(0.0);
          Double sommeEncaissement = cashRepository.findByOperationType(TypeOperationCaisse.ENCAISSEMENT, now).orElse(0.0);
          info.put(SOMME_VENTE,sumVente);
+         info.put(SOMME_CONSOMMATION,sumConsommation);
          info.put(SOMME_ESPECE,sumEspece);
          info.put(SOMME_VIREMENT,sumVirement);
          info.put(SOMME_CHEQUE,sumCheque);
@@ -78,6 +81,9 @@ public class CashService {
     }
     public static String getSommeEncaissement() {
         return SOMME_ENCAISSEMENT;
+    }
+    public static String getSommeConsommation() {
+        return SOMME_CONSOMMATION;
     }
     @Autowired private CashRepository cashRepository;
     @Autowired private VenteRepository venteRepository;

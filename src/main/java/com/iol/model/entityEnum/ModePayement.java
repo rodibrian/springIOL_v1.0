@@ -3,7 +3,7 @@ package com.iol.model.entityEnum;
 import org.springframework.boot.Banner;
 
 public enum ModePayement {
-    MOBILE_MONEY,CHEQUE,VIREMENT,ESPECE,AUTRE,CREDIT;
+    MOBILE_MONEY,CHEQUE,VIREMENT,ESPECE,AUTRE,CREDIT,CONSOMMATION;
     public static String typePayement2String(ModePayement modePayement){
         switch (modePayement){
             case AUTRE: return "AUTRE";
@@ -12,6 +12,7 @@ public enum ModePayement {
             case ESPECE: return "ESPECE";
             case VIREMENT: return "VIREMENT";
             case MOBILE_MONEY:return "MOBILE_MONEY";
+            case CONSOMMATION:return "CONSOMMATION";
             default: return "";
         }
     }
@@ -23,6 +24,7 @@ public enum ModePayement {
             case "ESPECE" : return ESPECE ;
             case "VIREMENT" : return VIREMENT ;
             case "MOBILE_MONEY":return MOBILE_MONEY;
+            case "CONSOMMATION":return CONSOMMATION;
             default: return AUTRE;
         }
     }
