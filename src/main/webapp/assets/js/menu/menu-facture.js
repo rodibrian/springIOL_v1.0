@@ -35,7 +35,7 @@ $(function () {
     }
 
     // click of tr, open infos list articles in facture
-    function fetchFactureInfo(reference) {
+    function fetchFactureInfo(reference){
         var url = "http://localhost:8080/api/v1/sales/" + reference;
         execute_ajax_request("get", url, null, (vente) => {
             if (vente.infoArticleMagasin.length>0){
@@ -44,7 +44,7 @@ $(function () {
                 url ="http://localhost:8080/api/v1/regulations/"+vente_id;
                 execute_ajax_request("get",url,null,(not_exist)=>{
                       if (not_exist) $(namespace+".btn-creer-avoir").show();
-                      else  $(namespace+".btn-creer-avoir").hide();
+                      else $(namespace+".btn-creer-avoir").hide();
                 });
             }
         });
@@ -131,6 +131,7 @@ $(function () {
         ifc.user = {id: $user_id};
         ifc.filiale = {id: $filiale_id};
         ifc.description = " avoir sur la facture " + ref;
+        let vente_id = $(namespace + "#info-facture").attr("vente-id");
         invoice_regulation.vente = {id: vente_id};
         invoice_regulation.refAvoir = ref;
         invoice_regulation.infoArticleMagasin = get_data_from_table_avoir(ref, date);
@@ -166,12 +167,15 @@ $(function () {
     /* ENREGISTRER MODE DE PAYEMENT */
     $(namespace+"#save-payement-mode-btn").click(()=>{
         let type_payement = $(namespace+"#type-payement option:selected").val();
+        let vente_id= $(namespace+"#info-facture").attr("vente-id");
         let description = $(namespace+"#description").val();
         let wrapper = {};
         wrapper.modePayement = type_payement;
         wrapper.description = description;
         let url = "http://localhost:8080/api/v1/ifc/"+vente_id;
-        execute_ajax_request("put",url,wrapper,null);
+        $(namespace+"#mode-payement-modal").modal("hide");
+        execute_ajax_request("put",url,wrapper,(data)=>{
+            createToast('bg-success', 'uil-file-check-alt', 'Enregistrement mode de payement', 'payement enregistr&eacute; avec succ&egrave;s!')
+        });
     })
-
 })

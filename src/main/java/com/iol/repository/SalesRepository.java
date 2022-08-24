@@ -15,6 +15,9 @@ import java.util.List;
 @Repository
 public interface SalesRepository extends JpaRepository<Vente,Long>{
 
+    @Query(value = "select vente.id+1 from vente  order by vente.id desc limit 1",nativeQuery = true)
+    Long getLastValue();
+
     @Query(value = "from vente v join v.infoArticleMagasin info where trim(lower(info.article.designation)) like concat('%',trim(lower(:name)),'%') and info.magasin.id=:magasinId")
     List<Vente> getVentesByProductName(@Param("magasinId") Long magasinId, @Param("name")String name);
 

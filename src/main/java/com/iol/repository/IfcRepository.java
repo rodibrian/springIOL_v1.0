@@ -16,4 +16,6 @@ public interface IfcRepository extends JpaRepository<InfoFilialeCaisse,Long> {
             "  id = ( SELECT vente.info_id from vente where vente.id =:venteId) ",nativeQuery = true)
     @Modifying(clearAutomatically = true)
     public void update(@Param("venteId") Long venteId,@Param("payement") String payement,@Param("description") String description);
+
+
 }

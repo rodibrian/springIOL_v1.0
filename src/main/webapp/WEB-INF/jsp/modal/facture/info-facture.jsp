@@ -24,7 +24,7 @@
             <button data-bs-toggle="modal" data-bs-target="#mode-payement-modal" class="btn btn-success btn-block w-100 mt-2"><i class="uil-money-bill"></i>&nbsp;Changer Mode de
               paiement
             </button>
-            <button class="btn btn-danger btn-creer-avoir btn-block w-100 mt-2"><i class="uil-money-bill"></i>&nbsp;
+            <button id="btn-avoir" class="btn btn-danger btn-creer-avoir btn-block w-100 mt-2"><i class="uil-money-bill"></i>&nbsp;
               Creer un avoir
             </button>
           </div>

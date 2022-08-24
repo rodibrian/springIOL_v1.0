@@ -191,7 +191,6 @@ $(function () {
                 $filiale_id = $(namespace + '#filiale-id').attr("value-id");
                 let nom_client = $(namespace + '#name-client').val();
                 let user_id = $(namespace + '#user-id').attr("value-id");
-                let type_payement = $(namespace+"#type-payement option:selected").val();
                 let date = new Date();
                 let ref = create_reference("VENTE",date);
                 let $vente = {};
@@ -204,7 +203,7 @@ $(function () {
                 ifc.operationCaisse = "FACTURE";
                 ifc.montantOperation = $sommeMontant;
                 ifc.date = date;
-                ifc.modePayement = type_payement;
+                ifc.modePayement = "ESPECE";
                 ifc.user = {id:user_id};
                 ifc.filiale = {id : $filiale_id};
                 ifc.magasin = {id :$magasinId};

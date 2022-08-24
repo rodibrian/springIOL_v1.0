@@ -15,4 +15,7 @@ public interface InvoiceRegulationRepository extends CrudRepository<Avoir,Long>{
 
     @Query(value ="select COUNT (av) from Avoir av join av.vente v where v.id =:id")
     Long getInvoiceBySaleId(@Param("id")Long id);
+
+    @Query(value = "select a.id+1 from avoir a  order by a.id desc limit 1",nativeQuery = true)
+    Long getLastValue();
 }

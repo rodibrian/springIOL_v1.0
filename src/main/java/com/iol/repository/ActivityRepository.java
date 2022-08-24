@@ -17,6 +17,9 @@ public interface ActivityRepository extends JpaRepository<InfoArticleMagasin,Lon
     @Query(value = "from InfoArticleMagasin iam join iam.magasin m where iam.date=:date and m.id =:magasinId")
     List<InfoArticleMagasin> findAllByDate(@Param("magasinId") Long id,@Param("date")LocalDate localDate);
 
+    @Query(value = "from InfoArticleMagasin iam join iam.magasin m join m.filiale f where f.id=:filialeId")
+    List<InfoArticleMagasin> findAllByFilialeId(@Param("filialeId") Long filialeId);
+
     @Query(value = "from InfoArticleMagasin iam join iam.magasin m where m.id =:magasinId and iam.date between :beginDate and :endDate")
     List<InfoArticleMagasin> findAllBetweenDate(@Param("magasinId") Long magasinId,
                                                 @Param("beginDate")LocalDate beginDate,

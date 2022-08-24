@@ -47,4 +47,32 @@ class ActivityRepositoryTest {
         List<InfoArticleMagasin> allByMagasin = activityRepository.findAllByStoreId(2L);
         assertThat(allByMagasin.size()).isEqualTo(1);
     }
+
+    @Test
+    void testFindAllByDate() {
+    }
+
+    @Test
+    void findAllByFilialeId() {
+        List<InfoArticleMagasin> allByFilialeId = activityRepository.findAllByFilialeId(1L);
+        System.out.println(allByFilialeId);
+        assertThat(allByFilialeId.size()).isEqualTo(16);
+    }
+
+    @Test
+    void findAllBetweenDate() {
+    }
+
+    @Test
+    void findAllByStoreId() {
+    }
+
+    @Test
+    void findAllByStoreAndItem() {
+    }
+
+    @Test
+    void findAllByStoreAndItemAndUnit() {
+
+    }
 }

@@ -239,6 +239,13 @@ public class MenuNavController{
         ModelAndView modelAndView = new ModelAndView("dashboard");
         modelAndView.addObject("client_list", clientFournisseurRepository.getAllExternalEntities(CLIENT,filialeId));
         modelAndView.addObject("fournisseur_list", clientFournisseurRepository.getAllExternalEntities(FOURNISSEUR,filialeId));
+        Map<String, Double> cashInfo = cashService.getCashInfo(filialeId);
+        modelAndView.addObject("espece",cashInfo.get(CashService.getSommeEspece()));
+        modelAndView.addObject("credit",cashInfo.get(CashService.getSommeCredit()));
+        modelAndView.addObject("depense",cashInfo.get(CashService.getSommeDepense()));
+        modelAndView.addObject("encaissement",cashInfo.get(CashService.getSommeEncaissement()));
+        modelAndView.addObject("client_list", clientFournisseurRepository.getAllExternalEntities(0,filialeId));
+        modelAndView.addObject("fournisseur_list", clientFournisseurRepository.getAllExternalEntities(1,filialeId));
         return modelAndView;
     }
     // menu des opérations
@@ -247,7 +254,7 @@ public class MenuNavController{
         Map<String, Long> connectedUserMagasinId = getConnectedUserInfo(request);
         Long filialeId = connectedUserMagasinId.get(FILIALE_ID);
         ModelAndView modelAndView = new ModelAndView("operation/liste");
-        modelAndView.addObject(OPERATION_LIST, activityRepository.findAll());
+        modelAndView.addObject(OPERATION_LIST, activityRepository.findAllByFilialeId(filialeId));
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
         return modelAndView;
     }
@@ -315,7 +322,6 @@ public class MenuNavController{
         modelAndView.addObject(STOCKS,articleService.getAllInventories(filialeId));
         return modelAndView;
     }
-
     @Autowired private ActivityRepository activityRepository;
     @Autowired private CategorieRepository categorieRepository;
     @Autowired private MagasinRepository magasinRepository;

@@ -63,12 +63,12 @@
   <!-- suite -->
   <div class="container-fluid mt-3">
     <div class="row">
-      <div class="col-md-2 m-2 type-caisse" id="caisse-facture" value-filter="facture">
+      <div class="col-md-2 m-2 type-caisse" id="caisse-facture" value-filter="FACTURE">
         <div class="row">
           <div class="col-md-4 bg-primary d-flex justify-content-center align-content-center align-items-center text-center">
             <i class="uil-money-bill uil-size-10"></i>
           </div>
-          <div class="col-md-8 p-2 card-caisse bg-secondary text-light">
+          <div class="col-md-8 p-2 card-caisse bg-secondary text-light" value-filter = "FACTURE" >
             <span>Vente</span><br>
             <span class="label-montant">
                 ${vente}
@@ -76,7 +76,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-2 m-2 type-caisse" id="caisse-depense" value-filter="depense">
+      <div class="col-md-2 m-2 type-caisse" id="caisse-depense" value-filter="DECAISSEMENT">
         <div class="row">
           <div class="col-md-4 bg-warning d-flex justify-content-center align-content-center align-items-center text-center">
             <i class="uil-money-bill uil-size-10"></i>
@@ -87,7 +87,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-2 m-2 type-caisse" id="caisse-recette" value-filter="recette">
+      <div class="col-md-2 m-2 type-caisse" id="caisse-recette" value-filter="RECETTE">
         <div class="row">
           <div class="col-md-4 bg-success d-flex justify-content-center align-content-center align-items-center text-center">
             <i class="uil-money-bill uil-size-10"></i>
@@ -98,7 +98,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-2 m-2 type-caisse" id="caisse-consommation" value-filter="consommation">
+      <div class="col-md-2 m-2 type-caisse" id="caisse-consommation" value-filter="CONSOMMATION">
         <div class="row">
           <div class="col-md-4 bg-primary d-flex justify-content-center align-content-center align-items-center text-center">
             <i class="uil-money-bill uil-size-10"></i>
@@ -109,7 +109,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-2 m-2 type-caisse" id="caisse-avoir" value-filter="avoir">
+      <div class="col-md-2 m-2 type-caisse" id="caisse-avoir" value-filter="AVOIR">
         <div class="row">
           <div class="col-md-4 bg-danger d-flex justify-content-center align-content-center align-items-center text-center">
             <i class="uil-money-bill uil-size-10"></i>
@@ -120,7 +120,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-2 m-2 type-caisse" id="caisse-espece" value-filter="espece">
+      <div class="col-md-2 m-2 type-caisse" id="caisse-espece" value-filter="ESPECE">
         <div class="row">
           <div class="col-md-4 bg-info d-flex justify-content-center align-content-center align-items-center text-center">
             <i class="uil-money-bill uil-size-10"></i>
@@ -131,7 +131,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-2 m-2 type-caisse" id="caisse-cheque" value-filter="cheque">
+      <div class="col-md-2 m-2 type-caisse" id="caisse-cheque" value-filter="CHEQUE">
         <div class="row">
           <div class="col-md-4 bg-success d-flex justify-content-center align-content-center align-items-center text-center">
             <i class="uil-money-bill uil-size-10"></i>
@@ -142,7 +142,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-2 m-2 type-caisse" id="caisse-credit" value-filter="credit">
+      <div class="col-md-2 m-2 type-caisse" id="caisse-credit" value-filter="CREDIT">
         <div class="row">
           <div class="col-md-4 bg-danger d-flex justify-content-center align-content-center align-items-center text-center">
             <i class="uil-money-bill uil-size-10"></i>
@@ -153,7 +153,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-2 m-2 type-caisse" id="caisse-virement" value-filter="virement">
+      <div class="col-md-2 m-2 type-caisse" id="caisse-virement" value-filter="VIREMENT">
         <div class="row">
           <div class="col-md-4 bg-warning d-flex justify-content-center align-content-center align-items-center text-center">
             <i class="uil-money-bill uil-size-10"></i>
@@ -164,7 +164,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-2 m-2 type-caisse" id="caisse-infotres" value-filter="infotres">
+      <div class="col-md-2 m-2 type-caisse" id="mobile-money" value-filter="MOBILE_MONEY">
         <div class="row">
           <div class="col-md-4 bg-success d-flex justify-content-center align-content-center align-items-center text-center">
             <i class="uil-money-bill uil-size-10"></i>
@@ -189,7 +189,6 @@
               <th>Description</th>
               <th>Mode de paiement</th>
               <th>Montant(Ar) </th>
-              <th>Montant(Ar)(après opération)</th>
           </tr>
           </thead>
           <tbody>
@@ -201,7 +200,6 @@
                 <td>${info.description}</td>
                 <td>${info.modePayement}</td>
                 <td>${info.montantOperation}</td>
-                <td>${info.montantApresOperation}</td>
             </tr>
           </c:forEach>
           </tbody>

@@ -2,6 +2,7 @@ package com.iol.service;
 
 import com.iol.model.entityEnum.ModePayement;
 import com.iol.model.entityEnum.TypeOperationCaisse;
+import com.iol.model.tenantEntityBeans.InfoFilialeCaisse;
 import com.iol.repository.CashRepository;
 import com.iol.repository.VenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ public class CashService {
     private final  static String SOMME_MOBILE_MONEY = "MOBILE_MONEY";
     private final  static String SOMME_DEPENSE = "DEPENSE";
     private final static  String SOMME_ENCAISSEMENT = "ENCAISSEMENT";
+
     public Map<String,Double > getCashInfo(Long filialeId){
          Map<String,Double > info = new HashMap<>();
          LocalDate now = LocalDate.now(Clock.systemDefaultZone());

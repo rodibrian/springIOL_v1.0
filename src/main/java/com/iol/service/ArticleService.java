@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ArticleService{
+
     @Autowired
     private ArticleRepository articleRepository;
 

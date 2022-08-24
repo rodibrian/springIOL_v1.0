@@ -1,6 +1,7 @@
 package com.iol.controller.restController;
 import com.iol.model.tenantEntityBeans.Vente;
 import com.iol.repository.ArticleRepository;
+import com.iol.service.RepoUtils;
 import com.iol.repository.SalesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,8 +26,15 @@ public class SalesRessource {
         return new ResponseEntity<>(salesRepository.getInvoiceBySaleRef(reference),HttpStatus.OK);
     }
 
+    @Autowired
+    private RepoUtils repoUtils;
+
     @PostMapping("/sales")
     public ResponseEntity<Object> create(@RequestBody Vente v){
+        String ref = repoUtils.generateRef("VENTE");
+        v.setRefVente(ref);
+        v.getInfoFilialeCaisse().setReference(ref);
+        v.getInfoArticleMagasin().forEach(iam -> iam.setReference(ref));
         return new ResponseEntity<>(salesRepository.save(v),HttpStatus.OK);
     }
 

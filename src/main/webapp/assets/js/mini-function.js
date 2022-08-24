@@ -223,7 +223,9 @@ const init_modal_credit_dette_btn = (namespace, type_trosa,filiale_id,user_id)=>
     supprimer_dette(namespace);
 
     /* ACTUALISER LISTE */
-    $(namespace+".refresh-list-btn").click(()=> fetch_trosa_data(namespace,user_id))
+    $(namespace+"#refresh-list-btn").click(()=> {
+        fetch_trosa_data(namespace,user_id);
+    })
 
     /* validation payement */
     init_validation_payement(namespace);

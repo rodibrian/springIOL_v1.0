@@ -61,18 +61,16 @@ $(function () {
         let url = "http://localhost:8080/api/v1/ifc";
         execute_ajax_request("post",url,ifc,(data)=>{
             $(namespace+"#operation-caisse").modal("hide");
-            console.log(data);
             switch ($typeOperation) {
                 case OP_IN :
                     push_to_table_list(
                         namespace + ".table-liste-operation-caisse",
                         "",
-                        [OP_RECETTE,
-                            new Date().toLocaleDateString(),
-                            reference,
-                            description,
+                        [data.reference,
+                            data.operationCaisse,
+                            data.date,
+                            data.description,
                             ifc.modePayement,
-                            montant,
                             montant]
                     )
                         .attr('data-filter', [OP_RECETTE, ESPECE])
@@ -83,12 +81,11 @@ $(function () {
                     push_to_table_list(
                         namespace + ".table-liste-operation-caisse",
                         "",
-                        [OP_RECETTE,
-                            new Date().toLocaleDateString(),
-                            reference,
-                            description,
+                        [data.reference,
+                            data.operationCaisse,
+                            data.date,
+                            data.description,
                             ifc.modePayement,
-                            montant,
                             montant]
                     )
                         .attr('data-filter', [OP_DEPENSE, OP_CONSO])
@@ -103,34 +100,59 @@ $(function () {
             $('#operation-caisse #input-categorie').val('');
         });
     })
-
+    // FILTRER PAR DATE
+    $(namespace+"#btn-search-filter").click(()=>{
+        let date_debut = $(namespace+"#input-date-debut").val();
+        let date_fin = $(namespace+"#input-date-fin").val();
+        if (date_debut!==undefined && date_fin!==undefined){
+            $filiale_id = $(namespace + '#filiale-id').attr("value-id");
+            let url = "http://localhost:8080/api/v1/ifc/"+$filiale_id+"/date/"+date_debut+"/"+date_fin;
+            execute_ajax_request("get",url,null,(data)=>{
+                clear_table(namespace + ".table-liste-operation-caisse");
+                data.forEach(value =>{
+                    let tr = [value.reference,
+                        value.operationCaisse,
+                        value.date,
+                        value.description,
+                        value.modePayement,
+                        value.montantOperation];
+                    push_to_table_list(namespace + ".table-liste-operation-caisse",value.id,tr);
+                })
+            })
+        }
+    })
     /*
      evenement des types
      */
-
     $(namespace + ".type-caisse").on('click', function () {
         filter_table(namespace + ".table-liste-operation-caisse", "value-filter", $(this).attr('value-filter'));
     })
-
     /*
      function filter table
      */
-
-    function filter_table($idtable, $attr, $value_filter) {
+    function filter_table($idtable, $attr, $value_filter){
         $table = $($idtable + " tbody tr");
-        $table.hide();
-
-        $.each($table, function (key, value) {
-            let attr = $(value).attr('data-filter')
-            if (attr.search($value_filter) > -1)
-                $(this).show();
+        let filter_type = "";
+        if ($value_filter==="FACTURE" || $value_filter==="DECAISSEMENT" || $value_filter==="AVOIR") filter_type = "OPERATION";
+        else filter_type = "MODE-PAYEMENT";
+        $filiale_id = $(namespace + '#filiale-id').attr("value-id");
+        let url = "http://localhost:8080/api/v1/ifc/"+$filiale_id+"/"+filter_type+"/"+$value_filter;
+        console.log(url);
+        execute_ajax_request("get",url,null,(data)=>{
+            clear_table($idtable);
+            data.forEach(value =>{
+                let tr = [value.reference,
+                    value.operationCaisse,
+                    value.date,
+                    value.description,
+                    value.modePayement,
+                    value.montantOperation];
+                push_to_table_list($idtable,value.id,tr);
+            })
         })
     }
-
     /*
-
     facturation
-
      */
 
     function impression_EncDecAissement($isEnc) {
@@ -170,6 +192,4 @@ $(function () {
         $(space + '.td-montant').text($montant + 'Ar')
         $(space).printThis()
     }
-
-
 })

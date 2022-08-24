@@ -18,4 +18,7 @@ public interface SupplyRepository extends JpaRepository<Supply,Long>{
             "join iam.article art "+
             "join fr.filiale f where f.id=:filialeId and a.quantitePeremption > 0 and art.isPerishable = true")
     List<Supply> getBySellByDate(@Param("filialeId") Long filialeId);
+
+    @Query(value = "select a.id+1 from approv a  order by a.id desc limit 1",nativeQuery = true)
+    Long getLastValue();
 }

@@ -2,6 +2,7 @@ package com.iol.repository;
 
 import com.iol.model.entityEnum.ModePayement;
 import com.iol.model.entityEnum.TypeOperationCaisse;
+import com.iol.model.tenantEntityBeans.InfoFilialeCaisse;
 import com.iol.service.CashService;
 import org.assertj.core.api.Assert;
 import org.assertj.core.api.Assertions;
@@ -11,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.Clock;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -74,4 +76,9 @@ class CashRepositoryTest{
     void invoiceSum() {
     }
 
+    @Test
+    void findAllByTypeOperation() {
+        List<InfoFilialeCaisse> allByTypeOperation = cashRepository.findAllByTypeOperation(1L, TypeOperationCaisse.FACTURE, LocalDate.now());
+        System.out.println(allByTypeOperation);
+    }
 }

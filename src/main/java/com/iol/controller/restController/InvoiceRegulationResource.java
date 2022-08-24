@@ -2,6 +2,7 @@ package com.iol.controller.restController;
 
 import com.iol.model.tenantEntityBeans.Avoir;
 import com.iol.repository.InvoiceRegulationRepository;
+import com.iol.service.RepoUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,14 +14,23 @@ public class InvoiceRegulationResource {
 
     private InvoiceRegulationRepository invoiceRegulationRepository;
 
+    @Autowired
+    private RepoUtils repoUtils;
+
     @PostMapping(value = "/regulations")
-    public ResponseEntity<Object> create(@RequestBody Avoir invoiceRegulation){
-        return new ResponseEntity<>(invoiceRegulationRepository.save(invoiceRegulation), HttpStatus.CREATED);
+    public ResponseEntity<Object> create(@RequestBody Avoir avoir){
+        String ref = repoUtils.generateRef("AVOIR");
+        avoir.setRefAvoir(ref);
+        avoir.getInfoFilialeCaisse().setReference(ref);
+        avoir.getInfoArticleMagasin().forEach(iam -> iam.setReference(ref));
+        return new ResponseEntity<>(invoiceRegulationRepository.save(avoir), HttpStatus.CREATED);
     };
 
     @GetMapping(value = "/regulations/{saleId}")
     public ResponseEntity<Object> getRegulationBy(@PathVariable("saleId")Long id){
-        return new ResponseEntity<>(invoiceRegulationRepository.getInvoiceBySaleId(id) == 0,HttpStatus.OK);
+        Long count = invoiceRegulationRepository.getInvoiceBySaleId(id);
+        System.out.println(count);
+        return new ResponseEntity<>(count == null || count ==0 ,HttpStatus.OK);
     };
 
     @Autowired
