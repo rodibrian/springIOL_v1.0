@@ -196,6 +196,7 @@ $(function () {
                 execute_ajax_request("post",url,supplyWrapper,(data)=>{
                     onSuppliesCreated();
                     impression_entree()
+                    $(namespace+"#input-reference-facture").val("");
                 });
                 })
             if ($nArticle == 0) $(namespace + '#btn-' + $modalId).attr('disabled', 'disabled');

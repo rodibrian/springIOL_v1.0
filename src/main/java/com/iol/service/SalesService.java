@@ -13,7 +13,7 @@ public class SalesService{
     @Autowired
     private SalesRepository salesRepository;
 
-    public List<FactureWrapper> getFactureGroupByRefAndFilialeAndMagasin(Long magasinId, Long filialeId){
+    public List<FactureWrapper> getFactureGroupByRefAndFilialeAndMagasin(Long magasinId,Long filialeId){
         List<String> factureGroupByRef = salesRepository.getFactureGroupByRefAndFilialeAndMagasin(magasinId,filialeId);
         List<FactureWrapper> factureWrappers = initWrapper(factureGroupByRef);
         return factureWrappers;

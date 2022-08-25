@@ -12,9 +12,9 @@ $(function () {
     /*
     MENU FACTURE
      */
-    function on_invoice_info_fetched(vente) {
+    function on_invoice_info_fetched($vente) {
         $(namespace + "#table-facture-avoir tbody").empty();
-        let info_article_magasin_tab = vente.infoArticleMagasin;
+        let info_article_magasin_tab = $vente.infoArticleMagasin;
         $.each(info_article_magasin_tab, (key, info) => {
             let tr = [
                 `
@@ -25,21 +25,23 @@ $(function () {
                 info.article.designation,
                 info.unite.designation,
                 info.quantiteAjout,
-                (vente.montantVente / info.quantiteAjout),
-                vente.montantVente
+                ($vente.montantVente / info.quantiteAjout),
+                $vente.montantVente
             ];
             let row_id = info.magasin.id + "-" + info.article.id + "-" + info.unite.id;
             push_to_table_list(namespace + "#table-facture-avoir", row_id, tr);
         });
-        $(namespace + "#info-facture").attr("vente-id", vente.id);
+        $(namespace + "#info-facture").attr("vente-id", $vente.id);
     }
 
     // click of tr, open infos list articles in facture
     function fetchFactureInfo(reference){
-        var url = "http://localhost:8080/api/v1/sales/" + reference;
+        var url = "http://localhost:8080/api/v1/sales/"+reference;
+        console.log(url);
         execute_ajax_request("get", url, null, (vente)=> {
+            console.log(vente);
                 on_invoice_info_fetched(vente);
-                // url ="http://localhost:8080/api/v1/regulations/"+data.id;
+                // url ="http://localhost:8080/api/v1/regulations/"+vente.id;
                 // execute_ajax_request("get",url,null,(not_exist)=>{
                 //       if (not_exist) $(namespace+".btn-creer-avoir").show();
                 //       else $(namespace+".btn-creer-avoir").hide();
@@ -49,7 +51,6 @@ $(function () {
 
     $(document).on('dblclick',namespace + '.table-facture tbody tr',function () {
         // get reference of dblcliked facture
-        let vente_id = $(namespace +"#info-facture").attr("vente-id");
         $reference = $(this).children()[0].innerText;
         // get reference of selected facture
         let client = $(this).children()[1].innerText;

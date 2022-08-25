@@ -14,7 +14,6 @@ import java.util.Optional;
 @RequestMapping("/api/v1")
 public class SalesRessource {
     @Autowired private SalesRepository salesRepository;
-    @Autowired private ArticleRepository articleRepository;
 
     @GetMapping("/sales")
     public ResponseEntity<Object> getAll(){

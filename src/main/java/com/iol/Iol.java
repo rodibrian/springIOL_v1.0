@@ -30,8 +30,9 @@ Iol implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        String property = (String)entityManagerFactory.getJpaPropertyMap().get("hibernate.hbm2ddl.auto");
-        if (property.equals("create")) createPostgresqlFunctionAndTrigger();
+//        String property = (String)entityManagerFactory.getJpaPropertyMap().get("hibernate.hbm2ddl.auto");
+//        if (property.equals("create")) createPostgresqlFunctionAndTrigger();
+        createPostgresqlFunctionAndTrigger();
     }
 
     private void createPostgresqlFunctionAndTrigger() throws SQLException,IOException{

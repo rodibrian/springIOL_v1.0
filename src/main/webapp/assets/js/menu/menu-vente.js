@@ -5,9 +5,7 @@ $(function () {
     $quantite_stock = 0;
     let namespace = "#menu-vente ";
     $filiale_id = $(namespace + '#filiale-id').attr("value-id");
-
     push_Type_paiement(namespace + "#select-payement");
-
     /*
     Selecter client
     */
@@ -58,11 +56,6 @@ $(function () {
     /*------------------------------------------------------------------------------
                                             SELECTER ARTICLE
     -------------------------------------------------------------------------------*/
-    function updatePrixUnitaire(article_id, unite_id, filialeId) {
-        let url = "http://localhost:8080/api/v1/articles/" + article_id + "/unites/" + unite_id + "/filiales/" + filialeId + "/prices";
-        execute_ajax_request("get", url, null, (data) => $(namespace + "#input-prix-unitaire").val(data))
-    }
-
     $(document).on('dblclick', namespace + '#table-liste-article tbody tr', function () {
         let tr_id = $(this).attr("id");
         let article_id = tr_id.split("-")[0];
@@ -85,8 +78,7 @@ $(function () {
                 inputQuantiteArticle: {required: 'Quantite non valide', min: "Quantite doit d\'être >0", number: true},
                 inputPrixUnitaire: {required: '', min: '', number: true},
             }
-        })
-
+        });
         /* AFFECTATION DU PRIX UNITAIRE */
         $(namespace + "#input-prix-unitaire").val($prix_article);
         get_select_affect_to_input(namespace + "#input-prix-unitaire", "", $(this).children().eq(5).text());

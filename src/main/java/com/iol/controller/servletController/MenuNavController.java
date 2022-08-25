@@ -300,7 +300,7 @@ public class MenuNavController{
         Map<String, Long> connectedUserMagasinId = getConnectedUserInfo(request);
         Long filialeId = connectedUserMagasinId.get(FILIALE_ID);
         ModelAndView modelAndView = new ModelAndView("menu-detail-vente");
-        modelAndView.addObject(SALES_LIST, salesRepository.findAll());
+        modelAndView.addObject(SALES_LIST, salesRepository.findAllByFilialeId(filialeId));
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
         return modelAndView;
     }
