@@ -10,7 +10,6 @@ $(function () {
     // mode de paiement
     const ESPECE = "espece", CHEQUE = "cheque", CREDIT = "credit", VIREMENT = "virement";
     // type operation
-
     const OP_FACTURE = $(namespace + "#caisse-facture").attr('value-filter'),
         OP_DEPENSE = $(namespace + "#caisse-depense").attr('value-filter'),
         OP_RECETTE = $(namespace + "#caisse-recette").attr('value-filter'),
@@ -21,7 +20,6 @@ $(function () {
     const OP_IN = "entree", OP_OUT = "sortie";
     $(namespace + '#btn-creer-encaissement').attr('type-id', OP_IN);
     $(namespace + '#btn-creer-decaissement').attr('type-id', OP_OUT);
-
     /*
      ajout dans la table listes operation
      */
@@ -29,6 +27,7 @@ $(function () {
     /*
      OPERATION CAISSE
      */
+
     $(namespace + '#btn-creer-encaissement, #btn-creer-decaissement').on('click', function () {
         $typeOperation = $(this).attr('type-id');
         switch ($typeOperation) {
@@ -40,7 +39,6 @@ $(function () {
                 break;
         }
     })
-
     /*
      enregistrement operation
      */
@@ -71,7 +69,7 @@ $(function () {
                             data.date,
                             data.description,
                             ifc.modePayement,
-                            montant]
+                            montant,data.user.nom]
                     )
                         .attr('data-filter', [OP_RECETTE, ESPECE])
                     createToast('bg-success', 'uil-folder-check', 'Encaissement enregistre', 'ENcaissement enregistrer avec success!');
@@ -86,7 +84,7 @@ $(function () {
                             data.date,
                             data.description,
                             ifc.modePayement,
-                            montant]
+                            montant,data.user.nom]
                     )
                         .attr('data-filter', [OP_DEPENSE, OP_CONSO])
                     createToast('bg-warning', 'uil-folder-check', 'Decaissement enregistre', 'Decaissement enregistrer avec success!');
@@ -128,9 +126,24 @@ $(function () {
     $(namespace + ".type-caisse").on('click', function () {
         filter_table(namespace + ".table-liste-operation-caisse", "value-filter", $(this).attr('value-filter'));
     })
+
+    function appendIfcTr($idtable, data) {
+        clear_table($idtable);
+        data.forEach(value => {
+            let tr = [value.reference,
+                value.operationCaisse,
+                value.date,
+                value.description,
+                value.modePayement,
+                value.montantOperation,
+                value.user.nom];
+            push_to_table_list($idtable, value.id, tr);
+        })
+    }
+
     /*
-     function filter table
-     */
+         function filter table
+         */
     function filter_table($idtable, $attr, $value_filter){
         $table = $($idtable + " tbody tr");
         let filter_type = "";
@@ -138,26 +151,12 @@ $(function () {
         else filter_type = "MODE-PAYEMENT";
         $filiale_id = $(namespace + '#filiale-id').attr("value-id");
         let url = "http://localhost:8080/api/v1/ifc/"+$filiale_id+"/"+filter_type+"/"+$value_filter;
-        console.log(url);
-        execute_ajax_request("get",url,null,(data)=>{
-            clear_table($idtable);
-            data.forEach(value =>{
-                let tr = [value.reference,
-                    value.operationCaisse,
-                    value.date,
-                    value.description,
-                    value.modePayement,
-                    value.montantOperation,
-                    value.user.nom];
-                push_to_table_list($idtable,value.id,tr);
-            })
-        })
+        execute_ajax_request("get",url,null,(data)=> appendIfcTr($idtable,data))
     }
     /*
     facturation
      */
-
-    function impression_EncDecAissement($isEnc) {
+    function impression_EncDecAissement($isEnc){
         generer_ticket_EncDecAissement($isEnc);
         generer_facture_EncDecAissement($isEnc);
     }
@@ -177,7 +176,6 @@ $(function () {
         $(space + '.label-montant').text($montant + 'Ar')
         $(space).printThis()
     }
-
     function generer_facture_EncDecAissement($isEnc) {
         let space = namespace + '#impression-facture-encaissement-ou-decaissement ';
         // receuille des données
@@ -194,5 +192,18 @@ $(function () {
         $(space + '.td-montant').text($montant + 'Ar')
         $(space).printThis()
     }
-
+    // user filter
+    $(document).on('change',namespace+"#select-user",function(){
+        let userId = $(this).val();
+        $filiale_id = $(namespace + '#filiale-id').attr("value-id");
+        let url = "http://localhost:8080/api/v1/ifc/"+$filiale_id+"/user/"+userId;
+        execute_ajax_request("get",url,null,(data)=> appendIfcTr($idtable,data))
+    })
+    // magasin filter
+    $(document).on('change',namespace+"#select-magasin",function(){
+        let magasinId = $(this).val();
+        $filiale_id = $(namespace + '#filiale-id').attr("value-id");
+        let url = "http://localhost:8080/api/v1/ifc/"+$filiale_id+"/magasin/"+magasinId;
+        execute_ajax_request("get",url,null,(data)=> appendIfcTr($idtable,data))
+    })
 })

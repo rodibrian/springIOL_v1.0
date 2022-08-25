@@ -18,7 +18,8 @@ import java.sql.Statement;
 
 @SpringBootApplication
 @EnableJpaAuditing
-public class Iol implements CommandLineRunner {
+public class
+Iol implements CommandLineRunner {
 
     @Autowired
     private LocalContainerEntityManagerFactoryBean entityManagerFactory;

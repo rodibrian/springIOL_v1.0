@@ -42,8 +42,7 @@ $(function () {
     /*
      enregsitrement filial
      */
-    function onCreateSubsdiariesSuccess() {
-
+    function on_create_subsdiaries_success(){
         switch ($typeOperation) {
             case NEW:
                 $(namespace + '.liste-filial').append(createItemFilial($filiale.id, $nom, $adresse, $contact))
@@ -63,54 +62,20 @@ $(function () {
         $(namespace + '#nouveau-filial input#input-password').val('')
     }
 
-    function persistDefaultStore() {
-        $default_magasin = {
-            adresse: $filiale.adresse,
-            nomMagasin: "default_magasin",
-            filiale: {
-                id: $filiale.id
-            }
-        };
-        $admin_filiale_user = {
-            username: $username,
-            password: $password,
-            fonction: {
-                id: $fonction.id
-            },
-            filiale: {
-                id: $filiale.id
-            },
-            magasin : [$default_magasin],
-            enabled: true
-        };
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:8080/api/v1/magasins",
-            contentType: "application/json",
-            data: JSON.stringify($default_magasin),
-            success: function (data) {
-            }
-        })
-    }
-
-    function persistFiliale(){
+    function persist_filiale(){
         $filiale = {};
         $filiale.nom = $nom;
         $filiale.adresse = $adresse;
         $filiale.contact = $contact;
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:8080/api/v1/subsidiaries",
-            contentType: "application/json",
-            data: JSON.stringify($filiale),
-            success: function (data){
-                $filiale = data;
-                persistFonction();
-            }
+        let url = "http://localhost:8080/api/v1/subsidiaries";
+        execute_ajax_request("post",url,$filiale,(data)=>{
+            $filiale = data;
+            persist_Fonction();
+            persit_default_store()
         })
     }
 
-    function persistDefaultUser() {
+    function persit_default_store(){
         $default_magasin = {
             adresse: $filiale.adresse,
             nomMagasin: "default_magasin",
@@ -118,6 +83,14 @@ $(function () {
                 id: $filiale.id
             }
         };
+        let url = "http://localhost:8080/api/v1/magasins";
+        execute_ajax_request("post",url,$default_magasin,(data)=>{
+            $default_magasin = data;
+            persist_Default_user();
+        })
+    }
+
+    function persist_Default_user(){
         $admin_filiale_user = {
             username: $username,
             password: $password,
@@ -127,20 +100,16 @@ $(function () {
             filiale: {
                 id: $filiale.id
             },
-            magasin : [$default_magasin],
+            magasin : [{id:$default_magasin.id}],
             enabled: true
         };
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:8080/api/v1/users",
-            contentType: "application/json",
-            data: JSON.stringify($admin_filiale_user),
-            success: function (data) {
-                $admin_filiale_user = data;
-            }
+        let url = "http://localhost:8080/api/v1/users";
+        execute_ajax_request("post",url,$admin_filiale_user,(data)=>{
+            $admin_filiale_user = data;
         })
     }
-    function persistFonction() {
+
+    function persist_Fonction() {
         $fonction = {
             nomFonction: "admin",
             fonctionnalites: [{
@@ -148,18 +117,14 @@ $(function () {
             }],
             filiale : {id : $filiale.id}
         };
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:8080/api/v1/fonctions",
-            contentType: "application/json",
-            data: JSON.stringify($fonction),
-            success: function (data) {
-                $fonction = data;
-                persistDefaultUser();
-                onCreateSubsdiariesSuccess();
-            }
+        let url = "http://localhost:8080/api/v1/fonctions";
+        execute_ajax_request("post",url,$fonction,(data)=>{
+            $fonction = data;
+            persist_Default_user();
+            on_create_subsdiaries_success();
         })
     }
+
     /*
      enregistrement filial
     */
@@ -170,7 +135,7 @@ $(function () {
         $username = $(namespace + '#nouveau-filial input#input-username').val()
         $password = $(namespace + '#nouveau-filial input#input-password').val()
         $typeOperation = $(namespace + "#nouveau-filial").attr('data-id');
-        persistFiliale();
+        persist_filiale();
     })
     /*
      suppression filial

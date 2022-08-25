@@ -2,17 +2,13 @@ $(function() {
     let namespace = "#menu-article ";
     let ressource = "http://localhost:8080/api/v1/subsidiaries/";
     $item_table = $("#articleTable tbody");
-
     // generer barcode
-
     $(namespace + '#articleTable tbody tr').each(function(v,k) {
         $article_code = $(this).find('.barcode-list-articles .text').text();
         $(this).find('.barcode-list-articles .text').text('');
-
         $(this).find('.barcode-list-articles').append('' +
             '<svg id="barcode-'+$article_code+'" class="barcode-articles-list"></svg>');
         $codebar  = generate_barcode_text($article_code);
-
         JsBarcode('#barcode-' + $article_code, $codebar)
     })
 
@@ -28,12 +24,10 @@ $(function() {
     // event on click
     $(document).on('click', '.barcode-list-articles', function() {
         $row = $(this).parent();
-
         $societe = {code : '1', text: 'Societe 1'};
         $article = {code : $row.children().eq(1).attr('value-id'), text : $row.children().eq(1).text()}
         $categorie = {code : $row.children().eq(2).attr('value-id'), text : $row.children().eq(2).text()}
         $unite = {code : $row.children().eq(4).attr('value-id'), text : $row.children().eq(4).text()}
-
         $(namespace + '#info-barcode .title-article').text('Information article')
 
         $(namespace + '#info-barcode .l-societe').text($societe.text + ' (' + numberToStringZero($societe.code , 4)+ ')')
@@ -74,29 +68,7 @@ $(function() {
             }
         })
     })
-    // suppression article
-    // $(document).on('click',namespace + '#articleTable .deleteArticleBtn', function() {
-    //     $codeArticle = $(this).closest('tr').children().eq(0).text();
-    //     $trCurrent = $(this).closest('tr');
-    //     $modalId = "suppression-article";
-    //     create_confirm_dialog('Suppression Article', 'Voulez vraiment supprimer cet article (id:' + $codeArticle + ') ?', $modalId, "Oui, supprimer", "btn-danger")
-    //         .on('click', function() {
-    //             $trCurrent.remove();
-    //             hideAndRemove(namespace + '#' + $modalId + '');
-    //         })
-    // })
-    // // masquer article
-    // $(document).on('click',namespace + '#articleTable .hideArticleBtn', function() {
-    //     $codeArticle = $(this).closest('tr').children().eq(0).text();
-    //     $trCurrent = $(this).closest('tr');
-    //
-    //     $modalId = "masquer-article";
-    //     create_confirm_dialog('Masquer Article', 'Voulez vraiment masquer cet article (id:' + $codeArticle + ') ?', $modalId, "Oui, masquer", "btn-warning")
-    //         .on('click', function() {
-    //             $trCurrent.hide();
-    //             hideAndRemove(namespace + '#' + $modalId + '');
-    //         })
-    // })
+
     function appendItem(data) {
         $item_table.empty();
         $.each(data, (key, value) => {

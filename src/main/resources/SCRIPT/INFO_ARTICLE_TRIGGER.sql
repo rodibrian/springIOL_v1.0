@@ -15,7 +15,6 @@ BEGIN
 END;
 $$;
 ---  PROCEDURE
-
 create or replace procedure mettre_a_jour_quantite_en_peremption(IN id_magasin bigint, IN id_article bigint, IN id_unite bigint, IN nouveau_quantite double precision)
     language plpgsql
 as
@@ -53,12 +52,11 @@ BEGIN
 end;
 $$;
 alter procedure mettre_a_jour_quantite_en_peremption(bigint, bigint, bigint, double precision) owner to postgres;
-
 -- FIN PROCEDURE
 
 --  DEBUT TRIGER
 
-create function before_insert_on_info_article_unite_magasin() returns trigger
+create or replace function before_insert_on_info_article_unite_magasin() returns trigger
     language plpgsql
 as
 $$
@@ -186,67 +184,5 @@ alter function before_insert_on_info_article_unite_magasin() owner to postgres;
 
 --  FIN TIGGER
 
+-- MAPPING SUR LA TABLE
 create trigger info_article_trigger before insert on info_article_magasin FOR EACH ROW execute procedure before_insert_on_info_article_unite_magasin();
-
--- update caisse
-
-create function update_caisse_filiale() returns trigger
-    language plpgsql
-as
-$$
-DECLARE
-    montant_caisse double precision=0.0;
-    nombre_element BIGINT =0.0;
-BEGIN
-
-    select count(c.id) into nombre_element from caisse c where c.filiale_id = new.filiale_id and c.mode_payement = new.mode_payement;
-
-    if nombre_element = 0 then
-
-        insert into caisse (value, filiale_id, mode_payement)  values (new.montant_operation,new.filiale_id,new.mode_payement);
-
-    end if;
-
-    if nombre_element > 0 then
-
-        select value into montant_caisse from caisse c where c.filiale_id = new.filiale_id and c.mode_payement = new.mode_payement;
-
-        if new.operation_caisse = 'FACTURE' and new.operation_caisse = 'ENCAISSEMENT' then
-
-            if montant_caisse = 0.0 then
-
-                update caisse c set value = new.montant_operation where c.filiale_id = new.filiale_id and c.mode_payement = new.mode_payement;
-
-                new.montant_apres_operation := new.montant_operation;
-
-            end if;
-
-            if montant_caisse > 0.0 then
-
-                update caisse c set value = montant_caisse +new.montant_operation where c.filiale_id = new.filiale_id;
-
-                new.montant_apres_operation:= montant_caisse +new.montant_operation;
-
-            end if;
-
-        end if;
-
-        if new.operation_caisse = 'DECAISSEMENT' and new.operation_caisse = 'AVOIR' then
-
-            if montant_caisse > 0.0 then
-
-                update caisse c set value = montant_caisse-new.montant_operation where c.filiale_id = new.filiale_id and c.mode_payement = new.mode_payement;
-
-                new.montant_apres_operation:=montant_caisse-new.montant_operation;
-
-            end if;
-
-        end if;
-
-    end if;
-
-    RETURN NEW; --ignored since this is after trigger
-END;
-$$;
-alter function update_caisse_filiale() owner to postgres;
-create trigger on_insert_on_info_filiale_caisse before insert on info_filiale_caisse FOR EACH ROW execute procedure update_caisse_filiale();

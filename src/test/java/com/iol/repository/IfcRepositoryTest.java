@@ -4,8 +4,6 @@ import com.iol.model.entityEnum.ModePayement;
 import com.iol.model.entityEnum.TypeOperationCaisse;
 import com.iol.model.tenantEntityBeans.InfoFilialeCaisse;
 import com.iol.service.CashService;
-import org.assertj.core.api.Assert;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,15 +15,14 @@ import java.util.Map;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class CashRepositoryTest{
+class IfcRepositoryTest {
 
     @Autowired
     private CashService cashService;
     @Autowired
-    private CashRepository cashRepository;
+    private IfcRepository ifcRepository;
 
     @Test void findByTypePayement() {
         Map<String, Double> cashInfo = cashService.getCashInfo(1L);
@@ -34,7 +31,7 @@ class CashRepositoryTest{
 
     @Test
     void testFindByTypePayement() {
-        Double sumEspece = cashRepository.findByTypePayement(ModePayement.CONSOMMATION,LocalDate.now()).orElse(0.0);
+        Double sumEspece = ifcRepository.findByTypePayement(1L,ModePayement.CONSOMMATION,LocalDate.now()).orElse(0.0);
         assertThat(sumEspece).isNotZero();
         System.out.println(sumEspece);
     }
@@ -46,7 +43,7 @@ class CashRepositoryTest{
     @Test
     void findByOperationTypeBetweenDate() {
         LocalDate now = LocalDate.now(Clock.systemDefaultZone());
-        Optional<Double> vente = cashRepository.findByOperationTypeBetweenDate(TypeOperationCaisse.VENTE, now, now);
+        Optional<Double> vente = ifcRepository.findByOperationTypeBetweenDate(TypeOperationCaisse.VENTE, now, now);
     }
 
     @Test
@@ -79,7 +76,7 @@ class CashRepositoryTest{
 
     @Test
     void findAllByTypeOperation() {
-        List<InfoFilialeCaisse> allByTypeOperation = cashRepository.findAllByTypeOperation(1L, TypeOperationCaisse.FACTURE, LocalDate.now());
+        List<InfoFilialeCaisse> allByTypeOperation = ifcRepository.findAllByTypeOperation(1L, TypeOperationCaisse.FACTURE, LocalDate.now());
         System.out.println(allByTypeOperation);
     }
 }

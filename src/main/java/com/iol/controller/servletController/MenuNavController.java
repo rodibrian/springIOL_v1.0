@@ -99,7 +99,7 @@ public class MenuNavController{
         ModelAndView modelAndView = new ModelAndView("menu-caisse");
         Map<String, Long> connectedUserMagasinId = getConnectedUserInfo(request);
         Long filialeId = connectedUserMagasinId.get(FILIALE_ID);
-        List<InfoFilialeCaisse> all = cashRepository.findAllByDate(filialeId, LocalDate.now(Clock.systemDefaultZone()));
+        List<InfoFilialeCaisse> all = ifcRepository.findAllByDate(filialeId, LocalDate.now(Clock.systemDefaultZone()));
         modelAndView.addObject(MAGASIN_LIST,magasinRepository.findAllByFiliale(filialeId));
         Map<String, Double> cashInfo = cashService.getCashInfo(filialeId);
         modelAndView.addObject(USER_LIST, userRepository.getAllByFiliale(filialeId));
@@ -336,7 +336,7 @@ public class MenuNavController{
     @Autowired private SubsidiaryRepository subsidiaryRepository;
     @Autowired private SalesRepository salesRepository;
     @Autowired private SalesService salesService;
-    @Autowired private CashRepository cashRepository;
+    @Autowired private IfcRepository ifcRepository;
     @Autowired private CashService cashService;
     @Autowired private PricesRepository pricesRepository;
 }

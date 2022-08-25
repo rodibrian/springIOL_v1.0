@@ -2,8 +2,7 @@ package com.iol.service;
 
 import com.iol.model.entityEnum.ModePayement;
 import com.iol.model.entityEnum.TypeOperationCaisse;
-import com.iol.model.tenantEntityBeans.InfoFilialeCaisse;
-import com.iol.repository.CashRepository;
+import com.iol.repository.IfcRepository;
 import com.iol.repository.VenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,16 +28,16 @@ public class CashService {
          Map<String,Double > info = new HashMap<>();
          LocalDate now = LocalDate.now(Clock.systemDefaultZone());
          Double sumVente = venteRepository.getSum(LocalDate.now()).orElse(0.0);
-         Double sumEspece = cashRepository.findByTypePayement(ModePayement.ESPECE, now).orElse(0.0);
-         Double sumConsommation = cashRepository.findByTypePayement(ModePayement.CONSOMMATION,now).orElse(0.0);
-         Double sumVirement = cashRepository.findByTypePayement(ModePayement.VIREMENT,now).orElse(0.0);
-         Double sumCheque = cashRepository.findByTypePayement(ModePayement.CHEQUE,now).orElse(0.0);
-         Double sumCredit = cashRepository.findByTypePayement(ModePayement.CREDIT,now).orElse(0.0);
+         Double sumEspece = ifcRepository.findByTypePayement(filialeId,ModePayement.ESPECE, now).orElse(0.0);
+         Double sumConsommation = ifcRepository.findByTypePayement(filialeId,ModePayement.CONSOMMATION,now).orElse(0.0);
+         Double sumVirement = ifcRepository.findByTypePayement(filialeId,ModePayement.VIREMENT,now).orElse(0.0);
+         Double sumCheque = ifcRepository.findByTypePayement(filialeId,ModePayement.CHEQUE,now).orElse(0.0);
+         Double sumCredit = ifcRepository.findByTypePayement(filialeId,ModePayement.CREDIT,now).orElse(0.0);
          Double recette = sumVente - sumCredit;
-         Double sumMobileMoney = cashRepository.findByTypePayement(ModePayement.MOBILE_MONEY,now).orElse(0.0);
-         Double avoir = cashRepository.findByOperationType(TypeOperationCaisse.AVOIR,now).orElse(0.0);
-         Double sommeDepense = cashRepository.findByOperationType(TypeOperationCaisse.DECAISSEMENT,now).orElse(0.0);
-         Double sommeEncaissement = cashRepository.findByOperationType(TypeOperationCaisse.ENCAISSEMENT, now).orElse(0.0);
+         Double sumMobileMoney = ifcRepository.findByTypePayement(filialeId,ModePayement.MOBILE_MONEY,now).orElse(0.0);
+         Double avoir = ifcRepository.findByOperationType(filialeId,TypeOperationCaisse.AVOIR,now).orElse(0.0);
+         Double sommeDepense = ifcRepository.findByOperationType(filialeId,TypeOperationCaisse.DECAISSEMENT,now).orElse(0.0);
+         Double sommeEncaissement = ifcRepository.findByOperationType(filialeId,TypeOperationCaisse.ENCAISSEMENT, now).orElse(0.0);
          info.put(SOMME_VENTE,sumVente);
          info.put(SOMME_CONSOMMATION,sumConsommation);
          info.put(SOMME_ESPECE,sumEspece);
@@ -85,6 +84,6 @@ public class CashService {
     public static String getSommeConsommation() {
         return SOMME_CONSOMMATION;
     }
-    @Autowired private CashRepository cashRepository;
+    @Autowired private IfcRepository ifcRepository;
     @Autowired private VenteRepository venteRepository;
 }

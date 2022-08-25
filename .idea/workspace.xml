@@ -5,29 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bd9c0e93-77b1-4a8f-96ad-44ae32dfbfef" name="Changes" comment="reste menu-operation filtre">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/info-barcode.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/JsBarcode.all.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_src_/database/ioldb.BLv7BQ/schema/public.abK9xQ.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_staging_/database/ioldb.BLv7BQ/schema/public.abK9xQ/routine/update_caisse_filiale.imwZJw.base.sql" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73884527-d88b-40a4-95d6-108050fd7c49/storage_v2/_staging_/database/ioldb.BLv7BQ/schema/public.abK9xQ/routine/update_caisse_filiale.imwZJw.base.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/Iol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/Iol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/ifcRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/restController/ifcRessource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/controller/servletController/MenuNavController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/controller/servletController/MenuNavController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/entityEnum/ModePayement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/entityEnum/ModePayement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/InfoFilialeCaisse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/model/tenantEntityBeans/InfoFilialeCaisse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/repository/CashRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/repository/IfcRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/repository/IfcRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/repository/SalesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/repository/SalesRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/iol/service/CashService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/iol/service/CashService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-article.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-article.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-caisse.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-caisse.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-utilisateur.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/menu-utilisateur.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/facture/mode-payement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/modal/facture/mode-payement.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/template/setting.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/template/setting.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/SCRIPT/INFO_ARTICLE_TRIGGER.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/SCRIPT/INFO_ARTICLE_TRIGGER.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/admin-client/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/admin-client/dashboard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-article.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-article.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-caisse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-caisse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-utilisateur.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-utilisateur.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/iol/repository/CashRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/iol/repository/CashRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-facture.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/menu/menu-facture.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/iol/repository/CashRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/iol/repository/IfcRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SCRIPT/INFO_ARTICLE_TRIGGER.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SCRIPT/INFO_ARTICLE_TRIGGER.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/ifcRessource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/restController/ifcRessource.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/iol/controller/servletController/MenuNavController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/controller/servletController/MenuNavController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEnum/ModePayement$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/entityEnum/ModePayement$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/entityEnum/ModePayement.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/entityEnum/ModePayement.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/model/tenantEntityBeans/Caisse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/CashRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/iol/repository/IfcRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/repository/IfcRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/iol/service/CashService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/iol/service/CashService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/iol/repository/CashRepositoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/iol/repository/CashRepositoryTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/iol/repository/CashRepositoryTest.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +107,8 @@
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
@@ -110,8 +116,10 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/assets/js" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="reactor" />
   </component>
   <component name="ReactorSettings">
+    <option name="debugInitializationType" value="AGENT" />
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
@@ -217,7 +225,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CashRepositoryTest.findAllByTypeOperation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IfcRepositoryTest.findAllByTypeOperation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="iol" />
       <extension name="coverage">
         <pattern>
@@ -226,14 +234,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.iol.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.iol.repository.CashRepositoryTest" />
+      <option name="MAIN_CLASS_NAME" value="com.iol.repository.IfcRepositoryTest" />
       <option name="METHOD_NAME" value="findAllByTypeOperation" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CashRepositoryTest.findByTypePayement" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IfcRepositoryTest.findByTypePayement" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="iol" />
       <extension name="coverage">
         <pattern>
@@ -242,14 +250,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.iol.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.iol.repository.CashRepositoryTest" />
+      <option name="MAIN_CLASS_NAME" value="com.iol.repository.IfcRepositoryTest" />
       <option name="METHOD_NAME" value="findByTypePayement" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CashRepositoryTest.testFindByTypePayement" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IfcRepositoryTest.testFindByTypePayement" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="iol" />
       <extension name="coverage">
         <pattern>
@@ -258,7 +266,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.iol.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.iol.repository.CashRepositoryTest" />
+      <option name="MAIN_CLASS_NAME" value="com.iol.repository.IfcRepositoryTest" />
       <option name="METHOD_NAME" value="testFindByTypePayement" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -274,11 +282,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CashRepositoryTest.testFindByTypePayement" />
-        <item itemvalue="JUnit.CashRepositoryTest.findAllByTypeOperation" />
+        <item itemvalue="JUnit.IfcRepositoryTest.testFindByTypePayement" />
+        <item itemvalue="JUnit.IfcRepositoryTest.findAllByTypeOperation" />
         <item itemvalue="JUnit.ActivityRepositoryTest.findAllByFilialeId" />
         <item itemvalue="HTTP Request.generated-requests#143" />
-        <item itemvalue="JUnit.CashRepositoryTest.findByTypePayement" />
+        <item itemvalue="JUnit.IfcRepositoryTest.findByTypePayement" />
       </list>
     </recent_temporary>
   </component>
@@ -404,7 +412,11 @@
       <workItem from="1661243560527" duration="12265000" />
       <workItem from="1661261528558" duration="8624000" />
       <workItem from="1661278993340" duration="5983000" />
-      <workItem from="1661312708663" duration="26048000" />
+      <workItem from="1661312708663" duration="27754000" />
+      <workItem from="1661361499444" duration="10223000" />
+      <workItem from="1661407485073" duration="29000" />
+      <workItem from="1661411831949" duration="3599000" />
+      <workItem from="1661437859955" duration="2648000" />
     </task>
     <task id="LOCAL-00001" summary="mapping de la trigger avec la table approvisionnement">
       <created>1658448504125</created>

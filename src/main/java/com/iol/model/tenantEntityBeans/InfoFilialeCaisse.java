@@ -41,6 +41,4 @@ public class InfoFilialeCaisse{
     private String description;
 
     private Double montantOperation;
-
-    private Double montantApresOperation;
 }
