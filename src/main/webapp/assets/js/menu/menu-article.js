@@ -3,9 +3,9 @@ $(function() {
     let ressource = "http://localhost:8080/api/v1/subsidiaries/";
     $item_table = $("#articleTable tbody");
     // generer barcode
-    $(namespace + '#articleTable tbody tr').each(function(v,k) {
+    $(namespace + '#articleTable tbody tr').each(function(v,k){
         $article_code = $(this).find('.barcode-list-articles .text').text();
-        $(this).find('.barcode-list-articles .text').text('');
+        // $(this).find('.barcode-list-articles .text').text('');
         $(this).find('.barcode-list-articles').append('' +
             '<svg id="barcode-'+$article_code+'" class="barcode-articles-list"></svg>');
         $codebar  = generate_barcode_text($article_code);

@@ -24,4 +24,5 @@ public class ArticleUnite {
     private int niveau;
     private double quantiteNiveau;
     private double poids;
+    private String barcode;
 }

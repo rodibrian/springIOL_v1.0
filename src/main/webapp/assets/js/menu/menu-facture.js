@@ -36,16 +36,17 @@ $(function () {
 
     // click of tr, open infos list articles in facture
     function fetchFactureInfo(reference){
-        var url = "http://localhost:8080/api/v1/sales/"+reference;
-        console.log(url);
-        execute_ajax_request("get", url, null, (vente)=> {
-            console.log(vente);
+        var url = "http://localhost:8080/api/v1/sales/" + reference;
+        execute_ajax_request("get", url, null, (vente) => {
+            if (vente.infoArticleMagasin.length>0){
                 on_invoice_info_fetched(vente);
-                // url ="http://localhost:8080/api/v1/regulations/"+vente.id;
-                // execute_ajax_request("get",url,null,(not_exist)=>{
-                //       if (not_exist) $(namespace+".btn-creer-avoir").show();
-                //       else $(namespace+".btn-creer-avoir").hide();
-                // });
+                let vente_id= $(namespace+"#info-facture").attr("vente-id");
+                url ="http://localhost:8080/api/v1/regulations/"+vente_id;
+                execute_ajax_request("get",url,null,(not_exist)=>{
+                    if (not_exist) $(namespace+".btn-creer-avoir").show();
+                    else  $(namespace+".btn-creer-avoir").hide();
+                });
+            }
         });
     }
 

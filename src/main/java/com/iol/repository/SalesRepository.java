@@ -28,8 +28,8 @@ public interface SalesRepository extends JpaRepository<Vente,Long>{
     @Query(value = "from vente v join v.infoArticleMagasin  info where info.magasin.id=:magasinId ")
     List<Vente> getSalesByStore(@Param("magasinId") Long magasinId);
 
-    @Query(value = "from vente v where v.refVente=:ref")
-    List<Vente> getInvoiceBySaleRef(@Param("ref")String reference);
+    @Query(value = "from vente v where v.refVente=:ref ")
+    Vente getInvoiceBySaleRef(@Param("ref")String reference);
 
     @Query(value = "from vente v join v.infoArticleMagasin  info where info.reference=:ref ")
     Vente getInvoiceBysaleId(@Param("ref")String reference);

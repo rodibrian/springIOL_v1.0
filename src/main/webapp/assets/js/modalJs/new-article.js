@@ -73,7 +73,6 @@ $(function () {
             }
         })
     }
-
     function initAddAndSaveArticleBtn(){
         // chargement des categories lors de l'affichage du formulaire de categorie
         $("#newArticleBtn").click(() => {
@@ -100,20 +99,20 @@ $(function () {
                 let td = $(tr[i]).children();
                 let input = td.find("input");
                 for (let j = 0; j < input.length; j++) {
-                    uniteRow.push(input[j].value)
+                    uniteRow.push(input[j].value);
                 }
                 // UNITE
                 let unite = {};
                 unite.code = uniteRow[0];
                 unite.designation = uniteRow[2];
                 // ARTICLE UNITE
-                let articleUnite = {};
-                articleUnite.article = data;
-                articleUnite.unite = unite;
-                articleUnite.niveau = uniteRow[1];
-                articleUnite.quantiteNiveau = uniteRow[3];
-                articleUnite.poids = uniteRow[4];
-                articleUniteTab.push(articleUnite);
+                let au = {};
+                au.article = data;
+                au.unite = unite;
+                au.niveau = uniteRow[1];
+                au.quantiteNiveau = uniteRow[3];
+                au.poids = uniteRow[4];
+                articleUniteTab.push(au);
             }
             return articleUniteTab;
         }
@@ -176,6 +175,11 @@ $(function () {
                 persitDefaultPrice(data);
                 // Clear the form
                 $("#designation").text("");
+
+                // Supprimer la liste des unités
+
+                let default_unite = $('#table-unite tbody tr:first-child');
+                $('#table-unite tbody tr').empty();
             });
         }
 
@@ -217,7 +221,6 @@ $(function () {
                 }
                 $(namespace).modal('hide');
             }
-
         });
     }
 

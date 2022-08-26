@@ -65,20 +65,20 @@ $(function () {
         let filialeId = $(namespace + '#filiale-id').attr("value-id");
         get_select_affect_to_input(namespace + '#designation-article',article_id, $(this).children().eq(0).text());
         set_select_option_value([unite_id, $(this).children().eq(1).text()], namespace + "#input-unite-article");
-        $(namespace + 'form').validate({
-            rules: {
-                designation: {required: true},
-                unite: {required: true},
-                inputQuantiteArticle: {required: true, min: 0.0001,max : $quantite_stock, number: true},
-                inputPrixUnitaire: {required: true, min: 0.0001, number: true},
-            },
-            messages: {
-                designation: {required: ''},
-                unite: {required: 'Unite d\'article requis'},
-                inputQuantiteArticle: {required: 'Quantite non valide', min: "Quantite doit d\'être >0", number: true},
-                inputPrixUnitaire: {required: '', min: '', number: true},
-            }
-        });
+        // $(namespace + 'form').validate({
+        //     rules: {
+        //         designation: {required: true},
+        //         unite: {required: true},
+        //         inputQuantiteArticle: {required: true, min: 0.0001,max : $quantite_stock, number: true},
+        //         inputPrixUnitaire: {required: true, min: 0.0001, number: true},
+        //     },
+        //     messages: {
+        //         designation: {required: ''},
+        //         unite: {required: 'Unite d\'article requis'},
+        //         inputQuantiteArticle: {required: 'Quantite non valide', min: "Quantite doit d\'être >0", number: true},
+        //         inputPrixUnitaire: {required: '', min: '', number: true},
+        //     }
+        // });
         /* AFFECTATION DU PRIX UNITAIRE */
         $(namespace + "#input-prix-unitaire").val($prix_article);
         get_select_affect_to_input(namespace + "#input-prix-unitaire", "", $(this).children().eq(5).text());
